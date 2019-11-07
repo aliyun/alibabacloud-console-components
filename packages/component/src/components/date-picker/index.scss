@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.#{$css-prefix}range-picker {
+  width: auto;
+
+  &-trigger-input {
+    &.#{$css-prefix}input {
+      min-width: 200px;
+    }
+  }
+}

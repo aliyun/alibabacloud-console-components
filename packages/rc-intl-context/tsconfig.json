@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@alicloud/console-components-intl-context": ["./src"],
+      "@alicloud/console-components-intl-context/*": ["./src/*"]
+    }
+  }
+}

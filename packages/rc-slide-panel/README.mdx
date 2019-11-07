@@ -1,0 +1,104 @@
+---
+name: rc-slide-panel
+zhName: 滑动面板
+type: biz-component
+---
+
+# @alicloud/console-components-slide-panel
+
+滑动面板，从浏览器右侧弹出面板。
+
+## 基本用法
+
+SlidePanel 适用于**只展示一个 panel**的情况(其实这应该符合大部分情况)，点击 open 按钮时弹出面板：
+
+[MDXInstruction:importDemo:SlidePanelDemo](./stories/SlidePanel/index.tsx)
+
+弹出多个面板，用户可以在面板之间切换。这种场景需要使用 SlidePanelGroup 和 SlidePanelItem：
+
+[MDXInstruction:importDemo:MultiPanelDemo](./stories/MultiPanel/index.tsx)
+
+基于栈的多面板管理：每次只展示一个面板，但是可以进行下探、返回。使用`usePanelStack`来帮助你快速实现栈式面板管理：
+
+[MDXInstruction:importDemo:StackPanelDemo](./stories/StackPanel/index.tsx)
+
+## APIs
+
+### SlidePanel
+
+SlidePanel 是基于 SlidePanelGroup 和 SlidePanelItem 的简单封装，将自己 props 直接代理给它们：
+
+```tsx
+<SlidePanelGroup {...slidePanelGroupProps}>
+  <SlidePanelItem {...slidePanelItemProps} />
+</SlidePanelGroup>
+```
+
+对于**只展示一个 panel**的情况(其实这应该符合大部分情况)，直接使用 SlidePanel 就很方便。使用方式见上面的[基本用法](#基本用法)。
+
+[MDXInstruction:renderInterface:ISlidePanelProps](./api-json/api.json)
+
+如果要同时展示多个 panel，请使用 SlidePanelGroup 和 SlidePanelItem。
+
+### SlidePanelGroup
+
+SlidePanelGroup 定义一个滑动面板**组**，其中可以包含多个 SlidePanelItem。
+
+[MDXInstruction:renderInterface:ISlidePanelGroupProps](./api-json/api.json)
+
+### SlidePanelItem
+
+定义一个滑动面板。
+
+[MDXInstruction:renderInterface:ISlidePanelItemProps](./api-json/api.json)
+
+### usePanelStack
+
+使用一个栈来管理多个面板：
+
+1. 最初只有一个面板
+2. 当加入新的面板时，展示新的面板（下探）
+3. 当新面板返回时，展示最初的那个面板
+
+#### 参数
+
+```tsx
+initer?: () => React.ReactElement
+```
+
+初始化最初展示的面板。
+
+#### 返回值
+
+[MDXInstruction:renderInterface:IUsePanelStackReturn](./api-json/api.json)
+
+#### usePanelStackCtx
+
+为了方便用户【在面板中】操作面板栈，我们提供了`usePanelStackCtx()`这个 hooks 来获得栈的操作方法：`push`和`pop`，这两个操作方法就是 usePanelStack 返回值中的`push`和`pop`。
+```tsx
+const FirstPanel: React.FC<{
+  setIsPanelShowing: (v: boolean) => void
+}> = ({ setIsPanelShowing }) => {
+  const panelStackManager = usePanelStackCtx()
+  return (
+    <SlidePanelItem
+      id="item1"
+      width="medium"
+      title="title1"
+      headerExtra="extra1"
+      onOk={() => setIsPanelShowing(false)}
+      onCancel={() => setIsPanelShowing(false)}
+    >
+      item1
+      <Button
+        onClick={() => {
+          panelStackManager.push(<SecondPanel />)
+        }}
+      >
+        下探一级
+      </Button>
+    </SlidePanelItem>
+  )
+}
+```
+使用示例见前面的“基本用法”小节。

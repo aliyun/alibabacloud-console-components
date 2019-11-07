@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+
+.#{$css-prefix}step {
+  &-item-content {
+    color: $color-text1-2 !important;
+  }
+
+  // style for size:small
+  &.#{$css-prefix}step-circle.wind-enhanced-step-size-small {
+    $small-size: 24px;
+
+    &.#{$css-prefix}step-horizontal,
+    &.#{$css-prefix}step-vertical {
+      .#{$css-prefix}step-item-node-placeholder {
+        height: $small-size;
+        width: $small-size;
+
+        .#{$css-prefix}step-item-node-circle {
+          height: $small-size;
+          width: $small-size;
+          line-height: $small-size - 2;
+
+          .#{$css-prefix}icon {
+            &:before {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    &.#{$css-prefix}step-vertical {
+      .#{$css-prefix}step-item-body > .#{$css-prefix}step-item-title {
+        margin-top: 4px;
+      }
+    }
+  }
+}

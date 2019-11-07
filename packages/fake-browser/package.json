@@ -1,0 +1,51 @@
+{
+  "name": "@alicloud/console-components-fake-browser",
+  "version": "2.0.0-alpha.1",
+  "description": "",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "module": "es/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "wind",
+    "wind-rc-actions",
+    "react",
+    "react component"
+  ],
+  "author": {
+    "name": "csr632",
+    "email": "632882184@qq.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "prepublish": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
+    "clean": "rm -rf dist lib es api-temp api-json",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "types": "tsc -p src --emitDeclarationOnly",
+    "build": "breezr build --engine webpack",
+    "test": "breezr test:unit",
+    "storybook": "breezr start-storybook",
+    "lint": "eslint src/",
+    "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write"
+  },
+  "peerDependencies": {
+    "@alicloud/console-components": "^0.0.1-alpha.0",
+    "dva": "^2.4.1",
+    "prop-types": "^15.x",
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "@breezr/cli": "^1.0.0-alpha.1"
+  },
+  "dependencies": {
+    "react-rnd": "^10.1.0"
+  }
+}

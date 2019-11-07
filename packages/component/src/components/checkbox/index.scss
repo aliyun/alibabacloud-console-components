@@ -1,0 +1,57 @@
+@import '../../styles/variables.scss';
+
+$checkbox-cls-name: '#{$css-prefix}checkbox';
+
+.#{$checkbox-cls-name} {
+  $checkbox-size: 14px !default;
+  $checkbox-inner-cls-name: '#{$checkbox-cls-name}-inner';
+  $icon-cls-name: '#{$css-prefix}icon';
+  $margin-size: $size-base * 2;
+
+  &-label {
+    margin-left: $margin-size;
+  }
+
+  &-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0.5;
+
+    .#{$checkbox-inner-cls-name} {
+      width: $checkbox-size;
+      height: $checkbox-size;
+
+      > .#{$icon-cls-name} {
+        display: inline-block;
+        line-height: $checkbox-size;
+        position: static;
+        margin: 0;
+        vertical-align: top;
+      }
+    }
+
+    &.checked {
+      .#{$checkbox-inner-cls-name} {
+        > .#{$icon-cls-name} {
+          transform: scale(0.8);
+        }
+      }
+    }
+
+    input[type='checkbox'] {
+      width: $checkbox-size;
+      height: $checkbox-size;
+    }
+  }
+
+  &-group-hoz {
+    display: inline-block;
+    margin-left: -$margin-size;
+
+    .#{$checkbox-cls-name}-wrapper {
+      &:first-child {
+        margin-left: $margin-size;
+      }
+    }
+  }
+}

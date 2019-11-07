@@ -1,0 +1,17 @@
+{
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "message": "chore(release): Publish",
+      "npmClient": "npm",
+      "registry": "https://registry.npmjs.org/"
+    },
+    "version": {
+      "allowBranch": ["master", "next", "nightly", "feat/rc-comp"],
+      "ignoreChanges": ["*.md", "*.mdx", "**/stories/**", "**/demo/**"],
+      "tagVersionPrefix": ""
+    }
+  },
+  "useWorkspaces": true,
+  "version": "independent"
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": ["test/**"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@alicloud/console-components-console-menu": ["./src"],
+      "@alicloud/console-components-console-menu/*": ["./src/*"]
+    }
+  }
+}

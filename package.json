@@ -1,0 +1,50 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "site",
+    "."
+  ],
+  "scripts": {
+    "bootstrap": "npx lerna bootstrap",
+    "clean": "npx lerna clean --yes && rm -rf node_modules",
+    "prepare": "npx lerna run prepublish",
+    "prebootstrap": "yarn run clean",
+    "link-bin": "link-parent-bin",
+    "postinstall": "npm run link-bin",
+    "lint": "npx eslint ./packages",
+    "release": "npx lerna publish --conventional-commits",
+    "release:next": "npx lerna publish --npm-tag=next",
+    "release:nightly": "npx lerna publish --npm-tag=nightly"
+  },
+  "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
+  "devDependencies": {
+    "@breezr/cli": "^1.0.0-alpha.1",
+    "@breezr/preset-wind-component": "^1.0.0-alpha.2",
+    "@microsoft/api-extractor": "^7.5.1",
+    "@types/classnames": "^2.2.9",
+    "@types/enzyme": "^3.10.2",
+    "@types/jest": "^24.0.15",
+    "@types/lodash": "^4.14.139",
+    "@types/node": "^12.12.3",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "@types/styled-components": "4.1.8",
+    "@types/warning": "^3.0.0",
+    "@types/webpack-env": "^1.14.0",
+    "dva": "^2.4.1",
+    "eslint": "^5.3.0",
+    "lerna": "^3.13.1",
+    "link-parent-bin": "^1.0.2",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "prettier": "^1.18.2",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "styled-components": "^4.3.2",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {}
+}

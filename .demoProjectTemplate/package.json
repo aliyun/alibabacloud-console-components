@@ -1,0 +1,49 @@
+{
+  "name": "wind-demo",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.tsx",
+  "dependencies": {
+    "@alicloud/console-components-fake-browser": "latest",
+    "@alicloud/console-components": "latest",
+    "@alicloud/console-components-actions": "latest",
+    "@alicloud/console-components-app-layout": "latest",
+    "@alicloud/console-components-confirm": "latest",
+    "@alicloud/console-components-console-menu": "latest",
+    "@alicloud/console-components-data-fields": "latest",
+    "@alicloud/console-components-info": "latest",
+    "@alicloud/console-components-page": "latest",
+    "@alicloud/console-components-slide-panel": "latest",
+    "@alicloud/console-components-status-indicator": "latest",
+    "@alicloud/console-components-table": "latest",
+    "@alicloud/console-components-truncate": "latest",
+    "@alicloud/console-components-select-list": "latest",
+    "@alicloud/console-components-intl": "latest",
+    "@alicloud/console-components-intl-context": "latest",
+    "dva": "^2.4.1",
+    "styled-components": "^4.2.0",
+    "moment": "^2.21.0",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
+    "react-scripts": "2.1.3"
+  },
+  "devDependencies": {
+    "@types/react": "16.8.8",
+    "@types/react-dom": "16.8.2",
+    "@types/styled-components": "^4.1.8",
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

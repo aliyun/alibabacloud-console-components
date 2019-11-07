@@ -1,0 +1,98 @@
+@import '../../styles/variables.scss';
+
+.#{$css-prefix}tag {
+  $tag-body-cls-name: '#{$css-prefix}tag-body';
+  // color definitions:
+  $light-steel-blue: 'light-steel-blue';
+  $light-steel-blue-bg: #edf3f7;
+  $light-steel-blue-text: #628099;
+
+  $plum: 'plum';
+  $plum-bg: #f0edf7;
+  $plum-text: #746299;
+
+  $misty-rose: 'misty-rose';
+  $misty-rose-bg: #f7eded;
+  $misty-rose-text: #996262;
+
+  $light-goldenrod-yellow: 'light-goldenrod-yellow';
+  $light-goldenrod-yellow-bg: #f7f6ed;
+  $light-goldenrod-yellow-text: #999062;
+
+  $pale-green: 'pale-green';
+  $pale-green-bg: #edf7ed;
+  $pale-green-text: #629962;
+
+  $gray: 'gray';
+  $gray-bg: #e5e5e5;
+  $gray-text: #595959;
+
+  $silver: 'silver';
+  $silver-bg: #fafafa;
+  $silver-text: #595959;
+  $silver-border: #bfbfbf;
+
+  @mixin mixin-tag($backgroundColor, $textColor) {
+    background: $backgroundColor !important;
+    color: $textColor !important;
+    &:hover {
+      background: $backgroundColor !important;
+      color: $textColor !important;
+    }
+  }
+
+  &.wind-tag-colored {
+    border: 0;
+    cursor: default;
+
+    .#{$tag-body-cls-name} {
+      top: 0;
+    }
+  }
+
+  // for each color:
+  &.wind-tag-colored-#{$light-steel-blue} {
+    @include mixin-tag(
+      $backgroundColor: $light-steel-blue-bg,
+      $textColor: $light-steel-blue-text
+    );
+  }
+  &.wind-tag-colored-#{$plum} {
+    @include mixin-tag($backgroundColor: $plum-bg, $textColor: $plum-text);
+  }
+  &.wind-tag-colored-#{$misty-rose} {
+    @include mixin-tag(
+      $backgroundColor: $misty-rose-bg,
+      $textColor: $misty-rose-text
+    );
+  }
+  &.wind-tag-colored-#{$light-goldenrod-yellow} {
+    @include mixin-tag(
+      $backgroundColor: $light-goldenrod-yellow-bg,
+      $textColor: $light-goldenrod-yellow-text
+    );
+  }
+  &.wind-tag-colored-#{$pale-green} {
+    @include mixin-tag(
+      $backgroundColor: $pale-green-bg,
+      $textColor: $pale-green-text
+    );
+  }
+  &.wind-tag-colored-#{$gray} {
+    @include mixin-tag($backgroundColor: $gray-bg, $textColor: $gray-text);
+  }
+
+  &.wind-tag-colored-#{$silver} {
+    @include mixin-tag($backgroundColor: $silver-bg, $textColor: $silver-text);
+    box-sizing: border-box;
+    border: 1px solid $silver-border;
+
+    .#{$tag-body-cls-name} {
+      top: -1px;
+    }
+
+    &:hover {
+      border-color: $silver-border !important;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+
+$table-cls-name: '#{$css-prefix}table';
+$table-cell-wrapper-cls-name: '#{$table-cls-name}-cell-wrapper';
+
+.#{$table-cls-name} {
+  th,
+  td {
+    .#{$table-cell-wrapper-cls-name} {
+      word-break: normal;
+    }
+
+    &.#{$table-cls-name}-selection {
+      .#{$table-cell-wrapper-cls-name} {
+        line-height: 14px;
+      }
+    }
+
+    &.#{$table-cls-name}-expanded-row {
+      background-color: #ebebeb;
+    }
+  }
+  // 表头icon的样式
+  th,
+  thead {
+    .#{$css-prefix}icon {
+      color: #888;
+      &:hover {
+        color: #555;
+      }
+    }
+  }
+  &-sort {
+    // 增加选择器权重
+    &#{&} {
+      &:hover {
+        .#{$css-prefix}icon {
+          color: #555;
+        }
+      }
+      // 激活状态下，icon父元素会获得类名current
+      .current {
+        .#{$css-prefix}icon {
+          color: #0070cc;
+        }
+      }
+    }
+  }
+}

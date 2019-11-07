@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+$card-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.13);
+
+.#{$css-prefix}card {
+  &#{&} {
+    // 增加卡片阴影效果
+    box-shadow: $card-box-shadow;
+    // 根据视觉标准, 有阴影的盒子需要去除边框
+    // 注意: 由于内部元素(如 .next-card-head-main)拥有相对与 border-box 的 margin 来进行定位
+    // 所以保留外部 border-box 的边框尺寸, 仅将边框颜色置为透明
+    border: 1px solid transparent;
+  }
+
+  .#{$css-prefix}card-title {
+    font-weight: 600;
+
+    .#{$css-prefix}card-subtitle {
+      font-weight: 400;
+    }
+  }
+
+  .#{$css-prefix}card-body {
+    padding-bottom: 0;
+    margin-bottom: 16px;
+
+    .#{$css-prefix}card-content {
+      margin-bottom: 16px;
+    }
+
+    .#{$css-prefix}card-footer {
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+
+  &.wind-enhanced-card-has-border {
+    box-shadow: $card-box-shadow;
+    border: 1px solid $color-line1-1;
+  }
+}
