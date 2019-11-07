@@ -1,7 +1,0 @@
-// 这个文件中只应该包含sass变量定义
-// 因为【每个组件的sass】都会@import引入它，所以这里包含的【样式规则】会被重复30多次，在demo运行期间（开发期）造成卡顿
-// https://github.com/webpack-contrib/sass-loader/issues/145
-$css-prefix: 'next-' !default;
-
-// 此包中的变量通过Fusion设计师平台来设置
-@import '../fetched-files/variables.scss';
