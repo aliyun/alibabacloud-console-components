@@ -14,8 +14,8 @@ Wind 是阿里云控制台视觉规范的实现者，帮助阿里内部以及生
 
 ## 常见概念解释
 
-[常见概念](./guides/concepts.md)
+请阅读[常见概念](./guides/concepts.md)
 
-## 共建 Wind
+## 共建
 
-[贡献指南](./guides/contributing.md)
+请阅读[贡献指南](./guides/contributing.md)

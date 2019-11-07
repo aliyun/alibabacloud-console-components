@@ -20,7 +20,7 @@ sort: 3
 
 ## 所有开发期所需的依赖都安装在根目录
 
-新增业务组件时注意：**所有开发期所需的依赖都安装在根目录的 package.json 中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子目录都维护一份自己的开发依赖，做到统一管理、升级。
+新增业务组件时注意：**所有开发期所需的依赖都安装在根目录中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子目录都维护一份自己的开发依赖，做到统一管理、升级。
 如果你要在子包中使用根目录下安装的 cli 工具(比如 `breezr build`)，需要先在根目录执行`npm run link-bin`，将`/node_modules/.bin`下的工具 link 到所有子包中。这个命令在 `npm run bootstrap` 时自动帮你执行了，**仅当你增加新的子 package 后需要手动实行一次**。
 
 ## 开发工具
@@ -29,9 +29,10 @@ sort: 3
 
 - 业务组件：
   - 使用 typescript 开发
-  - 使用 storybook 作为开发环境
-  - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据，从而不需要在 markdown 中手工维护一份 API 列表
-  - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
+  - 使用 storybook 作为开发环境(`npm run storybook`)
+  - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
+    > 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/e971f40eb0b185559226d71952d950b3fbf87a50/packages/rc-actions/src/index.tsx#L1)的做法
+  - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
 - 基础组件：
   - `npm run start`启动开发环境（通过原生 webpack 搭建）
 - 文档站：使用 gatsbyjs 进行开发。从而文档站是完全静态化的，所有数据在构建期间就被收集（从仓库中），在运行期间无需服务端提供数据

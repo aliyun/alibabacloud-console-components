@@ -34,7 +34,6 @@ export interface IActionsProps {
    */
   threshold?: number
   /**
-   * {@inheritDoc PartitionFn}
    * @defaultValue 根据{@link IActionsProps.threshold | threshold}将子节点分为两组：`[前threshold个, 剩下的x个]`
    * @internal
    */
@@ -56,7 +55,6 @@ export interface IActionsProps {
    */
   dataSource?: ReactNode
   /**
-   * {@inheritDoc RenderItemsByParts}
    * @defaultValue 默认的渲染函数假设{@link IActionsProps.partitionFn | partitionFn}已经将子元素分为了两组：`[前threshold个, 剩下的x个]`，它会将前面这组直接展示，并用竖线分开，将后面这组收敛在一个下拉菜单中
    * @internal
    */
