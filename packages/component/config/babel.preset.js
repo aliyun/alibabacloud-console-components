@@ -6,8 +6,9 @@ exports.env = () => [
     targets: {
       browsers: ['>1%', 'ie 10'],
     },
-    useBuiltIns: false,
+    useBuiltIns: 'usage',
     modules: 'commonjs',
+    corejs: 2,
   },
 ]
 

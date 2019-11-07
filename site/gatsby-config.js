@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  pathPrefix: `/sirui.csr/test-wind-site-deploy`,
+  pathPrefix: `/console-components`,
   siteMetadata: {
     title: 'Gatsby Default Starter',
     description:
@@ -17,8 +17,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
@@ -40,17 +38,6 @@ module.exports = {
           require('./lib/buildTools/legacyImportDemoInstruction/remarkPlugin'),
         ],
         rehypePlugins: [require('rehype-slug')],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 800,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
-        // https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
-        plugins: [`gatsby-remark-images`],
       },
     },
     {

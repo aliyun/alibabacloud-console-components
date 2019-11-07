@@ -46,5 +46,7 @@
     "styled-components": "^4.3.2",
     "typescript": "^3.5.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "core-js": "^2.0.0"
+  }
 }
