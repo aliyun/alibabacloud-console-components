@@ -60,7 +60,7 @@ const SSearch = styled.div`
   line-height: 0;
   opacity: 0.6;
   width: 300px;
-  margin-left: 120px;
+  margin-left: 30px;
 `
 
 interface NavItemProps {
@@ -115,15 +115,14 @@ const TopBar: React.FC<ITopBarProps> = ({ searchData }) => {
   return (
     <STopBar className="top-nav">
       <SLogo>
-        <Link to={BaseCompDocEntry}>Wind</Link>
+        <Link to={BaseCompDocEntry}>Console Components</Link>
       </SLogo>
       <SNavList className="top-nav_list">
         {navs.map((navItem: any, index) => {
           if (navItem.list) {
             return <NavMenu {...navItem} key={index} />
-          } else {
-            return <NavItem {...navItem} key={index} />
           }
+          return <NavItem {...navItem} key={index} />
         })}
       </SNavList>
       <SSearch>

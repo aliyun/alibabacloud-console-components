@@ -6,11 +6,11 @@ sort: 1
 
 # 基本概念
 
-## Wind
+## Console Components
 
-Wind 是`console-components`的项目代号，可以理解为本项目的“乳名”。
+Console Components 是针对阿里云控制台场景的 React 组件解决方案。它是阿里云控制台视觉规范的实现者，帮助阿里内部以及生态伙伴的开发者，更快地编写的阿里云控制台应用，而无需为视觉规范而困扰。Console Components 在保障阿里云控制台的体验一致性的同时，降低用户开发成本。
 
-Wind 是针对阿里云控制台场景的 React 组件解决方案。Wind 是阿里云控制台视觉规范的实现者，帮助阿里内部以及生态伙伴的开发者，更快地编写的阿里云控制台应用，无需为视觉规范而困扰。在保障阿里云控制台的体验一致性的同时，降低用户开发成本。
+Console Components 的项目代号为`Wind`。
 
 ## 基础组件
 
@@ -18,10 +18,10 @@ Wind 是针对阿里云控制台场景的 React 组件解决方案。Wind 是阿
 
 基础组件基于[Fusion design](https://fusion.design/)做[样式定制](https://fusion.design/component/doc/3077)得到。Fusion design 是阿里集团出品的一套 UI 解决方案，它的核心就是一套高度可定制化的 React 组件库。基础组件不会带有控制台的业务逻辑，因此可以作为通用组件库来使用。
 
-Wind 选择基于 Fusion 做扩展的原因：
+Console Components 选择基于 Fusion 做扩展的原因：
 
 1. 避免在底层组件层面重复造轮子，将精力聚焦于控制台业务场景。
-2. 集团内部大部分前端同学都有 Fusion 的使用经历，基于 Fusion 来建设 Wind 有助于减少开发者学习、沟通成本。
+2. 集团内部大部分前端同学都有 Fusion 的使用经历，基于 Fusion 来建设 Console Components 有助于减少开发者学习、沟通成本。
 
 ## 业务组件
 
@@ -36,18 +36,18 @@ Wind 选择基于 Fusion 做扩展的原因：
 
 ## styled-components
 
-> 如果你目前不需要**定制 Wind 业务组件的样式**，可以不必了解 styled-components。
+> 如果你目前不需要**定制 Console Components 业务组件的样式**，可以不必了解 styled-components。
 
-Wind 内部使用[styled-components](https://www.styled-components.com/docs/basics)来编写业务组件的样式。styled-components 是 React 社区最流行的 CSS 模块化解决方案之一。
+Console Components 内部使用[styled-components](https://www.styled-components.com/docs/basics)来编写业务组件的样式。styled-components 是 React 社区最流行的 CSS 模块化解决方案之一。
 
-Wind 选择使用 styled-components 的原因：
+Console Components 选择使用 styled-components 的原因：
 
 1. import 即可用的 scss 语法，无需用户配置 webpack。
 2. 自动为每个 styled-component 生成全局唯一类名，避免样式冲突。再也不需要为命名类名而纠结。
 3. 拥有 JavaScript 的动态性，styled components 可以根据 React context、props 来决定自己的样式。
-4. 便于 Wind 的用户对样式做定制。
+4. 便于 Console Components 的用户对样式做定制。
 
 ## Breezr
 
 breezr 是阿里云控制台团队针对自己的开发需求而设计的 React 应用脚手架。它将 webpack、babel、jest 等工具的配置收敛到了 plugin、preset 中，免去了用户配置工具链的烦恼。
-Wind 本身使用 breezr 作为构建工具，也建议阿里云控制台开发者使用 breezr。
+Console Components 本身使用 breezr 作为构建工具，也建议阿里云控制台开发者使用 breezr。

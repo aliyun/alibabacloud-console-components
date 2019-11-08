@@ -21,9 +21,9 @@ cd my-app
 yarn add @alicloud/console-components moment styled-components
 ```
 
-其中，`moment` 和 `styled-components` 是 wind 的 peerDependencies。
+其中，`moment` 和 `styled-components` 是 Console Components 的 peerDependencies。
 
-在应用入口(index.js)引入 wind 的样式：
+在应用入口(index.js)引入 Console Components 的样式：
 
 ```jsx
 import '@alicloud/console-components/dist/wind.css'
@@ -39,7 +39,7 @@ import { Button } from '@alicloud/console-components'
 function App() {
   return (
     <div className="App">
-      <h1>Wind Demo</h1>
+      <h1>Console Components Demo</h1>
       <Button type="primary">Button works!</Button>
     </div>
   )
@@ -58,12 +58,12 @@ npm install -S @alicloud/console-components-app-layout @alicloud/console-compone
 
 ```jsx
 // ...
-import WindAppLayout from '@alicloud/console-components-app-layout'
-import WindConsoleMenu from '@alicloud/console-components-console-menu'
+import CCAppLayout from '@alicloud/console-components-app-layout'
+import CCConsoleMenu from '@alicloud/console-components-console-menu'
 // ...
 // 在jsx中使用：
 const navMenu = (
-  <WindConsoleMenu
+  <CCConsoleMenu
     items={[
       {
         key: 'overview',
@@ -76,10 +76,10 @@ const navMenu = (
 function App() {
   return (
     <div className="App">
-      <WindAppLayout nav={navMenu}>
+      <CCAppLayout nav={navMenu}>
         页面内容：
         <Button type="primary">使用Button</Button>
-      </WindAppLayout>
+      </CCAppLayout>
     </div>
   )
 }
