@@ -103,4 +103,4 @@ es/
 api-markdown
 api-json
 api-temp
-types
+packages/component/types
