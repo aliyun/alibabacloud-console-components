@@ -1,78 +1,110 @@
-import React, { Component }from 'react'
+import React, { useState, useCallback } from 'react'
 import { Select } from '@alicloud/console-components'
-import classNames from 'classnames'
-import './demo15.less'
+import styled from 'styled-components'
 
-/* eslint-disable react/prop-types, react/no-multi-comp */
-
-// prevent onBlur
 function preventDefault(e) {
   e.preventDefault()
 }
 
-class Menu extends Component {
-  data = [{
-    label: 'value1',
-    value: 1
-    }, {
-    label: 'value2',
-    value: 2
-  }]
-
-  onClick(item) {
-    this.props.onChange(item)
+const OverlayContent = styled.ul`
+  border: 1px solid #dddddd;
+  padding: 10px;
+  background: #ffffff;
+  margin: 0;
+  font-size: 12px;
+  font-family: Arial;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+  > li {
+    list-style: none;
+    line-height: 30px;
+    padding: 0 5px;
+    cursor: pointer;
   }
 
-  renderItems() {
-    return this.data.map(item => <li onClick={this.onClick.bind(this, item)} key={item.value}>{item.label}</li>)
-   }
-  
-  render() {
-    const {className, ...others} = this.props
-    const cls = classNames('overlay-content', className)
-    return (
-      <ul className={cls} {...others}>
-        {this.renderItems()}
-      </ul>
-    )
+  > li:hover {
+    background: #f8f8f8;
   }
+
+  > li:last-child {
+    border-width: 0;
+  }
+`
+
+const Menu = props => {
+  const data = [
+    {
+      label: 'value1',
+      value: 1,
+    },
+    {
+      label: 'value2',
+      value: 2,
+    },
+  ]
+
+  const handleClick = item => {
+    props.onChange(item)
+  }
+
+  const renderItems = () =>
+    data.map(item => (
+      <li
+        key={item.value}
+        onClick={() => {
+          handleClick(item)
+        }}
+      >
+        {item.label}
+      </li>
+    ))
+
+  const { className, ...others } = props
+  return (
+    <OverlayContent className={className} {...others}>
+      {renderItems()}
+    </OverlayContent>
+  )
 }
 
-export default class Demo15 extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: null
-    }
+const Wrapper = styled.div`
+  background-color: #f8f8f8;
+  padding: 16px;
+  position: relative;
+  p {
+    margin-top: 0;
   }
+`
+const Demo15 = () => {
+  const [value, setValue] = useState(null)
+  const [visible, setVisible] = useState(false)
 
-  handleSelect = (value) => {
-    this.setState({
-      value,
-      visible: false
-    })
-  }
+  const handleSelect = useCallback(val => {
+    setVisible(false)
+    setValue(val)
+  }, [])
 
-  onVisibleChange = (visible) => {
-    this.setState({
-      visible
-    })
-  }
+  const onVisibleChange = useCallback(vis => {
+    setVisible(vis)
+  }, [])
 
-  render() {
-    const popupContent = <Menu onChange={this.handleSelect} onMouseDown={preventDefault}/>
+  const popupContent = (
+    <Menu onChange={handleSelect} onMouseDown={preventDefault} />
+  )
 
-    return (
-      <div className="select-demo15-container">
-        <Select
-          placeholder="custom popupContent"
-          visible={this.state.visible}
-          onVisibleChange={this.onVisibleChange}
-          value={this.state.value}
-          popupContent={popupContent} />
-      </div>
-    )
-  }
+  return (
+    <Wrapper>
+      <Select
+        placeholder="custom popupContent"
+        visible={visible}
+        onVisibleChange={onVisibleChange}
+        value={value}
+        popupContent={popupContent}
+        popupContainer={node => {
+          return node.parentNode
+        }}
+      />
+    </Wrapper>
+  )
 }
+
+export default Demo15
