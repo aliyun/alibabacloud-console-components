@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SlidePanelItemBase from '../foundation/SlidePanelItemBase'
+import SlidePanelItemBase from './SlidePanelItemBase'
 import { SBodyWrapper, SPlaceHolder, SSlidePanelContentWrapper } from './style'
-import { useSlidePanelContext, ActiveIdForAll } from '../foundation/context'
+import { useSlidePanelContext, ActiveIdForAll } from '../context'
 import renderHeader from './renderHeader'
 import renderFooter from './renderFooter'
 

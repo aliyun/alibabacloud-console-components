@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import { ISlidePanelGroupBaseProps } from './SlidePanelGroupBase'
+import { ISlidePanelGroupProps } from './SlidePanelGroup'
 
 // 当面板感知到ctxValue.activeId为ActiveIdForALL时，必定激活
 export const ActiveIdForAll = '__ActiveIdForALL' as const
 
 interface ISlidePanelGroupContext {
-  activeId: ISlidePanelGroupBaseProps['activeId']
-  onSwitchPanelItem: ISlidePanelGroupBaseProps['onSwitchPanelItem']
+  activeId: ISlidePanelGroupProps['activeId']
+  onSwitchPanelItem: ISlidePanelGroupProps['onSwitchPanelItem']
 }
 
 const slidePanelGroupContext = React.createContext<ISlidePanelGroupContext | null>(

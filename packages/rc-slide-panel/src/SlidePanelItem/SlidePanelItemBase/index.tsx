@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { useSlidePanelContext, ActiveIdForAll } from '../context'
-import { useTransitionController } from '../utils'
+import { useSlidePanelContext, ActiveIdForAll } from '../../context'
+import { useTransitionController } from '../../utils'
 import { SPanelItemWrapper } from './style'
 
 /**
@@ -36,6 +36,7 @@ export interface ISlidePanelItemBaseProps {
 
 /**
  * 控制一个panel非激活时/激活时的宽度。发出面板间切换的动画的事件。
+ * 它不控制面板的内容（header、footer、button的展示），面板内容由SlidePanelItem来定义。
  * @internal
  */
 const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({

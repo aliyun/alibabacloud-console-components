@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo, useContext } from 'react'
 import slidePanelGroupContext, {
   useSlidePanelContext,
   ActiveIdForAll,
-} from './foundation/context'
+} from './context'
 
 const panelStackCtx = React.createContext<null | Pick<
   IUsePanelStackReturn,

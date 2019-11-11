@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import SlidePanelGroupBase from '../foundation/SlidePanelGroupBase'
-
+import classNames from 'classnames'
+import slidePanelGroupContext from '../context'
+import { useTransitionController } from '../utils'
+import { SMask, SPanelsWrapper } from './style'
 /**
  * @public
  */
@@ -22,6 +24,9 @@ export interface ISlidePanelGroupProps {
    * 是否在`isShowing===true`时展示背景蒙板。
    */
   hasMask?: boolean
+  /**
+   * 自定义整个SlidePanelGroup的wrapper div的类名。
+   */
   className?: string
   /**
    * 用户点击背景蒙板。大部分情况下，开发者想要在这个事件处理函数中设置`props.isShowing`为`false`。
@@ -67,20 +72,47 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   onSlideCancled,
   onSlideCompleted,
 }) => {
-  const baseProps = {
-    isShowing,
+  const ctxValue = useMemo(() => ({ activeId, onSwitchPanelItem }), [
     activeId,
-    top,
-    hasMask,
-    className,
-    onMaskClick,
-    children,
     onSwitchPanelItem,
-    onSlideStarted,
-    onSlideCancled,
-    onSlideCompleted,
-  }
-  return <SlidePanelGroupBase {...baseProps} />
+  ])
+  const transitionEndSignal = useTransitionController({
+    data: isShowing,
+    onStarted: onSlideStarted,
+    onCancled: onSlideCancled,
+    onCompleted: onSlideCompleted,
+  })[1]
+  return (
+    <div
+      className={classNames('slide-panel-container', className, {
+        'show-panel': isShowing,
+      })}
+    >
+      {hasMask && (
+        // eslint-disable-next-line
+        <SMask
+          className={classNames('slide-panel-mask', {
+            'is-active': isShowing,
+          })}
+          onClick={() => onMaskClick && onMaskClick()}
+        />
+      )}
+      <slidePanelGroupContext.Provider value={ctxValue}>
+        <SPanelsWrapper
+          className="slide-panels"
+          isShowing={isShowing}
+          top={top}
+          onTransitionEnd={e => {
+            if (e.target === e.currentTarget) {
+              transitionEndSignal()
+            }
+          }}
+        >
+          {children}
+        </SPanelsWrapper>
+      </slidePanelGroupContext.Provider>
+    </div>
+  )
 }
 
 export default SlidePanelGroup
