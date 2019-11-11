@@ -24,6 +24,7 @@
   "dependencies": {
     "@alifd/next": "~1.18.0",
     "@babel/runtime": "^7.4.5",
+    "core-js": "^2.0.0",
     "classnames": "^2.2.5",
     "hoist-non-react-statics": "^3.3.0",
     "lodash": "^4.17.5",

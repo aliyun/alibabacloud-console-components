@@ -9976,7 +9976,7 @@ gatsby-transformer-json@^2.2.16:
     "@babel/runtime" "^7.6.3"
     bluebird "^3.7.1"
 
-gatsby@^2.15.15:
+gatsby@2.17.2:
   version "2.17.2"
   resolved "https://registry.npm.taobao.org/gatsby/download/gatsby-2.17.2.tgz#848498adaf8f470ff63e8d60e78f176cf8c7da0c"
   integrity sha1-hISYra+PRw/2Po1g548XbPjH2gw=
