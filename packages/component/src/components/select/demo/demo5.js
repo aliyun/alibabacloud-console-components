@@ -1,42 +1,55 @@
-import React, { Component }from 'react'
-import { Select, Button } from '@alicloud/console-components'
-import './demo5.less'
+import React, { useState, useCallback } from 'react'
+import { Select } from '@alicloud/console-components'
+import styled from 'styled-components'
 
-const provinceData = ['Zhejiang', 'Hubei', 'Jiangsu'];
-const cityData = {
+const provinceDataSource = ['Zhejiang', 'Hubei', 'Jiangsu']
+const cityDataSource = {
   Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
   Hubei: ['Wuhan', 'Yichang', 'Jingzhou'],
-  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang']
+  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
 }
 
-export default class Demo5 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: [],
-      disabled: true
-    }
-    this.handleProvinceChange = this.handleProvinceChange.bind(this)
-    this.handleCityChange = this.handleCityChange.bind(this)
+const Wrapper = styled.div`
+  background-color: #f8f8f8;
+  padding: 16px;
+  .next-select {
+    margin-right: 10px;
   }
+`
 
-  handleProvinceChange(value) {
-    const data = cityData[value]
-    this.setState({data, province: value, disabled: !data})
-  }
+const Demo5 = () => {
+  const [cityData, setCityData] = useState([])
+  const [province, setProvince] = useState(undefined)
+  const [city, setCity] = useState(undefined)
+  const [disabled, setDisabled] = useState(true)
 
-  handleCityChange(value) {
-    this.setState({city: value})
-    console.log(this.state.province, value)
-  }
+  const handleProvinceChange = useCallback(value => {
+    const cities = cityDataSource[value]
+    setCityData(cities)
+    setProvince(value)
+    setDisabled(!cities)
+  }, [])
 
-  render() {
-    const {data, disabled, province, city} = this.state
-    return (
-      <div className="select-demo5-container">
-        <Select placeholder="Select Province" dataSource={provinceData} value={province} onChange={this.handleProvinceChange} />
-        <Select placeholder="Select City" dataSource={data} value={city} onChange={this.handleCityChange} disabled={disabled}/>
-      </div>
-    )
-  }
+  const handleCityChange = useCallback(value => {
+    setCity(value)
+  }, [])
+
+  return (
+    <Wrapper>
+      <Select
+        placeholder="Select Province"
+        dataSource={provinceDataSource}
+        value={province}
+        onChange={handleProvinceChange}
+      />
+      <Select
+        placeholder="Select City"
+        dataSource={cityData}
+        value={city}
+        onChange={handleCityChange}
+        disabled={disabled}
+      />
+    </Wrapper>
+  )
 }
+export default Demo5
