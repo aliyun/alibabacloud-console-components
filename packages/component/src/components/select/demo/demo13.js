@@ -1,49 +1,60 @@
-import React, { Component }from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { Select, Icon } from '@alicloud/console-components'
 import fetchJsonp from 'fetch-jsonp'
-import './demo13.less'
+import styled from 'styled-components'
 
-const {AutoComplete} = Select
+const { AutoComplete } = Select
 
-export default class Demo13 extends Component {
-	
-  constructor(props){
-	super(props)
-	this.state = {
-      dataSource: []
-    }
-    this.handleChange=this.handleChange.bind(this)
+const Wrapper = styled.div`
+  background-color: #f8f8f8;
+  padding: 16px;
+  p {
+    margin-top: 0;
   }
-  
-  handleChange = (value) => {
-    if (this.searchTimeout) {
-      clearTimeout(this.searchTimeout)
+  .next-select {
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+`
+
+const Demo13 = () => {
+  const [dataSource, setDataSource] = useState([])
+  const searchTimeout = useRef(null)
+  const handleChange = useCallback(value => {
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current)
     }
-    this.searchTimeout = setTimeout( () => {
-      fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`).then(
-      	response => response.json()
-      ).then( 
-      	data => {
-          const dataSource = data.result.map(item => {
+    searchTimeout.current = setTimeout(() => {
+      fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`)
+        .then(response => response.json())
+        .then(data => {
+          const newDataSource = data.result.map(item => {
             return {
-              label: <div><Icon type="picture" size="small"/>&nbsp;{item[0]}</div>,
+              label: (
+                <div>
+                  <Icon type="picture" size="small" />
+                  &nbsp;{item[0]}
+                </div>
+              ),
               value: item[1],
-              originLabel: item[0]
+              originLabel: item[0],
             }
           })
-          this.setState({dataSource:dataSource})
-       })   
+          setDataSource(newDataSource)
+        })
     }, 100)
-  }
+  }, [])
 
-  render() {
-    return (
-      <div className="select-demo13-container">
-        <AutoComplete onChange={this.handleChange}
-          filterLocal={false}
-          fillProps="originLabel"
-          placeholder="search from taobao"
-          dataSource={this.state.dataSource}/></div>
-    )
-  }
+  return (
+    <Wrapper>
+      <AutoComplete
+        onChange={handleChange}
+        filterLocal={false}
+        fillProps="originLabel"
+        placeholder="search from taobao"
+        dataSource={dataSource}
+      />
+    </Wrapper>
+  )
 }
+export default Demo13

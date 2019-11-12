@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Grid, Button, Badge, Icon } from '@alicloud/console-components'
 import Table from '@alicloud/console-components-table'
 
 const dataSource = (() =>
-  new Array(10).fill(null).map((item, i) => ({
+  new Array(100).fill(null).map((item, i) => ({
     id: i + 1,
     name: `Wind Table Item - ${i}`,
     repo: `https://www.aliyun.com/repo?id=${i}`,
@@ -28,20 +28,20 @@ const rowSelection = {
 }
 
 const primaryOperation = ownerProps => tableProps => (
-  <Fragment>
+  <>
     <Button type="primary" disabled={!ownerProps.creatable}>
       Create
     </Button>
     <Button>Refresh</Button>
-  </Fragment>
+  </>
 )
 
 const secondaryOperation = () => () => (
-  <Fragment>
+  <>
     <Button>
       <Icon type="cog" />
     </Button>
-  </Fragment>
+  </>
 )
 
 const App = props => (
@@ -73,15 +73,15 @@ const App = props => (
           }}
           pagination={{
             current: 1,
-            total: 80,
+            total: 40,
             pageSize: 10,
           }}
           selection={({ selectedRowKeys }) => (
-            <Fragment>
+            <>
               <Badge count={selectedRowKeys.length}>
                 <Button disabled={selectedRowKeys.length === 0}>Delete</Button>
               </Badge>
-            </Fragment>
+            </>
           )}
         />
       </Grid.Col>

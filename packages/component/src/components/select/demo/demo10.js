@@ -1,4 +1,4 @@
-import React, { Component }from 'react'
+import React from 'react'
 import { Select } from '@alicloud/console-components'
 
 const dataSource = [
@@ -8,33 +8,31 @@ const dataSource = [
   {
     label: 'Chinese',
     children: [
-      {value: 'Hang Meimei', label: 'Hang Meimei'},
+      { value: 'Hang Meimei', label: 'Hang Meimei' },
       'Li Lei',
-      {value: 'Gao Hui', label: 'Gao Hui', disabled: true},
+      { value: 'Gao Hui', label: 'Gao Hui', disabled: true },
       'Zhang San',
       'Li Si',
       'Wang Wu',
-      {value: 'Zhao Benshan', label: 'Zhao Benshan', disabled: true},
+      { value: 'Zhao Benshan', label: 'Zhao Benshan', disabled: true },
       'Sun Yang',
-      'Song Shuying'
-    ]
+      'Song Shuying',
+    ],
   },
   {
     label: 'Pets',
-    children: [
-      'Poly',
-      'Kitty'
-    ]
-  }
+    children: ['Poly', 'Kitty'],
+  },
 ]
 
-const onChange = (v) => {
+const onChange = v => {
   console.log(v)
 }
 const Demo10 = () => (
-  <Select.AutoComplete 
-    style={{width: 300}} 
-    onChange={onChange}  
-    dataSource={dataSource} />
+  <Select.AutoComplete
+    style={{ width: 300 }}
+    onChange={onChange}
+    dataSource={dataSource}
+  />
 )
 export default Demo10
