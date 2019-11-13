@@ -1,26 +1,42 @@
-import React, { Component }from 'react'
+import React, { Component } from 'react'
 import { Select, Button } from '@alicloud/console-components'
-import './demo6.less'
+import styled from 'styled-components'
+// import './demo6.less'
 
-const {Option, OptionGroup} = Select;
+const { Option, OptionGroup } = Select
 
-const dataSource = [{
-  label: 'label1',
-  children: [{
-    label: 'label1-1',
-    value: 'text1-1'
-    }]
-  }, {
+const dataSource = [
+  {
+    label: 'label1',
+    children: [
+      {
+        label: 'label1-1',
+        value: 'text1-1',
+      },
+    ],
+  },
+  {
     label: 'label2',
-    children: [{
-      label: 'label2-1',
-      value: 'text2-1'
-    }]
-}]
+    children: [
+      {
+        label: 'label2-1',
+        value: 'text2-1',
+      },
+    ],
+  },
+]
+
+const Wrapper = styled.div`
+  background-color: #f8f8f8;
+  padding: 16px;
+  .next-select {
+    margin-right: 10px;
+  }
+`
 
 const Demo6 = () => (
-  <div className="select-demo6-container">
-    <Select placeholder="OptionGroup" className="b">
+  <Wrapper>
+    <Select placeholder="OptionGroup">
       <OptionGroup label="group1">
         <Option value="small">Small</Option>
         <Option value="medium">Medium</Option>
@@ -32,18 +48,20 @@ const Demo6 = () => (
         <Option value="large2">Large2</Option>
       </OptionGroup>
     </Select>
-    <Select placeholder="optgroup" className="b">
-      <option value="apple">Apple</option>
-      <option value="orange">Orange</option>
-      <option value="banana">Banana</option>
-      <optgroup label="Pets Group">
-        <option value="cat">Cat</option>
-        <option value="rabbit">Rabbit</option>
-        <option value="dog" disabled>Dog</option>
-      </optgroup>
+    <Select placeholder="optgroup">
+      <Option value="apple">Apple</Option>
+      <Option value="orange">Orange</Option>
+      <Option value="banana">Banana</Option>
+      <OptionGroup label="Pets Group">
+        <Option value="cat">Cat</Option>
+        <Option value="rabbit">Rabbit</Option>
+        <Option value="dog" disabled>
+          Dog
+        </Option>
+      </OptionGroup>
     </Select>
-    <Select placeholder="item.children" dataSource={dataSource} className="b" />
-  </div>
+    <Select placeholder="item.children" dataSource={dataSource} />
+  </Wrapper>
 )
 
 export default Demo6

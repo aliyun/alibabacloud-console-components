@@ -1,8 +1,9 @@
-import React, { Component }from 'react'
+import React, { useState } from 'react'
 import { Select } from '@alicloud/console-components'
-import './demo11.less'
+import styled from 'styled-components'
+// import './demo11.less'
 
-const {AutoComplete} = Select
+const { AutoComplete } = Select
 
 const dataSource = [
   'Lucy King',
@@ -11,86 +12,99 @@ const dataSource = [
   {
     label: 'Chinese',
     children: [
-      {value: 'Hang Meimei', label: 'Hang Meimei'},
+      { value: 'Hang Meimei', label: 'Hang Meimei' },
       'Li Lei',
-      {value: 'Gao Hui', label: 'Gao Hui', disabled: true},
+      { value: 'Gao Hui', label: 'Gao Hui', disabled: true },
       'Zhang San',
       'Li Si',
       'Wang Wu',
-      {value: 'Zhao Benshan', label: 'Zhao Benshan', disabled: true},
+      { value: 'Zhao Benshan', label: 'Zhao Benshan', disabled: true },
       'Sun Yang',
-      'Song Shuying'
-    ]
+      'Song Shuying',
+    ],
   },
   {
     label: 'Pets',
-    children: [
-      'Poly',
-      'Kitty'
-    ]
-  }
+    children: ['Poly', 'Kitty'],
+  },
 ]
 
 const ctrlDataSources = {
   size: ['small', 'medium', 'large'],
   disabled: [true, false],
-  hasClear: [true, false]
+  hasClear: [true, false],
 }
 
-export default class Demo11 extends Component {
-  constructor(props) {
-    super(props)
-    
-    this.state = {
-      value: null,
-      size: undefined,
-      disabled: undefined,
-      hasClear: undefined,
-    }
+const Wrapper = styled.div`
+  padding: 16px;
+  background-color: #f8f8f8;
+`
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleCtrlChange = this.handleCtrlChange.bind(this)
+const Controller = styled.div`
+  padding: 12px 12px 4px;
+  margin-bottom: 16px;
+  border: 2px dashed #ddd;
+  .next-select {
+    margin-right: 8px;
+    margin-bottom: 8px;
   }
+`
 
-  handleCtrlChange(key, value) {
-    this.setState({[key]: value})
+const Demo11 = () => {
+  const [params, setParams] = useState({
+    value: null,
+    size: undefined,
+    disabled: undefined,
+    hasClear: undefined,
+  })
+
+  const handleCtrlChange = (key, value) => {
     if (key === 'mode') {
-      this.setState({value: null})
+      setParams({
+        ...params,
+        [key]: value,
+        value: null,
+      })
+    } else {
+      setParams({
+        ...params,
+        [key]: value,
+      })
     }
   }
 
-  handleChange(value) {
-    console.log('handleChange: value: ', value);
-    this.setState({value});
+  const handleChange = value => {
+    console.log('handleChange: value: ', value)
+    setParams({
+      ...params,
+      value,
+    })
   }
 
-  renderCtrlNodes(state) {
-    const ctrlNodes = [];
-    let k
-    for (k in ctrlDataSources) {
-      if (ctrlDataSources.hasOwnProperty(k)) {
-        ctrlNodes.push(
-          <Select key={k}
-            label={`${k}: `}
-            value={state[k]}
-            dataSource={ctrlDataSources[k]}
-            onChange={this.handleCtrlChange.bind(this, k)} />
-        )
-      }
-    }
+  const renderCtrlNodes = state => {
+    const ctrlNodes = Object.keys(ctrlDataSources).map(k => (
+      <Select
+        key={k}
+        label={`${k}: `}
+        value={state[k]}
+        dataSource={ctrlDataSources[k]}
+        onChange={item => handleCtrlChange(k, item)}
+      />
+    ))
     return ctrlNodes
   }
 
-  render() {
-    return (
-      <div className="select-demo11-container">
-        <div className="demo-controller">{this.renderCtrlNodes(this.state)}</div>
-          <AutoComplete className="complete-auto"
-            {...this.state}
-            style={{maxWidth: 300}}
-            onChange={this.handleChange}
-            dataSource={dataSource} />
-        </div>
-    )
-  }
+  return (
+    <Wrapper>
+      <Controller>{renderCtrlNodes(params)}</Controller>
+      <AutoComplete
+        {...params}
+        style={{ maxWidth: 300 }}
+        onChange={handleChange}
+        dataSource={dataSource}
+      />
+    </Wrapper>
+  )
 }
+
+export default Demo11

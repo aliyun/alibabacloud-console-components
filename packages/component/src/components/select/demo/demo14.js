@@ -1,32 +1,34 @@
-import React, { Component }from 'react'
+import React, { Component } from 'react'
 import { Select, Icon } from '@alicloud/console-components'
-import './demo14.less'
+import styled from 'styled-components'
 
 const dataSource = [
-  {value: '#FF0000', label: 'red', title: 'red'},
-  {value: '#00AA00', label: 'green', title: 'green'},
-  {value: '#B482DB', label: 'purple', title: 'purple'},
-  {value: '#F17334', label: 'orange', title: 'orange'},
-  {value: '#66CCFF', label: 'blue', title: 'blue'}
+  { value: '#FF0000', label: 'red', title: 'red' },
+  { value: '#00AA00', label: 'green', title: 'green' },
+  { value: '#B482DB', label: 'purple', title: 'purple' },
+  { value: '#F17334', label: 'orange', title: 'orange' },
+  { value: '#66CCFF', label: 'blue', title: 'blue' },
 ]
 
 const itemRender = item => {
   return (
     <span>
-      <Icon type="account" size="xs" style={{color: item.value}} />
-      <Icon type="account" size="xs" style={{color: item.value}} />
-      <Icon type="account" size="xs" style={{color: item.value}} />
-      <Icon type="account" size="xs" style={{color: item.value}} />
-      <Icon type="account" size="xs" style={{color: item.value}} />
+      <Icon type="account" size="xs" style={{ color: item.value }} />
+      <Icon type="account" size="xs" style={{ color: item.value }} />
+      <Icon type="account" size="xs" style={{ color: item.value }} />
+      <Icon type="account" size="xs" style={{ color: item.value }} />
+      <Icon type="account" size="xs" style={{ color: item.value }} />
     </span>
   )
 }
 
 const valueRender = item => {
-  return <span>
-           <Icon type="account" size="xs" style={{color: item.value}} /> 
-           {item.label}
-         </span>
+  return (
+    <span>
+      <Icon type="account" size="xs" style={{ color: item.value }} />
+      {item.label}
+    </span>
+  )
 }
 
 const dataSource2 = [
@@ -49,19 +51,42 @@ const dataSource2 = [
 
 // hightlight keywords
 const itemRender2 = (item, searchKey) => {
-  let label = item.label
+  let { label } = item
   if (searchKey && searchKey.length) {
     const key = searchKey.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
     const reg = new RegExp(`(${key})`, 'ig')
-    label = label.replace(reg, x => `<span class="next-select-highlight">${x}</span>`)
+    label = label.replace(
+      reg,
+      x => `<span class="next-select-highlight">${x}</span>`
+    )
   }
 
-  return <span dangerouslySetInnerHTML={{__html: label}} />
+  return <span dangerouslySetInnerHTML={{ __html: label }} />
 }
+
+const Wrapper = styled.div`
+  padding: 16px;
+  background-color: #f8f8f8;
+  .next-select {
+    margin-right: 10px;
+  }
+`
+
 const Demo14 = () => (
-  <div className="select-demo14-container">
-    <Select dataSource={dataSource} itemRender={itemRender} valueRender={valueRender} placeholder="pick your color" />
-    <Select showSearch dataSource={dataSource2} itemRender={itemRender2} placeholder="hightlight keywords" style={{minWidth: 200}} />
-  </div>
+  <Wrapper>
+    <Select
+      dataSource={dataSource}
+      itemRender={itemRender}
+      valueRender={valueRender}
+      placeholder="pick your color"
+    />
+    <Select
+      showSearch
+      dataSource={dataSource2}
+      itemRender={itemRender2}
+      placeholder="hightlight keywords"
+      style={{ minWidth: 200 }}
+    />
+  </Wrapper>
 )
 export default Demo14

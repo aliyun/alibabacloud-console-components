@@ -1,49 +1,44 @@
-import React, { Component }from 'react'
+import React, { Component, useState } from 'react'
 import { Select, Button } from '@alicloud/console-components'
 import fetchJsonp from 'fetch-jsonp'
 
 let timestamp = Date.now()
 
-export default class Demo8 extends Component {
-	
-  constructor(props){
-	super(props)
-	this.state = {
-      dataSource: []
+let searchTimeout = null
+
+const Demo8 = () => {
+  const [dataSource, setDataSource] = useState([])
+  const handleSearch = value => {
+    if (searchTimeout) {
+      clearTimeout(searchTimeout)
     }
-	this.handleSearch=this.handleSearch.bind(this)
-	}
-  
-  handleSearch = (value) => {
-    if (this.searchTimeout) {
-      clearTimeout(this.searchTimeout)
-    }
-    this.searchTimeout = setTimeout(() => {
-      value ? fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`).then(
-      	response => response.json()
-      ).then(
-        data => {
-          const dataSource = data.result.map(item => ({
-            label: item[0], value: (timestamp++).toString(36)
-          }))
-          this.setState({dataSource:dataSource})
-        }
-      ) : 
-      this.setState({dataSource: []})
+    searchTimeout = setTimeout(() => {
+      value
+        ? fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`)
+            .then(response => response.json())
+            .then(data => {
+              const dataSource = data.result.map(item => ({
+                label: item[0],
+                value: (timestamp++).toString(36),
+              }))
+              setDataSource(dataSource)
+            })
+        : setDataSource(dataSource)
     }, 100)
   }
 
-  render() {
-    return (
-      <div className="demo-container">
-        <Select
-          showSearch 
-          placeholder="select search" 
-          filterLocal={false} 
-          dataSource={this.state.dataSource} 
-          onSearch={this.handleSearch} 
-          style={{width: 200}}/>
-      </div>
-    )
-  }
+  return (
+    <div className="demo-container">
+      <Select
+        showSearch
+        placeholder="select search"
+        filterLocal={false}
+        dataSource={dataSource}
+        onSearch={handleSearch}
+        style={{ width: 200 }}
+      />
+    </div>
+  )
 }
+
+export default Demo8
