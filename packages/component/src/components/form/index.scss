@@ -14,7 +14,6 @@ $form-cls-name: '#{$css-prefix}form';
     // 调整水平布局的 label 基础样式
     &.#{$left-cls-name} {
       .#{$form-item-label-cls-name} {
-        text-align: left;
         padding-right: $size-base * 4;
       }
     }
