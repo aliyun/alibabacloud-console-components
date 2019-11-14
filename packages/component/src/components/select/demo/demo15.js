@@ -1,11 +1,34 @@
 import React, { Component, useState } from 'react'
 import { Select } from '@alicloud/console-components'
-import classNames from 'classnames'
 import styled from 'styled-components'
 
 function preventDefault(e) {
   e.preventDefault()
 }
+
+const OverlayContent = styled.ul`
+  border: 1px solid #dddddd;
+  padding: 10px;
+  background: #ffffff;
+  margin: 0;
+  font-size: 12px;
+  font-family: Arial;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+  > li {
+    list-style: none;
+    line-height: 30px;
+    padding: 0 5px;
+    cursor: pointer;
+  }
+
+  > li:hover {
+    background: #f8f8f8;
+  }
+
+  > li:last-child {
+    border-width: 0;
+  }
+`
 
 const Menu = props => {
   const data = [
@@ -36,47 +59,22 @@ const Menu = props => {
     ))
 
   const { className, ...others } = props
-  const cls = classNames('overlay-content', className)
   return (
-    <ul className={cls} {...others}>
+    <OverlayContent className={className} {...others}>
       {renderItems()}
-    </ul>
+    </OverlayContent>
   )
 }
 
+const Wrapper = styled.div`
+  background-color: #f8f8f8;
+  padding: 16px;
+  position: relative;
+  p {
+    margin-top: 0;
+  }
+`
 const Demo15 = () => {
-  const Wrapper = styled.div`
-    background-color: #f8f8f8;
-    padding: 16px;
-    p {
-      margin-top: 0;
-    }
-    .overlay-content {
-      border: 1px solid #dddddd;
-      padding: 10px;
-      background: #ffffff;
-      margin: 0;
-      font-size: 12px;
-      font-family: Arial;
-      box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .overlay-content li {
-      list-style: none;
-      line-height: 30px;
-      padding: 0 5px;
-      cursor: pointer;
-    }
-
-    .overlay-content li:hover {
-      background: #f8f8f8;
-    }
-
-    .overlay-content li:last-child {
-      border-width: 0;
-    }
-  `
-
   const [value, setValue] = useState(null)
   const [visible, setVisible] = useState(false)
 
@@ -101,7 +99,9 @@ const Demo15 = () => {
         onVisibleChange={onVisibleChange}
         value={value}
         popupContent={popupContent}
-        popupContainer={node => node.parentNode}
+        popupContainer={node => {
+          return node.parentNode
+        }}
       />
     </Wrapper>
   )
