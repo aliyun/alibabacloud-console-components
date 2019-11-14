@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/wind-api-documenter",
-  "version": "8.0.0-alpha.1",
+  "version": "8.0.0-rc.0",
   "private": true,
   "description": "Forked from https://github.com/microsoft/web-build-tools . Read JSON files from api-extractor, generate documentation pages",
   "main": "lib/index.js",
@@ -40,7 +40,6 @@
     "js-yaml": "~3.13.1",
     "resolve": "^1.8.1"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@types/js-yaml": "^3.12.1",
     "@types/resolve": "^0.0.8",

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-rc.0",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
@@ -24,8 +24,8 @@
   "dependencies": {
     "@alifd/next": "~1.18.15",
     "@babel/runtime": "^7.4.5",
-    "core-js": "^2.0.0",
     "classnames": "^2.2.5",
+    "core-js": "^2.0.0",
     "hoist-non-react-statics": "^3.3.0",
     "lodash": "^4.17.5",
     "rc-form": "^2.2.1",
