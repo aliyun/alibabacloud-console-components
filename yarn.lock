@@ -2,21 +2,21 @@
 # yarn lockfile v1
 
 
-"@alifd/field@^1.3.0":
-  version "1.3.2"
-  resolved "https://registry.npm.taobao.org/@alifd/field/download/@alifd/field-1.3.2.tgz#2df5085be4e78c0f09831c1b32cebea2b7e0e958"
-  integrity sha1-LfUIW+TnjA8JgxwbMs6+orfg6Vg=
+"@alifd/field@~1.3.3":
+  version "1.3.3"
+  resolved "https://registry.npm.taobao.org/@alifd/field/download/@alifd/field-1.3.3.tgz#d1b86ec7b557334cc9869cf900faac7bc327fdc7"
+  integrity sha1-0bhux7VXM0zJhpz5APqse8Mn/cc=
   dependencies:
     "@alifd/validate" "^1.1.3"
     prop-types "^15.5.8"
 
-"@alifd/next@~1.18.0":
-  version "1.18.7"
-  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.18.7.tgz#ff686922fd5381ff0d10c43463e0902cc4181ea3"
-  integrity sha1-/2hpIv1Tgf8NEMQ0Y+CQLMQYHqM=
+"@alifd/next@~1.18.15":
+  version "1.18.15"
+  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.18.15.tgz#7c5396a67352ad0aee6225b3d2438704d303d03c"
+  integrity sha1-fFOWpnNSrQruYiWz0kOHBNMD0Dw=
   dependencies:
-    "@alifd/field" "^1.3.0"
-    "@alifd/validate" "^1.1.3"
+    "@alifd/field" "~1.3.3"
+    "@alifd/validate" "~1.1.4"
     babel-runtime "^6.26.0"
     classnames "^2.2.3"
     hoist-non-react-statics "^2.1.0"
@@ -25,7 +25,7 @@
     react-transition-group "^2.2.1"
     shallow-element-equals "^1.0.1"
 
-"@alifd/validate@^1.1.3":
+"@alifd/validate@^1.1.3", "@alifd/validate@~1.1.4":
   version "1.1.4"
   resolved "https://registry.npm.taobao.org/@alifd/validate/download/@alifd/validate-1.1.4.tgz#87f99a9f791d6b461b8dc6aee1a01a8bef0cafa4"
   integrity sha1-h/man3kda0Ybjcau4aAai+8Mr6Q=

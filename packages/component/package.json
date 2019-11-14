@@ -22,7 +22,7 @@
   "author": "MacroXing <macroxing@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@alifd/next": "~1.18.0",
+    "@alifd/next": "~1.18.15",
     "@babel/runtime": "^7.4.5",
     "core-js": "^2.0.0",
     "classnames": "^2.2.5",
