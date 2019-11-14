@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Select } from '@alicloud/console-components'
 import styled from 'styled-components'
-// import './demo4.less'
 
 const dataSource = [
   { value: '10001', label: 'Lucy King' },
@@ -50,20 +49,23 @@ const Demo4 = () => {
     showSearch: undefined,
   })
 
-  const handleCtrlChange = (key, value) => {
-    if (key === 'mode') {
-      setParams({
-        ...params,
-        [key]: value,
-        value: null,
-      })
-    } else {
-      setParams({
-        ...params,
-        [key]: value,
-      })
-    }
-  }
+  const handleCtrlChange = useCallback(
+    (key, value) => {
+      if (key === 'mode') {
+        setParams({
+          ...params,
+          [key]: value,
+          value: null,
+        })
+      } else {
+        setParams({
+          ...params,
+          [key]: value,
+        })
+      }
+    },
+    [params]
+  )
 
   const handleChange = (value, item) => {
     console.log('handleChange: value: ', value, item)

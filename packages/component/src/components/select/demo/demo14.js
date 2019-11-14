@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Select, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 

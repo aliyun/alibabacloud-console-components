@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Select } from '@alicloud/console-components'
 import styled from 'styled-components'
 
@@ -78,14 +78,14 @@ const Demo15 = () => {
   const [value, setValue] = useState(null)
   const [visible, setVisible] = useState(false)
 
-  const handleSelect = val => {
+  const handleSelect = useCallback(val => {
     setVisible(false)
     setValue(val)
-  }
+  }, [])
 
-  const onVisibleChange = vis => {
+  const onVisibleChange = useCallback(vis => {
     setVisible(vis)
-  }
+  }, [])
 
   const popupContent = (
     <Menu onChange={handleSelect} onMouseDown={preventDefault} />

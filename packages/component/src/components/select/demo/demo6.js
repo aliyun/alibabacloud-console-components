@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import { Select, Button } from '@alicloud/console-components'
+import React from 'react'
+import { Select } from '@alicloud/console-components'
 import styled from 'styled-components'
-// import './demo6.less'
 
 const { Option, OptionGroup } = Select
 

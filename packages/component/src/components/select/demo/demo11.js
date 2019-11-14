@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Select } from '@alicloud/console-components'
 import styled from 'styled-components'
-// import './demo11.less'
 
 const { AutoComplete } = Select
 
@@ -58,20 +57,23 @@ const Demo11 = () => {
     hasClear: undefined,
   })
 
-  const handleCtrlChange = (key, value) => {
-    if (key === 'mode') {
-      setParams({
-        ...params,
-        [key]: value,
-        value: null,
-      })
-    } else {
-      setParams({
-        ...params,
-        [key]: value,
-      })
-    }
-  }
+  const handleCtrlChange = useCallback(
+    (key, value) => {
+      if (key === 'mode') {
+        setParams({
+          ...params,
+          [key]: value,
+          value: null,
+        })
+      } else {
+        setParams({
+          ...params,
+          [key]: value,
+        })
+      }
+    },
+    [params]
+  )
 
   const handleChange = value => {
     console.log('handleChange: value: ', value)

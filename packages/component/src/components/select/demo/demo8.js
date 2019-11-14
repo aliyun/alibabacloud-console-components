@@ -1,29 +1,30 @@
-import React, { Component, useState } from 'react'
-import { Select, Button } from '@alicloud/console-components'
+import React, { useState, useRef } from 'react'
+import { Select } from '@alicloud/console-components'
 import fetchJsonp from 'fetch-jsonp'
 
 let timestamp = Date.now()
 
-let searchTimeout = null
-
 const Demo8 = () => {
+  const searchTimeout = useRef(null)
   const [dataSource, setDataSource] = useState([])
   const handleSearch = value => {
-    if (searchTimeout) {
-      clearTimeout(searchTimeout)
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current)
     }
-    searchTimeout = setTimeout(() => {
-      value
-        ? fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`)
-            .then(response => response.json())
-            .then(data => {
-              const dataSource = data.result.map(item => ({
-                label: item[0],
-                value: (timestamp++).toString(36),
-              }))
-              setDataSource(dataSource)
-            })
-        : setDataSource(dataSource)
+    searchTimeout.current = setTimeout(() => {
+      if (value) {
+        fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`)
+          .then(response => response.json())
+          .then(data => {
+            const newDataSource = data.result.map(item => ({
+              label: item[0],
+              value: (timestamp++).toString(36),
+            }))
+            setDataSource(newDataSource)
+          })
+      } else {
+        setDataSource(dataSource)
+      }
     }, 100)
   }
 

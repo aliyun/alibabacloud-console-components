@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { Select, Icon } from '@alicloud/console-components'
 import fetchJsonp from 'fetch-jsonp'
 import styled from 'styled-components'
-import './demo13.less'
 
 const { AutoComplete } = Select
-
-let searchTimeout
 
 const Wrapper = styled.div`
   background-color: #f8f8f8;
@@ -22,12 +19,12 @@ const Wrapper = styled.div`
 
 const Demo13 = () => {
   const [dataSource, setDataSource] = useState([])
-
-  const handleChange = value => {
-    if (searchTimeout) {
-      clearTimeout(searchTimeout)
+  const searchTimeout = useRef(null)
+  const handleChange = useCallback(value => {
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current)
     }
-    searchTimeout = setTimeout(() => {
+    searchTimeout.current = setTimeout(() => {
       fetchJsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${value}`)
         .then(response => response.json())
         .then(data => {
@@ -46,7 +43,7 @@ const Demo13 = () => {
           setDataSource(newDataSource)
         })
     }, 100)
-  }
+  }, [])
 
   return (
     <Wrapper>
