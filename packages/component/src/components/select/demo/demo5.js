@@ -24,10 +24,10 @@ const Demo5 = () => {
   const [disabled, setDisabled] = useState(true)
 
   const handleProvinceChange = useCallback(value => {
-    const citys = cityDataSource[value]
-    setCityData(citys)
+    const cities = cityDataSource[value]
+    setCityData(cities)
     setProvince(value)
-    setDisabled(!citys)
+    setDisabled(!cities)
   }, [])
 
   const handleCityChange = useCallback(value => {
