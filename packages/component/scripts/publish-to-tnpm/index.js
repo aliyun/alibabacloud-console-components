@@ -35,7 +35,7 @@ const publicVersion = (() => {
 //   publicVersionObj.inc('pre', 'alpha')
 //   return publicVersionObj.format()
 // })()
-const internalVersion = '3.0.2'
+const internalVersion = '3.0.4'
 
 // 读取内部package.json模板
 let internalPackageJSONString = fs
@@ -48,6 +48,18 @@ const outPkgJSONPath = path.join(OUT_PATH, 'package.json')
 fs.ensureFileSync(outPkgJSONPath)
 fs.writeFileSync(outPkgJSONPath, internalPackageJSONString)
 
+// 写出要发布到tnpm的index.scss和index-noreset.scss
+fs.copySync(
+  path.join(WORKSPACE_PATH, 'index.scss'),
+  path.join(OUT_PATH, 'index.scss')
+)
+fs.writeFileSync(
+  path.join(OUT_PATH, 'index-noreset.scss'),
+  `
+@import "~@alicloud/console-components/index-noreset.scss";
+`
+)
+
 // 创建lib/index.js lib/index.scss types/index.d.ts 三个入口文件
 const libIndexJsPath = path.join(OUT_PATH, 'lib', 'index.js')
 const libIndexScssPath = path.join(OUT_PATH, 'lib', 'index.scss')
@@ -56,7 +68,9 @@ const libIndexJsCode = [
   ...utils.getCommonJSReExport('@alicloud/console-components/lib/index.js'),
   `module.exports['__VERSION__'] = '${internalVersion}';`,
 ]
-const libIndexScssCode = ['@import "~@alicloud/console-components/lib/index.scss";']
+const libIndexScssCode = [
+  '@import "~@alicloud/console-components/lib/index.scss";',
+]
 const typesIndexDTSCode = componentNames.map(name => {
   const CamelCaseName = _.upperFirst(_.camelCase(name))
   return `export { default as ${CamelCaseName} } from './${name}'`
@@ -75,7 +89,9 @@ componentNames.forEach(createReExportForComponent)
 function createReExportForComponent(componentName) {
   const libIndexJsPath = path.join(OUT_PATH, 'lib', componentName, 'index.js')
   const jsFileContent = utils
-    .getCommonJSReExport(`@alicloud/console-components/lib/${componentName}/index.js`)
+    .getCommonJSReExport(
+      `@alicloud/console-components/lib/${componentName}/index.js`
+    )
     .join('\n')
   fs.ensureFileSync(libIndexJsPath)
   fs.writeFileSync(libIndexJsPath, jsFileContent)

@@ -24,7 +24,9 @@ module.exports = (...args) => {
     context: path.SRC,
     entry: {
       wind: [path.SRC_SASS_INDEX_FILE, path.SRC_INDEX_FILE],
-      'wind.min': [path.SRC_INDEX_FILE, path.SRC_SASS_INDEX_FILE],
+      'wind.min': [path.SRC_SASS_INDEX_FILE, path.SRC_INDEX_FILE],
+      'wind-noreset': path.SRC_SASS_NORESET_INDEX_FILE,
+      'wind-noreset.min': path.SRC_SASS_NORESET_INDEX_FILE,
     },
     output: {
       path: path.BUNDLE,
