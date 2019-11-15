@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { Breadcrumb as RawBreadcrumb } from '@alicloud/console-components'
 
+type BreadcrumbItemType = typeof import('@alicloud/console-components/types/breadcrumb').Item
+
 /**
  * @public
  */
@@ -18,7 +20,7 @@ export interface IBreadcrumb extends React.FC<IBreadcrumbProps> {
   /**
    * 定义面包屑的项。
    */
-  Item: React.ComponentType<{}>
+  Item: BreadcrumbItemType
 }
 
 /**
