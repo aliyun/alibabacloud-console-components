@@ -23,7 +23,7 @@ const Demo8 = () => {
             setDataSource(newDataSource)
           })
       } else {
-        setDataSource(dataSource)
+        setDataSource([])
       }
     }, 100)
   }
