@@ -75,13 +75,16 @@ const Demo11 = () => {
     [params]
   )
 
-  const handleChange = value => {
-    console.log('handleChange: value: ', value)
-    setParams({
-      ...params,
-      value,
-    })
-  }
+  const handleChange = useCallback(
+    value => {
+      console.log('handleChange: value: ', value)
+      setParams({
+        ...params,
+        value,
+      })
+    },
+    [params]
+  )
 
   const renderCtrlNodes = state => {
     const ctrlNodes = Object.keys(ctrlDataSources).map(k => (
