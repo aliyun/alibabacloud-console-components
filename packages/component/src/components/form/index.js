@@ -21,7 +21,7 @@ const WrappedItem = props => {
       {formProps => {
         // fusion默认label靠右对齐，wind希望默认靠左对齐
         const labelTextAlign =
-          formProps.labelTextAlign === 'right' ? 'right' : 'left'
+          (formProps && formProps.labelTextAlign === 'right') ? 'right' : 'left'
         return <Item labelTextAlign={labelTextAlign} {...props} />
       }}
     </PropsCtx.Consumer>
