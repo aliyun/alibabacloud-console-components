@@ -6,6 +6,7 @@ import Secondary from './secondary'
 import ControlledMenu from './controlled-menu'
 import WithItemsDecalration from './with-items-declaration'
 import RoutableMenu from './routable-menu'
+import RoutableMenuDefaultOpen from './routable-menu-default-open'
 import WithDivider from './with-divider'
 
 storiesOf('wind-rc-console-menu', module)
@@ -14,4 +15,5 @@ storiesOf('wind-rc-console-menu', module)
   .add('ControlledMenu', () => <ControlledMenu />)
   .add('WithItemsDecalration', () => <WithItemsDecalration />)
   .add('RoutableMenu', () => <RoutableMenu />)
+  .add('RoutableMenuDefaultOpen', () => <RoutableMenuDefaultOpen />)
   .add('WithDivider', () => <WithDivider />)
