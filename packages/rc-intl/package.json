@@ -50,6 +50,7 @@
     "@alicloud/console-components-intl-context": "^1.0.0-rc.0",
     "@babel/runtime": "^7.4.3",
     "classnames": "^2.2.5",
+    "escape-html": "^1.0.3",
     "intl": "^1.2.5",
     "intl-messageformat": "^7.3.3",
     "js-cookie": "^2.2.1",
