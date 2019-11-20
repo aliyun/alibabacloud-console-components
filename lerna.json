@@ -8,7 +8,13 @@
     },
     "version": {
       "allowBranch": ["master", "next", "nightly", "feat/rc-comp"],
-      "ignoreChanges": ["*.md", "*.mdx", "**/stories/**", "**/demo/**"],
+      "ignoreChanges": [
+        "*.md",
+        "*.mdx",
+        "**/stories/**",
+        "**/demo/**",
+        "**/publish-to-tnpm/**"
+      ],
       "tagVersionPrefix": ""
     }
   },
