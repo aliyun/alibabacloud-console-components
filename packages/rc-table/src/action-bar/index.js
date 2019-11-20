@@ -1,20 +1,13 @@
 import React from 'react'
-import { Grid } from '@alicloud/console-components'
 import { compose, toClass } from 'recompose'
 import withIntersectionFixed from './withIntersectionFixed'
-import './index.less'
+import { ActionBarWrapper, ActionBarLeft, ActionBarRight } from './styled'
 
-const baseClassName = 'wind-rc-table action-bar'
+const ActionBar = props => <ActionBarWrapper {...props} />
 
-const ActionBar = props => <Grid.Row className={baseClassName} {...props} />
+const Left = props => <ActionBarLeft {...props} />
 
-const Left = props => (
-  <Grid.Col className={`${baseClassName}-left`} {...props} />
-)
-
-const Right = props => (
-  <Grid.Col className={`${baseClassName}-right`} offset="0" {...props} />
-)
+const Right = props => <ActionBarRight offset="0" {...props} />
 
 ActionBar.Left = Left
 ActionBar.Right = Right

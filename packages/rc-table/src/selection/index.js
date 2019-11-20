@@ -7,18 +7,20 @@ import xor from 'lodash/xor'
 import renderProps from '../renderProps'
 import connect from './connect'
 import SelectAll from './SelectAll'
-import './index.less'
+import { SelectionWrapper, SelectionContainer } from './styled'
 
 const isMultiMode = mode => mode === 'multiple'
 
-const isSelectable = (item, index, getProps) => (
+const isSelectable = (item, index, getProps) =>
   isFunction(getProps) ? !get(getProps(item, index), 'disabled') : true
-)
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const {
-    selectedRowKeys, dataSource, primaryKey,
-    mode, rawRowSelection,
+    selectedRowKeys,
+    dataSource,
+    primaryKey,
+    mode,
+    rawRowSelection,
   } = state
 
   if (
@@ -73,12 +75,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const getPrimaryKeys = (dataSource, primaryKey, getProps) => (
-  isFunction(getProps) ?
-    dataSource.filter((item, i) => isSelectable(item, i, getProps)) :
-    dataSource
-).map(item => item[primaryKey])
-
+const getPrimaryKeys = (dataSource, primaryKey, getProps) =>
+  (isFunction(getProps)
+    ? dataSource.filter((item, i) => isSelectable(item, i, getProps))
+    : dataSource
+  ).map(item => item[primaryKey])
 
 const mapUpdateToProps = update => ({
   update,
@@ -86,23 +87,31 @@ const mapUpdateToProps = update => ({
     if (checked) {
       update((selectedRowKeys, dataSource, primaryKey, rowSelection = {}) => {
         // eslint-disable-next-line max-len
-        const primaryKeys = getPrimaryKeys(dataSource, primaryKey, rowSelection.getProps)
-        return uniq([
-          ...selectedRowKeys,
-          ...primaryKeys,
-        ])
+        const primaryKeys = getPrimaryKeys(
+          dataSource,
+          primaryKey,
+          rowSelection.getProps
+        )
+        return uniq([...selectedRowKeys, ...primaryKeys])
       })
     } else {
       update((selectedRowKeys, dataSource, primaryKey, rowSelection) => {
         // eslint-disable-next-line max-len
-        const primaryKeys = getPrimaryKeys(dataSource, primaryKey, rowSelection.getProps)
+        const primaryKeys = getPrimaryKeys(
+          dataSource,
+          primaryKey,
+          rowSelection.getProps
+        )
         return xor(selectedRowKeys, primaryKeys)
       })
     }
   },
 })
 
-@connect(mapStateToProps, mapUpdateToProps)
+@connect(
+  mapStateToProps,
+  mapUpdateToProps
+)
 class Selection extends Component {
   static propTypes = {
     mode: PropTypes.string,
@@ -111,16 +120,14 @@ class Selection extends Component {
   render() {
     const { mode } = this.props
     return (
-      <div className="selection">
-        {
-          isMultiMode(mode) && (
-            <span className="select-all-container">
-              <SelectAll {...this.props} />
-            </span>
-          )
-        }
+      <SelectionWrapper>
+        {isMultiMode(mode) && (
+          <SelectionContainer>
+            <SelectAll {...this.props} />
+          </SelectionContainer>
+        )}
         {renderProps(this.props, this.props)}
-      </div>
+      </SelectionWrapper>
     )
   }
 }

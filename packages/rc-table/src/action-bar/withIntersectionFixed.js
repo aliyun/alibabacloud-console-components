@@ -1,11 +1,10 @@
 import 'intersection-observer'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import IntersectionObserver from '@researchgate/react-intersection-observer'
 import Context from '../layout/FixedBarContext'
-
-const baseClassName = 'wind-rc-table fixed-bar'
+import { FixedBarWrapper } from './styled'
 
 export default threshold => BaseComponent => {
   const displayName =
@@ -54,7 +53,7 @@ export default threshold => BaseComponent => {
       const { fixedAlign, ...restProps } = this.props
 
       return (
-        <Fragment>
+        <>
           <IntersectionObserver
             onChange={this.handleChange}
             threshold={threshold}
@@ -68,9 +67,8 @@ export default threshold => BaseComponent => {
                 fixedClassName = '',
                 fixedStyle = {},
               }) => (
-                <div
+                <FixedBarWrapper
                   className={classNames(
-                    baseClassName,
                     fixedClassName,
                     `fixed-to-${fixedAlign}`
                   )}
@@ -80,11 +78,11 @@ export default threshold => BaseComponent => {
                   }}
                 >
                   <BaseComponent {...restProps} />
-                </div>
+                </FixedBarWrapper>
               )}
             </Context.Consumer>
           )}
-        </Fragment>
+        </>
       )
     }
   }
