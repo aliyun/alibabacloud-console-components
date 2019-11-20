@@ -308,7 +308,6 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
   staticContext,
   openKeys,
   onOpen,
-  defaultOpenKeys,
   ...restProps
 }) => {
   const [
@@ -327,11 +326,8 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
   const [statefulOpenKeys, setOpenKeys] = useState<string[] | undefined>([])
   // 当用户传入activeKey时，为受控模式，不使用自己计算的derivedActiveKey
   const actualActiveKey = activeKey || derivedActiveKey
-  const actualOpenKeys = (() => {
-    if (defaultOpenKeys || openKeys) return openKeys
-    // 仅当用户没有传入defaultOpenKeys、openKeys时，使用智能计算出的statefulOpenKeys
-    return statefulOpenKeys
-  })()
+  // 当用户传入openKeys时，为受控模式，不使用自己计算的statefulOpenKeys
+  const actualOpenKeys = openKeys || statefulOpenKeys
 
   useLayoutEffect(() => {
     const newOpenKeys = (() => {
@@ -364,7 +360,6 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
         items={normalizedItems}
         activeKey={actualActiveKey}
         openKeys={actualOpenKeys}
-        defaultOpenKeys={defaultOpenKeys}
         onOpen={actualOnOpen}
         onItemClick={routableOnItemClick}
       />
