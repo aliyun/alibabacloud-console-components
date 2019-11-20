@@ -8,6 +8,9 @@
     "type": "git",
     "url": ""
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "yofine<yofineliu@gmail.com>",
   "scripts": {
     "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
