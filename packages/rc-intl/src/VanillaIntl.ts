@@ -57,10 +57,8 @@ class VanillaIntl extends IntlBase {
     if (!locale) {
       warning(
         false,
-        `[@ali/wind-intl] Cannot format "${exactKey}" before locale is set.` +
-          `will resolve this message with key: ${exactKey}`
+        `[@ali/wind-intl] Locale is not set. Using default locale.`
       )
-      return exactKey
     }
     let result = exactKey
     try {
