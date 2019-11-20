@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-utils",
-  "version": "0.1.0",
+  "version": "1.0.0-rc.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -9,7 +9,6 @@
     "url": ""
   },
   "author": "yofine<yofineliu@gmail.com>",
-  "devDependencies": {},
   "scripts": {
     "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
     "build": "breezr build --engine webpack",
@@ -24,7 +23,7 @@
     "react-dom": "^16.11.0"
   },
   "dependencies": {
-    "@alicloud/console-components": "^1.0.0-rc.1",
+    "@alicloud/console-components": "^1.0.0-rc.6",
     "axios": "0.18.1",
     "csstype": "^2.6.7",
     "lodash.forin": "^4.4.0",
