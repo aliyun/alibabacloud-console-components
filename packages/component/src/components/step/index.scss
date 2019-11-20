@@ -6,7 +6,7 @@
   }
 
   // style for size:small
-  &.#{$css-prefix}step-circle.wind-enhanced-step-size-small {
+  &.#{$css-prefix}step-circle.#{$css-prefix}enhanced-step-size-small {
     $small-size: 24px;
 
     &.#{$css-prefix}step-horizontal,

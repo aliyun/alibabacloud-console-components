@@ -4,6 +4,7 @@ import Card from '@alifd/next/lib/card'
 import classNames from 'classnames'
 import hoistStatics from 'hoist-non-react-statics'
 import getDisplayName from '../../utils/getDisplayName'
+import withWindConfig from '../../utils/withWindConfig'
 import './index.scss'
 
 const enhance = WrappedComponent => {
@@ -20,8 +21,12 @@ const enhance = WrappedComponent => {
     }
 
     render() {
-      const { hasBorder, className, ...restProps } = this.props
-      const borderClassName = hasBorder ? 'wind-enhanced-card-has-border' : ''
+      const { hasBorder, windConfig, className, ...restProps } = this.props
+      const prefix =
+        windConfig && windConfig.prefix ? windConfig.prefix : 'next-'
+      const borderClassName = hasBorder
+        ? `${prefix}enhanced-card-has-border`
+        : ''
 
       return (
         <WrappedComponent
@@ -37,4 +42,4 @@ const enhance = WrappedComponent => {
   return EnhancedCard
 }
 
-export default enhance(Card)
+export default withWindConfig(enhance(Card))

@@ -34,7 +34,7 @@ $card-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.13);
     }
   }
 
-  &.wind-enhanced-card-has-border {
+  &.#{$css-prefix}enhanced-card-has-border {
     box-shadow: $card-box-shadow;
     border: 1px solid $color-line1-1;
   }

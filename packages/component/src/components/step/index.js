@@ -5,7 +5,10 @@ import classNames from 'classnames'
 import Step from '@alifd/next/lib/step'
 
 import getDisplayName from '../../utils/getDisplayName'
+import withWindConfig from '../../utils/withWindConfig'
 import './index.scss'
+
+/* eslint-disable react/static-property-placement */
 
 /**
  * 提供size: 'small'选项，（目前仅对圆形step有效）
@@ -28,9 +31,12 @@ const enhance = WrappedComponent => {
     }
 
     render() {
-      const { size, className, ...restProps } = this.props
+      const { size, windConfig, className, ...restProps } = this.props
 
-      const sizeClassName = `wind-enhanced-step-size-${size}`
+      const prefix =
+        windConfig && windConfig.prefix ? windConfig.prefix : 'next-'
+
+      const sizeClassName = `${prefix}enhanced-step-size-${size}`
 
       return (
         <WrappedComponent
@@ -46,4 +52,4 @@ const enhance = WrappedComponent => {
   return EnhancedStep
 }
 
-export default enhance(Step)
+export default withWindConfig(enhance(Step))

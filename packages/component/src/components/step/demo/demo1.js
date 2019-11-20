@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Step } from '@alicloud/console-components'
 
-const steps = ['知道自己不懂', '不知道自己懂', '知道自己懂了']
-    .map((item, index) => <Step.Item key={index} title={item} />);
-    
-export default class StepDemo1 extends Component {
+const steps = ['知道自己不懂', '不知道自己懂', '知道自己懂了'].map(
+  (item, index) => <Step.Item key={index} title={item} />
+)
 
+export default class StepDemo1 extends Component {
   render() {
     return (
       <div className="step-demo">
@@ -25,16 +25,15 @@ export default class StepDemo1 extends Component {
         </Step>
 
         <h3>点型</h3>
-        <Step current={1}  shape="dot">
+        <Step current={1} shape="dot">
           {steps}
         </Step>
 
         <h3>节点说明内容水平(labelPlacement)</h3>
-        <Step current={1} shape="circle" labelPlacement="horizontal">
+        <Step current={1} shape="circle" labelPlacement="hoz">
           {steps}
         </Step>
       </div>
     )
   }
 }
-
