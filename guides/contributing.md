@@ -58,6 +58,10 @@ sort: 3
 
 > 项目已经做了相关配置：在每次保存文件的时候会自动使用 eslint+prettier 进行格式化。
 
+### 样式书写
+
+样式全部使用 styled-components 来编写。并且，styled-components 的组件名称必须在开头加上`S`，以示区分。比如原本的`<div className="wind-selection-cointainer">`改为`<SSelectionCointainer>`。
+
 ## PR 贡献者必须签署 CLA 协议
 
 在提交 PR 以后会出现一个 CLA 协议让提交者签署，未签署 CLA 协议的 PR 不会被合并。
