@@ -1,0 +1,33 @@
+{
+  "name": "@alicloud/console-components-utils",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "yofine<yofineliu@gmail.com>",
+  "devDependencies": {},
+  "scripts": {
+    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
+    "build": "breezr build --engine webpack",
+    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "storybook": "breezr start-storybook",
+    "start": "npm run storybook",
+    "test": "breezr test:unit"
+  },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "dependencies": {
+    "@alicloud/console-components": "^1.0.0-rc.1",
+    "axios": "0.18.1",
+    "csstype": "^2.6.7",
+    "lodash.forin": "^4.4.0",
+    "url-search-params": "^1.1.0"
+  }
+}
