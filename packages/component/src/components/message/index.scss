@@ -23,6 +23,7 @@ $message-cls-name: '#{$css-prefix}message';
 
     &.#{$css-prefix}title-content {
       .#{$message-cls-name}-title {
+        font-weight: 600;
         line-height: 22px;
       }
     }
