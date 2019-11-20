@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
 import { withProps } from 'recompose'
+import styled from 'styled-components'
 import ActionBar, { IntersectionFixedActionBar } from '../action-bar'
 import Context from './FixedBarContext'
 import Search from '../search'
 import Selection from '../selection'
 import Pagination from '../pagination'
 import renderComponent from '../renderComponent'
-import './index.less'
 
 const FixedTopActionBar = withProps({
   fixedAlign: 'top',
@@ -84,7 +84,7 @@ const Layout = props => {
         fixedStyle,
       }}
     >
-      <div className="wind-rc-table">
+      <STableWrapper>
         {(operation || search) && (
           <ExactTopActionBar
             afterIntersectChanged={afterFixedBarIntersectChanged}
@@ -115,7 +115,7 @@ const Layout = props => {
             </ActionBar.Right>
           </ExactBottomActionBar>
         )}
-      </div>
+      </STableWrapper>
     </Context.Provider>
   )
 }
@@ -141,3 +141,12 @@ Layout.propTypes = {
 }
 
 export default Layout
+
+const STableWrapper = styled.div`
+  .next-table-header {
+    .next-table-cell-wrapper {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+`
