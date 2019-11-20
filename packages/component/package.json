@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
