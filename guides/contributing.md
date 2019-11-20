@@ -21,7 +21,9 @@ sort: 3
 ## 所有开发期所需的依赖都安装在根目录
 
 新增业务组件时注意：**所有开发期所需的依赖都安装在根目录中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子目录都维护一份自己的开发依赖，做到统一管理、升级。
-如果你要在子包中使用根目录下安装的 cli 工具(比如 `breezr build`)，需要先在根目录执行`npm run link-bin`，将`/node_modules/.bin`下的工具 link 到所有子包中。这个命令在 `npm run bootstrap` 时自动帮你执行了，**仅当你增加新的子 package 后需要手动实行一次**。
+如果你要在子包中使用根目录下安装的 cli 工具(比如 `breezr build`)，需要先在根目录执行`npm run link-bin`，将`/node_modules/.bin`下的工具 link 到所有子包中。
+
+这个命令在 `npm run bootstrap` 时自动帮你执行了，当你遇到**"command not found"**错误的时候，手动在根目录执行`npm run link-bin`即可。
 
 ## 开发工具
 
@@ -39,6 +41,23 @@ sort: 3
 
 如果想要检查完整的编译、构建、信息提取过程能否正确通过，到对应子包下运行`npm run prepublish`。
 
+## 代码规范
+
+### 分支、提交规范
+
+代码贡献流程：
+
+1. fork 本仓库
+2. 每个特性、修复都基于最新的 master 分支开始修改：`git checkout -b my-fix-branch master`
+3. 要 commit 时，在根目录执行`nom run commit`，来生成规范化的 commit message
+4. push 到远程之前，通过`git rebase master -i`将你分支上的多个 commit 合并成一个
+
+### 代码风格
+
+项目根目录配置了 eslint 来检查整个项目的代码风格。当你用 vscode 打开这个项目的时候，vscode 会推荐安装一些插件（比如 eslint），你点击确定，就能自动安装所需的插件。如果没有合理的原因，不要忽略 eslint 的警告。
+
+> 项目已经做了相关配置：在每次保存文件的时候会自动使用 eslint+prettier 进行格式化。
+
 ## PR 贡献者必须签署 CLA 协议
 
-在提交 PR 以后会出现一个 CLA 协议让提交者签署，未签署 CLA 协议的 PR 不会被 merge。
+在提交 PR 以后会出现一个 CLA 协议让提交者签署，未签署 CLA 协议的 PR 不会被合并。
