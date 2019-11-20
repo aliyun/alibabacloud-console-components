@@ -35,7 +35,7 @@ const publicVersion = (() => {
 //   publicVersionObj.inc('pre', 'alpha')
 //   return publicVersionObj.format()
 // })()
-const internalVersion = '3.0.6'
+const internalVersion = '3.0.7'
 
 // 读取内部package.json模板
 let internalPackageJSONString = fs
