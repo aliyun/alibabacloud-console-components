@@ -64,7 +64,7 @@ const itemRender2 = (item, searchKey) => {
   return <span dangerouslySetInnerHTML={{ __html: label }} />
 }
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   padding: 16px;
   background-color: #f8f8f8;
   .next-select {
@@ -73,7 +73,7 @@ const Wrapper = styled.div`
 `
 
 const Demo14 = () => (
-  <Wrapper>
+  <SWrapper>
     <Select
       dataSource={dataSource}
       itemRender={itemRender}
@@ -87,6 +87,6 @@ const Demo14 = () => (
       placeholder="hightlight keywords"
       style={{ minWidth: 200 }}
     />
-  </Wrapper>
+  </SWrapper>
 )
 export default Demo14

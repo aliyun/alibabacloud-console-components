@@ -9,7 +9,7 @@ const cityDataSource = {
   Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
 }
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   background-color: #f8f8f8;
   padding: 16px;
   .next-select {
@@ -35,7 +35,7 @@ const Demo5 = () => {
   }, [])
 
   return (
-    <Wrapper>
+    <SWrapper>
       <Select
         placeholder="Select Province"
         dataSource={provinceDataSource}
@@ -49,7 +49,7 @@ const Demo5 = () => {
         onChange={handleCityChange}
         disabled={disabled}
       />
-    </Wrapper>
+    </SWrapper>
   )
 }
 export default Demo5
