@@ -6,7 +6,7 @@ function preventDefault(e) {
   e.preventDefault()
 }
 
-const OverlayContent = styled.ul`
+const SOverlayContent = styled.ul`
   border: 1px solid #dddddd;
   padding: 10px;
   background: #ffffff;
@@ -60,13 +60,13 @@ const Menu = props => {
 
   const { className, ...others } = props
   return (
-    <OverlayContent className={className} {...others}>
+    <SOverlayContent className={className} {...others}>
       {renderItems()}
-    </OverlayContent>
+    </SOverlayContent>
   )
 }
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   background-color: #f8f8f8;
   padding: 16px;
   position: relative;
@@ -92,7 +92,7 @@ const Demo15 = () => {
   )
 
   return (
-    <Wrapper>
+    <SWrapper>
       <Select
         placeholder="custom popupContent"
         visible={visible}
@@ -103,7 +103,7 @@ const Demo15 = () => {
           return node.parentNode
         }}
       />
-    </Wrapper>
+    </SWrapper>
   )
 }
 

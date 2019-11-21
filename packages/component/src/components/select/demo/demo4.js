@@ -24,12 +24,12 @@ const ctrlDataSources = {
   hasBorder: [true, false],
 }
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   padding: 16px;
   background-color: #f8f8f8;
 `
 
-const Controller = styled.div`
+const SController = styled.div`
   padding: 12px 12px 4px;
   margin-bottom: 16px;
   border: 2px dashed #ddd;
@@ -89,10 +89,10 @@ const Demo4 = () => {
   }
 
   return (
-    <Wrapper>
-      <Controller>{renderCtrlNodes(params)}</Controller>
+    <SWrapper>
+      <SController>{renderCtrlNodes(params)}</SController>
       <Select {...params} onChange={handleChange} dataSource={dataSource} />
-    </Wrapper>
+    </SWrapper>
   )
 }
 

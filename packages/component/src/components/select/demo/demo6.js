@@ -25,7 +25,7 @@ const dataSource = [
   },
 ]
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   background-color: #f8f8f8;
   padding: 16px;
   .next-select {
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 `
 
 const Demo6 = () => (
-  <Wrapper>
+  <SWrapper>
     <Select placeholder="OptionGroup">
       <OptionGroup label="group1">
         <Option value="small">Small</Option>
@@ -60,7 +60,7 @@ const Demo6 = () => (
       </OptionGroup>
     </Select>
     <Select placeholder="item.children" dataSource={dataSource} />
-  </Wrapper>
+  </SWrapper>
 )
 
 export default Demo6

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const { AutoComplete } = Select
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   background-color: #f8f8f8;
   padding: 16px;
 `
@@ -26,14 +26,14 @@ const Demo12 = () => {
   }, [])
 
   return (
-    <Wrapper>
+    <SWrapper>
       <AutoComplete
         filterLocal={false}
         placeholder="search from taobao"
         onChange={handleChange}
         dataSource={dataSource}
       />
-    </Wrapper>
+    </SWrapper>
   )
 }
 

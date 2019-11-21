@@ -30,13 +30,13 @@ const valueRender = item => {
   return `${v.name} / ${v.gender} / ${v.age}`
 }
 
-const Wrapper = styled.div`
+const SWrapper = styled.div`
   padding: 16px;
   background-color: #f8f8f8;
 `
 
 const Demo7 = () => (
-  <Wrapper>
+  <SWrapper>
     <Select
       mode="multiple"
       placeholder="custom value"
@@ -44,7 +44,7 @@ const Demo7 = () => (
       dataSource={dataSource}
       onChange={handleChange}
     />
-  </Wrapper>
+  </SWrapper>
 )
 
 export default Demo7
