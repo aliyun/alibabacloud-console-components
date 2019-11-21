@@ -53,8 +53,8 @@ const Nav: React.FC<INavProps> = ({
   })
 
   return (
-    <Fragment>
-      <S.Nav collapsed={derivedCollapsed}>
+    <>
+      <S.Nav collapsed={derivedCollapsed} className="windcc-app-layout__nav">
         <S.NavChildenWrapper>{children}</S.NavChildenWrapper>
       </S.Nav>
       {collapsible && (
@@ -63,7 +63,7 @@ const Nav: React.FC<INavProps> = ({
           onClick={derivedOnCollapseTriggerClick}
         />
       )}
-    </Fragment>
+    </>
   )
 }
 

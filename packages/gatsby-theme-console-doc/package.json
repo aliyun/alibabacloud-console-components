@@ -1,0 +1,46 @@
+{
+  "name": "gatsby-theme-console-doc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "license": "MIT",
+  "scripts": {
+    "compile-build-tools": "rm -rf ./lib/buildtime && tsc -p ./src/buildtime/tsconfig.json"
+  },
+  "dependencies": {
+    "@alicloud/console-components": "^1.0.0-rc.6",
+    "@alicloud/console-components-app-layout": "^1.0.0-rc.0",
+    "@alicloud/console-components-console-menu": "^1.0.0-rc.3",
+    "@alicloud/console-components-page": "^1.0.0-rc.1",
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
+    "babel-plugin-styled-components": "^1.10.6",
+    "gatsby-plugin-less": "^3.0.12",
+    "gatsby-plugin-mdx": "^1.0.55",
+    "gatsby-plugin-styled-components": "^3.1.11",
+    "gatsby-plugin-typescript": "^2.1.15",
+    "gatsby-source-filesystem": "^2.1.35",
+    "ignore-not-found-export-webpack-plugin": "^1.0.1",
+    "lodash": "^4.17.15",
+    "mdast": "^3.0.0",
+    "mdast-util-assert": "^2.0.1",
+    "react-syntax-highlighter": "^11.0.2",
+    "rehype-raw": "^4.0.1",
+    "rehype-react": "^4.0.1",
+    "rehype-sanitize": "^3.0.0",
+    "rehype-slug": "^2.0.3",
+    "remark-rehype": "^5.0.0",
+    "remark-stringify": "^7.0.4",
+    "string-hash": "^1.1.3",
+    "unist-util-visit-parents": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/mdast": "^3.0.3",
+    "@types/react-syntax-highlighter": "^11.0.1"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.6.0",
+    "styled-components": "^4.4.1"
+  }
+}

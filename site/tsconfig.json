@@ -5,10 +5,6 @@
     "rootDir": "./src",
     "baseUrl": ".",
     "noImplicitAny": false,
-    "paths": {
-      "@site/*": ["./src/*"],
-      "@siteComp/*": ["./src/components/*"],
-      "@siteBuildTools/*": ["./src/buildTools/*"]
-    }
+    "paths": {}
   }
 }
