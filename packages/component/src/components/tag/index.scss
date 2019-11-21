@@ -2,6 +2,7 @@
 @import './colored-tag.scss';
 
 $tag-cls-name: '#{$css-prefix}tag';
+$close-icon-name: '#{$css-prefix}icon';
 
 @mixin tag-box($height) {
   height: $height;
@@ -50,6 +51,12 @@ $tag-cls-name: '#{$css-prefix}tag';
     color: $color-text1-2;
     height: auto;
     position: relative;
-    top: -1px;
-  }
+		top: -1px;
+		
+		.#{$close-icon-name} {
+			&:before {
+				transform: scale(0.84);
+			}
+		}
+	}
 }

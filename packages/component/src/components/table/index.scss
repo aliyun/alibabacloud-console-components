@@ -2,6 +2,7 @@
 
 $table-cls-name: '#{$css-prefix}table';
 $table-cell-wrapper-cls-name: '#{$table-cls-name}-cell-wrapper';
+$table-empty: '#{$css-prefix}table-empty';
 
 .#{$table-cls-name} {
   th,
@@ -45,5 +46,11 @@ $table-cell-wrapper-cls-name: '#{$table-cls-name}-cell-wrapper';
         }
       }
     }
-  }
+	}
+	.#{$table-empty} {
+		height: 20px;
+		line-height: 20px;
+		margin: 16px 0;
+		padding: 0;
+	}
 }

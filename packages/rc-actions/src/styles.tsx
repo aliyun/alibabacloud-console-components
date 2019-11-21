@@ -41,9 +41,12 @@ export const SActions = styled(DummyDiv)`
 
   .${triggerClassName} {
     height: ${height};
-    color: #9b9ea0;
+    color: #0070cc;
     display: inline-flex;
     align-items: center;
+    &:hover {
+      color: #005aa5;
+    }
   }
 `
 
