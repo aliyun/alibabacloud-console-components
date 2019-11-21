@@ -8,8 +8,11 @@ $dialog-cls-name: '#{$css-prefix}dialog';
 
   &-header {
     // 调整标题区域的行高
-    line-height: $size-base * 6;
-  }
+		line-height: $size-base * 6;
+	}
+	&-body {
+		padding-top: $size-base * 0;
+	}
 
   &.#{$closeable-cls-name} {
     .#{$dialog-header-cls-name} {
