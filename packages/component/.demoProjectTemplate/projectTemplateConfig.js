@@ -8,7 +8,6 @@ const config = {
       'src/index.jsx'
     ].replace('{{DEMO_ENTRY_NAME}}', entryFileName)
   },
-  // extendsTemplate: '/some/other/template'
 }
 
 module.exports = config

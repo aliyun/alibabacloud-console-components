@@ -49,7 +49,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "styled-components": "^4.3.2",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.2"
   },
   "config": {
     "commitizen": {
