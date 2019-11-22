@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  pathPrefix: `/console-components`,
+  pathPrefix: `/alibabacloud-console-components`,
   siteMetadata: {
     title: 'Gatsby Default Starter',
     description:
