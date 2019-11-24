@@ -1,3 +1,8 @@
+---
+name: number-picker
+zhName: 数字输入框
+---
+
 # NumberPicker 数字输入框
 
 使用场景：数字选择器，并对输入的数据做正确性检查、自动订正。

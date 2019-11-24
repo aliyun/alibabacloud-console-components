@@ -1,3 +1,8 @@
+---
+name: collapse
+zhName: 折叠面板
+---
+
 # Collapse 折叠面板
 
 ## 基本用法

@@ -1,3 +1,8 @@
+---
+name: icon
+zhName: 图标
+---
+
 # Icon 图标
 
 ## 基本

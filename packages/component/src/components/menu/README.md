@@ -1,3 +1,8 @@
+---
+name: menu
+zhName: 菜单
+---
+
 # Menu 菜单
 
 ## 基本用法

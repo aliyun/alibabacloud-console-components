@@ -1,3 +1,8 @@
+---
+name: balloon
+zhName: 气泡提示
+---
+
 # Balloon 气泡提示
 
 何时使用

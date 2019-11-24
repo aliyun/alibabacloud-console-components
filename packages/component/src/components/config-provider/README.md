@@ -1,3 +1,8 @@
+---
+name: config-provider
+zhName: 修改wind配置
+---
+
 # ConfigProvider 修改wind配置
 
 开发指南

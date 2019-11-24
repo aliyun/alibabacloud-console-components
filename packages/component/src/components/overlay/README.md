@@ -1,3 +1,8 @@
+---
+name: overlay
+zhName: 弹层
+---
+
 # Overlay 弹层
 
 用于生成弹层的工具类集合.

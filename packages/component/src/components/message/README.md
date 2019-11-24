@@ -1,3 +1,8 @@
+---
+name: message
+zhName: 信息提示
+---
+
 # Message 信息提示
 
 开发指南

@@ -1,3 +1,8 @@
+---
+name: tree-select
+zhName: 树形选择控件
+---
+
 # TreeSelect 树形选择控件
 
 何时使用

@@ -1,3 +1,8 @@
+---
+name: timeline
+zhName: 时间轴
+---
+
 # Timeline 时间轴
 
 使用场景

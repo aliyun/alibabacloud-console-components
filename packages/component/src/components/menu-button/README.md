@@ -1,3 +1,8 @@
+---
+name: menu-button
+zhName: 菜单按钮
+---
+
 # MenuButton 菜单按钮
 
 使用指南

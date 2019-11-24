@@ -1,3 +1,8 @@
+---
+name: cascader-select
+zhName: 级联选择
+---
+
 # CascaderSelect 级联选择
 
 何时使用

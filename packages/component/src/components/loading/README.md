@@ -1,3 +1,8 @@
+---
+name: loading
+zhName: 加载中
+---
+
 # Loading 加载中
 
 何时使用

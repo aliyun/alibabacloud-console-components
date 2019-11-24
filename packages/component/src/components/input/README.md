@@ -1,3 +1,8 @@
+---
+name: input
+zhName: 输入框
+---
+
 # Input 输入框
 
 使用场景：表单输入，一般配合Form使用

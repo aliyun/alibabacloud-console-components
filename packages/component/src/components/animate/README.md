@@ -1,3 +1,8 @@
+---
+name: animate
+zhName: 动画
+---
+
 # Animate 动画
 
 何时使用
