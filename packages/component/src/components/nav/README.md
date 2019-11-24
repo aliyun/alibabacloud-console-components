@@ -1,3 +1,8 @@
+---
+name: nav
+zhName: 导航
+---
+
 # Nav 导航
 
 何时使用

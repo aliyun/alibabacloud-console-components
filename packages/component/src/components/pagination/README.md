@@ -1,3 +1,8 @@
+---
+name: pagination
+zhName: 翻页器
+---
+
 # Pagination 翻页器
 
 使用场景：当需要大量内容显示时，就会使用分页器来处理。

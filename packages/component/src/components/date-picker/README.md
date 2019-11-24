@@ -1,3 +1,8 @@
+---
+name: date-picker
+zhName: 日期选择框
+---
+
 # DatePicker 日期选择框
 
 ## Guide

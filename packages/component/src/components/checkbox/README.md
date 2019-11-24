@@ -1,3 +1,8 @@
+---
+name: checkbox
+zhName: 复选框
+---
+
 # Checkbox 复选框
 
 使用场景：复选框允许用户从一个数据集中选择多个选项。

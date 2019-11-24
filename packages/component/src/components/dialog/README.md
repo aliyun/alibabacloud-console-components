@@ -1,3 +1,8 @@
+---
+name: dialog
+zhName: 弹窗
+---
+
 # Dialog 弹窗
 
 

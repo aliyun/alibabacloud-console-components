@@ -1,3 +1,8 @@
+---
+name: transfer
+zhName: 穿梭框
+---
+
 # Transfer 穿梭框
 
 使用场景：用直观的方式在两栏中移动元素，完成选择行为。

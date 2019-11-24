@@ -1,3 +1,8 @@
+---
+name: upload
+zhName: 上传组件
+---
+
 # Upload 上传组件
 
 何时使用

@@ -1,3 +1,8 @@
+---
+name: rating
+zhName: 评分
+---
+
 # Rating 评分
 
 ## Guide

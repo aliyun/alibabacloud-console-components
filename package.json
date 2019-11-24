@@ -39,6 +39,7 @@
     "cz-conventional-changelog": "^3.0.2",
     "dva": "^2.4.1",
     "eslint": "^5.3.0",
+    "glob": "^7.1.6",
     "lerna": "^3.13.1",
     "link-parent-bin": "^1.0.2",
     "lodash": "^4.17.11",

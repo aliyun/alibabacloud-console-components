@@ -1,3 +1,8 @@
+---
+name: split-button
+zhName: 分隔按钮
+---
+
 # SplitButton 分隔按钮
 
 使用指南

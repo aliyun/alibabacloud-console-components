@@ -1,3 +1,8 @@
+---
+name: affix
+zhName: 固钉
+---
+
 # Affix 固钉
 
 ## Guide

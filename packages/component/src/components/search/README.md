@@ -1,3 +1,8 @@
+---
+name: search
+zhName: 搜索
+---
+
 # Search 搜索
 
 使用场景：页面、表单搜索时使用。

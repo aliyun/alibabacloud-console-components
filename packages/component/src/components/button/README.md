@@ -1,3 +1,8 @@
+---
+name: button
+zhName: 按钮
+---
+
 # Button 按钮
 
 使用场景：按钮用于开始一个即时操作。

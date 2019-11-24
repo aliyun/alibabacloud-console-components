@@ -1,3 +1,8 @@
+---
+name: range
+zhName: 区段选择器
+---
+
 # Range 区段选择器
 
 何时使用

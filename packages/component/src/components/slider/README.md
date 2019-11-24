@@ -1,3 +1,8 @@
+---
+name: slider
+zhName: 图片轮播
+---
+
 # Slider 图片轮播
 
 ## Guide

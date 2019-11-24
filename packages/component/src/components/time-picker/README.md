@@ -1,3 +1,8 @@
+---
+name: time-picker
+zhName: 时间选择框
+---
+
 # TimePicker 时间选择框
 
 ## Guide
