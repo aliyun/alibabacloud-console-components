@@ -6,7 +6,7 @@ module.exports = {
   pathPrefix: `/alibabacloud-console-components`,
   plugins: [
     {
-      resolve: `gatsby-theme-console-doc`,
+      resolve: `@alicloud/gatsby-theme-console-doc`,
       options: {
         // 入口页面，即点击左上角logo跳转的地址，以及访问`/`跳转的地址
         primaryPath: '/base-components/button',

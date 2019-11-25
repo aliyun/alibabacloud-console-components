@@ -1,9 +1,12 @@
 {
-  "name": "gatsby-theme-console-doc",
+  "name": "@alicloud/gatsby-theme-console-doc",
   "version": "1.0.0",
   "main": "index.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "compile-build-tools": "rm -rf ./lib/buildtime && tsc -p ./src/buildtime/tsconfig.json"
   },
