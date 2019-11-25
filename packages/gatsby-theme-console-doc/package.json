@@ -8,7 +8,8 @@
     "access": "public"
   },
   "scripts": {
-    "compile-build-tools": "rm -rf ./lib/buildtime && tsc -p ./src/buildtime/tsconfig.json"
+    "compile-build-tools": "rm -rf ./lib/buildtime && tsc -p ./src/buildtime/tsconfig.json",
+    "prepublish": "npm run compile-build-tools"
   },
   "dependencies": {
     "@alicloud/console-components": "^1.0.0-rc.7",
@@ -43,7 +44,9 @@
     "@types/react-syntax-highlighter": "^11.0.1"
   },
   "peerDependencies": {
-    "gatsby": "^2.6.0",
+    "gatsby": "^2.18.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "styled-components": "^4.4.1"
   }
 }

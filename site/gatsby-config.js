@@ -3,6 +3,8 @@
 const path = require('path')
 
 module.exports = {
+  // 如果站点被部署在子路径下，则需要在这里配置子路径
+  // 我们部署在`aliyun.github.io/alibabacloud-console-components`
   pathPrefix: `/alibabacloud-console-components`,
   plugins: [
     {

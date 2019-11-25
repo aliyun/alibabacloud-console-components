@@ -6,7 +6,7 @@
   "author": "csr632 <632882184@qq.com>",
   "dependencies": {
     "@alicloud/gatsby-theme-console-doc": "^1.0.0-rc.0",
-    "gatsby": "2.17.2",
+    "gatsby": "^2.17.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "eslint-config-react-app": "^5.0.2",
+    "eslint-plugin-flowtype": "^3.0.0",
     "gh-pages": "^2.1.1",
     "mdast": "^3.0.0",
     "mdast-util-assert": "^2.0.1",
@@ -31,7 +32,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean && rm -rf public && gatsby build --prefix-paths",
+    "build": "npm run clean && gatsby build --prefix-paths",
     "push-build": "npm run build && gh-pages -d public",
     "clean": "gatsby clean",
     "develop": "npm run clean && gatsby develop",
