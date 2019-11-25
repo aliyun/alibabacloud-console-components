@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Dropdown, Menu, Icon } from '@alicloud/console-components'
+import { Icon } from '@alicloud/console-components'
 import { Link } from 'gatsby'
-import SearchPages, { ISearchPagesProps } from './SearchPages'
+import SearchPages from './SearchPages'
 import { usePageCtx } from './context'
 
 export const TOP_BAR_HEIGHT = 52
@@ -44,8 +44,8 @@ const SNavList = styled.div`
     display: inline-block;
     height: ${TOP_BAR_HEIGHT}px;
     line-height: ${TOP_BAR_HEIGHT}px;
-    padding: 0 15px;
-    margin: 0 5px;
+    padding: 0 4px;
+    margin: 0 16px;
     font-size: 14px;
     color: ${MENU_COLOR};
     border-bottom: 3px solid ${BACKGROUND_COLOR};
@@ -108,7 +108,16 @@ const TopBar: React.FC = () => {
         <SearchPages />
       </SSearch>
       <SNavList>
-        {pageCtx.siteMeta.topNav.map((navItem, index) => {
+        {pageCtx.siteMeta.topNav.map(navItem => {
+          if (navItem.href.match(/^https?:\/\/(.*)/)) {
+            return (
+              <a href={navItem.href} target="_blank" rel="noopener noreferrer">
+                {navItem.text}
+                &nbsp;
+                <Icon type="external-link" size="xs" />
+              </a>
+            )
+          }
           return (
             <Link to={navItem.href} key={navItem.text}>
               {navItem.text}

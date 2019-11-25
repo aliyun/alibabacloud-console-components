@@ -101,6 +101,10 @@ module.exports = {
         topNav: [
           { text: '指南', href: '/guides/quick-start' },
           { text: '组件文档', href: '/base-components/button' },
+          {
+            text: 'Github',
+            href: 'https://github.com/aliyun/alibabacloud-console-components',
+          },
         ],
         // 左侧导航
         // 左侧导航与顶部导航的区别：
