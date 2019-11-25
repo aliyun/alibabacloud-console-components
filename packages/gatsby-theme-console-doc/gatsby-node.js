@@ -13,6 +13,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     sideNav,
     primaryPath,
     categories: categoryNameMap,
+    siteMetadata,
   } = themeOptions
   if (typeof patchDocInfo !== 'function')
     throw new Error(`themeOptions.patchDocInfo should be set`)
@@ -25,6 +26,10 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
   if (!_.isPlainObject(categoryNameMap)) {
     throw new Error(`themeOptions.categories should be set`)
   }
+  if (!_.get(themeOptions, ['siteMetadata', 'titleTemplate'])) {
+    throw new Error(`themeOptions.siteMetadata.titleTemplate should be set`)
+  }
+
   const queryRes = await graphql(
     `
       query QueryDocs {
@@ -155,6 +160,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
       context: {
         pageMeta: { ...pageInfo, type: 'doc', sideNav: sideNavConfig },
         siteMeta: {
+          ...siteMetadata,
           categories,
           topNav,
           primaryPath,
@@ -169,6 +175,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     context: {
       pageMeta: { type: 'indexPage' },
       siteMeta: {
+        ...siteMetadata,
         categories,
         topNav,
         primaryPath,
@@ -182,6 +189,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     context: {
       pageMeta: { type: '404' },
       siteMeta: {
+        ...siteMetadata,
         categories,
         topNav,
         primaryPath,

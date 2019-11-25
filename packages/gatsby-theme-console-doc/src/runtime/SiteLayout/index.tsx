@@ -9,6 +9,7 @@ import MarkdownContent from './MarkdownContent'
 import { pageCtx } from './context'
 import NotFound from './pages/404'
 import IndexPage from './pages/indexPage'
+import SEO from '../SEO'
 
 export interface IDocPageMeta {
   // 是普通文档还是404页面
@@ -54,6 +55,10 @@ export interface IPageContext {
     topNav: { text: string; href: string }[]
     // 入口路径
     primaryPath: string
+    // 标题模板
+    titleTemplate: string
+    // 应用描述
+    description?: string
   }
 }
 
@@ -67,6 +72,7 @@ const SiteLayout: React.FC<{
 }> = ({ pageContext }) => {
   return (
     <pageCtx.Provider value={pageContext}>
+      <SEO />
       <TopBar />
       <SAppLayout
         nav={pageContext.pageMeta.type === 'doc' ? <SideBar /> : null}

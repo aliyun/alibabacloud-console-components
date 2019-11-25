@@ -61,6 +61,7 @@ module.exports = themeOptions => {
       'gatsby-plugin-typescript',
       'gatsby-plugin-styled-components',
       'gatsby-plugin-less',
+      'gatsby-plugin-react-helmet',
     ],
   }
 }

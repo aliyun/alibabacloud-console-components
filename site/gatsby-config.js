@@ -10,6 +10,13 @@ module.exports = {
     {
       resolve: `@alicloud/gatsby-theme-console-doc`,
       options: {
+        // 用于SEO
+        siteMetadata: {
+          // 会生成标题如：按钮 · Console components
+          titleTemplate: '%s · Console components',
+          description:
+            'Console Components 是针对阿里云控制台场景的React组件解决方案。',
+        },
         // 入口页面，即点击左上角logo跳转的地址，以及访问`/`跳转的地址
         primaryPath: '/base-components/button',
         // 从文件系统爬取.md和.mdx（我们会忽略不包含frontmatter.name的markdown文档）
