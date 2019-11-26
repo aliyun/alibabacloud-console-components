@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es2015",
+      "es2017"
+    ],
+    "allowJs": false,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "outDir": "dist"
+  },
+  "include": [
+    "src"
+  ]
+}
