@@ -22,6 +22,7 @@ function SEO({ description, lang, meta, title }) {
   })()
 
   const metaDescription = description || pageCtx.siteMeta.description
+  const { siteName } = pageCtx.siteMeta
 
   return (
     <Helmet
@@ -29,7 +30,7 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={actualTitle}
-      titleTemplate={pageCtx.siteMeta.titleTemplate}
+      titleTemplate={`%s · ${siteName}`}
       meta={[
         {
           name: `description`,

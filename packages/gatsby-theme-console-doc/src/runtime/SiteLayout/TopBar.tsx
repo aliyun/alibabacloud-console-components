@@ -102,7 +102,9 @@ const TopBar: React.FC = () => {
   return (
     <STopBar>
       <SLogo>
-        <Link to={pageCtx.siteMeta.primaryPath}>Console Components</Link>
+        <Link to={pageCtx.siteMeta.primaryPath}>
+          {pageCtx.siteMeta.siteName}
+        </Link>
       </SLogo>
       <SSearch>
         <SearchPages />

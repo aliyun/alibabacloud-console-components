@@ -13,7 +13,7 @@ module.exports = {
         // 用于SEO
         siteMetadata: {
           // 会生成标题如：按钮 · Console components
-          titleTemplate: '%s · Console components',
+          siteName: 'Console Components',
           description:
             'Console Components 是针对阿里云控制台场景的React组件解决方案。',
         },

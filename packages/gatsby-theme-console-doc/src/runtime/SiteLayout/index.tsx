@@ -55,8 +55,8 @@ export interface IPageContext {
     topNav: { text: string; href: string }[]
     // 入口路径
     primaryPath: string
-    // 标题模板
-    titleTemplate: string
+    // 标题模板为 pageName · siteName
+    siteName: string
     // 应用描述
     description?: string
   }

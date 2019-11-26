@@ -26,8 +26,8 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
   if (!_.isPlainObject(categoryNameMap)) {
     throw new Error(`themeOptions.categories should be set`)
   }
-  if (!_.get(themeOptions, ['siteMetadata', 'titleTemplate'])) {
-    throw new Error(`themeOptions.siteMetadata.titleTemplate should be set`)
+  if (!_.get(themeOptions, ['siteMetadata', 'siteName'])) {
+    throw new Error(`themeOptions.siteMetadata.siteName should be set`)
   }
 
   const queryRes = await graphql(
