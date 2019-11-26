@@ -1,0 +1,42 @@
+{
+  "name": "@alicloud/console-componrnts-portal",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "yofine<yofineliu@gmail.com>",
+  "devDependencies": {
+    "@alicloud/console-toolkit": "^1.x",
+    "@alicloud/console-toolkit-preset-official": "^1.x",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.5",
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
+    "jest": "^24.2.0-alpha.0",
+    "less": "^3.0.0-alpha.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.8.0",
+    "typescript": "^3.0.3"
+  },
+  "scripts": {
+    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
+    "build": "breezr build --engine webpack",
+    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "storybook": "breezr start-storybook",
+    "start": "npm run storybook",
+    "test": "breezr test:unit"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

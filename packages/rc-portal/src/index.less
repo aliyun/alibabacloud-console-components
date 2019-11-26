@@ -1,0 +1,63 @@
+.xc_rc_portal {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .xc_rc_portal_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+    flex: 1;
+    padding: 24px 0 0 0;
+    background-color: #fafafa;
+    .xc_rc_portal_children {
+      width: 1024px;
+    }
+  }
+  .xc_rc_portal_head {
+    overflow: hidden;
+    display: flex;
+    background-color: #fff;
+    padding-bottom: 35px;
+    width: 1024px;
+    .xc_rc_portal_img {
+      img {
+        background: #FAFAFA;
+        width: 220px;
+        height: 160px;      
+      }
+    }
+    .xc_rc_portal_info {
+      margin-left: 32px;
+      width: 520px;
+      .xc_rc_portal_title {
+        text-align: left;
+        line-height: 36px;
+        font-size: 28px;
+        color: #111111;
+        text-align: left;
+        line-height: 36px;
+      }
+      .xc_rc_portal_desc {
+        margin-top: 16px;
+        display: block;
+        text-align: left;
+        line-height: 20px;
+        font-size: 12px;
+        color: #111111;
+      }
+      .xc_rc_portal_extra {
+        margin-top: 16px;
+        display: block;
+      }
+      .xc_rc_portal_actions {
+        display: block;
+        margin-top: 24px;
+        button:not(:last-child) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
