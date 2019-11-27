@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/gatsby-theme-console-doc",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "main": "index.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
@@ -50,5 +50,6 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "styled-components": "^4.4.1"
-  }
+  },
+  "gitHead": "3a1cd83e2ef4b1cace2e1e2bd85bc97daffe2027"
 }
