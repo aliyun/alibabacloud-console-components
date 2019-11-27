@@ -7,9 +7,15 @@ import getDisplayName from '../../utils/getDisplayName'
 import withWindConfig from '../../utils/withWindConfig'
 import './index.scss'
 
-const enhance = WrappedComponent => {
+interface IProps {
+  hasBorder?: boolean
+  windConfig?: any
+  className?: string
+}
+
+const enhance = (WrappedComponent: React.ComponentType<any>) => {
   // eslint-disable-next-line react/prefer-stateless-function
-  class EnhancedCard extends Component {
+  class EnhancedCard extends Component<IProps> {
     static displayName = `WindEnhanced(${getDisplayName(
       WrappedComponent,
       'Card'

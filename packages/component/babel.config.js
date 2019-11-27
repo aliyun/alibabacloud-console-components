@@ -15,6 +15,7 @@ const generatePresets = factory((api) => {
   const presets = [
     preset.env,
     preset.react,
+    preset.ts,
   ]
 
   return presets

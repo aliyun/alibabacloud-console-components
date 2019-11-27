@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const env = require('./env')
 const path = require('./path')
 
@@ -16,7 +16,7 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.[jt]sx?$/,
           exclude: /node_modules/,
           use: [
             {
@@ -26,34 +26,20 @@ module.exports = () => {
         },
         {
           test: /\.css$/,
-          use: [
-            cssExtractLoader,
-            'css-loader',
-          ],
+          use: [cssExtractLoader, 'css-loader'],
         },
         {
           test: /\.less$/,
-          use: [
-            cssExtractLoader,
-            'css-loader',
-            'less-loader',
-          ],
+          use: [cssExtractLoader, 'css-loader', 'less-loader'],
         },
         {
           test: /\.s(a|c)ss$/,
-          use: [
-            cssExtractLoader,
-            'css-loader',
-            'fast-sass-loader',
-          ],
+          use: [cssExtractLoader, 'css-loader', 'fast-sass-loader'],
         },
       ],
     },
     resolve: {
-      modules: [
-        path.NODE_MODULES,
-        path.WORKSPACE_ROOT_NODE_MODULES,
-      ],
+      extensions: ['.tsx', '.ts', '.js', '.jsx'],
     },
     plugins: [
       new webpack.DefinePlugin({
