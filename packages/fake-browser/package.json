@@ -35,7 +35,7 @@
     "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write"
   },
   "peerDependencies": {
-    "@alicloud/console-components": "^0.0.1-alpha.0",
+    "@alicloud/console-components": "^1.0.0",
     "dva": "^2.4.1",
     "prop-types": "^15.x",
     "react": "^16.x",

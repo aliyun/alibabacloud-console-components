@@ -41,7 +41,7 @@
     "warning": "^4.0.3"
   },
   "peerDependencies": {
-    "@alicloud/console-components": "^0.0.1-alpha.0",
+    "@alicloud/console-components": "^1.0.0",
     "dva": "^2.4.0",
     "prop-types": "^15.7.0",
     "react": "^16.8.0",

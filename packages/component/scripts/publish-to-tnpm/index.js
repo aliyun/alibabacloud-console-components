@@ -28,14 +28,14 @@ const publicVersion = (() => {
 })()
 
 // 计算内部版本号
-// const internalVersion = (() => {
-//   const publicVersionObj = semver.parse(publicVersion)
-//   // 开源版本1.x对应于对内版本3.x，所以主版本+2
-//   publicVersionObj.major = publicVersionObj.major + 2
-//   publicVersionObj.inc('pre', 'alpha')
-//   return publicVersionObj.format()
-// })()
-const internalVersion = '3.0.7'
+const internalVersion = (() => {
+  const publicVersionObj = semver.parse(publicVersion)
+  // 开源版本1.x对应于对内版本3.x，所以主版本+2
+  publicVersionObj.major = publicVersionObj.major + 2
+  // publicVersionObj.inc('pre', 'alpha')
+  return publicVersionObj.format()
+})()
+// const internalVersion = '3.0.7'
 
 // 读取内部package.json模板
 let internalPackageJSONString = fs
