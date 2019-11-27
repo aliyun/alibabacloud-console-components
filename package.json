@@ -21,8 +21,8 @@
   },
   "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
   "devDependencies": {
-    "@breezr/cli": "^1.0.0-alpha.1",
-    "@breezr/preset-wind-component": "^1.0.0-alpha.2",
+    "@alicloud/console-toolkit-cli": "^1.0.1",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.1",
     "@microsoft/api-extractor": "^7.5.1",
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.2",

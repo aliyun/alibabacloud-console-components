@@ -42,9 +42,7 @@
     "react-dom": "^16.x",
     "styled-components": "^4.2.0"
   },
-  "devDependencies": {
-    "@breezr/cli": "^1.0.0-alpha.1"
-  },
+  "devDependencies": {},
   "dependencies": {
     "react-rnd": "^10.1.0"
   }
