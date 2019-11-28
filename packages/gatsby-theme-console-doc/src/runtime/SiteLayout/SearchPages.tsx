@@ -4,6 +4,7 @@ import { Search, Select } from '@alicloud/console-components'
 import _ from 'lodash'
 import { IDocPageMeta } from '.'
 import { usePageCtx } from './context'
+import DocMenuLabel from './DocMenuLabel'
 
 type IFilteredData = {
   category: string
@@ -58,9 +59,9 @@ const SearchPages: React.FC = () => {
     >
       {filteredData.map(({ zhName: categoryZhName, matchDocs }) => (
         <Select.OptionGroup label={categoryZhName} key={categoryZhName}>
-          {matchDocs.map(({ name, zhName, path }) => (
-            <Select.Option value={path} key={path}>
-              {name} {zhName}
+          {matchDocs.map(docInfo => (
+            <Select.Option value={docInfo.path} key={docInfo.path}>
+              <DocMenuLabel docInfo={docInfo} />
             </Select.Option>
           ))}
         </Select.OptionGroup>

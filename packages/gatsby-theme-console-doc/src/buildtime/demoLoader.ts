@@ -1,5 +1,5 @@
 export default function(this: any, source: string) {
-  debugger
+  // debugger
   if (this.query && this.query.bundleDemo === false) {
     return `export default null;
     export const _demoInfo = __demo_loader_placeholder__`

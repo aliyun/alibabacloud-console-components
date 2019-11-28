@@ -45,6 +45,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
                 frontmatter {
                   name
                   zhName
+                  sort
                 }
                 headings(depth: h1) {
                   value
@@ -73,12 +74,12 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
       )
     })
     .map(node => {
-      const { name } = node.childMdx.frontmatter
-      const { zhName } = node.childMdx.frontmatter
+      const { name, zhName, sort } = node.childMdx.frontmatter
       const { sourceInstanceName } = node
       return {
         zhName,
         name,
+        sort,
         mdxBody: node.childMdx.body,
         mdFilePath: node.relativePath,
         fileSystemCrawlerName: sourceInstanceName,
@@ -272,4 +273,14 @@ function modifyCssConfig({ rules, actions, getConfig }) {
   // NOTE: cleaned config without url-loader
   defaultConfig.module.rules = cleanedRules
   actions.replaceWebpackConfig(defaultConfig)
+}
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type MdxFrontmatter @infer {
+      sort: Float
+    }
+  `
+  createTypes(typeDefs)
 }

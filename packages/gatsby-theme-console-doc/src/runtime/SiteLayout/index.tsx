@@ -30,6 +30,13 @@ export interface IDocPageMeta {
    * 从 frontmatter 获得
    */
   category: string
+  /**
+   * 文章在左侧导航栏的排序，按照[sort, name]来排序
+   * 从 frontmatter 获得(用户可不填，默认为1)
+   */
+  sort: number | null
+  // 文章在菜单中的显示文字
+  labelInMenu?: string
   mdxBody: string
   // url路径
   path: string

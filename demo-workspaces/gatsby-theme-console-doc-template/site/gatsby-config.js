@@ -53,11 +53,18 @@ module.exports = {
           if (docInfo.fileSystemCrawlerName === 'comp-crawler') {
             return {
               category: 'components',
+              /**
+               * 你可以自定义文章在菜单中的显示文字
+               * 默认是`英文名 中文名`
+               * 文章标题出现的地方：左侧导航栏、搜索结果
+               */
+              labelInMenu: docInfo.zhName,
             }
           }
           if (docInfo.fileSystemCrawlerName === 'guides-crawler') {
             return {
               category: 'guides',
+              labelInMenu: docInfo.zhName,
             }
           }
           throw new Error(

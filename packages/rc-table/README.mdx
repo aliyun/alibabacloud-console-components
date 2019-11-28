@@ -91,6 +91,19 @@ class MyTable extends Component {
 }
 ```
 
+通过`pagination.popupProps`可以配置popup组件的行为，比如改变分页组件选择列表的弹出方向：
+```jsx
+<Table
+  dataSource={list}
+  columns={columns}
+  pagination={{
+    popupProps: {
+      align: "bl tl"
+    }
+  }}
+/>
+```
+
 #### 使用自定义组件
 
 在大多数情况下，直接向 ``pagination`` 属性传入分页器的属性定义就可以完成标准场景的分页展示。如果你有一些情况下需要自定义这个区域的内容，也可以传入一个自定义组件来完成特定的业务需求

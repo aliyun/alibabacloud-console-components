@@ -1,9 +1,14 @@
 ---
 name: quick-start
 zhName: 快速开始
+sort: 0
 ---
 
 # 快速开始
+
+文章排序规则：`[sort, name]`。
+sort默认为1。
+这篇文档通过sort属性而排序在其他文章前面。
 
 ## 使用基础组件
 

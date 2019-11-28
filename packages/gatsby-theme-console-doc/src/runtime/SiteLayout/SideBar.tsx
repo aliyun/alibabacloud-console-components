@@ -1,8 +1,8 @@
 import React from 'react'
 import ConsoleMenu from '@alicloud/console-components-console-menu'
-import _ from 'lodash'
 import { Link } from 'gatsby'
 import { usePageCtx } from './context'
+import DocMenuLabel from './DocMenuLabel'
 
 const SideBar: React.FC = () => {
   const pageCtx = usePageCtx()
@@ -27,13 +27,17 @@ const SideBar: React.FC = () => {
           return null
         }
         const consoleMenuItems = currentCategory.docs
-          .sort((a, b) => a.name.localeCompare(b.name))
+          .sort((a, b) => {
+            const sortA = typeof a.sort === 'number' ? a.sort : 1
+            const sortB = typeof b.sort === 'number' ? b.sort : 1
+            if (sortA - sortB !== 0) return sortA - sortB
+            return a.name.localeCompare(b.name)
+          })
           .map(docInfo => {
             return (
               <ConsoleMenu.Item key={docInfo.path}>
                 <Link to={docInfo.path}>
-                  {capitalizeFirstLetter(_.camelCase(docInfo.name))}
-                  {docInfo.zhName}
+                  <DocMenuLabel docInfo={docInfo} />
                 </Link>
               </ConsoleMenu.Item>
             )
@@ -55,7 +59,3 @@ const SideBar: React.FC = () => {
 }
 
 export default SideBar
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
