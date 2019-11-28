@@ -2919,7 +2919,7 @@
 
 "@storybook/addon-knobs@^5.2.1":
   version "5.2.6"
-  resolved "https://registry.npm.taobao.org/@storybook/addon-knobs/download/@storybook/addon-knobs-5.2.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40storybook%2Faddon-knobs%2Fdownload%2F%40storybook%2Faddon-knobs-5.2.6.tgz#28b2c74ea26519fef204915142a03bd7476f247c"
+  resolved "https://registry.npm.taobao.org/@storybook/addon-knobs/download/@storybook/addon-knobs-5.2.6.tgz#28b2c74ea26519fef204915142a03bd7476f247c"
   integrity sha1-KLLHTqJlGf7yBJFRQqA710dvJHw=
   dependencies:
     "@storybook/addons" "5.2.6"
@@ -3038,7 +3038,7 @@
 
 "@storybook/channel-postmessage@5.2.6":
   version "5.2.6"
-  resolved "https://registry.npm.taobao.org/@storybook/channel-postmessage/download/@storybook/channel-postmessage-5.2.6.tgz?cache=0&sync_timestamp=1574819358581&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40storybook%2Fchannel-postmessage%2Fdownload%2F%40storybook%2Fchannel-postmessage-5.2.6.tgz#60aaef0e80300c9812a571ca3ce0f28e2c404f04"
+  resolved "https://registry.npm.taobao.org/@storybook/channel-postmessage/download/@storybook/channel-postmessage-5.2.6.tgz#60aaef0e80300c9812a571ca3ce0f28e2c404f04"
   integrity sha1-YKrvDoAwDJgSpXHKPODyjixATwQ=
   dependencies:
     "@storybook/channels" "5.2.6"
@@ -3116,7 +3116,7 @@
 
 "@storybook/core@5.2.6":
   version "5.2.6"
-  resolved "https://registry.npm.taobao.org/@storybook/core/download/@storybook/core-5.2.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40storybook%2Fcore%2Fdownload%2F%40storybook%2Fcore-5.2.6.tgz#60c092607158d7d28db59f7e67da4f7e12703fb2"
+  resolved "https://registry.npm.taobao.org/@storybook/core/download/@storybook/core-5.2.6.tgz?cache=0&sync_timestamp=1574900261029&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40storybook%2Fcore%2Fdownload%2F%40storybook%2Fcore-5.2.6.tgz#60c092607158d7d28db59f7e67da4f7e12703fb2"
   integrity sha1-YMCSYHFY19KNtZ9+Z9pPfhJwP7I=
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.3.3"
@@ -3201,7 +3201,7 @@
 
 "@storybook/react@^5.0.5":
   version "5.2.6"
-  resolved "https://registry.npm.taobao.org/@storybook/react/download/@storybook/react-5.2.6.tgz#e61c0ed184add9e715191649ddb995eead756a90"
+  resolved "https://registry.npm.taobao.org/@storybook/react/download/@storybook/react-5.2.6.tgz?cache=0&sync_timestamp=1574900357579&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40storybook%2Freact%2Fdownload%2F%40storybook%2Freact-5.2.6.tgz#e61c0ed184add9e715191649ddb995eead756a90"
   integrity sha1-5hwO0YSt2ecVGRZJ3bmV7q11apA=
   dependencies:
     "@babel/plugin-transform-react-constant-elements" "^7.2.0"
@@ -3229,7 +3229,7 @@
 
 "@storybook/router@5.2.6":
   version "5.2.6"
-  resolved "https://registry.npm.taobao.org/@storybook/router/download/@storybook/router-5.2.6.tgz?cache=0&sync_timestamp=1574818980756&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40storybook%2Frouter%2Fdownload%2F%40storybook%2Frouter-5.2.6.tgz#5180d3785501699283c6c3717986c877f84fead5"
+  resolved "https://registry.npm.taobao.org/@storybook/router/download/@storybook/router-5.2.6.tgz#5180d3785501699283c6c3717986c877f84fead5"
   integrity sha1-UYDTeFUBaZKDxsNxeYbId/hP6tU=
   dependencies:
     "@reach/router" "^1.2.1"
@@ -3808,7 +3808,7 @@
 
 "@typescript-eslint/eslint-plugin@^2.4.0", "@typescript-eslint/eslint-plugin@^2.9.0":
   version "2.9.0"
-  resolved "https://registry.npm.taobao.org/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.9.0.tgz?cache=0&sync_timestamp=1574842590247&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-2.9.0.tgz#fa810282c0e45f6c2310b9c0dfcd25bff97ab7e9"
+  resolved "https://registry.npm.taobao.org/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.9.0.tgz#fa810282c0e45f6c2310b9c0dfcd25bff97ab7e9"
   integrity sha1-+oECgsDkX2wjELnA380lv/l6t+k=
   dependencies:
     "@typescript-eslint/experimental-utils" "2.9.0"
@@ -6943,32 +6943,32 @@ copyfiles@^2.1.1:
     yargs "^13.2.4"
 
 core-js-compat@^3.1.1:
-  version "3.4.4"
-  resolved "https://registry.npm.taobao.org/core-js-compat/download/core-js-compat-3.4.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js-compat%2Fdownload%2Fcore-js-compat-3.4.4.tgz#d0aa01b1d626e129455d51aa94c27127c564ba2b"
-  integrity sha1-0KoBsdYm4SlFXVGqlMJxJ8Vkuis=
+  version "3.4.5"
+  resolved "https://registry.npm.taobao.org/core-js-compat/download/core-js-compat-3.4.5.tgz?cache=0&sync_timestamp=1574892886921&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js-compat%2Fdownload%2Fcore-js-compat-3.4.5.tgz#f072059c0b98ad490eacac082296cfe241af1b58"
+  integrity sha1-8HIFnAuYrUkOrKwIIpbP4kGvG1g=
   dependencies:
     browserslist "^4.7.3"
     semver "^6.3.0"
 
 core-js-pure@^3.0.1:
-  version "3.4.4"
-  resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.4.4.tgz#613b936fa0c0482216f0c93794cd8139886efb53"
-  integrity sha1-YTuTb6DASCIW8Mk3lM2BOYhu+1M=
+  version "3.4.5"
+  resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.4.5.tgz#284474cb48d134e26e6e314cb89986c6c59480fb"
+  integrity sha1-KER0y0jRNOJubjFMuJmGxsWUgPs=
 
 core-js@2, core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.3, core-js@^2.6.10, core-js@^2.6.5:
   version "2.6.10"
-  resolved "https://registry.npm.taobao.org/core-js/download/core-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
+  resolved "https://registry.npm.taobao.org/core-js/download/core-js-2.6.10.tgz?cache=0&sync_timestamp=1574892433313&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
   integrity sha1-iluDkfjMcBPacDQRzltYVwYwDX8=
 
 core-js@^1.0.0:
   version "1.2.7"
-  resolved "https://registry.npm.taobao.org/core-js/download/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
+  resolved "https://registry.npm.taobao.org/core-js/download/core-js-1.2.7.tgz?cache=0&sync_timestamp=1574892433313&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
 core-js@^3.0.1, core-js@^3.0.4:
-  version "3.4.4"
-  resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.4.4.tgz#e3d422f8a51adc4cae2bfa04cef26a5ccc046d29"
-  integrity sha1-49Qi+KUa3EyuK/oEzvJqXMwEbSk=
+  version "3.4.5"
+  resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.4.5.tgz?cache=0&sync_timestamp=1574892433313&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-3.4.5.tgz#3dda65611d95699b5eb7742ea451ea052d37aa65"
+  integrity sha1-PdplYR2VaZtet3QupFHqBS03qmU=
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"

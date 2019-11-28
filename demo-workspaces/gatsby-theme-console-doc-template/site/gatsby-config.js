@@ -12,8 +12,8 @@ module.exports = {
       options: {
         // 用于SEO
         siteMetadata: {
-          // 会生成标题如：按钮 · Console components
-          siteName: 'Console Components',
+          // 会生成标题如：文章名 · Demo Site
+          siteName: 'Demo Site',
           description:
             'Console Components 是针对阿里云控制台场景的React组件解决方案。',
         },
