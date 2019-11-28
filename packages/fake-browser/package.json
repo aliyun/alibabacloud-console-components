@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-fake-browser",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -42,7 +42,6 @@
     "react-dom": "^16.x",
     "styled-components": "^4.2.0"
   },
-  "devDependencies": {},
   "dependencies": {
     "react-rnd": "^10.1.0"
   }
