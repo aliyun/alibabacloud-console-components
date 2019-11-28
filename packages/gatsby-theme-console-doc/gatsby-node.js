@@ -206,7 +206,9 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
   const resolveAlias = themeOptions.resolveAlias || {}
   actions.setWebpackConfig({
     resolve: {
-      modules: [...themeOptions.nodeModules],
+      modules: Array.isArray(themeOptions.nodeModules) && [
+        ...themeOptions.nodeModules,
+      ],
       alias: {
         '@runtime': path.resolve(__dirname, 'src/runtime'),
         ...resolveAlias,
@@ -216,8 +218,15 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
     module: {
       rules: [
         {
-          resourceQuery: /loadDemoInfo/,
-          use: path.resolve(__dirname, './lib/buildtime/demoLoader.js'),
+          resourceQuery: /loadDemo/,
+          use: [
+            {
+              loader: path.resolve(__dirname, './lib/buildtime/demoLoader.js'),
+              options: {
+                bundleDemo: themeOptions.bundleDemo,
+              },
+            },
+          ],
         },
       ],
     },

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Node } from 'acorn'
 import { readdir, readFile, statSync } from 'fs'
 import glob from 'glob'
@@ -8,7 +10,7 @@ import ConstDependency from 'webpack/lib/dependencies/ConstDependency'
 import ModuleDependency from 'webpack/lib/dependencies/ModuleDependency'
 import NormalModule from 'webpack/lib/NormalModule'
 
-export type WebpackModule = webpack.compilation.Module
+export type WebpackModule = any
 
 const readFileAsync = promisify(readFile)
 const readDirAsync = promisify(readdir)
@@ -242,7 +244,7 @@ class DemoPlugin {
     compiler.hooks.compilation.tap('testPlugin', compilation => {
       compilation.hooks.finishModules.tapPromise(
         'testPlugin',
-        async modules => {
+        async (modules: any) => {
           await Promise.all(
             modules.map(async module => {
               const { loaders } = module

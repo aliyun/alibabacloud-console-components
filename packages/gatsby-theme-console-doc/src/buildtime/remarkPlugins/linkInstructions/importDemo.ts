@@ -24,7 +24,7 @@ const handleLinkNode = ({
     0,
     {
       type: 'import',
-      value: `import ${identiferName}, {_demoInfo as ${infoIdentiferName}} from "${linkURL}?loadDemoInfo"`,
+      value: `import ${identiferName}, {_demoInfo as ${infoIdentiferName}} from "${linkURL}?loadDemo"`,
     },
     {
       type: 'jsx',

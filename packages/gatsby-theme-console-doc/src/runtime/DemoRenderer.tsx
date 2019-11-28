@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Card, Grid, Balloon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import createCodesandbox from './createCodesandbox'
@@ -34,26 +34,28 @@ const Icon = styled.div`
   transition: all 0.3s;
 `
 
+const iFrameProps = {
+  style: {
+    width: '950px',
+    height: '500px',
+    border: 0,
+    borderRadius: '4px',
+    overflow: 'hidden',
+  },
+  sandbox:
+    'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
+}
+
 const generateIframeData = demoMeta => (sandboxId: string) => {
-  const url = `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1&view=editor&module=${prependSlash(
-    demoMeta.entryPath
-  )}`
+  const url = `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
+    demoMeta.onlyEditor ? '&view=editor' : ''
+  }&module=${prependSlash(demoMeta.entryPath)}`
   return {
     src: url,
-    style: {
-      width: '950px',
-      height: '500px',
-      border: 0,
-      borderRadius: '4px',
-      overflow: 'hidden',
-    },
-    sandbox:
-      'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
   }
 }
 
 const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
-  // console.log(demoInfo, DemoComponent)
   const [iframeData, setIframeData] = useState<any>(null)
   const demoMeta = JSON.parse(demoInfo['demoMeta.json'])
   const showIframe = useCallback(() => {
@@ -61,6 +63,18 @@ const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
       .then(generateIframeData(demoMeta))
       .then(setIframeData)
   }, [demoInfo, demoMeta])
+  // console.log(demoInfo, DemoComponent, iframeData)
+  useEffect(() => {
+    if (!DemoComponent) showIframe()
+    // eslint-disable-next-line
+  }, [])
+  if (!DemoComponent) {
+    return (
+      <CustomCard contentHeight="auto">
+        <iframe title="test" {...iFrameProps} {...iframeData} />
+      </CustomCard>
+    )
+  }
 
   return (
     <CustomCard contentHeight="auto">
@@ -68,7 +82,7 @@ const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
       <hr />
 
       {iframeData ? (
-        <iframe title="test" {...iframeData} />
+        <iframe title="test" {...iFrameProps} {...iframeData} />
       ) : (
         <Row justify="center">
           <Balloon trigger={<Icon onClick={showIframe} />} closable={false}>
