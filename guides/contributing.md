@@ -25,7 +25,7 @@ sort: 3
 
 这个命令在 `npm run bootstrap` 时自动帮你执行了，当你遇到**"command not found"**错误的时候，手动在根目录执行`npm run link-bin`即可。
 
-## 开发工具
+## 开发指南
 
 所有`package.json`都已经配置好`scripts`，新增业务组件时请仿照已有`package.json`的格式。
 
@@ -35,9 +35,14 @@ sort: 3
   - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
     > 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/e971f40eb0b185559226d71952d950b3fbf87a50/packages/rc-actions/src/index.tsx#L1)的做法
   - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
+  - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
 - 基础组件：
   - `npm run start`启动开发环境（通过原生 webpack 搭建）
+  - 基础组件文档的 API 部分完全拷贝自 fusion，通过[特制的 mdx 处理指令](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/component/src/components/button/README.md#apis)来抓取 mdx 的文档
+  - 基础组件包通过[一个脚本](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/scripts/publish-to-tnpm)来发布到内网（`@ali/wind`）
 - 文档站：使用 gatsbyjs 进行开发。从而文档站是完全静态化的，所有数据在构建期间就被收集（从仓库中），在运行期间无需服务端提供数据
+  - 文档在代码仓库存放的位置：[指南文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/guides)、[基础组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/src/components/button)、[业务组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)
+  - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式
 
 如果想要检查完整的编译、构建、信息提取过程能否正确通过，到对应子包下运行`npm run prepublish`。
 
