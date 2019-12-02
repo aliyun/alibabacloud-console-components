@@ -12,6 +12,8 @@ Console Components 是针对阿里云控制台场景的 React 组件解决方案
 
 Console Components 的项目代号为`Wind`。
 
+开源背景：Wind 在阿里云控制台团队已经有 2 年的历史，过去一直服务于阿里云内部的控制台开发者。现在将 Wind 开源出来，是为了更好地帮助生态伙伴，让他们也能轻松地开发阿里云管控应用，进而服务于企业客户。
+
 ## 基础组件
 
 基础组件即 npm package `@alicloud/console-components` 中的组件。
@@ -51,3 +53,5 @@ Console Components 选择使用 styled-components 的原因：
 
 breezr 是阿里云控制台团队针对自己的开发需求而设计的 React 应用脚手架。它将 webpack、babel、jest 等工具的配置收敛到了 plugin、preset 中，免去了用户配置工具链的烦恼。
 Console Components 本身使用 breezr 作为构建工具，也建议阿里云控制台开发者使用 breezr。
+
+> [breezr 也已经开源](https://github.com/aliyun/alibabacloud-console-toolkit)，对外的名称为`alibabacloud-console-toolkit`。breezr 的开源背景与 wind 的相似。
