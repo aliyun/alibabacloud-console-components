@@ -31,15 +31,6 @@ module.exports = {
             rootDir: path.resolve(__dirname, '../guides'),
           },
         ],
-        // 透传给webpack选项resolve.module
-        // 通过这个配置可以优先从文档项目、根目录解析依赖，
-        // 如果找不到，再从发起者(即markdown或者demo位置)开始向上解析node_modules，
-        // 避免不同的markdown解析出各自的'react'
-        // 默认为['node_modules']
-        nodeModules: [
-          // path.resolve(__dirname, '../../../node_modules'),
-          'node_modules',
-        ],
         // 为每个文档添加元数据：它属于哪个类目
         // 每个文档都需要有一个类目，文档的访问路径就是`/类目name/文档name`
         // 类目还被用于给左侧导航栏分类、搜索结果分类
@@ -125,11 +116,21 @@ module.exports = {
             navCategories,
           }
         },
-        // 不将demo组件打包到首屏bundle（以及SSR）中
+        // 是否将demo组件打包到首屏bundle中（以及参与SSR）。
         // 一些npm包（比如antv）不支持SSR，如果你的demo中用了这些包，
-        // 就需要将bundleDemo设置为false
-        // 默认为true
-        bundleDemo: false,
+        // 就需要将bundleDemo设置为"async"（异步加载demo），或者false（完全不打包bundle组件，demo展示完全靠codesandbox）。
+        // 默认为true（demo组件打包到首屏bundle并参与SSR）
+        // 可选项：true, false, "async"
+        bundleDemo: 'async',
+        // 透传给webpack选项resolve.module
+        // 通过这个配置可以优先从文档项目、根目录解析依赖，
+        // 如果找不到，再从发起者(即markdown或者demo位置)开始向上解析node_modules，
+        // 避免不同的markdown解析出各自的'react'
+        // 默认为['node_modules']
+        nodeModules: [
+          // path.resolve(__dirname, '../../../node_modules'),
+          'node_modules',
+        ],
       },
     },
   ],

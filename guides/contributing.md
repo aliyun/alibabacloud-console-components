@@ -47,8 +47,8 @@ yarn workspaces 的两个概念：
   - 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
   - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称，`./api-json/api.json`不需要改动，会在[prepublish](https://github.com/aliyun/alibabacloud-console-components/blob/4ccfab04ca9c6b0583c4f0f85ca19853f2c2c821/packages/rc-actions/package.json#L26)的时候生成这个数据文件
   - 在执行`npm run prepublish`的过程中，请留意`api-extractor`给出的提示，改善你的类型导出
-- README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
-- 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
+- README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染
+  - README 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 类型信息作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
 
 业务组件的典型目录树：
 
@@ -110,6 +110,17 @@ yarn workspaces 的两个概念：
 ### 样式书写
 
 样式全部使用 styled-components 来编写。并且，styled-components 的组件名称必须在开头加上`S`，以示区分。比如原本的`<div className="wind-selection-cointainer">`改为`<SSelectionCointainer>`。
+
+### 透传 className 和 style
+
+为了支持用户覆盖样式，每个面向用户的组件必须将 className 和 style 透传到该组件的根部 DOM 节点。然后，在一些内部的标志性的 DOM 节点上，添加语义化的类名，方便用户通过 css 选择器选中这个节点。注意类名中不要把前缀写死，见下一条。
+
+### 不要写死类名前缀
+
+我们允许用户是自定义**类名前缀**（默认前缀是`.next-`，比如`.next-button`）。因此，我们在写类名的时候，不能将前缀写死（比如`.next-button { color: red }`或者`<div className="wind-rc-table">`）。
+
+- 在 scss 中，通过变量`$css-prefix`拿到前缀，[例子](https://github.com/aliyun/console-components/blob/master/packages/component/src/components/checkbox/index.scss#L3)
+- 在 JavaScript 中，通过[这个 HOC](https://github.com/aliyun/console-components/blob/master/packages/internal-helpers/src/withWindConfig.tsx#L22)拿到全局配置，其中包含前缀。
 
 ## PR 贡献者必须签署 CLA 协议
 

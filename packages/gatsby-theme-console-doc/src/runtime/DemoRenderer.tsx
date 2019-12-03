@@ -55,7 +55,20 @@ const generateIframeData = demoMeta => (sandboxId: string) => {
   }
 }
 
+const isSSR = typeof window === 'undefined'
+
 const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
+  const [{ hasDemoComp, AsyncDemoComp }] = useState(() => {
+    // eslint-disable-next-line no-shadow
+    const hasDemoComp = !!DemoComponent
+    // eslint-disable-next-line no-shadow
+    const AsyncDemoComp =
+      hasDemoComp &&
+      typeof DemoComponent.then === 'function' &&
+      React.lazy(() => DemoComponent)
+    return { hasDemoComp, AsyncDemoComp }
+  })
+
   const [iframeData, setIframeData] = useState<any>(null)
   const demoMeta = JSON.parse(demoInfo['demoMeta.json'])
   const showIframe = useCallback(() => {
@@ -63,26 +76,37 @@ const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
       .then(generateIframeData(demoMeta))
       .then(setIframeData)
   }, [demoInfo, demoMeta])
-  // console.log(demoInfo, DemoComponent, iframeData)
+  // console.log(demoInfo, DemoComponent, iframeData, hasDemoComp, AsyncDemoComp)
   useEffect(() => {
-    if (!DemoComponent) showIframe()
+    if (!hasDemoComp) showIframe()
     // eslint-disable-next-line
   }, [])
-  if (!DemoComponent) {
+
+  if (!hasDemoComp) {
     return (
       <CustomCard contentHeight="auto">
-        <iframe title="test" {...iFrameProps} {...iframeData} />
+        <iframe title="demo" {...iFrameProps} {...iframeData} />
       </CustomCard>
     )
   }
 
+  const renderDemo = (() => {
+    if (AsyncDemoComp && !isSSR) {
+      return (
+        <React.Suspense fallback={<div>Loading demo...</div>}>
+          <AsyncDemoComp />
+        </React.Suspense>
+      )
+    }
+    return <DemoComponent />
+  })()
+
   return (
     <CustomCard contentHeight="auto">
-      <DemoComponent />
+      {renderDemo}
       <hr />
-
       {iframeData ? (
-        <iframe title="test" {...iFrameProps} {...iframeData} />
+        <iframe title="demo" {...iFrameProps} {...iframeData} />
       ) : (
         <Row justify="center">
           <Balloon trigger={<Icon onClick={showIframe} />} closable={false}>

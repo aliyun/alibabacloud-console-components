@@ -6,6 +6,7 @@ import { ConfigProvider } from '@alicloud/console-components'
  */
 export interface IWindConfig {
   prefix?: string
+  [key: string]: any
 }
 
 /**

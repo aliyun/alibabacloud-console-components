@@ -10,10 +10,10 @@ zhName: 组件1
 ## 代码块示例
 
 ```javascript
-import Page from "@alicloud/console-components-page";
-import { Link } from "dva/router";
+import Page from '@alicloud/console-components-page'
+import { Link } from 'dva/router'
 
-const { Breadcrumb, Header } = Page;
+const { Breadcrumb, Header } = Page
 
 const breadcrumb = (
   <Breadcrumb>
@@ -25,15 +25,19 @@ const breadcrumb = (
     </Breadcrumb.Item>
     <Breadcrumb.Item key="detail">详情</Breadcrumb.Item>
   </Breadcrumb>
-);
+)
 
 const Detail = () => (
   <Page>
     <Header breadcrumb={breadcrumb} title="详情" />
   </Page>
-);
+)
 ```
 
 ### 组件 DEMO
 
 [MDXInstruction:importDemo:WithMenuDemo](./stories/basic.tsx)
+
+### 测试禁用 demo 的服务端渲染
+
+[MDXInstruction:importDemo:DisableSSR](./stories/non-ssr-able.tsx)

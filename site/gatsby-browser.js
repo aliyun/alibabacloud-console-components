@@ -4,4 +4,9 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-// You can delete this file if you're not using it
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss'
+
+export const onClientEntry = () => {
+  SyntaxHighlighter.registerLanguage('scss', scss)
+}

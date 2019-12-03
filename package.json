@@ -25,6 +25,7 @@
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.1",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.1",
+    "@alicloud/wind-api-documenter": "*",
     "@microsoft/api-extractor": "^7.5.1",
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.2",

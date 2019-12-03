@@ -44,7 +44,8 @@
   "devDependencies": {
     "@types/lodash": "^4.14.149",
     "@types/mdast": "^3.0.3",
-    "@types/react-syntax-highlighter": "^11.0.1"
+    "@types/react-syntax-highlighter": "^11.0.1",
+    "filenamify": "^4.1.0"
   },
   "peerDependencies": {
     "gatsby": "^2.18.2",
