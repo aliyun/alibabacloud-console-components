@@ -8,22 +8,28 @@ sort: 3
 
 ## 代码仓库组织结构
 
-本仓库使用 yarn workspace + lerna 进行管理，是 monorepo 的结构。
+本仓库使用 [yarn workspaces](https://yarnpkg.com/en/docs/workspaces) + lerna 进行管理，是 monorepo 的结构。
 将本仓库克隆到本地以后，执行`npm run bootstrap`即可完成项目的初始化。
 
 > 初始化耗时较长，因为需要将所有 package 都构建一遍。
 
 - 基础组件：在`packages/component`目录下。使用 webpack 来构建开发环境，进入`packages/component`目录并执行`npm run start`来启动。
 - 业务组件：在`packages/rc-*`目录下。使用 storybook 作为开发环境，通过各个子 package 下的`npm run storybook`来启动。
-- 文档站点：在`site`目录下。
+- 文档站点：在`site`目录下。使用[gatsbyjs](https://www.gatsbyjs.org/)作为站点开发框架。通过`npm run start`来启动文档站开发环境。
 - 开发指南：原文放在`guides`目录下（比如本指南）。开发指南会被`site`项目打包，在文档站点中展示。
 
 ## 所有开发期所需的依赖都安装在根目录
 
-新增业务组件时注意：**所有开发期所需的依赖都安装在根目录中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子目录都维护一份自己的开发依赖，做到统一管理、升级。
-如果你要在子包中使用根目录下安装的 cli 工具(比如 `breezr build`)，需要先在根目录执行`npm run link-bin`，将`/node_modules/.bin`下的工具 link 到所有子包中。
+> 根项目：monorepo 的根目录。
+> 子项目：monorepo 的每个子 package。[定义在这里](https://github.com/aliyun/alibabacloud-console-components/blob/master/package.json#L4)。
 
-这个命令在 `npm run bootstrap` 时自动帮你执行了，当你遇到**"command not found"**错误的时候，手动在根目录执行`npm run link-bin`即可。
+新增业务组件时注意：**所有开发期所需的依赖都安装在根项目中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子项目都维护一份自己的开发依赖，做到统一管理、升级。
+
+增加新的`devDependencies`时，优先考虑安装在根项目（在根项目执行`yarn install -DW 开发期依赖`）。除非这个开发依赖比较特殊，只有某个子项目会用到。
+
+如果你要在子包中使用根项目下安装的 cli 工具(比如 `breezr build`)，需要先在根项目执行`npm run link-bin`，将`/node_modules/.bin`下的工具 link 到所有子包中。
+
+在 `npm run bootstrap` 时自动帮你执行了一次这个命令。如果你在执行 npm 命令的时候遇到了"command not found"错误，手动在根项目执行`npm run link-bin`即可。
 
 ## 开发指南
 
@@ -33,7 +39,9 @@ sort: 3
   - 使用 typescript 开发
   - 使用 storybook 作为开发环境(`npm run storybook`)
   - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
-    > 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/e971f40eb0b185559226d71952d950b3fbf87a50/packages/rc-actions/src/index.tsx#L1)的做法
+    > 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
+    > 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称，`./api-json/api.json`不需要改动，会在[prepublish](https://github.com/aliyun/alibabacloud-console-components/blob/4ccfab04ca9c6b0583c4f0f85ca19853f2c2c821/packages/rc-actions/package.json#L26)的时候生成这个数据文件。
+    > 在执行`npm run prepublish`的过程中，请留意`api-extractor`给出的提示，改善你的类型导出。
   - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
   - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
 - 基础组件：
@@ -42,9 +50,10 @@ sort: 3
   - 基础组件包通过[一个脚本](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/scripts/publish-to-tnpm)来发布到内网（`@ali/wind`）
 - 文档站：使用 gatsbyjs 进行开发。从而文档站是完全静态化的，所有数据在构建期间就被收集（从仓库中），在运行期间无需服务端提供数据
   - 文档在代码仓库存放的位置：[指南文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/guides)、[基础组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/src/components/button)、[业务组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)
+  - 文档能力已经抽离成一个通用的 gatsby 插件:[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/gatsby-theme-console-doc)
   - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式
 
-如果想要检查完整的编译、构建、信息提取过程能否正确通过，到对应子包下运行`npm run prepublish`。
+提交前务必走一遍完整的编译、构建、信息提取流程，是否能顺利通过，检查方式：到对应子包下运行`npm run prepublish`。
 
 ## 代码规范
 
@@ -54,8 +63,10 @@ sort: 3
 
 1. fork 本仓库
 2. 每个特性、修复都基于最新的 master 分支开始修改：`git checkout -b my-fix-branch master`
-3. 要 commit 时，在根目录执行`nom run commit`，来生成规范化的 commit message
+3. 要 commit 时，在根目录执行`npm run commit`，来**生成规范化的 commit message**
 4. push 到远程之前，通过`git rebase master -i`将你分支上的多个 commit 合并成一个
+
+> [git rebase 学习资料](http://jartto.wang/2018/12/11/git-rebase/)、[图解 git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)、[git 远程操作详解](https://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 
 ### 代码风格
 
