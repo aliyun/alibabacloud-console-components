@@ -18,10 +18,12 @@ sort: 3
 - 文档站点：在`site`目录下。使用[gatsbyjs](https://www.gatsbyjs.org/)作为站点开发框架。通过`npm run start`来启动文档站开发环境。
 - 开发指南：原文放在`guides`目录下（比如本指南）。开发指南会被`site`项目打包，在文档站点中展示。
 
-## 所有开发期所需的依赖都安装在根目录
+## 开发期所需的依赖都安装在根项目
 
-> 根项目：monorepo 的根目录。
-> 子项目：monorepo 的每个子 package。[定义在这里](https://github.com/aliyun/alibabacloud-console-components/blob/master/package.json#L4)。
+yarn workspaces 的两个概念：
+
+- 根项目：monorepo 的根目录。
+- 子项目：monorepo 的每个子 package。[定义在这里](https://github.com/aliyun/alibabacloud-console-components/blob/master/package.json#L4)。
 
 新增业务组件时注意：**所有开发期所需的依赖都安装在根项目中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子项目都维护一份自己的开发依赖，做到统一管理、升级。
 
@@ -35,25 +37,56 @@ sort: 3
 
 所有`package.json`都已经配置好`scripts`，新增业务组件时请仿照已有`package.json`的格式。
 
-- 业务组件：
-  - 使用 typescript 开发
-  - 使用 storybook 作为开发环境(`npm run storybook`)
-  - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
-    > 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
-    > 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称，`./api-json/api.json`不需要改动，会在[prepublish](https://github.com/aliyun/alibabacloud-console-components/blob/4ccfab04ca9c6b0583c4f0f85ca19853f2c2c821/packages/rc-actions/package.json#L26)的时候生成这个数据文件。
-    > 在执行`npm run prepublish`的过程中，请留意`api-extractor`给出的提示，改善你的类型导出。
-  - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
-  - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
-- 基础组件：
-  - `npm run start`启动开发环境（通过原生 webpack 搭建）
-  - 基础组件文档的 API 部分完全拷贝自 fusion，通过[特制的 mdx 处理指令](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/component/src/components/button/README.md#apis)来抓取 mdx 的文档
-  - 基础组件包通过[一个脚本](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/scripts/publish-to-tnpm)来发布到内网（`@ali/wind`）
-- 文档站：使用 gatsbyjs 进行开发。从而文档站是完全静态化的，所有数据在构建期间就被收集（从仓库中），在运行期间无需服务端提供数据
-  - 文档在代码仓库存放的位置：[指南文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/guides)、[基础组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/src/components/button)、[业务组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)
-  - 文档能力已经抽离成一个通用的 gatsby 插件:[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/gatsby-theme-console-doc)
-  - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式
+**提交前务必走一遍完整的编译、构建、信息提取流程，检查是否能顺利通过**。检查方式：到对应子包下运行`npm run prepublish`。
 
-提交前务必走一遍完整的编译、构建、信息提取流程，是否能顺利通过，检查方式：到对应子包下运行`npm run prepublish`。
+### 业务组件
+
+- 使用 typescript 开发
+- 使用 storybook 作为开发环境(`npm run storybook`)
+- 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
+  - 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
+  - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称，`./api-json/api.json`不需要改动，会在[prepublish](https://github.com/aliyun/alibabacloud-console-components/blob/4ccfab04ca9c6b0583c4f0f85ca19853f2c2c821/packages/rc-actions/package.json#L26)的时候生成这个数据文件
+  - 在执行`npm run prepublish`的过程中，请留意`api-extractor`给出的提示，改善你的类型导出
+- README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染。在 mdx 中可以引入 storybook 的示例，以及引用源码中的类型、注释信息作为 API 文档
+- 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
+
+业务组件的典型目录树：
+
+```text
+.
+├── api-temp/               api-extractor提取源码中的类型信息、注释信息，产生的原始数据。见package.json中的scripts
+├── api-json/               wind-api-documenter加工api-temp/中的原始数据，产生json数据，供文档使用。见package.json中的scripts
+├── lib/                    babel转译+cjs模块化的产物
+├── es/                     babel转译+es模块化的产物
+├── dist/                   webpack打包生成的umd bundle
+├── src/
+│   ├── styles/             将styled-components统一放在一个目录下，将样式与逻辑分离
+│   └── tsconfig.json       src目录下的ts配置，继承../tsconfig.json。ts转译的时候以它为入口，避免转译到stories、tests之类的文件
+├── stories/
+│   ├── demo-name.tsx       一个demo，导出一个React组件，既被storybook使用，又可以被README.mdx渲染到文档中
+│   └── index.stories.tsx   storybook的入口
+├── api-extractor.json      api-extractor的配置
+├── breezr.config.json      breezr的配置
+├── tsconfig.json           主要用于配置ts的路径映射，继承根项目的tsconfig。主要是为了帮助vscode分析当前目录
+├── package.json            里面定义了开发时要用到的各种工具命令
+├── .npmignore              发布到npm时，忽略掉对使用者无用的目录
+└── README.mdx              文档，既能在github上阅读，又能在文档站点中渲染。开头需要填写一些元数据
+```
+
+### 基础组件
+
+- `npm run start`启动开发环境（通过原生 webpack 搭建）
+- 基础组件文档的 API 部分完全拷贝自 fusion，通过[特制的 mdx 处理指令](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/component/src/components/button/README.md#apis)来抓取 mdx 的文档
+- 基础组件包通过[一个脚本](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/scripts/publish-to-tnpm)来发布到内网（`@ali/wind`）
+
+### 文档站
+
+使用 gatsbyjs 进行开发。从而文档站是完全静态化的，所有数据在构建期间就被收集（从仓库中），在运行期间无需服务端提供数据
+
+- 文档在代码仓库存放的位置：[指南文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/guides)、[基础组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/src/components/button)、[业务组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)
+- 文档能力已经抽离成一个通用的 gatsby 插件:[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/gatsby-theme-console-doc)
+- 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式
+- 通过`npm run start`来启动文档站开发环境
 
 ## 代码规范
 
