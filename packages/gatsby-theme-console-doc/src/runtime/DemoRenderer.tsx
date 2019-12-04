@@ -98,7 +98,8 @@ const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
         </React.Suspense>
       )
     }
-    return <DemoComponent />
+    // SSR环境不要渲染Suspense，Suspense目前不支持SSR
+    return null
   })()
 
   return (
