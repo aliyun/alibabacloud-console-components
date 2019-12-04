@@ -87,7 +87,7 @@ const SiteLayout: React.FC<{
         navCollapsible={false}
       >
         <Page>
-          <Page.Content>
+          <Page.Content className="console-doc-content-body">
             {(() => {
               if (pageContext.pageMeta.type === 'doc') {
                 return <MarkdownContent />

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { Card, Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import _ from 'lodash'
@@ -7,13 +7,16 @@ import createCodesandbox from './createCodesandbox'
 const { Row } = Grid
 
 const CustomCard = styled(Card)`
-  display: inline-block;
-  width: 1000px;
-  margin-bottom: 32px;
-  margin-left: 2px;
-  & > .next-card-body {
-    & > .next-card-content {
-      overflow: visible;
+  && {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 32px;
+    margin-left: 2px;
+    overflow: visible;
+    > .next-card-body {
+      > .next-card-content {
+        overflow: visible;
+      }
     }
   }
 `
@@ -114,6 +117,9 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
     if (demoCompInfo.demoType === 'notBundled') showIframe()
     // eslint-disable-next-line
   }, [])
+
+  const domRef = useRef<null | HTMLDivElement>(null)
+
   if (demoCompInfo.demoType === 'notBundled') {
     // 无Demo组件可渲染，直接渲染codesandbox
     return (
@@ -140,8 +146,9 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
   })()
 
   const iframeController = (() => {
-    if (isShowingIframe)
-      if (iframeSrc)
+    if (isShowingIframe) {
+      // codesanbox已创建好
+      if (iframeSrc) {
         return (
           <Balloon
             trigger={
@@ -156,33 +163,49 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
                 }}
               />
             }
+            followTrigger
+            popupContainer={() => domRef.current || document.body}
             closable={false}
+            popupStyle={{
+              width: '180px',
+              textAlign: 'center',
+            }}
           >
             收起codesandbox
           </Balloon>
         )
-      else return null
+      }
+      // codesanbox还没创建好
+      return null
+    }
     return (
-      <Balloon trigger={<SIcon onClick={showIframe} />} closable={false}>
+      <Balloon
+        trigger={<SIcon onClick={showIframe} />}
+        closable={false}
+        followTrigger
+        popupContainer={() => domRef.current || document.body}
+        popupStyle={{
+          width: '180px',
+          textAlign: 'center',
+        }}
+      >
         在codesandbox中打开
       </Balloon>
     )
   })()
 
   return (
-    <CustomCard contentHeight="auto">
-      {renderDemo}
-      {iframeSrc && (
-        <>
-          {isShowingIframe && <hr />}
-          <SIframeCtn hiding={!isShowingIframe}>
-            <SIframe {...iFramePreset} src={iframeSrc} />
-          </SIframeCtn>
-        </>
-      )}
-      <hr />
-      <Row justify="center">{iframeController}</Row>
-    </CustomCard>
+    <div ref={domRef}>
+      <CustomCard contentHeight="auto">
+        {renderDemo}
+        <SIframeCtn hiding={!isShowingIframe}>
+          <hr />
+          {iframeSrc && <SIframe {...iFramePreset} src={iframeSrc} />}
+        </SIframeCtn>
+        <hr />
+        <Row justify="center">{iframeController}</Row>
+      </CustomCard>
+    </div>
   )
 }
 
