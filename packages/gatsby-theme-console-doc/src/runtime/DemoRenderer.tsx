@@ -32,15 +32,20 @@ const SIcon = styled.div`
   transition: all 0.3s;
 `
 
-const SIframe = styled.iframe<{ hiding?: boolean }>`
-  width: 950px;
+const SIframeCtn = styled.div<{ hiding?: boolean }>`
+  width: 100%;
   height: 500px;
   max-height: 500px;
-  border: 0;
-  border-radius: 4px;
   overflow: hidden;
   transition: max-height 0.5s;
-  ${({ hiding }) => (hiding ? `display: none; max-height: 0;` : '')}
+  ${({ hiding }) => (hiding ? `max-height: 0;` : '')}
+`
+
+const SIframe = styled.iframe`
+  width: 100%;
+  height: 500px;
+  border: 0;
+  border-radius: 4px;
 `
 
 const iFramePreset = {
@@ -113,7 +118,9 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
     // 无Demo组件可渲染，直接渲染codesandbox
     return (
       <CustomCard contentHeight="auto">
-        <SIframe {...iFramePreset} {...iframeSrc} />
+        <SIframeCtn>
+          <SIframe {...iFramePreset} {...iframeSrc} />
+        </SIframeCtn>
       </CustomCard>
     )
   }
@@ -168,11 +175,9 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
       {iframeSrc && (
         <>
           {isShowingIframe && <hr />}
-          <SIframe
-            {...iFramePreset}
-            src={iframeSrc}
-            hiding={!isShowingIframe}
-          />
+          <SIframeCtn hiding={!isShowingIframe}>
+            <SIframe {...iFramePreset} src={iframeSrc} />
+          </SIframeCtn>
         </>
       )}
       <hr />
