@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/gatsby-theme-console-doc",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "index.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
