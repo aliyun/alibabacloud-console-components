@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { Card, Grid, Balloon } from '@alicloud/console-components'
+import { Card, Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
+import _ from 'lodash'
 import createCodesandbox from './createCodesandbox'
 
 const { Row } = Grid
@@ -14,13 +15,10 @@ const CustomCard = styled(Card)`
     & > .next-card-content {
       overflow: visible;
     }
-    /* & > .next-card-footer {
-      display: none;
-    } */
   }
 `
 
-const Icon = styled.div`
+const SIcon = styled.div`
   float: right;
   margin-left: 12px;
   width: 20px;
@@ -34,87 +32,151 @@ const Icon = styled.div`
   transition: all 0.3s;
 `
 
-const iFrameProps = {
-  style: {
-    width: '950px',
-    height: '500px',
-    border: 0,
-    borderRadius: '4px',
-    overflow: 'hidden',
-  },
+const SIframe = styled.iframe<{ hiding?: boolean }>`
+  width: 950px;
+  height: 500px;
+  max-height: 500px;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  ${({ hiding }) => (hiding ? `display: none; max-height: 0;` : '')}
+`
+
+const iFramePreset = {
   sandbox:
     'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
 }
 
-const generateIframeData = demoMeta => (sandboxId: string) => {
-  const url = `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
+const generateIframeSrc = demoMeta => (sandboxId: string) =>
+  `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
     demoMeta.onlyEditor ? '&view=editor' : ''
   }&module=${prependSlash(demoMeta.entryPath)}`
-  return {
-    src: url,
-  }
-}
 
 const isSSR = typeof window === 'undefined'
 
-const DemoRenderer: React.FC<any> = ({ demoInfo, DemoComponent }) => {
-  const [{ hasDemoComp, AsyncDemoComp }] = useState(() => {
-    // eslint-disable-next-line no-shadow
-    const hasDemoComp = !!DemoComponent
-    // eslint-disable-next-line no-shadow
-    const AsyncDemoComp =
-      hasDemoComp &&
-      typeof DemoComponent.then === 'function' &&
-      React.lazy(() => DemoComponent)
-    return { hasDemoComp, AsyncDemoComp }
+interface IProps {
+  demoInfo: {
+    [fileName: string]: string
+  }
+  DemoComponent:
+    | React.ComponentType
+    | null
+    | Promise<{ default: React.ComponentType }>
+}
+
+/**
+ * 当用户配置了bundleDemo: true（默认值）时，DemoComponent即为用户写的Demo组件；
+ * 当用户配置了bundleDemo: false时，DemoComponent为null；
+ * 当用户配置了bundleDemo: "async"时，DemoComponent为`Promise<{default: React.ComponentType}>`(可以用于React.lazy)；
+ *
+ * demoInfo始终为demo的文件信息，可以console.log查看。
+ */
+const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
+  const [demoCompInfo] = useState(() => {
+    if (isPromiseLike(DemoComponent)) {
+      return {
+        demoType: 'async',
+        AsyncDemoComp: React.lazy(() => DemoComponent),
+      } as const
+    }
+    if (!DemoComponent) {
+      return {
+        demoType: 'notBundled',
+      } as const
+    }
+    return {
+      demoType: 'bundled',
+      DemoComp: DemoComponent,
+    } as const
   })
 
-  const [iframeData, setIframeData] = useState<any>(null)
-  const demoMeta = JSON.parse(demoInfo['demoMeta.json'])
+  const [iframeSrc, setIframeSrc] = useState<string | null>(null)
+  const [isShowingIframe, setIsShowingIframe] = useState(false)
+
   const showIframe = useCallback(() => {
-    createCodesandbox(demoInfo)
-      .then(generateIframeData(demoMeta))
-      .then(setIframeData)
-  }, [demoInfo, demoMeta])
-  // console.log(demoInfo, DemoComponent, iframeData, hasDemoComp, AsyncDemoComp)
+    setIsShowingIframe(true)
+    if (!iframeSrc) {
+      const demoMeta = JSON.parse(demoInfo['demoMeta.json'])
+      createCodesandbox(demoInfo)
+        .then(generateIframeSrc(demoMeta))
+        .then(setIframeSrc)
+    }
+  }, [demoInfo, iframeSrc])
+
   useEffect(() => {
-    if (!hasDemoComp) showIframe()
+    // 无Demo组件可渲染，直接渲染codesandbox
+    if (demoCompInfo.demoType === 'notBundled') showIframe()
     // eslint-disable-next-line
   }, [])
-
-  if (!hasDemoComp) {
+  if (demoCompInfo.demoType === 'notBundled') {
+    // 无Demo组件可渲染，直接渲染codesandbox
     return (
       <CustomCard contentHeight="auto">
-        <iframe title="demo" {...iFrameProps} {...iframeData} />
+        <SIframe {...iFramePreset} {...iframeSrc} />
       </CustomCard>
     )
   }
 
   const renderDemo = (() => {
-    if (AsyncDemoComp && !isSSR) {
+    // 懒加载Demo
+    if (demoCompInfo.demoType === 'async') {
+      // SSR环境不要渲染Suspense，Suspense目前不支持SSR
+      if (isSSR) return null
       return (
         <React.Suspense fallback={<div>Loading demo...</div>}>
-          <AsyncDemoComp />
+          <demoCompInfo.AsyncDemoComp />
         </React.Suspense>
       )
     }
-    // SSR环境不要渲染Suspense，Suspense目前不支持SSR
-    return null
+    return <demoCompInfo.DemoComp />
+  })()
+
+  const iframeController = (() => {
+    if (isShowingIframe)
+      if (iframeSrc)
+        return (
+          <Balloon
+            trigger={
+              <Icon
+                size="xs"
+                type="arrow-up"
+                style={{
+                  cursor: 'pointer',
+                }}
+                onClick={() => {
+                  setIsShowingIframe(false)
+                }}
+              />
+            }
+            closable={false}
+          >
+            收起codesandbox
+          </Balloon>
+        )
+      else return null
+    return (
+      <Balloon trigger={<SIcon onClick={showIframe} />} closable={false}>
+        在codesandbox中打开
+      </Balloon>
+    )
   })()
 
   return (
     <CustomCard contentHeight="auto">
       {renderDemo}
-      <hr />
-      {iframeData ? (
-        <iframe title="demo" {...iFrameProps} {...iframeData} />
-      ) : (
-        <Row justify="center">
-          <Balloon trigger={<Icon onClick={showIframe} />} closable={false}>
-            在codesandbox中打开
-          </Balloon>
-        </Row>
+      {iframeSrc && (
+        <>
+          {isShowingIframe && <hr />}
+          <SIframe
+            {...iFramePreset}
+            src={iframeSrc}
+            hiding={!isShowingIframe}
+          />
+        </>
       )}
+      <hr />
+      <Row justify="center">{iframeController}</Row>
     </CustomCard>
   )
 }
@@ -124,4 +186,8 @@ export default DemoRenderer
 function prependSlash(path: string) {
   if (path[0] === '/') return path
   return `/${path}`
+}
+
+function isPromiseLike(v: unknown): v is Promise<unknown> {
+  return typeof _.get(v, 'then') === 'function'
 }

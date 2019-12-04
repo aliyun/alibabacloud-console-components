@@ -39,5 +39,5 @@
     }
   ],
   "eslint.autoFixOnSave": true,
-  "typescript.tsdk": null
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
