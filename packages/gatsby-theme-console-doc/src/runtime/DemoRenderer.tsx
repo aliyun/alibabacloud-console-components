@@ -37,10 +37,10 @@ const SIcon = styled.div`
 
 const SIframeCtn = styled.div<{ hiding?: boolean }>`
   width: 100%;
-  height: 500px;
-  max-height: 500px;
+  height: 520px;
+  max-height: 520px;
   overflow: hidden;
-  transition: max-height 0.5s;
+  transition: max-height 0.7s;
   ${({ hiding }) => (hiding ? `max-height: 0;` : '')}
 `
 
@@ -58,7 +58,7 @@ const iFramePreset = {
 
 const generateIframeSrc = demoMeta => (sandboxId: string) =>
   `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
-    demoMeta.onlyEditor ? '&view=editor' : ''
+    demoMeta.onlyEditor ? '&view=editor' : '&view=split'
   }&module=${prependSlash(demoMeta.entryPath)}`
 
 const isSSR = typeof window === 'undefined'
@@ -199,7 +199,7 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
       <CustomCard contentHeight="auto">
         {renderDemo}
         <SIframeCtn hiding={!isShowingIframe}>
-          <hr />
+          {iframeSrc && <hr />}
           {iframeSrc && <SIframe {...iFramePreset} src={iframeSrc} />}
         </SIframeCtn>
         <hr />
