@@ -1,9 +1,10 @@
 @import '../../styles/variables.scss';
 
 .#{$css-prefix}step {
+
   &-item-content {
     color: $color-text1-2 !important;
-  }
+	}
 
   // style for size:small
   &.#{$css-prefix}step-circle.#{$css-prefix}enhanced-step-size-small {
@@ -32,7 +33,71 @@
     &.#{$css-prefix}step-vertical {
       .#{$css-prefix}step-item-body > .#{$css-prefix}step-item-title {
         margin-top: 4px;
-      }
-    }
-  }
+			}
+		}
+	}
+	// fix vertical style
+	&.#{$css-prefix}step-vertical {
+		> .#{$css-prefix}step-item {
+			height: auto;
+			>.#{$css-prefix}step-item-tail {
+				margin: 8px auto;
+			}
+		}
+	}
+	// 修复shape为 『dot』『circle』且 direction为『hoz』时没有完全填充父级的bug
+
+	@mixin step-dot-circle-hoz{
+		display: flex;
+		justify-content: space-between;
+		// padding: 0 35px;
+		.#{$css-prefix}step-item {
+			flex: 1 0 auto;
+			width: auto!important;
+		}
+	
+		.#{$css-prefix}step-item-last {
+			flex: 0 0 auto;
+		}
+
+		&.#{$css-prefix}step-dot {
+			>.#{$css-prefix}step-item-first {
+				padding-left: 40px;
+			}
+			>.#{$css-prefix}step-item-last {
+				padding-right: 40px;
+				>.#{$css-prefix}step-item-body {
+					left: -37px;
+				}
+			}
+		}
+	}
+
+	&.#{$css-prefix}step-dot-circle-hoz {
+		@include step-dot-circle-hoz;
+
+		.#{$css-prefix}step-item-first {
+			padding-left: 25px;
+			.#{$css-prefix}step-item-body {
+				left: 2px;
+			}
+		}
+
+		.#{$css-prefix}step-item-last {
+			padding-right: 25px;
+			.#{$css-prefix}step-item-body {
+				left: -23px;
+			}
+		}
+	}
+
+	&.#{$css-prefix}step-dot-circle-hoz-placement {
+		@include step-dot-circle-hoz;
+		padding: 0;
+		.#{$css-prefix}step-item-first {
+			> .#{$css-prefix}step-item-container {
+				padding-left: 0;
+			}
+		}
+	}
 }

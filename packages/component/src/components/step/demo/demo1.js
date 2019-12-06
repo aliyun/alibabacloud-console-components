@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Step } from '@alicloud/console-components'
 
-const steps = ['知道自己不懂', '不知道自己懂', '知道自己懂了'].map(
-  (item, index) => <Step.Item key={index} title={item} />
-)
+const steps = [
+  '知道自己不懂',
+  '不知道自己懂',
+  '知道自己懂了',
+].map((item, index) => <Step.Item key={index} title={item} />)
 
 export default class StepDemo1 extends Component {
   render() {
