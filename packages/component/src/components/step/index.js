@@ -32,16 +32,25 @@ const enhance = WrappedComponent => {
 
     render() {
       const { size, windConfig, className, ...restProps } = this.props
+      const {
+        shape = 'circle',
+        direction = 'hoz',
+        labelPlacement = '',
+      } = restProps
 
       const prefix =
         windConfig && windConfig.prefix ? windConfig.prefix : 'next-'
 
       const sizeClassName = `${prefix}enhanced-step-size-${size}`
 
+      const dotClassName =
+        ['circle', 'dot'].includes(shape) && direction === 'hoz'
+          ? `${prefix}step-dot-circle-hoz${labelPlacement ? '-placement' : ''}`
+          : ''
       return (
         <WrappedComponent
           {...restProps}
-          className={classNames(sizeClassName, className)}
+          className={classNames(sizeClassName, className, dotClassName)}
         />
       )
     }
