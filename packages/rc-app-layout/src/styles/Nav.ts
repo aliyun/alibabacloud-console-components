@@ -2,10 +2,10 @@ import React from 'react'
 import { Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 
-const navWidth = 210
+const navWidth = 208
 const navCollapsedWidth = 8
-const triggerHeight = 64
-const triggerWidth = 18
+const triggerHeight = 66
+const triggerWidth = 16
 const iconWidth = 12
 const evulsedWidth = 2
 
@@ -58,24 +58,17 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   height: ${triggerHeight}px;
   position: absolute;
   top: calc(50% - ${triggerHeight / 2}px);
-  right: ${-triggerWidth - triggerWidth / 2}px;
+	/* right: ${-triggerWidth - triggerWidth / 2}px; */
+	left: 0;
   z-index: 99;
   line-height: ${triggerHeight - 18}px;
   border: ${triggerWidth / 2}px solid transparent;
-  border-left: ${triggerWidth + evulsedWidth}px solid #ebebeb;
+  /* border-left: ${triggerWidth + evulsedWidth}px solid #ebebeb; */
+  border-left: ${triggerWidth}px solid #ebebeb;
   cursor: pointer;
   color: #bfbfbf;
-  transition: right 0.1s ease-in-out, border 0.1s ease;
-
-  &:hover {
-    right: ${-triggerWidth - triggerWidth / 2 - evulsedWidth}px;
-    border-left-color: #dedede;
-
-    ${NavCollapseTriggerIcon} {
-      color: #888888;
-    }
-  }
-
+  /* transition: right 0.1s ease-in-out, border 0.1s ease; */
+  transition: left 0.1s ease-in-out, border 0.1s ease;
   ${NavCollapseTriggerIcon} {
     width: ${iconWidth}px;
     position: relative;
@@ -86,10 +79,33 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   }
 `
 
+export const NavCollapseTriggerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 24px;
+  height: 100px;
+  /* border: 1px solid blue; */
+  cursor: pointer;
+  &:hover {
+    ${NavCollapseTrigger} {
+      border-left: ${triggerWidth + evulsedWidth}px solid #ebebeb;
+      /* left: 2px; */
+      border-left-color: #dedede;
+
+      ${NavCollapseTriggerIcon} {
+        color: #888888;
+      }
+    }
+  }
+`
+
 export const NavCollapseTriggerWrapper = styled.div`
   order: 0;
   flex: 0 1 auto;
   height: 100%;
   width: 0px;
   position: relative;
+  /* border: 1px solid red; */
 `
