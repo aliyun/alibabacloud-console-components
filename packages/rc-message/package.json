@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-message",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "dist/index.d.ts",
@@ -42,7 +42,6 @@
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
-    "dva": "^2.4.0",
     "prop-types": "^15.7.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",

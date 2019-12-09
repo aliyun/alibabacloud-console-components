@@ -122,6 +122,16 @@ yarn workspaces 的两个概念：
 - 在 scss 中，通过变量`$css-prefix`拿到前缀，[例子](https://github.com/aliyun/console-components/blob/master/packages/component/src/components/checkbox/index.scss#L3)
 - 在 JavaScript 中，通过[这个 HOC](https://github.com/aliyun/console-components/blob/master/packages/internal-helpers/src/withWindConfig.tsx#L22)拿到全局配置，其中包含前缀。
 
+### 对代码的修改需要带上 demo
+
+demo 的作用：
+
+- 在本地开发时，demo 可以帮助验证您的修改达到了预期的目标
+- demo 也可以被渲染在文档站上，供用户学习使用新的特性
+- demo 可以帮助我们发现代码退化（regression），避免之前修复过的问题重新出现、避免之前增加的特性被新的变更破坏
+
+因此，对于组件行为有影响的代码修改，需要搭配 demo 一起提交。并且，每个 demo 需要在文件名、heading(`h2`)或注释上体现自己想要证明的行为。
+
 ## PR 贡献者必须签署 CLA 协议
 
 在提交 PR 以后会出现一个 CLA 协议让提交者签署，未签署 CLA 协议的 PR 不会被合并。
