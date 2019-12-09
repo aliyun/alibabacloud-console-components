@@ -64,12 +64,12 @@ const items = [
 const Nav = () => <ConsoleMenu header="Aliyun Console" items={items} />
 
 const Operation = () => (
-  <Fragment>
+  <>
     <Button type="primary" disabled>
       Create
     </Button>
     <Button>Refresh</Button>
-  </Fragment>
+  </>
 )
 
 const Basic: React.FC<{}> = () => {
@@ -100,13 +100,13 @@ const Basic: React.FC<{}> = () => {
                 pageSize: 10,
               }}
               selection={({ selectedRowKeys }: any) => (
-                <Fragment>
+                <>
                   <Badge count={selectedRowKeys.length}>
                     <Button disabled={selectedRowKeys.length === 0}>
                       Delete
                     </Button>
                   </Badge>
-                </Fragment>
+                </>
               )}
             />
           </Page.Content>
