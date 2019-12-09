@@ -1,8 +1,8 @@
 ---
-name: component-2
-zhName: 组件2
+name: component-1
+zhName: 组件1
 ---
 
-# 组件 2
+# 组件 1
 
-组件 2 说明
+组件 1 说明
