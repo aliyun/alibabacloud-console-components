@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { NavProps } from '@alicloud/console-components/types/nav'
 import * as S from './styles'
 import { IItemDescriptor, mapItemToJSX } from './ItemDescriptor'
+import Header from './Header'
 import { GetFusionConfig } from './utils'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -39,6 +40,10 @@ const SecondaryMenu: React.FC<{
   />
 )
 
+export interface IOnSelect {
+  (value: string): void
+}
+
 /**
  * @public
  */
@@ -53,6 +58,14 @@ export interface IConsoleMenuProps
    * 导航菜单头部标题
    */
   header?: React.ReactNode
+  /**
+   * 使用对象数组来声明header数据源
+   */
+  headers?: string[]
+  /**
+   * 使用对象数组来声明header数据源
+   */
+  onSelectHeader?: IOnSelect
   /**
    * 使用对象数组来声明菜单项
    */
@@ -94,16 +107,16 @@ export interface IConsoleMenuProps
   ) => void
 }
 
-const ConsoleMenu: React.FC<
-  IConsoleMenuProps & {
-    /**
-     * 来自ConfigProvider
-     */
-    fusionConfig: any
-  }
-> = ({
+const ConsoleMenu: React.FC<IConsoleMenuProps & {
+  /**
+   * 来自ConfigProvider
+   */
+  fusionConfig: any
+}> = ({
   type = 'primary',
   header,
+  headers,
+  onSelectHeader,
   items,
   children,
   activeKey,
@@ -118,7 +131,16 @@ const ConsoleMenu: React.FC<
       // 透传给Nav
       {...restProps}
       fusionPrefix={fusionPrefix}
-      header={header && <S.Header>{header}</S.Header>}
+      header={
+        header && (
+          <Header
+            fusionPrefix={fusionPrefix}
+            header={header}
+            headers={headers}
+            onSelectHeader={onSelectHeader}
+          />
+        )
+      }
       selectedKeys={activeKey}
       defaultSelectedKeys={defaultActiveKey}
     >

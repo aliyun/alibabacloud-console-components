@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ConsoleMenu from '@alicloud/console-components-console-menu'
 import { FakeBrowserWithWrapper as FakeBrowser } from '@alicloud/console-components-fake-browser'
 
@@ -16,9 +16,16 @@ const onItemClick = (key: string, itemInfo: any, e: MouseEvent) => {
  * 使用组件方式声明导航菜单
  */
 const Example = () => {
+  const [header, setHeader] = useState('产品1')
+  const handleSelectHeader = (value: string) => {
+    console.log('selectValue:', value)
+    setHeader(value)
+  }
   return (
     <ConsoleMenu
-      header="Aliyun Console"
+      header={header}
+      headers={['产品1', '产品2']}
+      onSelectHeader={handleSelectHeader}
       onItemClick={onItemClick}
       defaultActiveKey="home"
     >

@@ -26,7 +26,11 @@ const PrimaryMenu = styled(NavFilterProps)<{
 
     ${SubMenu} {
       background-color: #f5f5f5;
-
+      > .${getPrefix}nav-item {
+        > .${getPrefix}menu-item-inner {
+          padding-right: 28px;
+        }
+      }
       .${getPrefix}nav-item.${getPrefix}menu-item {
         background-color: #f5f5f5;
         color: #555555;
@@ -54,7 +58,7 @@ const PrimaryMenu = styled(NavFilterProps)<{
     ${Item} {
       color: #555555;
       background-color: #f5f5f5;
-      padding: 0 24px 0 16px;
+      padding: 0 16px;
 
       &:hover {
         background-color: #ebebeb;
@@ -71,6 +75,12 @@ const PrimaryMenu = styled(NavFilterProps)<{
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}selected.${getPrefix}selected {
         background-color: #dedede;
         color: #333333;
+      }
+
+      > .${getPrefix}menu-item {
+        > .${getPrefix}menu-item-inner {
+          padding-right: 28px;
+        }
       }
 
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}disabled {
