@@ -53,7 +53,7 @@
 		// padding: 0 35px;
 		.#{$css-prefix}step-item {
 			flex: 1 0 auto;
-			width: auto!important;
+			box-sizing: content-box;
 		}
 	
 		.#{$css-prefix}step-item-last {
@@ -67,7 +67,7 @@
 			>.#{$css-prefix}step-item-last {
 				padding-right: 40px;
 				>.#{$css-prefix}step-item-body {
-					left: -37px;
+					left: -30px;
 				}
 			}
 		}
