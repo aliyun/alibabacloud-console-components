@@ -8,6 +8,7 @@ import WithItemsDecalration from './with-items-declaration'
 import RoutableMenu from './routable-menu'
 import RoutableMenuDefaultOpen from './routable-menu-default-open'
 import WithDivider from './with-divider'
+import SwitchHeader from './switch-header'
 
 storiesOf('wind-rc-console-menu', module)
   .add('Basic', () => <Basic />)
@@ -17,3 +18,4 @@ storiesOf('wind-rc-console-menu', module)
   .add('RoutableMenu', () => <RoutableMenu />)
   .add('RoutableMenuDefaultOpen', () => <RoutableMenuDefaultOpen />)
   .add('WithDivider', () => <WithDivider />)
+  .add('SwitchHeader', () => <SwitchHeader />)
