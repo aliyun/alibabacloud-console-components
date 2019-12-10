@@ -58,3 +58,8 @@ const Demo13 = () => {
   )
 }
 export default Demo13
+
+export const demoMeta = {
+  zhName: `图文展示`,
+  zhDesc: `展示较为复杂的内容展示`,
+}

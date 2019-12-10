@@ -48,3 +48,8 @@ const Demo7 = () => (
 )
 
 export default Demo7
+
+export const demoMeta = {
+  zhName: `自定义 value`,
+  zhDesc: `Select 的 value 可以是任意非空类型的值，但是要保证 toString() 后是唯一的。`,
+}

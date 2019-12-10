@@ -97,3 +97,8 @@ const Demo4 = () => {
 }
 
 export default Demo4
+
+export const demoMeta = {
+  zhName: '选择器',
+  zhDesc: '演示了 Select 的多种形态',
+}

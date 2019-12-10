@@ -28,4 +28,9 @@ const Demo3 = () => (
   />
 )
 
+export const demoMeta = {
+  zhName: `多选`,
+  zhDesc: '多选模式, 通过 `showSearch` 可以开启搜索, 但搜索值不可用作选项',
+}
+
 export default Demo3
