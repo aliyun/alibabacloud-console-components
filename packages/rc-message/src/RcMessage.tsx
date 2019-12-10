@@ -7,10 +7,10 @@ import extractSliderOptions from './utils/ExtractSlider'
 import { SDots, SSlider, SWrapper, SMessageItem } from './styles'
 import { GetFusionConfig, IFusionConfigProps } from './utils/GetFusionConfig'
 
-export interface IOnchange {
-  (index: number): void
-}
-
+/**
+ * 轮播属性
+ * @public
+ */
 export interface ISliderOptions {
   /**
    * 是否自动播放
@@ -30,7 +30,7 @@ export interface ISliderOptions {
   /**
    * 轮播切换的回调函数
    */
-  onChange?: IOnchange
+  onChange?: (index: number) => void
   /**
    * 轮播切换动画
    * @defaultValue `slide`
@@ -38,24 +38,32 @@ export interface ISliderOptions {
   animation?: 'fade' | 'slide'
 }
 
+/**
+ * dataSource的属性
+ * @public
+ */
 export interface IDataSourceItem {
   /**
-   * @title 标题
+   * 标题
    */
   title: React.ReactNode
   /**
-   * @content 内容
+   * 内容
    */
   content?: React.ReactNode
   /**
-   * @link 链接
+   * 链接
    */
   link?: React.ReactNode
 }
 
+/**
+ * Message的属性
+ * @public
+ */
 export interface IRcMessageProps {
   /**
-   * 内容, 数组类型，最多支持三条内容，多余的会被移除
+   * 内容, 数组类型，最多支持三条内容，多余的会被移除, 详情见下dataSource
    */
   dataSource: Array<IDataSourceItem>
   /**
@@ -77,7 +85,7 @@ export interface IRcMessageProps {
    */
   style?: React.CSSProperties
   /**
-   * 轮播属性，继承Slider的部分属性
+   * 轮播属性，继承Slider的部分属性，详情见下sliderOptions
    */
   sliderOptions?: ISliderOptions
 }

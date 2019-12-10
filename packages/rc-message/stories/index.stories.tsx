@@ -8,17 +8,13 @@ import CarouselMessage from './carouselMessage'
 import CloseableMessage from './closeableMessage'
 import ToastMessage from './toastMessage'
 
-storiesOf('wind-rc-message', module).add('basic-message', () => <Basic />)
-storiesOf('wind-rc-message', module).add('link-message', () => <LinkMessage />)
-storiesOf('wind-rc-message', module).add('large-message', () => (
-  <LargeMessage />
-))
-storiesOf('wind-rc-message', module).add('carousel-message', () => (
+storiesOf('wind-rc-message', module).add('BasicMessage', () => <Basic />)
+storiesOf('wind-rc-message', module).add('LinkMessage', () => <LinkMessage />)
+storiesOf('wind-rc-message', module).add('LargeMessage', () => <LargeMessage />)
+storiesOf('wind-rc-message', module).add('CarouselMessage', () => (
   <CarouselMessage />
 ))
-storiesOf('wind-rc-message', module).add('closeable-message', () => (
+storiesOf('wind-rc-message', module).add('CloseableMessage', () => (
   <CloseableMessage />
 ))
-storiesOf('wind-rc-message', module).add('toast-message', () => (
-  <ToastMessage />
-))
+storiesOf('wind-rc-message', module).add('ToastMessage', () => <ToastMessage />)
