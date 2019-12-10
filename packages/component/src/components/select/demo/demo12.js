@@ -38,3 +38,8 @@ const Demo12 = () => {
 }
 
 export default Demo12
+
+export const demoMeta = {
+  zhName: `动态数据`,
+  zhDesc: '使用动态数据填充 AutoComplete, 设置 `filterLocal` 为 false',
+}

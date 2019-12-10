@@ -64,3 +64,8 @@ const Demo6 = () => (
 )
 
 export default Demo6
+
+export const demoMeta = {
+  zhName: `分组`,
+  zhDesc: `使用 OptionGroup 针对选项进行分组，也可以使用原生的 html 标签 optgroup`,
+}

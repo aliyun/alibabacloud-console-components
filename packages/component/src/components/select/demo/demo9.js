@@ -30,3 +30,8 @@ const Demo9 = () => (
 )
 
 export default Demo9
+
+export const demoMeta = {
+  zhName: '对象数据',
+  zhDesc: '`useDetailValue` 把 `value` 从字符串变成对象',
+}

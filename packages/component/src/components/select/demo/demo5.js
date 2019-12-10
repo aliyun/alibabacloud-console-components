@@ -27,6 +27,7 @@ const Demo5 = () => {
     const cities = cityDataSource[value]
     setCityData(cities)
     setProvince(value)
+    setCity(undefined)
     setDisabled(!cities)
   }, [])
 
@@ -53,3 +54,8 @@ const Demo5 = () => {
   )
 }
 export default Demo5
+
+export const demoMeta = {
+  zhName: `级联选择`,
+  zhDesc: `使用 Select 构建级联选择框`,
+}

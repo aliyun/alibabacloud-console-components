@@ -90,3 +90,9 @@ const Demo14 = () => (
   </SWrapper>
 )
 export default Demo14
+
+export const demoMeta = {
+  zhName: `自定义渲染`,
+  zhDesc:
+    '通过 `itemRender` 和 `valueRender` (仅 Select) 自定义渲染的节点内容。',
+}

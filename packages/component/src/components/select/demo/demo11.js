@@ -113,3 +113,8 @@ const Demo11 = () => {
 }
 
 export default Demo11
+
+export const demoMeta = {
+  zhName: `自动完成大小`,
+  zhDesc: '`AutoComplete` 大小、disabled、清除',
+}

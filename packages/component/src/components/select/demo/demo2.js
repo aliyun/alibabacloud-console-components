@@ -27,5 +27,9 @@ const Demo2 = () => (
     style={{ width: 300 }}
   />
 )
+export const demoMeta = {
+  zhName: '标签',
+  zhDesc: '标签模式，输入的内容可以作为选项',
+}
 
 export default Demo2

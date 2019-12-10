@@ -3,12 +3,28 @@ import { Select } from '@alicloud/console-components'
 
 const { Option } = Select
 
-const onChange = function(value) {
+const onChange = value => {
   console.log(value)
+}
+const onBlur = e => {
+  console.log(/onblur/, e)
+}
+
+const onToggleHighlightItem = (item, type) => {
+  console.log(item, type)
 }
 
 const Demo1 = () => (
-  <Select onChange={onChange} defaultValue="jack">
+  <Select
+    id="basic-demo"
+    onChange={onChange}
+    onBlur={onBlur}
+    onToggleHighlightItem={onToggleHighlightItem}
+    defaultValue="jack"
+    aria-label="name is"
+    showSearch
+    hasClear
+  >
     <Option value="jack">Jack</Option>
     <Option value="frank">Frank</Option>
     <Option value="hugo">Hugo</Option>
@@ -16,3 +32,5 @@ const Demo1 = () => (
 )
 
 export default Demo1
+
+export const demoMeta = { zhName: `基本使用`, zhDesc: `简单` }

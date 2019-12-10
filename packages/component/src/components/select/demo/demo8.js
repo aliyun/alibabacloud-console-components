@@ -43,3 +43,9 @@ const Demo8 = () => {
 }
 
 export default Demo8
+
+export const demoMeta = {
+  zhName: `搜索框`,
+  zhDesc:
+    '使用 `showSearch` 显示搜索框，如果需要动态更新 dataSource，需要关闭 filterLocal',
+}
