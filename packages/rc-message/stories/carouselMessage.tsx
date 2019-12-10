@@ -14,7 +14,7 @@ const dataSource = [
   },
 ]
 
-const Demo4: React.FC<{}> = () => (
+const CarouselDemo: React.FC<{}> = () => (
   <Wrapper>
     <h2>可轮播的信息提示</h2>
     <RcMessage type="success" dataSource={dataSource} />
@@ -25,7 +25,7 @@ const Demo4: React.FC<{}> = () => (
   </Wrapper>
 )
 
-export default Demo4
+export default CarouselDemo
 
 const Wrapper = styled.div`
   > div {

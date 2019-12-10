@@ -16,7 +16,7 @@ const show = () =>
     align: 'cc cc',
   })
 
-const Demo6: React.FC<{}> = () => (
+const ToastDemo: React.FC<{}> = () => (
   <Wrapper>
     <h2>message全局快捷消息提示</h2>
     <Button onClick={showSuccess}>success</Button>
@@ -29,7 +29,7 @@ const Demo6: React.FC<{}> = () => (
   </Wrapper>
 )
 
-export default Demo6
+export default ToastDemo
 
 const Wrapper = styled.div`
   > button {

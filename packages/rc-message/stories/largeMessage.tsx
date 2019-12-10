@@ -18,7 +18,7 @@ const dataSource = [
   },
 ]
 
-const Demo3: React.FC<{}> = () => (
+const LargeDemo: React.FC<{}> = () => (
   <Wrapper>
     <h2>强化消息提示</h2>
     <RcMessage closeable type="success" dataSource={dataSource} />
@@ -29,7 +29,7 @@ const Demo3: React.FC<{}> = () => (
   </Wrapper>
 )
 
-export default Demo3
+export default LargeDemo
 
 const Wrapper = styled.div`
   > div {

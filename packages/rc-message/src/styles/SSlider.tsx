@@ -3,7 +3,6 @@ import { Slider } from '@alicloud/console-components'
 import styled from 'styled-components'
 import colorMap from '../config/colorMap'
 import SDots from './SDots'
-import { IOnchange } from '../RcMessage'
 
 const calculatedWidth = (total = 0, closeable = 0) => {
   const baseWidth = 16
@@ -18,6 +17,9 @@ const calculatedWidth = (total = 0, closeable = 0) => {
   return `calc(100% - ${width}px)`
 }
 
+/**
+ * @public
+ */
 export interface ISliderProps {
   /**
    * @total dataSource的长度

@@ -13,7 +13,7 @@ const dataSource = [
   },
 ]
 
-const Demo1: React.FC<{}> = () => (
+const LinkDemo: React.FC<{}> = () => (
   <Wrapper>
     <h2>带有link的消息提示</h2>
     <RcMessage type="success" dataSource={dataSource} />
@@ -24,7 +24,7 @@ const Demo1: React.FC<{}> = () => (
   </Wrapper>
 )
 
-export default Demo1
+export default LinkDemo
 
 const Wrapper = styled.div`
   > div {

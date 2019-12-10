@@ -1,16 +1,26 @@
+import React from 'react'
 import { Message } from '@alicloud/console-components'
-import RcMessage from './RcMessage'
+import RcMessage, { IRcMessageProps } from './RcMessage'
 import iconMap from './config/iconMap'
 import './index.less'
 
+/**
+ * @public
+ */
 export interface IToast {
   (title: string): void
 }
 
+/**
+ * @public
+ */
 export interface IShowProps {
   [propName: string]: any
 }
 
+/**
+ * @public
+ */
 export interface IShow {
   (prop: IShowProps): void
 }
@@ -18,7 +28,7 @@ export interface IShow {
 /**
  * @public
  */
-export type IMessage = typeof RcMessage & {
+export type IMessage = React.FC<IRcMessageProps> & {
   success: IToast
   error: IToast
   warning: IToast
@@ -28,6 +38,9 @@ export type IMessage = typeof RcMessage & {
   show: IShow
 }
 
+/**
+ * @public
+ */
 const success = (title: string) => {
   Message.show({
     type: 'success',
@@ -37,6 +50,9 @@ const success = (title: string) => {
   })
 }
 
+/**
+ * @public
+ */
 const error = (title: string) => {
   Message.show({
     type: 'error',
@@ -46,6 +62,9 @@ const error = (title: string) => {
   })
 }
 
+/**
+ * @public
+ */
 const warning = (title: string) => {
   Message.show({
     type: 'warning',
@@ -55,6 +74,9 @@ const warning = (title: string) => {
   })
 }
 
+/**
+ * @public
+ */
 const notice = (title: string) => {
   Message.show({
     type: 'notice',
@@ -64,6 +86,9 @@ const notice = (title: string) => {
   })
 }
 
+/**
+ * @public
+ */
 const loading = (title: string) => {
   Message.show({
     type: 'loading',
@@ -73,6 +98,9 @@ const loading = (title: string) => {
   })
 }
 
+/**
+ * @public
+ */
 const help = (title: string) => {
   Message.show({
     type: 'help',
@@ -82,6 +110,9 @@ const help = (title: string) => {
   })
 }
 
+/**
+ * @public
+ */
 const show = (props: IShowProps) => {
   Message.show({
     ...props,
@@ -90,6 +121,9 @@ const show = (props: IShowProps) => {
   })
 }
 
+/**
+ * @public
+ */
 const ExportedRcMessage: IMessage = Object.assign(RcMessage, {
   success,
   error,
@@ -103,3 +137,5 @@ const ExportedRcMessage: IMessage = Object.assign(RcMessage, {
 export { success, error, warning, notice, loading, help, show }
 
 export default ExportedRcMessage
+
+export * from './RcMessage'

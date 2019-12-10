@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import RcMessage from '@alicloud/console-components-message'
 
-const Demo1: React.FC<{}> = () => (
+const BasicDemo: React.FC<{}> = () => (
   <Wrapper>
     <h3>警示/报错类</h3>
     <RcMessage
@@ -39,7 +39,7 @@ const Demo1: React.FC<{}> = () => (
   </Wrapper>
 )
 
-export default Demo1
+export default BasicDemo
 
 const Wrapper = styled.div`
   > div {
