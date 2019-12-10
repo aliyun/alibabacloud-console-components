@@ -45,8 +45,9 @@ yarn workspaces 的两个概念：
 - 使用 storybook 作为开发环境(`npm run storybook`)
 - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
   - 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
-  - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称，`./api-json/api.json`不需要改动，会在[prepublish](https://github.com/aliyun/alibabacloud-console-components/blob/4ccfab04ca9c6b0583c4f0f85ca19853f2c2c821/packages/rc-actions/package.json#L26)的时候生成这个数据文件
-  - 在执行`npm run prepublish`的过程中，请留意`api-extractor`给出的提示，改善你的类型导出
+  - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称
+  - 在执行`npm run prepublish`的过程中，会从源码中提取 ts 类型信息（以`index.tsx?`为入口），输出到`./api-json/api.json`中。然后，当构建文档站点的时候，如果在 markdown 中遇到了`MDXInstruction:renderInterface`指令，则从`./api-json/api.json`根据 interface 名称拿到 interface 的成员信息，这个成员信息就是 API 文档的表格的数据
+    - 请留意 prepublish 过程中`api-extractor`给出的提示，改善你的类型导出。比如，api-extractor 会帮助你发现忘记 export 的类型，解决方式就是在`index.tsx?`导出对应的类型，详见[api-extractor 文档](https://api-extractor.com/pages/messages/ae-forgotten-export/)
 - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染
   - README 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 类型信息作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
 
