@@ -47,5 +47,7 @@ export default (clientOptions: IOptions) => {
     }
   }
 
-  return request
+  return {
+    request,
+  }
 }
