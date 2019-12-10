@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-message",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "dist/index.d.ts",
@@ -42,6 +42,10 @@
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
+<<<<<<< HEAD
+=======
+    "dva": "^2.4.0",
+>>>>>>> 0a9749b... feat(rc-message): add rc-message
     "prop-types": "^15.7.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",

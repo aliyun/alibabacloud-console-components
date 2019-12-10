@@ -3,10 +3,12 @@ module.exports = {
     [
       '@alicloud/console-toolkit-preset-wind-component',
       {
-        moduleName: 'WindRcMessage',
+        moduleName: 'WindRcConsoleMenu',
         useTypescript: true,
+        entry: './index.umd.js',
         externals: {
           '@alicloud/console-components': 'wind',
+          dva: 'dva',
         },
       },
     ],
