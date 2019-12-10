@@ -40,7 +40,7 @@ export default class extends Component {
 
   componentDidMount() {
     // single Api
-    apiClient.openApi(
+    apiClient.request(
       'ecs', 
       'getInstances', 
       { RegionId: 'cn-hangzhou'}
@@ -50,7 +50,7 @@ export default class extends Component {
       alert(error.message)
     })
     // multi Api
-    apiClient.openApi(
+    apiClient.request(
       'ecs', 
       [
         {
@@ -96,28 +96,14 @@ export default class extends Component {
 - `ignoreError?: boolean`：是否忽略报错，设置为 `true` 时，当 response 中 code 为非 200 的值时，也当做正常数据返回。
 - `risk`：风控配置。
 
-###  请求 OpenApi
+###  请求 API
 
-`apiClient.openApi(product, action, params, opts)`
-
-### 请求 InnerApi
-
-`apiClient.innerApi(product, action, params, opts)`
-
-### 请求微服务 Api
-
-`apiClient.callApi(product, action, params, opts)`
+`apiClient.request(product, action, params, opts)`
 
 
 ```js
 import {
   createApiClient,
-  createService,
-  request,
-  consoleRequestInterceptor,
-  searchParamsInterceptor,
-  consoleRiskInterceptor,
-  consoleResponseInterceptor,
   getConsoleConfig,
   getGlobalVariable,
   getLocale,

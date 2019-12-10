@@ -9,18 +9,10 @@ import {
 const BASE_URL = '/'
 // One-console 各类接口 url 映射表
 const API_URL = {
-  open: [
-    'data/api.json',
-    'data/multiApi.json'
+  plugin: [
+    'data/plugin.json',
+    'data/multiPluginApi.json'
   ],
-  inner: [
-    'data/innerApi.json',
-    'data/multiInnerApi.json'
-  ],
-  app: [
-    'data/call.json',
-    'data/multiCall.json'
-  ]
 }
 
 /**
@@ -59,7 +51,7 @@ function consoleRequestInterceptor(config) {
 }
 
 // 检查是否是合法的 url
-function isValidURL(url, apiType = 'open') {
+function isValidURL(url, apiType = 'plugin') {
   const urls = API_URL[apiType]
   if (url && !urls.includes(url)) {
     return false
@@ -77,7 +69,7 @@ function isMulti(data) {
 }
 
 // fecs 暂时不支持 url 后面跟 "?action" 标示，暂时去掉，如果后面支持再加回来
-function getURL(apiType = 'open', multi) {
+function getURL(apiType = 'plugin', multi) {
   const urls = API_URL[apiType]
   // 添加一个 url 参数方便调试
   return `${multi ? urls[1] : urls[0]}`
