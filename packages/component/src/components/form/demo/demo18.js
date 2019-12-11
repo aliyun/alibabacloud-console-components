@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Input, Radio, Field } from '@alicloud/console-components'
+
+import { Form, Input, Radio } from '@alicloud/console-components'
 
 const FormItem = Form.Item
 const RadioGroup = Radio.Group
@@ -12,9 +13,8 @@ const formItemLayout = {
     span: 14,
   },
 }
-const Demo11 = () => {
-  const myField = Field.useField()
 
+const Demo18 = () => {
   const userExists = (rule, value) => {
     return new Promise((resolve, reject) => {
       if (!value) {
@@ -22,7 +22,7 @@ const Demo11 = () => {
       } else {
         setTimeout(() => {
           if (value === 'frank') {
-            reject([new Error('Sorry, this username is already occupied.')])
+            reject([new Error('Sorry, this username is already exist.')])
           } else {
             resolve()
           }
@@ -31,38 +31,18 @@ const Demo11 = () => {
     })
   }
 
-  const checkPass = (rule, value, callback) => {
-    const { validate } = myField
-    if (value) {
-      validate(['rePasswd'])
-    }
-    callback()
-  }
-
-  const checkPass2 = (rule, value, callback) => {
-    const { getValue } = myField
-    if (value && value !== getValue('passwd')) {
-      callback('Inconsistent password input twice!')
-    } else {
-      callback()
-    }
-  }
-
-  const { getState, getError } = myField
-
   return (
-    <Form {...formItemLayout} field={myField}>
-      <FormItem
-        label="Account:"
-        hasFeedback
-        validator={userExists}
-        help={
-          getState('username') === 'loading'
-            ? 'Checking ...'
-            : getError('username')
-        }
-      >
-        <Input placeholder="Input frank" name="username" />
+    <Form {...formItemLayout}>
+      <FormItem label="Account:" hasFeedback validator={userExists} help="">
+        <Input placeholder="Input frank" name="valUsername" />
+        <Form.Error name="valUsername">
+          {(errors, state) => {
+            if (state === 'loading') {
+              return 'loading...'
+            }
+            return errors
+          }}
+        </Form.Error>
       </FormItem>
       <FormItem
         label="Email:"
@@ -71,7 +51,7 @@ const Demo11 = () => {
         requiredTrigger="onBlur"
         format="email"
       >
-        <Input placeholder="Both trigget onBlur and onChange" name="email" />
+        <Input placeholder="Both trigget onBlur and onChange" name="valEmail" />
       </FormItem>
 
       <FormItem
@@ -79,23 +59,8 @@ const Demo11 = () => {
         hasFeedback
         required
         requiredMessage="Please enter password"
-        validator={checkPass}
       >
-        <Input htmlType="password" name="passwd" />
-      </FormItem>
-
-      <FormItem
-        label="Check your password:"
-        hasFeedback
-        required
-        requiredMessage="Enter your password again"
-        validator={checkPass2}
-      >
-        <Input
-          htmlType="password"
-          placeholder="Enter the same password twice"
-          name="rePasswd"
-        />
+        <Input htmlType="password" name="valPasswd" />
       </FormItem>
 
       <FormItem
@@ -104,7 +69,7 @@ const Demo11 = () => {
         required
         requiredMessage="Please select your gender"
       >
-        <RadioGroup name="sex">
+        <RadioGroup name="valSex">
           <Radio value="male">Male</Radio>
           <Radio value="female">Female</Radio>
         </RadioGroup>
@@ -119,7 +84,7 @@ const Demo11 = () => {
           maxLength={20}
           hasLimitHint
           placeholder="Everything is ok!"
-          name="textarea"
+          name="valTextarea"
         />
       </FormItem>
 
@@ -137,10 +102,9 @@ const Demo11 = () => {
     </Form>
   )
 }
-
-export default Demo11
+export default Demo18
 
 export const demoMeta = {
-  zhName: `复杂功能(Field)`,
-  zhDesc: `配合 \`Field\` 可以实现较复杂功能`,
+  zhName: `校验`,
+  zhDesc: `基本的表单校验例子。`,
 }
