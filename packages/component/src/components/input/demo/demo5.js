@@ -1,10 +1,11 @@
 import React from 'react'
 import { Input, Select, Button } from '@alicloud/console-components'
 
+const { Option } = Select
 const select = (
   <Select aria-label="please select">
-    <option value="https">https</option>
-    <option value="http">http</option>
+    <Option value="https">https</Option>
+    <Option value="http">http</Option>
   </Select>
 )
 const button = <Button>search</Button>
