@@ -1,51 +1,45 @@
-import React, { Component } from 'react'
-import { Input, Icon } from '@alicloud/console-components'
+import React from 'react'
+import { Input } from '@alicloud/console-components'
 
-const onChange = (v) => {
-  console.log(v)
+const Demo4 = () => {
+  return (
+    <div>
+      <Input
+        hasLimitHint
+        addonTextBefore="http://"
+        addonTextAfter=".com"
+        size="large"
+        defaultValue="alibaba"
+        maxLength={2}
+        aria-label="input with config of addonTextBefore and addonTextAfter"
+      />
+      <br />
+      <br />
+
+      <Input
+        addonTextBefore="http://"
+        addonTextAfter=".com"
+        size="medium"
+        value="alibaba"
+        aria-label="input with config of addonTextBefore and addonTextAfter"
+      />
+      <br />
+      <br />
+
+      <Input
+        addonTextBefore="http://"
+        addonTextAfter=".com"
+        size="small"
+        value="alibaba"
+        aria-label="input with config of addonTextBefore and addonTextAfter"
+      />
+    </div>
+  )
 }
-
-const onBlur = (e) => {
-  console.log(e)
-}
-
-class Demo4 extends Component {
-  state = {
-      v: '',
-  };
-
-  onChange = (v) => {
-      this.setState({
-          v
-      });
-  };
-
-  onClick = () => {
-      console.log(this.state.v);
-  };
-
-  render() {
-
-    return (
-      <div>
-        <Input
-          innerBefore={<Icon type="search" style={{marginLeft: 4}}  onClick={this.onClick} />}
-          placeholder="search"
-          value={this.state.v}
-          onChange={this.onChange}
-        />
-        <br />
-        <br />
-        <Input
-          innerAfter={<Icon type="search" size="xs" onClick={this.onClick} style={{marginRight: 4}}/>}
-          placeholder="search"
-          value={this.state.v}
-          onChange={this.onChange}
-        />
-      </div>
-    )
-  }
-}
-
 
 export default Demo4
+
+export const demoMeta = {
+  zhName: '前后扩展',
+  zhDesc: `通过设置 \`addonTextBefore\`和 \`addonTextAfter\`实现前后扩展`,
+}

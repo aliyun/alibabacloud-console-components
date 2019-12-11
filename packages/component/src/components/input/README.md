@@ -10,11 +10,7 @@ zhName: 输入框
 
 ## 基本用法
 
-通过 size 属性设置输入框的大小，对单行输入框有效。
-
 #include "demo/demo1.js"
-
-
 
 ## APIs
 
@@ -22,18 +18,28 @@ zhName: 输入框
 
 ## Demos
 
-### input 的各种形式 
-
 #include "demo/demo2.js"
 
-### 组合输入框
+#include "demo/demo12.js"
+
+#include "demo/demo13.js"
 
 #include "demo/demo3.js"
 
-### 前缀/后缀搜索
-
 #include "demo/demo4.js"
 
+#include "demo/demo5.js"
 
+#include "demo/demo6.js"
 
+#include "demo/demo7.js"
 
+#include "demo/demo8.js"
+
+#include "demo/demo14.js"
+
+#include "demo/demo9.js"
+
+#include "demo/demo10.js"
+
+#include "demo/demo11.js"
