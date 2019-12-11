@@ -17,10 +17,6 @@ zhName: 表单数据获取、校验工具
 
 ## 基本
 
-最简单的用法。
-
-getValue setValue reset 的使用
-
 #include "demo/demo1.js"
 
 ## APIs
@@ -54,38 +50,27 @@ componentWillReceiveProps(nextProps) {
 
 ## Demo
 
-### 自定义数据获取
+#include "demo/demo13.js"
 
 #include "demo/demo2.js"
 
-### 关联控制
-
 #include "demo/demo3.js"
-
-### 自定义错误
 
 #include "demo/demo4.js"
 
-### 校验
-
 #include "demo/demo5.js"
-
-### redux 中使用
 
 #include "demo/demo6.js"
 
-### 组合使用
+#include "demo/demo11.js"
+
+#include "demo/demo12.js"
 
 #include "demo/demo7.js"
 
-### 自定义受控字段
-
 #include "demo/demo8.js"
-
-### 自定义组件使用
 
 #include "demo/demo9.js"
 
-### 获取对象或数据
-
 #include "demo/demo10.js"
+
