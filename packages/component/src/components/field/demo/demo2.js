@@ -1,38 +1,36 @@
 import React from 'react'
 import { Input, Button, Field } from '@alicloud/console-components'
 
-export default class Demo2 extends React.Component {
-
-  field = new Field(this)
-
-  normFile(list) {
-    if (Array.isArray(list)) {
-      return list
-    }
-    return list && list.fileList
-  }
-
-  normDate(date, strdate) {
-    console.log('normDate:', date, strdate)
-    return strdate
-  }
-
-  render() {
-    const init = this.field.init
-
-    return (
-   	  <div>
-        <Input {...init('name', { getValueFromEvent: (value) => {
-          if (value.match(/##/)) {
-            return value
-          } else {
+const Demo2 = () => {
+  const myField = Field.useField()
+  const { init } = myField
+  return (
+    <div>
+      <Input
+        {...init('name', {
+          getValueFromEvent: value => {
+            if (value.match(/##/)) {
+              return value
+            }
             return `## title-${value}`
-          }
-        }})} />
-        <Button type="primary" onClick={() => {
-          console.log(this.field.getValues());
-        }}>getValues</Button>
-      </div>
-    )
-  }
+          },
+        })}
+      />
+      <Button
+        type="primary"
+        onClick={() => {
+          console.log(myField.getValues())
+        }}
+      >
+        getValues
+      </Button>
+    </div>
+  )
+}
+
+export default Demo2
+
+export const demoMeta = {
+  zhName: '自定义数据获取',
+  zhDesc: '通过 `getValueFromEvent` 自定义获取数据',
 }
