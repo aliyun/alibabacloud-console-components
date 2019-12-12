@@ -102,6 +102,11 @@ module.exports = {
           { text: '指南', href: '/guides/quick-start' },
           { text: '组件文档', href: '/base-components/button' },
           {
+            text: '国内文档镜像',
+            href:
+              'https://csr632.gitee.io/alibabacloud-console-components/guides/quick-start',
+          },
+          {
             text: 'Github',
             href: 'https://github.com/aliyun/alibabacloud-console-components',
           },
