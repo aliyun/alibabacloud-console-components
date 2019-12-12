@@ -113,7 +113,12 @@ const TopBar: React.FC = () => {
         {pageCtx.siteMeta.topNav.map(navItem => {
           if (navItem.href.match(/^https?:\/\/(.*)/)) {
             return (
-              <a href={navItem.href} target="_blank" rel="noopener noreferrer">
+              <a
+                href={navItem.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={navItem.text}
+              >
                 {navItem.text}
                 &nbsp;
                 <Icon type="external-link" size="xs" />
