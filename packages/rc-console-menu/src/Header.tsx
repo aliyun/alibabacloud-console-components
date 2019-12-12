@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Icon, Dropdown, Menu } from '@alicloud/console-components'
 import cs from 'classnames'
 import * as S from './styles'
@@ -21,7 +21,6 @@ const Header: React.FC<IConsoleMenuProps & {
    */
   fusionPrefix: string
 }> = ({ header, headers, onSelectHeader, fusionPrefix }) => {
-  const iconRef = useRef(null)
   const [direction, setDirection] = useState('down')
 
   const handleChangeDirection = () => {
@@ -32,28 +31,33 @@ const Header: React.FC<IConsoleMenuProps & {
     handleChangeDirection()
     onSelectHeader && onSelectHeader(selectedKey)
   }
+
   return (
     <S.Header id="container">
       <div className="header-text">{header}</div>
       {headers && headers.length > 0 && (
-        <div className="header-select" ref={iconRef}>
+        <div className="header-select">
           <Dropdown
             visible={direction === 'up'}
             triggerType="click"
-            // align="tr br"
-            // offset={[-176, 0]}
             offset={[16, 10]}
+            onVisibleChange={(visible: boolean) => {
+              setDirection(visible ? 'up' : 'down')
+            }}
             container={(trigger: any) => trigger.parentNode}
+            cache
             trigger={
-              <Icon
-                onClick={handleChangeDirection}
-                size="small"
-                type={`sort-${direction}`}
-                className={cs({
-                  'trigger-icon': true,
-                  'icon-up': direction === 'up',
-                })}
-              />
+              <div className="trigger-wrap">
+                <Icon
+                  onClick={handleChangeDirection}
+                  size="small"
+                  type={`sort-${direction}`}
+                  className={cs({
+                    'trigger-icon': true,
+                    'icon-up': direction === 'up',
+                  })}
+                />
+              </div>
             }
           >
             <S.SDropMenu
