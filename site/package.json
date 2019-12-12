@@ -2,7 +2,6 @@
   "name": "wind-site",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "1.0.11",
   "author": "csr632 <632882184@qq.com>",
   "dependencies": {
     "@alicloud/gatsby-theme-console-doc": "^1.0.12",

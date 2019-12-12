@@ -4,6 +4,7 @@ const fs = require('fs')
 
 const urls = [
   'http://unpkg.alipay.com/@alife/theme-test1234/variables.scss',
+  'http://unpkg.alipay.com/@alife/theme-test1234/variables.less',
   'http://unpkg.alipay.com/@alife/theme-test1234/variables.js',
   'http://unpkg.alipay.com/@alife/theme-test1234/icons.scss',
 ]

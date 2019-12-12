@@ -1,6 +1,5 @@
 {
   "name": "gatsby-theme-console-doc-template",
-  "version": "1.0.4",
   "private": true,
   "main": "index.js",
   "license": "MIT"

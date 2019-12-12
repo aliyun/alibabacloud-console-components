@@ -6,12 +6,9 @@ import withSelectionProvider from './selection/withProvider'
 import renderColumns from './renderColumns'
 import withDefaultProps from './withDefaultProps'
 import Layout from './layout'
+import './index.css'
 
-const enhance = compose(
-  withDefaultProps,
-  withSelectionProvider,
-  renderColumns,
-)
+const enhance = compose(withDefaultProps, withSelectionProvider, renderColumns)
 
 const EnhancedTable = enhance(Layout)
 
