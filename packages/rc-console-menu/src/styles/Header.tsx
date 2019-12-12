@@ -15,15 +15,11 @@ const Header = styled.h2`
     line-height: 18px;
     display: flex;
     justify-content: space-between;
-    &:hover .header-text {
-      color: #0a59c0;
-    }
-    .header-text {
-      flex-basis: 1;
-    }
     .header-select {
       margin-left: 16px;
-      width: 18x;
+    }
+    .trigger-wrap {
+      width: 16px;
       height: 16px;
       line-height: 16px;
       cursor: pointer;
