@@ -1,50 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu } from '@alicloud/console-components'
 import styled, { createGlobalStyle } from 'styled-components'
 
 const { SubMenu, Item, Divider } = Menu
 
-const MyContextMenuStyle = createGlobalStyle`
-	.my-context-menu {
-		width: 120px;
-	}
-`
+const handleItemClick = () => {
+  console.log('item 被点击了')
+}
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props)
+const Demo = () => {
+  const [selectedKeys, setSelectedKeys] = useState([])
 
-    this.state = {
-      selectedKeys: [],
-    }
-
-    this.handleSelect = this.handleSelect.bind(this)
-  }
-
-  handleSelect(selectedKeys) {
-    selectedKeys = selectedKeys.filter(key => {
+  const handleSelect = keys => {
+    const newKeys = keys.filter(key => {
       return ['sub-1', 'sub-2'].indexOf(key) > -1
     })
-    this.setState({
-      selectedKeys,
-    })
+    setSelectedKeys(newKeys)
   }
 
-  createContextMenu = e => {
+  const createContextMenu = e => {
     e.preventDefault()
 
     const { target } = e
     const { top, left } = target.getBoundingClientRect()
+    console.log('selectedKeys:', selectedKeys)
 
     Menu.create({
       target: e.target,
       offset: [e.clientX - left, e.clientY - top],
       className: 'my-context-menu',
       popupClassName: 'my-context-menu',
-      onItemClick: console.log,
-      selectedKeys: this.state.selectedKeys,
+      onItemClick: handleItemClick,
+      selectedKeys,
       selectMode: 'multiple',
-      onSelect: this.handleSelect,
+      onSelect: handleSelect,
       children: [
         <Item key="1">Option 1</Item>,
         <Item key="2">Option 2</Item>,
@@ -61,14 +50,12 @@ class Demo extends React.Component {
     })
   }
 
-  render() {
-    return (
-      <SWrapper onContextMenu={this.createContextMenu}>
-        <MyContextMenuStyle />
-        Right click here to see the context menu!
-      </SWrapper>
-    )
-  }
+  return (
+    <SWrapper onContextMenu={createContextMenu}>
+      <MyContextMenuStyle />
+      Right click here to see the context menu!
+    </SWrapper>
+  )
 }
 
 export default Demo
@@ -85,4 +72,9 @@ const SWrapper = styled.div`
   text-align: center;
   background: #ddd;
   border: 1px solid black;
+`
+const MyContextMenuStyle = createGlobalStyle`
+	.my-context-menu {
+		width: 120px;
+	}
 `
