@@ -5,11 +5,11 @@ const { Item, Group, SubMenu, Divider } = Menu
 
 const Demo1 = () => (
   <div>
-    <Menu
-      defaultOpenKeys="sub-menu"
-    >
+    <Menu defaultOpenKeys="sub-menu">
       <Item key="1">Option 1</Item>
-      <Item disabled key="2">Disabled option 2</Item>
+      <Item disabled key="2">
+        Disabled option 2
+      </Item>
       <Divider key="divider" />
       <Group label="Group">
         <Item key="group-1">Group option 1</Item>
@@ -20,9 +20,16 @@ const Demo1 = () => (
         <Item key="sub-1">Sub option 1</Item>
         <Item key="sub-2">Sub option 2</Item>
       </SubMenu>
-      <Item key="3" helper="CTRL+P">Option 3</Item>
+      <Item key="3" helper="CTRL+P">
+        Option 3
+      </Item>
     </Menu>
   </div>
 )
 
 export default Demo1
+
+export const demoMeta = {
+  zhName: '基本',
+  zhDesc: '展示最基本的用法。',
+}

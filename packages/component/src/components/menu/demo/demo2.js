@@ -31,3 +31,8 @@ const Demo2 = () => (
 )
 
 export default Demo2
+
+export const demoMeta = {
+  zhName: '内连菜单展开模式',
+  zhDesc: `通过设置 openMode 为 'single'，可以让菜单同时只能展开一个内连子菜单，默认为可以同时展开多个。`,
+}
