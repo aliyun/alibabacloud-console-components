@@ -28,7 +28,7 @@ export const useTextSetter = (title: React.ReactNode, init?: string) => {
         </Button>
       </Info.Content>
     </Info>,
-  ] as const
+  ]
 }
 
 export const useTextAreaSetter = (title: React.ReactNode, init?: string) => {
@@ -53,7 +53,7 @@ export const useTextAreaSetter = (title: React.ReactNode, init?: string) => {
         </Button>
       </Info.Content>
     </Info>,
-  ] as const
+  ]
 }
 
 export const useBoolSetter = (title: React.ReactNode, init?: boolean) => {
@@ -75,5 +75,5 @@ export const useBoolSetter = (title: React.ReactNode, init?: boolean) => {
         <Option value={false}>false</Option>
       </Select>
     </Info>,
-  ] as const
+  ]
 }

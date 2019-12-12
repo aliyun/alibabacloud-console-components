@@ -21,6 +21,7 @@
     "@alicloud/console-components-select-list": "latest",
     "@alicloud/console-components-intl": "latest",
     "@alicloud/console-components-intl-context": "latest",
+    "@alicloud/console-components-message": "latest",
     "dva": "^2.4.1",
     "styled-components": "^4.2.0",
     "moment": "^2.21.0",

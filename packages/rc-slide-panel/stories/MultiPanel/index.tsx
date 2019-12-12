@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Button } from '@alicloud/console-components'
-import { SlidePanelGroup, SlidePanelItem } from '@alicloud/console-components-slide-panel'
+import {
+  SlidePanelGroup,
+  SlidePanelItem,
+} from '@alicloud/console-components-slide-panel'
 
 /* eslint-disable no-console */
 
