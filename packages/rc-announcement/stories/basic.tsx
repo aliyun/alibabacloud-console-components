@@ -1,33 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import RcMessage from '@alicloud/console-components-message'
+import RcAnnouncement from '@alicloud/console-components-announcement'
 
 const BasicDemo: React.FC<{}> = () => (
   <Wrapper>
     <h3>警示/报错类</h3>
-    <RcMessage
+    <RcAnnouncement
       type="warning"
       dataSource={[{ title: '您好！报错类轻量级使用黄色' }]}
     />
-    <RcMessage
+    <RcAnnouncement
       type="error"
       dataSource={[{ title: '您好！报错类稍重使用红色' }]}
     />
     <h3>成功提示/辅助信息</h3>
-    <RcMessage
+    <RcAnnouncement
       type="success"
       dataSource={[{ title: '您好！信息成功提示类，完成结果提醒请使用绿色' }]}
     />
     <h3>运营/信息/提示类</h3>
-    <RcMessage
+    <RcAnnouncement
       type="info"
       dataSource={[{ title: '您好！运营信息提示类，轻量级使用灰色' }]}
     />
-    <RcMessage
+    <RcAnnouncement
       type="notice"
       dataSource={[{ title: '您好！运营信息提示类，稍重使用蓝色' }]}
     />
-    <RcMessage
+    <RcAnnouncement
       type="notice"
       dataSource={[
         {
