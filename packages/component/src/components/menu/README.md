@@ -17,21 +17,21 @@ zhName: 菜单
 
 ## Demos
 
-### 菜单模式
-
 #include "demo/demo2.js"
-
-### 弹出模式
 
 #include "demo/demo3.js"
 
-### 菜单项选择
+#include "demo/demo5.js"
 
 #include "demo/demo-select.js"
 
-### 自定义
-
 #include "demo/demo4.js"
+
+#include "demo/demo6.js"
+
+#include "demo/demo7.js"
+
+#include "demo/demo8.js"
 
 
 
