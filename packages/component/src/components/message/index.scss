@@ -60,6 +60,24 @@ $message-cls-name: '#{$css-prefix}message';
   }
 }
 
+.custom-message-toast.#{$css-prefix}toast {
+	&#{&}#{&} {
+		.#{$css-prefix}message-title {
+			font-size: 14px;
+			font-family: "PingFangSC-Regular";
+			font-weight: normal;
+			padding-right: 4px;
+			padding-left: 22px;
+			color: #555;
+			line-height: 22px;
+			height: 22px;
+		}
+		.#{$css-prefix}icon {
+			line-height: 22px;
+		}
+	}
+}
+
 .#{$message-cls-name}.#{$css-prefix}toast.#{$css-prefix}overlay-inner.#{$message-cls-name}-wrapper {
   // always overlapped on topbar
   // http://gitlab.alibaba-inc.com/wind/wind/issues/55974
