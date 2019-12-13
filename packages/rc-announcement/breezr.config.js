@@ -3,7 +3,7 @@ module.exports = {
     [
       '@alicloud/console-toolkit-preset-wind-component',
       {
-        moduleName: 'WindRcMessage',
+        moduleName: 'WindRcAnnouncement',
         useTypescript: true,
         externals: {
           '@alicloud/console-components': 'wind',

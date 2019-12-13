@@ -5,7 +5,11 @@ import Title from './Title'
 import iconMap from './config/iconMap'
 import extractSliderOptions from './utils/ExtractSlider'
 import { SDots, SSlider, SWrapper, SMessageItem } from './styles'
-import { GetFusionConfig, IFusionConfigProps } from './utils/GetFusionConfig'
+import {
+  GetFusionConfig,
+  IFusionConfigProps,
+  IFusionConfig,
+} from './utils/GetFusionConfig'
 
 /**
  * 轮播属性
@@ -61,7 +65,7 @@ export interface IDataSourceItem {
  * Message的属性
  * @public
  */
-export interface IRcMessageProps {
+export interface IRcAnnouncementProps {
   /**
    * 内容, 数组类型，最多支持三条内容，多余的会被移除, 详情见下dataSource
    */
@@ -90,7 +94,7 @@ export interface IRcMessageProps {
   sliderOptions?: ISliderOptions
 }
 
-const RcMessage: React.FC<IRcMessageProps & IFusionConfigProps> = ({
+const RcMessage: React.FC<IRcAnnouncementProps & IFusionConfigProps> = ({
   dataSource = [],
   type = 'success',
   className,
@@ -100,7 +104,9 @@ const RcMessage: React.FC<IRcMessageProps & IFusionConfigProps> = ({
   fusionConfig,
 }) => {
   const { prefix = 'next-' } = fusionConfig
-  const renderMessageList = (data: IRcMessageProps['dataSource']) =>
+  const renderMessageList = (
+    data: IRcAnnouncementProps['dataSource']
+  ): React.ReactNode[] =>
     data.map((item: IDataSourceItem, index: number) => (
       <SMessageItem
         prefix={prefix}
@@ -154,3 +160,5 @@ const RcMessage: React.FC<IRcMessageProps & IFusionConfigProps> = ({
 }
 
 export default GetFusionConfig(RcMessage)
+
+export { IFusionConfig, IFusionConfigProps }

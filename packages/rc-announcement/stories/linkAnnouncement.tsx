@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import RcMessage from '@alicloud/console-components-message'
+import RcAnnouncement from '@alicloud/console-components-announcement'
 
 const dataSource = [
   {
@@ -16,11 +16,11 @@ const dataSource = [
 const LinkDemo: React.FC<{}> = () => (
   <Wrapper>
     <h2>带有link的消息提示</h2>
-    <RcMessage type="success" dataSource={dataSource} />
-    <RcMessage type="warning" dataSource={dataSource} />
-    <RcMessage type="error" dataSource={dataSource} />
-    <RcMessage type="info" dataSource={dataSource} />
-    <RcMessage type="notice" dataSource={dataSource} />
+    <RcAnnouncement type="success" dataSource={dataSource} />
+    <RcAnnouncement type="warning" dataSource={dataSource} />
+    <RcAnnouncement type="error" dataSource={dataSource} />
+    <RcAnnouncement type="info" dataSource={dataSource} />
+    <RcAnnouncement type="notice" dataSource={dataSource} />
   </Wrapper>
 )
 

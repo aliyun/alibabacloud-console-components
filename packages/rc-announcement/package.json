@@ -1,6 +1,6 @@
 {
-  "name": "@alicloud/console-components-message",
-  "version": "1.0.0",
+  "name": "@alicloud/console-components-announcement",
+  "version": "1.0.2",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "wind",
-    "wind-rc-message",
+    "wind-rc-announcement",
     "react",
     "react component"
   ],

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import colorMap from '../config/colorMap'
 import SDots from './SDots'
 
-const calculatedWidth = (total = 0, closeable = 0) => {
+const calculatedWidth = (total = 0, closeable = 0): string => {
   const baseWidth = 16
   let width = baseWidth
   if (closeable) {
@@ -85,7 +85,7 @@ const SSlider = styled(SliderFC)`
   }
 `
 
-function getPrefix({ prefix }: { prefix: string }) {
+function getPrefix({ prefix }: { prefix: string }): string {
   return prefix
 }
 

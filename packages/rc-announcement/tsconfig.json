@@ -4,8 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@alicloud/console-components-message": ["./src"],
-      "@alicloud/console-components-message/*": ["./src/*"]
+      "@alicloud/console-components-announcement": ["./src"],
+      "@alicloud/console-components-announcement/*": ["./src/*"]
     }
   }
 }
