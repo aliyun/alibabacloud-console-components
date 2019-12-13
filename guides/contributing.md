@@ -9,9 +9,9 @@ sort: 3
 ## 代码仓库组织结构
 
 本仓库使用 [yarn workspaces](https://yarnpkg.com/en/docs/workspaces) + lerna 进行管理，是 monorepo 的结构。
-将本仓库克隆到本地以后，执行`npm run bootstrap`即可完成项目的初始化。
+将本仓库克隆到本地以后，执行`npm run bootstrap`即可完成项目的初始化。后续重新初始化直接通过在根目录执行`yarn`，如果不行的话再尝试`npm run bootstrap`。
 
-> 初始化耗时较长，因为需要将所有 package 都构建一遍。
+> `npm run bootstrap`耗时较长，因为需要将所有 package 都构建一遍。
 
 - 基础组件：在`packages/component`目录下。使用 webpack 来构建开发环境，进入`packages/component`目录并执行`npm run start`来启动。
 - 业务组件：在`packages/rc-*`目录下。使用 storybook 作为开发环境，通过各个子 package 下的`npm run storybook`来启动。
@@ -48,6 +48,7 @@ yarn workspaces 的两个概念：
   - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称
   - 在执行`npm run prepublish`的过程中，会从源码中提取 ts 类型信息（以`index.tsx?`为入口），输出到`./api-json/api.json`中。然后，当构建文档站点的时候，如果在 markdown 中遇到了`MDXInstruction:renderInterface`指令，则从`./api-json/api.json`根据 interface 名称拿到 interface 的成员信息，这个成员信息就是 API 文档的表格的数据
     - 请留意 prepublish 过程中`api-extractor`给出的提示，改善你的类型导出。比如，api-extractor 会帮助你发现忘记 export 的类型，解决方式就是在`index.tsx?`导出对应的类型，详见[api-extractor 文档](https://api-extractor.com/pages/messages/ae-forgotten-export/)
+    - 如果文档站点发生报错：`Uncaught Error: data entry not exist. data: ....`，意味着你要渲染的 interface 数据不在`./api-json/api.json`里面。请检查你的 inteface 是否从`index.tsx?`导出
 - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染
   - README 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 类型信息作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
 
@@ -56,7 +57,7 @@ yarn workspaces 的两个概念：
 ```text
 .
 ├── api-temp/               api-extractor提取源码中的类型信息、注释信息，产生的原始数据。见package.json中的scripts
-├── api-json/               wind-api-documenter加工api-temp/中的原始数据，产生json数据，供文档使用。见package.json中的scripts
+├── api-json/               wind-api-documenter加工api-temp/中的原始数据，产生json数据，文档从这里拿到Typescript interface的信息来展示。见package.json中的scripts
 ├── lib/                    babel转译+cjs模块化的产物
 ├── es/                     babel转译+es模块化的产物
 ├── dist/                   webpack打包生成的umd bundle
@@ -88,6 +89,9 @@ yarn workspaces 的两个概念：
 - 文档能力已经抽离成一个通用的 gatsby 插件:[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/gatsby-theme-console-doc)
 - 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式
 - 通过`npm run start`来启动文档站开发环境
+- 文档站很重，开发模式的热更新(HMR)目前无法正常工作，因此不要用它来作为你编写 markdown 文档、demo 时的预览环境，仅用于【在完成组件改动以后】预览文档站的效果
+- 文档站渲染 demo 时，会从这个 demo 文件出发，沿着文件系统向上查找`.demoProjectTemplate`，将这个 demo 文件放到`.demoProjectTemplate/src/demo/`文件夹下面，然后把这个文件夹作为一个 codesandbox 项目。因此，如果你需要在 demo 中使用外部的 npm 包，需要将这个 npm 加入到`.demoProjectTemplate/package.json`里面，否则 codesandbox 会报错找不到依赖。
+  - 目前本项目有两个`.demoProjectTemplate`: [基础组件的](https://github.com/aliyun/console-components/blob/ab0658f0125807e7376c2421d6b51191399049f7/packages/component/.demoProjectTemplate/package.json#L2)、[业务组件的](https://github.com/aliyun/console-components/blob/351ed737c734cdf266def07e7665ba26b3de09fc/.demoProjectTemplate/package.json#L2)
 
 ## 代码规范
 
