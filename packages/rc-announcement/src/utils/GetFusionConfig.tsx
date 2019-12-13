@@ -1,10 +1,16 @@
 import React from 'react'
 import { ConfigProvider } from '@alicloud/console-components'
 
+/**
+ * @public
+ */
 export interface IFusionConfig {
   prefix?: string
 }
 
+/**
+ * @public
+ */
 export interface IFusionConfigProps {
   fusionConfig: IFusionConfig
 }
