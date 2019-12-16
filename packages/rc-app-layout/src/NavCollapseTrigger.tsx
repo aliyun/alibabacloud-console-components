@@ -12,8 +12,8 @@ const NavCollapseTrigger: React.FC<INavCollapseTrigger> = ({
   onClick,
 }) => (
   <S.NavCollapseTriggerWrapper>
-    <S.NavCollapseTriggerContainer>
-      <S.NavCollapseTrigger collapsed={collapsed} onClick={onClick}>
+    <S.NavCollapseTriggerContainer onClick={onClick}>
+      <S.NavCollapseTrigger collapsed={collapsed}>
         <S.NavCollapseTriggerIcon type="arrow-left" size="xs" />
       </S.NavCollapseTrigger>
     </S.NavCollapseTriggerContainer>
