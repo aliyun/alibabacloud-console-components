@@ -19,7 +19,12 @@ import Demo17 from './demo17'
 import Demo18 from './demo18'
 import Demo19 from './demo19'
 import Demo20 from './demo20'
-import NoData from './no-data'
+import Demo21 from './demo21'
+import Demo22 from './demo22'
+import Demo23 from './demo23'
+import Demo24 from './demo24'
+import Demo25 from './demo25'
+import Demo26 from './demo26'
 import './index.less'
 
 const TableDemo = () => (
@@ -65,7 +70,17 @@ const TableDemo = () => (
     <h2>混合模式</h2>
     <Demo20 />
     <h2>数据集为空</h2>
-    <NoData />
+    <Demo21 />
+    <h2>自定义Loading组件</h2>
+    <Demo22 />
+    <h2>自定义Row/Cell</h2>
+    <Demo23 />
+    <h2>可编辑表格</h2>
+    <Demo24 />
+    <h2>无障碍</h2>
+    <Demo25 />
+    <h2>可拖拽排序</h2>
+    <Demo26 />
   </div>
 )
 

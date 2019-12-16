@@ -1,47 +1,52 @@
 import React, { Component } from 'react'
 import { Table, Button, Dialog, Checkbox } from '@alicloud/console-components'
 
-const {Group} = Checkbox;
+const { Group } = Checkbox
 const dataSource = () => {
   const result = []
   for (let i = 0; i < 5; i++) {
     result.push({
       title: `Quotation for 1PCS Nano ${3 + i}.0 controller compatible`,
       id: 100306660940 + i,
-      time: 2000 + i
+      time: 2000 + i,
     })
   }
   return result
-},
-cols = [{
-  title: 'id',
-  dataIndex: 'id'
-}, {
-  title: 'Title',
-  dataIndex: 'title'
-}, {
-  title: 'Time',
-  dataIndex: 'time'
-}]
+}
+const cols = [
+  {
+    title: 'id',
+    dataIndex: 'id',
+  },
+  {
+    title: 'Title',
+    dataIndex: 'title',
+  },
+  {
+    title: 'Time',
+    dataIndex: 'time',
+  },
+]
 
 export default class Demo16 extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       dataSource: dataSource(),
-      cols: cols
+      cols,
     }
   }
+
   openDialog = () => {
     Dialog.alert({
       content: this.renderControlContent(),
       title: 'Select columns',
       onOk: () => {
         this.setState({
-        cols: this.changedCols || this.state.cols
+          cols: this.changedCols || this.state.cols,
         })
         return true
-      }
+      },
     })
   }
 
@@ -49,31 +54,49 @@ export default class Demo16 extends React.Component {
     const groupSource = cols.map(col => {
       return {
         label: col.title,
-        value: col.dataIndex
-      };
-    }), defaultValue = this.state.cols.map(col => col.dataIndex)
-      return <Group dataSource={groupSource} onChange={this.onChange} defaultValue={defaultValue}/>
+        value: col.dataIndex,
+      }
+    })
+    const defaultValue = this.state.cols.map(col => col.dataIndex)
+    return (
+      <Group
+        dataSource={groupSource}
+        onChange={this.onChange}
+        defaultValue={defaultValue}
+      />
+    )
   }
 
-  onChange = (value) => {
+  onChange = value => {
     this.changedCols = cols.filter(col => value.indexOf(col.dataIndex) > -1)
   }
 
   renderCols() {
-    const {cols} = this.state
+    const { cols } = this.state
     return cols.map(col => {
-      return <Table.Column title={col.title} dataIndex={col.dataIndex} key={col.dataIndex} />
+      return (
+        <Table.Column
+          title={col.title}
+          dataIndex={col.dataIndex}
+          key={col.dataIndex}
+        />
+      )
     })
   }
 
   render() {
     return (
       <div>
-        <p><Button onClick={this.openDialog}> Select columns </Button></p>
-        <Table dataSource={this.state.dataSource}>
-          {this.renderCols()}
-        </Table>
+        <p>
+          <Button onClick={this.openDialog}> Select columns </Button>
+        </p>
+        <Table dataSource={this.state.dataSource}>{this.renderCols()}</Table>
       </div>
     )
   }
+}
+
+export const demoMeta = {
+  zhName: `定制列`,
+  zhDesc: `定制显示的表格列数`,
 }
