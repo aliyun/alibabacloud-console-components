@@ -22,7 +22,6 @@ interface INavProps {
 }
 interface INavCollapseTriggerProps {
   collapsed: boolean
-  onClick: React.MouseEventHandler
 }
 
 export const NavChildenWrapper = styled.div`
