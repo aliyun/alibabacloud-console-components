@@ -62,8 +62,6 @@ zhName: 表格
 
 #include "demo/demo20.js"
 
-#include "demo/demo20.js"
-
 #include "demo/demo21.js"
 
 #include "demo/demo22.js"
