@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import { Table, Button } from '@alicloud/console-components'
 
 const dataSource = (i, j) => {
-    const result = []
-    for (let a = i; a < j; a++) {
-      result.push({
-        title: {
-          name: `Quotation for 1PCS Nano ${3 + i}.0 controller compatible`,
-        },
-        id: 100306660940 + a,
-        time: 2000 + a,
-      })
-    }
-    return result
-  },
-  render = (value, index, record) => {
-    return <a>Remove({record.id})</a>
+  const result = []
+  for (let a = i; a < j; a++) {
+    result.push({
+      title: {
+        name: `Quotation for 1PCS Nano ${3 + i}.0 controller compatible`,
+      },
+      id: 100306660940 + a,
+      time: 2000 + a,
+    })
   }
+  return result
+}
+const render = (value, index, record) => {
+  return <a>Remove({record.id})</a>
+}
 
 export default class Demo3 extends React.Component {
   constructor(props) {
@@ -24,10 +24,10 @@ export default class Demo3 extends React.Component {
     this.state = {
       rowSelection: {
         onChange: this.onChange.bind(this),
-        onSelect: function(selected, record, records) {
+        onSelect(selected, record, records) {
           console.log('onSelect', selected, record, records)
         },
-        onSelectAll: function(selected, records) {
+        onSelectAll(selected, records) {
           console.log('onSelectAll', selected, records)
         },
         selectedRowKeys: [],
@@ -60,8 +60,8 @@ export default class Demo3 extends React.Component {
 
   changeMode() {
     const { rowSelection } = this.state
-    const mode = rowSelection.mode
-    const selectedRowKeys = rowSelection.selectedRowKeys
+    const { mode } = rowSelection
+    const { selectedRowKeys } = rowSelection
     rowSelection.mode = mode === 'single' ? 'multiple' : 'single'
     rowSelection.selectedRowKeys =
       selectedRowKeys.length === 1 ? selectedRowKeys : []
@@ -104,4 +104,9 @@ export default class Demo3 extends React.Component {
       </div>
     )
   }
+}
+
+export const demoMeta = {
+  zhName: `可选择`,
+  zhDesc: `演示全选和单选受控的功能`,
 }

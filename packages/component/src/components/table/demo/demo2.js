@@ -30,7 +30,7 @@ const Demo2 = () => (
   <Table
     dataSource={dataSource()}
     rowSelection={{
-      onChange: onChange,
+      onChange,
       getProps: (record, index) => {
         console.log(record, index)
 
@@ -82,3 +82,8 @@ const Demo2 = () => (
 )
 
 export default Demo2
+
+export const demoMeta = {
+  zhName: `可选择`,
+  zhDesc: `表格可选择功能`,
+}

@@ -2,19 +2,19 @@ import React from 'react'
 import { Table, Button, Icon } from '@alicloud/console-components'
 
 const dataSource = () => {
-    const result = []
-    for (let i = 0; i < 5; i++) {
-      result.push({
-        title: `Quotation for 1PCS Nano ${3 + i}.0 controller compatible`,
-        id: 100306660940 + i,
-        time: 2000 + i,
-      })
-    }
-    return result
-  },
-  render = (value, index, record) => {
-    return <a href="javascript:;">Remove({record.id})</a>
+  const result = []
+  for (let i = 0; i < 5; i++) {
+    result.push({
+      title: `Quotation for 1PCS Nano ${3 + i}.0 controller compatible`,
+      id: 100306660940 + i,
+      time: 2000 + i,
+    })
   }
+  return result
+}
+const render = (value, index, record) => {
+  return <a href="javascript:;">Remove({record.id})</a>
+}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,6 +24,7 @@ export default class App extends React.Component {
       filterMode: 'multiple',
     }
   }
+
   onSort(dataIndex, order) {
     const dataSource = this.state.dataSource.sort(function(a, b) {
       const result = a[dataIndex] - b[dataIndex]
@@ -34,10 +35,11 @@ export default class App extends React.Component {
       sort: { id: order },
     })
   }
+
   onFilter(filterParams) {
     let ds = dataSource()
     Object.keys(filterParams).forEach(key => {
-      const selectedKeys = filterParams[key].selectedKeys
+      const { selectedKeys } = filterParams[key]
       if (selectedKeys.length) {
         ds = ds.filter(record => {
           return selectedKeys.some(value => {
@@ -48,11 +50,13 @@ export default class App extends React.Component {
     })
     this.setState({ dataSource: ds })
   }
+
   changeMode() {
     this.setState({
       filterMode: 'single',
     })
   }
+
   render() {
     const filters = [
       {
@@ -130,14 +134,14 @@ export default class App extends React.Component {
             desc: (
               <Icon
                 style={{ top: '6px', left: '4px' }}
-                type={'arrow-down'}
+                type="arrow-down"
                 size="small"
               />
             ),
             asc: (
               <Icon
                 style={{ top: '-6px', left: '4px' }}
-                type={'arrow-up'}
+                type="arrow-up"
                 size="small"
               />
             ),
@@ -155,4 +159,9 @@ export default class App extends React.Component {
       </div>
     )
   }
+}
+
+export const demoMeta = {
+  zhName: `排序与过滤`,
+  zhDesc: `示例演示了排序和过滤的特性`,
 }

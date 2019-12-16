@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from '@alicloud/console-components'
+import { Table, Loading, Icon } from '@alicloud/console-components'
 
 const dataSource = () => {
   const result = []
@@ -14,12 +14,21 @@ const dataSource = () => {
   }
   return result
 }
+
 const render = (value, index, record) => {
   return <a href="javascript:;">Remove({record.id})</a>
 }
 
-const Demo1 = () => (
-  <Table dataSource={dataSource()}>
+const indicator = (
+  <div>
+    <Icon type="loading" />
+  </div>
+)
+
+const CustomLoading = props => <Loading indicator={indicator} {...props} />
+
+const Demo = () => (
+  <Table dataSource={dataSource()} loading loadingComponent={CustomLoading}>
     <Table.Column title="Id" dataIndex="id" />
     <Table.Column title="Title" dataIndex="title.name" />
     <Table.Column title="Time" dataIndex="time" />
@@ -27,9 +36,9 @@ const Demo1 = () => (
   </Table>
 )
 
-export default Demo1
+export default Demo
 
 export const demoMeta = {
-  zhName: `简单的表格渲染`,
-  zhDesc: `基本的表格使用`,
+  zhName: `自定义 Loading 组件`,
+  zhDesc: '',
 }
