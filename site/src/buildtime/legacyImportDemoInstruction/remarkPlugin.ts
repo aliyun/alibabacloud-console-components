@@ -49,6 +49,7 @@ function paragraphVistor(
     file.contents + demoPath
   )}`
   const infoIdentiferName = `${identiferName}_demoInfo`
+  const allIdentiferName = `${identiferName}_all`
 
   // remove instruction node and insert mdx import
   parent.children.splice(
@@ -59,8 +60,12 @@ function paragraphVistor(
       value: `import ${identiferName}, {_demoInfo as ${infoIdentiferName}} from "${demoPath}?loadDemoInfo"`,
     },
     {
+      type: 'import' as any,
+      value: `import * as ${allIdentiferName} from "${demoPath}?loadDemoInfo"`,
+    },
+    {
       type: 'jsx' as any,
-      value: `<DemoRenderer__LegacyDemoInstructions DemoComponent={${identiferName}} demoInfo={${infoIdentiferName}} />`,
+      value: `<DemoRenderer__LegacyDemoInstructions DemoComponent={${identiferName}} demoInfo={${infoIdentiferName}} demoMeta={${allIdentiferName}['demoMeta']} />`,
     }
   )
 }
@@ -71,11 +76,11 @@ function resolveText(text: string) {
   if (!text.startsWith(prefix)) return null
   // something like: `"demo/demo1.js"`
   const pathWithQuote = text.substr(prefix.length)
-  const quoteStart = pathWithQuote[0];
-    const quoteEnd = pathWithQuote[pathWithQuote.length - 1]
+  const quoteStart = pathWithQuote[0]
+  const quoteEnd = pathWithQuote[pathWithQuote.length - 1]
   if (pathWithQuote.length <= 2) return null
   if (quoteStart !== quoteEnd) return null
   if (quoteStart !== "'" && quoteStart !== '"') return null
   const demoPath = pathWithQuote.substring(1, pathWithQuote.length - 1)
-  return `./${  path.normalize(demoPath)}`
+  return `./${path.normalize(demoPath)}`
 }

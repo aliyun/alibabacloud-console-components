@@ -3,6 +3,7 @@ import { Card, Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import _ from 'lodash'
 import createCodesandbox from './createCodesandbox'
+import HeaderWithAnchor from './HeaderWithAnchor'
 
 const { Row } = Grid
 
@@ -56,10 +57,10 @@ const iFramePreset = {
     'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
 }
 
-const generateIframeSrc = demoMeta => (sandboxId: string) =>
+const generateIframeSrc = projMeta => (sandboxId: string) =>
   `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
-    demoMeta.onlyEditor ? '&view=editor' : '&view=split'
-  }&module=${prependSlash(demoMeta.entryPath)}`
+    projMeta.onlyEditor ? '&view=editor' : '&view=split'
+  }&module=${prependSlash(projMeta.entryPath)}`
 
 const isSSR = typeof window === 'undefined'
 
@@ -71,6 +72,10 @@ interface IProps {
     | React.ComponentType
     | null
     | Promise<{ default: React.ComponentType }>
+  demoMeta?: {
+    zhName?: string
+    zhDesc?: string
+  }
 }
 
 /**
@@ -80,7 +85,11 @@ interface IProps {
  *
  * demoInfo始终为demo的文件信息，可以console.log查看。
  */
-const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
+const DemoRenderer: React.FC<IProps> = ({
+  demoInfo,
+  DemoComponent,
+  demoMeta,
+}) => {
   const [demoCompInfo] = useState(() => {
     if (isPromiseLike(DemoComponent)) {
       return {
@@ -105,9 +114,9 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
   const showIframe = useCallback(() => {
     setIsShowingIframe(true)
     if (!iframeSrc) {
-      const demoMeta = JSON.parse(demoInfo['demoMeta.json'])
+      const projMeta = JSON.parse(demoInfo['demoMeta.json'])
       createCodesandbox(demoInfo)
-        .then(generateIframeSrc(demoMeta))
+        .then(generateIframeSrc(projMeta))
         .then(setIframeSrc)
     }
   }, [demoInfo, iframeSrc])
@@ -194,8 +203,23 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo, DemoComponent }) => {
     )
   })()
 
+  const demoMetaView = (() => {
+    if (!demoMeta) return null
+    return (
+      <div>
+        {demoMeta.zhName && (
+          <HeaderWithAnchor level={3} id={demoMeta.zhName}>
+            {demoMeta.zhName}
+          </HeaderWithAnchor>
+        )}
+        {demoMeta.zhDesc && <p>{demoMeta.zhDesc}</p>}
+      </div>
+    )
+  })()
+
   return (
     <div ref={domRef}>
+      {demoMetaView}
       <CustomCard contentHeight="auto">
         {renderDemo}
         <SIframeCtn hiding={!isShowingIframe}>
