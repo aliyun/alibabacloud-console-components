@@ -214,3 +214,8 @@ class Demo extends React.Component {
 }
 
 export default Demo
+
+export const demoMeta = {
+  zhName: `拖拽排序`,
+  zhDesc: `可拖拽的表格。拖拽功能的实现依赖react-dnd@7.x 及react-dnd-html5-backend@7.x， 它要求react react-dom 版本高于16.3.x`,
+}

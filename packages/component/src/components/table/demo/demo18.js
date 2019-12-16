@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Table } from '@alicloud/console-components'
 import PropTypes from 'prop-types'
 
-/* eslint-disable react/no-multi-comp,react/prop-types */
 const { Header, Cell } = Table
-const dataSource = () => {
+const generateDataSource = () => {
   const result = []
   for (let i = 0; i < 5; i++) {
     result.push({
@@ -56,7 +55,7 @@ export default class Demo18 extends React.Component {
     }
   }
 
-  dataSource = dataSource()
+  dataSource = generateDataSource()
 
   onChange = checked => {
     let selectedKeys = []

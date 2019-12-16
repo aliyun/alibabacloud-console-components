@@ -1,5 +1,6 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import { Table, Button } from '@alicloud/console-components'
+import _ from 'lodash'
 
 const onRowClick = function(record, index, e) {
   console.log(record, index, e)
@@ -36,14 +37,15 @@ const Demo9 = () => {
 
   const onRemove = id => {
     let index = -1
-    dataSource.forEach((item, i) => {
+    const cloneDataSource = _.cloneDeep(dataSource)
+    cloneDataSource.forEach((item, i) => {
       if (item.id === id) {
         index = i
       }
     })
     if (index !== -1) {
-      dataSource.splice(index, 1)
-      setDataSource(dataSource)
+      cloneDataSource.splice(index, 1)
+      setDataSource(cloneDataSource)
     }
   }
 
@@ -59,7 +61,7 @@ const Demo9 = () => {
         <Table.Column title="Id" dataIndex="id" />
         <Table.Column title="Title" dataIndex="title.name" />
         <Table.Column title="Time" dataIndex="time" />
-        <Table.Column cell={renderOper} width="20%" />
+        <Table.Column cell={renderOper} width="20%" title="操作" />
       </Table>
     </div>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table } from '@alicloud/console-components'
+import styled from 'styled-components'
 
 const dataSource = () => {
   const result = []
@@ -17,7 +18,7 @@ const dataSource = () => {
 
 const propsConf = {
   className: 'next-myclass',
-  style: { background: 'black', color: 'white' },
+  style: { color: 'white' },
   onDoubleClick: () => {
     console.log('doubleClicked')
   },
@@ -37,7 +38,7 @@ const setCellProps = (rowIndex, colIndex, dataIndex, record) => {
 }
 
 const Demo = () => (
-  <Table
+  <STable
     dataSource={dataSource()}
     rowProps={setRowProps}
     cellProps={setCellProps}
@@ -45,7 +46,7 @@ const Demo = () => (
     <Table.Column title="Id" dataIndex="id" />
     <Table.Column title="Title" dataIndex="title.name" />
     <Table.Column title="Time" dataIndex="time" />
-  </Table>
+  </STable>
 )
 
 export default Demo
@@ -54,3 +55,9 @@ export const demoMeta = {
   zhName: `自定义Row/Cell`,
   zhDesc: `可以重写部分原生属性，比如className style onDoubleClick等。`,
 }
+
+const STable = styled(Table)`
+  .next-myclass {
+    background: #000;
+  }
+`
