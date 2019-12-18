@@ -1,7 +1,12 @@
+import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@alicloud/console-components'
 
-export const SActionBarWrapper = styled(Grid.Row)`
+const ActionBarPropsFilter = ({ afterIntersectChanged, ...restProps }) => {
+  return <Grid.Row {...restProps} />
+}
+
+export const SActionBarWrapper = styled(ActionBarPropsFilter)`
   height: 40px;
   justify-content: space-between;
 `
