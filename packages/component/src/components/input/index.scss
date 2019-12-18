@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+$input-cls-name: '#{$css-prefix}input';
+
+.#{$css-prefix}input-group {
+	.#{$input-cls-name} {
+		&:hover {
+			position: relative;
+			z-index: 1;
+		}
+	}
+}
