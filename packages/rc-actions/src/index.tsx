@@ -104,7 +104,12 @@ export * from './constants'
 export * from './linkButton'
 
 function defaultRenderDisplayedItems(items: ReactElement[]) {
-  return items.map(item => <span className={itemClassName}>{item}</span>)
+  return items.map((item, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <span key={index} className={itemClassName}>
+      {item}
+    </span>
+  ))
 }
 
 function defaultRenderShrinkItems(
