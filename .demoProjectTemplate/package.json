@@ -20,6 +20,7 @@
     "@alicloud/console-components-truncate": "latest",
     "@alicloud/console-components-select-list": "latest",
     "@alicloud/console-components-intl": "latest",
+    "@alicloud/console-components-intl-core": "latest",
     "@alicloud/console-components-intl-context": "latest",
     "@alicloud/console-components-announcement": "latest",
     "dva": "^2.4.1",
