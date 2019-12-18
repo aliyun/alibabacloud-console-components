@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2018.intl", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@alicloud/console-components-intl": ["./src"],
+      "@alicloud/console-components-intl/*": ["./src/*"]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+declare module '@ali/wind/lib/config-provider'
+declare module '@ali/wind/lib/pagination'
+declare module '@ali/wind/lib/input'
+declare module '@ali/wind/lib/button'
+declare module '@ali/wind-rc-slide-panel'
+declare module '@storybook/react'
