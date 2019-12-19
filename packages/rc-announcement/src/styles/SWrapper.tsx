@@ -1,7 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
 
-const SWrapper = styled(WraperFilterProps)`
+const SWrapper = styled.div<{ prefix: string; size: string }>`
   position: relative;
   /* 强制去掉最外层Message的样式 */
   > .${getPrefix}message.${getPrefix}medium {
@@ -28,12 +27,8 @@ const SWrapper = styled(WraperFilterProps)`
   }
 `
 
-function getPrefix({ prefix }: { prefix: string }) {
+function getPrefix({ prefix }: { prefix: string }): string {
   return prefix
-}
-
-function WraperFilterProps({ prefix, size, ...props }: any) {
-  return <div {...props} />
 }
 
 export default SWrapper

@@ -3,13 +3,12 @@ import { Message } from '@alicloud/console-components'
 import classnames from 'classnames'
 import Title from './Title'
 import iconMap from './config/iconMap'
-import extractSliderOptions from './utils/ExtractSlider'
-import { SDots, SSlider, SWrapper, SMessageItem } from './styles'
 import {
+  extractSliderOptions,
   GetFusionConfig,
   IFusionConfigProps,
-  IFusionConfig,
-} from './utils/GetFusionConfig'
+} from './utils'
+import { SDots, SSlider, SWrapper, SMessageItem } from './styles'
 
 /**
  * 轮播属性
@@ -141,7 +140,7 @@ const RcMessage: React.FC<IRcAnnouncementProps & IFusionConfigProps> = ({
         style={style}
       >
         <SSlider
-          closeable={closeable ? 1 : 0}
+          closeable={closeable}
           total={newDataSource.length || 0}
           type={type === 'info' ? 'help' : type}
           prefix={prefix}
@@ -159,6 +158,8 @@ const RcMessage: React.FC<IRcAnnouncementProps & IFusionConfigProps> = ({
   )
 }
 
-export default GetFusionConfig(RcMessage)
-
-export { IFusionConfig, IFusionConfigProps }
+/**
+ * @public
+ */
+const defaultExp: React.FC<IRcAnnouncementProps> = GetFusionConfig(RcMessage)
+export default defaultExp

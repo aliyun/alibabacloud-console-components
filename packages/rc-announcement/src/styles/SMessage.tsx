@@ -52,7 +52,7 @@ const SMessageItem = styled(Message)`
   }
 `
 
-function getPrefix({ prefix }: { prefix: string }) {
+function getPrefix({ prefix }: { prefix: string }): string {
   return prefix
 }
 
