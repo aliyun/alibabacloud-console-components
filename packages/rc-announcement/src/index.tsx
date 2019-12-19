@@ -1,5 +1,5 @@
-import RcMessage from './RcMessage'
+import RcAnnouncement from './RcAnnouncement'
 
-export default RcMessage
+export default RcAnnouncement
 
-export * from './RcMessage'
+export * from './RcAnnouncement'

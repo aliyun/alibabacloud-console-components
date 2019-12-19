@@ -1,5 +1,7 @@
 import React from 'react'
+import { pick } from 'lodash'
 import { ConfigProvider } from '@alicloud/console-components'
+import { ISliderOptions } from './RcAnnouncement'
 
 /**
  * @public
@@ -27,4 +29,18 @@ export function GetFusionConfig<
     </ConfifgConsumer>
   )
   return HOC
+}
+
+export const extractSliderOptions = (
+  sliderOptions: ISliderOptions = {}
+): ISliderOptions => {
+  return (
+    pick(sliderOptions, [
+      'autoplay',
+      'autoplaySpeed',
+      'speed',
+      'onChange',
+      'animation',
+    ]) || {}
+  )
 }
