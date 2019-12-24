@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { isValidElement } from 'react'
 import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
 import { withProps } from 'recompose'
@@ -9,6 +9,7 @@ import Search from '../search'
 import Selection from '../selection'
 import Pagination from '../pagination'
 import renderComponent from '../renderComponent'
+import EmbededTable from './EmbededTable'
 
 const FixedTopActionBar = withProps({
   fixedAlign: 'top',
@@ -70,6 +71,23 @@ const Layout = props => {
     afterFixedBarIntersectChanged,
     ...restProps
   } = props
+
+  const { expandedRowRender } = restProps
+  if (expandedRowRender && typeof expandedRowRender === 'function') {
+    const newExpandedRowRender = (record, index) => {
+      const expandedRowRenderContent = expandedRowRender(record, index)
+      return (
+        <>
+          {isValidElement(expandedRowRenderContent) ? (
+            <EmbededTable>{expandedRowRenderContent}</EmbededTable>
+          ) : (
+            <>{expandedRowRenderContent}</>
+          )}
+        </>
+      )
+    }
+    restProps.expandedRowRender = newExpandedRowRender
+  }
 
   const {
     top: ExactTopActionBar = ActionBar,
