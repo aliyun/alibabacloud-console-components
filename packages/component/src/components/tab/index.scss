@@ -46,10 +46,24 @@ $tabs-cls-name: '#{$css-prefix}tabs';
 .#{$tabs-cls-name}-capsule {
   > .#{$tabs-cls-name}-bar {
     .#{$tabs-cls-name}-tab {
-      transition: none;
-
+			transition: none;
+			box-sizing: content-box;
+      &:hover {
+        z-index: 0;
+        border-right: none;
+        margin-right: 0;
+      }
       &.active {
-        border-right: 1px solid;
+        border: 1px solid $tab-capsule-tab-border-line-color-active;
+        margin-right: -1px;
+        z-index: 1;
+        &:last-child {
+          margin-right: 0;
+          border-right: 1px solid $tab-capsule-tab-border-line-color-active;
+        }
+      }
+      &:last-child {
+        border-right: 1px solid $tab-capsule-tab-border-line-color;
       }
     }
   }
