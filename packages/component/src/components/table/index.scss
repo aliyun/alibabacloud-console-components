@@ -4,7 +4,11 @@ $table-cls-name: '#{$css-prefix}table';
 $table-cell-wrapper-cls-name: '#{$table-cls-name}-cell-wrapper';
 $table-empty: '#{$css-prefix}table-empty';
 
+
 .#{$table-cls-name} {
+	.#{$table-cls-name}-expanded-row {
+		background-color: #ebebeb;
+	}
   th,
   td {
     .#{$table-cell-wrapper-cls-name} {
@@ -17,9 +21,6 @@ $table-empty: '#{$css-prefix}table-empty';
       }
     }
 
-    &.#{$table-cls-name}-expanded-row {
-      background-color: #ebebeb;
-    }
   }
   // 表头icon的样式
   th,

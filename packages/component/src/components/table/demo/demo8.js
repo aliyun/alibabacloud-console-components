@@ -23,7 +23,7 @@ class ExpandedApp extends React.Component {
       lineHeight: '28px',
     }
     return (
-      <div style={{ marginTop: 10 }}>
+      <div style={{ margin: '14px 26px' }}>
         <Table
           dataSource={this.state.dataSource}
           hasHeader={false}
@@ -164,7 +164,7 @@ export default class App extends React.Component {
           hasBorder={this.state.hasBorder}
           onSort={this.onSort.bind(this)}
           expandedRowRender={expandedRowRender}
-          expandedRowIndent={[1, 1]}
+          expandedRowIndent={[0, 0]}
           openRowKeys={this.state.openRowKeys}
           getExpandedColProps={this.state.getExpandedColProps}
           hasExpandedRowCtrl={this.state.hasExpandedRowCtrl}
