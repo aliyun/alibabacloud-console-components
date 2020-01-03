@@ -9,7 +9,7 @@
     "compile": "rm -rf dist/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files npx webpack && rm dist/wind-noreset.js dist/wind-noreset.min.js",
     "babel": "rm -rf lib/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files npx babel src/ --out-dir lib/_ --extensions \".js,.jsx,.ts,.tsx\"",
     "make": "rm -rf types/ && node scripts/fetch-files-from-tnpm.js && node scripts/make.js",
-    "build": "yarn run babel && yarn run make && yarn run compile",
+    "build": "yarn run babel && yarn run make && yarn run compile && node scripts/generateCssWithoutIconFont.js",
     "prepublish": "yarn run build",
     "publishInternal": "node ./scripts/publish-to-tnpm/index.js"
   },

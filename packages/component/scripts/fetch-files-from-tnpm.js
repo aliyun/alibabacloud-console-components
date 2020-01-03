@@ -15,16 +15,31 @@ if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir)
 }
 
-urls.map(async url => {
-  const fileName = path.basename(url)
-  const response = await axios.get(url)
-  const content = response.data
+;(async function main() {
+  await Promise.all(
+    urls.map(async url => {
+      const fileName = path.basename(url)
+      const response = await axios.get(url)
+      let content = response.data
+      if (fileName === 'variables.scss') content = await processScss(content)
 
-  const outPath = path.join(outDir, fileName)
-  if (fs.existsSync(outPath)) {
-    fs.unlinkSync(outPath)
+      const outPath = path.join(outDir, fileName)
+      if (fs.existsSync(outPath)) {
+        fs.unlinkSync(outPath)
+      }
+      fs.writeFileSync(outPath, content)
+    })
+  )
+})()
+
+async function processScss(content) {
+  const reg = /^\$icon-font-path: "(.*?)";$/gm
+
+  const match = content.match(reg)
+
+  if (match.length !== 1) {
+    throw new Error(`在scss文件中没有发现$icon-font-path变量`)
   }
-  // console.log(response.data)
-  fs.writeFileSync(outPath, content)
-  // return response
-})
+
+  return content.replace(reg, '$icon-font-path: "$1" !default;')
+}

@@ -19,6 +19,9 @@ $icon-font-path: '//at.alicdn.com/t/font_1435786_yq5p1277dwo';
 @font-face {
   font-family: NextIcon;
   src: url('#{$icon-font-path}.eot');
+  src: url('#{$icon-font-path}.eot?#iefix') format('embedded-opentype'), url('#{$icon-font-path}.woff2')
+      format('woff2'), url('#{$icon-font-path}.woff') format('woff'), url('#{$icon-font-path}.ttf')
+      format('truetype'), url('#{$icon-font-path}.svg#NextIcon') format('svg');
 }
 
 .next-icon {
@@ -39,21 +42,20 @@ $icon-font-path: '//at.alicdn.com/t/font_1435786_yq5p1277dwo';
 如果你无法使用 scss，解决办法是：
 
 1. 开发期间，开发者根据上面的路径拼接逻辑，得到下载路径`at.alicdn.com/t/font_1435786_yq5p1277dwo.eot`，将字体文件文件下载下来，然后自己将这个文件部署到内网能访问的路径。假设你部署的路径为`my-company.com/font_file.eot`。
-2. 编写以下 css，使 icon 组件加载你的字体。
+2. 在项目入口引入不带 NextIcon 字体声明的样式：`import '@alicloud/console-components/dist/wind-without-icon-font.css'`（而不是普通的`@alicloud/console-components/dist/wind.css`）。
+   > 这个版本的 css 除了不带`@font-face { font-family: NextIcon; ... }`声明以外，其它地方与普通的`wind.css`完全相同。
+3. 编写以下 css，定义 NextIcon 字体，使 icon 组件加载你部署的字体。
 
 ```css
 @font-face {
-  font-family: MyIconFont;
+  font-family: NextIcon;
   src: url('//my-company.com/font_file.eot');
-}
-.next-icon {
-  font-family: MyIconFont;
 }
 ```
 
 ### 如果你可以使用 scss
 
-如果你可以使用 scss，解决办法是：
+如果你的构建工具支持 scss，解决办法是：
 
 1. 开发期间，开发者根据上面的路径拼接逻辑，得到下载路径`at.alicdn.com/t/font_1435786_yq5p1277dwo.eot`，将字体文件文件下载下来，然后自己将这个文件部署到内网能访问的路径。假设你部署的路径为`my-company.com/font_file.eot`。
 2. 编写以下 scss，使 icon 组件加载你的字体。
@@ -62,7 +64,6 @@ $icon-font-path: '//at.alicdn.com/t/font_1435786_yq5p1277dwo';
 // 注意不要加字体文件后缀名
 $icon-font-path: '//my-company.com/font_file';
 // 引入scss格式的样式包
+// 引入scss以后无需再引入`@alicloud/console-components/dist/wind.css`！
 @import '~@alicloud/console-components/index.scss';
 ```
-
-无需重复引入 【@alicloud/console-components/dist/**wind.css**】 ！
