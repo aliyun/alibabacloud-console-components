@@ -9,6 +9,7 @@ $dialog-cls-name: '#{$css-prefix}dialog';
   &-header {
     // 调整标题区域的行高
 		line-height: $size-base * 6;
+		color: #111;
 	}
 	&-body {
 		padding-top: $size-base * 0;

@@ -4,7 +4,7 @@ export const SMask = styled.div`
   position: fixed;
   z-index: 100;
   background-color: #373737;
-  background-color: rgba(55, 55, 55, 0.6);
+  background-color: rgba(0, 0, 0, 0.45);
   opacity: 0;
   transition: all 0.25s ease-out;
 

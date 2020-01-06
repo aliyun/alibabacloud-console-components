@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Dialog, Message } from '@alicloud/console-components'
 import { MessageProps } from '@alifd/next/types/message'
 import { DialogProps } from '@alifd/next/types/dialog'
+import { GetFusionConfig, IFusionConfigProps } from './utils'
 
 export interface IConfirmDialogProps {
   /**
@@ -20,15 +21,18 @@ export interface IConfirmDialogProps {
   children: React.ReactNode
 }
 
-const ConfirmDialog: React.FC<IConfirmDialogProps> = ({
+const ConfirmDialog: React.FC<IConfirmDialogProps & IFusionConfigProps> = ({
   children,
   messageProps,
   dialogProps,
+  fusionConfig,
 }) => {
+  const { prefix = 'next-' } = fusionConfig
   return (
     <SDialog
       {...dialogProps}
       className={classnames('wind-rc-confirm-dialog', dialogProps.className)}
+      prefix={prefix}
     >
       <Message
         size="large"
@@ -46,9 +50,12 @@ const ConfirmDialog: React.FC<IConfirmDialogProps> = ({
   )
 }
 
-export default ConfirmDialog
+export default GetFusionConfig(ConfirmDialog)
 
 const SDialog = styled(Dialog)`
+  &&& ${({ prefix }) => `.${prefix}message-title`} {
+    color: #111;
+  }
   .wind-rc-confirm-message {
     min-width: 300px;
     padding: 0;

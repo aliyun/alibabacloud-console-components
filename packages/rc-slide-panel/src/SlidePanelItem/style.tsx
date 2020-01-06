@@ -43,6 +43,7 @@ export const SHeaderWrapper = styled(Row)`
     margin: 0;
     font-size: 18px;
     vertical-align: middle;
+    color: #111;
   }
   .panel-header-extra {
   }
