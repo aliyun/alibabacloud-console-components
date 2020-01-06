@@ -45,13 +45,14 @@ const secondaryOperation = () => () => (
 )
 
 const App = props => (
-  <div>
-    <Grid.Row>
-      <Grid.Col span="24">
+  <Grid.Row>
+    <Grid.Col span="24">
+      <div style={{ margin: '0 24px' }}>
         <Table
           exact
           affixActionBar
           fixedBarZIndex={80}
+          fixedBarExpandWidth={[24]}
           afterFixedBarIntersectChanged={(alignType, isIntersecting) => {
             console.log(`${alignType}: ${JSON.stringify(isIntersecting)}`)
           }}
@@ -84,9 +85,9 @@ const App = props => (
             </>
           )}
         />
-      </Grid.Col>
-    </Grid.Row>
-  </div>
+      </div>
+    </Grid.Col>
+  </Grid.Row>
 )
 
 export default App
