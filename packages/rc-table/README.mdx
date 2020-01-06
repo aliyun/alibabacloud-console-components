@@ -23,7 +23,7 @@ type: biz-component
 |search|object&#124;React.Element||搜索器|
 |affixActionBar|boolean&#124;string&#124;array|`false`|动作区滚动锁定, 在 rc-table 中最多会有上下两个动作区, 可以指定 `affixActionBar` 的值为 `true` 来同时开启两个动作区的滚动锁定特性, 也可以通过字符串声明 `affixActionBar: ('bottom'|'top')` 指定某一个动作区开启该特性|
 |fixedBarZIndex|number|`1000`|当 `affixActionBar` 开启时，锁定的动作区的 `z-index`
-
+|fixedBarExpandWidth|array|`[0, 0]`|当 `affixActionBar` 开启时，锁定动作区向`左``右`两边延伸的宽度, 左右相同可简写为一个如：`[0]`,按照控制台规范一般为[24, 24]
 ## 卫星组件
 
 可以将 ``@alicloud/console-components-table`` 看做一个包含了不同功能区的 ``Table``，不同的功能区中使用的组件可以看做是 ``Table`` 的卫星组件

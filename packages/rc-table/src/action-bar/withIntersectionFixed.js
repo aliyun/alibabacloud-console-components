@@ -66,20 +66,22 @@ export default threshold => BaseComponent => {
                 fixedBarZIndex = 1000,
                 fixedClassName = '',
                 fixedStyle = {},
-              }) => (
-                <SFixedBarWrapper
-                  className={classNames(
-                    fixedClassName,
-                    `fixed-to-${fixedAlign}`
-                  )}
-                  style={{
-                    zIndex: fixedBarZIndex,
-                    ...fixedStyle,
-                  }}
-                >
-                  <BaseComponent {...restProps} />
-                </SFixedBarWrapper>
-              )}
+              }) => {
+                return (
+                  <SFixedBarWrapper
+                    className={classNames(
+                      fixedClassName,
+                      `fixed-to-${fixedAlign}`
+                    )}
+                    style={{
+                      zIndex: fixedBarZIndex,
+                      ...fixedStyle,
+                    }}
+                  >
+                    <BaseComponent {...restProps} />
+                  </SFixedBarWrapper>
+                )
+              }}
             </Context.Consumer>
           )}
         </>

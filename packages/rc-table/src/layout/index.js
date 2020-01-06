@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
 import { withProps } from 'recompose'
 import styled from 'styled-components'
+import isArray from 'lodash/isArray'
 import ActionBar, { IntersectionFixedActionBar } from '../action-bar'
 import Context from './FixedBarContext'
 import Search from '../search'
@@ -17,6 +18,8 @@ const FixedTopActionBar = withProps({
 const FixedBottomActionBar = withProps({
   fixedAlign: 'bottom',
 })(IntersectionFixedActionBar)
+
+const defaultExpandedWidth = 0
 
 const getActionBarComponent = status => {
   if (status === true) {
@@ -60,6 +63,24 @@ const getActionBarComponent = status => {
 const ScActionBarRight = styled(ActionBar.Right)`
   flex: 0 0 auto;
 `
+const getExpandedStyle = fixedBarExpandWidth => {
+  let actualExpandedWidth = []
+  if (isArray(fixedBarExpandWidth)) {
+    if (fixedBarExpandWidth.length === 0) {
+      actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth]
+    } else if (fixedBarExpandWidth.length === 1) {
+      actualExpandedWidth = [fixedBarExpandWidth[0], fixedBarExpandWidth[0]]
+    } else {
+      actualExpandedWidth = [fixedBarExpandWidth[0], fixedBarExpandWidth[1]]
+    }
+  } else {
+    actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth]
+  }
+  return {
+    marginLeft: -actualExpandedWidth[0],
+    width: `calc(100% + ${actualExpandedWidth[0] + actualExpandedWidth[1]}px)`,
+  }
+}
 
 const Layout = props => {
   const {
@@ -72,6 +93,7 @@ const Layout = props => {
     fixedClassName,
     fixedStyle,
     afterFixedBarIntersectChanged,
+    fixedBarExpandWidth = [defaultExpandedWidth, defaultExpandedWidth],
     ...restProps
   } = props
 
@@ -79,13 +101,16 @@ const Layout = props => {
     top: ExactTopActionBar = ActionBar,
     bottom: ExactBottomActionBar = ActionBar,
   } = getActionBarComponent(affixActionBar)
-
+  const extraStyle = getExpandedStyle(fixedBarExpandWidth)
   return (
     <Context.Provider
       value={{
         fixedBarZIndex,
         fixedClassName,
-        fixedStyle,
+        fixedStyle: {
+          ...fixedStyle,
+          ...extraStyle,
+        },
       }}
     >
       <STableWrapper>
