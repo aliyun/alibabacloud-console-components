@@ -17,6 +17,8 @@ const TruncateByLength: React.FC<{
   align: AlignType
   className?: string
   tooltipMaxWidth?: number
+  popupStyle?: React.CSSProperties
+  popupClassName?: string
 }> = ({
   children,
   threshold,
@@ -25,6 +27,8 @@ const TruncateByLength: React.FC<{
   align,
   className,
   tooltipMaxWidth,
+  popupStyle = {},
+  popupClassName,
 }) => {
   let isOverflow = false
   const truncatedText = truncate(children, {
@@ -46,6 +50,8 @@ const TruncateByLength: React.FC<{
     align,
     originalContent: children,
     truncatedContent: truncateContainer,
+    popupStyle,
+    popupClassName,
   })
 }
 

@@ -8,6 +8,7 @@ import NonString from './non-string'
 import CustomOmission from './custom-omission'
 import TooltipMaxWidth from './tooltip-max-width'
 import DynamicChildren from './dynamic-children'
+import PopupStyle from './popupStyle'
 
 storiesOf('AppLayout', module)
   .add('BasicDemo', () => <BasicDemo />)
@@ -17,3 +18,4 @@ storiesOf('AppLayout', module)
   .add('CustomOmission', () => <CustomOmission />)
   .add('TooltipMaxWidth', () => <TooltipMaxWidth />)
   .add('DynamicChildren', () => <DynamicChildren />)
+  .add('PopupStyle', () => <PopupStyle />)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Balloon } from '@alicloud/console-components'
+import classnames from 'classnames'
 import {
   AlignType,
   tooltipPopupClassName,
@@ -12,22 +13,28 @@ export function useTooltip({
   align,
   originalContent,
   truncatedContent,
+  popupStyle = {},
+  popupClassName = '',
 }: {
   showTooltip: boolean
   tooltipMaxWidth?: number
   align: AlignType
   originalContent: React.ReactNode
   truncatedContent: React.ReactNode
+  popupStyle?: React.CSSProperties
+  popupClassName?: string
 }) {
   const [visible, setVisible] = useState(false)
 
-  const popupStyle: React.CSSProperties = {}
+  const actualPopupStyle: React.CSSProperties = {
+    ...popupStyle,
+  }
   if (
     showTooltip &&
     typeof tooltipMaxWidth === 'number' &&
     tooltipMaxWidth > 0
   ) {
-    popupStyle.maxWidth = tooltipMaxWidth
+    actualPopupStyle.maxWidth = tooltipMaxWidth
   }
 
   return (
@@ -40,10 +47,11 @@ export function useTooltip({
         else setVisible(false)
       }}
       align={align}
-      popupStyle={popupStyle as {}}
-      popupClassName={tooltipPopupClassName}
+      popupStyle={actualPopupStyle as {}}
+      popupClassName={classnames(tooltipPopupClassName, popupClassName)}
       alignEdge
       needAdjust
+      closable={false} // hidden close icon
     >
       <span
         style={{ display: 'inline-block' }}
