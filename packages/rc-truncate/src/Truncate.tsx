@@ -79,6 +79,14 @@ export interface ITruncateProps {
    * 慎用，避免`截断状态->你扩大父容器->非截断状态->你缩小父容器->截断状态->...`这样的无限循环。
    */
   isOverflowChange?: (newIsOverflow: boolean) => void
+  /**
+   * 当tooltip展示时，设置弹层组件style，透传给Popup
+   */
+  popupStyle?: React.CSSProperties
+  /**
+   * 当tooltip展示时，设置弹层组件的className，透传给Popup
+   */
+  popupClassName?: string
 }
 
 /**
@@ -98,6 +106,8 @@ const Truncate: React.FC<ITruncateProps> = ({
   style,
   updaterRef,
   isOverflowChange,
+  popupStyle,
+  popupClassName,
 }) => {
   const actuallShowTooltip = (() => {
     // 旧版组件支持tooltip prop，且'enable'表示true
@@ -147,6 +157,8 @@ const Truncate: React.FC<ITruncateProps> = ({
           showTooltip={actuallShowTooltip}
           align={align}
           tooltipMaxWidth={tooltipMaxWidth}
+          popupStyle={popupStyle}
+          popupClassName={popupClassName}
         >
           {children}
         </TruncateByLength>
@@ -174,6 +186,8 @@ const Truncate: React.FC<ITruncateProps> = ({
                 tooltipMaxWidth={tooltipMaxWidth}
                 updaterRef={updaterRef}
                 isOverflowChange={isOverflowChange}
+                popupStyle={popupStyle}
+                popupClassName={popupClassName}
               >
                 {children}
               </TruncateByWidth>
@@ -193,6 +207,8 @@ const Truncate: React.FC<ITruncateProps> = ({
         tooltipMaxWidth={tooltipMaxWidth}
         updaterRef={updaterRef}
         isOverflowChange={isOverflowChange}
+        popupStyle={popupStyle}
+        popupClassName={popupClassName}
       >
         {children}
       </TruncateByWidth>

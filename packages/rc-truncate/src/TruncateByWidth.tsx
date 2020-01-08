@@ -20,6 +20,8 @@ const TruncateByWidth: React.FC<{
   tooltipMaxWidth?: number
   updaterRef?: React.MutableRefObject<(() => void) | null>
   isOverflowChange?: (newIsOverflow: boolean) => void
+  popupStyle?: React.CSSProperties
+  popupClassName?: string
 }> = ({
   children,
   threshold,
@@ -30,6 +32,8 @@ const TruncateByWidth: React.FC<{
   tooltipMaxWidth,
   updaterRef,
   isOverflowChange,
+  popupStyle = {},
+  popupClassName,
 }) => {
   const ref = useRef<HTMLSpanElement | null>(null)
   const [isOverflow, setIsOverflow] = useState(false)
@@ -82,6 +86,8 @@ const TruncateByWidth: React.FC<{
     align,
     originalContent: children,
     truncatedContent: truncateContainer,
+    popupStyle,
+    popupClassName,
   })
 }
 
