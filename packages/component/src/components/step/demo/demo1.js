@@ -35,6 +35,10 @@ export default class StepDemo1 extends Component {
         <Step current={1} shape="circle" labelPlacement="hoz">
           {steps}
         </Step>
+        <h3>节点说明内容水平(labelPlacement)(Small Size)</h3>
+        <Step current={1} shape="circle" labelPlacement="hoz" size="small">
+          {steps}
+        </Step>
       </div>
     )
   }
