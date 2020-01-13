@@ -9,9 +9,6 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "@alicloud/console-components-fake-browser": "latest",
-    "@alicloud/console-components": "latest",
-    "dva": "^2.4.1",
     "styled-components": "^4.2.0",
     "moment": "^2.21.0",
     "react": "16.8.4",

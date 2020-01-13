@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../lib/runtime",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@runtime/*": ["./*"]
+    },
+    "lib": ["DOM"]
+  }
+}

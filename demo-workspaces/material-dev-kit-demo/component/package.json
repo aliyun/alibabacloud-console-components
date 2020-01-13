@@ -1,0 +1,27 @@
+{
+  "name": "@alicloud/cc-demo-component",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "types": "tsc -p ./src/tsconfig.json",
+    "clean": "rm -rf dist lib es cc-dev-out",
+    "prepare": "npm run clean && npm run build && npm run types && npm run doc:build",
+    "build": "cc-build-material",
+    "doc:local-dev": "cc-doc-local-dev",
+    "doc:build": "cc-extract-api && cc-build-doc",
+    "publish-preview": "cc-publish-preview"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "@types/styled-components": "^4.4.1",
+    "cross-env": "^6.0.3",
+    "typescript": "^3.7.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {}
+}
