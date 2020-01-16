@@ -79,7 +79,7 @@ export interface IDynamicDocMeta {
    * https://cdn.jsdelivr.net/npm/${packageName}@${packageVersion}/dist/_doc.system.js
    */
   packageName: string
-  packageVersion: string
+  packageVersion?: string
   /**
    * 文章在菜单中的显示文字
    */

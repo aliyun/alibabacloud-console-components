@@ -25,6 +25,6 @@ module.exports.createConfig = ({ prodPkgName, entryMDX, rootDir, mode } = {}) =>
     .path(path.resolve(rootDir, 'dist'))
     .filename('_doc.system.js')
     .end()
-
-// .plugin("bundle-analyzer")
-// .use(BundleAnalyzerPlugin);
+// .plugin('bundle-analyzer')
+// .use(BundleAnalyzerPlugin)
+// .end()

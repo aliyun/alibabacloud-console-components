@@ -395,7 +395,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.1.0", "@babel/core@^7.2.2", "@babel/core@^7.3.3", "@babel/core@^7.4.5", "@babel/core@^7.7.5", "@babel/core@^7.7.7":
+"@babel/core@^7.1.0", "@babel/core@^7.2.2", "@babel/core@^7.3.3", "@babel/core@^7.4.5", "@babel/core@^7.7.5":
   version "7.8.3"
   resolved "https://registry.npm.taobao.org/@babel/core/download/@babel/core-7.8.3.tgz#30b0ebb4dd1585de6923a0b4d179e0b9f5d82941"
   integrity sha1-MLDrtN0Vhd5pI6C00XngufXYKUE=
@@ -3513,7 +3513,7 @@
   resolved "https://registry.npm.taobao.org/@types/history/download/@types/history-4.7.4.tgz#06cbceb0ace6a342a9aafcb655a688cf38f6150d"
   integrity sha1-BsvOsKzmo0Kpqvy2VaaIzzj2FQ0=
 
-"@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.3.1":
+"@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.npm.taobao.org/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
   integrity sha1-ESSq/lEYy1kZd66xzqrtEHDrA58=
@@ -3662,14 +3662,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@*":
-  version "0.60.30"
-  resolved "https://registry.npm.taobao.org/@types/react-native/download/@types/react-native-0.60.30.tgz?cache=0&sync_timestamp=1578497689096&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Freact-native%2Fdownload%2F%40types%2Freact-native-0.60.30.tgz#33ab525194142a5e3b428e60f0e77e0d1dbd253d"
-  integrity sha1-M6tSUZQUKl47Qo5g8Od+DR29JT0=
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/react" "*"
-
 "@types/react-router-dom@^4.2.7":
   version "4.3.5"
   resolved "https://registry.npm.taobao.org/@types/react-router-dom/download/@types/react-router-dom-4.3.5.tgz#72f229967690c890d00f96e6b85e9ee5780db31f"
@@ -3718,7 +3710,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.8.23", "@types/react@^16.9.17":
+"@types/react@*", "@types/react@^16.8.23":
   version "16.9.17"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.17.tgz?cache=0&sync_timestamp=1576825860124&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-16.9.17.tgz#58f0cc0e9ec2425d1441dd7b623421a867aa253e"
   integrity sha1-WPDMDp7CQl0UQd17YjQhqGeqJT4=
@@ -3750,16 +3742,6 @@
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
-    csstype "^2.2.0"
-
-"@types/styled-components@^4.4.1":
-  version "4.4.2"
-  resolved "https://registry.npm.taobao.org/@types/styled-components/download/@types/styled-components-4.4.2.tgz#709fa7afd7dc0963b8316a0159240f0fe19a026d"
-  integrity sha1-cJ+nr9fcCWO4MWoBWSQPD+GaAm0=
-  dependencies:
-    "@types/hoist-non-react-statics" "*"
-    "@types/react" "*"
-    "@types/react-native" "*"
     csstype "^2.2.0"
 
 "@types/systemjs@^6.1.0":
@@ -17891,7 +17873,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^16.11.0, react-dom@^16.12.0, react-dom@^16.2.0, react-dom@^16.3.0, react-dom@^16.8.3:
+react-dom@^16.11.0, react-dom@^16.2.0, react-dom@^16.3.0, react-dom@^16.8.3:
   version "16.12.0"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.12.0.tgz?cache=0&sync_timestamp=1576681172997&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-dom%2Fdownload%2Freact-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha1-DaS3FLjRPCA4yTlrVKkrrqYz/hE=
@@ -20810,7 +20792,7 @@ symbol.prototype.description@^1.0.0:
     es-abstract "^1.17.0-next.1"
     has-symbols "^1.0.1"
 
-systemjs@^6.1.8:
+systemjs@^6.1.9:
   version "6.1.9"
   resolved "https://registry.npm.taobao.org/systemjs/download/systemjs-6.1.9.tgz#17e5601867a9d1ee7a5dab71b050f38877d6992c"
   integrity sha1-F+VgGGep0e56XatxsFDziHfWmSw=
@@ -22330,7 +22312,7 @@ webpack-virtual-modules@^0.2.0, webpack-virtual-modules@^0.2.1:
   dependencies:
     debug "^3.0.0"
 
-webpack@^4.29.6, webpack@^4.33.0, webpack@^4.35.0, webpack@^4.38.0, webpack@^4.41.4, webpack@^4.41.5, webpack@~4.41.2:
+webpack@^4.29.6, webpack@^4.33.0, webpack@^4.35.0, webpack@^4.38.0, webpack@^4.41.4, webpack@~4.41.2:
   version "4.41.5"
   resolved "https://registry.npm.taobao.org/webpack/download/webpack-4.41.5.tgz?cache=0&sync_timestamp=1579133461453&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack%2Fdownload%2Fwebpack-4.41.5.tgz#3210f1886bce5310e62bb97204d18c263341b77c"
   integrity sha1-MhDxiGvOUxDmK7lyBNGMJjNBt3w=

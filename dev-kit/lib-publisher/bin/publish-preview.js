@@ -18,7 +18,7 @@ const backupNpmRcPath = path.resolve(rootDir, '.npmrc.backup')
 // 这个token对应的npm账号是用临时邮箱申请的，
 // 专门用来存放临时demo，泄露也不会造成安全隐患。
 // 任何人都可以用这个公共token来发布包。
-const npmToken = `52dbc8e7-0e24-416f-82a9-2665e289fef1`
+const npmToken = `be1ee14a-9db9-4c0f-b6b0-f88e13cba80e`
 
 ;(async () => {
   if (await fs.exists(backupNpmRcPath)) {
@@ -75,7 +75,7 @@ const npmToken = `52dbc8e7-0e24-416f-82a9-2665e289fef1`
 
   await fs.writeFile(backupPkgJsonPath, curPkgJsonText, 'utf-8')
   await fs.writeFile(pkgJsonPath, JSON.stringify(newPkgJson, null, 2), 'utf-8')
-  if (curNpmRcText) await fs.writeFile(backupNpmRcPath, curNpmRcText, 'utf-8')
+  await fs.writeFile(backupNpmRcPath, curNpmRcText, 'utf-8')
   await fs.writeFile(npmRcPath, newNpmRcText, 'utf-8')
   try {
     await new Promise((res, rej) => {
@@ -95,10 +95,10 @@ const npmToken = `52dbc8e7-0e24-416f-82a9-2665e289fef1`
     await fs.unlink(backupPkgJsonPath)
     if (curNpmRcText) {
       await fs.writeFile(npmRcPath, curNpmRcText, 'utf-8')
-      await fs.unlink(backupNpmRcPath)
     } else {
-      fs.unlink(npmRcPath)
+      await fs.unlink(npmRcPath)
     }
+    await fs.unlink(backupNpmRcPath)
   }
 
   // TODO: 如果由开发者来发布npm包（即使是preview版本），那么平台很难管控包的发布

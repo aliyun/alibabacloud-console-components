@@ -2,9 +2,13 @@
 const externalsArr = [
   '@mdx-js/react',
   'react',
+  'react-dom',
   '@runtime/TypescriptMetadataRenderer/interface',
   '@runtime/DemoRenderer',
-  'styled-components',
   '@runtime/MdxWrapper',
+  'styled-components',
+  '@alicloud/console-components',
+  '@alicloud/console-components-fake-browser',
+  'prop-types',
 ]
 exports.externalsArr = externalsArr

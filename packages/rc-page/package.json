@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "cc-dev-out/index.d.ts",
   "module": "es/index.js",
   "publishConfig": {
     "access": "public"

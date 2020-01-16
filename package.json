@@ -14,7 +14,7 @@
     "clean": "npx lerna clean --yes && rm -rf node_modules",
     "prepare": "npx lerna run prepublish",
     "prebootstrap": "yarn run clean",
-    "link-bin": "link-parent-bin && link-parent-bin -c ./demo-workspaces/gatsby-theme-console-doc-template",
+    "link-bin": "link-parent-bin && link-parent-bin -c ./demo-workspaces/gatsby-theme-console-doc-template && link-parent-bin -c ./demo-workspaces/material-dev-kit-demo",
     "postinstall": "npm run link-bin",
     "lint": "npx eslint ./packages",
     "release": "npx lerna publish --conventional-commits",

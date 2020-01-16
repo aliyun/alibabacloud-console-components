@@ -39,6 +39,7 @@ module.exports = {
             rootDir: path.resolve(__dirname, '../guides'),
           },
         ],
+        dynamicDocs: require('./dynamic-doc-config'),
         // 透传给webpack选项resolve.module：https://webpack.js.org/configuration/resolve/#resolvemodules
         // 优先从文档项目、根目录解析依赖，
         // 如果找不到，再从发起者(即markdown或者demo位置)开始向上解析node_modules
@@ -72,24 +73,26 @@ module.exports = {
           // npx gatsby clean && npx --node-arg=--inspect-brk gatsby develop
           // 然后打开vscode的debug面板
           // 即可在调试期间停在这个地方，查看docInfo的结构
-          if (docInfo.fileSystemCrawlerName === 'biz-comp-crawler') {
-            return {
-              category: 'biz-components',
+          if (docInfo.type === 'doc') {
+            if (docInfo.fileSystemCrawlerName === 'biz-comp-crawler') {
+              return {
+                category: 'biz-components',
+              }
             }
-          }
-          if (docInfo.fileSystemCrawlerName === 'base-comp-crawler') {
-            return {
-              category: 'base-components',
+            if (docInfo.fileSystemCrawlerName === 'base-comp-crawler') {
+              return {
+                category: 'base-components',
+              }
             }
-          }
-          if (docInfo.fileSystemCrawlerName === 'guides-crawler') {
-            return {
-              category: 'guides',
+            if (docInfo.fileSystemCrawlerName === 'guides-crawler') {
+              return {
+                category: 'guides',
+              }
             }
+            throw new Error(
+              `unexpected docInfo.fileSystemCrawlerName: ${docInfo.fileSystemCrawlerName}`
+            )
           }
-          throw new Error(
-            `unexpected docInfo.fileSystemCrawlerName: ${docInfo.fileSystemCrawlerName}`
-          )
         },
         // 定义类目的中文名（展示在左侧导航、搜索结果中）
         categories: {

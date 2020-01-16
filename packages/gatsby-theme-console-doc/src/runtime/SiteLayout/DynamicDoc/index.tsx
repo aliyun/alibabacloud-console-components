@@ -6,6 +6,7 @@ import prepareImportForDocModule from '@alicloud/console-components-lib-document
 const DynamicDoc: React.FC<{}> = () => {
   const pageCtx = usePageCtx()
   if (pageCtx.pageMeta.type !== 'dynamic-doc') return null
+
   const docDef = {
     prodPkgName: pageCtx.pageMeta.packageName,
     actualLoadPkgName: pageCtx.pageMeta.packageName,
@@ -20,11 +21,11 @@ const DynamicDoc: React.FC<{}> = () => {
     System.import(docModuleId)
       .then(res => res.default)
       .then(comp => {
-        setDocComp(comp)
+        setDocComp(() => comp)
       })
   }, [])
 
-  return <div>{DocComp ? DocComp : 'loading...'}</div>
+  return <div>{DocComp ? <DocComp pkgInfo={docDef} /> : 'loading...'}</div>
 }
 
 export default DynamicDoc

@@ -43,7 +43,7 @@
     "semver": "^7.1.1",
     "style-loader": "^1.1.2",
     "styled-components": "^4.4.1",
-    "systemjs": "^6.1.8",
+    "systemjs": "^6.1.9",
     "unist-util-visit-parents": "^3.0.1"
   },
   "peerDependencies": {

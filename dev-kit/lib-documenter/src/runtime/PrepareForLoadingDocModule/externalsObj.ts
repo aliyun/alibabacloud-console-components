@@ -24,6 +24,10 @@ externalsObj["prop-types"] = External6;
 
 import * as External7 from "@alicloud/console-components";
 externalsObj["@alicloud/console-components"] = External7;
+externalsObj["wind"] = External7;
 
 import * as External8 from "react-dom";
 externalsObj["react-dom"] = External8;
+
+import * as External9 from "@alicloud/console-components-fake-browser";
+externalsObj["@alicloud/console-components-fake-browser"] = External9;
