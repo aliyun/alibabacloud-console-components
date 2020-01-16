@@ -1,6 +1,5 @@
-const originalInstantiate: any = ((System as any).instantiate(
-  System as any
-).instantiate = function(...args) {
+const originalInstantiate: any = (System as any).instantiate
+;(System as any).instantiate = function(...args) {
   return originalInstantiate.apply(this, args).then(function(register) {
     return [
       register[0],
@@ -25,4 +24,4 @@ const originalInstantiate: any = ((System as any).instantiate(
       },
     ]
   })
-})
+}
