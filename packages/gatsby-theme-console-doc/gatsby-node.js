@@ -14,6 +14,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     primaryPath,
     categories: categoryNameMap,
     siteMetadata,
+    dynamicDocs = [],
   } = themeOptions
   if (typeof patchDocInfo !== 'function')
     throw new Error(`themeOptions.patchDocInfo should be set`)
@@ -28,6 +29,9 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
   }
   if (!_.get(themeOptions, ['siteMetadata', 'siteName'])) {
     throw new Error(`themeOptions.siteMetadata.siteName should be set`)
+  }
+  if (!Array.isArray(dynamicDocs)) {
+    throw new Error(`themeOptions.dynamicDocs should be an array`)
   }
 
   const queryRes = await graphql(
@@ -59,7 +63,8 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     `
   )
 
-  const pages = queryRes.data.allFile.edges
+  // 从本地获取数据的文档
+  const localDocsInfo = queryRes.data.allFile.edges
     .map(({ node }) => node)
     .filter(node => {
       const isFromFileSystemCrawlers = !!fileSystemCrawlers.find(
@@ -83,30 +88,32 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
         mdxBody: node.childMdx.body,
         mdFilePath: node.relativePath,
         fileSystemCrawlerName: sourceInstanceName,
+        type: 'doc',
       }
     })
+
+  const dynamicDocsInfo = createDynamicDocsMeta({ themeOptions })
+
+  const AllDocsInfo = [...localDocsInfo, ...dynamicDocsInfo]
     .map(docInfo => {
       // category is set by themeOptions.patchDocInfo
       return { ...docInfo, ...patchDocInfo(docInfo) }
     })
     .map(docInfo => {
       const { category, name } = docInfo
-      if (!category) {
-        throw new Error(
-          `docInfo.category should be set.
-          (by themeOptions.patchDocInfo)`
-        )
-      }
       return {
         ...docInfo,
         path: `/${category}/${name}`,
       }
     })
 
+  // 不管是本地文档还是动态加载的文档，都需要有name, zhName, category, path元信息
+  AllDocsInfo.forEach(checkDocInfo)
+
   // 按照category字段分类
   const categories = (() => {
     const result = []
-    pages.forEach(page => {
+    AllDocsInfo.forEach(page => {
       const existCategory = result.find(
         category => category.name === page.category
       )
@@ -145,27 +152,28 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
   })
   console.log(`|-------docs info---------|`)
 
-  pages.forEach(pageInfo => {
+  const siteMeta = {
+    ...siteMetadata,
+    categories,
+    topNav,
+    primaryPath,
+  }
+
+  checkSiteMeta(siteMeta)
+
+  AllDocsInfo.forEach(docInfo => {
     const sideNavConfig = sideNav({
-      pageMeta: pageInfo,
-      siteMeta: {
-        categories,
-        topNav,
-      },
+      pageMeta: docInfo,
+      siteMeta,
     })
     // checkSideNavConfig(sideNavConfig)
 
     createPage({
-      path: pageInfo.path,
+      path: docInfo.path,
       component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
       context: {
-        pageMeta: { ...pageInfo, type: 'doc', sideNav: sideNavConfig },
-        siteMeta: {
-          ...siteMetadata,
-          categories,
-          topNav,
-          primaryPath,
-        },
+        pageMeta: { ...docInfo, sideNav: sideNavConfig },
+        siteMeta,
       },
     })
   })
@@ -175,12 +183,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
     context: {
       pageMeta: { type: 'indexPage' },
-      siteMeta: {
-        ...siteMetadata,
-        categories,
-        topNav,
-        primaryPath,
-      },
+      siteMeta,
     },
   })
 
@@ -189,12 +192,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
     context: {
       pageMeta: { type: '404' },
-      siteMeta: {
-        ...siteMetadata,
-        categories,
-        topNav,
-        primaryPath,
-      },
+      siteMeta,
     },
   })
 }
@@ -211,7 +209,7 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
         ...themeOptions.nodeModules,
       ],
       alias: {
-        '@runtime': path.resolve(__dirname, 'src/runtime'),
+        '@runtime': '@alicloud/console-components-lib-documenter/src/runtime',
         ...resolveAlias,
       },
     },
@@ -229,6 +227,7 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
             },
           ],
         },
+        { parser: { system: false } }
       ],
     },
   })
@@ -284,3 +283,39 @@ exports.createSchemaCustomization = ({ actions }) => {
   `
   createTypes(typeDefs)
 }
+
+function createDynamicDocsMeta({ themeOptions }) {
+  const { dynamicDocs } = themeOptions
+
+  return dynamicDocs.map(dynamicDoc => {
+    if (
+      typeof dynamicDoc.packageName !== 'string' ||
+      dynamicDoc.packageName.length === 0
+    ) {
+      throw new Error(`dynamicDoc.packageName should be a string`)
+    }
+    return {
+      ...dynamicDoc,
+      type: 'dynamic-doc',
+    }
+  })
+}
+
+function checkDocInfo(docInfo) {
+  if (typeof docInfo.name !== 'string' || docInfo.name.length === 0) {
+    throw new Error(`docInfo.name should be a string`)
+  }
+  if (typeof docInfo.zhName !== 'string' || docInfo.zhName.length === 0) {
+    throw new Error(`docInfo.zhName should be a string`)
+  }
+  if (typeof docInfo.path !== 'string' || docInfo.path.length === 0) {
+    throw new Error(`docInfo.path should be a string`)
+  }
+  if (typeof docInfo.category !== 'string' || docInfo.category.length === 0) {
+    throw new Error(
+      `docInfo.category should be set. (by themeOptions.patchDocInfo)`
+    )
+  }
+}
+
+function checkSiteMeta(siteMeta) {}

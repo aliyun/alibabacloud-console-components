@@ -5,8 +5,8 @@ import prepareCommonDeps from "./prepareCommonDeps";
 const moduleURLProtocals = {
   unpkg: (actualLoadPkgName, actualLoadPkgVersion) => {
     return {
-      main: `https://unpkg.com/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/index.js`,
-      doc: `https://unpkg.com/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js`
+      main: `https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/index.js`,
+      doc: `https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js`
     };
   }
 };

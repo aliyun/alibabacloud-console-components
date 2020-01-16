@@ -7,7 +7,7 @@ import DocMenuLabel from './DocMenuLabel'
 const SideBar: React.FC = () => {
   const pageCtx = usePageCtx()
 
-  if (pageCtx.pageMeta.type !== 'doc') return null
+  if (!('sideNav' in pageCtx.pageMeta)) return null
 
   const { navCategories, header } = pageCtx.pageMeta.sideNav
   const hasMultiCategoriesInNav = navCategories.length > 1

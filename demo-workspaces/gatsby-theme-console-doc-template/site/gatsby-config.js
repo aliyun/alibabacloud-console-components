@@ -41,26 +41,28 @@ module.exports = {
           // npm run debug
           // 然后在vscode中按下F5，启动vscode的debug
           // 即可在调试期间停在这个地方，查看docInfo的结构
-          if (docInfo.fileSystemCrawlerName === 'comp-crawler') {
-            return {
-              category: 'components',
-              /**
-               * 你可以自定义文章在菜单中的显示文字
-               * 默认是`英文名 中文名`
-               * 文章标题出现的地方：左侧导航栏、搜索结果
-               */
-              labelInMenu: docInfo.zhName,
+          if (docInfo.type === 'doc') {
+            if (docInfo.fileSystemCrawlerName === 'comp-crawler') {
+              return {
+                category: 'components',
+                /**
+                 * 你可以自定义文章在菜单中的显示文字
+                 * 默认是`英文名 中文名`
+                 * 文章标题出现的地方：左侧导航栏、搜索结果
+                 */
+                labelInMenu: docInfo.zhName,
+              }
             }
-          }
-          if (docInfo.fileSystemCrawlerName === 'guides-crawler') {
-            return {
-              category: 'guides',
-              labelInMenu: docInfo.zhName,
+            if (docInfo.fileSystemCrawlerName === 'guides-crawler') {
+              return {
+                category: 'guides',
+                labelInMenu: docInfo.zhName,
+              }
             }
+            throw new Error(
+              `unexpected docInfo.fileSystemCrawlerName: ${docInfo.fileSystemCrawlerName}`
+            )
           }
-          throw new Error(
-            `unexpected docInfo.fileSystemCrawlerName: ${docInfo.fileSystemCrawlerName}`
-          )
         },
         // 定义类目的中文名（展示在左侧导航、搜索结果中）
         categories: {
@@ -130,6 +132,17 @@ module.exports = {
         nodeModules: [
           // path.resolve(__dirname, '../../../node_modules'),
           'node_modules',
+        ],
+        dynamicDocs: [
+          {
+            name: 'rc-page',
+            zhName: '页面内容区域布局',
+            category: 'components',
+            // 文档资源加载地址：
+            // https://cdn.jsdelivr.net/npm/${packageName}@${packageVersion}/dist/_doc.system.js
+            packageName: '@alicloud/console-components-page',
+            packageVersion: 'latest',
+          },
         ],
       },
     },
