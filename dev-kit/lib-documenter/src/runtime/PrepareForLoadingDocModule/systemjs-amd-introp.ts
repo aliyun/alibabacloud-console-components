@@ -1,6 +1,7 @@
-const originalInstantiate = System.instantiate
-System.instantiate = function() {
-  return originalInstantiate.apply(this, arguments).then(function(register) {
+const originalInstantiate: any = ((System as any).instantiate(
+  System as any
+).instantiate = function(...args) {
+  return originalInstantiate.apply(this, args).then(function(register) {
     return [
       register[0],
       function(_export, _context) {
@@ -18,10 +19,10 @@ System.instantiate = function() {
             _export('__esModule', true)
             _export(arg2)
           } else {
-            _export.apply(this, arguments)
+            _export.apply(this, args)
           }
         }
       },
     ]
   })
-}
+})
