@@ -105,7 +105,7 @@ export interface ISiteMeta {
   categories: {
     name: string
     zhName: string
-    docs: IDocPageMeta[]
+    docs: (IDocPageMeta | IDynamicDocMeta)[]
   }[]
   topNav: { text: string; href: string }[]
   // 入口路径

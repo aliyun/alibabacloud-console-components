@@ -3,6 +3,8 @@
 const path = require('path')
 const _ = require('lodash')
 const DemoPlugin = require('./lib/buildtime/demoPlugin')
+const WrapReqPlugin = require('./lib/buildtime/WrapRequestPlugin')
+const IgnoreNotFoundExportPlugin = require('ignore-not-found-export-webpack-plugin')
 
 exports.createPages = async ({ graphql, actions }, themeOptions) => {
   const { createPage } = actions
@@ -199,34 +201,36 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
 
 exports.onCreateWebpackConfig = (helpers, themeOptions) => {
   const { actions } = helpers
-  if (!themeOptions.nodeModules) {
-    throw new Error(`themeOptions.nodeModules should be set`)
-  }
+
   const resolveAlias = themeOptions.resolveAlias || {}
   actions.setWebpackConfig({
     resolve: {
-      modules: Array.isArray(themeOptions.nodeModules) && [
-        ...themeOptions.nodeModules,
-      ],
+      modules: Array.isArray(themeOptions.nodeModules)
+        ? [...themeOptions.nodeModules]
+        : undefined,
       alias: {
         '@runtime': '@alicloud/console-components-lib-documenter/src/runtime',
         ...resolveAlias,
       },
     },
-    plugins: [new DemoPlugin()],
+    plugins: [
+      new DemoPlugin(),
+      new WrapReqPlugin(require('./wrapMdxRequest')),
+      new IgnoreNotFoundExportPlugin(),
+    ],
     module: {
       rules: [
-        {
-          resourceQuery: /loadDemo/,
-          use: [
-            {
-              loader: path.resolve(__dirname, './lib/buildtime/demoLoader.js'),
-              options: {
-                bundleDemo: themeOptions.bundleDemo,
-              },
-            },
-          ],
-        },
+        // {
+        //   resourceQuery: /loadDemo/,
+        //   use: [
+        //     {
+        //       loader: path.resolve(__dirname, './lib/buildtime/demoLoader.js'),
+        //       options: {
+        //         bundleDemo: themeOptions.bundleDemo,
+        //       },
+        //     },
+        //   ],
+        // },
         { parser: { system: false } },
       ],
     },

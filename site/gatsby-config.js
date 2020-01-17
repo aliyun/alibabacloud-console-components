@@ -40,15 +40,6 @@ module.exports = {
           },
         ],
         dynamicDocs: require('./dynamic-doc-config'),
-        // 透传给webpack选项resolve.module：https://webpack.js.org/configuration/resolve/#resolvemodules
-        // 优先从文档项目、根目录解析依赖，
-        // 如果找不到，再从发起者(即markdown或者demo位置)开始向上解析node_modules
-        // 避免不同的markdown解析出各自的'react'
-        nodeModules: [
-          // path.resolve(__dirname, './node_modules'),
-          // path.resolve(__dirname, '../node_modules'),
-          'node_modules',
-        ],
         // 为每个文档添加元数据：它属于哪个类目
         // 每个文档都需要有一个类目，文档的访问路径就是`/类目name/文档name`
         // 类目还被用于给左侧导航栏分类、搜索结果分类
@@ -171,7 +162,6 @@ module.exports = {
         linkInstructions: [
           require('./lib/buildtime/linkInstructions/embedAPIFromFusion'),
         ],
-        bundleDemo: true,
       },
     },
   ],

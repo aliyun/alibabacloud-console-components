@@ -86,9 +86,9 @@ interface IProps {
 }
 
 /**
- * 当用户配置了bundleDemo: true（默认值）时，DemoComponent即为用户写的Demo组件；
+ * 当用户配置了bundleDemo: true时，DemoComponent即为用户写的Demo组件；
  * 当用户配置了bundleDemo: false时，DemoComponent为null；
- * 当用户配置了bundleDemo: "async"时，DemoComponent为`Promise<{default: React.ComponentType}>`(可以用于React.lazy)；
+ * 当用户配置了bundleDemo: "async"（默认值）时，DemoComponent为`Promise<{default: React.ComponentType}>`(可以用于React.lazy)；
  *
  * demoInfo始终为demo的文件信息，可以console.log查看。
  */
