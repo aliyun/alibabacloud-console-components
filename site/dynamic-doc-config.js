@@ -5,4 +5,10 @@ module.exports = [
     category: 'biz-components',
     packageName: '@alicloud/console-components-page',
   },
+  {
+    name: 'rc-truncate',
+    zhName: '文本截断',
+    category: 'biz-components',
+    packageName: '@alicloud/console-components-truncate',
+  },
 ]
