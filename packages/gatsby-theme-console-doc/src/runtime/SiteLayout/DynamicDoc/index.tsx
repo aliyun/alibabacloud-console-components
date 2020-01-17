@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { usePageCtx } from '../context'
 
-import prepareImportForDocModule from '@alicloud/console-components-lib-documenter/PrepareForLoadingDocModule'
-
 const DynamicDoc: React.FC<{}> = () => {
   const pageCtx = usePageCtx()
   if (pageCtx.pageMeta.type !== 'dynamic-doc') return null
@@ -16,7 +14,8 @@ const DynamicDoc: React.FC<{}> = () => {
   const [DocComp, setDocComp] = useState<any>(null)
 
   useEffect(() => {
-    const docModuleId = prepareImportForDocModule(docDef)
+    // 在gatsby-browser.js中将这个方法添加到了window对象
+    const docModuleId = window.prepareImportForDocModule(docDef)
 
     System.import(docModuleId)
       .then(res => res.default)

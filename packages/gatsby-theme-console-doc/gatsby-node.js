@@ -227,7 +227,7 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
             },
           ],
         },
-        { parser: { system: false } }
+        { parser: { system: false } },
       ],
     },
   })

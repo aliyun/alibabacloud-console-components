@@ -124,7 +124,7 @@ export interface IPageContext {
 const SiteLayout: React.FC<{
   pageContext: IPageContext
 }> = ({ pageContext }) => {
-  console.log('pageContext', pageContext)
+  // console.log('pageContext', pageContext)
   return (
     <pageCtx.Provider value={pageContext}>
       <SEO />
