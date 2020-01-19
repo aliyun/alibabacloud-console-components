@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.0.19",
+  "version": "1.0.20-alpha.0",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
@@ -22,7 +22,7 @@
   "author": "MacroXing <macroxing@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@alifd/next": "~1.18.15",
+    "@alifd/next": "~1.19.9",
     "@babel/runtime-corejs2": "^7.7.4",
     "classnames": "^2.2.5",
     "hoist-non-react-statics": "^3.3.0",

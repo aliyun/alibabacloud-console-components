@@ -315,10 +315,10 @@
     "@alifd/validate" "^1.1.3"
     prop-types "^15.5.8"
 
-"@alifd/next@~1.18.15":
-  version "1.18.17"
-  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.18.17.tgz#96f02f19a893d60b9d9140278aadb6ac46b0d253"
-  integrity sha1-lvAvGaiT1gudkUAniq22rEaw0lM=
+"@alifd/next@~1.19.9":
+  version "1.19.9"
+  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.19.9.tgz#9cbd02e77ef33b9be680a2dbcf7815d0c296131e"
+  integrity sha1-nL0C537zO5vmgKLbz3gV0MKWEx4=
   dependencies:
     "@alifd/field" "~1.3.3"
     "@alifd/validate" "~1.1.4"
