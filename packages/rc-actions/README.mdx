@@ -1,9 +1,3 @@
----
-name: rc-actions
-zhName: 表格中的行操作器
-type: biz-component
----
-
 # @alicloud/console-components-actions
 
 表格中的行操作器
