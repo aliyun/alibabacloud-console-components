@@ -69,112 +69,96 @@ const generateIframeSrc = projMeta => (sandboxId: string) =>
     projMeta.onlyEditor ? '&view=editor' : '&view=split'
   }&module=${prependSlash(projMeta.entryPath)}`
 
-const isSSR = typeof window === 'undefined'
-
-interface IProps {
-  demoInfo: {
+interface IDemoInfo {
+  // 用户在demo模块export default Demo组件，我们在这里拿到
+  default: React.ComponentType
+  // _demoSrcFiles是demoPlugin收集到的demo源码，用于创建codesandbox
+  _demoSrcFiles: {
     [fileName: string]: string
   }
-  DemoComponent:
-    | React.ComponentType
-    | null
-    | Promise<{ default: React.ComponentType }>
+  // demoMeta是用户在单个demo中标注的元数据，比如demo名称、描述
+  // 比如 https://github.com/aliyun/console-components/blob/1f49c01dec47853987fd3d7c413c9b7360bfc3df/packages/component/src/components/table/demo/demo6.js#L43
   demoMeta?: {
     zhName?: string
     zhDesc?: string
   }
 }
 
-/**
- * 当用户配置了bundleDemo: true时，DemoComponent即为用户写的Demo组件；
- * 当用户配置了bundleDemo: false时，DemoComponent为null；
- * 当用户配置了bundleDemo: "async"（默认值）时，DemoComponent为`Promise<{default: React.ComponentType}>`(可以用于React.lazy)；
- *
- * demoInfo始终为demo的文件信息，可以console.log查看。
- */
-const DemoRenderer: React.FC<IProps> = ({
-  demoInfo,
-  DemoComponent,
-  demoMeta,
-}) => {
-  const [demoCompInfo] = useState(() => {
-    if (isPromiseLike(DemoComponent)) {
-      return {
-        demoType: 'async',
-        AsyncDemoComp: React.lazy(() => DemoComponent),
-      } as const
-    }
-    if (!DemoComponent) {
-      return {
-        demoType: 'notBundled',
-      } as const
-    }
-    return {
-      demoType: 'bundled',
-      DemoComp: DemoComponent,
-    } as const
-  })
+type IProps = {
+  demoInfo: Promise<IDemoInfo> | IDemoInfo
+}
 
+const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
+  // docMeta是对整个markdown文档标注的元数据
   const docMetaCtxVal = useContext(docMetaCtx)
-  if (docMetaCtxVal.pkgInfo) {
-    const {
-      prodPkgName,
-      actualLoadPkgName,
-      actualLoadPkgVersion,
-    } = docMetaCtxVal.pkgInfo
-    const pkgJson = JSON.parse(demoInfo['package.json'])
-    pkgJson.dependencies[actualLoadPkgName] = actualLoadPkgVersion
 
-    const alias = pkgJson.alias || {}
-    alias[prodPkgName] = actualLoadPkgName
-    pkgJson.alias = alias
-    demoInfo['package.json'] = JSON.stringify(pkgJson, null, 2)
-  }
+  const [demoInfo, setDemoInfo] = useState<IDemoInfo | null>(null)
 
+  useEffect(() => {
+    // 异步加载的demo
+    if (isPromiseLike(demoInfoOrPromise)) {
+      demoInfoOrPromise.then(demoInfo => {
+        const demoSrcFiles = (() => {
+          // 修改demo的package.json，让codesandbox正确解析依赖：
+          // 将demo中的import xxx from '${prodPkgName}' 解析到
+          // actualLoadPkgName的actualLoadPkgVersion版本
+          if (docMetaCtxVal.pkgInfo) {
+            const {
+              prodPkgName,
+              actualLoadPkgName,
+              actualLoadPkgVersion,
+            } = docMetaCtxVal.pkgInfo
+            const pkgJson = JSON.parse(demoInfo._demoSrcFiles['package.json'])
+            pkgJson.dependencies[actualLoadPkgName] = actualLoadPkgVersion
+
+            const alias = pkgJson.alias || {}
+            alias[prodPkgName] = actualLoadPkgName
+            pkgJson.alias = alias
+            return {
+              ...demoInfo._demoSrcFiles,
+              'package.json': JSON.stringify(pkgJson, null, 2),
+            }
+          }
+          return demoInfo._demoSrcFiles
+        })()
+        setDemoInfo({
+          ...demoInfo,
+          _demoSrcFiles: demoSrcFiles,
+        })
+      })
+    } else {
+      // 同步加载的demo
+      setDemoInfo(demoInfoOrPromise)
+    }
+  }, [])
+
+  // 通过codesandbox API来上传demo，得到iframe的URL
+  // https://codesandbox.io/docs/importing#define-api
+  // null表示无上传或上传尚未成功
   const [iframeSrc, setIframeSrc] = useState<string | null>(null)
+  // 用户toggle demo区域的状态
   const [isShowingIframe, setIsShowingIframe] = useState(false)
 
   const showIframe = useCallback(() => {
+    // demo还没有加载好
+    if (!demoInfo) return
     setIsShowingIframe(true)
     if (!iframeSrc) {
-      const projMeta = JSON.parse(demoInfo['demoMeta.json'])
-      createCodesandbox(demoInfo)
+      const projMeta = JSON.parse(demoInfo._demoSrcFiles['demoMeta.json'])
+      createCodesandbox(demoInfo._demoSrcFiles)
         .then(generateIframeSrc(projMeta))
         .then(setIframeSrc)
     }
   }, [demoInfo, iframeSrc])
 
-  useEffect(() => {
-    // 无Demo组件可渲染，直接渲染codesandbox
-    if (demoCompInfo.demoType === 'notBundled') showIframe()
-    // eslint-disable-next-line
-  }, [])
-
   const domRef = useRef<null | HTMLDivElement>(null)
 
-  if (demoCompInfo.demoType === 'notBundled') {
-    // 无Demo组件可渲染，直接渲染codesandbox
-    return (
-      <CustomCard contentHeight="auto">
-        <SIframeCtn>
-          <SIframe {...iFramePreset} {...iframeSrc} />
-        </SIframeCtn>
-      </CustomCard>
-    )
-  }
-
   const renderDemo = (() => {
-    // 懒加载Demo
-    if (demoCompInfo.demoType === 'async') {
-      // SSR环境不要渲染Suspense，Suspense目前不支持SSR
-      if (isSSR) return null
-      return (
-        <React.Suspense fallback={<div>Loading demo...</div>}>
-          <demoCompInfo.AsyncDemoComp />
-        </React.Suspense>
-      )
+    if (!demoInfo) {
+      return <div>Loading demo...</div>
     }
-    return <demoCompInfo.DemoComp />
+    const DemoComponent = demoInfo.default
+    return <DemoComponent />
   })()
 
   const iframeController = (() => {
@@ -245,7 +229,8 @@ const DemoRenderer: React.FC<IProps> = ({
   })()
 
   const demoMetaView = (() => {
-    if (!demoMeta) return null
+    if (!demoInfo || !demoInfo.demoMeta) return null
+    const demoMeta = demoInfo.demoMeta
     return (
       <div>
         {demoMeta.zhName && (

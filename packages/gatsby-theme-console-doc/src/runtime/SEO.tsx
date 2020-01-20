@@ -16,9 +16,13 @@ function SEO({ description, lang, meta, title }) {
 
   const actualTitle = (() => {
     if (title) return title
-    if (pageCtx.pageMeta.type === 'doc') return pageCtx.pageMeta.zhName
-    if (pageCtx.pageMeta.type === 'indexPage') return 'index'
-    return '404'
+    if (
+      pageCtx.pageMeta.type === 'doc' ||
+      pageCtx.pageMeta.type === 'dynamic-doc'
+    )
+      return pageCtx.pageMeta.zhName
+    if (pageCtx.pageMeta.type === 'index-page') return 'index'
+    return pageCtx.siteMeta.siteName || 'Console Components'
   })()
 
   const metaDescription = description || pageCtx.siteMeta.description

@@ -6,6 +6,9 @@ const path = require('path')
 const { spawn } = require('child_process')
 const fs = require('fs-extra')
 
+// 如果由开发者来发布npm包（即使是preview版本），那么平台很难管控包的发布
+// 解法：区分生产包和预览包，生产包由平台服务代理发布到npm
+
 const {
   pkgJsonPath,
   backupPkgJsonPath,
@@ -18,7 +21,7 @@ const backupNpmRcPath = path.resolve(rootDir, '.npmrc.backup')
 // 这个token对应的npm账号是用临时邮箱申请的，
 // 专门用来存放临时demo，泄露也不会造成安全隐患。
 // 任何人都可以用这个公共token来发布包。
-const npmToken = `be1ee14a-9db9-4c0f-b6b0-f88e13cba80e`
+const npmToken = `ab21996e-1736-4f17-90ed-bae1b2c3ab66`
 
 ;(async () => {
   if (await fs.exists(backupNpmRcPath)) {
@@ -100,9 +103,19 @@ const npmToken = `be1ee14a-9db9-4c0f-b6b0-f88e13cba80e`
     }
     await fs.unlink(backupNpmRcPath)
   }
-
-  // TODO: 如果由开发者来发布npm包（即使是preview版本），那么平台很难管控包的发布
-  // 解法：区分生产包和预览包，生产包由平台服务代理发布到npm
+  console.log(`【发布成功】预览包为： ${previewPkgName}@${previewPkgVersion} .
+  以下是预览链接，可以将它分享给评阅人： 
+    https://aliyun.github.io/alibabacloud-console-components/doc-preview?prodPkgName=${encodeURIComponent(
+      prodPkgName
+    )}&actualLoadPkgName=${encodeURIComponent(
+    previewPkgName
+  )}&actualLoadPkgVersion=${encodeURIComponent(previewPkgVersion)}
+  如果github page访问较慢，可以访问国内镜像站点：
+    https://gitee.com/csr632/alibabacloud-console-components/doc-preview?prodPkgName=${encodeURIComponent(
+      prodPkgName
+    )}&actualLoadPkgName=${encodeURIComponent(
+    previewPkgName
+  )}&actualLoadPkgVersion=${encodeURIComponent(previewPkgVersion)}`)
 })()
 
 async function getNextPreviewVer(pkgName, _curVer, inc) {

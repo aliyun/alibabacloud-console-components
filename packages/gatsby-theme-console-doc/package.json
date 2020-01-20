@@ -17,6 +17,8 @@
     "@alicloud/console-components-app-layout": "^1.0.4",
     "@alicloud/console-components-console-menu": "^1.0.4",
     "@alicloud/console-components-page": "^1.0.5",
+    "@alicloud/console-components-lib-publisher": "^0.1.9",
+    "@alicloud/console-components-announcement": "^1.0.1",
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",

@@ -2,9 +2,10 @@
 
 const path = require('path')
 const _ = require('lodash')
-const DemoPlugin = require('./lib/buildtime/demoPlugin')
-const WrapReqPlugin = require('./lib/buildtime/WrapRequestPlugin')
 const IgnoreNotFoundExportPlugin = require('ignore-not-found-export-webpack-plugin')
+
+const DemoPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/demoPlugin')
+const WrapReqPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/WrapRequestPlugin')
 
 exports.createPages = async ({ graphql, actions }, themeOptions) => {
   const { createPage } = actions
@@ -184,7 +185,16 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     path: '/',
     component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
     context: {
-      pageMeta: { type: 'indexPage' },
+      pageMeta: { type: 'index-page' },
+      siteMeta,
+    },
+  })
+
+  createPage({
+    path: '/doc-preview',
+    component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
+    context: {
+      pageMeta: { type: 'doc-preview' },
       siteMeta,
     },
   })
@@ -220,17 +230,19 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
     ],
     module: {
       rules: [
-        // {
-        //   resourceQuery: /loadDemo/,
-        //   use: [
-        //     {
-        //       loader: path.resolve(__dirname, './lib/buildtime/demoLoader.js'),
-        //       options: {
-        //         bundleDemo: themeOptions.bundleDemo,
-        //       },
-        //     },
-        //   ],
-        // },
+        {
+          resourceQuery: /loadDemo/,
+          use: [
+            {
+              loader: require.resolve(
+                '@alicloud/console-components-lib-publisher/lib/buildtools/demoLoader.js'
+              ),
+              options: {
+                bundleDemo: themeOptions.bundleDemo,
+              },
+            },
+          ],
+        },
         { parser: { system: false } },
       ],
     },

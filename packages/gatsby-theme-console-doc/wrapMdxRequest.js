@@ -27,7 +27,6 @@ if (isSSR) return;
 throw reason;
 });
 export default loadingModule;
-export const _demoInfo = __demo_loader_placeholder__;    
 `
     )
 

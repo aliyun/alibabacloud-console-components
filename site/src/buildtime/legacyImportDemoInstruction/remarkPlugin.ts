@@ -48,8 +48,6 @@ function paragraphVistor(
   const identiferName = `legacyImportDemo_${stringHash(
     file.contents + demoPath
   )}`
-  const infoIdentiferName = `${identiferName}_demoInfo`
-  const allIdentiferName = `${identiferName}_all`
 
   // remove instruction node and insert mdx import
   parent.children.splice(
@@ -57,15 +55,11 @@ function paragraphVistor(
     1,
     {
       type: 'import' as any,
-      value: `import ${identiferName}, {_demoInfo as ${infoIdentiferName}} from "${demoPath}?loadDemoInfo"`,
-    },
-    {
-      type: 'import' as any,
-      value: `import * as ${allIdentiferName} from "${demoPath}?loadDemoInfo"`,
+      value: `import ${identiferName} from "${demoPath}?loadDemo"`,
     },
     {
       type: 'jsx' as any,
-      value: `<DemoRenderer__LegacyDemoInstructions DemoComponent={${identiferName}} demoInfo={${infoIdentiferName}} demoMeta={${allIdentiferName}['demoMeta']} />`,
+      value: `<DemoRenderer__LegacyDemoInstructions demoInfo={${identiferName}} />`,
     }
   )
 }

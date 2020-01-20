@@ -14,17 +14,19 @@ const handleLinkNode = ({
   parent.children.splice(parent.children.indexOf(node), 1)
 
   const identiferName = `${instructionParam}`
-  const infoIdentiferName = `${identiferName}_demoInfo`
+
   ancestors[0].children.splice(
     ancestors[0].children.indexOf(ancestors[1]) + 1,
     0,
     {
       type: 'import',
-      value: `import ${identiferName}, {_demoInfo as ${infoIdentiferName}} from "${linkURL}?loadDemo"`,
+      // 这里使用import *是因为demoloader会注入额外信息到模块中
+      // 在demo里面用户还可以export demoMeta = {.....}
+      value: `import * as ${identiferName} from "${linkURL}?loadDemo"`,
     },
     {
       type: 'jsx',
-      value: `<DemoRenderer__LinkInstructions DemoComponent={${identiferName}} demoInfo={${infoIdentiferName}} />`,
+      value: `<DemoRenderer__LinkInstructions demoInfo={${identiferName}} />`,
     }
   )
 }

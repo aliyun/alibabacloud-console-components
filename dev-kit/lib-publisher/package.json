@@ -16,6 +16,12 @@
     "clean": "rm -rf ./lib",
     "prepare": "npm run clean && tsc -p ./src/buildtools"
   },
+  "peerDependencies": {
+    "@alicloud/console-components": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
   "dependencies": {
     "@alicloud/console-components-lib-documenter": "^0.1.7",
     "@mdx-js/loader": "^1.5.3",

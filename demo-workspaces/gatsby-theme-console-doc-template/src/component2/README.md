@@ -1,6 +1,6 @@
 ---
-name: component-1
-zhName: 组件1
+name: component-2
+zhName: 组件2
 ---
 
 # 组件 2

@@ -20,7 +20,7 @@ module.exports = themeOptions => {
           extensions: ['.mdx', '.md'],
           remarkPlugins: [
             [
-              require('./lib/buildtime/remarkPlugins/linkInstructions/remarkPlugin'),
+              require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/linkInstructions/remarkPlugin'),
               {
                 instructions: [
                   require('./lib/buildtime/remarkPlugins/linkInstructions/importDemo'),

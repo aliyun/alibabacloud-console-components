@@ -18,17 +18,16 @@ const handleLinkNode = ({
   // insert mdx import and jsx
   // hash it to make identifer different: https://github.com/gatsbyjs/gatsby/issues/16799
   const identiferName = `${instructionParam}_${stringHash(file.contents)}`
-  const infoIdentiferName = `${identiferName}_demoInfo`
   ancestors[0].children.splice(
     ancestors[0].children.indexOf(ancestors[1]) + 1,
     0,
     {
       type: 'import',
-      value: `import ${identiferName}, {_demoInfo as ${infoIdentiferName}} from "${linkURL}?loadDemo"`,
+      value: `import ${identiferName} from "${linkURL}?loadDemo"`,
     },
     {
       type: 'jsx',
-      value: `<DemoRenderer__LinkInstructions DemoComponent={${identiferName}} demoInfo={${infoIdentiferName}} />`,
+      value: `<DemoRenderer__LinkInstructions demoInfo={${identiferName}} />`,
     }
   )
 }

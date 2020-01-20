@@ -11,6 +11,7 @@ import NotFound from './pages/404'
 import IndexPage from './pages/indexPage'
 import SEO from '../SEO'
 import DynamicDoc from './DynamicDoc'
+import DocPreview from './DocPreview'
 
 export interface IDocPageMeta {
   // 是普通文档还是404页面
@@ -99,7 +100,8 @@ export type IPageMeta =
   | IDocPageMeta
   | IDynamicDocMeta
   | { type: '404' }
-  | { type: 'indexPage' }
+  | { type: 'index-page' }
+  | { type: 'doc-preview' }
 
 export interface ISiteMeta {
   categories: {
@@ -130,7 +132,7 @@ const SiteLayout: React.FC<{
       <SEO />
       <TopBar />
       <SAppLayout
-        nav={<SideBar />}
+        nav={'sideNav' in pageContext.pageMeta ? <SideBar /> : undefined}
         adjustHeight={TOP_BAR_HEIGHT}
         navCollapsible={false}
       >
@@ -143,8 +145,11 @@ const SiteLayout: React.FC<{
               if (pageContext.pageMeta.type === 'dynamic-doc') {
                 return <DynamicDoc />
               }
-              if (pageContext.pageMeta.type === 'indexPage') {
+              if (pageContext.pageMeta.type === 'index-page') {
                 return <IndexPage />
+              }
+              if (pageContext.pageMeta.type === 'doc-preview') {
+                return <DocPreview />
               }
               return <NotFound />
             })()}

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import prepareImportForDocModule from '@alicloud/console-components-lib-documenter/PrepareForLoadingDocModule'
+import loadDocModule from '@alicloud/console-components-lib-documenter/loadDocModule'
 ;(async function main() {
   // const docDef = {
   //   prodPkgName: '@alicloud/cc-demo-component',
@@ -15,9 +15,7 @@ import prepareImportForDocModule from '@alicloud/console-components-lib-document
     actualLoadPkgVersion: '1.0.5-preview.0',
   }
 
-  const docModuleId = prepareImportForDocModule(docDef)
-
-  const DocComp = (await System.import(docModuleId)).default
+  const DocComp = (await loadDocModule(docDef)).default
 
   ReactDOM.render(
     <div style={{ padding: '10px 20px' }}>

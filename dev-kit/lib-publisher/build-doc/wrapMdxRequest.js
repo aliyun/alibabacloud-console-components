@@ -8,11 +8,7 @@ module.exports = (reqInfo, virtualModules) => {
 
   if (reqInfo.request === '@entry-mdx') {
     const requestPath = reqInfo.request
-    const mockPath = path.join(
-      reqInfo.context,
-      'virtual-modules',
-      reqInfo.request
-    )
+    const mockPath = path.join(reqInfo.context, 'virtual-modules', requestPath)
 
     virtualModules.writeModule(
       mockPath,
