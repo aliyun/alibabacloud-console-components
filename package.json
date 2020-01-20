@@ -4,8 +4,8 @@
   "workspaces": [
     "packages/*",
     "demo-workspaces/gatsby-theme-console-doc-template/site",
-    "dev-kit/lib-documenter",
-    "dev-kit/lib-publisher",
+    "demo-workspaces/material-dev-kit-demo/*",
+    "dev-kit/*",
     "site",
     "."
   ],
@@ -14,7 +14,7 @@
     "clean": "npx lerna clean --yes && rm -rf node_modules",
     "prepare": "npx lerna run prepublish",
     "prebootstrap": "yarn run clean",
-    "link-bin": "link-parent-bin && link-parent-bin -c ./demo-workspaces/gatsby-theme-console-doc-template && link-parent-bin -c ./demo-workspaces/material-dev-kit-demo",
+    "link-bin": "link-parent-bin",
     "postinstall": "npm run link-bin",
     "lint": "npx eslint ./packages",
     "release": "npx lerna publish --conventional-commits",
