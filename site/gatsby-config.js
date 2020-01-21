@@ -28,6 +28,9 @@ module.exports = {
             ignore: [
               // 忽略基础组件的目录
               `${path.resolve(__dirname, '../packages/component')}/**/*`,
+              // 以下2个组件使用dev-kit的动态文档功能，文档数据来自动态加载的npm包
+              `${path.resolve(__dirname, '../packages/rc-page')}/**/*`,
+              `${path.resolve(__dirname, '../packages/rc-truncate')}/**/*`,
             ],
           },
           {
