@@ -23,7 +23,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run babel && npm run babel:esm && npm run build",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run build",
     "clean": "rm -rf dist lib es api-temp api-json",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",

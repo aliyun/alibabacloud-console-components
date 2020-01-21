@@ -13,7 +13,7 @@
   },
   "author": "yofine<yofineliu@gmail.com>",
   "scripts": {
-    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
+    "prepare": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
     "build": "breezr build --engine webpack",
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module",

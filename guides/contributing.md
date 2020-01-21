@@ -37,7 +37,7 @@ yarn workspaces 的两个概念：
 
 所有`package.json`都已经配置好`scripts`，新增业务组件时请仿照已有`package.json`的格式。
 
-**提交前务必走一遍完整的编译、构建、信息提取流程，检查是否能顺利通过**。检查方式：到对应子包下运行`npm run prepublish`。
+**提交前务必走一遍完整的编译、构建、信息提取流程，检查是否能顺利通过**。检查方式：到对应子包下运行`npm run prepare`。
 
 ### 业务组件
 
@@ -46,8 +46,8 @@ yarn workspaces 的两个概念：
 - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
   - 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
   - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称
-  - 在执行`npm run prepublish`的过程中，会从源码中提取 ts 类型信息（以`index.tsx?`为入口），输出到`./api-json/api.json`中。然后，当构建文档站点的时候，如果在 markdown 中遇到了`MDXInstruction:renderInterface`指令，则从`./api-json/api.json`根据 interface 名称拿到 interface 的成员信息，这个成员信息就是 API 文档的表格的数据
-    - 请留意 prepublish 过程中`api-extractor`给出的提示，改善你的类型导出。比如，api-extractor 会帮助你发现忘记 export 的类型，解决方式就是在`index.tsx?`导出对应的类型，详见[api-extractor 文档](https://api-extractor.com/pages/messages/ae-forgotten-export/)
+  - 在执行`npm run prepare`的过程中，会从源码中提取 ts 类型信息（以`index.tsx?`为入口），输出到`./api-json/api.json`中。然后，当构建文档站点的时候，如果在 markdown 中遇到了`MDXInstruction:renderInterface`指令，则从`./api-json/api.json`根据 interface 名称拿到 interface 的成员信息，这个成员信息就是 API 文档的表格的数据
+    - 请留意 prepare 过程中`api-extractor`给出的提示，改善你的类型导出。比如，api-extractor 会帮助你发现忘记 export 的类型，解决方式就是在`index.tsx?`导出对应的类型，详见[api-extractor 文档](https://api-extractor.com/pages/messages/ae-forgotten-export/)
     - 如果文档站点发生报错：`Uncaught Error: data entry not exist. data: ....`，意味着你要渲染的 interface 数据不在`./api-json/api.json`里面。请检查你的 inteface 是否从`index.tsx?`导出
 - README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染
   - README 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 类型信息作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。

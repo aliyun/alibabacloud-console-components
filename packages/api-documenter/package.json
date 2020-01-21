@@ -24,7 +24,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepublish": "npm run clean && tsc && npm run cp",
+    "prepare": "npm run clean && tsc && npm run cp",
     "clean": "rm -rf lib es",
     "types": "tsc --emitDeclarationOnly",
     "lint": "eslint src/",

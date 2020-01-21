@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@alicloud/console-components": "^1.0.20-alpha.0",
+    "@alicloud/console-components-fake-browser": "^2.0.2",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.7",
