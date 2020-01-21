@@ -1,7 +1,6 @@
 {
-  "name": "@alicloud/wind-api-documenter",
-  "version": "8.0.2",
-  "private": true,
+  "name": "@alicloud/console-components-lib-api-documenter",
+  "version": "8.0.3",
   "description": "Forked from https://github.com/microsoft/web-build-tools . Read JSON files from api-extractor, generate documentation pages",
   "main": "lib/index.js",
   "typings": "dist/index.d.ts",
@@ -13,7 +12,7 @@
     "access": "public"
   },
   "keywords": [
-    "wind"
+    "@alicloud/console-components"
   ],
   "author": {
     "name": "csr632",

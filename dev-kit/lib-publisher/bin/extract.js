@@ -63,8 +63,9 @@ const argv = require('yargs').argv
 async function callAPIDocumenter(rootDir) {
   return new Promise((res, rej) => {
     const child = spawn(
-      'wind-api-documenter',
+      'node',
       [
+        require.resolve('@alicloud/console-components-lib-api-documenter/bin/wind-api-documenter'),
         'flatten-json',
         '--input-folder',
         'cc-dev-out/api-extractor',
