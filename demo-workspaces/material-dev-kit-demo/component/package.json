@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/cc-demo-component",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "license": "MIT",
   "publishConfig": {
@@ -28,6 +28,6 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "@alicloud/console-components-lib-publisher": "^0.1.9"
+    "@alicloud/console-components-lib-publisher": "^0.1.11"
   }
 }
