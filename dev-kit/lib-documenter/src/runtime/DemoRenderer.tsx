@@ -98,37 +98,41 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
     // 异步加载的demo
     if (isPromiseLike(demoInfoOrPromise)) {
       demoInfoOrPromise.then(demoInfo => {
-        const demoSrcFiles = (() => {
-          // 修改demo的package.json，让codesandbox正确解析依赖：
-          // 将demo中的import xxx from '${prodPkgName}' 解析到
-          // actualLoadPkgName的actualLoadPkgVersion版本
-          if (docMetaCtxVal.pkgInfo) {
-            const {
-              prodPkgName,
-              actualLoadPkgName,
-              actualLoadPkgVersion,
-            } = docMetaCtxVal.pkgInfo
-            const pkgJson = JSON.parse(demoInfo._demoSrcFiles['package.json'])
-            pkgJson.dependencies[actualLoadPkgName] = actualLoadPkgVersion
-
-            const alias = pkgJson.alias || {}
-            alias[prodPkgName] = actualLoadPkgName
-            pkgJson.alias = alias
-            return {
-              ...demoInfo._demoSrcFiles,
-              'package.json': JSON.stringify(pkgJson, null, 2),
-            }
-          }
-          return demoInfo._demoSrcFiles
-        })()
-        setDemoInfo({
-          ...demoInfo,
-          _demoSrcFiles: demoSrcFiles,
-        })
+        setDemoInfo(fixDemoPkgJson(demoInfo))
       })
     } else {
       // 同步加载的demo
-      setDemoInfo(demoInfoOrPromise)
+      setDemoInfo(fixDemoPkgJson(demoInfoOrPromise))
+    }
+
+    function fixDemoPkgJson(demoInfo) {
+      const demoSrcFiles = (() => {
+        // 修改demo的package.json，让codesandbox正确解析依赖：
+        // 将demo中的import xxx from '${prodPkgName}' 解析到
+        // actualLoadPkgName的actualLoadPkgVersion版本
+        if (docMetaCtxVal.pkgInfo) {
+          const {
+            prodPkgName,
+            actualLoadPkgName,
+            actualLoadPkgVersion,
+          } = docMetaCtxVal.pkgInfo
+          const pkgJson = JSON.parse(demoInfo._demoSrcFiles['package.json'])
+          pkgJson.dependencies[actualLoadPkgName] = actualLoadPkgVersion
+
+          const alias = pkgJson.alias || {}
+          alias[prodPkgName] = actualLoadPkgName
+          pkgJson.alias = alias
+          return {
+            ...demoInfo._demoSrcFiles,
+            'package.json': JSON.stringify(pkgJson, null, 2),
+          }
+        }
+        return demoInfo._demoSrcFiles
+      })()
+      return {
+        ...demoInfo,
+        _demoSrcFiles: demoSrcFiles,
+      }
     }
   }, [])
 

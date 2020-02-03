@@ -21,7 +21,7 @@ const backupNpmRcPath = path.resolve(rootDir, '.npmrc.backup')
 // 这个token对应的npm账号是用临时邮箱申请的，
 // 专门用来存放临时demo，泄露也不会造成安全隐患。
 // 任何人都可以用这个公共token来发布包。
-const npmToken = `fd0124f2-0115-4534-bc38-6342c2a49b73`
+const npmToken = `d5433a29-d7de-448d-882f-3651cbbc0d80`
 
 ;(async () => {
   if (await fs.exists(backupNpmRcPath)) {
@@ -57,7 +57,7 @@ const npmToken = `fd0124f2-0115-4534-bc38-6342c2a49b73`
 # 这个token对应的npm账号是用临时邮箱申请的，
 # 专门用来存放临时demo，泄露也不会造成安全隐患。
 # 任何人都可以用这个公共token来发布包。
-//registry.npmjs.org/:_authToken=${npmToken}
+//registry.npmjs.org/:_authToken=\${NPM_TOKEN}
 `
 
   // 生产包名转换为预览包名
@@ -82,7 +82,9 @@ const npmToken = `fd0124f2-0115-4534-bc38-6342c2a49b73`
   await fs.writeFile(npmRcPath, newNpmRcText, 'utf-8')
   try {
     await new Promise((res, rej) => {
-      const childProc = spawn('npm', ['publish', '--tag', 'preview'])
+      const childProc = spawn('npm', ['publish', '--tag', 'preview'], {
+        env: { ...process.env, NPM_TOKEN: npmToken },
+      })
       childProc.stdout.pipe(process.stdout)
       childProc.stderr.pipe(process.stderr)
       childProc.on('exit', code => {
