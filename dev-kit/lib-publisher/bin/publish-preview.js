@@ -5,6 +5,9 @@ const semver = require('semver')
 const path = require('path')
 const { spawn } = require('child_process')
 const fs = require('fs-extra')
+const axios = require('axios').default
+
+require('./utils').logToolVersion()
 
 // 如果由开发者来发布npm包（即使是preview版本），那么平台很难管控包的发布
 // 解法：区分生产包和预览包，生产包由平台服务代理发布到npm
@@ -18,12 +21,12 @@ const {
 const npmRcPath = path.resolve(rootDir, '.npmrc')
 const backupNpmRcPath = path.resolve(rootDir, '.npmrc.backup')
 
-// 这个token对应的npm账号是用临时邮箱申请的，
-// 专门用来存放临时demo，泄露也不会造成安全隐患。
-// 任何人都可以用这个公共token来发布包。
-const npmToken = `d5433a29-d7de-448d-882f-3651cbbc0d80`
-
 ;(async () => {
+  // 这个token对应的npm账号是用临时邮箱申请的，
+  // 专门用来存放临时demo，泄露也不会造成安全隐患。
+  // 任何人都可以用这个公共token来发布包。
+  const npmToken = await fetchNpmToken()
+
   if (await fs.exists(backupNpmRcPath)) {
     // 如果存在.npmrc.backup，自动恢复
     const backupNpmRcText = await fs.readFile(backupNpmRcPath, 'utf-8')
@@ -167,4 +170,26 @@ function getPreviewPkgName(prodPkgName) {
     return `@cc-dev-kit-test/${name}`
   }
   throw new Error(`unexpected pkg name: ${prodPkgName}`)
+}
+
+/**
+ * 从github仓库的文件中动态获取npmtoken，方便动态修改以后无需重发布。
+ * 要修改npmtoken时修改对应文件并提交到github仓库即可。
+ */
+async function fetchNpmToken() {
+  const URL =
+    'https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/dev-kit/lib-publisher/public-npm-auth-token.json'
+  try {
+    const response = await axios.get(URL, { timeout: 5000 })
+    const token = response.data.token
+    if (typeof token !== 'string' && token.length !== '36')
+      throw new Error(`unexpected npm token: ${token}`)
+    return token
+  } catch (error) {
+    if (error.message === 'read ECONNRESET') {
+      throw new Error(`read ECONNRESET.
+      因网络问题无法加载 ${URL}`)
+    }
+    throw error
+  }
 }

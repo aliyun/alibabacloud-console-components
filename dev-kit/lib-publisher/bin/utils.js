@@ -73,3 +73,8 @@ exports.getCmdArgs = () => {
     backupPkgJsonPath,
   }
 }
+
+exports.logToolVersion = () => {
+  const pkgJson = require('../package.json')
+  console.log(`toolInfo: ${pkgJson.name}@${pkgJson.version}`)
+}
