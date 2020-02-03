@@ -21,7 +21,7 @@ const backupNpmRcPath = path.resolve(rootDir, '.npmrc.backup')
 // 这个token对应的npm账号是用临时邮箱申请的，
 // 专门用来存放临时demo，泄露也不会造成安全隐患。
 // 任何人都可以用这个公共token来发布包。
-const npmToken = `ab21996e-1736-4f17-90ed-bae1b2c3ab66`
+const npmToken = `fd0124f2-0115-4534-bc38-6342c2a49b73`
 
 ;(async () => {
   if (await fs.exists(backupNpmRcPath)) {

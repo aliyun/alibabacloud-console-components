@@ -25,6 +25,7 @@
   "dependencies": {
     "@alicloud/console-components-lib-documenter": "^0.1.8",
     "@mdx-js/loader": "^1.5.3",
+    "axios": "^0.19.2",
     "fs-extra": "^8.1.0",
     "gray-matter": "^4.0.2",
     "portfinder": "^1.0.25",

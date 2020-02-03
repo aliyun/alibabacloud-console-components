@@ -10,7 +10,7 @@
     "."
   ],
   "scripts": {
-    "bootstrap": "yarn && lerna run prepare --scope @alicloud/console-components-lib-publisher --include-dependencies && lerna run prepare",
+    "bootstrap": "yarn && lerna run prepare --scope @alicloud/console-components-lib-publisher --scope @alicloud/console-components --include-dependencies && lerna run prepare --ignore @alicloud/console-components",
     "clean": "lerna clean --yes && rm -rf node_modules",
     "link-bin": "link-parent-bin && link-parent-bin -c ./dev-kit",
     "postinstall": "npm run link-bin",
@@ -44,7 +44,7 @@
     "cz-conventional-changelog": "^3.0.2",
     "dva": "^2.4.1",
     "eslint": "^5.3.0",
-    "gatsby": "^2.18.22",
+    "gatsby": "2.18.22",
     "glob": "^7.1.6",
     "lerna": "^3.13.1",
     "link-parent-bin": "^1.0.2",
