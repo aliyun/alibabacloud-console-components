@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-lib-documenter",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,7 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "@alicloud/console-components": "^1.0.20-alpha.1",
+    "@alicloud/console-components": "^1.0.20-alpha.2",
     "@alicloud/console-components-fake-browser": "^2.0.3",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",

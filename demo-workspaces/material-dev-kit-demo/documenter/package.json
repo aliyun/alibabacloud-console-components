@@ -1,7 +1,7 @@
 {
   "name": "dev-kit-demo-documenter",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
