@@ -57,6 +57,10 @@ const getActionBarComponent = status => {
   return {}
 }
 
+const ScActionBarRight = styled(ActionBar.Right)`
+  flex: 0 0 auto;
+`
+
 const Layout = props => {
   const {
     operation,
@@ -110,9 +114,9 @@ const Layout = props => {
             <ActionBar.Left>
               {selection && <Selection render={selection} />}
             </ActionBar.Left>
-            <ActionBar.Right>
+            <ScActionBarRight>
               {renderComponent(Pagination, pagination, props)}
-            </ActionBar.Right>
+            </ScActionBarRight>
           </ExactBottomActionBar>
         )}
       </STableWrapper>
