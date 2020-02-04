@@ -24,7 +24,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@runtime': '@alicloud/console-components-lib-documenter/src/runtime',
+      '@runtime': '@alicloud/console-components-lib-documenter/lib/runtime',
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },

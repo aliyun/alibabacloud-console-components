@@ -20,7 +20,6 @@
     "@alicloud/console-components-lib-publisher": "^0.1.12",
     "@alicloud/console-components-page": "^1.0.6",
     "@mdx-js/mdx": "^1.5.1",
-    "@mdx-js/react": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby-plugin-less": "^3.0.12",
     "gatsby-plugin-mdx": "^1.0.55",

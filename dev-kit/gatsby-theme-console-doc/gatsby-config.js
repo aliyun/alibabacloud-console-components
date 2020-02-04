@@ -9,8 +9,31 @@ module.exports = themeOptions => {
     linkInstructions = [],
   } = themeOptions
 
-  if (!Array.isArray(fileSystemCrawlers))
-    throw new Error(`themeOptions.fileSystemCrawlers should be set`)
+  const fsPlugins = (() => {
+    if (!fileSystemCrawlers) return []
+    if (!Array.isArray(fileSystemCrawlers))
+      throw new Error(`themeOptions.fileSystemCrawlers should be array or undefined`)
+    return fileSystemCrawlers.map(
+      ({ rootDir, ignore = [], name = 'default-file-system-crawler-name' }) => {
+        if (!Array.isArray(ignore))
+          throw new Error(
+            `themeOptions.fileSystemCrawlers[].ignore should be array`
+          )
+        if (!rootDir)
+          throw new Error(
+            `themeOptions.fileSystemCrawlers[].rootDir should be set`
+          )
+        return {
+          resolve: 'gatsby-source-filesystem',
+          options: {
+            name,
+            path: rootDir,
+            ignore: ['**/.*', '**/*.!(md|mdx)', ...ignore],
+          },
+        }
+      }
+    )
+  })()
 
   return {
     plugins: [
@@ -34,30 +57,7 @@ module.exports = themeOptions => {
           rehypePlugins: [require('rehype-slug')],
         },
       },
-      ...fileSystemCrawlers.map(
-        ({
-          rootDir,
-          ignore = [],
-          name = 'default-file-system-crawler-name',
-        }) => {
-          if (!Array.isArray(ignore))
-            throw new Error(
-              `themeOptions.fileSystemCrawlers[].ignore should be array`
-            )
-          if (!rootDir)
-            throw new Error(
-              `themeOptions.fileSystemCrawlers[].rootDir should be set`
-            )
-          return {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-              name,
-              path: rootDir,
-              ignore: ['**/.*', '**/*.!(md|mdx)', ...ignore],
-            },
-          }
-        }
-      ),
+      ...fsPlugins,
       'gatsby-plugin-typescript',
       'gatsby-plugin-styled-components',
       'gatsby-plugin-less',
