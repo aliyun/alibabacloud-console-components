@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-lib-documenter",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -14,20 +14,20 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "@alicloud/console-components": "^1.0.20-alpha.2",
+    "@alicloud/console-components": "^1.0.20-alpha.3",
     "@alicloud/console-components-fake-browser": "^2.0.3",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.7",
+    "@mdx-js/react": "^1.5.1",
     "@microsoft/api-extractor": "^7.7.0",
     "@types/node": "^13.1.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.0",
+    "dva": "^2.4.1",
     "filenamify": "^4.1.0",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
-    "@mdx-js/react": "^1.5.1",
-    "dva": "^2.4.1",
     "html-webpack-plugin": "^3.2.0",
     "libnpm": "^3.0.1",
     "mdast": "^3.0.0",

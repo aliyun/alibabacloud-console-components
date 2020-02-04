@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/cc-demo-component",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "license": "MIT",
   "publishConfig": {
@@ -16,6 +16,7 @@
     "publish-preview": "cc-publish-preview"
   },
   "devDependencies": {
+    "@alicloud/console-components-lib-publisher": "^0.1.13",
     "@types/react": "^16.9.17",
     "@types/styled-components": "^4.4.1",
     "cross-env": "^6.0.3",
@@ -24,7 +25,6 @@
     "react-dom": "^16.12.0",
     "typescript": "^3.7.4",
     "webpack-cli": "^3.3.10",
-    "@alicloud/console-components-lib-publisher": "^0.1.12",
     "webpack-dev-server": "^3.10.1"
   }
 }
