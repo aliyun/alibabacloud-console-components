@@ -3,9 +3,10 @@
   "private": true,
   "main": "index.js",
   "license": "MIT",
+  "//": "用户使用时将node ../../../node_modules/.bin/gatsby 改成 gatsby 即可，这里使用父目录的bin是因为yarn workspace的限制",
   "scripts": {
-    "clean": "gatsby clean",
-    "develop": "npm run clean && gatsby develop",
+    "clean": "node ../../../node_modules/.bin/gatsby clean",
+    "develop": "npm run clean && node ../../../node_modules/.bin/gatsby develop",
     "start": "npm run develop",
     "debug": "npm run clean && npx --node-arg=--inspect-brk gatsby develop",
     "build": "npm run clean && gatsby build --prefix-paths"

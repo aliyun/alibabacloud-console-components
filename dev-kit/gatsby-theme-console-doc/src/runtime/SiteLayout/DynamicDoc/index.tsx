@@ -6,9 +6,9 @@ const DynamicDoc: React.FC<{}> = () => {
   if (pageCtx.pageMeta.type !== 'dynamic-doc') return null
 
   const docDef = {
-    prodPkgName: pageCtx.pageMeta.packageName,
-    actualLoadPkgName: pageCtx.pageMeta.packageName,
-    actualLoadPkgVersion: pageCtx.pageMeta.packageVersion || 'latest',
+    prodPkgName: pageCtx.pageMeta.prodPkgName,
+    actualLoadPkgName: pageCtx.pageMeta.actualLoadPkgName || pageCtx.pageMeta.prodPkgName,
+    actualLoadPkgVersion: pageCtx.pageMeta.actualLoadPkgVersion || 'latest',
   }
 
   const [DocComp, setDocComp] = useState<any>(null)

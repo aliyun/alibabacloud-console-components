@@ -124,9 +124,18 @@ module.exports = {
             zhName: '页面内容区域布局',
             category: 'components',
             // 文档资源加载地址：
-            // https://cdn.jsdelivr.net/npm/${packageName}@${packageVersion}/dist/_doc.system.js
-            packageName: '@alicloud/console-components-page',
-            packageVersion: 'latest',
+            // https://cdn.jsdelivr.net/npm/${prodPkgName}@latest/dist/_doc.system.js
+            prodPkgName: '@alicloud/console-components-page',
+          },
+          {
+            name: "rc-demo-component",
+            zhName: "示例组件",
+            category: 'components',
+            // 文档资源加载地址：
+            // https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
+            prodPkgName: '@alicloud/cc-demo-component',
+            actualLoadPkgName: '@cc-dev-kit-test/cc-demo-component',
+            actualLoadPkgVersion: '1.0.1-preview.29',
           },
         ],
       },

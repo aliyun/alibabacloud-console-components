@@ -305,10 +305,9 @@ function createDynamicDocsMeta({ themeOptions }) {
 
   return dynamicDocs.map(dynamicDoc => {
     if (
-      typeof dynamicDoc.packageName !== 'string' ||
-      dynamicDoc.packageName.length === 0
+      typeof dynamicDoc.prodPkgName !== 'string'
     ) {
-      throw new Error(`dynamicDoc.packageName should be a string`)
+      throw new Error(`dynamicDoc.prodPkgName should be a string`)
     }
     return {
       ...dynamicDoc,

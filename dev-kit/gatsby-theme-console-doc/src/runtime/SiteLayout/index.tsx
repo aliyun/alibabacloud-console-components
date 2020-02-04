@@ -75,12 +75,15 @@ export interface IDynamicDocMeta {
   category: string
   /**
    * 文档资源加载地址：
-   * https://www.unpkg.com/${packageName}@${packageVersion}/dist/_doc.system.js
+   * https://www.unpkg.com/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
    * 或者
-   * https://cdn.jsdelivr.net/npm/${packageName}@${packageVersion}/dist/_doc.system.js
+   * https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
+   *
+   * 其中，文档demo对prodPkgName的依赖被重定向到actualLoadPkgName
    */
-  packageName: string
-  packageVersion?: string
+  prodPkgName: string
+  actualLoadPkgName?: string
+  actualLoadPkgVersion?: string
   /**
    * 文章在菜单中的显示文字
    */
