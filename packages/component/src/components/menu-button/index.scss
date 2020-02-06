@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+$menu-button-cls-name: '#{$css-prefix}menu-btn';
+
+// -- fix: https://work.aone.alibaba-inc.com/issue/24845125 -- //
+
+.#{$menu-button-cls-name} {
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-normal {
+    .#{$css-prefix}menu-btn-arrow {
+      color: #333333;
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-normal:focus, 
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-normal:hover, 
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-normal.active {
+    .#{$css-prefix}menu-btn-arrow {
+      color: #555555;
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-secondary {
+    .#{$css-prefix}menu-btn-arrow {
+      color: #555555;
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-secondary:focus, 
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-secondary:hover, 
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-secondary.active {
+    .#{$css-prefix}menu-btn-arrow {
+      color: #888888;
+    }
+  }
+}
