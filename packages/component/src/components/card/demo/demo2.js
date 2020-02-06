@@ -1,11 +1,13 @@
 import React from 'react'
 import { Card } from '@alicloud/console-components'
-import'./demo2.less'
+import './demo2.less'
 
 const commonProps = {
   style: { width: 300 },
   title: 'Title',
   subTitle: 'Sub-title',
+  showTitleBullet: false,
+  showHeadDivider: false,
 }
 
 const Demo2 = () => (
