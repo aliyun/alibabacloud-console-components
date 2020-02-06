@@ -46,6 +46,15 @@ $page-cls-name: '#{$css-prefix}pagination';
     &.#{$css-prefix}large {
       min-width: $size-base * 9;
     }
+
+    &.#{$btn-cls-name}[disabled] {
+      border: 1px solid #EBEBEB;
+      color: #c1c1c1;
+      background: #fafafa;
+      .#{$css-prefix}icon {
+        color: #dedede;
+      }
+    }
   }
 
   &-list {
