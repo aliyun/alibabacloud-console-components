@@ -1,14 +1,16 @@
 import React from 'react'
-import { Card, Button } from '@alicloud/console-components'
+import { Card, Icon } from '@alicloud/console-components'
 
 const commonProps = {
   style: { width: 300 },
   title: 'Title',
-  extra: <Button text>More</Button>
+  extra: <Icon size="xs" type="ellipsis-vertical" />,
+  showTitleBullet: false,
+  showHeadDivider: false,
 }
 
 const Demo4 = () => (
-	<div>
+  <div>
     <Card {...commonProps} showTitleBullet={false}>
       Card Content
     </Card>
