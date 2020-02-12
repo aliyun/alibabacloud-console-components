@@ -1,45 +1,46 @@
-import React from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import { Overlay } from '@alicloud/console-components'
+import styled from 'styled-components'
 
-export default class Demo2 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false
-    }
-  }
+const Demo2 = () => {
+  const btnRef = useRef(null)
 
-  onClick = () => {
-    this.setState({
-      visible: true
-    })
-  }
+  const [visible, setVisible] = useState(false)
 
-  onClose = () => {
-    this.setState({
-      visible: false
-    })
-  }
+  const handleClick = useCallback(() => {
+    setVisible(true)
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.onClick} ref={ref => {
-          this.btn = ref;
-        }}>
-          Open
-        </button>
-        <Overlay visible={this.state.visible}
-          safeNode={() => this.btn}
-          align="cc cc"
-          hasMask
-          disableScroll
-          onRequestClose={this.onClose}>
-          <span className="overlay-demo">
-            Hello World From Overlay!
-          </span>
-        </Overlay>
-      </div>
-    )
-  }
+  const handleClose = useCallback(() => {
+    setVisible(false)
+  }, [])
+
+  return (
+    <div>
+      <button onClick={handleClick} ref={btnRef}>
+        Open
+      </button>
+      <Overlay
+        visible={visible}
+        safeNode={() => btnRef.current}
+        align="cc cc"
+        hasMask
+        disableScroll
+        onRequestClose={handleClose}
+      >
+        <SInner>Hello World From Overlay!</SInner>
+      </Overlay>
+    </div>
+  )
 }
+
+const SInner = styled.span`
+  width: 300px;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #999999;
+  background: #ffffff;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+`
+
+export default Demo2
