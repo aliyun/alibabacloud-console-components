@@ -7,7 +7,7 @@ import {
   omissionClassName,
   AlignType,
 } from './constants'
-import { useTooltip } from './utils'
+import { useTooltip, IPatchPopupProps } from './utils'
 
 const TruncateByLength: React.FC<{
   children: string
@@ -19,6 +19,7 @@ const TruncateByLength: React.FC<{
   tooltipMaxWidth?: number
   popupStyle?: React.CSSProperties
   popupClassName?: string
+  patchPopupProps?: IPatchPopupProps
 }> = ({
   children,
   threshold,
@@ -29,6 +30,7 @@ const TruncateByLength: React.FC<{
   tooltipMaxWidth,
   popupStyle = {},
   popupClassName,
+  patchPopupProps,
 }) => {
   let isOverflow = false
   const truncatedText = truncate(children, {
@@ -52,6 +54,7 @@ const TruncateByLength: React.FC<{
     truncatedContent: truncateContainer,
     popupStyle,
     popupClassName,
+    patchPopupProps,
   })
 }
 

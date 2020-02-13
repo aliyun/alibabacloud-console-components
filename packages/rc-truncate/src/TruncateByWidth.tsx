@@ -7,7 +7,7 @@ import {
   AlignType,
 } from './constants'
 import { STruncateWidthContainer } from './styles'
-import { useTooltip } from './utils'
+import { useTooltip, IPatchPopupProps } from './utils'
 
 const TruncateByWidth: React.FC<{
   children: React.ReactNode
@@ -22,6 +22,7 @@ const TruncateByWidth: React.FC<{
   isOverflowChange?: (newIsOverflow: boolean) => void
   popupStyle?: React.CSSProperties
   popupClassName?: string
+  patchPopupProps?: IPatchPopupProps
 }> = ({
   children,
   threshold,
@@ -34,6 +35,7 @@ const TruncateByWidth: React.FC<{
   isOverflowChange,
   popupStyle = {},
   popupClassName,
+  patchPopupProps,
 }) => {
   const ref = useRef<HTMLSpanElement | null>(null)
   const [isOverflow, setIsOverflow] = useState(false)
@@ -88,6 +90,7 @@ const TruncateByWidth: React.FC<{
     truncatedContent: truncateContainer,
     popupStyle,
     popupClassName,
+    patchPopupProps,
   })
 }
 

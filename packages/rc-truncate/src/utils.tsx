@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Balloon } from '@alicloud/console-components'
+import { BalloonProps } from '@alicloud/console-components/types/balloon'
 import classnames from 'classnames'
 import {
   AlignType,
   tooltipPopupClassName,
   originalContentClassName,
 } from './constants'
+
+export type IPatchPopupProps = (originalProps: BalloonProps) => BalloonProps
 
 export function useTooltip({
   showTooltip,
@@ -15,6 +18,7 @@ export function useTooltip({
   truncatedContent,
   popupStyle = {},
   popupClassName = '',
+  patchPopupProps,
 }: {
   showTooltip: boolean
   tooltipMaxWidth?: number
@@ -23,6 +27,7 @@ export function useTooltip({
   truncatedContent: React.ReactNode
   popupStyle?: React.CSSProperties
   popupClassName?: string
+  patchPopupProps?: IPatchPopupProps
 }) {
   const [visible, setVisible] = useState(false)
 
@@ -37,22 +42,27 @@ export function useTooltip({
     actualPopupStyle.maxWidth = tooltipMaxWidth
   }
 
-  return (
-    // TODO: 提供选项给用户自定义Ballon的各种属性，比如弹层容器
-    <Balloon
-      visible={visible}
-      trigger={truncatedContent}
-      onVisibleChange={(newVisible: boolean) => {
+  const ballonProps = (() => {
+    const originalProps: BalloonProps = {
+      visible,
+      trigger: truncatedContent,
+      onVisibleChange: (newVisible: boolean) => {
         if (showTooltip && newVisible) setVisible(true)
         else setVisible(false)
-      }}
-      align={align}
-      popupStyle={actualPopupStyle as {}}
-      popupClassName={classnames(tooltipPopupClassName, popupClassName)}
-      alignEdge
-      needAdjust
-      closable={false} // hidden close icon
-    >
+      },
+      align,
+      popupStyle: actualPopupStyle as {},
+      popupClassName: classnames(tooltipPopupClassName, popupClassName),
+      alignEdge: true,
+      needAdjust: true,
+      closable: false, // hidden close icon
+    }
+    if (!patchPopupProps) return originalProps
+    return patchPopupProps(originalProps)
+  })()
+
+  return (
+    <Balloon {...ballonProps}>
       <span
         style={{ display: 'inline-block' }}
         className={originalContentClassName}

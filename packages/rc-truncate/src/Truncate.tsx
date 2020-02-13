@@ -1,5 +1,6 @@
 import React from 'react'
 import { SizeMe } from 'react-sizeme'
+import { BalloonProps } from '@alicloud/console-components/types/balloon'
 import classnames from 'classnames'
 import TruncateByLength from './TruncateByLength'
 import TruncateByWidth from './TruncateByWidth'
@@ -87,6 +88,11 @@ export interface ITruncateProps {
    * 当tooltip展示时，设置弹层组件的className，透传给Popup
    */
   popupClassName?: string
+  /**
+   * 完全控制tooltip的props。比如指定`popupContainer`。<br/>
+   * `BalloonProps`的类型见Balloon组件文档。
+   */
+  patchPopupProps?: (originalProps: BalloonProps) => BalloonProps
 }
 
 /**
@@ -108,6 +114,7 @@ const Truncate: React.FC<ITruncateProps> = ({
   isOverflowChange,
   popupStyle,
   popupClassName,
+  patchPopupProps,
 }) => {
   const actuallShowTooltip = (() => {
     // 旧版组件支持tooltip prop，且'enable'表示true
@@ -159,6 +166,7 @@ const Truncate: React.FC<ITruncateProps> = ({
           tooltipMaxWidth={tooltipMaxWidth}
           popupStyle={popupStyle}
           popupClassName={popupClassName}
+          patchPopupProps={patchPopupProps}
         >
           {children}
         </TruncateByLength>
@@ -188,6 +196,7 @@ const Truncate: React.FC<ITruncateProps> = ({
                 isOverflowChange={isOverflowChange}
                 popupStyle={popupStyle}
                 popupClassName={popupClassName}
+                patchPopupProps={patchPopupProps}
               >
                 {children}
               </TruncateByWidth>
@@ -209,6 +218,7 @@ const Truncate: React.FC<ITruncateProps> = ({
         isOverflowChange={isOverflowChange}
         popupStyle={popupStyle}
         popupClassName={popupClassName}
+        patchPopupProps={patchPopupProps}
       >
         {children}
       </TruncateByWidth>
