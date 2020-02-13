@@ -3,6 +3,8 @@ const { spawnSync, spawn } = require('child_process')
 
 // 对所有非private包调用tnpm sync，同步到内网registery
 
+// 写完这个脚本才发现，lerna exec tnpm sync 可以起到相同的效果。。。
+
 ;(async () => {
   const rootDir = path.resolve(__dirname, '../')
 
