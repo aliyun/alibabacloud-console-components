@@ -173,7 +173,10 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
 
     createPage({
       path: docInfo.path,
-      component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
+      component: path.resolve(
+        __dirname,
+        './src/runtime/SiteLayout/DummyPageElement.tsx'
+      ),
       context: {
         pageMeta: { ...docInfo, sideNav: sideNavConfig },
         siteMeta,
@@ -183,7 +186,10 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
 
   createPage({
     path: '/',
-    component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
+    component: path.resolve(
+      __dirname,
+      './src/runtime/SiteLayout/DummyPageElement.tsx'
+    ),
     context: {
       pageMeta: { type: 'index-page' },
       siteMeta,
@@ -192,7 +198,10 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
 
   createPage({
     path: '/doc-preview',
-    component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
+    component: path.resolve(
+      __dirname,
+      './src/runtime/SiteLayout/DummyPageElement.tsx'
+    ),
     context: {
       pageMeta: { type: 'doc-preview' },
       siteMeta,
@@ -201,7 +210,10 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
 
   createPage({
     path: '/404',
-    component: path.resolve(__dirname, './src/runtime/SiteLayout/index.tsx'),
+    component: path.resolve(
+      __dirname,
+      './src/runtime/SiteLayout/DummyPageElement.tsx'
+    ),
     context: {
       pageMeta: { type: '404' },
       siteMeta,
@@ -304,9 +316,7 @@ function createDynamicDocsMeta({ themeOptions }) {
   const { dynamicDocs } = themeOptions
 
   return dynamicDocs.map(dynamicDoc => {
-    if (
-      typeof dynamicDoc.prodPkgName !== 'string'
-    ) {
+    if (typeof dynamicDoc.prodPkgName !== 'string') {
       throw new Error(`dynamicDoc.prodPkgName should be a string`)
     }
     return {

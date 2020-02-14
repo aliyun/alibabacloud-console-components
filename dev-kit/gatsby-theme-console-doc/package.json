@@ -21,6 +21,7 @@
     "@alicloud/console-components-page": "^1.0.8",
     "@mdx-js/mdx": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",
+    "gatsby-plugin-layout": "^1.1.22",
     "gatsby-plugin-less": "^3.0.12",
     "gatsby-plugin-mdx": "^1.0.55",
     "gatsby-plugin-react-helmet": "^3.1.15",

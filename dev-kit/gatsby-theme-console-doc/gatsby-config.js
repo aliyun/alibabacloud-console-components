@@ -12,7 +12,9 @@ module.exports = themeOptions => {
   const fsPlugins = (() => {
     if (!fileSystemCrawlers) return []
     if (!Array.isArray(fileSystemCrawlers))
-      throw new Error(`themeOptions.fileSystemCrawlers should be array or undefined`)
+      throw new Error(
+        `themeOptions.fileSystemCrawlers should be array or undefined`
+      )
     return fileSystemCrawlers.map(
       ({ rootDir, ignore = [], name = 'default-file-system-crawler-name' }) => {
         if (!Array.isArray(ignore))
@@ -62,6 +64,13 @@ module.exports = themeOptions => {
       'gatsby-plugin-styled-components',
       'gatsby-plugin-less',
       'gatsby-plugin-react-helmet',
+      {
+        // 此插件用来避免在页面跳转的过程中um-mount和re-mount布局组件
+        resolve: `gatsby-plugin-layout`,
+        options: {
+          component: require.resolve(`./src/runtime/SiteLayout/index.tsx`),
+        },
+      },
     ],
   }
 }

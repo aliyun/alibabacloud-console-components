@@ -88,6 +88,10 @@ export interface IDynamicDocMeta {
    * 文章在菜单中的显示文字
    */
   labelInMenu?: string
+  /**
+   * 文章在左侧导航栏的排序，按照[sort, name]来排序
+   */
+  sort?: number
   // url路径
   path: string
   /** 左侧导航菜单的配置 */
@@ -126,10 +130,10 @@ export interface IPageContext {
   siteMeta: ISiteMeta
 }
 
-const SiteLayout: React.FC<{
-  pageContext: IPageContext
-}> = ({ pageContext }) => {
-  // console.log('pageContext', pageContext)
+const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
+  // console.log('SiteLayout props', props)
+  const { pageContext } = props
+
   return (
     <pageCtx.Provider value={pageContext}>
       <SEO />
