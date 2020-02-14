@@ -42,7 +42,14 @@ exports.getCmdArgs = () => {
   const rootDir = path.resolve(process.cwd(), argv.rootDir || '.')
 
   // README.mdx的默认位置
-  const entryMDX = path.resolve(rootDir, 'README.mdx')
+  const entryMDX = (() => {
+    const mdx = path.resolve(rootDir, 'README.mdx')
+    // 优先找.mdx，不存在则找.md
+    if (fs.existsSync(mdx)) {
+      return mdx
+    }
+    return path.resolve(rootDir, 'README.md')
+  })()
 
   const pkgJsonPath = path.resolve(rootDir, 'package.json')
   const backupPkgJsonPath = path.resolve(rootDir, 'package.json.backup')
