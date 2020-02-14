@@ -11,4 +11,10 @@ module.exports = [
     category: 'biz-components',
     prodPkgName: '@alicloud/console-components-truncate',
   },
+  {
+    name: 'rc-actions',
+    zhName: '表格中的行操作器',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-actions',
+  },
 ]
