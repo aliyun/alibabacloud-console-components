@@ -39,6 +39,18 @@ export default function loadDocModule(docDef: IDocDef) {
   const newSystemjsInstance = new systemjsCtor()
   applyPlugin(newSystemjsInstance)
 
+  newSystemjsInstance.shouldFetch = function() {
+    return true
+  }
+
+  newSystemjsInstance.fetch = function(url) {
+    const jsdelivrURL = url.replace(
+      'https://unpkg.com/',
+      'https://cdn.jsdelivr.net/npm/'
+    )
+    return Promise.race([fetch(url), fetch(jsdelivrURL)])
+  }
+
   newSystemjsInstance.resolve = request => {
     if (request === protocalResolved.doc) {
       return protocalResolved.doc

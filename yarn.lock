@@ -20885,10 +20885,10 @@ symbol.prototype.description@^1.0.0:
     es-abstract "^1.17.0-next.1"
     has-symbols "^1.0.1"
 
-systemjs@^6.1.9:
-  version "6.1.9"
-  resolved "https://registry.npm.taobao.org/systemjs/download/systemjs-6.1.9.tgz#17e5601867a9d1ee7a5dab71b050f38877d6992c"
-  integrity sha1-F+VgGGep0e56XatxsFDziHfWmSw=
+systemjs@^6.2.3:
+  version "6.2.3"
+  resolved "https://registry.npm.taobao.org/systemjs/download/systemjs-6.2.3.tgz#4a3dd0e832b4be0516bfb947e1354e81d1e2c05d"
+  integrity sha1-Sj3Q6DK0vgUWv7lH4TVOgdHiwF0=
 
 table@^5.2.3:
   version "5.4.6"
