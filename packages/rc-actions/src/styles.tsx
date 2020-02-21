@@ -41,12 +41,13 @@ export const SActions = styled(DummyDiv)`
 
   .${triggerClassName} {
     height: ${height};
-    color: #0070cc;
+    /* fix: https://github.com/aliyun/alibabacloud-console-components/issues/42 */
+    /* color: #0070cc; */
     display: inline-flex;
     align-items: center;
-    &:hover {
+    /* &:hover {
       color: #005aa5;
-    }
+    } */
   }
 `
 
