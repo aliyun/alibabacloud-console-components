@@ -104,6 +104,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
   onMaskClick,
   onSlideCompleted,
   isShowing,
+  top,
 }) => {
   const slidePanelGroupProps: ISlidePanelGroupProps = {
     isShowing,
@@ -111,6 +112,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     hasMask,
     onMaskClick,
     onSlideCompleted,
+    top,
   }
   const slidePanelItemProps: ISlidePanelItemProps = {
     id: '__SlidePanelId__',
