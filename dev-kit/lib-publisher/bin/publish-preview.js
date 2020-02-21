@@ -116,9 +116,9 @@ const backupNpmRcPath = path.resolve(rootDir, '.npmrc.backup')
     previewPkgName
   )}&actualLoadPkgVersion=${encodeURIComponent(previewPkgVersion)}
   如果github page访问较慢，可以访问国内镜像站点：
-    https://gitee.com/csr632/alibabacloud-console-components/doc-preview?prodPkgName=${encodeURIComponent(
-      prodPkgName
-    )}&actualLoadPkgName=${encodeURIComponent(
+    https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=${encodeURIComponent(
+    prodPkgName
+  )}&actualLoadPkgName=${encodeURIComponent(
     previewPkgName
   )}&actualLoadPkgVersion=${encodeURIComponent(previewPkgVersion)}`)
 })()
