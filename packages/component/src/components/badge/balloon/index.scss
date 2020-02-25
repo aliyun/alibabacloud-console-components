@@ -1,0 +1,74 @@
+@import '../../../styles/variables.scss';
+
+$scaleStyle: scale(0.7);
+
+$primaryColor: #d93026;
+
+$badge-custom: '#{$css-prefix}badge-custom';
+
+$balloon-right: 'badge-balloon-right';
+
+$balloon-top: 'badge-balloon-top';
+
+$balloon-custom: 'badge-custom-balloon';
+
+$badge-new: 'badge-balloon-new';
+
+.#{$balloon-custom} {
+  .#{$badge-custom} {
+    background-color: $primaryColor;
+    position: absolute;
+    color: #fff;
+    overflow: visible;
+    padding: 2px 4px;
+    font-size: 12px;
+    text-align: center;
+    &:after {
+      content: '';
+      position: absolute;
+    }
+  }
+
+  &.#{$balloon-top} {
+    .#{$badge-custom} {
+      top: -22px;
+      right: -5px;
+      transform: translateX(50%) $scaleStyle;
+      bottom: auto;
+      left: auto;
+      &:after {
+        border-bottom: none;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        border-top: 10px solid $primaryColor;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%) $scaleStyle;
+      }
+    }
+  }
+  &.#{$balloon-right} {
+    &.#{$badge-new} {
+      .#{$css-prefix}badge-custom {
+        right: -44px;
+      }
+    }
+    .#{$css-prefix}badge-custom {
+      top: 50%;
+      transform: translateY(-50%) $scaleStyle;
+      right: -40px;
+      left: auto;
+      bottom: auto;
+      &:after {
+        border-left: none;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-right: 10px solid $primaryColor;
+        top: 50%;
+        left: -8px;
+        transform: translateY(-50%) $scaleStyle;
+      }
+    }
+  }
+}
+

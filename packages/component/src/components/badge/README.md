@@ -18,6 +18,13 @@ zhName: 徽标数
 
 [MDXInstruction:embedAPIFromFusion](https://github.com/alibaba-fusion/next/blob/master/docs/badge/index.md)
 
+## Badge.Balloon
+
+|参数|说明|类型|默认值|
+|:---:|:---:|:---:|:---|
+|type|badge的类型|new|hot|hot|
+|align|balloon展示的位置|top/right|top|
+
 
 ## Demo
 
@@ -33,6 +40,10 @@ zhName: 徽标数
 使用 content 属性定义显示的内容。
 
 #include "demo/demo3.js"
+
+使用 气泡徽章 来展示`HOT`，`NEW`。
+
+#include "demo/demo4.js"
 
 
 
