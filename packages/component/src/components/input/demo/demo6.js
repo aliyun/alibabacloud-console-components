@@ -1,19 +1,18 @@
 import React, { useState } from 'react'
 import { Input } from '@alicloud/console-components'
 
-const handleChange = v => {
-  console.log(v)
-  this.setState({
-    control: v,
-  })
-}
-
 const handleKeyDown = (e, opts) => {
   console.log('onKeyDown', opts)
 }
 
 const Demo5 = () => {
   const [control, setControl] = useState('maxLen control')
+
+  const handleChange = v => {
+    console.log(v)
+    setControl(v)
+  }
+
   return (
     <div>
       <Input

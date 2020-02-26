@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Input } from '@alicloud/console-components'
 
 const result = [
@@ -18,25 +18,16 @@ const result = [
     title: { name: 'The adventures of Robinson Crusoe' },
   },
 ]
+const EditablePane = props => {
+  const { defaultTitle } = props
+  const [cellTitle, setCellTitle] = useState(defaultTitle)
+  const [editable, setEditable] = useState(false)
 
-class EditablePane extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cellTitle: props.defaultTitle,
-      editable: false,
-    }
-  }
+  useEffect(() => {
+    setCellTitle(defaultTitle)
+  }, [defaultTitle])
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultTitle !== this.state.cellTitle) {
-      this.setState({
-        cellTitle: nextProps.defaultTitle,
-      })
-    }
-  }
-
-  onKeyDown = e => {
+  const onKeyDown = e => {
     const { keyCode } = e
     // Stop bubble up the events of keyUp, keyDown, keyLeft, and keyRight
     if (keyCode > 36 && keyCode < 41) {
@@ -44,69 +35,47 @@ class EditablePane extends React.Component {
     }
   }
 
-  onBlur = e => {
-    this.setState({
-      editable: false,
-      cellTitle: e.target.value,
-    })
+  const onBlur = e => {
+    setCellTitle(e.target.value)
+    setEditable(false)
   }
 
-  onDblClick = () => {
-    this.setState({
-      editable: true,
-    })
+  const onDblClick = () => {
+    setEditable(true)
   }
 
-  render() {
-    const { cellTitle, editable } = this.state
-    if (editable) {
-      return (
-        <Input
-          autoFocus
-          defaultValue={cellTitle}
-          onKeyDown={this.onKeyDown}
-          onBlur={this.onBlur}
-        />
-      )
-    }
-    return <span onDoubleClick={this.onDblClick}>{cellTitle}</span>
+  if (editable) {
+    return (
+      <Input
+        autoFocus
+        defaultValue={cellTitle}
+        onKeyDown={onKeyDown}
+        onBlur={onBlur}
+      />
+    )
   }
+  return <span onDoubleClick={onDblClick}>{cellTitle}</span>
 }
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      dataSource: result,
-      id: '',
-    }
-  }
-
-  renderCell = (value, index, record) => {
+const Demo = () => {
+  const renderCell = (value, index, record) => {
     return <EditablePane defaultTitle={value} />
   }
 
-  render() {
-    return (
-      <div>
-        <Table dataSource={this.state.dataSource}>
-          <Table.Column title="Id" dataIndex="id" />
-          <Table.Column
-            title="Title"
-            dataIndex="title.name"
-            cell={this.renderCell}
-          />
-          <Table.Column title="Time" dataIndex="time" />
-        </Table>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Table dataSource={result}>
+        <Table.Column title="Id" dataIndex="id" />
+        <Table.Column title="Title" dataIndex="title.name" cell={renderCell} />
+        <Table.Column title="Time" dataIndex="time" />
+      </Table>
+    </div>
+  )
 }
 
 export default Demo
 
 export const demoMeta = {
   zhName: `可编辑的表格`,
-  zhDesc: `单元格可编辑的表格`,
+  zhDesc: `单元格可编辑的表格（双击单元格进行编辑）`,
 }

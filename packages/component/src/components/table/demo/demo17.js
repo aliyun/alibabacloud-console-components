@@ -18,15 +18,13 @@ const render = (value, index, record) => {
 }
 
 const Demo17 = () => {
-  
   const [className, setClassName] = useState('')
 
-  const [isZebra, setIsZebra] = useState(undefined);
+  const [isZebra, setIsZebra] = useState(false)
 
-  const [hasBorder, setHasBorder] = useState(undefined);
+  const [hasBorder, setHasBorder] = useState(false)
 
-  const [align, setAlign] = useState('left');
-
+  const [align, setAlign] = useState('left')
 
   const toggleZebra = () => {
     setIsZebra(!isZebra)
@@ -37,7 +35,7 @@ const Demo17 = () => {
   }
 
   const makeBeauty = () => {
-    setClassName('beauty');
+    setClassName('beauty')
   }
 
   const makeAlign = () => {
@@ -75,7 +73,7 @@ export const demoMeta = {
   zhDesc: `自定义表格边框`,
 }
 
-export default Demo17;
+export default Demo17
 
 const SWrapper = styled.span`
   .beauty {
