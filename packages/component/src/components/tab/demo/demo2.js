@@ -2,7 +2,7 @@ import React from 'react'
 import { Tab } from '@alicloud/console-components'
 import './demo2.less'
 
-const onChange = (key) => {
+const onChange = key => {
   console.log(key)
 }
 
@@ -13,7 +13,7 @@ const tabs = [
   { tab: 'Repo', key: 'repo', content: 'This ia repo link' },
 ]
 
-const extraTabs = (new Array(20)).fill(0).map((item, i) => ({
+const extraTabs = new Array(20).fill(0).map((item, i) => ({
   tab: `extra-tab-${i}`,
   key: `extra-tab-${i}`,
   content: `extra tab(${i}) content`,
@@ -25,13 +25,17 @@ const shapes = ['pure', 'wrapped', 'capsule', 'text']
 
 const Demo2 = () => (
   <div>
-    { shapes.map((shape) => (
+    {shapes.map(shape => (
       <div key={shape} className="tab-demo2-box">
         <Tab shape={shape} onChange={onChange}>
-          {bunchTabs.map(tab => <Tab.Item title={tab.tab} key={tab.key}>{tab.content}</Tab.Item>) }
+          {bunchTabs.map((tab, index) => (
+            <Tab.Item title={tab.tab} key={tab.key} disabled={index === 2}>
+              {tab.content}
+            </Tab.Item>
+          ))}
         </Tab>
-      </div>)) 
-    }
+      </div>
+    ))}
   </div>
 )
 

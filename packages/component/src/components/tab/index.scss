@@ -14,6 +14,23 @@ $tabs-cls-name: '#{$css-prefix}tabs';
 
       &:last-child {
         border-right-width: 1px;
+			}
+    }
+  }
+}
+
+// fix: https://aone.alibaba-inc.com/req/25353913
+.#{$tabs-cls-name}-bar {
+  &#{&}#{&}#{&} {
+    .#{$tabs-cls-name}-tab {
+      &.disabled {
+        background-color: transparent;
+        color: #c1c1c1;
+      }
+
+      &:hover {
+        color: #0070cc;
+        background-color: transparent;
       }
     }
   }

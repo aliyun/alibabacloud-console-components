@@ -10,7 +10,7 @@ const Demo1 = () => (
       <Tab.Item title="Starred Projects">
         <p>Starred projects...</p>
       </Tab.Item>
-      <Tab.Item title="Explore Projects">
+      <Tab.Item disabled title="Explore Projects">
         <p>Explore projects...</p>
       </Tab.Item>
     </Tab>
