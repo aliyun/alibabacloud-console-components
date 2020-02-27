@@ -80,6 +80,10 @@ export interface ISlidePanelProps {
    * 面板的滑出、滑入动画完成了。
    */
   onSlideCompleted?: () => void
+  /**
+   * 渲染组件的容器，如果是函数需要返回 ref，如果是字符串则是该 DOM 的 id，也可以直接传入 DOM 节点
+   */
+  container?: any
 }
 
 /**
@@ -105,6 +109,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
   onSlideCompleted,
   isShowing,
   top,
+  container,
 }) => {
   const slidePanelGroupProps: ISlidePanelGroupProps = {
     isShowing,
@@ -113,6 +118,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     onMaskClick,
     onSlideCompleted,
     top,
+    container,
   }
   const slidePanelItemProps: ISlidePanelItemProps = {
     id: '__SlidePanelId__',

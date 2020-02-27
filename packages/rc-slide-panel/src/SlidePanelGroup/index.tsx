@@ -1,9 +1,12 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { Overlay } from '@alicloud/console-components'
 import slidePanelGroupContext from '../context'
-import { useTransitionController } from '../utils'
-import { SMask, SPanelsWrapper } from './style'
+import { SPanelsWrapper } from './style'
+
+const { Popup } = Overlay
+
 /**
  * @public
  */
@@ -53,6 +56,10 @@ export interface ISlidePanelGroupProps {
    * **整个面板组**的滑出、滑入动画完成了。
    */
   onSlideCompleted?: () => void
+  /**
+   * 渲染组件的容器，如果是函数需要返回 ref，如果是字符串则是该 DOM 的 id，也可以直接传入 DOM 节点
+   */
+  container?: any
 }
 
 /**
@@ -69,49 +76,70 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   children,
   onSwitchPanelItem,
   onSlideStarted,
-  onSlideCancled,
   onSlideCompleted,
+  container,
 }) => {
   const ctxValue = useMemo(() => ({ activeId, onSwitchPanelItem }), [
     activeId,
     onSwitchPanelItem,
   ])
-  const transitionEndSignal = useTransitionController({
-    data: isShowing,
-    onStarted: onSlideStarted,
-    onCancled: onSlideCancled,
-    onCompleted: onSlideCompleted,
-  })[1]
+
+  const actualTop = useMemo(() => {
+    return typeof top === 'number' ? `${top}px` : `${top}`
+  }, [top])
+
+  const handleVisibleChange = (visible: boolean, type: string): void => {
+    if (
+      typeof onMaskClick === 'function' &&
+      type === 'maskClick' &&
+      visible === false
+    ) {
+      onMaskClick()
+    }
+  }
+
+  const handleOpen = useCallback(() => {
+    if (typeof onSlideStarted === 'function') {
+      onSlideStarted()
+    }
+  }, [onSlideStarted])
+
+  const handleCompleted = useCallback(() => {
+    if (typeof onSlideCompleted === 'function') {
+      onSlideCompleted()
+    }
+  }, [onSlideCompleted])
+
   return (
-    <div
-      className={classNames('slide-panel-container', className, {
-        'show-panel': isShowing,
-      })}
-    >
-      {hasMask && (
-        // eslint-disable-next-line
-        <SMask
-          className={classNames('slide-panel-mask', {
-            'is-active': isShowing,
-          })}
-          onClick={() => onMaskClick && onMaskClick()}
-        />
-      )}
-      <slidePanelGroupContext.Provider value={ctxValue}>
+    <slidePanelGroupContext.Provider value={ctxValue}>
+      <Popup
+        align="tr tr"
+        animation={{
+          in: 'slideInRight',
+          out: 'slideOutRight',
+        }}
+        disableScroll
+        delay={0}
+        afterOpen={handleCompleted}
+        afterClose={handleCompleted}
+        onOpen={handleOpen}
+        visible={isShowing}
+        hasMask={hasMask}
+        container={container}
+        onVisibleChange={handleVisibleChange}
+        canCloseByOutSideClick={false}
+        canCloseByEsc={false}
+        target="viewport"
+      >
         <SPanelsWrapper
-          className="slide-panels"
+          className={classNames('slide-panels', className)}
           isShowing={isShowing}
-          top={top}
-          onTransitionEnd={e => {
-            if (e.target === e.currentTarget) {
-              transitionEndSignal()
-            }
-          }}
+          top={actualTop}
         >
           {children}
         </SPanelsWrapper>
-      </slidePanelGroupContext.Provider>
-    </div>
+      </Popup>
+    </slidePanelGroupContext.Provider>
   )
 }
 
@@ -127,6 +155,5 @@ SlidePanelGroup.propTypes = {
   children: PropTypes.node,
   onSwitchPanelItem: PropTypes.func,
   onSlideStarted: PropTypes.func,
-  onSlideCancled: PropTypes.func,
   onSlideCompleted: PropTypes.func,
 }
