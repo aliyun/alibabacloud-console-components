@@ -55,7 +55,7 @@ export const useTransitionController = <Data>({
   onCancled?: (cancledData: Data, newData: Data) => void
   onCompleted?: (completedData: Data) => void
   data: Data
-}): [boolean, (() => void)] => {
+}): [boolean, () => void] => {
   const [inTransition, setInTransition] = useState(false)
 
   useValueWatcher({

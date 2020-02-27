@@ -29,11 +29,17 @@ const SlidePanelDemo: React.FC<{}> = () => {
       {onOkSetterUI}
 
       <SlidePanel
+        top={50}
         title={title}
         isShowing={active}
+        width="medium"
         onMaskClick={() => {
           setActive(false)
         }}
+        onSlideCompleted={() => {
+          console.log('completed')
+        }}
+        hasMask
         onClose={
           onClose
             ? () => {

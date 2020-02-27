@@ -1,34 +1,41 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
-export const SMask = styled.div`
-  position: fixed;
-  z-index: 100;
-  background-color: #373737;
-  background-color: rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  transition: all 0.25s ease-out;
-
-  &.is-active {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+export const slideInRight = keyframes`
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
     opacity: 1;
   }
 `
 
-export const SPanelsWrapper = styled.div<{
+export const slideOutRight = keyframes`
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+`
+
+export const SPanelsWrapper = styled('div')<{
   top: string | number
   isShowing: boolean
 }>`
-  z-index: 101;
   background: #fff;
   position: fixed;
-  right: 0;
   bottom: 0;
-  top: ${({ top }) => (typeof top === 'number' ? `${top}px` : top)};
-  /* 如果panelsCount === 0 则通过translateX隐藏到右侧 */
-  transform: ${({ isShowing }) =>
-    isShowing ? `translateX(0)` : `translateX(100%)`};
-  transition: transform 0.25s ease-out;
+  left: auto !important; // 强行覆盖掉Popup中的默认根据left来定位
+  right: 0; // 设置根据right来定位
+  top: ${({ top }) => top}!important;
+  &.slideInRight {
+    animation: 0.25s ${slideInRight} ease-out;
+  }
+  &.slideOutRight {
+    animation: 0.25s ${slideOutRight} ease-out;
+  }
 `
