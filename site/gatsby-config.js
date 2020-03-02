@@ -1,6 +1,7 @@
 /* eslint-disable global-require, @typescript-eslint/no-var-requires */
 
 const path = require('path')
+const dynamicDocCfg = require('./dynamic-doc-config')
 
 module.exports = {
   // 如果站点被部署在子路径下，则需要在这里配置子路径
@@ -29,9 +30,10 @@ module.exports = {
               // 忽略基础组件的目录
               `${path.resolve(__dirname, '../packages/component')}/**/*`,
               // 以下组件使用dev-kit的动态文档功能，文档数据来自动态加载的npm包
-              `${path.resolve(__dirname, '../packages/rc-page')}/**/*`,
-              `${path.resolve(__dirname, '../packages/rc-truncate')}/**/*`,
-              `${path.resolve(__dirname, '../packages/rc-actions')}/**/*`,
+              ...dynamicDocCfg.map(
+                ({ name }) =>
+                  `${path.resolve(__dirname, `../packages/${name}`)}/**/*`
+              ),
             ],
           },
           {
