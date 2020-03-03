@@ -1,9 +1,11 @@
 import React from 'react'
-import intl, {
-  withRcIntl,
+import {
   IWindIntlPublic,
-  withProvider,
+  reactIntlFactory,
+  withRcIntl,
 } from '@alicloud/console-components-intl'
+
+const intl = reactIntlFactory()
 
 intl.set({
   messages: {
@@ -12,16 +14,17 @@ intl.set({
 })
 
 const RComponent: React.FC<{ intl: IWindIntlPublic }> = ({ intl: intl0 }) => (
-  <>
+  <div style={{ marginLeft: '16px' }}>
+    <h2>通过使用withRcIntl设置自定义组件文案</h2>
     <p>{intl0('test')}</p>
-  </>
+  </div>
 )
 
 const RComponentWithIntl = withRcIntl({
   componentName: 'RComponent',
 })(RComponent)
 
-const Demo: React.FC = withProvider()(() => {
+const Demo: React.FC = intl.withProvider()(() => {
   return <RComponentWithIntl />
 })
 
