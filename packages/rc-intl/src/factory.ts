@@ -45,7 +45,9 @@ const createReactIntlFromCfg = (
     determineLocale?: IDetermineLocale
   } = {}
 ): IWindIntlExtended => {
-  const instance = new ReactIntl(data, options)
+  // createReactIntlFromCfg 默认采用强隔离：isCrossModules: false
+  const { isCrossModules = false } = options
+  const instance = new ReactIntl(data, { ...options, isCrossModules })
   return createReactIntlFromInstance(instance)
 }
 
