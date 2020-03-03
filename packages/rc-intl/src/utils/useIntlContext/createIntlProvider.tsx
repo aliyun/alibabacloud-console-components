@@ -27,6 +27,9 @@ const normalize = (obj: IMessages) => {
 /* eslint-disable react/static-property-placement */
 
 const createIntlProvider = (intl: IWindIntlPublic) => {
+  /**
+   * provide value to the intl-context.
+   */
   const IntlProvider: React.FC<IIntlProviderProps> = props => {
     const {
       messages = intl.getMessages() || {},
@@ -68,7 +71,31 @@ const createIntlProvider = (intl: IWindIntlPublic) => {
     baseComponentKeyPrefix: PropTypes.string,
     configProviderProps: PropTypes.objectOf(PropTypes.any),
   }
-  return IntlProvider
+
+  /**
+   * A factory that create HOC to provide value to the intl-context.
+   * The component subtree under this HOC can get the provided value from intl-context, which is a smaller influence compared to `intl.set()` in the top level.
+   * User can use this to config the localization of wind components, which consume intl-context.
+   * Notice that the top level intl instance will always use the top level config.
+   */
+  const withProvider = (providerProps?: IIntlProviderProps) => <
+    WrappedComponentProps extends {}
+  >(
+    WrappedComponent: React.ComponentType<WrappedComponentProps>
+  ) => {
+    const HOC: React.FC<WrappedComponentProps> = props => {
+      return (
+        <IntlProvider {...providerProps}>
+          <WrappedComponent {...props} />
+        </IntlProvider>
+      )
+    }
+    HOC.displayName = `withIntlProvider(${WrappedComponent.displayName ||
+      'UnknownComponent'})`
+    return HOC
+  }
+
+  return { IntlProvider, withProvider }
 }
 
 export default createIntlProvider

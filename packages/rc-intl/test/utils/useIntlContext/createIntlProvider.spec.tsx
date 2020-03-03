@@ -8,7 +8,7 @@ import { create } from '../../../src/factory'
 
 describe('createIntlProvider', () => {
   let intlInstance = create(new ReactIntl())
-  let IntlProvider = createIntlProvider(intlInstance)
+  let { IntlProvider } = createIntlProvider(intlInstance)
   const TestConsumer: React.FC<any> = () => null
   beforeEach(() => {
     intlInstance = create(
@@ -17,7 +17,7 @@ describe('createIntlProvider', () => {
         messages: { fromIntlInstance: 'message from intlInstance' },
       })
     )
-    IntlProvider = createIntlProvider(intlInstance)
+    IntlProvider = createIntlProvider(intlInstance).IntlProvider
   })
   it("should get intl config from IWindIntlPublic if it's not in props", () => {
     const wrapper = mount(
