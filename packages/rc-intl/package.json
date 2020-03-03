@@ -3,7 +3,7 @@
   "version": "1.0.6",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "cc-dev-out/index.d.ts",
   "module": "es/index.js",
   "publishConfig": {
     "access": "public"
@@ -23,17 +23,19 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run json",
-    "clean": "rm -rf dist lib es api-temp api-json",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build",
+    "clean": "rm -rf dist lib es cc-dev-out",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
-    "types": "tsc -p src --emitDeclarationOnly && api-extractor run --local --verbose",
+    "types": "tsc -p src --emitDeclarationOnly && cc-extract-api",
     "build": "breezr build --engine webpack",
-    "json": "wind-api-documenter flatten-json --input-folder api-temp --output-folder api-json --output-file-name api.json",
     "test": "breezr test:unit",
     "storybook": "breezr start-storybook",
     "lint": "eslint src/",
-    "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write"
+    "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write",
+    "doc:local-dev": "cc-doc-local-dev",
+    "doc:build": "cc-build-doc",
+    "publish-preview": "cc-publish-preview"
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
