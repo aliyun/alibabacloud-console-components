@@ -54,6 +54,12 @@ module.exports = [
     prodPkgName: '@alicloud/console-components-info',
   },
   {
+    name: 'rc-intl',
+    zhName: '国际化文案解析',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-intl',
+  },
+  {
     name: 'rc-select-list',
     zhName: '大型列表选择',
     category: 'biz-components',
