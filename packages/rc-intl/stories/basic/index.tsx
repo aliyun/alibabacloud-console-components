@@ -101,10 +101,10 @@ class App extends Component<{}, IAppState> {
           })}
         </p>
         <p>{intl.html('text.with.html', { text: 'html-include' })}</p>
-        <p>{intl.date(new Date())}</p>
-        <p>{intl.date(new Date(), 'date')}</p>
-        <p>{intl.date(new Date(), 'time')}</p>
-        <p>{intl.date(new Date(), 'dateTimeWithTimeZone')}</p>
+        <p>{intl.date(new Date('2020-01-02 00:30:30'))}</p>
+        <p>{intl.date(new Date('2020-01-02 00:30:30'), 'date')}</p>
+        <p>{intl.date(new Date('2020-01-02 00:30:30'), 'time')}</p>
+        <p>{intl.date(new Date('2020-01-02 00:30:30'), 'dateTimeWithTimeZone')}</p>
         <p>{intl.number(1000.099)}</p>
         <Pagination />
         <RComponentWithIntl />
