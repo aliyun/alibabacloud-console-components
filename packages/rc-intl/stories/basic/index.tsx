@@ -1,23 +1,19 @@
 import React from 'react'
-import { Pagination, Input } from '@alicloud/console-components'
 import { reactIntlFactory } from '@alicloud/console-components-intl'
 
 const intl = reactIntlFactory()
-
-const date = new Date()
-const rawDate = date.toString()
-const timestamp = date.getTime()
-const consoleTimestamp = '2019-01-01T00:00Z'
 
 const messages = {
   'text.normal': 'This is a normal text.',
   'text.normal.with.non.runtime': 'This is a normal text with non-runtime.',
   'text.normal.with.chinese': '这是一段优美的文字',
+  'text.with.html': 'This is <span style="color: red">{text}</span> text.',
 }
 
 // 设置语言文案
 intl.set({
   messages,
+  locale: 'en-US',
 })
 
 const normalTextWithNonRuntime = intl('text.normal.with.non.runtime')
@@ -29,6 +25,8 @@ const App: React.FC<{}> = () => {
       <p>{intl('text.normal')}</p>
       <p>{normalTextWithNonRuntime}</p>
       <p>{intl('text.normal.with.chinese')}</p>
+      <p>intl.html将包含html标签的文案渲染输出。注意防范XSS攻击。</p>
+      <p>{intl.html('text.with.html', { text: 'my html' })}</p>
     </div>
   )
 }

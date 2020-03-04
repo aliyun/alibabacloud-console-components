@@ -3,15 +3,15 @@ import '@alicloud/console-components/dist/wind.css'
 import { storiesOf } from '@storybook/react'
 import BasicDemo from './basic'
 import WithVar from './withVar'
-import WithComponent from './withComponent'
+import OverwriteWind from './overwriteBaseComponent'
 import WithRcIntlDemo from './withRcIntl'
-import WithDate from './withDate'
-import OtherDemo from './otherDemo'
+import WithDate from './date'
+import NumberDemo from './number'
 
 storiesOf('WindIntl', module)
   .add('BasicDemo', () => <BasicDemo />)
   .add('WithVar', () => <WithVar />)
-  .add('WithComponent', () => <WithComponent />)
+  .add('OverwriteWind', () => <OverwriteWind />)
   .add('WithRcIntlDemo', () => <WithRcIntlDemo />)
   .add('WithDate', () => <WithDate />)
-  .add('OtherDemo', () => <OtherDemo />)
+  .add('NumberDemo', () => <NumberDemo />)

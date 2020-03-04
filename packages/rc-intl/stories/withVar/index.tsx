@@ -21,6 +21,7 @@ const messages = {
 
 intl.set({
   messages,
+  locale: 'en-US',
 })
 
 const App: React.FC<{}> = () => {
@@ -46,7 +47,7 @@ const App: React.FC<{}> = () => {
       <p>{intl('text.with.number.and.plural', { count: 2 })}</p>
       <p>{intl('text.with.number.and.plural', { count: 100 })}</p>
       <p>{intl('text.with.number.and.plural', { count: 1000 })}</p>
-      <h2>intl中使用defaultMessage（当没有在intl.set中设置文案时）</h2>
+      <h2>intl中使用defaultMessage（当找不到文案时使用）</h2>
       <p>
         {intl({
           id: 'text.with.default.message',
@@ -60,7 +61,7 @@ const App: React.FC<{}> = () => {
           defaultMessage: 'This is a text with {defaultMessage} and {vars}.',
           values: {
             defaultMessage: <strong>default message</strong>,
-            vars: <Input value="variables" readOnly />,
+            vars: <Input />,
           },
         })}
       </p>

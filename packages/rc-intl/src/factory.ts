@@ -38,6 +38,9 @@ const createReactIntlFromInstance = (
   return intlExtended
 }
 
+/**
+ * @public
+ */
 const createReactIntlFromCfg = (
   data: { locale?: string; messages?: IMessages } = {},
   options: {
