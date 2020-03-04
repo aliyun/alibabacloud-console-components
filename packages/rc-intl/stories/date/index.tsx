@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { Select } from '@alicloud/console-components'
+import React from 'react'
 import { reactIntlFactory } from '@alicloud/console-components-intl'
-
-const { Option } = Select
 
 const intl = reactIntlFactory()
 
@@ -11,7 +8,8 @@ const timestamp = date.getTime()
 const consoleTimestamp = '2019-01-01T00:00Z'
 
 intl.set({
-  locale: 'zh-CN',
+  locale: 'en-US',
+  // locale: 'zh-Hans-CN',
 })
 
 const App: React.FC<{}> = () => {
