@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { IPreset } from '../presets/date'
 
 import ReactIntl from '../ReactIntl'
@@ -83,11 +83,25 @@ export type IWindIntlPublic = ReactIntl['formatMessage'] & {
 
 /**
  * @public
+ * The type that package user will get. Created by factory.ts.
+ */
+export type IWindIntlExtended = IWindIntlPublic & {
+  IntlProvider: React.FC<IIntlProviderProps>
+  withProvider: (
+    providerProps?: IIntlProviderProps | undefined
+  ) => <WrappedComponentProps extends {}>(
+    WrappedComponent: React.ComponentType<WrappedComponentProps>
+  ) => React.FC<WrappedComponentProps>
+  Consumer: React.ExoticComponent<React.ConsumerProps<IIntlCtxValue>>
+}
+
+/**
+ * @public
  */
 export type IFormatDateOptions =
   | null
   | undefined
-  | keyof (IPreset)
+  | keyof IPreset
   | Intl.DateTimeFormatOptions
 
 /**

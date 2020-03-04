@@ -1,4 +1,4 @@
-import getLocale from '../../src/utils/getLocale'
+import getLocale from '@alicloud/console-components-intl-core/src/utils/getLocale'
 import * as Cookie from 'js-cookie'
 const cookieGet = Cookie.get as jest.Mock
 jest.mock('js-cookie')

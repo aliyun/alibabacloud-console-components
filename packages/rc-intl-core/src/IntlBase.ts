@@ -1,6 +1,7 @@
 import warning from 'warning'
 import get from 'lodash/get'
 import isNil from 'lodash/isNil'
+import isObject from 'lodash/isObject'
 
 import Store from './Store'
 import getLocale from './utils/getLocale'
@@ -109,6 +110,12 @@ class IntlBase {
       result = new Intl.DateTimeFormat(this.getLocale(), opts).format(value)
     } catch (err) {
       warning(false, err.message || 'Uncaught error')
+    }
+
+    // fix: https://github.com/aliyun/alibabacloud-console-components/issues/50
+    if (!isObject(options)) {
+      const reg = /24(?=(:\d{1,2}:\d{1,2}))/
+      result = result.replace(reg, '00')
     }
 
     return result

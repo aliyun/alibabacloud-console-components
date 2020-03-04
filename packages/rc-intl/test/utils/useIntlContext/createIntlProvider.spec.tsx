@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 
 import { Consumer } from '@alicloud/console-components-intl-context'
 import createIntlProvider from '../../../src/utils/useIntlContext/createIntlProvider'
-import ReactIntl from '../../../src/ReactIntl'
+import { ReactIntl } from '@alicloud/console-components-intl-core'
 import { create } from '../../../src/factory'
 
 describe('createIntlProvider', () => {

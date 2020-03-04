@@ -1,7 +1,19 @@
-import { IWindIntlPublic } from './types'
+import {
+  IWindIntlPublic,
+  IMessages,
+  IDetermineLocale,
+  IWindIntlExtended,
+} from './types'
 import ReactIntl from './ReactIntl'
+import createIntlProvider from './utils/useIntlContext/createIntlProvider'
+import { Consumer } from '@alicloud/console-components-intl-context'
 
-const create = (instance: ReactIntl) => {
+/**
+ * @public
+ */
+const createReactIntlFromInstance = (
+  instance: ReactIntl
+): IWindIntlExtended => {
   const intl: IWindIntlPublic = Object.assign(
     instance.formatMessage.bind(instance),
     {
@@ -17,7 +29,29 @@ const create = (instance: ReactIntl) => {
       number: instance.formatNumber.bind(instance),
     }
   )
-  return intl
+  const { IntlProvider, withProvider } = createIntlProvider(intl)
+  const intlExtended = Object.assign(intl, {
+    IntlProvider,
+    withProvider,
+    Consumer,
+  })
+  return intlExtended
 }
 
-export { create }
+/**
+ * @public
+ */
+const createReactIntlFromCfg = (
+  data: { locale?: string; messages?: IMessages } = {},
+  options: {
+    isCrossModules?: boolean
+    determineLocale?: IDetermineLocale
+  } = {}
+): IWindIntlExtended => {
+  // createReactIntlFromCfg 默认采用强隔离：isCrossModules: false
+  const { isCrossModules = false } = options
+  const instance = new ReactIntl(data, { ...options, isCrossModules })
+  return createReactIntlFromInstance(instance)
+}
+
+export { createReactIntlFromInstance, createReactIntlFromCfg }

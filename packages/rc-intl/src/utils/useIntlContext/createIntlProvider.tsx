@@ -4,7 +4,11 @@ import set from 'lodash/set'
 import { ConfigProvider } from '@alicloud/console-components'
 import { Provider } from '@alicloud/console-components-intl-context'
 import extractWindComponentMessages from '../extractWindComponentMessages'
-import { IWindIntlPublic, IIntlProviderProps, IMessages } from '../../types'
+import {
+  IWindIntlPublic,
+  IIntlProviderProps,
+  IMessages,
+} from '@alicloud/console-components-intl-core'
 
 /**
  * Compatible `locale` to moment's locale format

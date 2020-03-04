@@ -1,5 +1,8 @@
 import { createReactIntlFromCfg } from './factory'
-import { IWindIntlPublic, IWindIntlExtended } from './types'
+import {
+  IWindIntlPublic,
+  IWindIntlExtended,
+} from '@alicloud/console-components-intl-core'
 
 const __intl = createReactIntlFromCfg()
 /** @public */
@@ -19,14 +22,17 @@ const intlPublicTyped: IWindIntlPublic = __intl
 
 export default intlPublicTyped
 export { intlPublicTyped as intl, IntlProvider, withProvider, Consumer }
+export {
+  createReactIntlFromCfg,
+  createReactIntlFromCfg as reactIntlFactory,
+  createReactIntlFromInstance,
+} from './factory'
 
-export { default as ReactIntl } from './ReactIntl'
-export { createReactIntlFromCfg as reactIntlFactory } from './factory'
-export { default as IntlBase } from './IntlBase'
-
-export * from './types'
-
-export { default as presets } from './presets/date'
-export * from './presets/date'
-
-export { default as withRcIntl } from './utils/useIntlContext/withRcIntl'
+export {
+  ReactIntl,
+  IntlBase,
+  VanillaIntl,
+  presets,
+  withRcIntl,
+  IWindIntlPublic,
+} from '@alicloud/console-components-intl-core'

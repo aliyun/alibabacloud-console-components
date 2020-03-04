@@ -1,60 +1,29 @@
-import React from 'react'
-import { Consumer } from '@alicloud/console-components-intl-context'
-import intl from './react'
-import createIntlProvider from './utils/useIntlContext/createIntlProvider'
-import { IIntlProviderProps, IWindIntlPublic } from './types'
+import { createReactIntlFromCfg } from './factory'
+import { IWindIntlPublic, IWindIntlExtended } from './types'
+
+const __intl = createReactIntlFromCfg()
+/** @public */
+const IntlProvider: IWindIntlExtended['IntlProvider'] = __intl.IntlProvider
+/** @public */
+const withProvider: IWindIntlExtended['withProvider'] = __intl.withProvider
+/** @public */
+const Consumer: IWindIntlExtended['Consumer'] = __intl.Consumer
 
 /**
  * @public
- * IntlProvider use the config of global intl as default
+ * This instance is created in top level code. And shared by
+ * `import intl from '@alicloud/console-components-intl'`.
+ * You can create your own instance with `reactIntlFactory`.
  */
-const IntlProvider: React.FunctionComponent<IIntlProviderProps> = createIntlProvider(
-  intl
-)
+const intlPublicTyped: IWindIntlPublic = __intl
 
-/**
- * @public
- * A factory that create HOC to provide value to the intl-context.
- * The component subtree under this HOC can get the provided value from intl-context, which is a smaller influence compared to `intl.set()` in the top level.
- * User can use this to config the localization of wind components, which consume intl-context.
- * Notice that the top level intl instance will always use the top level config.
- */
-const withProvider = (providerProps?: IIntlProviderProps) => <
-  WrappedComponentProps extends {}
->(
-  WrappedComponent: React.ComponentType<WrappedComponentProps>
-) => {
-  const HOC: React.FC<WrappedComponentProps> = props => {
-    return (
-      <IntlProvider {...providerProps}>
-        <WrappedComponent {...props} />
-      </IntlProvider>
-    )
-  }
-  HOC.displayName = `withIntlProvider(${WrappedComponent.displayName ||
-    WrappedComponent.name ||
-    'UnknownComponent'})`
-
-  return HOC
-}
-
-/**
- * @public
- * These tools are only useful for users that use other wind components.
- * For users that don't, use intl instance （from ./react.ts） directly.
- */
-export const intlExtended: IWindIntlPublic = Object.assign(intl, {
-  IntlProvider,
-  withProvider,
-  Consumer,
-})
-
-export default intlExtended
-
-export { intlExtended as intl, IntlProvider, withProvider, Consumer }
+export default intlPublicTyped
+export { intlPublicTyped as intl, IntlProvider, withProvider, Consumer }
 
 export { default as ReactIntl } from './ReactIntl'
+export { createReactIntlFromCfg, createReactIntlFromInstance } from './factory'
 export { default as IntlBase } from './IntlBase'
+export { default as VanillaIntl } from './VanillaIntl'
 
 export * from './types'
 

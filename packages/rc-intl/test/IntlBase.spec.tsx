@@ -1,5 +1,5 @@
 import { messages1 } from './messages'
-import IntlBase from '../src/IntlBase'
+import { IntlBase } from '../src'
 
 const datetime = new Date(2019, 3, 18, 1, 2, 3, 456)
 

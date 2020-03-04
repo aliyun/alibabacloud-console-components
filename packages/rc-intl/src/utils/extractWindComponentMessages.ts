@@ -1,6 +1,6 @@
 import set from 'lodash/set'
 
-import { IMessages } from '../types'
+import { IMessages } from '@alicloud/console-components-intl-core'
 
 const defaultOptions = {
   namespace: '@wind_v2.base',

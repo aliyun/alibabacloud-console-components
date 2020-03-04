@@ -9,7 +9,7 @@ import { IFormatMessageOptions, IFormatMessageContext } from './types'
 import IntlBase from './IntlBase'
 
 /* eslint-disable no-dupe-class-members */
-
+/** @public */
 class VanillaIntl extends IntlBase {
   public formatMessage(key: string, values?: IFormatMessageContext): string
 

@@ -1,10 +1,10 @@
 import {
+  ReactIntl,
   IWindIntlPublic,
   IMessages,
   IDetermineLocale,
   IWindIntlExtended,
-} from './types'
-import ReactIntl from './ReactIntl'
+} from '@alicloud/console-components-intl-core'
 import createIntlProvider from './utils/useIntlContext/createIntlProvider'
 import { Consumer } from '@alicloud/console-components-intl-context'
 
@@ -55,4 +55,8 @@ const createReactIntlFromCfg = (
 }
 
 // the name 'create' is for backward compatibility reason
-export { createReactIntlFromInstance as create, createReactIntlFromCfg }
+export {
+  createReactIntlFromInstance as create,
+  createReactIntlFromInstance,
+  createReactIntlFromCfg,
+}

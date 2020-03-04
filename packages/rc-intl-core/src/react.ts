@@ -1,8 +1,3 @@
-import ReactIntl from './ReactIntl'
-import { create } from './factory'
-import { IWindIntlPublic } from './types'
-
-const intlInstance = new ReactIntl()
-const intl: IWindIntlPublic = create(intlInstance)
-
-export default intl
+// keep this file for backward compatibility reason
+// user may be using `import reactIntl from '@alicloud/console-components-intl/react'`
+export { default } from './index'

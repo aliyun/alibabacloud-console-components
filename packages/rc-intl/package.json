@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@alicloud/console-components-intl-context": "^1.0.5",
+    "@alicloud/console-components-intl-core": "^1.0.5",
     "@babel/runtime": "^7.4.3",
     "classnames": "^2.2.5",
     "escape-html": "^1.0.3",

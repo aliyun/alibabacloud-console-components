@@ -1,6 +1,6 @@
 import _warning from 'warning'
 import { messages1 } from './messages'
-import VanillaIntl from '../src/VanillaIntl'
+import { VanillaIntl } from '../src'
 
 const vanillaIntl = new VanillaIntl({ messages: messages1, locale: 'en-US' })
 
