@@ -13,8 +13,11 @@ export const SPanelItemWrapper = styled.div<{
   position: relative;
   height: 100%;
   cursor: ${({ cursor }) => cursor};
-  border-left: 1px solid #979797;
 
   width: ${({ width }) => width};
   transition: width 0.25s ease-out;
+
+  &:not(:first-child) {
+    border-left: 1px solid #979797;
+  }
 `
