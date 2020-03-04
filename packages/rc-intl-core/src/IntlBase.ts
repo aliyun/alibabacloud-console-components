@@ -57,7 +57,15 @@ class IntlBase {
     return this._store.get(IntlBase.LOCALE_ACCESS_KEY)
   }
 
-  public setMessages(messages: IMessages) {
+  public setMessages(
+    messages: IMessages,
+    opts: { mergeMessages?: boolean } = {}
+  ) {
+    const mergeMessages = opts.mergeMessages
+    if (mergeMessages) {
+      const old = this.getMessages() || {}
+      messages = { ...old, ...messages }
+    }
     this._store.set(IntlBase.MESSAGES_ACCESS_KEY, messages)
   }
 
@@ -67,10 +75,13 @@ class IntlBase {
 
   public set(
     data: { locale?: string; messages?: IMessages },
-    options: { determineLocale?: IDetermineLocale } = {}
+    options: {
+      determineLocale?: IDetermineLocale
+      mergeMessages?: boolean
+    } = {}
   ) {
     const { locale, messages } = data
-    const { determineLocale } = options
+    const { determineLocale, mergeMessages } = options
 
     if (locale) {
       this.setLocale(locale)
@@ -79,7 +90,7 @@ class IntlBase {
     }
 
     if (messages) {
-      this.setMessages(messages)
+      this.setMessages(messages, { mergeMessages })
     }
   }
 
