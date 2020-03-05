@@ -2,19 +2,6 @@
 # yarn lockfile v1
 
 
-"@alicloud/console-components@^1.0.19":
-  version "1.0.19"
-  resolved "https://registry.npm.taobao.org/@alicloud/console-components/download/@alicloud/console-components-1.0.19.tgz#af6e6781195315c091c67f20f1909428f5753cdb"
-  integrity sha1-r25ngRlTFcCRxn8g8ZCUKPV1PNs=
-  dependencies:
-    "@alifd/next" "~1.18.15"
-    "@babel/runtime-corejs2" "^7.7.4"
-    classnames "^2.2.5"
-    hoist-non-react-statics "^3.3.0"
-    lodash "^4.17.5"
-    rc-form "^2.2.1"
-    recompose "^0.26.0"
-
 "@alicloud/console-toolkit-cli@^1.0.2":
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/@alicloud/console-toolkit-cli/download/@alicloud/console-toolkit-cli-1.0.2.tgz#cd131facfa6ab81e824ff170e91cabd3faca3c63"
@@ -320,39 +307,6 @@
     fs-extra "^8.1.0"
     lodash "^4.17.11"
 
-"@alicloud/gatsby-theme-console-doc@^1.0.12":
-  version "1.0.18"
-  resolved "https://registry.npm.taobao.org/@alicloud/gatsby-theme-console-doc/download/@alicloud/gatsby-theme-console-doc-1.0.18.tgz#3111555897920d844573e85f1cfe9cb90e96ab92"
-  integrity sha1-MRFVWJeSDYRFc+hfHP6cuQ6Wq5I=
-  dependencies:
-    "@alicloud/console-components" "^1.0.19"
-    "@alicloud/console-components-app-layout" "^1.0.4"
-    "@alicloud/console-components-console-menu" "^1.0.4"
-    "@alicloud/console-components-page" "^1.0.3"
-    "@mdx-js/mdx" "^1.5.1"
-    "@mdx-js/react" "^1.5.1"
-    babel-plugin-styled-components "^1.10.6"
-    gatsby-plugin-less "^3.0.12"
-    gatsby-plugin-mdx "^1.0.55"
-    gatsby-plugin-react-helmet "^3.1.15"
-    gatsby-plugin-styled-components "^3.1.11"
-    gatsby-plugin-typescript "^2.1.15"
-    gatsby-source-filesystem "^2.1.35"
-    ignore-not-found-export-webpack-plugin "^1.0.1"
-    lodash "^4.17.15"
-    mdast "^3.0.0"
-    mdast-util-assert "^2.0.1"
-    react-helmet "^5.2.1"
-    react-syntax-highlighter "^11.0.2"
-    rehype-raw "^4.0.1"
-    rehype-react "^4.0.1"
-    rehype-sanitize "^3.0.0"
-    rehype-slug "^2.0.3"
-    remark-rehype "^5.0.0"
-    remark-stringify "^7.0.4"
-    string-hash "^1.1.3"
-    unist-util-visit-parents "^3.0.1"
-
 "@alifd/field@~1.3.3":
   version "1.3.3"
   resolved "https://registry.npm.taobao.org/@alifd/field/download/@alifd/field-1.3.3.tgz#d1b86ec7b557334cc9869cf900faac7bc327fdc7"
@@ -360,21 +314,6 @@
   dependencies:
     "@alifd/validate" "^1.1.3"
     prop-types "^15.5.8"
-
-"@alifd/next@~1.18.15":
-  version "1.18.17"
-  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.18.17.tgz#96f02f19a893d60b9d9140278aadb6ac46b0d253"
-  integrity sha1-lvAvGaiT1gudkUAniq22rEaw0lM=
-  dependencies:
-    "@alifd/field" "~1.3.3"
-    "@alifd/validate" "~1.1.4"
-    babel-runtime "^6.26.0"
-    classnames "^2.2.3"
-    hoist-non-react-statics "^2.1.0"
-    prop-types "^15.6.0"
-    react-lifecycles-compat "^3.0.4"
-    react-transition-group "^2.2.1"
-    shallow-element-equals "^1.0.1"
 
 "@alifd/next@~1.19.10":
   version "1.19.10"

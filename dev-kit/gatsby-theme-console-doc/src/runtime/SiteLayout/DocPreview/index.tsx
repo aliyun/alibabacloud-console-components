@@ -1,6 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { IDocDef } from '@alicloud/console-components-lib-documenter/src/runtime/loadDocModule'
 import RcAnnouncement from '@alicloud/console-components-announcement'
+import styled from 'styled-components'
+
+const ScAnnouncement = styled(RcAnnouncement)`
+  .next-slick {
+    user-select: initial;
+  }
+`
 
 const DocPreview: React.FC = () => {
   const [DocComp, setDocComp] = useState<any>(null)
@@ -25,9 +32,17 @@ const DocPreview: React.FC = () => {
 
   console.log({ DocComp, docDef, error })
 
+  const pubTime = usePkgPublishTime(
+    docDef?.actualLoadPkgName,
+    docDef?.actualLoadPkgVersion
+  )
+
   if (error) {
     if (error.stack) return <pre>{error.stack}</pre>
     return <p>Unknown error: {error.toString()}</p>
+  }
+  if (typeof window == 'undefined') {
+    return <p>loading...</p>
   }
   if (!docDef) {
     return <p>Can't find doc definition from url search params.</p>
@@ -38,22 +53,31 @@ const DocPreview: React.FC = () => {
 
   const announcementDataSource = [
     {
-      title: '当前的文档处于预发状态',
+      title: '当前的文档处于预览状态',
       content: (
-        <p>
-          预览数据来自预览包：
-          <code>
-            {docDef.actualLoadPkgName}@{docDef.actualLoadPkgVersion}
-          </code>
-          。
-        </p>
+        <div>
+          <p>
+            为了方便物料开发者的交流、评审和分享，console-components工具支持任何人发布物料预览包，并且本站点能加载和渲染预览包。你可以将当前的页面URL分享给评阅者，对方用浏览器就能看到你的本地开发结果！
+          </p>
+          <p>
+            当前页面的预览数据来自预览包：
+            <a
+              href={`https://unpkg.com/browse/${docDef.actualLoadPkgName}@${docDef.actualLoadPkgVersion}/`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {docDef.actualLoadPkgName}@{docDef.actualLoadPkgVersion}
+            </a>
+            {pubTime && <>，发布时间为：{pubTime}</>}。
+          </p>
+        </div>
       ),
     },
   ]
 
   return (
     <div>
-      <RcAnnouncement type="warning" dataSource={announcementDataSource} />
+      <ScAnnouncement type="warning" dataSource={announcementDataSource} />
       <DocComp pkgInfo={docDef} />
     </div>
   )
@@ -72,4 +96,36 @@ function getDocDefFromURL() {
     actualLoadPkgVersion,
     prodPkgName,
   }
+}
+
+function usePkgPublishTime(pkgName?: string, pkgVer?: string) {
+  const pkgJson = useFetchPkgJson(pkgName, pkgVer)
+  const publishTime = pkgJson?.ccMeta?.publishTime
+  const localeStr = useMemo(() => {
+    if (!publishTime) {
+      return null
+    }
+    return new Date(publishTime).toLocaleString()
+  }, [publishTime])
+  return localeStr
+}
+
+function useFetchPkgJson(pkgName?: string, pkgVer?: string) {
+  const [data, steData] = useState<any>(null)
+  const lock = useRef<string>('')
+  useEffect(() => {
+    if (!pkgName || !pkgVer) return
+    steData(null)
+    const url = `https://unpkg.com/${pkgName}@${pkgVer}/package.json`
+    lock.current = url
+    fetch(url)
+      .then(x => x.json())
+      .then(pkgJson => {
+        // 避免使用过时的请求
+        if (url !== lock.current) return
+        steData(pkgJson)
+      })
+  }, [pkgName, pkgVer])
+
+  return data
 }
