@@ -1,113 +1,96 @@
 import 'intersection-observer'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 import IntersectionObserver from '@researchgate/react-intersection-observer'
+import PropTypes from 'prop-types'
 import Context from '../layout/FixedBarContext'
+import { IActionBarProps } from './index'
 import { SFixedBarWrapper } from './styled'
 
-interface IState {
-  isIntersecting: boolean
-}
-
-interface IProps {
-  fixedAlign: 'top' | 'bottom' | ''
-  afterIntersectChanged: (
-    fixedAlign: 'top' | 'bottom' | '',
+interface IWithIntersectionFixedProps {
+  fixedAlign?: 'top' | 'bottom'
+  align: 'top' | 'bottom'
+  afterIntersectChanged?: (
+    fixedAlign: 'top' | 'bottom',
     nextIntersecting: boolean,
     prevIntersecting: boolean
   ) => void
 }
 
-export default (threshold: number) => (BaseComponent: React.ComponentType) => {
+const WithFixed = (threshold: number) => (
+  BaseComponent: React.ComponentType<IActionBarProps>
+) => {
   const displayName =
     BaseComponent.displayName || BaseComponent.name || 'Component'
 
-  return class WithIntersectionFixed extends Component<IProps, IState> {
-    static displayName = `withIntersectionObserver(${displayName})`
+  const WithIntersectionFixed: React.FC<IWithIntersectionFixedProps> = ({
+    fixedAlign = 'top',
+    afterIntersectChanged,
+    ...restProps
+  }) => {
+    const [isIntersecting, setIsIntersecting] = useState(true)
 
-    static propTypes = {
-      fixedAlign: PropTypes.oneOf(['top', 'bottom', '']),
-      afterIntersectChanged: PropTypes.func,
-    }
-
-    static defaultProps = {
-      fixedAlign: 'top',
-    }
-
-    constructor(props: IProps) {
-      super(props)
-      this.state = {
-        isIntersecting: true,
-      }
-    }
-
-    handleChange = ({
-      isIntersecting,
+    const handleChange = ({
+      isIntersecting: nextIsIntersecting,
       intersectionRatio,
     }: {
       isIntersecting: boolean
       intersectionRatio: number
     }): void => {
-      const nextIntersecting = isIntersecting && intersectionRatio >= threshold
-      const { isIntersecting: prevIntersecting } = this.state
+      const nextIntersecting =
+        nextIsIntersecting && intersectionRatio >= threshold
+      const prevIntersecting = isIntersecting
 
       if (nextIntersecting !== prevIntersecting) {
-        this.setState(
-          {
-            isIntersecting: nextIntersecting,
-          },
-          () => {
-            if (typeof this.props.afterIntersectChanged === 'function') {
-              this.props.afterIntersectChanged(
-                this.props.fixedAlign,
-                nextIntersecting,
-                prevIntersecting
-              )
-            }
-          }
-        )
+        setIsIntersecting(nextIntersecting)
+        if (typeof afterIntersectChanged === 'function') {
+          afterIntersectChanged(fixedAlign, nextIntersecting, prevIntersecting)
+        }
       }
     }
 
-    render(): React.ReactNode {
-      const { isIntersecting } = this.state
-      const { fixedAlign, ...restProps } = this.props
-
-      return (
-        <>
-          <IntersectionObserver
-            onChange={this.handleChange}
-            threshold={threshold}
-          >
-            <BaseComponent {...restProps} />
-          </IntersectionObserver>
-          {!isIntersecting && (
-            <Context.Consumer>
-              {({
-                fixedBarZIndex = 1000,
-                fixedClassName = '',
-                fixedStyle = {},
-              }) => {
-                return (
-                  <SFixedBarWrapper
-                    className={classNames(
-                      fixedClassName,
-                      `fixed-to-${fixedAlign}`
-                    )}
-                    style={{
-                      zIndex: fixedBarZIndex,
-                      ...fixedStyle,
-                    }}
-                  >
-                    <BaseComponent {...restProps} />
-                  </SFixedBarWrapper>
-                )
-              }}
-            </Context.Consumer>
-          )}
-        </>
-      )
-    }
+    return (
+      <>
+        <IntersectionObserver onChange={handleChange} threshold={threshold}>
+          <BaseComponent {...restProps} />
+        </IntersectionObserver>
+        {!isIntersecting && (
+          <Context.Consumer>
+            {({
+              fixedBarZIndex = 1000,
+              fixedClassName = '',
+              fixedStyle = {},
+            }) => {
+              return (
+                <SFixedBarWrapper
+                  className={classNames(
+                    fixedClassName,
+                    `fixed-to-${fixedAlign}`
+                  )}
+                  style={{
+                    zIndex: fixedBarZIndex,
+                    ...fixedStyle,
+                  }}
+                >
+                  <BaseComponent {...restProps} />
+                </SFixedBarWrapper>
+              )
+            }}
+          </Context.Consumer>
+        )}
+      </>
+    )
   }
+  WithIntersectionFixed.displayName = `withIntersectionObserver(${displayName})`
+  WithIntersectionFixed.defaultProps = {
+    fixedAlign: 'top',
+  }
+  WithIntersectionFixed.propTypes = {
+    fixedAlign: PropTypes.oneOf(['top', 'bottom']),
+    afterIntersectChanged: PropTypes.func,
+  }
+
+  return WithIntersectionFixed
 }
+
+export default WithFixed

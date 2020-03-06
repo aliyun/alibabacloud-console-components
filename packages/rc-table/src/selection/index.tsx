@@ -1,36 +1,52 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { TableProps } from '@alicloud/console-components/types/table'
 import { isFunction, get, uniq, xor } from 'lodash'
 import renderProps from '../renderProps'
 import connect from './connect'
 import SelectAll from './SelectAll'
+import { Mode, ITableProps, ISelectionProps } from '../index'
 import { SSelectionWrapper, SSelectAllContainer } from './styled'
 
-export interface IrenderFunc {
-  (selection: {
-    selectedRowKeys: string[]
-    isSelectedAll: boolean
-    selectAll: (checked: boolean) => void
-  }): React.ReactNode
-}
-export interface ISelectionProps {
-  render: IrenderFunc
-  isSelectedAll: boolean
-  isIndeterminate: boolean
+/**
+ * mapStateToProps的参数
+ */
+export interface IMapStateToPropsFuncParams {
+  selectedRowKeys?: Array<any>
+  rawRowSelection?: ITableProps['rowSelection']
+  dataSource?: ITableProps['dataSource']
+  primaryKey?: ITableProps['primaryKey']
+  mode?: Mode
 }
 
-const isMultiMode = (mode: string): boolean => mode === 'multiple'
+/**
+ * @public
+ */
+export interface IUpdaterFunc {
+  (
+    selectedRowKeys: Array<any>,
+    dataSource: ITableProps['dataSource'],
+    primaryKey: ITableProps['primaryKey'],
+    rowSelection: ITableProps['rowSelection']
+  ): Array<any>
+}
 
-const isSelectable = (item, index, getProps) =>
+const isMultiMode = (mode: Mode): boolean => mode === 'multiple'
+
+const isSelectable = (
+  item: any,
+  index: number,
+  getProps?: (record: {}, index: number) => void
+): boolean =>
   isFunction(getProps) ? !get(getProps(item, index), 'disabled') : true
 
-const mapStateToProps = state => {
+const mapStateToProps = (
+  state: IMapStateToPropsFuncParams
+): ISelectionProps & ITableProps['rowSelection'] => {
   const {
     selectedRowKeys,
-    dataSource,
+    dataSource = [],
     primaryKey,
-    mode,
+    mode = 'multiple',
     rawRowSelection,
   } = state
 
@@ -86,61 +102,77 @@ const mapStateToProps = state => {
   }
 }
 
-const getPrimaryKeys = (dataSource, primaryKey, getProps) =>
+const getPrimaryKeys = (
+  dataSource: Array<any>,
+  primaryKey: string,
+  getProps?: (record: {}, index: number) => void
+): Array<any> =>
   (isFunction(getProps)
     ? dataSource.filter((item, i) => isSelectable(item, i, getProps))
     : dataSource
   ).map(item => item[primaryKey])
 
-const mapUpdateToProps = update => ({
+const mapUpdateToProps = (
+  update: (updater: IUpdaterFunc) => void
+): {
+  update: (updater: IUpdaterFunc) => void
+  selectAll: (checked: boolean) => void
+} => ({
   update,
   selectAll(checked) {
     if (checked) {
       update((selectedRowKeys, dataSource, primaryKey, rowSelection = {}) => {
-        // eslint-disable-next-line max-len
         const primaryKeys = getPrimaryKeys(
-          dataSource,
-          primaryKey,
+          dataSource as Array<any>,
+          primaryKey as string,
           rowSelection.getProps
         )
         return uniq([...selectedRowKeys, ...primaryKeys])
       })
     } else {
-      update((selectedRowKeys, dataSource, primaryKey, rowSelection) => {
-        // eslint-disable-next-line max-len
-        const primaryKeys = getPrimaryKeys(
-          dataSource,
-          primaryKey,
-          rowSelection.getProps
-        )
-        return xor(selectedRowKeys, primaryKeys)
-      })
+      update(
+        (
+          selectedRowKeys: Array<any>,
+          dataSource: ITableProps['dataSource'],
+          primaryKey: ITableProps['primaryKey'],
+          rowSelection: ITableProps['rowSelection'] = {}
+        ) => {
+          const primaryKeys = getPrimaryKeys(
+            dataSource as Array<any>,
+            primaryKey as string,
+            rowSelection.getProps
+          )
+          return xor(selectedRowKeys, primaryKeys)
+        }
+      )
     }
   },
 })
 
-@connect(mapStateToProps, mapUpdateToProps)
-class Selection extends Component<
-  ISelectionProps & TableProps['rowSelection'],
-  {}
-> {
-  static propTypes = {
-    mode: PropTypes.string,
-  }
-
-  render(): React.ReactNode {
-    const { mode = 'multiple' } = this.props
-    return (
-      <SSelectionWrapper>
-        {isMultiMode(mode) && (
-          <SSelectAllContainer>
-            <SelectAll {...this.props} />
-          </SSelectAllContainer>
-        )}
-        {renderProps(this.props, this.props)}
-      </SSelectionWrapper>
-    )
-  }
+/**
+ * @public
+ */
+const Selection: React.FC<ISelectionProps &
+  ITableProps['rowSelection']> = props => {
+  const { mode = 'multiple', isIndeterminate, isSelectedAll, selectAll } = props
+  return (
+    <SSelectionWrapper>
+      {isMultiMode(mode) && (
+        <SSelectAllContainer>
+          <SelectAll
+            isIndeterminate={isIndeterminate}
+            isSelectedAll={isSelectedAll}
+            selectAll={selectAll}
+          />
+        </SSelectAllContainer>
+      )}
+      {renderProps(props, props)}
+    </SSelectionWrapper>
+  )
 }
 
-export default Selection
+Selection.propTypes = {
+  mode: PropTypes.oneOf(['single', 'multiple']),
+}
+
+export default connect(mapStateToProps, mapUpdateToProps)(Selection)

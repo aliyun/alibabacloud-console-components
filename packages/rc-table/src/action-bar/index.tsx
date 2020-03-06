@@ -3,27 +3,51 @@ import { compose, toClass } from 'recompose'
 import withIntersectionFixed from './withIntersectionFixed'
 import { SActionBarWrapper, SActionBarLeft, SActionBarRight } from './styled'
 
-const ActionBar = (props: any): React.ReactNode => (
+export interface IActionBarProps {
+  align?: 'top' | 'bottom'
+  afterIntersectChanged?: (
+    fixedAlign: 'top' | 'bottom',
+    nextIntersecting: boolean,
+    prevIntersecting: boolean
+  ) => void
+}
+
+const ActionBar: React.FC<IActionBarProps> = props => (
   <SActionBarWrapper {...props} />
 )
 
-const Left = (props: any): React.ReactNode => <SActionBarLeft {...props} />
+const Left: React.FC<{ children: React.ReactNode }> = props => (
+  <SActionBarLeft {...props} />
+)
 
-const Right = (props: any): React.ReactNode => (
+const Right: React.FC<{ children: React.ReactNode }> = props => (
   <SActionBarRight offset="0" {...props} />
 )
 
-ActionBar.Left = Left
-ActionBar.Right = Right
+const ExpActionBar = Object.assign(ActionBar, {
+  Left,
+  Right,
+})
 
-export default ActionBar
+export default ExpActionBar
 
-const IntersectionFixedActionBar = compose(
+// with fixedAlign & afterIntersectChanged
+const EnhanceIntersectionFixedActionBar = compose<
+  IActionBarProps,
+  IActionBarProps & {
+    fixedAlign: 'top' | 'bottom'
+  }
+>(
   withIntersectionFixed(0.1),
   toClass
 )(ActionBar)
 
-IntersectionFixedActionBar.Left = Left
-IntersectionFixedActionBar.Right = Right
+const IntersectionFixedActionBar = Object.assign(
+  EnhanceIntersectionFixedActionBar,
+  {
+    Left,
+    Right,
+  }
+)
 
 export { Left, Right, IntersectionFixedActionBar }

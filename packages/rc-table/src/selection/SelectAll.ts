@@ -1,13 +1,18 @@
 import { Checkbox } from '@alicloud/console-components'
+import { CheckboxProps } from '@alicloud/console-components/types/checkbox'
 import { mapProps } from 'recompose'
-import { ISelection } from './index'
+import { ISelectionProps } from '../index'
 
 const SelectAll = mapProps(
   (
-    ownerProps: ISelection & {
-      selectAll: (checked: boolean) => string[]
+    ownerProps: ISelectionProps & {
+      selectAll: CheckboxProps['onChange']
     }
-  ) => ({
+  ): {
+    checked?: CheckboxProps['checked']
+    indeterminate?: CheckboxProps['indeterminate']
+    onChange?: CheckboxProps['onChange']
+  } => ({
     checked: ownerProps.isSelectedAll,
     indeterminate: ownerProps.isIndeterminate,
     onChange: ownerProps.selectAll,

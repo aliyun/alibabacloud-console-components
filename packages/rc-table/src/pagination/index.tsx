@@ -5,6 +5,9 @@ import MediaQuery from 'react-responsive'
 
 const defaultPageSizeList = [10, 20, 50]
 
+/**
+ * @public
+ */
 const TablePagination: React.FC<PaginationProps> = props => {
   const [pageSizeHasChanged, setPageSizeHasChanged] = useState(false)
   const prevPageSize = useRef<number>()

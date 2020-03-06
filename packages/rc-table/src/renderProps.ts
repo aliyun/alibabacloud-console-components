@@ -1,17 +1,8 @@
 import { isValidElement } from 'react'
-import isFunction from 'lodash/isFunction'
-import { IRcTableProps } from './index'
-import { ITableProps } from './layout/index'
+import { isFunction } from 'lodash'
 
-const renderProps = (
-  ownerProps: IRcTableProps & {
-    children: (props: IRcTableProps) => React.ReactNode
-    render?: ITableProps['selection']
-  },
-  ...args: IRcTableProps[]
-): React.ReactNode => {
+const renderProps = (ownerProps: any, ...args: Array<any>): React.ReactNode => {
   const { children, render } = ownerProps
-
   if (isValidElement(children)) {
     return children
   }

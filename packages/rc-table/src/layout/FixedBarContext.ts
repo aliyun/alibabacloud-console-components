@@ -1,7 +1,11 @@
-import { createContext } from 'react'
+import React, { createContext } from 'react'
 
-export default createContext({
+export default createContext<{
+  fixedClassName?: string
+  fixedBarZIndex?: number
+  fixedStyle: React.CSSProperties
+}>({
   fixedBarZIndex: 1000,
-  fixedClassName: null,
+  fixedClassName: '',
   fixedStyle: {},
 })

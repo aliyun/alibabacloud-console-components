@@ -4247,6 +4247,13 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
+"@types/react-responsive@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.npm.taobao.org/@types/react-responsive/download/@types/react-responsive-8.0.2.tgz#959fdc32f72e38b807e32be617a74be2c315081b"
+  integrity sha1-lZ/cMvcuOLgH4yvmF6dL4sMVCBs=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^4.2.7":
   version "4.3.5"
   resolved "https://registry.npm.taobao.org/@types/react-router-dom/download/@types/react-router-dom-4.3.5.tgz#72f229967690c890d00f96e6b85e9ee5780db31f"

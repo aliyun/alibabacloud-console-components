@@ -6,6 +6,9 @@ const defaultFilterProps = {
   autoWidth: false,
 }
 
+/**
+ * @public
+ */
 const TableSearch: React.FC<SearchProps> = props => (
   <Search
     hasClear

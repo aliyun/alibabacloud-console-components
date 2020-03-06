@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@alicloud/console-components'
+import { IActionBarProps } from './index'
 
-const ActionBarPropsFilter = ({
+const ActionBarPropsFilter: React.FC<IActionBarProps> = ({
   afterIntersectChanged,
   ...restProps
-}): React.ReactNode => {
+}) => {
   return <Grid.Row {...restProps} />
 }
 
