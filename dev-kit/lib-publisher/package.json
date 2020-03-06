@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-lib-publisher",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

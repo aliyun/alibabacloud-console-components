@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-console-doc-template-site",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "main": "index.js",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "build": "npm run clean && gatsby build --prefix-paths"
   },
   "devDependencies": {
-    "@alicloud/gatsby-theme-console-doc": "^1.0.12",
+    "@alicloud/gatsby-theme-console-doc": "^1.1.1",
     "gatsby": "2.18.22",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
