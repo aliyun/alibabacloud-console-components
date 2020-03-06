@@ -62,7 +62,7 @@ const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({
 
   return (
     <SPanelItemWrapper
-      className={classNames('slide-panel', className)}
+      className={classNames('wind3-slide-panel', className)}
       cursor={isActive ? 'initial' : 'pointer'}
       width={actualWidth}
       onClick={() =>

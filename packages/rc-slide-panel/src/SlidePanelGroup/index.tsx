@@ -132,7 +132,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         target="viewport"
       >
         <SPanelsWrapper
-          className={classNames('slide-panels', className)}
+          className={classNames('wind3-slide-panels', className)}
           isShowing={isShowing}
           top={actualTop}
         >
