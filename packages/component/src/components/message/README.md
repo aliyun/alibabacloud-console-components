@@ -1,6 +1,8 @@
 ---
 name: message
 zhName: 信息提示
+tags:
+  message: true
 ---
 
 # Message 信息提示

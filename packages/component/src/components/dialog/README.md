@@ -1,6 +1,8 @@
 ---
 name: dialog
 zhName: 弹窗
+tags:
+  dialog: true
 ---
 
 # Dialog 弹窗

@@ -1,6 +1,8 @@
 ---
 name: select
 zhName: 选择器
+tags:
+  select: true
 ---
 
 # Select 选择器

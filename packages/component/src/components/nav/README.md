@@ -1,6 +1,8 @@
 ---
 name: nav
 zhName: 导航
+tags:
+  menu: true
 ---
 
 # Nav 导航

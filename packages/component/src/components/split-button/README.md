@@ -1,6 +1,8 @@
 ---
 name: split-button
 zhName: 分隔按钮
+tags:
+  button: true
 ---
 
 # SplitButton 分隔按钮

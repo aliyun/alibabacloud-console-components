@@ -1,6 +1,8 @@
 ---
 name: cascader-select
 zhName: 级联选择
+tags:
+  select: true
 ---
 
 # CascaderSelect 级联选择

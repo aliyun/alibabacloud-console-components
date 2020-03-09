@@ -62,7 +62,7 @@ const HeaderWithAnchor: React.FC<{
         {anchor}
       </>
     ),
-    className: `header-with-anchor ${className}`,
+    className: `header-with-anchor level-${level} ${className}`,
   }
 
   let result

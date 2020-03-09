@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { IDocPageMeta } from '.'
 
 const DocMenuLabel: React.FC<{
   docInfo: {

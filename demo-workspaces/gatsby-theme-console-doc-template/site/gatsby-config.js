@@ -97,13 +97,39 @@ module.exports = {
 
           const navCategories = (() => {
             switch (pageMeta.category) {
+              // 根据当前页面的信息，来决定左侧导航栏应该展示什么
               case 'components':
                 // 如果当前页面是组件
                 // 则导航栏需要导航这个类目
-                return [{ categoryName: 'components' }]
+                return [
+                  {
+                    // 选中那些具有tag"自定义类目1"的文档
+                    tagSelector: {
+                      自定义类目1: true, // true匹配任何tagValue
+                      // 自定义类目1: 'myvalue',  // 只匹配具有tag"自定义类目1:myvalue"的文档
+                    },
+                    // 将选中的文档直接放在menu中，还是放在一个可展开/收起的SubMenu中
+                    flat: true,
+                    /**
+                     * 根据文档的tag值来排序。没有对应tag的文档，优先级默认为1。
+                     * 例子：
+                     * 文档1有tag：_自定义类目sort:2,
+                     * 文档2有tag：_自定义类目sort:0,
+                     * 文档3没有tag。
+                     * 那么在导航菜单中的顺序为[文档2，文档3，文档1]
+                     */
+                    sortByTag: '_自定义类目sort',
+                  },
+                  {
+                    tagSelector: {
+                      baseComp: true,
+                    },
+                    // 将选中的文档放在一个SubMenu中，可以指定这个SubMenu的label
+                    label: '基础组件',
+                  },
+                ]
               case 'guides':
-                // 如果当前页面是指南
-                // 则导航栏需要导航这个类目
+                // 也可以选中指定category的文档
                 return [{ categoryName: 'guides' }]
               default:
                 throw new Error(
@@ -126,16 +152,26 @@ module.exports = {
             // 文档资源加载地址：
             // https://cdn.jsdelivr.net/npm/${prodPkgName}@latest/dist/_doc.system.js
             prodPkgName: '@alicloud/console-components-page',
+            tags: {
+              testTag1: true,
+              自定义类目1: true,
+              _自定义类目sort: 0,
+            },
           },
           {
-            name: "rc-demo-component",
-            zhName: "示例组件",
+            name: 'rc-demo-component',
+            zhName: '示例组件',
             category: 'components',
             // 文档资源加载地址：
             // https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
             prodPkgName: '@alicloud/cc-demo-component',
             actualLoadPkgName: '@cc-dev-kit-test/cc-demo-component',
             actualLoadPkgVersion: '1.0.1-preview.29',
+            tags: {
+              testTag1: true,
+              testTag2: 'tagVal',
+              自定义类目1: true,
+            },
           },
         ],
       },

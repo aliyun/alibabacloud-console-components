@@ -3,6 +3,7 @@ import { MDXProvider } from '@mdx-js/react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import markdownComps from '../MarkdownComponents'
 import { usePageCtx } from './context'
+import DocTags from './utils/DocTags'
 
 /* eslint-disable @typescript-eslint/camelcase */
 
@@ -15,6 +16,7 @@ const MarkdownContent: React.FC = () => {
   if (pageCtx.pageMeta.type !== 'doc') return null
   return (
     <MDXProvider components={components}>
+      <DocTags tags={pageCtx.pageMeta.tags} />
       <MDXRenderer>{pageCtx.pageMeta.mdxBody}</MDXRenderer>
     </MDXProvider>
   )

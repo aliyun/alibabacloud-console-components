@@ -1,6 +1,8 @@
 ---
 name: search
 zhName: 搜索
+tags:
+  select: true
 ---
 
 # Search 搜索

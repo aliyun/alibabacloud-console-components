@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import AppLayout from '@alicloud/console-components-app-layout'
 import Page from '@alicloud/console-components-page'
 import '@alicloud/console-components/dist/wind.css'
@@ -12,10 +12,12 @@ import IndexPage from './pages/indexPage'
 import SEO from '../SEO'
 import DynamicDoc from './DynamicDoc'
 import DocPreview from './DocPreview'
+import { buildTagIndex, ITagIndex } from './utils/buildTagIndex'
+import { useSearchPages } from './SearchPages'
 
 export interface IDocPageMeta {
   // 是普通文档还是404页面
-  type: 'doc'
+  type: 'doc' | 'dynamic-doc'
   /**
    * 文章名称， kebab-case
    * https://lodash.com/docs/4.17.15#kebabCase
@@ -32,47 +34,43 @@ export interface IDocPageMeta {
    * 从 frontmatter 获得
    */
   category: string
+  /** url路径 */
+  path: string
   /**
    * 文章在左侧导航栏的排序，按照[sort, name]来排序
    * 从 frontmatter 获得(用户可不填，默认为1)
    */
-  sort: number | null
+  sort?: number
   /**
    * 文章在菜单中的显示文字
    */
   labelInMenu?: string
-  mdxBody: string
-  // url路径
-  path: string
-  // 文档md文件的路径（相对于contentRootDir）
-  markdownFilePath: string
   /** 左侧导航菜单的配置 */
   sideNav: {
     /** 左侧导航菜单的标题 */
     header: string
     /** 左侧导航菜单的导航内容 */
-    navCategories: { categoryName: string }[]
+    navCategories: {
+      categoryName?: string
+      tagSelector?: any
+      label?: string
+      flat?: boolean
+      sortByTag?: string
+    }[]
   }
+  tags?: { [tagName: string]: string }
 }
 
-export interface IDynamicDocMeta {
+export interface IStaticDocMeta extends IDocPageMeta {
+  type: 'doc'
+  mdxBody: string
+  // 文档md文件的路径（相对于contentRootDir）
+  markdownFilePath: string
+  // url路径
+  path: string
+}
+export interface IDynamicDocMeta extends IDocPageMeta {
   type: 'dynamic-doc'
-  /**
-   * 文章名称， kebab-case
-   * https://lodash.com/docs/4.17.15#kebabCase
-   * 从 frontmatter 获得
-   */
-  name: string
-  /**
-   * 文章名称，中文
-   * 从 frontmatter 获得
-   */
-  zhName: string
-  /**
-   * 文章类别
-   * 从 frontmatter 获得
-   */
-  category: string
   /**
    * 文档资源加载地址：
    * https://www.unpkg.com/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
@@ -84,28 +82,12 @@ export interface IDynamicDocMeta {
   prodPkgName: string
   actualLoadPkgName?: string
   actualLoadPkgVersion?: string
-  /**
-   * 文章在菜单中的显示文字
-   */
-  labelInMenu?: string
-  /**
-   * 文章在左侧导航栏的排序，按照[sort, name]来排序
-   */
-  sort?: number
-  // url路径
-  path: string
-  /** 左侧导航菜单的配置 */
-  sideNav: {
-    /** 左侧导航菜单的标题 */
-    header: string
-    /** 左侧导航菜单的导航内容 */
-    navCategories: { categoryName: string }[]
-  }
 }
 
+export type INormalPageMeta = IStaticDocMeta | IDynamicDocMeta
+
 export type IPageMeta =
-  | IDocPageMeta
-  | IDynamicDocMeta
+  | INormalPageMeta
   | { type: '404' }
   | { type: 'index-page' }
   | { type: 'doc-preview' }
@@ -114,7 +96,7 @@ export interface ISiteMeta {
   categories: {
     name: string
     zhName: string
-    docs: (IDocPageMeta | IDynamicDocMeta)[]
+    docs: INormalPageMeta[]
   }[]
   topNav: { text: string; href: string }[]
   // 入口路径
@@ -128,13 +110,22 @@ export interface ISiteMeta {
 export interface IPageContext {
   pageMeta: IPageMeta
   siteMeta: ISiteMeta
+  tagIndex: ITagIndex
 }
 
 const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
-  // console.log('SiteLayout props', props)
-  const { pageContext } = props
+  const { pageContext: pageContext0 } = props
 
-  return (
+  const pageContext = useMemo(
+    () => ({
+      ...pageContext0,
+      tagIndex: buildTagIndex(pageContext0.siteMeta.categories),
+    }),
+    [pageContext0]
+  )
+  const wrap = useSearchPages(pageContext.siteMeta.categories)
+
+  return wrap(
     <pageCtx.Provider value={pageContext}>
       <SEO />
       <TopBar />

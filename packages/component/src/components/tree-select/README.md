@@ -1,6 +1,8 @@
 ---
 name: tree-select
 zhName: 树形选择控件
+tags:
+  select: true
 ---
 
 # TreeSelect 树形选择控件

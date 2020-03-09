@@ -1,6 +1,8 @@
 ---
 name: table
 zhName: 表格
+tags:
+  table: true
 ---
 
 # Table 表格

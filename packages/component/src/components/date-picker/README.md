@@ -1,6 +1,8 @@
 ---
 name: date-picker
 zhName: 日期选择框
+tags:
+  dateTime: true
 ---
 
 # DatePicker 日期选择框

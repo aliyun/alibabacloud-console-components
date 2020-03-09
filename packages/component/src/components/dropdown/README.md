@@ -1,6 +1,9 @@
 ---
 name: dropdown
 zhName: 下拉菜单
+tags:
+  select: true
+  menu: true
 ---
 
 # Dropdown 下拉菜单

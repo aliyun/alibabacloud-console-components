@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { usePageCtx } from '../context'
+import DocTags from '../utils/DocTags'
 
 const DynamicDoc: React.FC<{}> = () => {
   const pageCtx = usePageCtx()
@@ -36,7 +37,8 @@ const DynamicDoc: React.FC<{}> = () => {
     return <div>Loading...</div>
   } else {
     return (
-      <div>
+      <div className="cc-doc-container">
+        <DocTags tags={pageCtx.pageMeta.tags} />
         <DocComp pkgInfo={docDef} />
       </div>
     )

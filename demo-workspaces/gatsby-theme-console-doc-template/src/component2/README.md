@@ -1,6 +1,8 @@
 ---
 name: component-2
 zhName: 组件2
+tags:
+  baseComp: true
 ---
 
 # 组件 2

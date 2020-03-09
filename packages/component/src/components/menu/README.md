@@ -1,6 +1,8 @@
 ---
 name: menu
 zhName: 菜单
+tags:
+  menu: true
 ---
 
 # Menu 菜单

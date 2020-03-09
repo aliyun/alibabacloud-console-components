@@ -1,6 +1,8 @@
 ---
 name: time-picker
 zhName: 时间选择框
+tags:
+  dateTime: true
 ---
 
 # TimePicker 时间选择框

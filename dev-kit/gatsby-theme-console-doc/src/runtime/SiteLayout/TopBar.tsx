@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Icon } from '@alicloud/console-components'
 import { Link } from 'gatsby'
-import SearchPages from './SearchPages'
+import { useSearchPagesUI } from './SearchPages'
 import { usePageCtx } from './context'
 
 export const TOP_BAR_HEIGHT = 52
@@ -63,42 +63,9 @@ const SSearch = styled.div`
   width: 240px;
 `
 
-// interface INavItemProps {
-//   name: string
-//   href: string
-// }
-// const NavItem: React.FC<INavItemProps> = ({ name, href }) => {
-//   return <Link to={href}>{name}</Link>
-// }
-
-// interface INavMenuProps {
-//   name: string
-//   list: INavItemProps[]
-// }
-// const NavMenu: React.FC<INavMenuProps> = ({ name, list }) => {
-//   return (
-//     <Dropdown
-//       trigger={
-//         <span>
-//           {name}
-//           <Icon type="arrow-down" size="xxs" />
-//         </span>
-//       }
-//     >
-//       <Menu>
-//         {list.map((item: any, index: number) => (
-//           <Menu.Item key={index}>
-//             <NavItem {...item} />
-//           </Menu.Item>
-//         ))}
-//       </Menu>
-//     </Dropdown>
-//   )
-// }
-
 const TopBar: React.FC = () => {
   const pageCtx = usePageCtx()
-
+  const searchPagesUI = useSearchPagesUI()
   return (
     <STopBar>
       <SLogo>
@@ -106,9 +73,7 @@ const TopBar: React.FC = () => {
           {pageCtx.siteMeta.siteName}
         </Link>
       </SLogo>
-      <SSearch>
-        <SearchPages />
-      </SSearch>
+      <SSearch>{searchPagesUI}</SSearch>
       <SNavList>
         {pageCtx.siteMeta.topNav.map(navItem => {
           if (navItem.href.match(/^https?:\/\/(.*)/)) {

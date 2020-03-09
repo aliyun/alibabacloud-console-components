@@ -53,6 +53,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
                   name
                   zhName
                   sort
+                  tags
                 }
                 headings(depth: h1) {
                   value
@@ -82,7 +83,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
       )
     })
     .map(node => {
-      const { name, zhName, sort } = node.childMdx.frontmatter
+      const { name, zhName, sort, tags } = node.childMdx.frontmatter
       const { sourceInstanceName } = node
       return {
         zhName,
@@ -92,6 +93,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
         mdFilePath: node.relativePath,
         fileSystemCrawlerName: sourceInstanceName,
         type: 'doc',
+        tags,
       }
     })
 
@@ -307,6 +309,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const typeDefs = `
     type MdxFrontmatter @infer {
       sort: Float
+      tags: JSON
     }
   `
   createTypes(typeDefs)

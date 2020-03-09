@@ -1,6 +1,8 @@
 ---
 name: button
 zhName: 按钮
+tags:
+  button: true
 ---
 
 # Button 按钮

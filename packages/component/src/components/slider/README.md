@@ -1,6 +1,8 @@
 ---
 name: slider
 zhName: 图片轮播
+tags:
+  slider: true
 ---
 
 # Slider 图片轮播

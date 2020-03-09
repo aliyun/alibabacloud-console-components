@@ -1,6 +1,8 @@
 ---
 name: cascader
 zhName: 级联
+tags:
+  select: true
 ---
 
 # Cascader 级联

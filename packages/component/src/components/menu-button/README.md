@@ -1,6 +1,8 @@
 ---
 name: menu-button
 zhName: 菜单按钮
+tags:
+  button: true
 ---
 
 # MenuButton 菜单按钮

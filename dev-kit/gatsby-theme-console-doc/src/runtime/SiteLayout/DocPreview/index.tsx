@@ -30,8 +30,6 @@ const DocPreview: React.FC = () => {
     }
   }, [])
 
-  console.log({ DocComp, docDef, error })
-
   const pubTime = usePkgPublishTime(
     docDef?.actualLoadPkgName,
     docDef?.actualLoadPkgVersion
@@ -57,7 +55,7 @@ const DocPreview: React.FC = () => {
       content: (
         <div>
           <p>
-            为了方便物料开发者的交流、评审和分享，console-components工具支持任何人发布物料预览包，并且本站点能加载和渲染预览包。你可以将当前的页面URL分享给评阅者，对方用浏览器就能看到你的本地开发结果！
+            为了方便物料开发者的交流、评审和分享，console-components工具支持任何人发布物料预览包，并且本站点能加载和渲染预览包。你可以将当前的页面URL分享给评阅者，对方用浏览器就能查看、试用你的本地开发成果！
           </p>
           <p>
             当前页面的预览数据来自预览包：

@@ -1,6 +1,8 @@
 ---
 name: calendar
 zhName: 日历
+tags:
+  dateTime: true
 ---
 
 # Calendar 日历
