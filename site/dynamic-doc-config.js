@@ -86,6 +86,7 @@ module.exports = [
     prodPkgName: '@alicloud/console-components-select-list',
     tags: {
       select: true,
+      menu: true,
     },
   },
   {

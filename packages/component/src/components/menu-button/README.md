@@ -2,6 +2,7 @@
 name: menu-button
 zhName: 菜单按钮
 tags:
+  menu: true
   button: true
 ---
 
