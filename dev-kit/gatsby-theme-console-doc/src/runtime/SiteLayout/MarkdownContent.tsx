@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import MDXRenderer from '@alicloud/gatsby-plugin-mdx-fork/mdx-renderer'
 import markdownComps from '../MarkdownComponents'
 import { usePageCtx } from './context'
 import DocTags from './utils/DocTags'

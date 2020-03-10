@@ -41,7 +41,7 @@ module.exports = themeOptions => {
   return {
     plugins: [
       {
-        resolve: 'gatsby-plugin-mdx',
+        resolve: '@alicloud/gatsby-plugin-mdx-fork',
         options: {
           extensions: ['.mdx', '.md'],
           remarkPlugins: [
