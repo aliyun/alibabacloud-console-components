@@ -17,7 +17,9 @@ const handleLinkNode = ({
 
   // insert mdx import and jsx
   // hash it to make identifer different: https://github.com/gatsbyjs/gatsby/issues/16799
-  const identiferName = `${instructionParam}_${stringHash(file.contents)}`
+  const identiferName = `${instructionParam}_${stringHash(
+    file.contents + linkURL
+  )}`
   ancestors[0].children.splice(
     ancestors[0].children.indexOf(ancestors[1]) + 1,
     0,
