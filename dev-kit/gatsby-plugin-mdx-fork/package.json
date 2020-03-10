@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/gatsby-plugin-mdx-fork",
-  "version": "1.0.78",
+  "version": "1.0.79",
   "description": "MDX integration for Gatsby",
   "main": "index.js",
   "license": "MIT",
