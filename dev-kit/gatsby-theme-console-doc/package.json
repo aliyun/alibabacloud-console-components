@@ -19,6 +19,7 @@
     "@alicloud/console-components-console-menu": "^1.0.6",
     "@alicloud/console-components-lib-publisher": "^0.1.18",
     "@alicloud/console-components-page": "^1.0.9",
+    "@alicloud/gatsby-plugin-mdx-fork": "^1.0.79",
     "@mdx-js/mdx": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby-plugin-layout": "^1.1.22",
