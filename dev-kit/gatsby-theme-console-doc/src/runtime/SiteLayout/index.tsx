@@ -135,7 +135,7 @@ const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
         navCollapsible={false}
       >
         <Page>
-          <Page.Content className="console-doc-content-body">
+          <Page.Content>
             {(() => {
               if (pageContext.pageMeta.type === 'doc') {
                 return <MarkdownContent />
@@ -173,5 +173,9 @@ const SAppLayout = styled(AppLayout)`
     ::-webkit-scrollbar-thumb {
       background: #666;
     }
+  }
+  .windcc-app-layout__content {
+    /* 将滚动容器作为其子元素的offsetParent */
+    position: relative;
   }
 `

@@ -3,6 +3,8 @@ import heading from './heading'
 import code from './code'
 import list from './list'
 import table from './table'
+import DemoRenderer__LinkInstructions from '../DemoRenderer'
+import InterfaceRenderer__LinkInstructions from '../TypescriptMetadataRenderer/interface'
 
 // 模仿github渲染markdown的样式
 // 样式参考 https://github.com/sindresorhus/github-markdown-css/blob/gh-pages/github-markdown.css
@@ -63,4 +65,8 @@ export default {
   ...code,
   ...list,
   ...table,
+  // https://mdxjs.com/blog/shortcodes
+  // 在mdx中可以无需import直接使用shortcodes组件
+  DemoRenderer__LinkInstructions,
+  InterfaceRenderer__LinkInstructions,
 }

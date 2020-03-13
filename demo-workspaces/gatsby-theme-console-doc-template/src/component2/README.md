@@ -38,8 +38,8 @@ const Detail = () => (
 
 ### 组件 DEMO
 
-[MDXInstruction:importDemo:WithMenuDemo](./stories/basic.tsx)
+[MDXInstruction:lazyImportDemo:WithMenuDemo](./stories/basic.tsx)
 
 ### 测试禁用 demo 的服务端渲染
 
-[MDXInstruction:importDemo:DisableSSR](./stories/non-ssr-able.tsx)
+[MDXInstruction:lazyImportDemo:DisableSSR](./stories/non-ssr-able.tsx)

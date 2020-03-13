@@ -38,10 +38,19 @@ export interface IMdxDocProps {
 export interface IMdxDocCtx extends IMdxDocProps {
   frontmatter: any
   tocHeadings: ITocHeading[]
+  /** 指定哪个容器是负责文档滚动，用于计算TOC的激活标题 */
+  scrollContainer?: string
 }
 
-const components = {
-  ...mdComps,
+export const MdxDocumentLayout: React.FC<IMdxDocCtx> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <docMetaCtx.Provider value={props}>
+      <Layout>{children}</Layout>
+    </docMetaCtx.Provider>
+  )
 }
 
 export function wrapMdxModule(
@@ -57,12 +66,10 @@ export function wrapMdxModule(
       tocHeadings: tocHeadings,
     }
     return (
-      <MDXProvider components={components}>
-        <docMetaCtx.Provider value={ctxVal}>
-          <Layout>
-            <DocComp />
-          </Layout>
-        </docMetaCtx.Provider>
+      <MDXProvider components={mdComps}>
+        <MdxDocumentLayout {...ctxVal}>
+          <DocComp />
+        </MdxDocumentLayout>
       </MDXProvider>
     )
   }

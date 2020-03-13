@@ -27,8 +27,7 @@ const Layout: React.FC = ({ children }) => {
       if (!parent) return 0
       // 最后一个heading与滚动顶部之间的滚动距离
       const offset = headingEl.offsetTop
-      const viewportHeight =
-        window.innerHeight || document.documentElement.clientHeight
+      const viewportHeight = parent.clientHeight
       const currentPadding = paddingRef.current?.offsetHeight ?? 0
       // 假设当前没有auto-padding，滚动容器的滚动高度是多少
       const parentHeight = parent.scrollHeight - currentPadding
@@ -52,7 +51,7 @@ const Layout: React.FC = ({ children }) => {
       </ScLayoutLeft>
       {headings && (
         <ScLayoutRight>
-          <TOC headings={headings} />
+          <TOC />
         </ScLayoutRight>
       )}
     </ScLayout>

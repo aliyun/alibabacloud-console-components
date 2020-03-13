@@ -1,5 +1,6 @@
-import React, { useMemo, useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useDocMetaCtx } from '@runtime/utils/context'
 
 export interface ITocHeading {
   id: string
@@ -7,8 +8,9 @@ export interface ITocHeading {
   depth: number
 }
 
-const TOC: React.FC<{ headings: ITocHeading[] }> = ({ headings }) => {
-  const activeId = useActiveHeading(headings)
+const TOC: React.FC = () => {
+  const { tocHeadings: headings, scrollContainer } = useDocMetaCtx()
+  const activeId = useActiveHeading(headings, scrollContainer)
   return (
     <ScList>
       {headings.map(heading => {
@@ -39,21 +41,23 @@ const ScList = styled.ol`
 const ScListItem = styled(
   ({ depth: number, active: boolean, ...restProps }) => <li {...restProps} />
 )`
-  padding-left: ${({ depth }) => 16 + (depth - 1) * 12}px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  ${({ active }) => (active ? 'font-weight: 700;' : '')}
-  border-left: 2px solid ${({ active }) => (active ? '#25b864' : '#e8e8e8')};
-  a {
-    display: block;
-    color: #1a1a1a;
-    transition: color 0.3s;
-    :hover {
-      color: #6d6d6d;
-    }
-    :active {
-      text-decoration: none;
+  && {
+    padding-left: ${({ depth }) => 16 + (depth - 1) * 12}px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    ${({ active }) => (active ? 'font-weight: 700;' : '')}
+    border-left: 2px solid ${({ active }) => (active ? '#25b864' : '#e8e8e8')};
+    a {
+      display: block;
+      color: #1a1a1a;
+      transition: color 0.3s;
+      :hover {
+        color: #6d6d6d;
+      }
+      :active {
+        text-decoration: none;
+      }
     }
   }
 `
@@ -62,7 +66,10 @@ interface IHeadingWithDomEl extends ITocHeading {
   el: HTMLElement
 }
 
-function useActiveHeading(headings: ITocHeading[]) {
+function useActiveHeading(
+  headings: ITocHeading[],
+  scrollContainer: string | undefined
+) {
   const [headingWithDomEl, setHeadingWithDomEl] = useState<
     Array<IHeadingWithDomEl>
   >([])
@@ -83,32 +90,43 @@ function useActiveHeading(headings: ITocHeading[]) {
 
   useEffect(() => {
     const handle = () => {
+      if (!headingWithDomEl.length) return
+      const scrollParent = headingWithDomEl[0].el.offsetParent!
       const found = headingWithDomEl.find((heaidng, idx) => {
+        // 如果第一个heading都还没有滚动过去，那么高亮第一个heading
+        if (idx === 0 && !isHeadingScrolled(heaidng.el, scrollParent))
+          return true
         const nextHeading = headingWithDomEl[idx + 1]
         if (nextHeading) {
           return (
-            isHeadingScrolled(heaidng.el) && !isHeadingScrolled(nextHeading.el)
+            isHeadingScrolled(heaidng.el, scrollParent) &&
+            !isHeadingScrolled(nextHeading.el, scrollParent)
           )
         }
-        return isHeadingScrolled(heaidng.el)
+        return isHeadingScrolled(heaidng.el, scrollParent)
       })
       setActiveId(found?.id ?? '')
     }
 
     handle()
-    window.addEventListener('resize', handle)
-    window.addEventListener('scroll', handle)
+    const scrollContainerEl =
+      (scrollContainer && document.querySelector(scrollContainer)) || window
+    scrollContainerEl.addEventListener('resize', handle)
+    scrollContainerEl.addEventListener('scroll', handle)
 
     return () => {
-      window.removeEventListener('resize', handle)
-      window.removeEventListener('scroll', handle)
+      scrollContainerEl.removeEventListener('resize', handle)
+      scrollContainerEl.removeEventListener('scroll', handle)
     }
-  }, [headingWithDomEl])
+  }, [headingWithDomEl, scrollContainer])
 
   return activeId
 
-  function isHeadingScrolled(el: HTMLElement) {
-    var rect = el.getBoundingClientRect()
-    return rect.top <= 30
+  function isHeadingScrolled(el: HTMLElement, scrollParent: Element) {
+    return (
+      el.getBoundingClientRect().top -
+        scrollParent.getBoundingClientRect().top <=
+      30
+    )
   }
 }

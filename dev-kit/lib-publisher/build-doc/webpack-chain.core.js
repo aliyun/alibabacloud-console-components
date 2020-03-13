@@ -9,10 +9,11 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
 
   config
     // add entry
-
     .entry('doc')
     .clear()
     .add(entryJS)
+    .end()
+    .output.chunkFilename('doc-chunk-[id].js')
     .end()
 
     .resolve.extensions // config resolve.extensions
@@ -69,6 +70,9 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
       ...babelConfig,
     })
     .end()
+    // .use('debug-loader')
+    // .loader(path.resolve(__dirname, './debugLoader.js'))
+    // .end()
     .use('mdx-loader')
     .loader('@mdx-js/loader')
     .options({
@@ -78,6 +82,7 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
           {
             instructions: [
               require('../lib/buildtools/remarkPlugins/linkInstructions/importDemo'),
+              require('../lib/buildtools/remarkPlugins/linkInstructions/lazyImportDemo'),
               require('../lib/buildtools/remarkPlugins/linkInstructions/renderInterface'),
             ],
           },
@@ -99,9 +104,6 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
     .resourceQuery(/loadDemo/)
     .use('demoLoader')
     .loader(path.resolve(__dirname, '../lib/buildtools/demoLoader.js'))
-    .options({
-      // bundleDemo: themeOptions.bundleDemo
-    })
     .end()
     .end()
     .rule('load-image')

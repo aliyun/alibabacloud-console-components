@@ -236,10 +236,7 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
         ...resolveAlias,
       },
     },
-    plugins: [
-      new DemoPlugin(),
-      new IgnoreNotFoundExportPlugin(),
-    ],
+    plugins: [new DemoPlugin(), new IgnoreNotFoundExportPlugin()],
     module: {
       rules: [
         {
@@ -249,9 +246,6 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
               loader: require.resolve(
                 '@alicloud/console-components-lib-publisher/lib/buildtools/demoLoader.js'
               ),
-              options: {
-                bundleDemo: themeOptions.bundleDemo,
-              },
             },
           ],
         },

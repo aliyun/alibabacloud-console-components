@@ -68,7 +68,7 @@ const generateIframeSrc = projMeta => (sandboxId: string) =>
     projMeta.onlyEditor ? '&view=editor' : '&view=split'
   }&module=${prependSlash(projMeta.entryPath)}`
 
-interface IDemoInfo {
+export interface IDemoInfo {
   // 用户在demo模块export default Demo组件，我们在这里拿到
   default: React.ComponentType
   // _demoSrcFiles是demoPlugin收集到的demo源码，用于创建codesandbox

@@ -49,12 +49,14 @@ module.exports = themeOptions => {
               require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/linkInstructions/remarkPlugin'),
               {
                 instructions: [
-                  require('./lib/buildtime/remarkPlugins/linkInstructions/importDemo'),
-                  require('./lib/buildtime/remarkPlugins/linkInstructions/renderInterface'),
+                  require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/linkInstructions/importDemo'),
+                  require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/linkInstructions/lazyImportDemo'),
+                  require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/linkInstructions/renderInterface'),
                   ...linkInstructions,
                 ],
               },
             ],
+            require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/addHeadings'),
             ...remarkPlugins,
           ],
           rehypePlugins: [require('rehype-slug')],
