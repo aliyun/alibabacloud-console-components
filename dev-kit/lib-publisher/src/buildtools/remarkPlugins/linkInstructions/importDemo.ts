@@ -13,20 +13,20 @@ const handleLinkNode = ({
   const parent = ancestors[ancestors.length - 1]
   parent.children.splice(parent.children.indexOf(node), 1)
 
-  const identiferName = `${instructionParam}`
+  // 动态import
+  //   const importExpression = `import("${linkURL}?loadDemo").catch(r => {
+  //     if (typeof window === "undefined") return null;
+  //     throw r;
+  // })`
+  // 静态import
+  const importExpression = `require("${linkURL}?loadDemo")`
 
   ancestors[0].children.splice(
     ancestors[0].children.indexOf(ancestors[1]) + 1,
     0,
     {
-      type: 'import',
-      // 这里使用import *是因为demoloader会注入额外信息到模块中
-      // 在demo里面用户还可以export demoMeta = {.....}
-      value: `import * as ${identiferName} from "${linkURL}?loadDemo"`,
-    },
-    {
       type: 'jsx',
-      value: `<DemoRenderer__LinkInstructions demoInfo={${identiferName}} />`,
+      value: `<DemoRenderer__LinkInstructions demoInfo={${importExpression}} />`,
     }
   )
 }

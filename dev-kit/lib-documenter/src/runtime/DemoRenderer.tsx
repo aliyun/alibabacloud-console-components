@@ -3,14 +3,13 @@ import React, {
   useCallback,
   useEffect,
   useRef,
-  useContext,
 } from 'react'
 import { Card, Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import _ from 'lodash'
 import createCodesandbox from './createCodesandbox'
 import HeaderWithAnchor from './HeaderWithAnchor'
-import { docMetaCtx } from './MdxWrapper'
+import { useDocMetaCtx } from './utils/context'
 
 const { Row } = Grid
 
@@ -90,7 +89,7 @@ type IProps = {
 
 const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
   // docMeta是对整个markdown文档标注的元数据
-  const docMetaCtxVal = useContext(docMetaCtx)
+  const docMetaCtxVal = useDocMetaCtx()
 
   const [demoInfo, setDemoInfo] = useState<IDemoInfo | null>(null)
 

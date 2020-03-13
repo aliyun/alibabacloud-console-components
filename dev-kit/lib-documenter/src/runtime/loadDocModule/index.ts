@@ -1,5 +1,6 @@
 import externalsObj from './commonDeps'
 import applyPlugin from './systemjs-amd-introp'
+import { wrapMdxModule, IWrappedMdxModule } from '../MdxWrapper'
 
 /** 模块加载路径定义 */
 const moduleURLProtocals = {
@@ -23,12 +24,14 @@ export interface IDocDef {
   actualLoadPkgVersion: string
 }
 
-const cache: Map<string, Promise<any>> = new Map()
+const cache: Map<string, Promise<IWrappedMdxModule>> = new Map()
 
-export default function loadDocModule(docDef: IDocDef) {
+export default function loadDocModule(
+  docDef: IDocDef
+): Promise<IWrappedMdxModule> {
   const cacheKey = `${docDef.prodPkgName}/${docDef.actualLoadPkgName}/${docDef.actualLoadPkgVersion}`
 
-  if (cache.has(cacheKey)) return cache.get(cacheKey)
+  if (cache.has(cacheKey)) return cache.get(cacheKey)!
 
   const protocalResolved = moduleURLProtocals.unpkg(
     docDef.actualLoadPkgName,
@@ -73,7 +76,9 @@ export default function loadDocModule(docDef: IDocDef) {
     )
   }
 
-  const promise = newSystemjsInstance.import(protocalResolved.doc)
+  const promise = newSystemjsInstance
+    .import(protocalResolved.doc)
+    .then(wrapMdxModule)
   cache.set(cacheKey, promise)
   return promise
 }

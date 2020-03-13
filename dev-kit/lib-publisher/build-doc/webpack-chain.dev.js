@@ -6,12 +6,12 @@ module.exports.createConfig = ({ entryMDX, rootDir, prodPkgName }) =>
   createCoreConfig({
     entryMDX,
     rootDir,
-    entryJS: path.resolve(__dirname, 'dev-index.jsx'),
+    entryJS: path.resolve(__dirname, 'dev-index.tsx'),
   })
     .mode('development')
     .resolve.alias.set(
       '@runtime',
-      '@alicloud/console-components-lib-documenter/lib/runtime'
+      '@alicloud/console-components-lib-documenter/src/runtime'
     )
     // 让demo加载prodPkgName模块的时候，从src加载
     .set(prodPkgName, path.resolve(rootDir, 'src'))

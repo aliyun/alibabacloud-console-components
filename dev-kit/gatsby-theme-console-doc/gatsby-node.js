@@ -5,7 +5,6 @@ const _ = require('lodash')
 const IgnoreNotFoundExportPlugin = require('ignore-not-found-export-webpack-plugin')
 
 const DemoPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/demoPlugin')
-const WrapReqPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/WrapRequestPlugin')
 
 exports.createPages = async ({ graphql, actions }, themeOptions) => {
   const { createPage } = actions
@@ -239,7 +238,6 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
     },
     plugins: [
       new DemoPlugin(),
-      new WrapReqPlugin(require('./wrapMdxRequest')),
       new IgnoreNotFoundExportPlugin(),
     ],
     module: {

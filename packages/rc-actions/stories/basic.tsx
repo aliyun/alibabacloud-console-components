@@ -63,3 +63,8 @@ const Basic: React.FC<{}> = () => {
 }
 
 export default Basic
+
+export const demoMeta = {
+  zhName: `基本用法`,
+  zhDesc: `LinkButton、disabled的用法`,
+}
