@@ -1,7 +1,7 @@
 {
   "name": "dev-kit-demo-documenter",
   "private": true,
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "@alicloud/console-components-lib-documenter": "^0.1.13",
+    "@alicloud/console-components-lib-documenter": "^0.1.14",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^4.4.1"
