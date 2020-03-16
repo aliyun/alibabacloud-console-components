@@ -33,13 +33,13 @@ export interface IMdxDocProps {
   /** 本地开发环境下有一些特殊的行为，比如codesanbox不能使用 */
   mode?: 'local-dev'
   autoPadding?: boolean
+  /** 指定哪个容器是负责文档滚动，用于计算TOC的激活标题 */
+  scrollContainer?: string
 }
 
 export interface IMdxDocCtx extends IMdxDocProps {
   frontmatter: any
   tocHeadings: ITocHeading[]
-  /** 指定哪个容器是负责文档滚动，用于计算TOC的激活标题 */
-  scrollContainer?: string
 }
 
 export const MdxDocumentLayout: React.FC<IMdxDocCtx> = ({

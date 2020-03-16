@@ -89,9 +89,13 @@ function useActiveHeading(
   }, [headings])
 
   useEffect(() => {
+    const scrollContainerEl: Element | Window =
+      (scrollContainer && document.querySelector(scrollContainer)) || window
+
     const handle = () => {
       if (!headingWithDomEl.length) return
-      const scrollParent = headingWithDomEl[0].el.offsetParent!
+      // const scrollParent = headingWithDomEl[0].el.offsetParent!
+      const scrollParent = scrollContainerEl
       const found = headingWithDomEl.find((heaidng, idx) => {
         // 如果第一个heading都还没有滚动过去，那么高亮第一个heading
         if (idx === 0 && !isHeadingScrolled(heaidng.el, scrollParent))
@@ -109,8 +113,7 @@ function useActiveHeading(
     }
 
     handle()
-    const scrollContainerEl =
-      (scrollContainer && document.querySelector(scrollContainer)) || window
+
     scrollContainerEl.addEventListener('resize', handle)
     scrollContainerEl.addEventListener('scroll', handle)
 
@@ -122,7 +125,10 @@ function useActiveHeading(
 
   return activeId
 
-  function isHeadingScrolled(el: HTMLElement, scrollParent: Element) {
+  function isHeadingScrolled(el: HTMLElement, scrollParent: Element | Window) {
+    if ('document' in scrollParent) {
+      return el.getBoundingClientRect().top <= 30
+    }
     return (
       el.getBoundingClientRect().top -
         scrollParent.getBoundingClientRect().top <=

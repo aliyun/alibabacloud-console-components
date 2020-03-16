@@ -1,21 +1,31 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import loadDocModule from "@alicloud/console-components-lib-documenter/loadDocModule";
-
-(async function main() {
+import loadDocModule from '@alicloud/console-components-lib-documenter/loadDocModule'
+;(async function main() {
   const docDef = {
-    prodPkgName: "@alicloud/cc-demo-component",
-    actualLoadPkgName: "@cc-dev-kit-test/cc-demo-component",
-    actualLoadPkgVersion: "1.0.1-preview.27"
-  };
+    prodPkgName: '@alicloud/console-components-actions',
+    actualLoadPkgName: '@cc-dev-kit-test/console-components-actions',
+    actualLoadPkgVersion: '1.0.9-preview.0',
+  }
 
-  const DocComp = (await loadDocModule(docDef)).default;
+  const DocComp = (await loadDocModule(docDef)).default
 
   ReactDOM.render(
-    <div style={{ padding: "10px 20px" }}>
-      <DocComp pkgInfo={docDef} />
+    <div
+      style={{
+        margin: '240px 240px',
+        border: '2px solid gray',
+        width: '960px',
+        height: '400px',
+        // 滚动容器需要作为定位基准
+        overflow: 'auto',
+        position: 'relative',
+      }}
+      className="ctn"
+    >
+      <DocComp pkgInfo={docDef} scrollContainer=".ctn" />
     </div>,
-    document.querySelector(".app")
-  );
-})();
+    document.querySelector('.app')
+  )
+})()

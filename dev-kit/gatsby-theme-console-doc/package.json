@@ -8,7 +8,9 @@
     "access": "public"
   },
   "scripts": {
-    "prepare": ""
+    "compile-build-tools": "rm -rf ./lib/buildtime && tsc -p ./src/buildtime/tsconfig.json",
+    "watch-compile-build-tools": "rm -rf ./lib/buildtime && tsc -p ./src/buildtime/tsconfig.json --watch",
+    "prepare": "npm run compile-build-tools"
   },
   "dependencies": {
     "@alicloud/console-components": "^1.0.20",

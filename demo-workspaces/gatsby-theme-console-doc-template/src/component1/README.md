@@ -7,110 +7,292 @@ tags:
   baseComp: true
 ---
 
-# @alicloud/console-components-lib-publisher
-
-`@alicloud/console-components-lib-publisher`是 console-components 提供的开发者工具之一。
-它提供了脚本工具，来辅助物料开发、协作：
-
-- cc-extract-api 它做了以下 3 件事情：
-  - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)，读取`lib/index.d.ts`（即`tsc`的输出），提取 ts 代码中的类型、注释信息。输出到`cc-dev-out/api-extractor/`目录。
-  - 然后，`dev-kit/api-documenter`会将上述输出信息加工成 json 数据，作为 API 文档的数据。输出到`cc-dev-out/api-json/`目录。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
-  - 以`lib/index.d.ts`为入口，将`.d.ts`声明文件打包（类似于 webpack 打包 js 模块），输出到`cc-dev-out/index.d.ts`，在此过程中，被声明为`@internal`和`@alpha`的 ts 类型、接口成员会被过滤掉。你可以利用这一点来避免不稳定的 ts 接口暴露给用户，提高封装性。详见[api-extractor 文档](https://api-extractor.com/pages/overview/demo_rollup/)。
-- cc-build-doc 将 markdown 文档构建成一个 js bundle。
-  - 构建成 js bundle 的好处是便于分发和扩展。各种基于 markdown 的扩展（demo 嵌入、ts Interface 渲染）在构建阶段就已经被处理完毕，文档站点无需关注文档功能的编译和实现，**文档站点可以将一篇文档当做一个普通 React 组件来加载、渲染**。未来我们向 markdown 语法加入更多扩展的时候，文档站点没有感知。
-  - 相对路径引入的本地图片会被压缩、内联成 data-url，以保证最大的便携性。
-- cc-doc-local-dev 本地开发、预览。
-  - 依然已经可以将 markdown 文档构建成一个 js bundle，自然也就很容易实现本地开发模式（使用`webpack-dev-server`）。在这个模式下你可以快速预览渲染后的文档。我们会监听 markdown 文件的变更、demo 代码的变更、src 代码的变更，并自动刷新。
-    > 目前，对 Typescript Interface 代码的修改，不会导致文档中渲染的 Interface 表格的热刷新。需要重新执行`npm run prepare && npm run doc:local-dev`
-- cc-publish-preview 将当前的物料发布成一个预览包。
-  - 预览包发布成功以后，你会立刻得到一个 URL 分享链接。将 URL 分享给你的 UI 评阅者，评阅者用浏览器打开就能看到当前物料的文档。得益于文档的 Codesandbox Demo 能力、API 文档能力，这份文档能够快速地让评阅者了解、试用你开发的物料，无需切换代码分支、启动开发服务器等耗时的操作。
-
-以上脚本工具都在物料包根目录（即 package.json 所在的目录）运行。
-
-## 文档特性
-
-### 在文档中嵌入 Tyescript Interface
-
-使用`MDXInstruction:renderInterface`指令。比如`[MDXInstruction:renderInterface:IActionsProps](./src/index.tsx)`。
-
-渲染结果是一个 Table：
-
-![interface](./assets/interface.png)
-
-#### 规范
-
-- 将其中的`IActionsProps`替换成你想要展示的 Interface 名称。
-- 其中的 URL 部分随意，建议通过相对路径指向 Interface 所在的文件。
-- 被展示的 Interface 必须从项目的`src/index.ts`export 出来（可以是 re-export）。参考[已有组件的做法](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/rc-actions/src/index.tsx)
-
-> 这样设计的好处是，这个指令在[被普通 markdown 渲染器渲染的时候](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)，也拥有良好的阅读体验。点击链接能够跳转到 Interface 定义文件。
-
-### 在文档中嵌入 Demo
-
-使用`MDXInstruction:importDemo`指令。比如`[MDXInstruction:importDemo:BasicDemo](./stories/basic.tsx)`
-
-渲染效果是一个卡片：
-
-- 主体部分是 demo 的渲染结果
-- 卡片下方有一个展开/收起按钮，点击后可以通过 codesandbox 直接编辑 demo
-
-![demo](./assets/demo.png)
-
-#### 规范
-
-- 其中的`BasicDemo`是 demo 的名称（保证在该文档内不重复即可）。
-- 其中`./stories/basic.tsx`是指向【Demo 模块】的路径。【Demo 模块】遵循下面描述的《Demo 模块规范》。
-
-> 这样设计的好处是，这个指令在[被普通 markdown 渲染器渲染的时候](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)，也拥有良好的阅读体验。点击链接能够跳转到 Demo 定义文件。
-
-#### Demo 模块规范
-
-Demo 模块的规范：
-
-- 是一个 js 或 ts 模块，使用[ES2015 模块化规范](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)。
-- 应该 import 并使用物料，向你的用户展示正确的 import、使用方式。比如`import Actions, { LinkButton } from '@alicloud/console-components-actions'`。路径应该使用正式包名，而不能使用相对路径`../src/index.tsx`。
-  - Demo 应该只 import `当前物料包`、`react`、`styled-components`，尽量不要 import 其他外部包（会让你的文档 bundle 变大）。
-  - 支持相对路径 import，但是不要滥用。仅用于 import 一些 demo 共享的工具函数，比如`import { Container } from './styles'`。最多只能上探一个目录层级，比如`import util from '../util'`。
-- 模块的`default export`是一个 React 组件。它就是要展示的 Demo。
-- 【可选】模块可以`export const demoMeta = { zhName: 'xxx', zhDesc: 'yyy' }`。提供模块的描述信息。文档站点会读取这个描述信息，并用一致的方式渲染在 Demo 上方。
-
-[示例](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/rc-actions/stories/basic.tsx)。
-
-这样设计的好处是，我们的 Demo 模块实际上是兼容 [storybook 的 story 模块规范](https://storybook.js.org/docs/formats/storiesof-api/)的（storybook 是当前社区最广泛采纳的 UI 组件开发环境）。
-也就是说，现在每个 demo 模块都可以有 2 个用途：
-
-- 按照本文档的描述，嵌入到 markdown 文档中，最终在你的文档站点渲染一个 Demo 卡片。
-- 将它作为 storybook 的用例(story)。本地开发 UI 组件时可以使用 storybook 作为开发环境。
-
-### 承载本地图片
-
-我们书写 markdown 文档的时候经常有一个痛点：**由于 markdown 是文本格式，它不能直接承载图片**，因此往往需要借助图床。但是图床嵌入图片的方式会遇到以下困扰：
-
-- 操作太麻烦：上传到图床、拷贝 url、在 markdown 中插入图片`![altText](https://url.com)`
-- 很难找到可靠（且免费）的图床，大部分免费的平台无法保证图片长期有效。如果图床突然删除了你的图片，你很可能再也找不回来（如果你自己没有备份的话）
-- 便携性（portability）差：文档与平台绑定。虽然很多文档、博客平台提供了图床（比如语雀），但是把图片放在平台图床会让你的文档变得难以迁移
-
-> 于此相反的是 Word 文档格式、PDF 格式，它们本身是二进制格式，能直接承载图片，不会有上述的困扰。
-
-`@alicloud/console-components-lib-publisher`选择了 js bundle 作为文档的分发形式。js bundle 是一种非常便携的分发格式（类似于 PDF 文档）。利用 webpack 的一些 loader，它可以将本地的图片打包到 js bundle 中（data-url 编码）。并且自动做了图片压缩以便减小 bundle size。
-
-以`.`开头的 url 视为相对路径，指向本地图片，会被打包。
-示例：`![aliyun](./assets/aliyun.png)`
-
-其他的 url 视为普通外链 url，不会被打包。
-示例：`![aliyun](https://img.alicdn.com/tfs/TB1Ly5oS3HqK1RjSZFPXXcwapXa-238-54.png)`
-
-### 自动生成标题跳转锚点、文档目录结构
-
-你可能已经发现，已经有很多文档支持**标题级别的链接跳转**（比如 React 文档）。我们的文档工具也支持这个特性。
-
-- 当鼠标 hover 到文档标题的时候会看到一个链接标识，它会告诉你直接跳转到这个标题的链接。通过分享这个链接，可以让读者直接来到这个标题，不需要从头开始看起
-- 在编写 markdown 文档的时候，可以使用`[链接](#文档特性)`来引用文档的另一个部分。读者点击[链接](#文档特性)可以快速跳转到被引用点
-
-更进一步，我们的文档还支持自动生成文档目录结构（Table of Content），悬停在文档右侧。用户可以通过它随时跳转到任意章节。在文档滚动的过程中，右侧目录会自动高亮当前正在浏览的章节。
-
 <!-- 除了可以通过yaml的方式来声明frontmatter，还可以通过mdx export的方式来声明frontmatter： -->
 
 export const frontmatter = {
 testFrontmatter: "test value"
 };
+
+# Test Markdown Render
+
+## Overview
+
+### Philosophy
+
+Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
+
+Readability, however, is emphasized above all else. A Markdown-formatted
+document should be publishable as-is, as plain text, without looking
+like it's been marked up with tags or formatting instructions. While
+Markdown's syntax has been influenced by several existing text-to-HTML
+filters -- including [Setext](http://docutils.sourceforge.net/mirror/setext.html), [atx](http://www.aaronsw.com/2002/atx/), [Textile](http://textism.com/tools/textile/), [reStructuredText](http://docutils.sourceforge.net/rst.html),
+[Grutatext](http://www.triptico.com/software/grutatxt.html), and [EtText](http://ettext.taint.org/doc/) -- the single biggest source of
+inspiration for Markdown's syntax is the format of plain text email.
+
+## Block Elements
+
+### Paragraphs and Line Breaks
+
+A paragraph is simply one or more consecutive lines of text, separated
+by one or more blank lines. (A blank line is any line that looks like a
+blank line -- a line containing nothing but spaces or tabs is considered
+blank.) Normal paragraphs should not be indented with spaces or tabs.
+
+The implication of the "one or more consecutive lines of text" rule is
+that Markdown supports "hard-wrapped" text paragraphs. This differs
+significantly from most other text-to-HTML formatters (including Movable
+Type's "Convert Line Breaks" option) which translate every line break
+character in a paragraph into a `<br />` tag.
+
+When you _do_ want to insert a `<br />` break tag using Markdown, you
+end a line with two or more spaces, then type return.
+
+### Headers
+
+Markdown supports two styles of headers, [Setext][1] and [atx][2].
+
+Optionally, you may "close" atx-style headers. This is purely
+cosmetic -- you can use this if you think it looks better. The
+closing hashes don't even need to match the number of hashes
+used to open the header. (The number of opening hashes
+determines the header level.)
+
+### Blockquotes
+
+Markdown uses email-style `>` characters for blockquoting. If you're
+familiar with quoting passages of text in an email message, then you
+know how to create a blockquote in Markdown. It looks best if you hard
+wrap the text and put a `>` before every line:
+
+> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+>
+> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+> id sem consectetuer libero luctus adipiscing.
+
+Markdown allows you to be lazy and only put the `>` before the first
+line of a hard-wrapped paragraph:
+
+> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+> id sem consectetuer libero luctus adipiscing.
+
+Blockquotes can be nested (i.e. a blockquote-in-a-blockquote) by
+adding additional levels of `>`:
+
+> This is the first level of quoting.
+>
+> > This is nested blockquote.
+>
+> Back to the first level.
+
+Blockquotes can contain other Markdown elements, including headers, lists,
+and code blocks:
+
+> ## This is a header.
+>
+> 1.  This is the first list item.
+> 2.  This is the second list item.
+>
+> Here's some example code:
+>
+>     return shell_exec("echo $input | $markdown_script");
+
+Any decent text editor should make email-style quoting easy. For
+example, with BBEdit, you can make a selection and choose Increase
+Quote Level from the Text menu.
+
+### Lists
+
+Markdown supports ordered (numbered) and unordered (bulleted) lists.
+
+Unordered lists use asterisks, pluses, and hyphens -- interchangably
+-- as list markers:
+
+- Red
+- Green
+- Blue
+
+is equivalent to:
+
+- Red
+- Green
+- Blue
+
+and:
+
+- Red
+- Green
+- Blue
+
+Ordered lists use numbers followed by periods:
+
+1.  Bird
+2.  McHale
+3.  Parish
+
+It's important to note that the actual numbers you use to mark the
+list have no effect on the HTML output Markdown produces. The HTML
+Markdown produces from the above list is:
+
+If you instead wrote the list in Markdown like this:
+
+1.  Bird
+1.  McHale
+1.  Parish
+
+or even:
+
+3. Bird
+1. McHale
+1. Parish
+
+you'd get the exact same HTML output. The point is, if you want to,
+you can use ordinal numbers in your ordered Markdown lists, so that
+the numbers in your source match the numbers in your published HTML.
+But if you want to be lazy, you don't have to.
+
+To make lists look nice, you can wrap items with hanging indents:
+
+- Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+  Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+  viverra nec, fringilla in, laoreet vitae, risus.
+- Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+  Suspendisse id sem consectetuer libero luctus adipiscing.
+
+But if you want to be lazy, you don't have to:
+
+- Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+  Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+  viverra nec, fringilla in, laoreet vitae, risus.
+- Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+  Suspendisse id sem consectetuer libero luctus adipiscing.
+
+List items may consist of multiple paragraphs. Each subsequent
+paragraph in a list item must be indented by either 4 spaces
+or one tab:
+
+1.  This is a list item with two paragraphs. Lorem ipsum dolor
+    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+    mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+    sit amet velit.
+
+2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+
+It looks nice if you indent every line of the subsequent
+paragraphs, but here again, Markdown will allow you to be
+lazy:
+
+- This is a list item with two paragraphs.
+
+      This is the second paragraph in the list item. You're
+
+  only required to indent the first line. Lorem ipsum dolor
+  sit amet, consectetuer adipiscing elit.
+
+- Another item in the same list.
+
+To put a blockquote within a list item, the blockquote's `>`
+delimiters need to be indented:
+
+- A list item with a blockquote:
+
+  > This is a blockquote
+  > inside a list item.
+
+To put a code block within a list item, the code block needs
+to be indented _twice_ -- 8 spaces or two tabs:
+
+- A list item with a code block:
+
+      <code goes here>
+
+### Code Blocks
+
+Pre-formatted code blocks are used for writing about programming or
+markup source code. Rather than forming normal paragraphs, the lines
+of a code block are interpreted literally. Markdown wraps a code block
+in both `<pre>` and `<code>` tags.
+
+To produce a code block in Markdown, simply indent every line of the
+block by at least 4 spaces or 1 tab.
+
+This is a normal paragraph:
+
+    This is a code block.
+
+Here is an example of AppleScript:
+
+    tell application "Foo"
+        beep
+    end tell
+
+A code block continues until it reaches a line that is not indented
+(or the end of the article).
+
+Within a code block, ampersands (`&`) and angle brackets (`<` and `>`)
+are automatically converted into HTML entities. This makes it very
+easy to include example HTML source code using Markdown -- just paste
+it and indent it, and Markdown will handle the hassle of encoding the
+ampersands and angle brackets. For example, this:
+
+    <div class="footer">
+        &copy; 2004 Foo Corporation
+    </div>
+
+Regular Markdown syntax is not processed within code blocks. E.g.,
+asterisks are just literal asterisks within a code block. This means
+it's also easy to use Markdown to write about Markdown's own syntax.
+
+```
+tell application "Foo"
+    beep
+end tell
+```
+
+## Span Elements
+
+### Links
+
+Markdown supports two style of links: _inline_ and _reference_.
+
+In both styles, the link text is delimited by [square brackets].
+
+To create an inline link, use a set of regular parentheses immediately
+after the link text's closing square bracket. Inside the parentheses,
+put the URL where you want the link to point, along with an _optional_
+title for the link, surrounded in quotes. For example:
+
+This is [an example](http://example.com/) inline link.
+
+[This link](http://example.net/) has no title attribute.
+
+### Emphasis
+
+Markdown treats asterisks (`*`) and underscores (`_`) as indicators of
+emphasis. Text wrapped with one `*` or `_` will be wrapped with an
+HTML `<em>` tag; double `*`'s or `_`'s will be wrapped with an HTML
+`<strong>` tag. E.g., this input:
+
+_single asterisks_
+
+_single underscores_
+
+**double asterisks**
+
+**double underscores**
+
+### Code
+
+To indicate a span of code, wrap it with backtick quotes (`` ` ``).
+Unlike a pre-formatted code block, a code span indicates code within a
+normal paragraph. For example:
+
+Use the `printf()` function.
