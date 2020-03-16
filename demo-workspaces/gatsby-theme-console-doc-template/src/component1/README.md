@@ -15,6 +15,14 @@ testFrontmatter: "test value"
 
 # Test Markdown Render
 
+## Test image
+
+local image:
+![demoImg](./demo.png)
+
+external image:
+![externalImg](https://img.alicdn.com/tfs/TB1Ly5oS3HqK1RjSZFPXXcwapXa-238-54.png)
+
 ## Overview
 
 ### Philosophy

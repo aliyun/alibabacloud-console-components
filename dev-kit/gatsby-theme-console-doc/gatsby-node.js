@@ -40,26 +40,22 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
   const queryRes = await graphql(
     `
       query QueryDocs {
-        allFile {
-          edges {
-            node {
-              absolutePath
-              sourceInstanceName
-              relativePath
-              relativeDirectory
-              childMdx {
-                body
-                frontmatter {
-                  name
-                  zhName
-                  sort
-                  tags
-                }
-                headings(depth: h1) {
-                  value
-                  depth
-                }
+        allMdx {
+          nodes {
+            parent {
+              ... on File {
+                absolutePath
+                sourceInstanceName
+                relativePath
+                relativeDirectory
               }
+            }
+            body
+            frontmatter {
+              name
+              zhName
+              sort
+              tags
             }
           }
         }
@@ -68,29 +64,28 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
   )
 
   // 从本地获取数据的文档
-  const localDocsInfo = queryRes.data.allFile.edges
-    .map(({ node }) => node)
+  const localDocsInfo = queryRes.data.allMdx.nodes
     .filter(node => {
       const isFromFileSystemCrawlers = !!fileSystemCrawlers.find(
-        ({ name }) => name === node.sourceInstanceName
+        ({ name }) => name === node.parent.sourceInstanceName
       )
       return (
         isFromFileSystemCrawlers &&
-        node.childMdx &&
-        node.childMdx.frontmatter &&
-        node.childMdx.frontmatter.name &&
-        node.childMdx.frontmatter.zhName
+        node &&
+        node.frontmatter &&
+        node.frontmatter.name &&
+        node.frontmatter.zhName
       )
     })
     .map(node => {
-      const { name, zhName, sort, tags } = node.childMdx.frontmatter
-      const { sourceInstanceName } = node
+      const { name, zhName, sort, tags } = node.frontmatter
+      const { sourceInstanceName, relativePath } = node.parent
       return {
         zhName,
         name,
         sort,
-        mdxBody: node.childMdx.body,
-        mdFilePath: node.relativePath,
+        mdxBody: node.body,
+        mdFilePath: relativePath,
         fileSystemCrawlerName: sourceInstanceName,
         type: 'doc',
         tags,

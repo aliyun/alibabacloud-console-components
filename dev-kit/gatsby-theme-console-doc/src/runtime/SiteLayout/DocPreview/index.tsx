@@ -76,7 +76,11 @@ const DocPreview: React.FC = () => {
   return (
     <div>
       <ScAnnouncement type="warning" dataSource={announcementDataSource} />
-      <DocComp pkgInfo={docDef} />
+      <DocComp
+        pkgInfo={docDef}
+        autoPadding
+        scrollContainer=".windcc-app-layout__content"
+      />
     </div>
   )
 }

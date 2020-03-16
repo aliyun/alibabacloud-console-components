@@ -44,6 +44,10 @@ module.exports = {
             name: 'guides-crawler',
             rootDir: path.resolve(__dirname, '../guides'),
           },
+          {
+            name: 'dev-kit-crawler',
+            rootDir: path.resolve(__dirname, '../dev-kit'),
+          },
         ],
         dynamicDocs: require('./dynamic-doc-config'),
         // 为每个文档添加元数据：它属于哪个类目
@@ -86,6 +90,11 @@ module.exports = {
                 category: 'guides',
               }
             }
+            if (docInfo.fileSystemCrawlerName === 'dev-kit-crawler') {
+              return {
+                category: 'dev-kit',
+              }
+            }
             throw new Error(
               `unexpected docInfo.fileSystemCrawlerName: ${docInfo.fileSystemCrawlerName}`
             )
@@ -96,6 +105,7 @@ module.exports = {
           'base-components': '基础组件',
           'biz-components': '业务组件',
           guides: '指南',
+          'dev-kit': '开发工具',
         },
         // 顶部导航
         topNav: [
@@ -125,6 +135,7 @@ module.exports = {
               case 'biz-components':
                 return '组件文档'
               case 'guides':
+              case 'dev-kit':
                 return '指南'
               default:
                 throw new Error(
@@ -143,10 +154,15 @@ module.exports = {
                   { categoryName: 'base-components' },
                   { categoryName: 'biz-components' },
                 ]
+              case 'dev-kit':
               case 'guides':
                 // 如果当前页面是指南
                 // 则导航栏需要导航这个类目
-                return [{ categoryName: 'guides' }]
+                return [
+                  // 不放在子菜单下
+                  { categoryName: 'guides', flat: true },
+                  { categoryName: 'dev-kit' },
+                ]
               default:
                 throw new Error(
                   `unexpected pageMeta.category ${pageMeta.category}`

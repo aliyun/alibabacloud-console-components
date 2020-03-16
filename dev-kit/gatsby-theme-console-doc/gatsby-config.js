@@ -31,7 +31,12 @@ module.exports = themeOptions => {
           options: {
             name,
             path: rootDir,
-            ignore: ['**/.*', '**/*.!(md|mdx)', ...ignore],
+            ignore: [
+              '**/.*',
+              '**/node_modules/**',
+              '**/*.!(md|mdx|png|jpg)',
+              ...ignore,
+            ],
           },
         }
       }
@@ -41,7 +46,7 @@ module.exports = themeOptions => {
   return {
     plugins: [
       {
-        resolve: '@alicloud/gatsby-plugin-mdx-fork',
+        resolve: 'gatsby-plugin-mdx',
         options: {
           extensions: ['.mdx', '.md'],
           remarkPlugins: [
@@ -59,6 +64,14 @@ module.exports = themeOptions => {
             ...remarkPlugins,
           ],
           rehypePlugins: [require('rehype-slug')],
+          gatsbyRemarkPlugins: [
+            {
+              resolve: `gatsby-remark-images`,
+              options: {
+                maxWidth: 980,
+              },
+            },
+          ],
           shouldBlockNodeFromTransformation: node => {
             if (
               node.internal.type === `File` &&
@@ -81,6 +94,8 @@ module.exports = themeOptions => {
           },
         },
       },
+      'gatsby-plugin-sharp',
+      'gatsby-transformer-sharp',
       ...fsPlugins,
       'gatsby-plugin-typescript',
       'gatsby-plugin-styled-components',

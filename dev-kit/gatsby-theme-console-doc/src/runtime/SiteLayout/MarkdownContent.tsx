@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
-import MDXRenderer from '@alicloud/gatsby-plugin-mdx-fork/mdx-renderer'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import markdownComps0 from '@alicloud/console-components-lib-documenter/src/runtime/MarkdownComponents'
 import { MdxDocumentLayout } from '@alicloud/console-components-lib-documenter/src/runtime/MdxWrapper'
 import { usePageCtx } from './context'
