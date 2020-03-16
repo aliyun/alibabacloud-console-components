@@ -27,6 +27,7 @@ const DynamicDoc: React.FC<{}> = () => {
         setDocComp(() => comp)
       })
       .catch(err => {
+        console.error('loadDocModule error:', err)
         setDocComp('error')
       })
   }, [docDef.actualLoadPkgName, docDef.actualLoadPkgVersion])
@@ -39,7 +40,11 @@ const DynamicDoc: React.FC<{}> = () => {
     return (
       <div className="cc-doc-container">
         <DocTags tags={pageCtx.pageMeta.tags} />
-        <DocComp pkgInfo={docDef} />
+        <DocComp
+          pkgInfo={docDef}
+          autoPadding
+          scrollContainer=".windcc-app-layout__content"
+        />
       </div>
     )
   }

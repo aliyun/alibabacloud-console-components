@@ -66,7 +66,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
 }) => (
   <S.AppLayout
     adjustHeight={adjustHeight}
-    className={classNames('wind-rc-app-layout', className)}
+    className={classNames('wind-rc-app-layout', 'windcc-app-layout', className)}
     style={style}
   >
     {nav && (
@@ -79,7 +79,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
         {nav}
       </Nav>
     )}
-    <S.Content>{children}</S.Content>
+    <S.Content className="windcc-app-layout__content">{children}</S.Content>
   </S.AppLayout>
 )
 

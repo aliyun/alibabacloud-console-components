@@ -146,12 +146,14 @@ module.exports = {
         },
         dynamicDocs: [
           {
-            name: 'rc-page',
-            zhName: '页面内容区域布局',
+            name: 'rc-actions',
+            zhName: '表格中的行操作器',
             category: 'components',
             // 文档资源加载地址：
             // https://cdn.jsdelivr.net/npm/${prodPkgName}@latest/dist/_doc.system.js
-            prodPkgName: '@alicloud/console-components-page',
+            prodPkgName: '@alicloud/console-components-actions',
+            actualLoadPkgName: '@cc-dev-kit-test/console-components-actions',
+            actualLoadPkgVersion: '1.0.9-preview.0',
             tags: {
               testTag1: true,
               自定义类目1: true,

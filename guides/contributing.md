@@ -15,8 +15,9 @@ sort: 3
 
 - 基础组件：在`packages/component`目录下。使用 webpack 来构建开发环境，进入`packages/component`目录并执行`npm run start`来启动。
 - 业务组件：在`packages/rc-*`目录下。使用 storybook 作为开发环境，通过各个子 package 下的`npm run storybook`来启动。
-- 文档站点：在`site`目录下。使用[gatsbyjs](https://www.gatsbyjs.org/)作为站点开发框架。通过`npm run start`来启动文档站开发环境。
+- 文档站点：在`site`目录下。使用[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/dev-kit/gatsby-theme-console-doc)作为站点框架。通过`npm run start`来启动文档站开发环境。
 - 开发指南：原文放在`guides`目录下（比如本指南）。开发指南会被`site`项目打包，在文档站点中展示。
+- 组件开发者工具：在`dev-kit`目录下。沉淀 wind 的物料开发工具，帮助任何人开发物料、物料库。
 
 ## 开发期所需的依赖都安装在根项目
 

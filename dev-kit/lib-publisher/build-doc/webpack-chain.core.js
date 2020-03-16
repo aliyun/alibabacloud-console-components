@@ -1,9 +1,7 @@
 const Config = require('webpack-chain')
 const DemoPlugin = require('../lib/buildtools/demoPlugin')
-const WrapRequestPlugin = require('../lib/buildtools/WrapRequestPlugin')
 const path = require('path')
 const webpack = require('webpack')
-const wrapMdxRequest = require('./wrapMdxRequest')
 const babelConfig = require('./babel.config')
 
 module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
@@ -11,10 +9,11 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
 
   config
     // add entry
-
     .entry('doc')
     .clear()
     .add(entryJS)
+    .end()
+    .output.chunkFilename('doc-chunk-[id].js')
     .end()
 
     .resolve.extensions // config resolve.extensions
@@ -32,9 +31,6 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
     // demo plugin
     .plugin('demo-plugin')
     .use(DemoPlugin)
-    .end()
-    .plugin('wrap-mdx-plugin')
-    .use(WrapRequestPlugin, [wrapMdxRequest])
     .end()
     // https://fusion.design/component/basic/config-provider#%E5%87%8F%E5%B0%8F%E5%BA%94%E7%94%A8%E4%B8%AD-webpack-%E6%89%93%E5%8C%85-moment-%E4%BD%93%E7%A7%AF
     .plugin('optimize-moment')
@@ -65,12 +61,18 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
     // transpile mdx
     .rule('mdx')
     .test(/\.mdx?$/)
+    // .use('debug-loader')
+    // .loader(path.resolve(__dirname, './debugLoader.js'))
+    // .end()
     .use('babel-loader')
     .loader('babel-loader')
     .options({
       ...babelConfig,
     })
     .end()
+    // .use('debug-loader')
+    // .loader(path.resolve(__dirname, './debugLoader.js'))
+    // .end()
     .use('mdx-loader')
     .loader('@mdx-js/loader')
     .options({
@@ -80,10 +82,13 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
           {
             instructions: [
               require('../lib/buildtools/remarkPlugins/linkInstructions/importDemo'),
+              require('../lib/buildtools/remarkPlugins/linkInstructions/lazyImportDemo'),
               require('../lib/buildtools/remarkPlugins/linkInstructions/renderInterface'),
             ],
           },
         ],
+        require('../lib/buildtools/remarkPlugins/transformImg'),
+        require('../lib/buildtools/remarkPlugins/addHeadings'),
       ],
       rehypePlugins: [require('rehype-slug')],
     })
@@ -99,9 +104,16 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
     .resourceQuery(/loadDemo/)
     .use('demoLoader')
     .loader(path.resolve(__dirname, '../lib/buildtools/demoLoader.js'))
-    .options({
-      // bundleDemo: themeOptions.bundleDemo
-    })
+    .end()
+    .end()
+    .rule('load-image')
+    .test(/\.(gif|png|jpe?g|svg)$/i)
+    .use('url-loader')
+    .loader('url-loader')
+    .end()
+    .use('image-webpack-loader')
+    .loader('image-webpack-loader')
+    .end()
     .end()
     .end()
     .end()

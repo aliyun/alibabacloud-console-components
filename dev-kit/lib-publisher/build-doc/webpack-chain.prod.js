@@ -16,7 +16,7 @@ module.exports.createConfig = ({ prodPkgName, entryMDX, rootDir, mode } = {}) =>
   createCoreConfig({
     entryMDX,
     rootDir,
-    entryJS: path.resolve(__dirname, 'index.jsx'),
+    entryJS: path.resolve(__dirname, 'index.tsx'),
   })
     .mode(mode === 'production' ? 'production' : 'development')
     // 把物料本身external掉

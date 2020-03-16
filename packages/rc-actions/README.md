@@ -40,7 +40,7 @@ FragmentDemo：
 
 ### Actions
 
-[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)
+[MDXInstruction:renderInterface:IActionsProps](./src/index.tsx)
 
 ### LinkButton
 

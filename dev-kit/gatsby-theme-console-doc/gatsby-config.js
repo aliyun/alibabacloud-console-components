@@ -55,6 +55,7 @@ module.exports = themeOptions => {
                 ],
               },
             ],
+            require('@alicloud/console-components-lib-publisher/lib/buildtools/remarkPlugins/addHeadings'),
             ...remarkPlugins,
           ],
           rehypePlugins: [require('rehype-slug')],

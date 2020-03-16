@@ -5,7 +5,7 @@ const _ = require('lodash')
 const IgnoreNotFoundExportPlugin = require('ignore-not-found-export-webpack-plugin')
 
 const DemoPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/demoPlugin')
-const WrapReqPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/WrapRequestPlugin')
+const WrapReqPlugin = require('./lib/buildtime/WrapRequestWebpackPlugin')
 
 exports.createPages = async ({ graphql, actions }, themeOptions) => {
   const { createPage } = actions
@@ -239,8 +239,8 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
     },
     plugins: [
       new DemoPlugin(),
-      new WrapReqPlugin(require('./wrapMdxRequest')),
       new IgnoreNotFoundExportPlugin(),
+      new WrapReqPlugin(require('./lib/buildtime/WrapDemoRequest')),
     ],
     module: {
       rules: [
@@ -251,9 +251,6 @@ exports.onCreateWebpackConfig = (helpers, themeOptions) => {
               loader: require.resolve(
                 '@alicloud/console-components-lib-publisher/lib/buildtools/demoLoader.js'
               ),
-              options: {
-                bundleDemo: themeOptions.bundleDemo,
-              },
             },
           ],
         },

@@ -4,12 +4,14 @@ const path = require('path')
 module.exports = (reqInfo, virtualModules) => {
   // 不重定向那些“从虚拟模块发出的请求”
   if (/\/virtual-modules\//.test(reqInfo.contextInfo.issuer)) return
-  // 只重定向那些“指向mdx的请求”
-  // if (!/\.mdx$/.test(reqInfo.request)) return
+
   const result = parseQuery(reqInfo.request)
   if (!result) return
   const [barePath, query] = result
   const parsed = qs.parse(query)
+
+  // 只重定向那些包含 query.loadDemo 的模块请求，
+  // 这种请求来自 dev-kit/gatsby-theme-console-doc/src/buildtime/remarkPlugins/linkInstructions/importDemo.ts
   if (query && parsed.loadDemo !== undefined) {
     // 文件路径，可能不包含文件尾缀（比如省略".js"）
     const requestPath = path.join(reqInfo.context, reqInfo.request)
