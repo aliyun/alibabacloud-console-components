@@ -4,8 +4,21 @@ import { Message, Button } from '@alicloud/console-components'
 const show = () => {
   Message.show({
     type: 'loading',
-    content:
-      'Will be closed after 3 seconds or manually click on the close button',
+    title: <div>This is title</div>,
+    content: (
+      <div>
+        <p>
+          Will be closed after 3 seconds or manually click on the close button
+        </p>
+        <p>
+          Will be closed after 3 seconds or manually click on the close button
+        </p>
+        <p>
+          Will be closed after 3 seconds or manually click on the close button
+        </p>
+      </div>
+    ),
+    duration: 3000,
     afterClose: () => console.log('Closed the toast'),
   })
 }

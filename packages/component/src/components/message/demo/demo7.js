@@ -7,7 +7,25 @@ const showSuccess = () =>
     title: 'success',
     duration: 3000,
   })
-const showWarning = () => Message.warning('warning')
+const showWarning = () =>
+  Message.warning({
+    title: <div>This is title</div>,
+    content: (
+      <div>
+        <p>
+          Will be closed after 3 seconds or manually click on the close button
+        </p>
+        <p>
+          Will be closed after 3 seconds or manually click on the close button
+        </p>
+        <p>
+          Will be closed after 3 seconds or manually click on the close button
+        </p>
+      </div>
+    ),
+    duration: 3000,
+    afterClose: () => console.log('Closed the toast'),
+  })
 const showError = () => Message.error('error')
 const showNotice = () => Message.notice('notice')
 const showHelp = () => Message.help('help')
