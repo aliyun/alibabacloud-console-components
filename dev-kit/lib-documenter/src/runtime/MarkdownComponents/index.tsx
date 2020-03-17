@@ -12,6 +12,7 @@ import InterfaceRenderer__LinkInstructions from '../TypescriptMetadataRenderer/i
 const Paragraph = styled.p`
   margin-bottom: 10px;
   margin-top: 0;
+  font-size: inherit;
 `
 
 const Blockquote = styled.blockquote`

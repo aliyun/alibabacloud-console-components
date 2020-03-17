@@ -21,6 +21,7 @@
     "@alicloud/console-components-page": "^1.0.9",
     "@mdx-js/mdx": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",
+    "gatsby-plugin-catch-links": "^2.1.28",
     "gatsby-plugin-layout": "^1.1.22",
     "gatsby-plugin-less": "^3.0.12",
     "gatsby-plugin-mdx": "^1.0.82",
@@ -28,7 +29,8 @@
     "gatsby-plugin-sharp": "^2.4.12",
     "gatsby-plugin-styled-components": "^3.1.11",
     "gatsby-plugin-typescript": "^2.1.15",
-    "gatsby-remark-images": "^3.1.49",
+    "gatsby-remark-copy-linked-files": "^2.1.40",
+    "gatsby-remark-images": "^3.1.50",
     "gatsby-source-filesystem": "^2.1.35",
     "gatsby-transformer-sharp": "^2.3.18",
     "gray-matter": "^4.0.2",
@@ -45,6 +47,7 @@
     "rehype-slug": "^2.0.3",
     "remark-rehype": "^5.0.0",
     "remark-stringify": "^7.0.4",
+    "resolve-from": "^5.0.0",
     "string-hash": "^1.1.3",
     "unist-util-visit-parents": "^3.0.1"
   },
@@ -55,7 +58,7 @@
     "filenamify": "^4.1.0"
   },
   "peerDependencies": {
-    "gatsby": "2.18.22",
+    "gatsby": "2.19.45",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "styled-components": "^4.4.1"

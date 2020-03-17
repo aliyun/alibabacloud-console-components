@@ -47,7 +47,9 @@ const Content: React.FC<IContentProps> = ({
         <MenuContainer adjustHeight={adjustHeight}>{menu}</MenuContainer>
       </S.ContentSide>
     )}
-    <S.ContentMain>{children}</S.ContentMain>
+    <S.ContentMain className="windcc-page__content-main">
+      {children}
+    </S.ContentMain>
   </S.Content>
 )
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import TOC from './TableOfContent'
 import styled from 'styled-components'
 import { useDocMetaCtx } from '../utils/context'
+import getScrollParent from '../utils/getScrollParent'
 
 const Layout: React.FC = ({ children }) => {
   const {
@@ -28,37 +29,38 @@ const Layout: React.FC = ({ children }) => {
       const last = headings[headings.length - 1]
       const headingEl = document && document.getElementById(last.id)
       if (!headingEl) return 0
-      const { viewportHeight, scrollHeight } = (() => {
+      const { viewportHeight, contentTopPos, contentHeight } = (() => {
         const parent =
-          (scrollContainer && document.querySelector(scrollContainer)) || window
+          (scrollContainer && document.querySelector(scrollContainer)) ||
+          getScrollParent(headingEl) ||
+          window
         const currentPadding = paddingRef.current?.offsetHeight ?? 0
-        // console.log('parent', parent)
+        // 滚动容器是window
         if ('document' in parent) {
-          // 滚动容器是window
           return {
             viewportHeight: document.documentElement.clientHeight,
-            // 假设当前没有auto-padding，滚动容器的滚动高度是多少
-            scrollHeight:
+            contentTopPos: document.documentElement.getBoundingClientRect().top,
+            contentHeight:
               document.documentElement.scrollHeight - currentPadding,
           }
         }
         return {
           viewportHeight: parent.clientHeight,
-          scrollHeight: parent.scrollHeight - currentPadding,
+          contentTopPos: parent.getBoundingClientRect().top - parent.scrollTop,
+          contentHeight: parent.scrollHeight - currentPadding,
         }
       })()
-      // console.log('viewportHeight, scrollHeight', viewportHeight, scrollHeight)
-      // 最后一个heading与滚动顶部之间的滚动距离
-      const offset = headingEl.offsetTop
-      return offset + viewportHeight - scrollHeight
+      // 最后一个heading与文档顶部之间的滚动距离
+      const offset = headingEl.getBoundingClientRect().top - contentTopPos
+      return viewportHeight - (contentHeight - offset)
     }
   }, [headings, autoPadding, scrollContainer])
 
   return (
     <ScLayout>
       <ScLayoutLeft>
-        <div className="auto-padding-container">
-          {children}
+        <ScDocStyle className="auto-padding-container">
+          <div>{children}</div>
           {autoPadding && (
             <div
               className="auto-padding"
@@ -66,7 +68,7 @@ const Layout: React.FC = ({ children }) => {
               ref={paddingRef}
             />
           )}
-        </div>
+        </ScDocStyle>
       </ScLayoutLeft>
       {headings && (
         <ScLayoutRight>
@@ -87,9 +89,30 @@ const ScLayout = styled.div`
 
 const ScLayoutLeft = styled.div`
   flex: 1 1 auto;
+  /* https://stackoverflow.com/questions/43809612/prevent-a-child-element-from-overflowing-its-parent-in-flexbox */
+  min-width: 0;
 `
 
 const ScLayoutRight = styled.div`
-  width: 330px;
+  width: 280px;
   flex: 0 0 auto;
+`
+
+const ScDocStyle = styled.div`
+  /* 字体样式参考语雀 */
+  line-height: 1.74;
+  font-size: 14px;
+  color: #262626;
+  letter-spacing: 0.03em;
+  font-family: 'Chinese Quote', 'Segoe UI', Roboto, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji';
+
+  /* 不要在这里随便用类选择器来选择文档元素，比如选择p元素。因为你可能选中demo中的p元素。 */
+  /* 请在MarkdownComponents目录中定义文档元素的样式。 */
+
+  figcaption {
+    text-align: center;
+    color: gray;
+  }
 `

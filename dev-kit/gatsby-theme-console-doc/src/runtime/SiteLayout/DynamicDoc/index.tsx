@@ -40,11 +40,7 @@ const DynamicDoc: React.FC<{}> = () => {
     return (
       <div className="cc-doc-container">
         <DocTags tags={pageCtx.pageMeta.tags} />
-        <DocComp
-          pkgInfo={docDef}
-          autoPadding
-          scrollContainer=".windcc-app-layout__content"
-        />
+        <DocComp pkgInfo={docDef} autoPadding />
       </div>
     )
   }

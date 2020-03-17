@@ -64,8 +64,15 @@ const SSearch = styled.div`
 `
 
 const TopBar: React.FC = () => {
-  const pageCtx = usePageCtx()
+  const pageCtx = (() => {
+    try {
+      return usePageCtx()
+    } catch (error) {
+      return null
+    }
+  })()
   const searchPagesUI = useSearchPagesUI()
+  if (!pageCtx) return <STopBar />
   return (
     <STopBar>
       <SLogo>

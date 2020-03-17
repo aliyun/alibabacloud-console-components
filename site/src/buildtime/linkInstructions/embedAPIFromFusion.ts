@@ -39,7 +39,10 @@ const handleLinkNode = async ({
   const fusionAPIDoc = fusionAPIDocs[actualComponentName]
   if (typeof fusionAPIDoc === 'string' && fusionAPIDoc.length > 0) {
     const fixed = fixUpstreamMarkdown(fusionAPIDoc)
-    const nodes = parseMarkdown(fixed).children
+    const nodes = parseMarkdown(fixed).children.filter(
+      // fusion文档markdown中可能包含html注释：<!-- api-extra-start -->
+      node => node.type !== 'html'
+    )
     // remove link node and insert new ones
     root.children.splice(root.children.indexOf(parent), 1, ...nodes)
   } else {

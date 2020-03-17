@@ -1,5 +1,9 @@
 const Config = require('webpack-chain')
-const DemoPlugin = require('../lib/buildtools/demoPlugin')
+const DemoPlugin = require('../lib/buildtools/demoPlugin')({
+  ConstDependency: require('webpack/lib/dependencies/ConstDependency'),
+  ModuleDependency: require('webpack/lib/dependencies/ModuleDependency'),
+  NormalModule: require('webpack/lib/NormalModule'),
+})
 const path = require('path')
 const webpack = require('webpack')
 const babelConfig = require('./babel.config')

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useDocMetaCtx } from '@runtime/utils/context'
+import { useDocMetaCtx } from '../../utils/context'
+import getScrollParent from '../../utils/getScrollParent'
 
 export interface ITocHeading {
   id: string
@@ -43,13 +44,13 @@ const ScListItem = styled(
 )`
   && {
     padding-left: ${({ depth }) => 16 + (depth - 1) * 12}px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     ${({ active }) => (active ? 'font-weight: 700;' : '')}
     border-left: 2px solid ${({ active }) => (active ? '#25b864' : '#e8e8e8')};
     a {
       display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       color: #1a1a1a;
       transition: color 0.3s;
       :hover {
@@ -90,11 +91,12 @@ function useActiveHeading(
 
   useEffect(() => {
     const scrollContainerEl: Element | Window =
-      (scrollContainer && document.querySelector(scrollContainer)) || window
+      (scrollContainer && document.querySelector(scrollContainer)) ||
+      getScrollParent(headingWithDomEl[0]?.el) ||
+      window
 
     const handle = () => {
       if (!headingWithDomEl.length) return
-      // const scrollParent = headingWithDomEl[0].el.offsetParent!
       const scrollParent = scrollContainerEl
       const found = headingWithDomEl.find((heaidng, idx) => {
         // 如果第一个heading都还没有滚动过去，那么高亮第一个heading

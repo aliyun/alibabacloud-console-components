@@ -4,9 +4,6 @@
     "outDir": "../../lib/runtime",
     "rootDir": ".",
     "baseUrl": ".",
-    "paths": {
-      "@runtime/*": ["./*"]
-    },
     "lib": ["DOM"]
   }
 }

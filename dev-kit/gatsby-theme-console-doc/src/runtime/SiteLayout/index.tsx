@@ -1,18 +1,12 @@
-import React, { useMemo } from 'react'
+import React, { useState } from 'react'
 import AppLayout from '@alicloud/console-components-app-layout'
-import Page from '@alicloud/console-components-page'
 import '@alicloud/console-components/dist/wind.css'
 import styled from 'styled-components'
 import TopBar, { TOP_BAR_HEIGHT } from './TopBar'
 import SideBar from './SideBar'
-import MarkdownContent from './MarkdownContent'
 import { pageCtx } from './context'
-import NotFound from './pages/404'
-import IndexPage from './pages/indexPage'
 import SEO from '../SEO'
-import DynamicDoc from './DynamicDoc'
-import DocPreview from './DocPreview'
-import { buildTagIndex, ITagIndex } from './utils/buildTagIndex'
+import { ITagIndex } from './utils/buildTagIndex'
 import { useSearchPages } from './SearchPages'
 
 export interface IDocPageMeta {
@@ -111,50 +105,32 @@ export interface IPageContext {
   pageMeta: IPageMeta
   siteMeta: ISiteMeta
   tagIndex: ITagIndex
+  location: any
 }
 
-const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
-  const { pageContext: pageContext0 } = props
+export const pageCtxSetterCtx = React.createContext<
+  React.Dispatch<React.SetStateAction<IPageContext | null>>
+>(() => {})
 
-  const pageContext = useMemo(
-    () => ({
-      ...pageContext0,
-      tagIndex: buildTagIndex(pageContext0.siteMeta.categories),
-    }),
-    [pageContext0]
-  )
-  const wrap = useSearchPages(pageContext.siteMeta.categories)
-
+const SiteLayout: React.FC<{}> = ({ children }) => {
+  const [pageContext, setPageContext] = useState<IPageContext | null>(null)
+  const wrap = useSearchPages(pageContext?.siteMeta.categories)
   return wrap(
-    <pageCtx.Provider value={pageContext}>
-      <SEO />
-      <TopBar />
-      <SAppLayout
-        nav={'sideNav' in pageContext.pageMeta ? <SideBar /> : undefined}
-        adjustHeight={TOP_BAR_HEIGHT}
-        navCollapsible={false}
-      >
-        <Page>
-          <Page.Content>
-            {(() => {
-              if (pageContext.pageMeta.type === 'doc') {
-                return <MarkdownContent />
-              }
-              if (pageContext.pageMeta.type === 'dynamic-doc') {
-                return <DynamicDoc />
-              }
-              if (pageContext.pageMeta.type === 'index-page') {
-                return <IndexPage />
-              }
-              if (pageContext.pageMeta.type === 'doc-preview') {
-                return <DocPreview />
-              }
-              return <NotFound />
-            })()}
-          </Page.Content>
-        </Page>
-      </SAppLayout>
-    </pageCtx.Provider>
+    <pageCtxSetterCtx.Provider value={setPageContext}>
+      <pageCtx.Provider value={pageContext}>
+        {pageContext && <SEO />}
+        <TopBar />
+        <SAppLayout
+          nav={
+            'sideNav' in (pageContext?.pageMeta ?? {}) ? <SideBar /> : undefined
+          }
+          adjustHeight={TOP_BAR_HEIGHT}
+          navCollapsible={false}
+        >
+          {children}
+        </SAppLayout>
+      </pageCtx.Provider>
+    </pageCtxSetterCtx.Provider>
   )
 }
 
@@ -173,9 +149,5 @@ const SAppLayout = styled(AppLayout)`
     ::-webkit-scrollbar-thumb {
       background: #666;
     }
-  }
-  .windcc-app-layout__content {
-    /* 将滚动容器作为其子元素的offsetParent */
-    position: relative;
   }
 `

@@ -19,7 +19,7 @@ module.exports = {
         },
         // 入口页面，即点击左上角logo跳转的地址，以及访问`/`跳转的地址
         primaryPath: '/components/component-1',
-        // 从文件系统爬取.md和.mdx（我们会忽略不包含frontmatter.name的markdown文档）
+        // 从文件系统爬取.md和.mdx（我们会忽略不包含frontmatter.name和zhName的markdown文档）。这些文档是静态的文档，文档数据在构建期间收集。如果静态文档更新，则需要重新构建文档站点。静态文档的元数据通过markdown顶部的frontmatter来指定
         fileSystemCrawlers: [
           {
             // crawler的名称在下面用来判断每篇文章所属的category
@@ -31,13 +31,48 @@ module.exports = {
             rootDir: path.resolve(__dirname, '../guides'),
           },
         ],
-        // 为每个文档添加元数据：它属于哪个类目
-        // 每个文档都需要有一个类目，文档的访问路径就是`/类目name/文档name`
+        // 指定动态文档的元数据。文档框架需要从中确定文档的加载位置
+        dynamicDocs: [
+          {
+            name: 'rc-actions',
+            zhName: '表格中的行操作器',
+            category: 'components',
+            // 文档资源加载地址：
+            // https://cdn.jsdelivr.net/npm/${prodPkgName}@latest/dist/_doc.system.js
+            prodPkgName: '@alicloud/console-components-actions',
+            actualLoadPkgName: '@cc-dev-kit-test/console-components-actions', // 默认为prodPkgName
+            actualLoadPkgVersion: '1.0.9-preview.0', // 默认为latest
+            // 文档标签
+            tags: {
+              testTag1: true,
+              自定义类目1: true,
+              _自定义类目sort: 0,
+            },
+          },
+          {
+            name: 'rc-demo-component',
+            zhName: '示例组件',
+            category: 'components',
+            // 文档资源加载地址：
+            // https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
+            prodPkgName: '@alicloud/cc-demo-component',
+            actualLoadPkgName: '@cc-dev-kit-test/cc-demo-component',
+            actualLoadPkgVersion: '1.0.1-preview.33',
+            tags: {
+              testTag1: true,
+              testTag2: 'tagVal',
+              自定义类目1: true,
+            },
+          },
+        ],
+        // 为每个文档添加其他元数据，比如类目
+        // 每个文档都需要有一个类目（category），文档的访问路径就是`/类目name/文档name`
         // 类目还被用于给左侧导航栏分类、搜索结果分类
         patchDocInfo: docInfo => {
           // debugger;
 
           // 调试指南：
+          // .vscode/launch.json参考本项目的配置。
           // npm run debug
           // 然后在vscode中按下F5，启动vscode的debug
           // 即可在调试期间停在这个地方，查看docInfo的结构
@@ -69,7 +104,7 @@ module.exports = {
           components: '组件',
           guides: '指南',
         },
-        // 顶部导航
+        // 定义顶部导航
         topNav: [
           { text: '指南', href: '/guides/quick-start' },
           { text: '组件文档', href: '/components/component-1' },
@@ -79,10 +114,11 @@ module.exports = {
         // 顶部导航是静态的，不随着“当前所在页面”而变化
         // 左侧导航是动态的，可以随着“当前所在页面”而变化
         sideNav: context => {
-          // 同理，你可以在这里打断点，观察参数的结构
+          // 同理，你可以在这里打断点调试，观察参数的结构
           const { pageMeta } = context
 
           const header = (() => {
+            // 根据正在展示的文档的元数据，来决定左侧导航栏的标题
             switch (pageMeta.category) {
               case 'components':
                 return '组件'
@@ -95,12 +131,13 @@ module.exports = {
             }
           })()
 
+          // 左侧导航栏编排
           const navCategories = (() => {
             switch (pageMeta.category) {
-              // 根据当前页面的信息，来决定左侧导航栏应该展示什么
+              // 根据当前页面的信息，来决定左侧导航栏应该展示哪些导航项
               case 'components':
                 // 如果当前页面是组件
-                // 则导航栏需要导航这个类目
+                // 则导航栏需要导航这下面选中的文档：
                 return [
                   {
                     // 选中那些具有tag"自定义类目1"的文档
@@ -108,8 +145,6 @@ module.exports = {
                       自定义类目1: true, // true匹配任何tagValue
                       // 自定义类目1: 'myvalue',  // 只匹配具有tag"自定义类目1:myvalue"的文档
                     },
-                    // 将选中的文档直接放在menu中，还是放在一个可展开/收起的SubMenu中
-                    flat: true,
                     /**
                      * 根据文档的tag值来排序。没有对应tag的文档，优先级默认为1。
                      * 例子：
@@ -124,13 +159,20 @@ module.exports = {
                     tagSelector: {
                       baseComp: true,
                     },
-                    // 将选中的文档放在一个SubMenu中，可以指定这个SubMenu的label
+                    // 将选中的文档放在一个SubMenu中，指定这个SubMenu的label
+                    // 仅当flat不为true时有效
                     label: '基础组件',
                   },
                 ]
               case 'guides':
                 // 也可以选中指定category的文档
-                return [{ categoryName: 'guides' }]
+                return [
+                  {
+                    categoryName: 'guides',
+                    // 不将这些文档放在可展开/收起的SubMenu中
+                    flat: true,
+                  },
+                ]
               default:
                 throw new Error(
                   `unexpected pageMeta.category ${pageMeta.category}`
@@ -144,38 +186,6 @@ module.exports = {
             navCategories,
           }
         },
-        dynamicDocs: [
-          {
-            name: 'rc-actions',
-            zhName: '表格中的行操作器',
-            category: 'components',
-            // 文档资源加载地址：
-            // https://cdn.jsdelivr.net/npm/${prodPkgName}@latest/dist/_doc.system.js
-            prodPkgName: '@alicloud/console-components-actions',
-            actualLoadPkgName: '@cc-dev-kit-test/console-components-actions',
-            actualLoadPkgVersion: '1.0.9-preview.0',
-            tags: {
-              testTag1: true,
-              自定义类目1: true,
-              _自定义类目sort: 0,
-            },
-          },
-          {
-            name: 'rc-demo-component',
-            zhName: '示例组件',
-            category: 'components',
-            // 文档资源加载地址：
-            // https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js
-            prodPkgName: '@alicloud/cc-demo-component',
-            actualLoadPkgName: '@cc-dev-kit-test/cc-demo-component',
-            actualLoadPkgVersion: '1.0.1-preview.29',
-            tags: {
-              testTag1: true,
-              testTag2: 'tagVal',
-              自定义类目1: true,
-            },
-          },
-        ],
       },
     },
   ],
