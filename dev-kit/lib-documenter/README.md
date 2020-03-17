@@ -1,8 +1,10 @@
 ---
 name: lib-documenter
 zhName: 文档运行时
+sort: 100
 tags:
   dev-kit: true
+  documentation: true
 ---
 
 # @alicloud/console-components-lib-documenter
@@ -34,9 +36,8 @@ import loadDocModule from '@alicloud/console-components-lib-documenter/loadDocMo
         overflow: 'auto',
         position: 'relative',
       }}
-      className="scroll-ctn"
     >
-      <DocComp pkgInfo={docDef} scrollContainer=".scroll-ctn" />
+      <DocComp pkgInfo={docDef} />
     </div>,
     document.querySelector('.app')
   )

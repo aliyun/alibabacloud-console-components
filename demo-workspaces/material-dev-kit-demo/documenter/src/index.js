@@ -18,9 +18,8 @@ import loadDocModule from '@alicloud/console-components-lib-documenter/loadDocMo
         overflow: 'auto',
         position: 'relative',
       }}
-      className="scroll-ctn"
     >
-      <DocComp pkgInfo={docDef} scrollContainer=".scroll-ctn" />
+      <DocComp pkgInfo={docDef} />
     </div>,
     document.querySelector('.app')
   )

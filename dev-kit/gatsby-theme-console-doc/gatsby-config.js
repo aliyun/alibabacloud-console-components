@@ -69,6 +69,8 @@ module.exports = themeOptions => {
               resolve: `gatsby-remark-images`,
               options: {
                 maxWidth: 980,
+                linkImagesToOriginal: false,
+                showCaptions: ['title'],
               },
             },
           ],

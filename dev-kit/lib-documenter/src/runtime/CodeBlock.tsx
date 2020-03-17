@@ -15,6 +15,15 @@ SyntaxHighlighter.registerLanguage('ts', ts)
 SyntaxHighlighter.registerLanguage('typescript', ts)
 SyntaxHighlighter.registerLanguage('tsx', tsx)
 
+const SyntaxHighlighterStyle: React.CSSProperties = {
+  padding: '16px',
+  overflow: 'auto',
+  // fontSize: '85%',
+  lineHeight: '1.45',
+  backgroundColor: '#f6f8fa',
+  borderRadius: '3px',
+}
+
 const CodeBlock: React.FC<{
   language: 'js' | 'javascript' | 'jsx' | 'ts' | 'typescript' | 'tsx'
   style?: React.CSSProperties
@@ -36,7 +45,7 @@ const CodeBlock: React.FC<{
     <SyntaxHighlighter
       language={actualLanguage}
       style={prism}
-      customStyle={style}
+      customStyle={{ ...SyntaxHighlighterStyle, ...style }}
       className={className}
     >
       {children}

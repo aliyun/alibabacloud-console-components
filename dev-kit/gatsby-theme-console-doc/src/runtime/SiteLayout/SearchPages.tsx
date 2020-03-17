@@ -12,7 +12,7 @@ import DocMenuLabel from './DocMenuLabel'
 import styled, { createGlobalStyle } from 'styled-components'
 
 interface IMatchedDoc extends IDocPageMeta {
-  matchTag?: [string, string]
+  matchExplain?: React.ReactNode
 }
 
 interface IFilteredData {
@@ -37,25 +37,16 @@ export function useSearchPages(categories: ISiteMeta['categories']) {
 
   const onChange = useCallback(
     (value: string) => {
-      const filteredCategories: IFilteredData[] = categories
-        .map(category => {
-          const matchDocs = category.docs.filter(
-            doc =>
-              containString(doc.name, value) ||
-              containString(_.camelCase(doc.name), value) ||
-              containString(doc.zhName, value)
-          )
-          if (matchDocs.length == 0) return (false as unknown) as IFilteredData
-          return {
-            label: category.zhName,
-            matchDocs,
-          }
-        })
-        .filter(Boolean)
-      const filteredTags = filterTags(value, categories)
+      const _filteredByName = filterByName(value, categories)
+      const filteredByTags = filterByTags(value, categories)
+      // 去重，如果文档已经在“tag匹配”结果中，就不需要展示在“名称匹配”结果中。
+      const filteredByName = _filteredByName.filter(
+        ({ path: path1 }) =>
+          !filteredByTags.find(({ path: path2 }) => path2 == path1)
+      )
       setFilteredData([
-        ...filteredCategories,
-        { label: 'Tag搜索', matchDocs: filteredTags },
+        { label: '名称匹配', matchDocs: filteredByName },
+        { label: 'Tag匹配', matchDocs: filteredByTags },
       ])
       setSearchVal(value)
     },
@@ -119,7 +110,7 @@ export function useSearchPagesUI() {
             {matchDocs.map(docInfo => (
               <Select.Option value={docInfo.path} key={docInfo.path}>
                 <DocMenuLabel docInfo={docInfo} />
-                {renderMatchedTag(docInfo.matchTag)}
+                {docInfo.matchExplain}
               </Select.Option>
             ))}
           </Select.OptionGroup>
@@ -133,7 +124,30 @@ function containString(whole: string, part: string) {
   return whole.toLowerCase().indexOf(part.toLowerCase()) !== -1
 }
 
-function filterTags(
+function filterByName(
+  keyword: string,
+  categories: ISiteMeta['categories']
+): IMatchedDoc[] {
+  const docs = categories
+    .map(category => {
+      const matchDocs = category.docs
+        .filter(
+          doc =>
+            containString(doc.name, keyword) ||
+            containString(_.camelCase(doc.name), keyword) ||
+            containString(doc.zhName, keyword)
+        )
+        .map<IMatchedDoc>(doc => ({
+          ...doc,
+        }))
+      // 这个category有多少文档的名称匹配keyword
+      return matchDocs
+    })
+    .reduce((acc, cur) => [...acc, ...cur], [])
+  return docs
+}
+
+function filterByTags(
   keyword: string,
   categories: ISiteMeta['categories']
 ): IFilteredData['matchDocs'] {
@@ -158,7 +172,10 @@ function filterTags(
           containString(tagName, filter[0]) &&
           containString(tagVal, filter[1])
         ) {
-          matchDocs.push({ ...doc, matchTag: [tagName, tagVal] })
+          matchDocs.push({
+            ...doc,
+            matchExplain: renderMatchedTag(tagName, tagVal),
+          })
           // 避免同一个文档被搜出来多次
           return
         }
@@ -179,21 +196,25 @@ export function useSearchPagesUpdater() {
   }, [])
 }
 
+// ScMatchedExplain
 const ScMatchedTag = styled.span`
   float: right;
   margin-left: 48px;
   color: #a9a9a9;
 `
-function renderMatchedTag(tag: IMatchedDoc['matchTag']) {
-  if (!tag) return null
-  if (String(tag[1]) !== 'true') {
+function renderMatchedTag(
+  tagName: string,
+  tagVal: string | boolean | undefined
+) {
+  if (!tagVal) return null
+  if (String(tagVal) !== 'true') {
     return (
       <ScMatchedTag>
-        {tag[0]}:{tag[1]}
+        {tagName}:{tagVal}
       </ScMatchedTag>
     )
   }
-  return <ScMatchedTag>{tag[0]}</ScMatchedTag>
+  return <ScMatchedTag>{tagName}</ScMatchedTag>
 }
 
 const GlobalStyle = createGlobalStyle`

@@ -23,7 +23,6 @@ const Wrapper: React.FC<IWrapperProps> = ({ children, ...props }) => {
       tocHeadings={props.tocHeadings}
       frontmatter={frontmatter}
       autoPadding
-      scrollContainer=".windcc-app-layout__content"
     >
       {children}
     </MdxDocumentLayout>

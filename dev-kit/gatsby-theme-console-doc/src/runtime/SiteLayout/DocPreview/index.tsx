@@ -79,7 +79,6 @@ const DocPreview: React.FC = () => {
       <DocComp
         pkgInfo={docDef}
         autoPadding
-        scrollContainer=".windcc-app-layout__content"
       />
     </div>
   )

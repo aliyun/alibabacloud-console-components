@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import AppLayout from '@alicloud/console-components-app-layout'
-import Page from '@alicloud/console-components-page'
 import '@alicloud/console-components/dist/wind.css'
 import styled from 'styled-components'
 import TopBar, { TOP_BAR_HEIGHT } from './TopBar'
@@ -125,6 +124,21 @@ const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
   )
   const wrap = useSearchPages(pageContext.siteMeta.categories)
 
+  // 切换文档时，强制重刷，不要复用vdom。否则上一页的dom node滚动状态会影响到下一页的autopadding
+  const vDomKey = (() => {
+    switch (pageContext.pageMeta.type) {
+      case 'doc':
+      case 'dynamic-doc':
+        return pageContext.pageMeta.path
+      case 'doc-preview':
+        return typeof window === 'undefined'
+          ? 'doc-preview'
+          : window.location.href
+      default:
+        return pageContext.pageMeta.type
+    }
+  })()
+
   return wrap(
     <pageCtx.Provider value={pageContext}>
       <SEO />
@@ -134,8 +148,8 @@ const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
         adjustHeight={TOP_BAR_HEIGHT}
         navCollapsible={false}
       >
-        <Page>
-          <Page.Content>
+        <ScScrollCtn key={vDomKey}>
+          <ScContentCtn>
             {(() => {
               if (pageContext.pageMeta.type === 'doc') {
                 return <MarkdownContent />
@@ -151,8 +165,8 @@ const SiteLayout: React.FC<{ pageContext: IPageContext }> = props => {
               }
               return <NotFound />
             })()}
-          </Page.Content>
-        </Page>
+          </ScContentCtn>
+        </ScScrollCtn>
       </SAppLayout>
     </pageCtx.Provider>
   )
@@ -174,8 +188,14 @@ const SAppLayout = styled(AppLayout)`
       background: #666;
     }
   }
-  .windcc-app-layout__content {
-    /* 将滚动容器作为其子元素的offsetParent */
-    position: relative;
-  }
+`
+
+const ScScrollCtn = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`
+
+const ScContentCtn = styled.div`
+  padding: 16px 24px 0;
 `

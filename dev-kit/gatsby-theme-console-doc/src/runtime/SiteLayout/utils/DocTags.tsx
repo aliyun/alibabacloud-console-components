@@ -12,12 +12,18 @@ const Container = styled.div`
   }
 `
 
+const ScTagLabel = styled.span`
+  font-size: 14px;
+  line-height: 24px;
+  color: #8c8c8c;
+`
+
 const DocTags: React.FC<{ tags?: { [name: string]: any } }> = ({ tags }) => {
   const updater = useSearchPagesUpdater()
   if (!tags) return null
   return (
     <Container>
-      <span>文档Tags：</span>
+      <ScTagLabel>文档Tags：</ScTagLabel>
       {Object.keys(tags)
         // 有些tag只用于编排站点，将_开头的tag隐藏
         .filter(name => !name.startsWith('_'))
