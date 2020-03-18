@@ -1,7 +1,7 @@
 import React, {
   useCallback,
   useState,
-  useLayoutEffect,
+  useEffect,
   useContext,
 } from 'react'
 import { navigate } from 'gatsby'
@@ -30,13 +30,28 @@ interface ISearchCtx {
 
 const ctx = React.createContext<ISearchCtx | null>(null)
 
-export function useSearchPages(categories: ISiteMeta['categories']) {
+export function useSearchPages(
+  categories: ISiteMeta['categories'] | undefined
+) {
   const [searchVal, setSearchVal] = useState('')
   const [visible, setVisible] = useState(false)
   const [filteredData, setFilteredData] = useState<IFilteredData[]>([])
 
   const onChange = useCallback(
     (value: string) => {
+      if (!categories) return
+      if (!value) {
+        setFilteredData(
+          categories.map(({ zhName, docs }) => {
+            return {
+              label: zhName,
+              matchDocs: docs,
+            }
+          })
+        )
+        setSearchVal(value)
+        return
+      }
       const _filteredByName = filterByName(value, categories)
       const filteredByTags = filterByTags(value, categories)
       // 去重，如果文档已经在“tag匹配”结果中，就不需要展示在“名称匹配”结果中。
@@ -53,7 +68,7 @@ export function useSearchPages(categories: ISiteMeta['categories']) {
     [categories]
   )
   // trigger filter at start
-  useLayoutEffect(() => {
+  useEffect(() => {
     onChange('')
   }, [onChange])
 

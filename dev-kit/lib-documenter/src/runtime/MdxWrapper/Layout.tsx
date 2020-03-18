@@ -29,35 +29,30 @@ const Layout: React.FC = ({ children }) => {
       const last = headings[headings.length - 1]
       const headingEl = document && document.getElementById(last.id)
       if (!headingEl) return 0
-      const { viewportHeight, scrollHeight, boundingClientRectTop } = (() => {
+      const { viewportHeight, contentTopPos, contentHeight } = (() => {
         const parent =
           (scrollContainer && document.querySelector(scrollContainer)) ||
           getScrollParent(headingEl) ||
           window
         const currentPadding = paddingRef.current?.offsetHeight ?? 0
-        // console.log('parent', parent)
+        // 滚动容器是window
         if ('document' in parent) {
-          // 滚动容器是window
           return {
             viewportHeight: document.documentElement.clientHeight,
-            // 假设当前没有auto-padding，滚动容器的滚动高度是多少
-            scrollHeight:
+            contentTopPos: document.documentElement.getBoundingClientRect().top,
+            contentHeight:
               document.documentElement.scrollHeight - currentPadding,
-            boundingClientRectTop: document.documentElement.getBoundingClientRect()
-              .top,
           }
         }
         return {
           viewportHeight: parent.clientHeight,
-          scrollHeight: parent.scrollHeight - currentPadding,
-          boundingClientRectTop: parent.getBoundingClientRect().top,
+          contentTopPos: parent.getBoundingClientRect().top - parent.scrollTop,
+          contentHeight: parent.scrollHeight - currentPadding,
         }
       })()
-      // console.log('viewportHeight, scrollHeight', viewportHeight, scrollHeight)
-      // 最后一个heading与滚动容器顶部之间的滚动距离
-      const offset =
-        headingEl.getBoundingClientRect().top - boundingClientRectTop
-      return offset + viewportHeight - scrollHeight
+      // 最后一个heading与文档顶部之间的滚动距离
+      const offset = headingEl.getBoundingClientRect().top - contentTopPos
+      return viewportHeight - (contentHeight - offset)
     }
   }, [headings, autoPadding, scrollContainer])
 
@@ -65,7 +60,7 @@ const Layout: React.FC = ({ children }) => {
     <ScLayout>
       <ScLayoutLeft>
         <ScDocStyle className="auto-padding-container">
-          {children}
+          <div>{children}</div>
           {autoPadding && (
             <div
               className="auto-padding"

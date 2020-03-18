@@ -3,8 +3,31 @@
 const path = require('path')
 const _ = require('lodash')
 const IgnoreNotFoundExportPlugin = require('ignore-not-found-export-webpack-plugin')
+const resolveFrom = require('resolve-from')
 
-const DemoPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/demoPlugin')
+// 从gatsby依赖的webpack中拿到这几个webpack内部模块
+// 因为项目中可能不止存在一个webpack，所以不能直接require('webpack/...')
+const gatsbyPath = require.resolve('gatsby')
+const ConstDependency = require(resolveFrom(
+  gatsbyPath,
+  'webpack/lib/dependencies/ConstDependency'
+))
+const ModuleDependency = require(resolveFrom(
+  gatsbyPath,
+  'webpack/lib/dependencies/ModuleDependency'
+))
+const NormalModule = require(resolveFrom(
+  gatsbyPath,
+  'webpack/lib/NormalModule'
+))
+
+const DemoPlugin = require('@alicloud/console-components-lib-publisher/lib/buildtools/demoPlugin')(
+  {
+    ConstDependency,
+    ModuleDependency,
+    NormalModule,
+  }
+)
 const WrapReqPlugin = require('./lib/buildtime/WrapRequestWebpackPlugin')
 
 exports.createPages = async ({ graphql, actions }, themeOptions) => {
@@ -172,7 +195,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
       path: docInfo.path,
       component: path.resolve(
         __dirname,
-        './src/runtime/SiteLayout/DummyPageElement.tsx'
+        './src/runtime/SiteLayout/PageElement.tsx'
       ),
       context: {
         pageMeta: { ...docInfo, sideNav: sideNavConfig },
@@ -185,7 +208,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     path: '/',
     component: path.resolve(
       __dirname,
-      './src/runtime/SiteLayout/DummyPageElement.tsx'
+      './src/runtime/SiteLayout/PageElement.tsx'
     ),
     context: {
       pageMeta: { type: 'index-page' },
@@ -197,7 +220,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     path: '/doc-preview',
     component: path.resolve(
       __dirname,
-      './src/runtime/SiteLayout/DummyPageElement.tsx'
+      './src/runtime/SiteLayout/PageElement.tsx'
     ),
     context: {
       pageMeta: { type: 'doc-preview' },
@@ -209,7 +232,7 @@ exports.createPages = async ({ graphql, actions }, themeOptions) => {
     path: '/404',
     component: path.resolve(
       __dirname,
-      './src/runtime/SiteLayout/DummyPageElement.tsx'
+      './src/runtime/SiteLayout/PageElement.tsx'
     ),
     context: {
       pageMeta: { type: '404' },

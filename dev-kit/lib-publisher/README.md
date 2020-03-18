@@ -42,7 +42,7 @@ tags:
 
 这就是为什么我们要把文档能力从站点解耦出来，提炼出`@alicloud/console-components-lib-publisher`工具包，它负责在**开发构建期间**辅助文档的编写和发布。与之对应的，`@alicloud/console-components-lib-documenter`负责在**运行期间**辅助文档的加载和渲染。
 
-**这个工具究竟实现了那些文档功能，已经在 👉[文档能力](./doc-features)进行了详细说明**。本篇文档只阐述文档打包相关的重要特性。
+> **这个工具究竟实现了哪些文档功能，已经在 👉[文档能力](./doc-features)进行了详细说明**。本篇文档只阐述文档打包相关的重要特性。
 
 解耦以后，`@alicloud/console-components-lib-publisher`在构建期解析文档文本，根据其中的指令对文档进行转换、渲染，输出成 JavaScript bundle，它导出一个 React 组件。文档站点只需要加载这个 bundle，然后像渲染普通 React 组件一样，将它渲染出来，就能够让用户看到表现形式丰富的文档。文档站点不需要知道这些表现能力是如何实现，专注于站点应用的实现，比如导航目录编排、页面搜索、文档分类等。
 
@@ -63,13 +63,13 @@ tags:
 
 - 操作太麻烦：上传到图床、拷贝 url、在 markdown 中插入图片`![altText](https://url.com)`
 - 很难找到可靠（且免费）的图床，大部分免费的平台无法保证图片长期有效。如果图床突然删除了你的图片，你很可能再也找不回来（如果你自己没有备份的话）
-- 便携性（portability）差：文档与平台绑定。虽然很多文档、博客平台提供了图床（比如语雀），但是把图片放在平台图床会让你的文档变得难以迁移
+- 便携性（portability）差：文档与平台绑定。虽然很多文档、博客平台提供了图床（比如语雀），但是把图片放在平台图床会让你的文档与图片在存储上分离，变得难以迁移
 
 > 于此相反的是 Word 文档格式、PDF 格式，它们本身是二进制格式，能直接承载图片，不会有上述的困扰。
 
-`@alicloud/console-components-lib-publisher`选择了 js bundle 作为文档的分发形式。js bundle 是一种非常便携的分发格式（类似于 PDF 文档）。利用 webpack 的一些 loader，它可以将本地的图片打包到 js bundle 中（data-url 编码）。并且我们自动帮你做了图片压缩，以便减小 bundle size。
+`@alicloud/console-components-lib-publisher`选择了 js bundle 作为文档的分发形式。js bundle 是一种非常便携的分发格式（类似于 PDF 文档）。利用 webpack 的一些 loader，它可以将本地的图片打包到 js bundle 中。因此，你的文本、demo 代码、图片等资源都一起存在本地仓库，本地仓库是"single source of truth"，可以通过 git 来存管和追踪。
 
-以`.`开头的 url 视为相对路径，指向本地图片，会被打包。
+以`.`开头的 url 视为相对路径，指向本地图片，会被打包到 js bundle 中（data-url 编码）。并且我们自动帮你做了图片压缩，以便减小 bundle size。
 示例：`![aliyun](./assets/aliyun.png)`
 
 其他的 url 视为普通外链 url，不会被打包。

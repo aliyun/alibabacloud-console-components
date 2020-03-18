@@ -74,6 +74,17 @@ module.exports = themeOptions => {
               },
             },
           ],
+          plugins: [
+            // https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-537991531
+            {
+              resolve: `gatsby-remark-images`,
+              options: {
+                maxWidth: 980,
+                linkImagesToOriginal: false,
+                showCaptions: ['title'],
+              },
+            },
+          ],
           shouldBlockNodeFromTransformation: node => {
             if (
               node.internal.type === `File` &&
