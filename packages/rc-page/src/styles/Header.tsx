@@ -1,3 +1,4 @@
+import MenuSelect from '@alicloud/console-components-menu-select'
 import styled, { css } from 'styled-components'
 import Partial from './Partial'
 import { flexContainer, flexItem } from './utils'
@@ -89,4 +90,59 @@ export const TopbarMain = styled.div`
 `
 export const TopbarExtra = styled.div`
   ${flexItem()};
+`
+
+export const STitleSelectWrap = styled('span')`
+  margin-left: 8px;
+  .trigger-icon-wrap {
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    .trigger-icon {
+      color: #888888;
+    }
+    &:hover {
+      .trigger-icon {
+        color: #333333;
+      }
+    }
+  }
+`
+
+export const SSubTitleSelectWrap = styled('span')`
+  margin-left: 16px;
+  .wind-menu-select-container {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 8px;
+    background: #edf0f4;
+    box-sizing: border-box;
+    .wind-menu-select-inner {
+      height: 24px;
+      line-height: 24px;
+      cursor: pointer;
+      .select-label {
+        width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .trigger-icon-wrap {
+        margin-left: 8px;
+        .trigger-icon {
+          color: #888888;
+        }
+      }
+      .trigger-icon-wrap {
+        height: 12px;
+        line-height: 12px;
+        width: 12px;
+        .trigger-icon {
+          width: 12px;
+          height: 12px;
+          line-height: 12px;
+        }
+      }
+    }
+  }
 `

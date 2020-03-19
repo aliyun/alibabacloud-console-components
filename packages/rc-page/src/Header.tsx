@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Truncate from '@alicloud/console-components-truncate'
-import { Select, Tag } from '@alicloud/console-components'
+import MenuSelect, {
+  IDataSourceItem,
+} from '@alicloud/console-components-menu-select'
+import { DropdownProps } from '@alicloud/console-components/types/dropdown'
+import { isArray } from 'lodash'
 import * as PropTypes from 'prop-types'
 import * as S from './styles'
 import BackArrow from './BackArrow'
@@ -28,7 +32,7 @@ export interface IHeaderProps {
   /**
    * 页面一级标题下拉选择时的数据源
    */
-  titleDataSource?: {
+  titleSource?: {
     label: React.ReactNode
     value: string
   }[]
@@ -50,7 +54,7 @@ export interface IHeaderProps {
   /**
    * 页面二级标题下拉选择时的数据源
    */
-  subTitleDataSource?: {
+  subTitleSource?: {
     label: React.ReactNode
     value: string
   }[]
@@ -61,6 +65,14 @@ export interface IHeaderProps {
     value: string,
     item: { label: React.ReactNode; value: string }
   ) => void
+  /**
+   * `title`下拉选择框弹层的props, 继承自基础组件{@link https://aliyun.github.io/alibabacloud-console-components/base-components/dropdown/ | Dropdown }
+   */
+  titleSelectDropdownProps?: DropdownProps
+  /**
+   * `subTitle`下拉选择框弹层的props, 继承自基础组件{@link https://aliyun.github.io/alibabacloud-console-components/base-components/dropdown/ | Dropdown }
+   */
+  subTitleSelectDropdownProps?: DropdownProps
   /**
    * 定义面包屑导航区域的内容。
    * 通常使用{@link Breadcrumb | Page.Breadcrumb}组件来定义面包屑导航，然后传给这个prop。
@@ -98,6 +110,13 @@ export interface IHeaderProps {
   childrenAlign?: 'left' | 'right'
 }
 
+const mapToDetail = (
+  v: any,
+  dataSource: IDataSourceItem[]
+): IDataSourceItem => {
+  return dataSource.filter((item: IDataSourceItem) => item.value === v)[0]
+}
+
 /**
  * @public
  */
@@ -108,20 +127,29 @@ const Header: React.FC<IHeaderProps> = ({
   childrenAlign,
   children,
   title,
-  // titleValue,
-  // titlesSource,
-  // onSelectTitle,
+  titleValue,
+  titleSource,
+  onSelectTitle,
   subTitle,
-  // subTitleValue,
-  // subTitleSource,
-  // onSelectSubTitle,
+  subTitleValue,
+  subTitleSource,
+  onSelectSubTitle,
   hasBackArrow,
   renderBackArrow,
   onBackArrowClick,
   breadcrumbExtra,
   breadcrumbExtraAlign,
+  titleSelectDropdownProps = {},
+  subTitleSelectDropdownProps = {},
 }) => {
   const [isTitleOverflow, setIsTitleOverflow] = useState(false)
+
+  const actualTitle = useMemo(() => {
+    return isArray(titleSource)
+      ? mapToDetail(titleValue, titleSource).label
+      : title
+  }, [title, titleSource, titleValue])
+
   return (
     <>
       {(breadcrumb || breadcrumbExtra) && (
@@ -140,7 +168,7 @@ const Header: React.FC<IHeaderProps> = ({
             {hasBackArrow && (
               <BackArrow render={renderBackArrow} onClick={onBackArrowClick} />
             )}
-            {title && (
+            {actualTitle && (
               <>
                 <S.HeaderTitle>
                   <Truncate
@@ -154,17 +182,42 @@ const Header: React.FC<IHeaderProps> = ({
                       setIsTitleOverflow(newIsOverflow)
                     }}
                   >
-                    {title}
+                    {actualTitle}
                   </Truncate>
                 </S.HeaderTitle>
-                {/* <ExpSelect.MenuSelect
-                // dataSource={titlesSource}
-                // onSelect={onSelectTitle}
-                // value={titleValue}
-                /> */}
+                {isArray(titleSource) && titleSource.length > 0 && (
+                  <S.STitleSelectWrap>
+                    <MenuSelect
+                      dataSource={titleSource}
+                      onSelect={onSelectTitle}
+                      value={titleValue}
+                      dropdownProps={titleSelectDropdownProps}
+                    />
+                  </S.STitleSelectWrap>
+                )}
               </>
             )}
-            {subTitle && <S.HeaderSubTitle>{subTitle}</S.HeaderSubTitle>}
+            {isArray(subTitleSource) && subTitleSource.length > 0 ? (
+              <S.SSubTitleSelectWrap>
+                <MenuSelect
+                  dataSource={subTitleSource}
+                  onSelect={onSelectSubTitle}
+                  value={subTitleValue}
+                  showSelectLabel
+                  dropdownProps={{
+                    align: 'tl, bl',
+                    offset: [-8, 0],
+                    style: {
+                      width: '158px',
+                      ...subTitleSelectDropdownProps.style,
+                    },
+                    ...subTitleSelectDropdownProps,
+                  }}
+                />
+              </S.SSubTitleSelectWrap>
+            ) : (
+              <S.HeaderSubTitle>{subTitle}</S.HeaderSubTitle>
+            )}
           </S.HeaderMain>
           {children && <S.HeaderExtra>{children}</S.HeaderExtra>}
         </S.Header>
