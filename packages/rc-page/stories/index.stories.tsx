@@ -9,6 +9,7 @@ import WithSceneryTheme from './with-scenery-theme'
 import LongTitle from './long-title'
 import WithoutTitle from './without-title'
 import WidthOverflow from './width-overflow'
+import WithSelectTitle from './with-title-select'
 
 storiesOf('@alicloud/console-components-page', module)
   .add('Basic', () => {
@@ -68,6 +69,15 @@ storiesOf('@alicloud/console-components-page', module)
       <div id="app-wrapper">
         <div id="app">
           <WidthOverflow />
+        </div>
+      </div>
+    )
+  })
+  .add('WithSelectTitle', () => {
+    return (
+      <div id="app-wrapper">
+        <div id="app">
+          <WithSelectTitle />
         </div>
       </div>
     )
