@@ -15,6 +15,8 @@ export {
   Topbar as HeaderTopbar,
   TopbarMain as HeaderTopbarMain,
   TopbarExtra as HeaderTopbarExtra,
+  STitleSelectWrap,
+  SSubTitleSelectWrap,
 } from './Header'
 
 export {
