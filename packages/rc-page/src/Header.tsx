@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Truncate from '@alicloud/console-components-truncate'
+import { Select, Tag } from '@alicloud/console-components'
 import * as PropTypes from 'prop-types'
 import * as S from './styles'
 import BackArrow from './BackArrow'
@@ -21,9 +22,45 @@ export interface IHeaderProps {
    */
   title?: React.ReactNode
   /**
+   * 页面一级标题的value值，一级标题具有下拉选择功能时需传入
+   */
+  titleValue?: string
+  /**
+   * 页面一级标题下拉选择时的数据源
+   */
+  titleDataSource?: {
+    label: React.ReactNode
+    value: string
+  }[]
+  /**
+   * 下拉选择一级标题时的回调函数
+   */
+  onSelectTitle?: (
+    value: string,
+    item: { label: React.ReactNode; value: string }
+  ) => void
+  /**
    * 页面二级标题。
    */
   subTitle?: React.ReactNode
+  /**
+   * 页面二级标题的value值，二级标题具有下拉选择功能时需传入
+   */
+  subTitleValue?: string
+  /**
+   * 页面二级标题下拉选择时的数据源
+   */
+  subTitleDataSource?: {
+    label: React.ReactNode
+    value: string
+  }[]
+  /**
+   * 下拉选择二级标题时的回调函数
+   */
+  onSelectSubTitle?: (
+    value: string,
+    item: { label: React.ReactNode; value: string }
+  ) => void
   /**
    * 定义面包屑导航区域的内容。
    * 通常使用{@link Breadcrumb | Page.Breadcrumb}组件来定义面包屑导航，然后传给这个prop。
@@ -71,7 +108,13 @@ const Header: React.FC<IHeaderProps> = ({
   childrenAlign,
   children,
   title,
+  // titleValue,
+  // titlesSource,
+  // onSelectTitle,
   subTitle,
+  // subTitleValue,
+  // subTitleSource,
+  // onSelectSubTitle,
   hasBackArrow,
   renderBackArrow,
   onBackArrowClick,
@@ -98,21 +141,28 @@ const Header: React.FC<IHeaderProps> = ({
               <BackArrow render={renderBackArrow} onClick={onBackArrowClick} />
             )}
             {title && (
-              <S.HeaderTitle>
-                <Truncate
-                  // 充满弹性容器
-                  style={{ width: '100%' }}
-                  type="width"
-                  threshold="auto"
-                  align="b"
-                  tooltipMaxWidth={500}
-                  isOverflowChange={newIsOverflow => {
-                    setIsTitleOverflow(newIsOverflow)
-                  }}
-                >
-                  {title}
-                </Truncate>
-              </S.HeaderTitle>
+              <>
+                <S.HeaderTitle>
+                  <Truncate
+                    // 充满弹性容器
+                    style={{ width: '100%' }}
+                    type="width"
+                    threshold="auto"
+                    align="b"
+                    tooltipMaxWidth={500}
+                    isOverflowChange={newIsOverflow => {
+                      setIsTitleOverflow(newIsOverflow)
+                    }}
+                  >
+                    {title}
+                  </Truncate>
+                </S.HeaderTitle>
+                {/* <ExpSelect.MenuSelect
+                // dataSource={titlesSource}
+                // onSelect={onSelectTitle}
+                // value={titleValue}
+                /> */}
+              </>
             )}
             {subTitle && <S.HeaderSubTitle>{subTitle}</S.HeaderSubTitle>}
           </S.HeaderMain>
