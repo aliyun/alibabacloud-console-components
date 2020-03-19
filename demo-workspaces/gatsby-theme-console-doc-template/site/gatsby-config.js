@@ -145,8 +145,6 @@ module.exports = {
                       自定义类目1: true, // true匹配任何tagValue
                       // 自定义类目1: 'myvalue',  // 只匹配具有tag"自定义类目1:myvalue"的文档
                     },
-                    // 将选中的文档直接放在menu中，还是放在一个可展开/收起的SubMenu中
-                    flat: true,
                     /**
                      * 根据文档的tag值来排序。没有对应tag的文档，优先级默认为1。
                      * 例子：
@@ -161,14 +159,20 @@ module.exports = {
                     tagSelector: {
                       baseComp: true,
                     },
-                    // 将选中的文档放在一个SubMenu中，可以指定这个SubMenu的label
+                    // 将选中的文档放在一个SubMenu中，指定这个SubMenu的label
                     // 仅当flat不为true时有效
                     label: '基础组件',
                   },
                 ]
               case 'guides':
                 // 也可以选中指定category的文档
-                return [{ categoryName: 'guides' }]
+                return [
+                  {
+                    categoryName: 'guides',
+                    // 不将这些文档放在可展开/收起的SubMenu中
+                    flat: true,
+                  },
+                ]
               default:
                 throw new Error(
                   `unexpected pageMeta.category ${pageMeta.category}`

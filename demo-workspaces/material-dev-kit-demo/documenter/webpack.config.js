@@ -11,7 +11,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-typescript'],
+            presets: ['@babel/preset-typescript', '@babel/env', '@babel/react'],
           },
         },
       },
@@ -23,9 +23,6 @@ module.exports = {
     ],
   },
   resolve: {
-    alias: {
-      '@runtime': '@alicloud/console-components-lib-documenter/lib/runtime',
-    },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   plugins: [

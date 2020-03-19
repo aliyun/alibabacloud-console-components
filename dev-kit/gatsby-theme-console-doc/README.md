@@ -1,6 +1,11 @@
+---
+name: doc-theme
+zhName: 站点框架
+---
+
 # @alicloud/gatsby-theme-console-doc
 
-这是一个 gatsby 的 [theme](https://www.gatsbyjs.org/docs/themes/)，用于生成文档站点。它已经做了抽象，可以用于生成通用的文档站点，不仅限于 console-components。
+`@alicloud/gatsby-theme-console-doc`是一个[gatsby theme](https://www.gatsbyjs.org/docs/themes/)，用于生成文档站点。它已经做了抽象，可以用于生成通用的文档站点，不仅限于 console-components。
 
 > 事实上，它已经被用于[其他文档站点](https://aliyun.github.io/alibabacloud-console-chart/guides/quick-start)的生成。
 
@@ -8,7 +13,7 @@
 
 [这个目录](https://github.com/aliyun/alibabacloud-console-components/tree/master/demo-workspaces/gatsby-theme-console-doc-template)是一个最小的使用示例项目。其中的[gatsby-config.js 配置文件](https://github.com/aliyun/alibabacloud-console-components/tree/master/demo-workspaces/gatsby-theme-console-doc-template/site/gatsby-config.js)包含了详细配置示例和说明。
 
-## 站点能力
+## 站点能力一览
 
 - 继承自 gatsby 的高性能：SSR、prefetching
 - 规范的站点布局，清爽的样式风格
@@ -29,8 +34,7 @@
 
 ## 文档搜索
 
-使用者在使用`@alicloud/gatsby-theme-console-doc`搭建文档站点的时候，需要通过配置的方式来告诉文档框架：有哪些文档、他们放在哪里、文档的名称、url 路径、文档标签等，这些数据是文档的元数据（描述文档，但不包含文档内容本身）。
-文档站点在构建时会收集所有文档的元数据。这些数据会被用来作为搜索的数据。
+使用者在使用`@alicloud/gatsby-theme-console-doc`搭建文档站点的时候，需要通过配置的方式来告诉文档框架：有哪些文档、他们放在哪里、文档的名称、url 路径、文档标签等，这些数据是文档的元数据（描述文档，但不包含文档内容本身）。文档站点在构建时会收集所有文档的元数据，用这些元数据来提供搜索功能。搜索功能不需要用户的干预，是开箱即用的。
 
 文档搜索会根据名称和标签键值来搜索:
 
@@ -57,7 +61,7 @@
 
 - tag 本质上是 attach 在文档实体上的 key:value 对（可以省略 value，等价于 key:true）。
 - 每篇文档可以 attach 任意多个 tag（key:value 对）。
-- tag 是站点对于文档的分类与编排，同一篇文档在不同的站点可能有不同的 tag，因此 tag 信息不属于文档本身（不应该在文档开头标注 tag），而是属于站点的一种配置。
+- tag 是站点对于文档的分类与编排。同一篇文档在不同的站点可能有不同的 tag，因此 tag 信息不属于文档本身，而是属于站点的一种配置。
 - 文档站点要拿到所有文档的 tag 信息，才能渲染左侧导航栏、激活搜索功能。因此 tag 信息处于站点渲染的关键路径上。我们应该将这些信息打包到首屏 bundle。
 
 ### 功能 1：帮助阅读者理解文档关系
@@ -78,53 +82,109 @@
 以下示例来自[示例项目](https://github.com/aliyun/alibabacloud-console-components/tree/master/demo-workspaces/gatsby-theme-console-doc-template/site/gatsby-config.js)，通过标签来选中若干文档，然后将它们放在菜单中相邻的位置。
 
 ```js
-// 左侧导航栏编排
-const navCategories = (() => {
-  switch (pageMeta.category) {
-    // 根据当前页面的信息，来决定左侧导航栏应该展示哪些导航项
-    case 'components':
-      // 如果当前页面是组件
-      // 则导航栏需要导航这下面选中的文档：
-      return [
-        {
-          // 选中那些具有tag"自定义类目1"的文档
-          tagSelector: {
-            自定义类目1: true, // true匹配任何tagValue
-            // 自定义类目1: 'myvalue',  // 只匹配具有tag"自定义类目1:myvalue"的文档
+// 左侧导航是动态的，可以随着“当前所在页面”而变化
+sideNav: context => {
+  // 同理，你可以在这里打断点调试，观察参数的结构
+  const { pageMeta } = context
+
+  const header = (() => {
+    // 根据正在展示的文档的元数据，来决定左侧导航栏的标题
+    switch (pageMeta.category) {
+      case 'components':
+        return '组件'
+      case 'guides':
+        return '指南'
+      default:
+        throw new Error(
+          `unexpected pageMeta.category ${pageMeta.category}`
+        )
+    }
+  })()
+
+  // 左侧导航栏编排
+  const navCategories = (() => {
+    switch (pageMeta.category) {
+      // 根据当前页面的信息，来决定左侧导航栏应该展示哪些导航项
+      case 'components':
+        // 如果当前页面是组件
+        // 则导航栏需要导航这下面选中的文档：
+        return [
+          {
+            // 选中那些具有tag"自定义类目1"的文档
+            tagSelector: {
+              自定义类目1: true, // true匹配任何tagValue
+              // 自定义类目1: 'myvalue',  // 只匹配具有tag"自定义类目1:myvalue"的文档
+            },
+            /**
+             * 根据文档的tag值来排序。没有对应tag的文档，优先级默认为1。
+             * 例子：
+             * 文档1有tag：_自定义类目sort:2,
+             * 文档2有tag：_自定义类目sort:0,
+             * 文档3没有tag。
+             * 那么在导航菜单中的顺序为[文档2，文档3，文档1]
+             */
+            sortByTag: '_自定义类目sort',
           },
-          // 将选中的文档直接放在menu中，还是放在一个可展开/收起的SubMenu中
-          flat: true,
-          /**
-           * 根据文档的tag值来排序。没有对应tag的文档，优先级默认为1。
-           * 例子：
-           * 文档1有tag：_自定义类目sort:2,
-           * 文档2有tag：_自定义类目sort:0,
-           * 文档3没有tag。
-           * 那么在导航菜单中的顺序为[文档2，文档3，文档1]
-           */
-          sortByTag: '_自定义类目sort',
-        },
-        {
-          tagSelector: {
-            baseComp: true,
+          {
+            tagSelector: {
+              baseComp: true,
+            },
+            // 将选中的文档放在一个SubMenu中，指定这个SubMenu的label
+            // 仅当flat不为true时有效
+            label: '基础组件',
           },
-          // 将选中的文档放在一个SubMenu中，可以指定这个SubMenu的label
-          // 仅当flat不为true时有效
-          label: '基础组件',
-        },
-      ]
-    case 'guides':
-      // 也可以选中指定category的文档
-      return [{ categoryName: 'guides' }]
-    default:
-      throw new Error(`unexpected pageMeta.category ${pageMeta.category}`)
+        ]
+      case 'guides':
+        // 也可以选中指定category的文档
+        return [
+          {
+            categoryName: 'guides',
+            // 不将这些文档放在可展开/收起的SubMenu中
+            flat: true,
+          },
+        ]
+      default:
+        throw new Error(
+          `unexpected pageMeta.category ${pageMeta.category}`
+        )
+    }
+  })()
+  return {
+    // 导航栏标题
+    header,
+    // 导航栏需要为哪些类目导航
+    navCategories,
   }
-})()
+},
 ```
 
-得到的导航菜单如下：
-![nav-menu](./assets/nav-menu.png '导航菜单编排')
+上述配置得到的导航菜单如下：
+![nav-menu](./assets/nav-menu.png 'components文档的导航菜单')
+![nav-menu2](./assets/nav-menu2.png 'guides文档的导航菜单')
 
-未来允许开发者通过标签来编排站点目录（站点地图）。
+> 未来允许开发者通过标签来编排站点目录（站点地图）。
 
-## 动态加载文档
+## 动态文档
+
+通过 gatsby 生成的站点，默认是静态的。文档站点在构建的时候收集到所有需要的数据（包括文档内容），输出 HTML、CSS、JS 等资源。这样做的好处是，**文档站点不需要依赖任何数据接口，维护、部署起来非常方便，将构建产物直接丢到一个静态 HTTP 文件服务器就好了**。
+
+但是纯静态化是一把双刃剑：文档的所有数据在构建的时候就已经决定了，这意味着每次更新文档以后，都需要重新构建、部署文档。对于比较大的文档站点，构建、部署需要 2 分钟。这会造成频繁的重复劳动。
+
+为了避免文档站点的频繁构建。`@alicloud/gatsby-theme-console-doc`允许用户将一些文档指定为动态文档。动态文档在**运行时才拉取文档数据**。文档站点在构建时只需要知道文档的元数据(名称、url、标签、文档数据地址)，不需要知道文档的具体内容。如果文档内容更新，只需从数据源上更新，无需重新构建、部署文档站点。
+
+> 目前支持的动态文档数据源是 unpkg，即将动态文档构建得到的 bundle 发到 npm 就可以加载为动态文档。
+
+以 console-components 为例子，所有业务组件的文档都是动态的，这有利于多方共建的业务组件生态。当业务组件开发者更新他的文档时，只需要将文档 bundle 放在 npm 包中一起发布，文档站点就会从 npm cdn（比如 unpkg）拉取到最新的文档数据。
+
+> 如果使用静态文档数据，每次有业务组件更新文档，console-components 站点的维护者都需要重新构建、发布文档站点，频繁地耗费时间。
+
+## 文档预览平台
+
+为了将我们的[文档能力](./doc-features)和[动态文档](#动态文档)发挥最大价值，站点框架帮助你创建了一个页面，可以加载和渲染任何动态文档。
+
+动态文档的预览 url 格式：`{站点地址}/doc-preview?prodPkgName={prodPkgName}&actualLoadPkgName={actualLoadPkgName}&actualLoadPkgVersion={actualLoadPkgVersion}`
+
+比如：
+[https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fconsole-components-actions&actualLoadPkgName=%40cc-dev-kit-test%2Fconsole-components-actions&actualLoadPkgVersion=1.0.9-preview.2](https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fconsole-components-actions&actualLoadPkgName=%40cc-dev-kit-test%2Fconsole-components-actions&actualLoadPkgVersion=1.0.9-preview.2)
+
+文档预览平台的作用是，渲染物料预览包的文档，让预览包易于分享和评审，让开发者快地获得反馈。详见[]()

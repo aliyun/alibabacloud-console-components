@@ -15,16 +15,16 @@ externalsObj['@mdx-js/react'] = External0
 import * as External1 from 'react'
 externalsObj['react'] = External1
 
-import * as External2 from '@runtime/TypescriptMetadataRenderer/interface'
+import * as External2 from '../TypescriptMetadataRenderer/interface'
 externalsObj['@runtime/TypescriptMetadataRenderer/interface'] = External2
 
-import * as External3 from '@runtime/DemoRenderer'
+import * as External3 from '../DemoRenderer'
 externalsObj['@runtime/DemoRenderer'] = External3
 
 import * as External4 from 'styled-components'
 externalsObj['styled-components'] = External4
 
-import * as External5 from '@runtime/MdxWrapper'
+import * as External5 from '../MdxWrapper'
 externalsObj['@runtime/MdxWrapper'] = External5
 
 import * as External6 from 'prop-types'

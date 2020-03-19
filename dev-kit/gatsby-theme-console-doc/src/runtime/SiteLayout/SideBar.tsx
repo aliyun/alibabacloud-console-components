@@ -11,7 +11,6 @@ const SideBar: React.FC = () => {
   if (!('sideNav' in pageCtx.pageMeta)) return null
 
   const { navCategories, header } = pageCtx.pageMeta.sideNav
-  const hasSingleCategoriesInNav = navCategories.length == 1
 
   return (
     <ConsoleMenu
@@ -54,11 +53,9 @@ const SideBar: React.FC = () => {
             )
           })
           // 不创建可展开/收起的Submenu节点
-          if (navCategory.flat || hasSingleCategoriesInNav)
-            return consoleMenuItems
-          const label = navCategory.label ?? 'UnNamed Category'
+          if (navCategory.flat || !navCategory.label) return consoleMenuItems
           return (
-            <ConsoleMenu.SubMenu label={label} key={navCategoryIdx}>
+            <ConsoleMenu.SubMenu label={navCategory.label} key={navCategoryIdx}>
               {consoleMenuItems}
             </ConsoleMenu.SubMenu>
           )
@@ -82,8 +79,7 @@ const SideBar: React.FC = () => {
               )
             })
           // 不创建可展开/收起的Submenu节点
-          if (navCategory.flat || hasSingleCategoriesInNav)
-            return consoleMenuItems
+          if (navCategory.flat) return consoleMenuItems
           const label = navCategory.label ?? currentCategory.zhName
           return (
             <ConsoleMenu.SubMenu label={label} key={label}>
@@ -104,16 +100,16 @@ function getSortFn(sortByTag?: string) {
   return (a: IDocPageMeta, b: IDocPageMeta) => {
     const { sortA, sortB } = (() => {
       if (sortByTag) {
-        const sortA = String(a.tags?.[sortByTag] ?? 1)
-        const sortB = String(b.tags?.[sortByTag] ?? 1)
+        const sortA = Number(a.tags?.[sortByTag] ?? 1) || 1
+        const sortB = Number(b.tags?.[sortByTag] ?? 1) || 1
         return { sortA, sortB }
       } else {
-        const sortA = String(a.sort ?? 1)
-        const sortB = String(b.sort ?? 1)
+        const sortA = Number(a.sort ?? 1) || 1
+        const sortB = Number(b.sort ?? 1) || 1
         return { sortA, sortB }
       }
     })()
-    const cmp = sortA.localeCompare(sortB)
+    const cmp = sortA - sortB
     return cmp != 0 ? cmp : a.name.localeCompare(b.name)
   }
 }

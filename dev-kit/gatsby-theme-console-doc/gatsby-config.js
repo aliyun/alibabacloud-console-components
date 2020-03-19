@@ -34,7 +34,7 @@ module.exports = themeOptions => {
             ignore: [
               '**/.*',
               '**/node_modules/**',
-              '**/*.!(md|mdx|png|jpg)',
+              '**/*.!(md|mdx|png|jpg|jpeg|svg)',
               ...ignore,
             ],
           },
@@ -68,9 +68,15 @@ module.exports = themeOptions => {
             {
               resolve: `gatsby-remark-images`,
               options: {
-                maxWidth: 980,
+                maxWidth: 720,
                 linkImagesToOriginal: false,
                 showCaptions: ['title'],
+              },
+            },
+            {
+              resolve: 'gatsby-remark-copy-linked-files',
+              options: {
+                destinationDir: `copy-linked-files`,
               },
             },
           ],
@@ -84,6 +90,7 @@ module.exports = themeOptions => {
                 showCaptions: ['title'],
               },
             },
+            'gatsby-plugin-catch-links',
           ],
           shouldBlockNodeFromTransformation: node => {
             if (

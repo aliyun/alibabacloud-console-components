@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import TOC from './TableOfContent'
 import styled from 'styled-components'
 import { useDocMetaCtx } from '../utils/context'
-import getScrollParent from '@runtime/utils/getScrollParent'
+import getScrollParent from '../utils/getScrollParent'
 
 const Layout: React.FC = ({ children }) => {
   const {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useDocMetaCtx } from '@runtime/utils/context'
-import getScrollParent from '@runtime/utils/getScrollParent'
+import { useDocMetaCtx } from '../../utils/context'
+import getScrollParent from '../../utils/getScrollParent'
 
 export interface ITocHeading {
   id: string

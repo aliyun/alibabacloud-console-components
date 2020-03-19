@@ -1,7 +1,7 @@
 ---
 name: lib-publisher
 zhName: 文档构建发布
-sort: 1
+sort: 3
 tags:
   dev-kit: true
   documentation: true
@@ -16,13 +16,15 @@ tags:
   - 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)，读取`lib/index.d.ts`（即`tsc`的输出），提取 ts 代码中的类型、注释信息。输出到`cc-dev-out/api-extractor/`目录。
   - 然后，`dev-kit/api-documenter`会将上述输出信息加工成 json 数据，作为 API 文档的数据。输出到`cc-dev-out/api-json/`目录。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
   - 以`lib/index.d.ts`为入口，将`.d.ts`声明文件打包（类似于 webpack 打包 js 模块），输出到`cc-dev-out/index.d.ts`，在此过程中，被声明为`@internal`和`@alpha`的 ts 类型、接口成员会被过滤掉。你可以利用这一点来避免不稳定的 ts 接口暴露给用户，提高封装性。详见[api-extractor 文档](https://api-extractor.com/pages/overview/demo_rollup/)。
-- cc-build-doc 将 markdown 文档构建成一个 js bundle。
+- cc-build-doc 将 markdown 文档打包成一个 js bundle。
   - 构建成 js bundle 的好处是便于分发和扩展。各种基于 markdown 的扩展（demo 嵌入、ts Interface 渲染、图片内联、目录生成）在构建阶段就已经被处理完毕，文档站点无需关注文档功能的编译和实现，**文档站点可以将一篇文档当做一个普通 React 组件来加载、渲染**。未来我们向 markdown 语法加入更多扩展的时候，文档站点没有感知。
     > 详细的文档扩展能力说明，请参考[文档能力](./doc-features)。
 - cc-doc-local-dev 本地开发、预览。
-  - 既然已经可以将 markdown 文档构建成一个 js bundle，自然也就很容易实现本地开发模式（使用`webpack-dev-server`）。在这个模式下你可以快速预览渲染后的文档。我们会监听 markdown 文件的变更、demo 代码的变更、src 代码的变更，并自动刷新。
+  - 既然已经可以将 markdown 文档打包成一个 js bundle，自然也就很容易实现本地开发模式（使用`webpack-dev-server`）。在这个模式下你可以快速预览渲染后的文档。我们会监听 markdown 文件的变更、src 代码的变更、demo 代码的变更，并自动刷新。
     > 目前，对 Typescript Interface 代码的修改，不会导致文档中渲染的 Interface 表格的热刷新。需要重新执行`npm run prepare && npm run doc:local-dev`
 - cc-publish-preview 将当前的物料发布成一个预览包。
+  - 预览包包括物料本身的运行代码，以及物料的文档 bundle
+  - 通过临时 npm 账号将当前 package 发布到`@cc-dev-kit-test/${实际包名}`
   - 预览包发布成功以后，你会立刻得到一个 URL 分享链接。将 URL 分享给你的 UI 评阅者，评阅者用浏览器打开就能看到当前物料的文档。得益于文档的 Codesandbox Demo 能力、API 文档能力，这份文档能够快速地让评阅者了解、试用你开发的物料，无需切换代码分支、启动开发服务器等耗时的操作。
 
 以上脚本工具都在物料包根目录（即 package.json 所在的目录）运行。

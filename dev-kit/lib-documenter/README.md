@@ -19,29 +19,18 @@ tags:
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import loadDocModule from '@alicloud/console-components-lib-documenter/loadDocModule'
-;(async function main() {
-  const docDef = {
-    // 预览包的生产包名（用户在生产环境应该使用的包名，即你在demo中用什么名称来import这个物料）
-    prodPkgName: '@alicloud/console-components-actions',
-    // 预览包的包名、版本，我们会从unpkg等cdn拉取文档bundle
-    actualLoadPkgName: '@cc-dev-kit-test/console-components-actions',
-    actualLoadPkgVersion: '1.0.9-preview.0',
-  }
-  const DocComp = (await loadDocModule(docDef)).default
-  ReactDOM.render(
-    <div
-      // 滚动容器作为定位基准，我们会根据容器来计算滚动位置、高亮目录
-      style={{
-        height: '100vh',
-        overflow: 'auto',
-        position: 'relative',
-      }}
-    >
-      <DocComp pkgInfo={docDef} />
-    </div>,
-    document.querySelector('.app')
-  )
-})()
+
+const docDef = {
+  // 预览包的生产包名（用户在生产环境应该使用的包名，即你在demo中用什么名称来import这个物料）
+  prodPkgName: '@alicloud/console-components-actions',
+  // 预览包的包名、版本，我们会从unpkg等cdn拉取文档bundle
+  actualLoadPkgName: '@cc-dev-kit-test/console-components-actions',
+  actualLoadPkgVersion: '1.0.9-preview.0',
+}
+
+loadDocModule(docDef).then(({ default: DocComp }) => {
+  ReactDOM.render(<DocComp pkgInfo={docDef} />, document.querySelector('.app'))
+})
 ```
 
 这个例子展示了，动态加载文档是多么的简单：你只需要给`loadDocModule`方法提供 npm 包的信息，它就会返回给你一个 React 组件，其渲染结果就是文档。
@@ -53,4 +42,4 @@ import loadDocModule from '@alicloud/console-components-lib-documenter/loadDocMo
 
 对于一个共建式开发的组件库来说，文档的独立发布尤其重要。否则，每一位共建者修改文档以后都需要找维护者重新构建发布一次文档站点。
 
-此外，预览包的渲染（[例子](https://aliyun.github.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fcc-demo-component&actualLoadPkgName=%40cc-dev-kit-test%2Fcc-demo-component&actualLoadPkgVersion=1.0.1-preview.30)）也必须是动态加载的，我们不可能在每次发布预览包以后都重新构建一次文档站点。
+此外，预览包的渲染（[例子](https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fconsole-components-actions&actualLoadPkgName=%40cc-dev-kit-test%2Fconsole-components-actions&actualLoadPkgVersion=1.0.9-preview.2)）也必须是动态加载的，我们不可能在每次发布预览包以后都重新构建一次文档站点。
