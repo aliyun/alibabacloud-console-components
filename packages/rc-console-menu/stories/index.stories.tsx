@@ -9,6 +9,7 @@ import RoutableMenu from './routable-menu'
 import RoutableMenuDefaultOpen from './routable-menu-default-open'
 import WithDivider from './with-divider'
 import SwitchHeader from './switch-header'
+import SwitchProduct from './switch-product'
 
 storiesOf('wind-rc-console-menu', module)
   .add('Basic', () => <Basic />)
@@ -19,3 +20,4 @@ storiesOf('wind-rc-console-menu', module)
   .add('RoutableMenuDefaultOpen', () => <RoutableMenuDefaultOpen />)
   .add('WithDivider', () => <WithDivider />)
   .add('SwitchHeader', () => <SwitchHeader />)
+  .add('SwitchProduct', () => <SwitchProduct />)
