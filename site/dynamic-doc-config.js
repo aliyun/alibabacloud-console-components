@@ -107,4 +107,14 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-breadcrumb-select',
+    zhName: 'Breadcrumb下拉选择',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-breadcrumb-select',
+    tags: {
+      select: true,
+      menu: true,
+    },
+  },
 ]
