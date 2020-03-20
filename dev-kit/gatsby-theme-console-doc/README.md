@@ -1,11 +1,15 @@
 ---
 name: doc-theme
 zhName: 站点框架
+sort: 0
+tags:
+  dev-kit: true
+  documentation: true
 ---
 
 # @alicloud/gatsby-theme-console-doc
 
-`@alicloud/gatsby-theme-console-doc`是一个[gatsby theme](https://www.gatsbyjs.org/docs/themes/)，用于生成文档站点。它已经做了抽象，可以用于生成通用的文档站点，不仅限于 console-components。
+`@alicloud/gatsby-theme-console-doc`是一个[gatsby theme](https://www.gatsbyjs.org/docs/themes/)，帮你快速配置出一个功能强悍的文档站点。它已经做了抽象，可以用于生成通用的文档站点，不仅限于 console-components。
 
 > 事实上，它已经被用于[其他文档站点](https://aliyun.github.io/alibabacloud-console-chart/guides/quick-start)的生成。
 

@@ -1,6 +1,7 @@
 ---
 name: doc-review
 zhName: 文档评审
+sort: 4
 tags:
   dev-kit: true
   documentation: true
@@ -14,9 +15,9 @@ tags:
 
 这就是为什么[console-components-dev-kit](https://github.com/aliyun/alibabacloud-console-components/tree/master/dev-kit)是围绕着文档展开的。通过[文档能力](./doc-features)这篇文章你可以发现，经过扩展以后的文档，表现形式丰富（比如嵌入实时编辑的 Demo），维护成本低廉（比如将 Typescript Interface 渲染为表格），内容可以覆盖到一个物料使用的方方面面，展现物料完整的面貌。
 
-这就不难理解“文档作为评审材料”的观点。如果文档没有体现你实现的新特性，那么用户又如何知道这个特性的存在呢？评审者应该能够**在源代码评审之前，通过文档评审了解到本次变更的用意、效果**。如果需要看源代码才能理解变更的用意，那么这个变更是失败的。
+这就不难理解“文档作为评审材料”的观点。如果文档没有体现你实现的新特性，那么用户又如何知道这个特性的存在呢？**评审者应该能够在源代码评审之前，通过文档评审了解到本次变更的用意、效果**。如果需要看源代码才能理解变更的用意，那么这个变更是失败的。
 
-> Bug fix 的复现 Demo 往往不需要在正式的文档中透出。但是依然可以在预览的文档中透出，以便评审。
+> Bug fix 的复现 Demo 往往不需要在**正式**的文档中透出，但是依然可以在用于评审的文档中透出。
 
 ## 文档如何提高评审效率
 
@@ -29,7 +30,7 @@ tags:
 - API 是否发生破坏性变更、新增 API 是否设计得当
 - 是否有 Demo 来体现这次变更、Demo 中的样式和交互是否符合视觉规范、Demo 代码是否起到了良好的示范作用
 
-这两点还大大减轻了后续源码评审的负担。
+这两点显著减轻了后续源码评审的负担。
 
 ### 背景 2 ：评审步骤繁琐
 
@@ -42,21 +43,19 @@ tags:
 
 以上还只是【开发者之间】的评审反馈，【开发者与设计师之间】的交流则更加困难，因为设计师没有相关的开发知识，无法启动开发环境。对于【控制台项目】开发，【开发者与设计师之间】的交流是通过“预发环境”来实现的（顺便说一句，频繁提交到预发环境也是很繁琐的事情）。而【物料开发】甚至连预发环境都没有，只能通过”钉钉发送截图“的低效方式来沟通。
 
-为此，cc-dev-kit 提供了一套工具，来支持快速的、预览性质的文档发布、渲染，让文档评审的工作流程快速而简单：
+为此，我们利用了 cc-dev-kit 的文档动态加载能力，来支持预览包的发布、分享、浏览，让文档评审的工作流程快速而简单：
 
 ![简单的文档评审](./assets/doc-review1.png '简单的文档评审')
 
 - `@alicloud/console-components-lib-publisher`提供了发布预览包的工具，将你本地开发的物料发布为一个可分享的预览物料包，其中包含了运行代码、可动态加载的文档 bundle。预览包发布成功以后，开发者会立刻得到一个 URL 链接，可以将它分享给评审者、试用者。
-- `@alicloud/gatsby-theme-console-doc`自动在文档站点创建一个预览文档页，承接上面得到的 URL 链接。通过动态文档加载的特性，加载预览物料包中的文档。**评阅者用浏览器打开链接，就能看到当前物料的文档。**得益于文档的 Demo 实时渲染和编辑能力、API 文档渲染能力，这份文档能够快速地让评阅者了解、试用你开发的物料，无需繁琐地配置本地开发环境。[这是一个预览包分享 URL 的示例](https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fconsole-components-actions&actualLoadPkgName=%40cc-dev-kit-test%2Fconsole-components-actions&actualLoadPkgVersion=1.0.9-preview.2)
+- `@alicloud/gatsby-theme-console-doc`在文档站点创建一个预览文档页，专门用于承接上面得到的 URL 链接。通过动态文档加载的特性，加载预览物料包中的文档。**评阅者用浏览器打开链接，就能看到当前物料的文档。**得益于文档的 Demo 实时渲染和编辑能力、API 文档渲染能力，这份文档能够快速地让评阅者了解、试用你开发的物料，无需繁琐地配置本地开发环境。[这是一个预览包分享 URL 的示例](https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fconsole-components-actions&actualLoadPkgName=%40cc-dev-kit-test%2Fconsole-components-actions&actualLoadPkgVersion=1.0.9-preview.2)
 
-## 文档反馈闭环
+在这个工具支持的工作流下，文档评审的速度和质量与上面形成鲜明的对比。
 
-以文档、demo为核心的开发、评审反馈闭环：
+## 以文档为中心的物料开发工作流
 
-![文档反馈闭环](./assets/feedback.svg '文档反馈闭环')
+下图总结了 cc-dev-kit 支持的**以文档为中心的物料开发工作流**：
 
+![物料开发工作流](./assets/feedback.svg '物料开发工作流')
 
-详情见！！文档理念！！
-
-
-## test
+详情见 👉[文档工作流综述](./doc-workflow)。

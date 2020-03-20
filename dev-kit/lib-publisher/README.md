@@ -19,6 +19,7 @@ tags:
 - cc-build-doc 将 markdown 文档打包成一个 js bundle。
   - 构建成 js bundle 的好处是便于分发和扩展。各种基于 markdown 的扩展（demo 嵌入、ts Interface 渲染、图片内联、目录生成）在构建阶段就已经被处理完毕，文档站点无需关注文档功能的编译和实现，**文档站点可以将一篇文档当做一个普通 React 组件来加载、渲染**。未来我们向 markdown 语法加入更多扩展的时候，文档站点没有感知。
     > 详细的文档扩展能力说明，请参考[文档能力](./doc-features)。
+  - 一般的用法是将 markdown 构建成 bundle 以后，放在 npm 包中一起发布，文档站点通过 npm cdn（比如 unpkg）来加载文档。
 - cc-doc-local-dev 本地开发、预览。
   - 既然已经可以将 markdown 文档打包成一个 js bundle，自然也就很容易实现本地开发模式（使用`webpack-dev-server`）。在这个模式下你可以快速预览渲染后的文档。我们会监听 markdown 文件的变更、src 代码的变更、demo 代码的变更，并自动刷新。
     > 目前，对 Typescript Interface 代码的修改，不会导致文档中渲染的 Interface 表格的热刷新。需要重新执行`npm run prepare && npm run doc:local-dev`
@@ -27,9 +28,9 @@ tags:
   - 通过临时 npm 账号将当前 package 发布到`@cc-dev-kit-test/${实际包名}`
   - 预览包发布成功以后，你会立刻得到一个 URL 分享链接。将 URL 分享给你的 UI 评阅者，评阅者用浏览器打开就能看到当前物料的文档。得益于文档的 Codesandbox Demo 能力、API 文档能力，这份文档能够快速地让评阅者了解、试用你开发的物料，无需切换代码分支、启动开发服务器等耗时的操作。
 
-以上脚本工具都在物料包根目录（即 package.json 所在的目录）运行。
+以上脚本工具都在物料包根目录（即 package.json 所在的目录）运行。使用他们的项目范例：[最小示例](https://github.com/aliyun/alibabacloud-console-components/blob/master/demo-workspaces/material-dev-kit-demo/component/package.json)、[Wind 物料的使用方式](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/rc-actions/package.json)。
 
-> 本工具包只负责开发期的信息提取、构建、发布；运行时的加载、样式代码放在[@alicloud/console-components-lib-documenter](./lib-documenter)包中。
+> 本工具包只负责开发期的信息提取、构建、发布；运行时的加载、样式和功能放在[@alicloud/console-components-lib-documenter](./lib-documenter)包中。
 
 ## 为什么要选择打包文档
 

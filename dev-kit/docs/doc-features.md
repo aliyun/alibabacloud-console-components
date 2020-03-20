@@ -1,13 +1,17 @@
 ---
 name: doc-features
 zhName: 文档特性
-sort: 2
+sort: 0
 tags:
   dev-kit: true
   documentation: true
 ---
 
 # 文档特性
+
+借助[mdx](https://mdxjs.com/)的 Markdown 处理体系，我们可以进行基于 AST 的转换、信息提取，然后将文档编译成一个 React 组件。我们利用它对 Mardown 文档进行了很多的扩展和优化，提高文档的表现能力和阅读体验，同时降低文档的维护成本。
+
+> 基于 AST 扩展体系非常灵活，确保我们未来可以轻松加入更多的扩展。如果您有其他文档扩展的需求和 ideas，欢迎反馈给我们。
 
 ## 在文档中嵌入 Tyescript Interface
 
