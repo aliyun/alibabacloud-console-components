@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NavProps } from '@alicloud/console-components/types/nav'
+import { DropdownProps } from '@alicloud/console-components/types/dropdown'
+import { IDataSourceItem } from '@alicloud/console-components-menu-select'
 import * as S from './styles'
 import { IItemDescriptor, mapItemToJSX } from './ItemDescriptor'
 import Header from './Header'
-import { GetFusionConfig } from './utils'
+import { GetFusionConfig, ProductSelect } from './utils'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -40,10 +42,6 @@ const SecondaryMenu: React.FC<{
   />
 )
 
-export interface IOnSelect {
-  (value: string): void
-}
-
 /**
  * @public
  */
@@ -63,9 +61,29 @@ export interface IConsoleMenuProps
    */
   headers?: string[]
   /**
-   * 使用对象数组来声明header数据源
+   * 选择下拉菜单之后的回调函数，一般在该函数里改变props中header的值
    */
-  onSelectHeader?: IOnSelect
+  onSelectHeader?: (header: string) => void
+  /**
+   * `header`下拉选择框弹层的props, 继承自基础组件{@link https://aliyun.github.io/alibabacloud-console-components/base-components/dropdown/ | Dropdown }
+   */
+  headerDropdownProps?: DropdownProps
+  /**
+   * 当前productValue的值
+   */
+  productValue?: string
+  /**
+   * 多产品切换下拉选择的数据源，格式为`[{ value: string, label: React.ReactNode }, ...]`
+   */
+  productSource?: IDataSourceItem[]
+  /**
+   * 多产品下拉选择时的回调函数，一般在该函数里面用来改变productValue的值
+   */
+  onSelectProduct?: (value: string, item: IDataSourceItem) => void
+  /**
+   * 产品下拉选择框弹层的props, 继承自基础组件{@link https://aliyun.github.io/alibabacloud-console-components/base-components/dropdown/ | Dropdown }
+   */
+  productDropdownProps?: DropdownProps
   /**
    * 使用对象数组来声明菜单项
    */
@@ -122,6 +140,11 @@ const ConsoleMenu: React.FC<IConsoleMenuProps & {
   activeKey,
   defaultActiveKey,
   fusionConfig = {},
+  headerDropdownProps = {},
+  productSource,
+  productValue,
+  onSelectProduct,
+  productDropdownProps,
   ...restProps
 }) => {
   const ExactMenuComponent = type === 'secondary' ? SecondaryMenu : PrimaryMenu
@@ -134,16 +157,24 @@ const ConsoleMenu: React.FC<IConsoleMenuProps & {
       header={
         header && (
           <Header
-            fusionPrefix={fusionPrefix}
             header={header}
             headers={headers}
             onSelectHeader={onSelectHeader}
+            headerDropdownProps={headerDropdownProps}
           />
         )
       }
       selectedKeys={activeKey}
       defaultSelectedKeys={defaultActiveKey}
     >
+      {Array.isArray(productSource) && (
+        <ProductSelect
+          dataSource={productSource}
+          value={productValue}
+          onSelect={onSelectProduct}
+          dropdownProps={productDropdownProps}
+        />
+      )}
       {Array.isArray(items) && items.map(mapItemToJSX)}
       {children}
     </ExactMenuComponent>
