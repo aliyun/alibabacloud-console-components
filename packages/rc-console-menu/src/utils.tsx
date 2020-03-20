@@ -6,7 +6,7 @@ import { ConfigProvider } from '@alicloud/console-components'
 /**
  * @param {Number} level
  */
-export const getPriority = (level: number) =>
+export const getPriority = (level: number): string =>
   new Array(level).fill('&').join('')
 
 /**
@@ -19,13 +19,9 @@ export const isNil = (value: any): value is undefined | null => value == null
 export function GetFusionConfig<PropType extends { fusionConfig: any }>(
   Wrapped: React.ComponentType<PropType>
 ) {
-  const ConfifgConsumer: any = (ConfigProvider as any).Consumer
-  const HOC: React.FC<Omit<PropType, 'fusionConfig'>> = props => (
-    <ConfifgConsumer>
-      {(context: any) => (
-        <Wrapped {...(props as PropType)} fusionConfig={context} />
-      )}
-    </ConfifgConsumer>
+  const context = (ConfigProvider as any).getContext()
+  const HOC: React.FC<Omit<PropType, 'fusionConfig'>> = (props) => (
+    <Wrapped {...(props as PropType)} fusionConfig={context} />
   )
   return HOC
 }

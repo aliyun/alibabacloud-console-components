@@ -40,7 +40,8 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "classnames": "^2.2.6",
-    "warning": "^4.0.3"
+		"warning": "^4.0.3",
+		"@alicloud/console-components-menu-select": "^1.0.0"
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
