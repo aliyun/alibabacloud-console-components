@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-app-layout",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
@@ -49,6 +49,6 @@
     "classnames": "^2.2.5"
   },
   "devDependencies": {
-    "@alicloud/console-components-page": "^1.0.10"
+    "@alicloud/console-components-page": "^1.0.11"
   }
 }
