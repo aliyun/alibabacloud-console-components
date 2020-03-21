@@ -47,5 +47,8 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "classnames": "^2.2.5"
+  },
+  "devDependencies": {
+    "@alicloud/console-components-page": "^1.0.9"
   }
 }
