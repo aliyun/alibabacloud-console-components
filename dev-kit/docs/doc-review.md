@@ -47,10 +47,10 @@ tags:
 
 ![简单的文档评审](./assets/doc-review1.png '简单的文档评审')
 
-- `@alicloud/console-components-lib-publisher`提供了发布预览包的工具，将你本地开发的物料发布为一个可分享的预览物料包，其中包含了运行代码、可动态加载的文档 bundle。预览包发布成功以后，开发者会立刻得到一个 URL 链接，可以将它分享给评审者、试用者。
+- `@alicloud/console-components-lib-publisher`提供了发布预览包的工具，将你本地开发的物料发布为一个预览物料包，其中包含了运行代码、可动态加载的文档 bundle。预览包发布成功以后，开发者会立刻得到一个 URL 链接，可以将它分享给评审者、试用者。
 - `@alicloud/gatsby-theme-console-doc`在文档站点创建一个预览文档页，专门用于承接上面得到的 URL 链接。通过动态文档加载的特性，加载预览物料包中的文档。**评阅者用浏览器打开链接，就能看到当前物料的文档。**得益于文档的 Demo 实时渲染和编辑能力、API 文档渲染能力，这份文档能够快速地让评阅者了解、试用你开发的物料，无需繁琐地配置本地开发环境。[这是一个预览包分享 URL 的示例](https://csr632.gitee.io/alibabacloud-console-components/doc-preview?prodPkgName=%40alicloud%2Fconsole-components-actions&actualLoadPkgName=%40cc-dev-kit-test%2Fconsole-components-actions&actualLoadPkgVersion=1.0.9-preview.2)
 
-在这个工具支持的工作流下，文档评审的速度和质量与上面形成鲜明的对比。
+在工具支撑的工作流下，文档评审的速度和质量与上面形成鲜明的对比。
 
 ## 以文档为中心的物料开发工作流
 
