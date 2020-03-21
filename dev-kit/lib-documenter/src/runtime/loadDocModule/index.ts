@@ -51,7 +51,8 @@ export default function loadDocModule(
       'https://unpkg.com/',
       'https://cdn.jsdelivr.net/npm/'
     )
-    return Promise.race([fetch(url), fetch(jsdelivrURL)])
+    // return Promise.race([fetch(url), fetch(jsdelivrURL)])
+    return Promise.race([fetch(url)])
   }
 
   newSystemjsInstance.resolve = request => {
