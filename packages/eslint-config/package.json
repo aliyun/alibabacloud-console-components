@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/eslint-config-console-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Shareable eslint config for wind project. Manage eslint related config in one place.",
   "main": "ts.js",
   "publishConfig": {
