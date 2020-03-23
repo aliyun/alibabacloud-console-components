@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/cc-demo-component",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "lib/index.js",
   "license": "MIT",
   "publishConfig": {
@@ -16,7 +16,7 @@
     "publish-preview": "cc-publish-preview"
   },
   "devDependencies": {
-    "@alicloud/console-components-lib-publisher": "^0.1.21",
+    "@alicloud/console-components-lib-publisher": "^0.1.22",
     "@types/react": "^16.9.17",
     "@types/styled-components": "^4.4.1",
     "cross-env": "^6.0.3",
