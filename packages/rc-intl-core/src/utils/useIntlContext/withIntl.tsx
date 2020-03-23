@@ -1,6 +1,5 @@
 import React from 'react'
 import { Consumer } from '@alicloud/console-components-intl-context'
-import { ComponentType } from 'enzyme'
 import { IIntlCtxValue } from '../../types'
 import { wrapDisplayName } from '../displayName'
 
@@ -29,11 +28,12 @@ const withIntl = <
     : never
 
   return <WrappedComponentProps extends {}>(
-    WrappedComponent: ComponentType<WrappedComponentProps>
+    WrappedComponent: React.ComponentType<WrappedComponentProps>
   ) => {
-    const HOC: React.FC<
-      Omit<WrappedComponentProps & ReceivedProps, keyof PropsToInject>
-    > = props => {
+    const HOC: React.FC<Omit<
+      WrappedComponentProps & ReceivedProps,
+      keyof PropsToInject
+    >> = props => {
       const hocProps = props
       return (
         <Consumer>
