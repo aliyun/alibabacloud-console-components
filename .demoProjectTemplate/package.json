@@ -32,7 +32,9 @@
     "@alicloud/console-components-intl": "latest",
     "@alicloud/console-components-intl-core": "latest",
     "@alicloud/console-components-intl-context": "latest",
-    "@alicloud/console-components-announcement": "latest"
+    "@alicloud/console-components-announcement": "latest",
+    "@alicloud/console-components-breadcrumb-select": "latest",
+    "@alicloud/console-components-menu-select": "latest"
   },
   "devDependencies": {
     "@types/react": "16.8.8",
