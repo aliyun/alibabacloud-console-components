@@ -5,6 +5,7 @@
     "packages/*",
     "demo-workspaces/gatsby-theme-console-doc-template/site",
     "demo-workspaces/material-dev-kit-demo/*",
+    "demo-workspaces/*",
     "dev-kit/*",
     "site",
     "."
