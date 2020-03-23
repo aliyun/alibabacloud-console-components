@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-intl",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@alicloud/console-components-intl-context": "^1.0.6",
-    "@alicloud/console-components-intl-core": "^1.0.8",
+    "@alicloud/console-components-intl-core": "^1.0.9",
     "@babel/runtime": "^7.4.3",
     "classnames": "^2.2.5",
     "escape-html": "^1.0.3",
