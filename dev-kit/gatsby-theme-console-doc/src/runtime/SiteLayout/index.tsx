@@ -121,9 +121,7 @@ const SiteLayout: React.FC<{}> = ({ children }) => {
         {pageContext && <SEO />}
         <TopBar />
         <SAppLayout
-          nav={
-            'sideNav' in (pageContext?.pageMeta ?? {}) ? <SideBar /> : undefined
-          }
+          nav={<SideBar />}
           adjustHeight={TOP_BAR_HEIGHT}
           navCollapsible={false}
         >

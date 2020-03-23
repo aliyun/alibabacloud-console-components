@@ -3,12 +3,18 @@ import ConsoleMenu from '@alicloud/console-components-console-menu'
 import { Link } from 'gatsby'
 import { usePageCtx } from './context'
 import DocMenuLabel from './DocMenuLabel'
-import { IDocPageMeta } from '.'
+import { IDocPageMeta, IPageContext } from '.'
 
 const SideBar: React.FC = () => {
-  const pageCtx = usePageCtx()
+  let pageCtx: IPageContext
+  try {
+    pageCtx = usePageCtx()
+  } catch (error) {
+    return <ConsoleMenu header="Loading" key="loading" />
+  }
 
-  if (!('sideNav' in pageCtx.pageMeta)) return null
+  if (!('sideNav' in pageCtx.pageMeta))
+    return <ConsoleMenu header="Loading" key="loading" />
 
   const { navCategories, header } = pageCtx.pageMeta.sideNav
 
