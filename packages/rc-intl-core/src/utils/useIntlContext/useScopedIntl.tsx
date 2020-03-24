@@ -3,9 +3,12 @@ import { Context } from '@alicloud/console-components-intl-context'
 import warning from 'warning'
 import isPlainObject from 'lodash/isPlainObject'
 import { createReactIntlFromCfg } from '../../factory'
-import { IMessages } from '../../types'
+import { IMessages, IWindIntlExtended } from '../../types'
 import { getPrefixedMessages } from './withRcIntl'
 
+/**
+ * @public
+ */
 interface IUseScopedIntlOption {
   namespace?: string
   defaultMessages?: IMessages
@@ -15,7 +18,7 @@ interface IUseScopedIntlOption {
 /**
  * @public
  * 获取专属于某个业务组件的文案、国际化工具。
- * 
+ *
  * 假设有文案：`"@wind_v2.rc.MyButton.label": "my msg"`
  * ```js
  * const {intl} = useScopedIntl("MyButton");
@@ -50,7 +53,7 @@ function useScopedIntl(
     ...defaultMessages,
     ...(pickMessageSuccess ? (pickedMessages as IMessages) : {}),
   }
-  const intl = createReactIntlFromCfg({
+  const intl: IWindIntlExtended = createReactIntlFromCfg({
     locale,
     messages: componentMessages,
   })
