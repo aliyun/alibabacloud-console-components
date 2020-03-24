@@ -11,6 +11,7 @@ const INDEX_SCSS_FILE = 'index.scss'
 const INDEX_DTS_FILE = 'index.d.ts'
 const WORKSPACE_PATH = path.resolve(__dirname, '..')
 const LIB_PATH = path.resolve(WORKSPACE_PATH, 'lib')
+const ESM_PATH = path.resolve(WORKSPACE_PATH, 'esm')
 const DTS_PATH = path.resolve(WORKSPACE_PATH, 'types')
 const LIB_SRC = path.resolve(LIB_PATH, '_')
 const SRC = path.resolve(WORKSPACE_PATH, 'src')
@@ -29,9 +30,9 @@ const getEntryDTSExportDeclaration = componentName => {
 
 const createComponentModule = componentName => {
   const jsFilePath = path.resolve(LIB_PATH, componentName, INDEX_FILE)
-  const jsFileContent = utils.getCommonJSReExport(
-    `../_/components/${componentName}`
-  ).join('\n')
+  const jsFileContent = utils
+    .getCommonJSReExport(`../_/components/${componentName}`)
+    .join('\n')
   console.log(`    (${chalk.green.bold('.js')}): ${chalk.cyan(jsFilePath)}`)
   writeFile(jsFilePath, jsFileContent)
 
@@ -65,6 +66,7 @@ const createEntry = componentNames => {
   const entrySourceCodeLines = utils.getCommonJSReExport('./_/index.js')
   const sassEntrySourceCodeLines = [`@import "./_/index.scss";`]
   const dtsEntrySourceCodeLines = []
+  const esmIndexSourceCodeLines = [`export * from "./_/index.js";`]
 
   console.log('🧱  Create refer files')
 
@@ -89,6 +91,10 @@ const createEntry = componentNames => {
   const dtsFilePath = path.resolve(DTS_PATH, INDEX_DTS_FILE)
   console.log(`    (${chalk.green.bold('.d.ts')}): ${chalk.cyan(dtsFilePath)}`)
   writeFile(dtsFilePath, dtsEntrySourceCodeLines.join('\n'))
+
+  const esmIndexPath = path.resolve(ESM_PATH, INDEX_FILE)
+  console.log(`    (${chalk.green.bold('.js')}): ${chalk.cyan(esmIndexPath)}`)
+  writeFile(esmIndexPath, esmIndexSourceCodeLines.join('\n'))
 }
 
 const copySassFiles = async () => {

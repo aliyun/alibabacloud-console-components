@@ -1,4 +1,4 @@
-const { isDevelopment } = require('./env')
+const { isDevelopment, getCompileOption } = require('./env')
 
 exports.env = () => [
   '@babel/preset-env',
@@ -10,7 +10,7 @@ exports.env = () => [
     // https://github.com/babel/babel/issues/10008
     // useBuiltIns: 'usage',
     // corejs: 2,
-    modules: 'commonjs',
+    modules: getCompileOption('esm') === true ? false : 'commonjs',
   },
 ]
 

@@ -1,15 +1,17 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.0.23",
+  "version": "1.0.24-alpha.1",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
+  "module": "esm/index.js",
   "types": "types/index.d.ts",
   "scripts": {
     "start": "NODE_ENV=development npx webpack-dev-server",
     "compile": "rm -rf dist/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files npx webpack && rm dist/wind-noreset.js dist/wind-noreset.min.js",
     "babel": "rm -rf lib/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files npx babel src/ --out-dir lib/_ --extensions \".js,.jsx,.ts,.tsx\"",
+    "babel:esm": "rm -rf esm/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files,esm npx babel src/ --out-dir esm/_ --extensions \".js,.jsx,.ts,.tsx\"",
     "make": "rm -rf types/ && node scripts/fetch-files-from-tnpm.js && node scripts/make.js",
-    "build": "yarn run babel && yarn run make && yarn run compile && node scripts/generateCssWithoutIconFont.js",
+    "build": "yarn run babel && yarn run babel:esm && yarn run make && yarn run compile && node scripts/generateCssWithoutIconFont.js",
     "prepare": "yarn run build",
     "publishInternal": "node ./scripts/publish-to-tnpm/index.js"
   },
@@ -93,5 +95,10 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "sideEffects": [
+    "dist/*",
+    "*.scss",
+    "*.css"
+  ]
 }
