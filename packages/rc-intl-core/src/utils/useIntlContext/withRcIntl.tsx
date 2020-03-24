@@ -7,7 +7,7 @@ import withIntl from './withIntl'
 import { createReactIntlFromCfg } from '../../factory'
 import { IMessages } from '../../types'
 
-const getPrefixedMessages = (messages: IMessages, prefix: string) => {
+export const getPrefixedMessages = (messages: IMessages, prefix: string) => {
   const flattenedMessages = {}
 
   forOwn(messages, (value, key) => {

@@ -31,3 +31,5 @@ export { default as presets } from './presets/date'
 export * from './presets/date'
 
 export { default as withRcIntl } from './utils/useIntlContext/withRcIntl'
+
+export { default as useScopedIntl } from './utils/useIntlContext/useScopedIntl'
