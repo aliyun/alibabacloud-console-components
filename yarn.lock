@@ -315,10 +315,10 @@
     "@alifd/validate" "^1.1.3"
     prop-types "^15.5.8"
 
-"@alifd/next@~1.19.18":
-  version "1.19.18"
-  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.19.18.tgz?cache=0&sync_timestamp=1584090444094&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40alifd%2Fnext%2Fdownload%2F%40alifd%2Fnext-1.19.18.tgz#82b182152faa8d7bdfc09464ead286656cabfa73"
-  integrity sha1-grGCFS+qjXvfwJRk6tKGZWyr+nM=
+"@alifd/next@~1.19.31":
+  version "1.19.31"
+  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.19.31.tgz#e4315243750aff6f0a59950e72f9de0d2fcd6e54"
+  integrity sha1-5DFSQ3UK/28KWZUOcvneDS/NblQ=
   dependencies:
     "@alifd/field" "~1.3.3"
     "@alifd/validate" "~1.1.4"
@@ -6981,7 +6981,7 @@ chokidar@3.3.0:
   optionalDependencies:
     fsevents "~2.1.1"
 
-chokidar@3.3.1, "chokidar@>=2.0.0 <4.0.0", chokidar@^3.0.2, chokidar@^3.1.0:
+chokidar@3.3.1, chokidar@^3.0.2, chokidar@^3.1.0:
   version "3.3.1"
   resolved "https://registry.npm.taobao.org/chokidar/download/chokidar-3.3.1.tgz#c84e5b3d18d9a4d77558fef466b1bf16bbeb3450"
   integrity sha1-yE5bPRjZpNd1WP70ZrG/FrvrNFA=
@@ -10462,7 +10462,7 @@ fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.1:
 
 fast-sass-loader@^1.5.0:
   version "1.5.0"
-  resolved "https://registry.npm.taobao.org/fast-sass-loader/download/fast-sass-loader-1.5.0.tgz#b3bcf91aaa5fd042e01c536bb338db74b03fef0c"
+  resolved "https://registry.npm.taobao.org/fast-sass-loader/download/fast-sass-loader-1.5.0.tgz?cache=0&sync_timestamp=1587902237464&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffast-sass-loader%2Fdownload%2Ffast-sass-loader-1.5.0.tgz#b3bcf91aaa5fd042e01c536bb338db74b03fef0c"
   integrity sha1-s7z5Gqpf0ELgHFNrszjbdLA/7ww=
   dependencies:
     async "^2.0.1"
@@ -15290,7 +15290,7 @@ loader-runner@^2.3.1, loader-runner@^2.4.0:
   resolved "https://registry.npm.taobao.org/loader-runner/download/loader-runner-2.4.0.tgz?cache=0&sync_timestamp=1574712098491&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Floader-runner%2Fdownload%2Floader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
   integrity sha1-7UcGa/5TTX6ExMe5mYwqdWB9k1c=
 
-loader-utils@1.2.3, loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3:
+loader-utils@1.2.3, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3:
   version "1.2.3"
   resolved "https://registry.npm.taobao.org/loader-utils/download/loader-utils-1.2.3.tgz#1ff5dc6911c9f0a062531a4c04b609406108c2c7"
   integrity sha1-H/XcaRHJ8KBiUxpMBLYJQGEIwsc=
@@ -21164,24 +21164,6 @@ sass-graph@^2.2.4:
     lodash "^4.0.0"
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
-
-sass-loader@^7.1.0:
-  version "7.3.1"
-  resolved "https://registry.npm.taobao.org/sass-loader/download/sass-loader-7.3.1.tgz#a5bf68a04bcea1c13ff842d747150f7ab7d0d23f"
-  integrity sha1-pb9ooEvOocE/+ELXRxUPerfQ0j8=
-  dependencies:
-    clone-deep "^4.0.1"
-    loader-utils "^1.0.1"
-    neo-async "^2.5.0"
-    pify "^4.0.1"
-    semver "^6.3.0"
-
-sass@^1.22.3:
-  version "1.24.4"
-  resolved "https://registry.npm.taobao.org/sass/download/sass-1.24.4.tgz#aa50575a9ed2b9e9645b5599156fd149bdad9eaa"
-  integrity sha1-qlBXWp7SuelkW1WZFW/RSb2tnqo=
-  dependencies:
-    chokidar ">=2.0.0 <4.0.0"
 
 sax@>=0.6.0, sax@^1.2.4, sax@~1.2.1, sax@~1.2.4:
   version "1.2.4"
