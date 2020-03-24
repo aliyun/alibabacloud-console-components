@@ -1,12 +1,13 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import { Pagination } from '@alicloud/console-components'
+import { PaginationProps } from '@alicloud/console-components/types/pagination'
 import MediaQuery from 'react-responsive'
 
 const defaultPageSizeList = [10, 20, 50]
 
-const TablePagination = props => {
+const TablePagination: React.FC<PaginationProps> = props => {
   const [pageSizeHasChanged, setPageSizeHasChanged] = useState(false)
-  const prevPageSize = useRef()
+  const prevPageSize = useRef<number>()
 
   const { pageSize } = props
   useLayoutEffect(() => {

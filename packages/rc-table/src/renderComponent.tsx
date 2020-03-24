@@ -3,7 +3,11 @@ import isPlainObject from 'lodash/isPlainObject'
 import isFunction from 'lodash/isFunction'
 import { isComponent } from './utils'
 
-const renderComponent = (DefaultComponent, props, ...args) => {
+const renderComponent = (
+  DefaultComponent: any,
+  props: any,
+  ...args: any
+): React.ReactNode | null => {
   if (isValidElement(props)) {
     return props
   }

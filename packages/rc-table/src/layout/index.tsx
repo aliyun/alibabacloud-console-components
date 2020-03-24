@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
+import {
+  TableProps,
+  ColumnProps,
+} from '@alicloud/console-components/types/table'
+import { SearchProps } from '@alicloud/console-components/types/search'
+import { PaginationProps } from '@alicloud/console-components/types/pagination'
 import { withProps } from 'recompose'
 import styled from 'styled-components'
 import isArray from 'lodash/isArray'
@@ -10,6 +16,7 @@ import Search from '../search'
 import Selection from '../selection'
 import Pagination from '../pagination'
 import renderComponent from '../renderComponent'
+import { IRcTableProps } from '../index'
 
 const FixedTopActionBar = withProps({
   fixedAlign: 'top',
@@ -21,7 +28,12 @@ const FixedBottomActionBar = withProps({
 
 const defaultExpandedWidth = 0
 
-const getActionBarComponent = status => {
+const getActionBarComponent = (
+  status: ITableProps['affixActionBar']
+): {
+  top?: React.ReactNode
+  bottom?: React.ReactNode
+} => {
   if (status === true) {
     return {
       top: FixedTopActionBar,
@@ -60,10 +72,16 @@ const getActionBarComponent = status => {
   return {}
 }
 
+// eslint-disable-next-line import/no-named-as-default-member
 const ScActionBarRight = styled(ActionBar.Right)`
   flex: 0 0 auto;
 `
-const getExpandedStyle = fixedBarExpandWidth => {
+const getExpandedStyle = (
+  fixedBarExpandWidth: number[]
+): {
+  marginLeft: number
+  width: string
+} => {
   let actualExpandedWidth = []
   if (isArray(fixedBarExpandWidth)) {
     if (fixedBarExpandWidth.length === 0) {
@@ -82,7 +100,7 @@ const getExpandedStyle = fixedBarExpandWidth => {
   }
 }
 
-const Layout = props => {
+const Layout: React.FC<TableProps & IRcTableProps> = props => {
   const {
     operation,
     search,
@@ -150,23 +168,23 @@ const Layout = props => {
 }
 
 Layout.propTypes = {
-  operation: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.node,
-    PropTypes.objectOf(PropTypes.any),
-  ]),
-  search: PropTypes.oneOfType([PropTypes.object, PropTypes.node]),
-  selection: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  pagination: PropTypes.oneOfType([PropTypes.object, PropTypes.node]),
-  affixActionBar: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.array,
-  ]),
-  fixedBarZIndex: PropTypes.number,
-  fixedClassName: PropTypes.string,
-  fixedStyle: PropTypes.objectOf(PropTypes.any),
-  afterFixedBarIntersectChanged: PropTypes.func,
+  // operation: PropTypes.oneOfType([
+  //   PropTypes.func,
+  //   PropTypes.node,
+  //   PropTypes.objectOf(PropTypes.any),
+  // ]),
+  // search: PropTypes.oneOfType([PropTypes.object, PropTypes.node]),
+  // selection: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  // pagination: PropTypes.oneOfType([PropTypes.object, PropTypes.node]),
+  // affixActionBar: PropTypes.oneOfType([
+  //   PropTypes.string,
+  //   PropTypes.bool,
+  //   PropTypes.array,
+  // ]),
+  // fixedBarZIndex: PropTypes.number,
+  // fixedClassName: PropTypes.string,
+  // fixedStyle: PropTypes.objectOf(PropTypes.any),
+  // afterFixedBarIntersectChanged: PropTypes.func,
 }
 
 export default Layout

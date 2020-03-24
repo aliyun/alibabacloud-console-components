@@ -6,11 +6,24 @@ import IntersectionObserver from '@researchgate/react-intersection-observer'
 import Context from '../layout/FixedBarContext'
 import { SFixedBarWrapper } from './styled'
 
-export default threshold => BaseComponent => {
+interface IState {
+  isIntersecting: boolean
+}
+
+interface IProps {
+  fixedAlign: 'top' | 'bottom' | ''
+  afterIntersectChanged: (
+    fixedAlign: 'top' | 'bottom' | '',
+    nextIntersecting: boolean,
+    prevIntersecting: boolean
+  ) => void
+}
+
+export default (threshold: number) => (BaseComponent: React.ComponentType) => {
   const displayName =
     BaseComponent.displayName || BaseComponent.name || 'Component'
 
-  return class WithIntersectionFixed extends Component {
+  return class WithIntersectionFixed extends Component<IProps, IState> {
     static displayName = `withIntersectionObserver(${displayName})`
 
     static propTypes = {
@@ -22,11 +35,20 @@ export default threshold => BaseComponent => {
       fixedAlign: 'top',
     }
 
-    state = {
-      isIntersecting: true,
+    constructor(props: IProps) {
+      super(props)
+      this.state = {
+        isIntersecting: true,
+      }
     }
 
-    handleChange = ({ isIntersecting, intersectionRatio }) => {
+    handleChange = ({
+      isIntersecting,
+      intersectionRatio,
+    }: {
+      isIntersecting: boolean
+      intersectionRatio: number
+    }): void => {
       const nextIntersecting = isIntersecting && intersectionRatio >= threshold
       const { isIntersecting: prevIntersecting } = this.state
 
@@ -48,7 +70,7 @@ export default threshold => BaseComponent => {
       }
     }
 
-    render() {
+    render(): React.ReactNode {
       const { isIntersecting } = this.state
       const { fixedAlign, ...restProps } = this.props
 

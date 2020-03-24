@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@alicloud/console-components'
 
-const ActionBarPropsFilter = ({ afterIntersectChanged, ...restProps }) => {
+const ActionBarPropsFilter = ({
+  afterIntersectChanged,
+  ...restProps
+}): React.ReactNode => {
   return <Grid.Row {...restProps} />
 }
 

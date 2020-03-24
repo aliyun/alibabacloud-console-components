@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import isFunction from 'lodash/isFunction'
-import get from 'lodash/get'
-import uniq from 'lodash/uniq'
-import xor from 'lodash/xor'
+import { TableProps } from '@alicloud/console-components/types/table'
+import { isFunction, get, uniq, xor } from 'lodash'
 import renderProps from '../renderProps'
 import connect from './connect'
 import SelectAll from './SelectAll'
 import { SSelectionWrapper, SSelectAllContainer } from './styled'
 
-const isMultiMode = mode => mode === 'multiple'
+export interface IrenderFunc {
+  (selection: {
+    selectedRowKeys: string[]
+    isSelectedAll: boolean
+    selectAll: (checked: boolean) => void
+  }): React.ReactNode
+}
+export interface ISelectionProps {
+  render: IrenderFunc
+  isSelectedAll: boolean
+  isIndeterminate: boolean
+}
+
+const isMultiMode = (mode: string): boolean => mode === 'multiple'
 
 const isSelectable = (item, index, getProps) =>
   isFunction(getProps) ? !get(getProps(item, index), 'disabled') : true
@@ -108,17 +119,17 @@ const mapUpdateToProps = update => ({
   },
 })
 
-@connect(
-  mapStateToProps,
-  mapUpdateToProps
-)
-class Selection extends Component {
+@connect(mapStateToProps, mapUpdateToProps)
+class Selection extends Component<
+  ISelectionProps & TableProps['rowSelection'],
+  {}
+> {
   static propTypes = {
     mode: PropTypes.string,
   }
 
-  render() {
-    const { mode } = this.props
+  render(): React.ReactNode {
+    const { mode = 'multiple' } = this.props
     return (
       <SSelectionWrapper>
         {isMultiMode(mode) && (

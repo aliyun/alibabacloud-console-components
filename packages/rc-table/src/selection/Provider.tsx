@@ -7,23 +7,36 @@ import compact from 'lodash/compact'
 import get from 'lodash/get'
 import find from 'lodash/find'
 import intersection from 'lodash/intersection'
+import { TableProps } from '@alifd/next/types/table'
 import renderProps from '../renderProps'
 import Context from './Context'
+import { IRcTableProps } from '../index'
 
-const getRowKeys = (dataSource, primaryKey) => {
+const getRowKeys = (
+  dataSource: TableProps['dataSource'] = [],
+  primaryKey: string
+): string[] => {
   if (!primaryKey) {
     return []
   }
 
-  return compact(dataSource.map(item => item[primaryKey]))
+  return compact(dataSource.map((item: any) => item[primaryKey]))
 }
 
-const getExactSelectedRowKeys = (selectedRowKeys, dataSource, primaryKey) => {
+const getExactSelectedRowKeys = (
+  selectedRowKeys: string[],
+  dataSource: TableProps['dataSource'],
+  primaryKey: string
+): string[] => {
   const rowKeys = getRowKeys(dataSource, primaryKey)
-  return intersection(rowKeys, selectedRowKeys)
+  return intersection(rowKeys, selectedRowKeys) as string[]
 }
 
-class Provider extends Component {
+interface IState {
+  selectedRowKeys: string[] | null
+}
+
+class Provider extends Component<IRcTableProps & TableProps, IState> {
   static propTypes = {
     rowSelection: PropTypes.objectOf(PropTypes.any),
     dataSource: PropTypes.arrayOf(PropTypes.object),
@@ -31,7 +44,10 @@ class Provider extends Component {
     exact: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(
+    nextProps: IRcTableProps & TableProps,
+    prevState: IState
+  ): null | { selectedRowKeys: string[] } {
     const { rowSelection, exact } = nextProps
     const { selectedRowKeys: prevSelectedRowKeys } = prevState
     let nextSelectedRowKeys = null
@@ -40,7 +56,10 @@ class Provider extends Component {
       const {
         selectedRowKeys,
         UNSTABLE_defaultSelectedRowKeys,
-      } = rowSelection
+      } = rowSelection as {
+        selectedRowKeys: string[] | null
+        UNSTABLE_defaultSelectedRowKeys: string | null
+      }
 
       if (isArray(selectedRowKeys)) {
         nextSelectedRowKeys = selectedRowKeys
@@ -61,11 +80,12 @@ class Provider extends Component {
 
     if (exact) {
       const { dataSource, primaryKey } = nextProps
-      const selectedRowKeys = nextSelectedRowKeys || prevSelectedRowKeys
+      const selectedRowKeys = (nextSelectedRowKeys ||
+        prevSelectedRowKeys) as string[]
       const exactSelectedRowKeys = getExactSelectedRowKeys(
         selectedRowKeys,
         dataSource,
-        primaryKey
+        primaryKey as string
       )
       return {
         selectedRowKeys: exactSelectedRowKeys,
@@ -81,15 +101,15 @@ class Provider extends Component {
     return null
   }
 
-  constructor(...args) {
-    super(...args)
+  constructor(props: any) {
+    super(props)
     this.update = this.update.bind(this)
     this.state = {
       selectedRowKeys: null,
     }
   }
 
-  onChange(selectedRowKeys, records) {
+  onChange(selectedRowKeys: string[], records: any): void {
     const {
       rowSelection: {
         selectedRowKeys: originSelectedRowKeys,
@@ -106,7 +126,7 @@ class Provider extends Component {
     }
   }
 
-  getMode() {
+  getMode(): string {
     const { rowSelection } = this.props
     if (isPlainObject(rowSelection)) {
       // Based on Fusion <Table>'s props defination,
@@ -114,14 +134,17 @@ class Provider extends Component {
       // https://github.com/alibaba-fusion/next/blob/master/src/table/selection.jsx#L109
       return get(rowSelection, 'mode', 'multiple')
     }
+    return 'multiple'
   }
 
-  getRecords(selectedRowKeys) {
+  getRecords(selectedRowKeys: string[]): Array<any> {
     const { dataSource, primaryKey } = this.props
     if (primaryKey) {
-      const records = selectedRowKeys.map(key => find(dataSource, {
-        [primaryKey]: key,
-      }))
+      const records = selectedRowKeys.map(key =>
+        find(dataSource, {
+          [primaryKey]: key,
+        })
+      )
 
       return compact(records)
     }
@@ -129,16 +152,19 @@ class Provider extends Component {
     return []
   }
 
-  update(updater) {
+  update(
+    updater: (
+      selectedRowKeys: string[],
+      dataSource: TableProps['dataSource'],
+      primaryKey: TableProps['primaryKey'],
+      rowSelection: TableProps['rowSelection']
+    ) => string[]
+  ): void {
     const { selectedRowKeys } = this.state
-    const {
-      dataSource,
-      primaryKey,
-      rowSelection,
-    } = this.props
+    const { dataSource, primaryKey, rowSelection } = this.props
 
     const updatedSelectedRowKeys = updater(
-      selectedRowKeys,
+      selectedRowKeys as string[],
       dataSource,
       primaryKey,
       rowSelection
@@ -150,19 +176,21 @@ class Provider extends Component {
     )
   }
 
-  hijackProps() {
+  hijackProps(): any {
     const { rowSelection, exact, ...restProps } = this.props
-    return isPlainObject(rowSelection) ? {
-      ...restProps,
-      rowSelection: {
-        selectedRowKeys: this.state.selectedRowKeys,
-        ...rowSelection,
-        onChange: this.onChange.bind(this),
-      },
-    } : restProps
+    return isPlainObject(rowSelection)
+      ? {
+          ...restProps,
+          rowSelection: {
+            selectedRowKeys: this.state.selectedRowKeys,
+            ...rowSelection,
+            onChange: this.onChange.bind(this),
+          },
+        }
+      : restProps
   }
 
-  render() {
+  render(): React.ReactNode {
     const providerValue = {
       selectedRowKeys: this.state.selectedRowKeys,
       rawRowSelection: this.props.rowSelection,

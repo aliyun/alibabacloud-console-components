@@ -3,11 +3,15 @@ import { compose, toClass } from 'recompose'
 import withIntersectionFixed from './withIntersectionFixed'
 import { SActionBarWrapper, SActionBarLeft, SActionBarRight } from './styled'
 
-const ActionBar = props => <SActionBarWrapper {...props} />
+const ActionBar = (props: any): React.ReactNode => (
+  <SActionBarWrapper {...props} />
+)
 
-const Left = props => <SActionBarLeft {...props} />
+const Left = (props: any): React.ReactNode => <SActionBarLeft {...props} />
 
-const Right = props => <SActionBarRight offset="0" {...props} />
+const Right = (props: any): React.ReactNode => (
+  <SActionBarRight offset="0" {...props} />
+)
 
 ActionBar.Left = Left
 ActionBar.Right = Right
