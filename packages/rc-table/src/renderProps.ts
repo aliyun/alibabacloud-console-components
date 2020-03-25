@@ -1,9 +1,8 @@
 import { isValidElement } from 'react'
-import isFunction from 'lodash/isFunction'
+import { isFunction } from 'lodash'
 
-const renderProps = (ownerProps, ...args) => {
+const renderProps = (ownerProps: any, ...args: any[]): React.ReactNode => {
   const { children, render } = ownerProps
-
   if (isValidElement(children)) {
     return children
   }

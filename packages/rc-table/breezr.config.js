@@ -4,7 +4,7 @@ module.exports = {
       '@alicloud/console-toolkit-preset-wind-component',
       {
         moduleName: 'WindRcTable',
-        useTypescript: false,
+        useTypescript: true,
         externals: {
           '@alicloud/console-components': 'wind',
         },

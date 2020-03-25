@@ -1,8 +1,3 @@
----
-name: rc-table
-zhName: 增强表格
-type: biz-component
----
 
 # @alicloud/console-components-table
 
@@ -10,35 +5,27 @@ type: biz-component
 
 ## 基本用法
 
-[MDXInstruction:importDemo:BasicDemo](./stories/basic.jsx)
+[MDXInstruction:importDemo:BasicDemo](./stories/basic.tsx)
 
 ## APIs
+> 继承 wind `Table` 的 API，除非特别说明
+[MDXInstruction:renderInterface:IRcTableProps](./api-json/api.json)
 
-|name|type|default|desc|
-|:---:|:---:|:---:|:---|
-|...Table.props|||继承 wind `<Table>` 组件中的所有属性|
-|pagination|object&#124;React.Element||分页器|
-|selection|function||选择器|
-|operation|function||操作器|
-|search|object&#124;React.Element||搜索器|
-|affixActionBar|boolean&#124;string&#124;array|`false`|动作区滚动锁定, 在 rc-table 中最多会有上下两个动作区, 可以指定 `affixActionBar` 的值为 `true` 来同时开启两个动作区的滚动锁定特性, 也可以通过字符串声明 `affixActionBar: ('bottom'|'top')` 指定某一个动作区开启该特性|
-|fixedBarZIndex|number|`1000`|当 `affixActionBar` 开启时，锁定的动作区的 `z-index`
-|fixedBarExpandWidth|array|`[0, 0]`|当 `affixActionBar` 开启时，锁定动作区向`左``右`两边延伸的宽度, 左右相同可简写为一个如：`[0]`,按照控制台规范一般为[24, 24]
 ## 卫星组件
 
 可以将 ``@alicloud/console-components-table`` 看做一个包含了不同功能区的 ``Table``，不同的功能区中使用的组件可以看做是 ``Table`` 的卫星组件
 
 ```
-|Operation   |       Search|
-----------------------------
-|          Table           |
-----------------------------
-|Selection   |   Pagination|
+|PrimaryOperation | Search |      SecondaryOperation|
+----------------------------------------------------
+|                     Table                         |
+----------------------------------------------------
+|Selection             |                 Pagination |
 ```
 
 ### Pagination
 
-**分页器 (Pagination)** 是数据列表中常用的功能组件，根据UED规约，位于数据表格的右下角区域，在 ``@alicloud/console-components-table`` 中，可以通过 ``pagination`` 属性来定义分页器的属性和行为
+**分页器 (Pagination)** 是数据列表中常用的功能组件，根据UED规约，位于数据表格的右下角区域，在 ``@alicloud/console-components-table`` 中，可以通过 ``pagination`` 属性来定义分页器的属性和行为。开发者也可自行传入组件`<Table.Pagination {...props} />`或者函数`(tableProps) => (<Table.Pagination {...props} />)`，来进行定制。
 
 #### 使用属性定义（推荐）
 
@@ -57,40 +44,6 @@ type: biz-component
 - 在视口宽度大于 1129px 时，默认显示 `normal` 的分页组件
 
 
-```
-import React, { Component } from 'react'
-import Table from '@alicloud/console-components-table'
-
-class MyTable extends Component {
-  state = {
-    current: 1,
-    total: 100,
-    pageSize: 10,
-    list: [], // 需要被填充的列表数据
-    columns: [], // 列表列定义
-  }
-
-  onPageChange = (nextPageNumber) => {
-    this.setState({
-      list: [], // 模拟数据变化
-    })
-  }
-
-  render() {
-    const { list, columns, ...paginationProps } = this.state
-    paginationProps.onChange = this.onPageChange
-
-    return (
-      <Table
-        dataSource={list}
-        columns={columns}
-        pagination={paginationProps}
-      />
-    )
-  }
-}
-```
-
 通过`pagination.popupProps`可以配置popup组件的行为，比如改变分页组件选择列表的弹出方向：
 ```jsx
 <Table
@@ -103,165 +56,178 @@ class MyTable extends Component {
   }}
 />
 ```
+如下的Demo所示
+
+[MDXInstruction:importDemo:WithPaginationProps](./stories/withPaginationProps.tsx)
+
 
 #### 使用自定义组件
 
 在大多数情况下，直接向 ``pagination`` 属性传入分页器的属性定义就可以完成标准场景的分页展示。如果你有一些情况下需要自定义这个区域的内容，也可以传入一个自定义组件来完成特定的业务需求
 
-##### 示例：在分页器左侧添加一个功能按钮
+如下Demo所示
 
-```
-import React, { Component } from 'react'
-import { Button } from '@alicloud/console-components'
-import Table from '@alicloud/console-components-table'
-‘
-class MyTable extends Component {
-  onButtonClick = () => {
-    console.log('Clicked')
-  }
+##### 示例：在分页器左侧添加一个功能按钮`Custom Button`
 
-  render() {
-    return (
-      <Table
-        pagination={
-          <>
-            <Button type="primary" onClick={this.onButtonClick}>
-            <Table.Pagination {...this.props.pagination} />
-          </>
-        }
-        {...this.props}
-      />
-    )
-  }
-}
+[MDXInstruction:importDemo:WithPaginationProps](./stories/withCustomPagination.tsx)
+
+#### 使用自定义组件, 传入 (tableProps) => ReactNode
+
+```jsx
+<Table
+  pagination={(tableProps) => (
+    <Pagination {...paginationProps} />
+  )}
+/>
 ```
+
+不再列举Demo，开发者可自行尝试
+
 
 ### Selection
 
 **批量操作 (Selection)** 也是常用的功能组件，在 ``@alicloud/console-components-table`` 中，由于需要和 ``Table`` 内置的行选择进行交互，在底层使用了 ``Selection.Provider`` 重新封装了 ``Table`` 的行为，通过 ``Context API`` 对行选择的相关数据及行为进行传递交互，位于 ``Table`` 的左下角
 
-可以通过 ``selection`` 属性对批量选择操作进行定义
-
-#### 使用 render 函数（推荐）
-
-在``@alicloud/console-components-table``中，预设了符合UED规约和业务场景的 ``Selection`` 组件：
-
-- 在多选情况下，包含一个批量选择的复选框
-- 使用 render props 渲染子组件
-
-使用 render 函数就可以访问到和行选择相关的数据和行为：
-
-- ``selectedRowKeys`` 访问已经选中的行数据的主键
-- ``isSelectedAll`` 是否已经全部选中当前页的数据
-- ``selectAll`` 全选当前页所有数据
-
-##### 示例：批量删除操作
-
-- 未进行选择时，禁用删除按钮
-- 进行行选择后，启用删除按钮，并显示已选择的条目数
-
-```
-import React from 'react'
-import { Button } from '@alicloud/console-components'
-import Table from '@alicloud/console-components-table'
-
-const MyTable = (props) => (
-  <Table
-    selection={
-      ({ selectedRowKeys }) => (
-        <>
-          <Button disabled={selectedRowKeys.length === 0}>
-            Delete
-            ({selectedRowKeys.length})
-          </Button>
-        </>
-      )
-    }
-    {...props}
-  />
-)
-
-export default MyTable
-```
-
 #### 使用自定义组件
 
-_根本不需要_
+可以通过 ``selection`` 属性传入一个函数来进行定义，可以与`rowSelection`结合使用。
+
+[MDXInstruction:importDemo:WithSelection](./stories/withSelection.tsx)
 
 ### Operation
 
-位于 ``Table`` 左上角的操作区，没有任何预设组件和行为，通过 ``operation`` 来定义操作区的内容
+位于 Table 左上角和右上角的操作区，没有任何预设组件和行为，通过 operation 来定义操作区的内容，也可`operation`传入一个对象，通过指定`primary`和`secondary`来定义左上角和右上角的内容。也可直接传入ReactNode只定义左上角行为
 
-#### 使用自定义组件
+#### 使用自定义组件, 传入 ReactNode
 
-_由于没啥可讲的，直接上示例_
-
-##### 示例：定义操作区
-
+##### 只定义左上角操作区
+```jsx
+<Table
+  operation={
+    <>
+      <Button type="primary" onClick={onCreate}>Create New Record</Button>
+      <Button onClick={onRefresh}>Refresh</Button>
+    </>
+  }
+  {...tableProps}
+/>
 ```
-import React from 'react'
-import { Button } from '@alicloud/console-components'
-import Table from '@alicloud/console-components-table'
 
-const MyTable = (props) => {
-  const { onCreate, onRefresh, ...tableProps } = props
-  return (
-    <Table
-      operation={
-        <>
-          <Button type="primary" onClick={onCreate}>Create New Record</Button>
-          <Button onClick={onRefresh}>Refresh</Button>
-        </>
-      }
-      {...tableProps}
-    />
-  )
-}
+[MDXInstruction:importDemo:WithPrimaryOperation](./stories/withPrimaryOperation.tsx)
 
-export default MyTable
+##### 同时定义右上角和左上角操作区
+```jsx
+<Table
+  operation={{
+    primary: (
+      <>
+        <Button type="primary" onClick={onCreate}>Create New Record</Button>
+        <Button onClick={onRefresh}>Refresh</Button>
+      </>
+    ),
+    secondary: (
+      <Button onClick={onConfig}>
+        <Icon type="cog" />
+      </Button>			
+    )
+  }}
+  {...tableProps}
+/>
 ```
+
+[MDXInstruction:importDemo:WithOperation](./stories/withOperation.tsx)
+
+
+同样operation自定义组件时也可传入`(tableProps) => ReactNode`， 请参考`pagination`中的实现方式
 
 ### Search
 
-**搜索区域 (Search)** 也会经常使用到，在 ``@alicloud/console-components-table`` 中预设了符合UED规约的搜索组件，在大多数场景下，你只需要关注一部分 ``Search`` 组件的属性：
-
-- ``value`` 搜索框内容
-- ``filter`` 条件筛选定义
-- ``onSearch`` 搜索行为
+**搜索区域 (Search)** 也会经常使用到，在 ``@alicloud/console-components-table`` 中预设了符合UED规约的搜索组件，在大多数场景下，你只需要关注一部分 ``Search`` 组件的属性。开发者也可自行传入组件`<Table.Search {...props} />`或者函数`(tableProps) => (<Table.Search {...props} />)`，来进行定制。
 
 #### 使用属性定义（推荐）
 
-和 ``Pagination`` 的定义基本一致，只需要传入 ``Search`` 组件的属性对象即可
+search直接传入Search组件的props即可, 如下Demo所示。
 
-##### 示例：定义多个筛选条件
+```jsx
+<Table
+  search={{
+    placeholder: '请输入name进行搜索',
+    filterValue: 'en',
+    filter: [
+      {
+        value: 'en',
+        label: '英文',
+      },
+      {
+        value: 'zh',
+        label: '中文',
+      },
+    ],
+    onSearch: handleSearch,
+    onChange: handleSearch,
+    ...seearchProps
+  }}
+/>
 
 ```
-import React form 'react'
-import Table from '@alicloud/console-components-table'
 
-const filters = [
-  { value: 'name', label: '名称' },
-  { value: 'id', label: 'id },
-]
-
-const MyTable = (props) => {
-  const { onSearch, ...tableProps } = props
-  const search = {
-    filter: filters,
-    onSearch
-  }
-
-  return (
-    <Table
-      search={search}
-      {...tableProps}
-    />
-  )
-}
-
-export default MyTable
-```
+[MDXInstruction:importDemo:WithSearch](./stories/withSearch.tsx)
 
 #### 使用自定义组件
 
-_请参考上文 `Pagination` 中自定义组件的示例_
+在 search 右边添加一个自定义按钮（custom button）
+
+```jsx
+<Table
+  search={
+    <div>
+      <Search
+        placeholder="请输入name进行搜索"
+        filterValue="en"
+        filter={[
+          {
+            value: 'en',
+            label: '英文',
+          },
+          {
+            value: 'zh',
+            label: '中文',
+          },
+        ]}
+        onSearch={handleSearch}
+        onChange={handleSearch}
+      />
+      <Button>Custom Button</Button>
+
+    </div>
+	}
+/>
+```
+[MDXInstruction:importDemo:WithCustomSearch](./stories/withCustomSearch.tsx)
+
+同样Search自定义组件时也可传入`(tableProps) => ReactNode`， 请参考`pagination`中的实现方式
+
+
+## 在AppLayout中使用
+
+[MDXInstruction:importDemo:WithLayout](./stories/withAppLayout.tsx)
+
+## 指定affix-bar的渲染节点
+
+通过`affixBarOverlayProps`来指定affix-bar的 `target`和`container`。可参考基础组件`overlay`
+- target affix-bar定位的参照元素，最好是距离table最近的滚动祖先节点，否则可能会出现affix-bar位置错乱的问题。
+- container 渲染组件的容器，是affix-bar的定位父级，需设置样式为`position: relative`。container节点的宽度决定了affix-bar的宽度，affix-bar理论上与container同宽。
+```jsx
+<SContainer ref={containerRef}>
+  <SWrapper ref={targetRef}>
+    <Table
+      affixBarOverlayProps={{
+        target: () => targetRef.current,
+        container: () => containerRef.current,
+      }}
+    />
+  </SWrapper>
+</SContainer>
+``` 
+
+[MDXInstruction:importDemo:WithContainer](./stories/withContainer.tsx)

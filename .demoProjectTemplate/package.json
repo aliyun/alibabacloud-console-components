@@ -26,13 +26,13 @@
     "@alicloud/console-components-page": "latest",
     "@alicloud/console-components-slide-panel": "latest",
     "@alicloud/console-components-status-indicator": "latest",
-    "@alicloud/console-components-table": "latest",
     "@alicloud/console-components-truncate": "latest",
     "@alicloud/console-components-select-list": "latest",
     "@alicloud/console-components-intl": "latest",
     "@alicloud/console-components-intl-core": "latest",
     "@alicloud/console-components-intl-context": "latest",
-    "@alicloud/console-components-announcement": "latest"
+		"@alicloud/console-components-announcement": "latest",
+		"@alicloud/console-components-table": "latest"
   },
   "devDependencies": {
     "@types/react": "16.8.8",

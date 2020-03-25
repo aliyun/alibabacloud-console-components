@@ -1,9 +1,14 @@
 import React, { isValidElement } from 'react'
 import isPlainObject from 'lodash/isPlainObject'
 import isFunction from 'lodash/isFunction'
+import { TableOperaion, ITableProps } from './layout'
 import { isComponent } from './utils'
 
-const renderComponent = (DefaultComponent, props, ...args) => {
+const renderComponent = (
+  DefaultComponent: any,
+  props: TableOperaion,
+  ...args: ITableProps[]
+): React.ReactNode | null => {
   if (isValidElement(props)) {
     return props
   }
@@ -20,7 +25,7 @@ const renderComponent = (DefaultComponent, props, ...args) => {
   }
 
   if (isFunction(props)) {
-    return props(...args)
+    return props(args[0])
   }
 
   return null

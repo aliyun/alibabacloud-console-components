@@ -1,8 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@alicloud/console-components'
+import { IActionBarProps } from './index'
 
-const ActionBarPropsFilter = ({ afterIntersectChanged, ...restProps }) => {
+const ActionBarPropsFilter: React.FC<IActionBarProps> = ({
+  afterIntersectChanged,
+  affixBarOverlayProps,
+  ...restProps
+}) => {
   return <Grid.Row {...restProps} />
 }
 
@@ -12,7 +17,9 @@ export const SActionBarWrapper = styled(ActionBarPropsFilter)`
 `
 
 export const SActionBarLeft = styled(Grid.Col)`
-  flex: 0 1 auto;
+  && {
+    flex: 0 1 auto;
+  }
 
   > * {
     display: inline-block;
@@ -21,7 +28,9 @@ export const SActionBarLeft = styled(Grid.Col)`
 `
 
 export const SActionBarRight = styled(Grid.Col)`
-  flex: 0 1 auto;
+  && {
+    flex: 0 1 auto;
+  }
 
   > * {
     margin-right: 0;
@@ -35,6 +44,23 @@ export const SFixedBarWrapper = styled.div`
   background: #fff;
   width: 100%;
   left: 0;
+
+  &.overlay-inner {
+    height: 48px;
+    width: 100%;
+  }
+
+  &.overlay-fixed-to-top {
+    padding-top: 8px;
+    border-bottom: 1px solid #dedede;
+    box-shadow: 0px 0.2px 10px #ccc;
+  }
+
+  &.overlay-fixed-to-bottom {
+    padding-bottom: 8px;
+    border-top: 1px solid #dedede;
+    box-shadow: 0px 0.2px 10px #ccc;
+  }
 
   &.fixed-to-top {
     top: 0;

@@ -107,4 +107,13 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-table',
+    zhName: '增强表格',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-table',
+    tags: {
+      table: true,
+    },
+  },
 ]
