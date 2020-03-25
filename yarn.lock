@@ -4247,6 +4247,13 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
+"@types/react-responsive@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.npm.taobao.org/@types/react-responsive/download/@types/react-responsive-8.0.2.tgz#959fdc32f72e38b807e32be617a74be2c315081b"
+  integrity sha1-lZ/cMvcuOLgH4yvmF6dL4sMVCBs=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^4.2.7":
   version "4.3.5"
   resolved "https://registry.npm.taobao.org/@types/react-router-dom/download/@types/react-router-dom-4.3.5.tgz#72f229967690c890d00f96e6b85e9ee5780db31f"
@@ -4302,6 +4309,13 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/recompose@^0.30.7":
+  version "0.30.7"
+  resolved "https://registry.npm.taobao.org/@types/recompose/download/@types/recompose-0.30.7.tgz#0d47f3da3bdf889a4f36d4ca7531fac1eee1c6bd"
+  integrity sha1-DUfz2jvfiJpPNtTKdTH6we7hxr0=
+  dependencies:
+    "@types/react" "*"
 
 "@types/resolve@0.0.8", "@types/resolve@^0.0.8":
   version "0.0.8"
