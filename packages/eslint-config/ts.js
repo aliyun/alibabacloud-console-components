@@ -2,13 +2,17 @@ module.exports = {
   // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
   parser: '@typescript-eslint/parser',
   extends: [
-    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
-    'prettier/react',
+    'prettier',
     'prettier/@typescript-eslint',
+    'prettier/react',
   ],
-  plugins: ['react-hooks'],
+  plugins: ['@typescript-eslint', 'react-hooks'],
   rules: {
     // https://reactjs.org/docs/hooks-rules.html#eslint-plugin
     'react-hooks/rules-of-hooks': 'error',

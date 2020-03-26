@@ -1,6 +1,10 @@
 module.exports = {
   root: true,
   extends: ['@alicloud/eslint-config-console-components'],
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.eslint.json',
+  },
   rules: {
     'no-underscore-dangle': 'off',
     'react/jsx-props-no-spreading': 'off',

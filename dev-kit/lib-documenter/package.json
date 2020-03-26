@@ -10,8 +10,7 @@
     "prepare": "npm run clean && tsc -p ./src/runtime"
   },
   "devDependencies": {
-    "copyfiles": "^2.1.1",
-    "typescript": "^3.7.4"
+    "copyfiles": "^2.1.1"
   },
   "dependencies": {
     "@alicloud/console-components": "^1.0.23",
