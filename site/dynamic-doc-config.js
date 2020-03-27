@@ -107,4 +107,14 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-button-checkbox',
+    zhName: '按钮复选框',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-button-checkbox',
+    tags: {
+      button: true,
+      checkbox: true,
+    },
+  },
 ]
