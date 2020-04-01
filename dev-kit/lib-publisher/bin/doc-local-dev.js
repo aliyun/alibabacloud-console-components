@@ -4,9 +4,30 @@ const WebpackDevServer = require('webpack-dev-server')
 const Webpack = require('webpack')
 const portfinder = require('portfinder')
 
-const { argv, entryMDX, prodPkgName, rootDir } = require('./utils').getCmdArgs()
+const { getCmdArgs, normalizeConfig } = require('./utils')
+
+const {
+  argv,
+  entryMDX: argEntryMDX,
+  prodPkgName,
+  rootDir,
+  docsConfig,
+} = getCmdArgs()
 
 ;(async () => {
+  const { entryMDX, alias, externals } = (() => {
+    if (docsConfig) {
+      const compilation = normalizeConfig(docsConfig, 'preview', argv)[0]
+
+      return {
+        entryMDX: compilation.entry,
+        alias: compilation.alias,
+        externals: compilation.externals,
+      }
+    }
+    return { entryMDX: argEntryMDX }
+  })()
+
   const port =
     argv.port ||
     (await portfinder.getPortPromise({
@@ -17,8 +38,10 @@ const { argv, entryMDX, prodPkgName, rootDir } = require('./utils').getCmdArgs()
   const docConfigChain = require('../build-doc/webpack-chain.dev').createConfig(
     {
       entryMDX,
-      prodPkgName,
       rootDir,
+      prodPkgName,
+      alias,
+      externals,
     }
   )
 

@@ -1,17 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react'
-import TOC from './TableOfContent'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import styled from 'styled-components'
+import debounce from 'lodash.debounce'
+import isequal from 'lodash.isequal'
 import { useDocMetaCtx } from '../utils/context'
 import getScrollParent from '../utils/getScrollParent'
+import TOC, { ITocHeading } from './TableOfContent'
 
 const Layout: React.FC = ({ children }) => {
   const {
-    tocHeadings: headings,
+    // tocHeadings: headings,
     autoPadding = true,
     scrollContainer,
   } = useDocMetaCtx()
   const [padding, setPadding] = useState(0)
   const paddingRef = useRef<HTMLDivElement | null>(null)
+
+  const { ctnRef, headings } = useTOC()
 
   useEffect(() => {
     if (!autoPadding) return
@@ -25,7 +29,7 @@ const Layout: React.FC = ({ children }) => {
       setPadding(getPadding())
     }
     function getPadding() {
-      if (!headings || headings.length == 0) return 0
+      if (!headings || headings.length === 0) return 0
       const last = headings[headings.length - 1]
       const headingEl = document && document.getElementById(last.id)
       if (!headingEl) return 0
@@ -60,7 +64,7 @@ const Layout: React.FC = ({ children }) => {
     <ScLayout>
       <ScLayoutLeft>
         <ScDocStyle className="auto-padding-container">
-          <div>{children}</div>
+          <div ref={ctnRef}>{children}</div>
           {autoPadding && (
             <div
               className="auto-padding"
@@ -72,7 +76,7 @@ const Layout: React.FC = ({ children }) => {
       </ScLayoutLeft>
       {headings && (
         <ScLayoutRight>
-          <TOC />
+          <TOC headings={headings} />
         </ScLayoutRight>
       )}
     </ScLayout>
@@ -96,6 +100,22 @@ const ScLayoutLeft = styled.div`
 const ScLayoutRight = styled.div`
   width: 280px;
   flex: 0 0 auto;
+  max-height: 720px;
+  overflow: auto;
+  margin-left: 36px;
+  margin-top: 28px;
+  position: sticky;
+  top: 12px;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #dedede;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+  }
 `
 
 const ScDocStyle = styled.div`
@@ -116,3 +136,64 @@ const ScDocStyle = styled.div`
     color: gray;
   }
 `
+
+function useTOC() {
+  const ctnRef = useRef<HTMLDivElement>(null)
+  const [headings, setHeadings] = useState<ITocHeading[]>([])
+
+  const check = useCallback(
+    debounce(() => {
+      if (!ctnRef.current) return
+      const headingEls: HTMLElement[] = Array.from(
+        ctnRef.current.querySelectorAll('.cc-doc-toc')
+      )
+      setHeadings((oldHeadings) => {
+        const newHeadings = headingEls.reduce<ITocHeading[]>((acc, el) => {
+          const match = /h(\d)/i.exec(el.tagName || el.nodeName)
+          if (match && el.textContent && el.id) {
+            acc.push({
+              depth: Number(match[1]),
+              id: el.id,
+              text: el.textContent,
+            })
+          }
+          return acc
+        }, [])
+        // 避免无限重刷
+        if (isequal(newHeadings, oldHeadings)) return oldHeadings
+        return newHeadings
+      })
+    }, 100),
+    []
+  )
+
+  useEffect(() => {
+    check()
+  })
+  // 通过MutationObserver来监听子元素的变化，调用check
+  // 可能会有性能问题，暂时用useEffect
+  // useEffect(() => {
+  //   const observer = new MutationObserver((mutList) => {
+  //     mutList.forEach((mut) => {
+  //       if (mut.type === 'childList') {
+  //         const needCheck = Array.from(mut.addedNodes)
+  //           .concat(Array.from(mut.removedNodes))
+  //           .some((node) => {
+  //             if (
+  //               node instanceof HTMLElement &&
+  //               (node.className.includes('cc-doc-toc') ||
+  //                 node.querySelector('.cc-doc-toc'))
+  //             )
+  //               return true
+  //             return false
+  //           })
+  //         if (needCheck) check()
+  //       }
+  //     })
+  //   })
+  //   observer.observe(ctnRef.current!, { childList: true, subtree: true })
+  //   check()
+  // }, [])
+
+  return { ctnRef, headings }
+}

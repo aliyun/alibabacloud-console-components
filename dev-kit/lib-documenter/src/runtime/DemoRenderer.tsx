@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-} from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { Card, Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import _ from 'lodash'
@@ -63,7 +58,7 @@ const iFramePreset = {
     'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
 }
 
-const generateIframeSrc = projMeta => (sandboxId: string) =>
+const generateIframeSrc = (projMeta) => (sandboxId: string) =>
   `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
     projMeta.onlyEditor ? '&view=editor' : '&view=split'
   }&module=${prependSlash(projMeta.entryPath)}`
@@ -96,7 +91,7 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
   useEffect(() => {
     // 异步加载的demo
     if (isPromiseLike(demoInfoOrPromise)) {
-      demoInfoOrPromise.then(demoInfo => {
+      demoInfoOrPromise.then((demoInfo) => {
         setDemoInfo(fixDemoPkgJson(demoInfo))
       })
     } else {
@@ -233,11 +228,15 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
 
   const demoMetaView = (() => {
     if (!demoInfo || !demoInfo.demoMeta) return null
-    const demoMeta = demoInfo.demoMeta
+    const { demoMeta } = demoInfo
     return (
       <div>
         {demoMeta.zhName && (
-          <HeaderWithAnchor level={3} id={demoMeta.zhName}>
+          <HeaderWithAnchor
+            level={3}
+            id={demoMeta.zhName}
+            className="cc-doc-toc"
+          >
             {demoMeta.zhName}
           </HeaderWithAnchor>
         )}
@@ -265,7 +264,7 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
 export default DemoRenderer
 
 function prependSlash(path: string) {
-  if (path[0] === '/') return path
+  if (path.startsWith('/')) return path
   return `/${path}`
 }
 

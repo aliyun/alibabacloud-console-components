@@ -1,19 +1,44 @@
 #! /usr/bin/env node
 
-const { argv, entryMDX, prodPkgName, rootDir } = require('./utils').getCmdArgs()
+const { getCmdArgs, normalizeConfig, bootWebpack } = require('./utils')
 
-const mode =
-  argv.mode === 'dev' || argv.mode === 'development'
-    ? 'development'
-    : 'production'
+const { argv, entryMDX, rootDir, prodPkgName, docsConfig } = getCmdArgs()
 
-const webpackConfig = require('../build-doc/webpack-chain.prod')
-  .createConfig({
-    rootDir,
-    entryMDX,
-    prodPkgName,
-    mode,
-  })
-  .toConfig()
+const webpackChain = require('../build-doc/webpack-chain.prod')
 
-require('./utils').bootWebpack(webpackConfig)
+if (docsConfig) {
+  const compilations = normalizeConfig(docsConfig, 'build', argv)
+  const config = compilations.map(
+    ({ entry, outputDir, outputFileName, mode, externals, alias, analyze }) => {
+      return webpackChain
+        .createConfig({
+          rootDir,
+          entryMDX: entry,
+          externals,
+          mode,
+          outputDir,
+          outputFileName,
+          alias,
+          analyze,
+        })
+        .toConfig()
+    }
+  )
+  bootWebpack(config)
+} else {
+  const mode =
+    argv.mode === 'dev' || argv.mode === 'development'
+      ? 'development'
+      : 'production'
+
+  const webpackConfig = webpackChain
+    .createConfig({
+      rootDir,
+      entryMDX,
+      externals: [prodPkgName],
+      mode,
+    })
+    .toConfig()
+
+  bootWebpack(webpackConfig)
+}

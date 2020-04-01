@@ -19,6 +19,11 @@ module.exports = {
     {
       files: ['**/*.js', '**/*.jsx'],
       extends: ['@alicloud/eslint-config-console-components/js'],
+      rules: {
+        'no-underscore-dangle': 'off',
+        'import/no-dynamic-require': 'off',
+        'global-require': 'off',
+      },
     },
   ],
 }
