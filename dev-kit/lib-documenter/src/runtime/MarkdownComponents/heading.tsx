@@ -5,7 +5,11 @@ import HeaderWithAnchor from '../HeaderWithAnchor'
 function getHeading(level) {
   return ({ children, id, className }) => {
     return (
-      <HeaderWithAnchor className={className} level={level} id={id}>
+      <HeaderWithAnchor
+        className={mergeClsName(className, 'cc-doc-toc')}
+        level={level}
+        id={id}
+      >
         {children}
       </HeaderWithAnchor>
     )
@@ -50,4 +54,8 @@ export default {
     color: #6a737d;
     font-size: 0.85em;
   `,
+}
+
+function mergeClsName(...clsNames) {
+  return clsNames.filter(Boolean).join(' ')
 }

@@ -1,30 +1,39 @@
+const path = require('path')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const createCoreConfig = require('./webpack-chain.core').createConfig
-
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
-
 const { externalsArr } = require('./externalsArr')
 
-const path = require('path')
-
-const externalsObj = externalsArr.reduce((acc, cur) => {
-  acc[cur] = cur
-  return acc
-}, {})
-
-module.exports.createConfig = ({ prodPkgName, entryMDX, rootDir, mode } = {}) =>
-  createCoreConfig({
-    entryMDX,
-    rootDir,
-    entryJS: path.resolve(__dirname, 'index.tsx'),
-  })
-    .mode(mode === 'production' ? 'production' : 'development')
-    // 把物料本身external掉
-    .externals({ ...externalsObj, [prodPkgName]: prodPkgName })
-    .output.libraryTarget('system')
-    .path(path.resolve(rootDir, 'dist'))
-    .filename('_doc.system.js')
-    .end()
-// .plugin('bundle-analyzer')
-// .use(BundleAnalyzerPlugin)
-// .end()
+module.exports.createConfig = ({
+  externals: argExternals,
+  entryMDX,
+  rootDir,
+  mode,
+  outputFileName = '_doc.system.js',
+  outputDir = path.resolve(rootDir, 'dist'),
+  tsApiJson = path.resolve(rootDir, 'cc-dev-out', 'api-json', 'api.json'),
+  alias,
+  analyze,
+} = {}) => {
+  const externals = (() => {
+    if (Array.isArray(argExternals)) return argExternals
+    return [argExternals]
+  })()
+  return (
+    createCoreConfig({
+      entryMDX,
+      entryJS: path.resolve(__dirname, 'index.tsx'),
+      tsApiJson,
+      externals: [...externals, ...externalsArr],
+      alias,
+    })
+      .mode(mode === 'production' ? 'production' : 'development')
+      .output.libraryTarget('system')
+      .path(outputDir)
+      .filename(outputFileName)
+      .end()
+      // 并行编译多个文档的时候不能使用'bundle-analyzer'
+      .when(analyze, (cfg) => {
+        cfg.plugin('bundle-analyzer').use(BundleAnalyzerPlugin).end()
+      })
+  )
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import classnames from 'classnames'
 
 const Heading = styled.div`
   pointer-events: painted;
@@ -27,7 +28,7 @@ const SAnchor = styled.a`
 `
 
 // from https://octicons.github.com/icon/link/
-const LinkIcon = props => (
+const LinkIcon = (props) => (
   <svg
     {...props}
     // viewBox="0 0 16 16"
@@ -62,7 +63,7 @@ const HeaderWithAnchor: React.FC<{
         {anchor}
       </>
     ),
-    className: `header-with-anchor ${className}`,
+    className: classnames('header-with-anchor', className),
   }
 
   let result

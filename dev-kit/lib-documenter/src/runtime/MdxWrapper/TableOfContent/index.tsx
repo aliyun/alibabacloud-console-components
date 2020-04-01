@@ -9,12 +9,16 @@ export interface ITocHeading {
   depth: number
 }
 
-const TOC: React.FC = () => {
-  const { tocHeadings: headings, scrollContainer } = useDocMetaCtx()
+interface IProps {
+  headings: ITocHeading[]
+}
+
+const TOC: React.FC<IProps> = ({ headings }) => {
+  const { scrollContainer } = useDocMetaCtx()
   const activeId = useActiveHeading(headings, scrollContainer)
   return (
     <ScList>
-      {headings.map(heading => {
+      {headings.map((heading) => {
         return (
           <ScListItem
             depth={heading.depth}
@@ -32,11 +36,7 @@ const TOC: React.FC = () => {
 export default TOC
 
 const ScList = styled.ol`
-  margin-left: 36px;
-  margin-top: 28px;
-  position: sticky;
   line-height: 24px;
-  top: 12px;
 `
 
 const ScListItem = styled(
@@ -80,7 +80,7 @@ function useActiveHeading(
   useEffect(() => {
     setHeadingWithDomEl(
       headings
-        .map(heading => {
+        .map((heading) => {
           const el = document.getElementById(heading.id)
           if (!el) return (null as unknown) as IHeadingWithDomEl
           return { el, ...heading }

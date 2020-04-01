@@ -1,22 +1,7 @@
 import externalsObj from './commonDeps'
 import applyPlugin from './systemjs-amd-introp'
 import { wrapMdxModule, IWrappedMdxModule } from '../MdxWrapper'
-
-/** 模块加载路径定义 */
-const moduleURLProtocals = {
-  jsdelivr: (actualLoadPkgName, actualLoadPkgVersion) => {
-    return {
-      main: `https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/index.js`,
-      doc: `https://cdn.jsdelivr.net/npm/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js`,
-    }
-  },
-  unpkg: (actualLoadPkgName, actualLoadPkgVersion) => {
-    return {
-      main: `https://unpkg.com/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/index.js`,
-      doc: `https://unpkg.com/${actualLoadPkgName}@${actualLoadPkgVersion}/dist/_doc.system.js`,
-    }
-  },
-}
+import resolveDocDef from './resolveDoc'
 
 export interface IDocDef {
   prodPkgName: string
@@ -27,59 +12,81 @@ export interface IDocDef {
 const cache: Map<string, Promise<IWrappedMdxModule>> = new Map()
 
 export default function loadDocModule(
-  docDef: IDocDef
+  url: string | string[], // 如果传string[]，则使用竞争的方式加载，提高加载速度，并提高容灾能力
+  deps: { [name: string]: any } = {}
 ): Promise<IWrappedMdxModule> {
-  const cacheKey = `${docDef.prodPkgName}/${docDef.actualLoadPkgName}/${docDef.actualLoadPkgVersion}`
+  const actualDeps = {
+    ...externalsObj,
+    ...deps,
+  }
 
-  if (cache.has(cacheKey)) return cache.get(cacheKey)!
+  const moduleId = (() => {
+    // 用一个特殊的符号来分割要并行加载的地址
+    if (Array.isArray(url)) return url.join('θ|θ')
+    return String(url)
+  })()
 
-  const protocalResolved = moduleURLProtocals.unpkg(
-    docDef.actualLoadPkgName,
-    docDef.actualLoadPkgVersion
-  )
+  if (cache.has(moduleId)) return cache.get(moduleId)!
 
-  const systemjsCtor: any = System.constructor
-  const newSystemjsInstance = new systemjsCtor()
+  const SystemjsCtor: any = System.constructor
+  const newSystemjsInstance = new SystemjsCtor()
   applyPlugin(newSystemjsInstance)
 
-  newSystemjsInstance.shouldFetch = function() {
+  newSystemjsInstance.shouldFetch = function () {
     return true
   }
 
-  newSystemjsInstance.fetch = function(url) {
-    const jsdelivrURL = url.replace(
-      'https://unpkg.com/',
-      'https://cdn.jsdelivr.net/npm/'
-    )
-    return Promise.race([fetch(url), fetch(jsdelivrURL)])
-    // return Promise.race([fetch(url)])
+  newSystemjsInstance.fetch = function (id) {
+    if (id === moduleId) {
+      return oneSuccess(id.split('θ|θ').map((u) => fetch(u)))
+    }
+    return fetch(id)
   }
 
-  newSystemjsInstance.resolve = request => {
-    if (request === protocalResolved.doc) {
-      return protocalResolved.doc
+  newSystemjsInstance.resolve = (request) => {
+    if (request === moduleId) {
+      return moduleId
     }
-    // 在文档中请求包生产包名，则从cdn加载物料包
-    if (request === docDef.prodPkgName) {
-      return protocalResolved.main
-    }
-    // 在文档中请求环境依赖（比如react、styled-components）
-    if (externalsObj[request]) {
-      const module = externalsObj[request]
+    // 在文档中请求外部依赖（比如react、styled-components）
+    if (actualDeps[request]) {
+      const module = actualDeps[request]
       // 实际上不会请求这个url，它只被作为模块的id
-      const fakeURL = `https://test.taobao.com/${request}`
+      const fakeURL = `https://deps.taobao.com/${request}`
       newSystemjsInstance.set(fakeURL, module)
       return fakeURL
     }
-
+    // 在文档中请求包生产包名，则从cdn加载物料包
+    // if (request === docDef.prodPkgName) {
+    //   return protocalResolved.main
+    // }
     throw new Error(
       `[@alicloud/console-components-lib-documenter] Unexpected request: ${request}`
     )
   }
 
-  const promise = newSystemjsInstance
-    .import(protocalResolved.doc)
-    .then(wrapMdxModule)
-  cache.set(cacheKey, promise)
+  const promise = newSystemjsInstance.import(moduleId).then(wrapMdxModule)
+  cache.set(moduleId, promise)
   return promise
 }
+
+// https://stackoverflow.com/a/37235274/8175856
+function oneSuccess(promises) {
+  return Promise.all(
+    promises.map((p) => {
+      // If a request fails, count that as a resolution so it will keep
+      // waiting for other possible successes. If a request succeeds,
+      // treat it as a rejection so Promise.all immediately bails out.
+      return p.then(
+        (val) => Promise.reject(val),
+        (err) => Promise.resolve(err)
+      )
+    })
+  ).then(
+    // If '.all' resolved, we've just got an array of errors.
+    (errors) => Promise.reject(errors),
+    // If '.all' rejected, we've got the result we wanted.
+    (val) => Promise.resolve(val)
+  )
+}
+
+loadDocModule.resolveDocDef = resolveDocDef

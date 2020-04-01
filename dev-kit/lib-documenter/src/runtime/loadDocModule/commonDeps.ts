@@ -1,3 +1,4 @@
+/* eslint-disable */
 // 收集所有文档的公共依赖，这些依赖在打包时剔除，渲染时由文档站点统一提供
 
 // systemjs无法在SSR环境中使用
@@ -39,3 +40,11 @@ externalsObj['react-dom'] = External8
 
 import * as External9 from '@alicloud/console-components-fake-browser'
 externalsObj['@alicloud/console-components-fake-browser'] = External9
+
+import * as External10 from 'style-loader/dist/runtime/injectStylesIntoStyleTag.js'
+externalsObj[
+  'style-loader/dist/runtime/injectStylesIntoStyleTag.js'
+] = External10
+
+import * as External11 from 'css-loader/dist/runtime/api.js'
+externalsObj['css-loader/dist/runtime/api.js'] = External11

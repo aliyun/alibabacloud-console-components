@@ -1,14 +1,24 @@
+/* eslint-disable global-require */
 const Config = require('webpack-chain')
-const DemoPlugin = require('../lib/buildtools/demoPlugin')({
-  ConstDependency: require('webpack/lib/dependencies/ConstDependency'),
-  ModuleDependency: require('webpack/lib/dependencies/ModuleDependency'),
-  NormalModule: require('webpack/lib/NormalModule'),
-})
+const ConstDependency = require('webpack/lib/dependencies/ConstDependency')
+const ModuleDependency = require('webpack/lib/dependencies/ModuleDependency')
+const NormalModule = require('webpack/lib/NormalModule')
 const path = require('path')
 const webpack = require('webpack')
 const babelConfig = require('./babel.config')
+const DemoPlugin = require('../lib/buildtools/demoPlugin')({
+  ConstDependency,
+  ModuleDependency,
+  NormalModule,
+})
 
-module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
+module.exports.createConfig = ({
+  entryMDX,
+  entryJS,
+  tsApiJson,
+  alias,
+  externals,
+}) => {
   const config = new Config()
 
   config
@@ -29,16 +39,19 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
     .end()
     .end()
     .resolve.alias.set('@entry-mdx', entryMDX)
-    .set('@cc-dev-out', path.resolve(rootDir, 'cc-dev-out'))
+    .set('@@tsApiJson', tsApiJson)
+    .merge(alias || {})
     .end()
     .end()
+    .externals(externals || [])
+
     // demo plugin
     .plugin('demo-plugin')
     .use(DemoPlugin)
     .end()
     // https://fusion.design/component/basic/config-provider#%E5%87%8F%E5%B0%8F%E5%BA%94%E7%94%A8%E4%B8%AD-webpack-%E6%89%93%E5%8C%85-moment-%E4%BD%93%E7%A7%AF
     .plugin('optimize-moment')
-    .use(webpack.ContextReplacementPlugin, [/moment[\/\\]locale$/, /zh-cn/])
+    .use(webpack.ContextReplacementPlugin, [/moment[/\\]locale$/, /zh-cn/])
     .end()
     // transpile js/ts
     .module.rule('js')
@@ -60,6 +73,32 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
     .end()
     .use('css-loader')
     .loader('css-loader')
+    .end()
+    .end()
+    // transpile less
+    .rule('less')
+    .test(/\.less$/)
+    .use('style-loader')
+    .loader('style-loader')
+    .end()
+    .use('css-loader')
+    .loader('css-loader')
+    .end()
+    .use('less-loader')
+    .loader('less-loader')
+    .end()
+    .end()
+    // transpile sass
+    .rule('sass')
+    .test(/\.s(a|c)ss$/)
+    .use('style-loader')
+    .loader('style-loader')
+    .end()
+    .use('css-loader')
+    .loader('css-loader')
+    .end()
+    .use('sass-loader')
+    .loader('fast-sass-loader')
     .end()
     .end()
     // transpile mdx
@@ -91,6 +130,7 @@ module.exports.createConfig = ({ entryMDX, rootDir, entryJS }) => {
             ],
           },
         ],
+        require('../lib/buildtools/remarkPlugins/legacyImportDemoInstruction'),
         require('../lib/buildtools/remarkPlugins/transformImg'),
         require('../lib/buildtools/remarkPlugins/addHeadings'),
       ],

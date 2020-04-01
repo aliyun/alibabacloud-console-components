@@ -1,8 +1,11 @@
+/* eslint-disable no-console */
 const path = require('path')
 const webpack = require('webpack')
 const fs = require('fs-extra')
+const { argv } = require('yargs')
+const pkgJson = require('../package.json')
 
-exports.bootWebpack = webpackConfig => {
+exports.bootWebpack = (webpackConfig) => {
   webpack(webpackConfig, (err, stats) => {
     // Stats Object
     if (err) {
@@ -22,7 +25,10 @@ exports.bootWebpack = webpackConfig => {
 
     if (stats.hasErrors()) {
       process.exitCode = 1
-      console.error(info.errors)
+      info.errors.forEach((err) => {
+        console.error(err)
+        console.log('\n')
+      })
       return
     }
 
@@ -37,9 +43,15 @@ exports.bootWebpack = webpackConfig => {
 
 // 未来可以从配置读取config
 exports.getCmdArgs = () => {
-  const argv = require('yargs').argv
-
   const rootDir = path.resolve(process.cwd(), argv.rootDir || '.')
+
+  const docsConfig = (() => {
+    const cfgFilePath = path.resolve(rootDir, 'docs.config.js')
+    if (fs.existsSync(cfgFilePath)) {
+      return require(cfgFilePath)
+    }
+    return null
+  })()
 
   // README.mdx的默认位置
   const entryMDX = (() => {
@@ -67,6 +79,7 @@ exports.getCmdArgs = () => {
         throw error
       }
     }
+    // eslint-disable-next-line import/no-dynamic-require, global-require
     const pkgJSON = require(pkgJsonPath)
     return pkgJSON.name
   })()
@@ -78,10 +91,103 @@ exports.getCmdArgs = () => {
     prodPkgName,
     pkgJsonPath,
     backupPkgJsonPath,
+    docsConfig,
   }
 }
 
 exports.logToolVersion = () => {
-  const pkgJson = require('../package.json')
   console.log(`toolInfo: ${pkgJson.name}@${pkgJson.version}`)
+}
+
+/**
+ * @param action 'preview' | 'build'
+ */
+exports.normalizeConfig = (cfg, action, cliArgv) => {
+  const globalMode = cfg.mode
+  const globalExternals = cfg.externals || []
+  const globalAlias = cfg.alias || {}
+  const globalOutputDir = cfg.outputDir
+
+  const docConfigName = (() => {
+    if (cliArgv.name) return cliArgv.name
+    return cfg.name
+  })()
+
+  const analyze = (() => {
+    if ('analyze' in cliArgv) return cliArgv.analyze
+    return cfg.analyze
+  })()
+
+  const actionConfigOverwrite = (() => {
+    switch (action) {
+      case 'preview':
+        return cfg.devServeConfig
+      case 'build':
+        return cfg.buildConfig
+      default:
+        throw new Error(
+          `doc.config.js => action should be 'preview' or 'build'`
+        )
+    }
+  })()
+
+  const compilations = Object.keys(cfg.compilations)
+    .filter((name) => {
+      // 在预览模式下，要通过name来选中某个文档
+      if (docConfigName) return name === docConfigName
+      return true
+    })
+    .map((name) => {
+      const {
+        entry,
+        outputDir = globalOutputDir,
+        outputFileName,
+        mode = actionConfigOverwrite.mode || globalMode,
+        externals = [],
+        alias,
+      } = cfg.compilations[name]
+
+      if (!outputDir)
+        throw new Error(`outputDir should be set in doc.config.js`)
+      if (!entry) throw new Error(`entry should be set in doc.config.js`)
+      if (!outputFileName)
+        throw new Error(`outputFileName should be set in doc.config.js`)
+
+      return {
+        name,
+        mode: mode || 'production',
+        entry,
+        outputDir,
+        outputFileName,
+        externals: [
+          ...globalExternals,
+          ...(actionConfigOverwrite.externals || []),
+          ...externals,
+        ],
+        alias: {
+          ...globalAlias,
+          ...actionConfigOverwrite.alias,
+          ...alias,
+        },
+        analyze,
+      }
+    })
+
+  if (compilations.length === 0) {
+    throw new Error(
+      `No doc to process. Please check your doc.config.js and argv.name`
+    )
+  }
+
+  if (action === 'preview' && compilations.length > 1) {
+    throw new Error(
+      `You should use argv.name to select one document to preview`
+    )
+  }
+  if (analyze && compilations.length > 1) {
+    throw new Error(
+      `You should use argv.name to select one document to analyze`
+    )
+  }
+  return compilations
 }

@@ -1,22 +1,22 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const createCoreConfig = require('./webpack-chain.core').createConfig
 
-module.exports.createConfig = ({ entryMDX, rootDir, prodPkgName }) =>
+module.exports.createConfig = ({
+  entryMDX,
+  rootDir,
+  alias,
+  externals,
+  tsApiJson = path.resolve(rootDir, 'cc-dev-out', 'api-json', 'api.json'),
+}) =>
   createCoreConfig({
     entryMDX,
-    rootDir,
     entryJS: path.resolve(__dirname, 'dev-index.tsx'),
+    tsApiJson,
+    alias,
+    externals,
   })
     .mode('development')
-    .resolve.alias.set(
-      '@runtime',
-      '@alicloud/console-components-lib-documenter/src/runtime'
-    )
-    // 让demo加载prodPkgName模块的时候，从src加载
-    .set(prodPkgName, path.resolve(rootDir, 'src'))
-    .end()
-    .end()
     // add HtmlWebpackPlugin
     .plugin('HtmlWebpackPlugin')
     .use(HtmlWebpackPlugin, [

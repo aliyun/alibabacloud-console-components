@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react'
 import { IDocDef } from '@alicloud/console-components-lib-documenter/src/runtime/loadDocModule'
 import RcAnnouncement from '@alicloud/console-components-announcement'
 import styled from 'styled-components'
+import _ from 'lodash'
 
 const ScAnnouncement = styled(RcAnnouncement)`
   .next-slick {
@@ -17,14 +18,24 @@ const DocPreview: React.FC = () => {
   useEffect(() => {
     const docDef = getDocDefFromURL()
     if (docDef) {
+      const url = [
+        window.loadDocModule.resolveDocDef('jsdelivr', {
+          pkgName: docDef.actualLoadPkgName,
+          version: docDef.actualLoadPkgVersion,
+        }),
+        window.loadDocModule.resolveDocDef('unpkg', {
+          pkgName: docDef.actualLoadPkgName,
+          version: docDef.actualLoadPkgVersion,
+        }),
+      ]
       setDocDef(docDef)
       window
-        .loadDocModule(docDef)
-        .then(res => res.default)
-        .then(comp => {
+        .loadDocModule(url, { lodash: _ })
+        .then((res) => res.default)
+        .then((comp) => {
           setDocComp(() => comp)
         })
-        .catch(err => {
+        .catch((err) => {
           setError(err)
         })
     }
@@ -39,7 +50,7 @@ const DocPreview: React.FC = () => {
     if (error.stack) return <pre>{error.stack}</pre>
     return <p>Unknown error: {error.toString()}</p>
   }
-  if (typeof window == 'undefined') {
+  if (typeof window === 'undefined') {
     return <p>loading...</p>
   }
   if (!docDef) {
@@ -76,10 +87,7 @@ const DocPreview: React.FC = () => {
   return (
     <div>
       <ScAnnouncement type="warning" dataSource={announcementDataSource} />
-      <DocComp
-        pkgInfo={docDef}
-        autoPadding
-      />
+      <DocComp pkgInfo={docDef} autoPadding />
     </div>
   )
 }
@@ -120,8 +128,8 @@ function useFetchPkgJson(pkgName?: string, pkgVer?: string) {
     const url = `https://unpkg.com/${pkgName}@${pkgVer}/package.json`
     lock.current = url
     fetch(url)
-      .then(x => x.json())
-      .then(pkgJson => {
+      .then((x) => x.json())
+      .then((pkgJson) => {
         // 避免使用过时的请求
         if (url !== lock.current) return
         steData(pkgJson)

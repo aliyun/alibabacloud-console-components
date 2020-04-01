@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import loadDocModule from '@alicloud/console-components-lib-documenter/src/runtime/loadDocModule'
+import _ from 'lodash'
 
 // const docDef = {
 //   // 预览包的生产包名（用户在生产环境应该使用的包名，即你在demo中用什么名称来import这个物料）
@@ -18,6 +19,8 @@ const docDef = {
   actualLoadPkgVersion: 'latest',
 }
 
-loadDocModule(docDef).then(({ default: DocComp }) => {
+loadDocModule('http://localhost:5000/dist/docs/table.system.js', {
+  lodash: _,
+}).then(({ default: DocComp }) => {
   ReactDOM.render(<DocComp pkgInfo={docDef} />, document.querySelector('.app'))
 })
