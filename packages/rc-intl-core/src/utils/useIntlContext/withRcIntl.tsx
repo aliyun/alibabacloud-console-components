@@ -27,11 +27,13 @@ const withRcIntl = ({
   defaultMessages = {},
   defaultLocaleMessages = {},
   componentName,
+  warningIfNoMessageFromCtx = true,
 }: {
   namespace?: string
   defaultMessages?: IMessages
   defaultLocaleMessages?: { [locale: string]: IMessages }
   componentName: string
+  warningIfNoMessageFromCtx?: boolean
 }) =>
   withIntl((value, hocProps: { messages?: IMessages }) => {
     const keyPrefix = `${namespace}.${componentName}`
@@ -44,7 +46,7 @@ const withRcIntl = ({
 
     const pickedMessages = getPrefixedMessages(globMessages, keyPrefix)
     const pickMessageSuccess = isPlainObject(pickedMessages)
-    if (!pickMessageSuccess) {
+    if (!pickMessageSuccess && warningIfNoMessageFromCtx) {
       warning(
         false,
         `[@ali/wind-intl] Messages[${keyPrefix}] should be an object, but get ${String(
@@ -53,8 +55,8 @@ const withRcIntl = ({
       )
     }
     const componentMessages = {
-      ...(defaultLocaleMessages[locale] || {}),
       ...defaultMessages,
+      ...(defaultLocaleMessages[locale] || {}),
       ...(pickMessageSuccess ? (pickedMessages as IMessages) : {}),
       ...propsMessages,
     }
