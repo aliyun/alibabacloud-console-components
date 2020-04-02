@@ -6,4 +6,8 @@ module.exports = {
     'prettier',
     'prettier/react',
   ],
+  env: {
+    // https://stackoverflow.com/q/42377038
+    browser: true,
+  },
 }

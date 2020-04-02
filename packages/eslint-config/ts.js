@@ -29,29 +29,20 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
-  },
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
-  overrides: [
-    {
-      // enable the rule specifically for TypeScript files
-      files: ['**/*.ts', '**/*.tsx'],
-      rules: {
-        '@typescript-eslint/interface-name-prefix': ['error', 'always'],
-        '@typescript-eslint/no-use-before-define': [
-          'error',
-          { functions: false, typedefs: false },
-        ],
-        '@typescript-eslint/explicit-function-return-type': [
-          'error',
-          {
-            allowExpressions: true,
-            allowTypedFunctionExpressions: true,
-            allowHigherOrderFunctions: true,
-          },
-        ],
+    '@typescript-eslint/interface-name-prefix': ['error', 'always'],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, typedefs: false },
+    ],
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      {
+        allowExpressions: true,
+        allowTypedFunctionExpressions: true,
+        allowHigherOrderFunctions: true,
       },
-    },
-  ],
+    ],
+  },
   env: {
     // https://stackoverflow.com/q/42377038
     browser: true,
