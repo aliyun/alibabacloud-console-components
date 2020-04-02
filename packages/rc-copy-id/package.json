@@ -1,0 +1,55 @@
+{
+  "name": "@alicloud/console-components-copy-id",
+  "version": "1.0.0",
+  "description": "React component for Alibaba Cloud.",
+  "main": "lib/index.js",
+  "typings": "cc-dev-out/index.d.ts",
+  "module": "es/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "wind",
+    "wind-rc-copy-id",
+    "react",
+    "react component"
+  ],
+  "author": {
+    "name": "csr632",
+    "email": "632882184@qq.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build",
+    "clean": "rm -rf dist lib es cc-dev-out",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "types": "tsc -p src --emitDeclarationOnly && cc-extract-api",
+    "build": "breezr build --engine webpack",
+    "test": "breezr test:unit",
+    "storybook": "breezr start-storybook",
+    "lint": "eslint src/",
+    "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write",
+    "doc:local-dev": "cc-doc-local-dev",
+    "doc:build": "cc-build-doc",
+    "publish-preview": "cc-publish-preview"
+  },
+  "peerDependencies": {
+    "@alicloud/console-components": "^1.0.0",
+    "prop-types": "^15.x",
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "styled-components": "^4.3.2"
+	},
+	"devDependencies": {
+		"@alicloud/console-components-table": "^1.0.11"
+	},
+  "dependencies": {
+    "@alicloud/console-components-intl": "^1.0.12",
+    "classnames": "^2.2.6",
+    "react-copy-to-clipboard": "^5.0.2"
+  }
+}

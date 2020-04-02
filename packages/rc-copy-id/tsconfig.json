@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": ["test/**"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./lib",
+    "paths": {
+      "@alicloud/console-components-copy-id": ["./"],
+      "@alicloud/console-components-copy-id/*": ["./*"]
+    }
+  }
+}
