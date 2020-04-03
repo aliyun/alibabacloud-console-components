@@ -1,10 +1,23 @@
-import React, { CSSProperties, ReactNode, ReactElement } from 'react'
+import React, {
+  CSSProperties,
+  ReactNode,
+  ReactElement,
+  createContext,
+  useMemo,
+} from 'react'
 import { Dropdown, Menu, Icon } from '@alicloud/console-components'
+import { DropdownProps } from '@alicloud/console-components/types/dropdown'
+import { MenuProps } from '@alicloud/console-components/types/menu'
+import cls from 'classnames'
+
 import {
+  GetFusionConfig,
+  IFusionConfigProps,
   getWrapperProps,
   partitionWithThreshold,
   renderActionsChildren,
 } from './utils'
+
 import {
   baseClassName,
   itemClassName,
@@ -13,6 +26,16 @@ import {
   collapsedItemClassName,
 } from './constants'
 import { SActions, DropDownStyle } from './styles'
+
+const Context = createContext<{
+  menuProps: MenuProps
+  dropdownProps: DropdownProps
+  prefix: string
+}>({
+  menuProps: {},
+  dropdownProps: {},
+  prefix: 'next-',
+})
 
 /**
  * Actions 的props类型。
@@ -34,11 +57,6 @@ export interface IActionsProps {
    */
   threshold?: number
   /**
-   * @defaultValue 根据{@link IActionsProps.threshold | threshold}将子节点分为两组：`[前threshold个, 剩下的x个]`
-   * @internal
-   */
-  partitionFn?: PartitionFn
-  /**
    * 收敛菜单的触发器
    * @defaultValue `<Icon type="more">`
    */
@@ -49,27 +67,40 @@ export interface IActionsProps {
    */
   expandTriggerType?: 'hover' | 'click'
   /**
-   * 效果等价于设置`children`。
-   * @deprecated 请直接使用`children`
-   * @internal
-   */
-  dataSource?: ReactNode
-  /**
-   * @defaultValue 默认的渲染函数假设{@link IActionsProps.partitionFn | partitionFn}已经将子元素分为了两组：`[前threshold个, 剩下的x个]`，它会将前面这组直接展示，并用竖线分开，将后面这组收敛在一个下拉菜单中
-   * @internal
-   */
-  remderItemsByParts?: RenderItemsByParts
-  /**
    * 是否允许Actions换行
    */
   wrap?: boolean
+  /**
+   * 开发者可传入dropdownProps，透传给弹层Dropdown。继承基础组件`Dropdown`的API
+   */
+  dropdownProps?: DropdownProps
+  /**
+   * 开发者可传入menuProps，透传给弹层内的Menu组件，继承基础组件`Menu`的API
+   */
+  menuProps?: MenuProps
+  /**
+   * @internal
+   * @defaultValue 根据{@link IActionsProps.threshold | threshold}将子节点分为两组：`[前threshold个, 剩下的x个]`
+   */
+  partitionFn?: PartitionFn
+  /**
+   * @internal
+   * @deprecated 请直接使用`children`
+   * 效果等价于设置`children`。
+   */
+  dataSource?: ReactNode
+  /**
+   * @internal
+   * @defaultValue 默认的渲染函数假设{@link IActionsProps.partitionFn | partitionFn}已经将子元素分为了两组：`[前threshold个, 剩下的x个]`，它会将前面这组直接展示，并用竖线分开，将后面这组收敛在一个下拉菜单中
+   */
+  remderItemsByParts?: RenderItemsByParts
 }
 
 /**
  * 多个操作器（如按钮、链接）的布局容器。
  * @public
  */
-const Actions: React.FC<IActionsProps> = props => {
+const Actions: React.FC<IActionsProps & IFusionConfigProps> = (props) => {
   const wrapperProps = getWrapperProps(props, { className: baseClassName })
   const {
     children,
@@ -78,7 +109,7 @@ const Actions: React.FC<IActionsProps> = props => {
     expandTrigger = <Icon type="more" size="xs" tabIndex={0} />,
     expandTriggerType = 'click' as IActionsProps['expandTriggerType'],
     // threshold option is just a suger for partitionFn
-    partitionFn = (childrenArg =>
+    partitionFn = ((childrenArg) =>
       partitionWithThreshold(childrenArg, threshold)) as PartitionFn,
     remderItemsByParts = defaultRemderItemsByParts.bind(
       null,
@@ -86,22 +117,38 @@ const Actions: React.FC<IActionsProps> = props => {
       expandTriggerType
     ),
     wrap = false,
+    dropdownProps = {},
+    menuProps = {},
+    fusionConfig = {},
   } = props
 
+  const { prefix = 'next-' } = fusionConfig
+
+  const providerValue = useMemo(
+    () => ({
+      dropdownProps,
+      menuProps,
+      prefix,
+    }),
+    [dropdownProps, menuProps, prefix]
+  )
+
   return (
-    <SActions {...wrapperProps} wrap={wrap}>
-      {renderActionsChildren(
-        children || dataSource || [],
-        partitionFn,
-        remderItemsByParts
-      )}
-    </SActions>
+    <Context.Provider value={providerValue}>
+      <SActions {...wrapperProps} wrap={wrap}>
+        {renderActionsChildren(
+          children || dataSource || [],
+          partitionFn,
+          remderItemsByParts
+        )}
+      </SActions>
+    </Context.Provider>
   )
 }
-export default Actions
 
-export * from './constants'
-export * from './linkButton'
+export default GetFusionConfig(Actions)
+
+export { GetFusionConfig } from './utils'
 
 function defaultRenderDisplayedItems(items: ReactElement[]) {
   return items.map((item, index) => (
@@ -122,29 +169,42 @@ function defaultRenderShrinkItems(
   if (items.length === 0) {
     return null
   }
+
   const { expandTrigger, expandTriggerType } = config
   return (
-    <>
-      <DropDownStyle />
-      <Dropdown
-        trigger={<span className={triggerClassName}>{expandTrigger}</span>}
-        triggerType={expandTriggerType}
-      >
-        <Menu className={expandMenuClassName}>
-          {items.map((item, i) => {
-            const {
-              props: { disabled },
-            } = item
-            return (
-              // eslint-disable-next-line react/no-array-index-key
-              <Menu.Item disabled={disabled} key={i}>
-                <span className={collapsedItemClassName}>{item}</span>
-              </Menu.Item>
-            )
-          })}
-        </Menu>
-      </Dropdown>
-    </>
+    <Context.Consumer>
+      {({ prefix, dropdownProps, menuProps }) => {
+        return (
+          <>
+            <DropDownStyle prefix={prefix} />
+            <Dropdown
+              {...dropdownProps}
+              trigger={
+                <span className={triggerClassName}>{expandTrigger}</span>
+              }
+              triggerType={expandTriggerType}
+            >
+              <Menu
+                {...menuProps}
+                className={cls(expandMenuClassName, menuProps.className || '')}
+              >
+                {items.map((item, i) => {
+                  const {
+                    props: { disabled },
+                  } = item
+                  return (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Menu.Item disabled={disabled} key={i}>
+                      <span className={collapsedItemClassName}>{item}</span>
+                    </Menu.Item>
+                  )
+                })}
+              </Menu>
+            </Dropdown>
+          </>
+        )
+      }}
+    </Context.Consumer>
   )
 }
 

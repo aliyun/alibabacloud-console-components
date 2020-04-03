@@ -36,13 +36,27 @@ FragmentDemo：
 
 [MDXInstruction:importDemo:WrapDemo](./stories/wrap.tsx)
 
+自定义下拉菜单的宽度
+
+[MDXInstruction:importDemo:WrapDemo](./stories/customWidth.tsx)
+
 ## APIs
 
 ### Actions
 
-[MDXInstruction:renderInterface:IActionsProps](./src/index.tsx)
+[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)
 
 ### LinkButton
+
+[MDXInstruction:renderInterface:IWithLinkProps](./api-json/api.json)
+
+使用LinkButton进行站外跳转，传入`href`属性, `LinkButton`将被渲染为`<a />`
+
+[MDXInstruction:importDemo:WithHref](./stories/WithHref.tsx)
+
+使用LinkButton进行内跳转，传入`to`属性，`LinkButton`将被渲染为`<Link />`
+
+[MDXInstruction:importDemo:WithLink](./stories/WithLink.tsx)
 
 `<LinkButton>`用于定义`<Actions>`中的操作按钮，接受的 props 与普通的`<span>`相同，经常使用的是`onClick`。
 
