@@ -19,11 +19,11 @@ const DocPreview: React.FC = () => {
     const docDef = getDocDefFromURL()
     if (docDef) {
       const url = [
-        window.loadDocModule.resolveDocDef('jsdelivr', {
+        window.loadDocModule.resolveDocUrl('jsdelivr', {
           pkgName: docDef.actualLoadPkgName,
           version: docDef.actualLoadPkgVersion,
         }),
-        window.loadDocModule.resolveDocDef('unpkg', {
+        window.loadDocModule.resolveDocUrl('unpkg', {
           pkgName: docDef.actualLoadPkgName,
           version: docDef.actualLoadPkgVersion,
         }),

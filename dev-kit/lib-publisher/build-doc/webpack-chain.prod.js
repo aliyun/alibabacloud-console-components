@@ -13,6 +13,8 @@ module.exports.createConfig = ({
   tsApiJson = path.resolve(rootDir, 'cc-dev-out', 'api-json', 'api.json'),
   alias,
   analyze,
+  remarkPlugins,
+  linkInstructions,
 } = {}) => {
   const externals = (() => {
     if (Array.isArray(argExternals)) return argExternals
@@ -25,6 +27,8 @@ module.exports.createConfig = ({
       tsApiJson,
       externals: [...externals, ...externalsArr],
       alias,
+      remarkPlugins,
+      linkInstructions,
     })
       .mode(mode === 'production' ? 'production' : 'development')
       .output.libraryTarget('system')

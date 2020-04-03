@@ -53,7 +53,7 @@ module.exports = {
         // 为每个文档添加元数据：它属于哪个类目
         // 每个文档都需要有一个类目，文档的访问路径就是`/类目name/文档name`
         // 类目还被用于给左侧导航栏分类、搜索结果分类
-        patchDocInfo: docInfo => {
+        patchDocInfo: (docInfo) => {
           // debugger
 
           // 调试指南：
@@ -125,7 +125,7 @@ module.exports = {
         // 左侧导航与顶部导航的区别：
         // 顶部导航是静态的，不随着“当前所在页面”而变化
         // 左侧导航是动态的，可以随着“当前所在页面”而变化
-        sideNav: context => {
+        sideNav: (context) => {
           // 同理，你可以在这里打断点，观察参数的结构
           const { pageMeta } = context
 
@@ -182,7 +182,7 @@ module.exports = {
         ],
         // 下面的选项可以忽略，是仅用于wind的插件
         linkInstructions: [
-          require('./lib/buildtime/linkInstructions/embedAPIFromFusion'),
+          require('../packages/component/docBuildToolsOut/linkInstructions/embedAPIFromFusion'),
         ],
       },
     },

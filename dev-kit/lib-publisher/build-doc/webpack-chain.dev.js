@@ -8,6 +8,8 @@ module.exports.createConfig = ({
   alias,
   externals,
   tsApiJson = path.resolve(rootDir, 'cc-dev-out', 'api-json', 'api.json'),
+  remarkPlugins,
+  linkInstructions,
 }) =>
   createCoreConfig({
     entryMDX,
@@ -15,6 +17,8 @@ module.exports.createConfig = ({
     tsApiJson,
     alias,
     externals,
+    remarkPlugins,
+    linkInstructions,
   })
     .mode('development')
     // add HtmlWebpackPlugin

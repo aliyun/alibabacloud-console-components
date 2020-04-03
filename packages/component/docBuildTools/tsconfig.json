@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "../docBuildToolsOut",
+    "rootDir": ".",
+    "allowJs": false,
+    "checkJs": false,
+    "declaration": true,
+    "declarationMap": true
+  }
+}

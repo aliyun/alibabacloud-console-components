@@ -1,20 +1,7 @@
 const path = require('path')
-// eslint-disable-next-line import/no-extraneous-dependencies
-const glob = require('glob')
-
-const basePath = path.resolve(__dirname, '.')
-
-function getBaseComponentList() {
-  const filePaths = glob.sync('src/components/*/README.md', {
-    cwd: basePath,
-  })
-  const components = filePaths.map((filePath) => ({
-    // filePath类似于 src/components/card/README.md
-    name: filePath.split('/')[2],
-    path: path.resolve(__dirname, filePath),
-  }))
-  return components
-}
+const {
+  getBaseComponentList,
+} = require('./docBuildToolsOut/getBaseComponentList')
 
 const compilations = getBaseComponentList().reduce((acc, cur) => {
   acc[cur.name] = {
@@ -25,8 +12,6 @@ const compilations = getBaseComponentList().reduce((acc, cur) => {
 }, {})
 
 module.exports = {
-  // mode: 'production',
-  // mode: 'development',
   outputDir: path.resolve(__dirname, 'doc-data/dist'),
   compilations,
   devServeConfig: {
@@ -44,4 +29,10 @@ module.exports = {
     mode: 'production',
     externals: ['@alicloud/console-components', 'lodash'],
   },
+  remarkPlugins: [
+    require('./docBuildToolsOut/legacyImportDemoInstruction/remarkPlugin'),
+  ],
+  linkInstructions: [
+    require('./docBuildToolsOut/linkInstructions/embedAPIFromFusion'),
+  ],
 }
