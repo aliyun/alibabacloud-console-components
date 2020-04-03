@@ -7,14 +7,9 @@ import { isNil } from './utils'
 import { IRoutableItemDescriptor, IItemDescriptor } from './ItemDescriptor'
 import { IRoutableMenuProps } from './RoutableMenuTypes'
 
-/* eslint-disable @typescript-eslint/no-explicit-any, no-restricted-syntax */
-
-const Context = React.createContext<{ match: any; location: Location } | null>(
-  null
-)
-
 const normalizeItems = (
-  items: IRoutableItemDescriptor[] = []
+  items: IRoutableItemDescriptor[] = [],
+  routerParams: { match: any; location: Location }
 ): IItemDescriptor[] =>
   items.map(item => {
     const { to, href, linkProps = {}, disabled, render, items: subItems } = item
@@ -22,36 +17,31 @@ const normalizeItems = (
     if (subItems) {
       return {
         ...item,
-        items: normalizeItems(subItems),
+        items: normalizeItems(subItems, routerParams),
       }
-    }
-
+		}
+		
     if (isNil(render) && !disabled) {
       // create leaf item a default renderer
       if (to) {
-        // this is a in-app link, render `<Link>`
+				// this is a in-app link, render `<Link>`
+				// Remove Context.Consumer otherwise it will affect title
         return {
           ...item,
           render: (renderItem: IRoutableItemDescriptor) => {
+            if (!routerParams)
+              throw new Error(`item is not rendered under RoutableMenu`)
             return (
-              <Context.Consumer>
-                {value => {
-                  if (!value)
-                    throw new Error(`item is not rendered under RoutableMenu`)
-                  return (
-                    <Link
-                      {...linkProps}
-                      to={
-                        typeof renderItem.to === 'function'
-                          ? renderItem.to(value, renderItem)
-                          : renderItem.to
-                      }
-                    >
-                      {renderItem.label}
-                    </Link>
-                  )
-                }}
-              </Context.Consumer>
+              <Link
+                {...linkProps}
+                to={
+                  typeof renderItem.to === 'function'
+                    ? renderItem.to(routerParams, renderItem)
+                    : renderItem.to
+                }
+              >
+                {renderItem.label}
+              </Link>
             )
           },
         }
@@ -62,24 +52,16 @@ const normalizeItems = (
         return {
           ...item,
           render: (renderItem: IRoutableItemDescriptor) => (
-            <Context.Consumer>
-              {value => {
-                if (!value)
-                  throw new Error(`item is not rendered under RoutableMenu`)
-                return (
-                  <a
-                    {...renderItem.linkProps}
-                    href={
-                      typeof renderItem.href === 'function'
-                        ? renderItem.href(value, renderItem)
-                        : renderItem.href
-                    }
-                  >
-                    {renderItem.label}
-                  </a>
-                )
-              }}
-            </Context.Consumer>
+            <a
+              {...renderItem.linkProps}
+              href={
+                typeof renderItem.href === 'function'
+                  ? renderItem.href(routerParams, renderItem)
+                  : renderItem.href
+              }
+            >
+              {renderItem.label}
+            </a>
           ),
         }
       }
@@ -259,7 +241,10 @@ const useRoutableMenu = (
   // 3. 如果上述方法都不行，则直接使用用户最近点击的item
   const [lastClickedKey, wrappedOnClick] = useClickMonitor(onItemClick)
 
-  const normalizedItems = useMemo(() => normalizeItems(items), [items])
+  const normalizedItems = useMemo(
+    () => normalizeItems(items, { match, location }),
+    [items, location, match]
+  )
 
   // 以上三个结果，取出优先级最高的有效值
   const activeKey = [
@@ -315,7 +300,6 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
     normalizedItems,
     derivedActiveKey,
     routableOnItemClick,
-    providerValue,
   ] = useRoutableMenu({
     items,
     onItemClick,
@@ -361,17 +345,15 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
   const openKeysProp = actualOpenKeys ? { openKeys: actualOpenKeys } : undefined
 
   return (
-    <Context.Provider value={providerValue}>
-      <ConsoleMenu
-        {...restProps}
-        items={normalizedItems}
-        activeKey={actualActiveKey}
-        {...openKeysProp}
-        defaultOpenKeys={defaultOpenKeys}
-        onOpen={actualOnOpen}
-        onItemClick={routableOnItemClick}
-      />
-    </Context.Provider>
+    <ConsoleMenu
+      {...restProps}
+      items={normalizedItems}
+      activeKey={actualActiveKey}
+      {...openKeysProp}
+      defaultOpenKeys={defaultOpenKeys}
+      onOpen={actualOnOpen}
+      onItemClick={routableOnItemClick}
+    />
   )
 }
 
