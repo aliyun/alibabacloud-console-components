@@ -18,7 +18,7 @@
     "react-dnd-html5-backend": "^8.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.2.0",
+    "@babel/core": "^7.9.0",
     "parcel-bundler": "^1.6.1",
     "typescript": "^3.8.3",
     "@types/styled-components": "^4.1.8",

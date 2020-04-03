@@ -20,12 +20,12 @@ const DynamicDoc: React.FC<{}> = () => {
   }
 
   useEffect(() => {
-    const url = [
-      window.loadDocModule.resolveDocDef('jsdelivr', {
+    const urls = [
+      window.loadDocModule.resolveDocUrl('jsdelivr', {
         pkgName: docDef.actualLoadPkgName,
         version: docDef.actualLoadPkgVersion,
       }),
-      window.loadDocModule.resolveDocDef('unpkg', {
+      window.loadDocModule.resolveDocUrl('unpkg', {
         pkgName: docDef.actualLoadPkgName,
         version: docDef.actualLoadPkgVersion,
       }),
@@ -33,7 +33,7 @@ const DynamicDoc: React.FC<{}> = () => {
     setDocComp(null)
     lockRef.current = docDef
     window
-      .loadDocModule(url, { lodash: _ })
+      .loadDocModule(urls, { lodash: _ })
       .then(({ default: comp }) => {
         if (lockRef.current !== docDef) return
         setDocComp(() => comp)

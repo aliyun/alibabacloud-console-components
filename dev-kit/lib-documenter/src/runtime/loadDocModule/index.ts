@@ -1,7 +1,7 @@
 import externalsObj from './commonDeps'
 import applyPlugin from './systemjs-amd-introp'
 import { wrapMdxModule, IWrappedMdxModule } from '../MdxWrapper'
-import resolveDocDef from './resolveDoc'
+import resolveDocUrl from './resolveDocUrl'
 
 export interface IDocDef {
   prodPkgName: string
@@ -89,4 +89,4 @@ function oneSuccess(promises) {
   )
 }
 
-loadDocModule.resolveDocDef = resolveDocDef
+loadDocModule.resolveDocUrl = resolveDocUrl

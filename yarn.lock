@@ -1658,7 +1658,7 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
 
-"@babel/preset-env@^7.3.1", "@babel/preset-env@^7.4.5", "@babel/preset-env@^7.7.6", "@babel/preset-env@^7.7.7":
+"@babel/preset-env@^7.3.1", "@babel/preset-env@^7.4.5", "@babel/preset-env@^7.7.6":
   version "7.8.3"
   resolved "https://registry.npm.taobao.org/@babel/preset-env/download/@babel/preset-env-7.8.3.tgz#dc0fb2938f52bbddd79b3c861a4b3427dd3a6c54"
   integrity sha1-3A+yk49Su93XmzyGGks0J906bFQ=
@@ -1892,7 +1892,7 @@
     "@babel/plugin-transform-react-jsx-self" "^7.9.0"
     "@babel/plugin-transform-react-jsx-source" "^7.9.0"
 
-"@babel/preset-typescript@^7.1.0", "@babel/preset-typescript@^7.7.4", "@babel/preset-typescript@^7.7.7":
+"@babel/preset-typescript@^7.1.0", "@babel/preset-typescript@^7.7.4":
   version "7.8.3"
   resolved "https://registry.npm.taobao.org/@babel/preset-typescript/download/@babel/preset-typescript-7.8.3.tgz#90af8690121beecd9a75d0cc26c6be39d1595d13"
   integrity sha1-kK+GkBIb7s2addDMJsa+OdFZXRM=

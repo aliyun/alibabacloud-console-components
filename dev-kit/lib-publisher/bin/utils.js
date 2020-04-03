@@ -41,7 +41,7 @@ exports.bootWebpack = (webpackConfig) => {
   })
 }
 
-// 未来可以从配置读取config
+// 从命令行参数读取配置
 exports.getCmdArgs = () => {
   const rootDir = path.resolve(process.cwd(), argv.rootDir || '.')
 
@@ -107,6 +107,8 @@ exports.normalizeConfig = (cfg, action, cliArgv) => {
   const globalExternals = cfg.externals || []
   const globalAlias = cfg.alias || {}
   const globalOutputDir = cfg.outputDir
+  const globalRemarkPlugins = cfg.remarkPlugins
+  const globalLinkInstructions = cfg.linkInstructions
 
   const docConfigName = (() => {
     if (cliArgv.name) return cliArgv.name
@@ -170,6 +172,8 @@ exports.normalizeConfig = (cfg, action, cliArgv) => {
           ...alias,
         },
         analyze,
+        remarkPlugins: globalRemarkPlugins,
+        linkInstructions: globalLinkInstructions,
       }
     })
 

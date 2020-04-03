@@ -6,7 +6,10 @@ import { getBaseComponentList } from '../getBaseComponentList'
 
 const readFileAsync = util.promisify(fs.readFile)
 const writeFileAsync = util.promisify(fs.writeFile)
-const CACHE_PATH = path.resolve(__dirname, '../../../.fusionDocCache.json')
+const CACHE_PATH = path.resolve(
+  __dirname,
+  '../../doc-data/.fusionDocCache.json'
+)
 
 let updatingCache
 
@@ -21,7 +24,7 @@ export async function loadCache() {
         Now fetch fusion docs from github...`)
         updatingCache = updateAllCache()
       }
-      return await updatingCache
+      return updatingCache
     }
     throw error
   }
@@ -40,29 +43,28 @@ async function updateCache(cache, componentName) {
 }
 
 export async function updateAllCache() {
-  const cache = {}
-  const baseComponents = await getBaseComponentList()
-  let successCount = 0
-  let totalCount = 1
-  console.log(
-    `Start fetching fusion doc from github. Doc count: ${baseComponents.length}`
+  const baseComponents = getBaseComponentList().map(({ name }) => name)
+
+  const cache = await baseComponents.reduce(
+    async (statePromise, componentName, curIndex) => {
+      const state = await statePromise
+      try {
+        await updateCache(state, componentName)
+        console.log(
+          `[${curIndex + 1}/${baseComponents.length}] success: ${componentName}`
+        )
+        return state
+      } catch (error) {
+        // log and re-throw
+        console.error(
+          `[${curIndex + 1}/${baseComponents.length}] error: ${componentName}`,
+          error
+        )
+        throw error
+      }
+    },
+    {} as any
   )
-  for (const componentName of baseComponents) {
-    try {
-      await updateCache(cache, componentName)
-      console.log(
-        `[${totalCount}/${baseComponents.length}] success: ${componentName}`
-      )
-      successCount++
-    } catch (error) {
-      console.error(
-        `[${totalCount}/${baseComponents.length}] error: ${componentName}`,
-        error
-      )
-    }
-    totalCount++
-  }
-  console.log(`Done! Success count: ${successCount}/${baseComponents.length}`)
   await writeCache(cache)
   return cache
 }

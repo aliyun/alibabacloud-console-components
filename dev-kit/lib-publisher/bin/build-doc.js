@@ -9,7 +9,17 @@ const webpackChain = require('../build-doc/webpack-chain.prod')
 if (docsConfig) {
   const compilations = normalizeConfig(docsConfig, 'build', argv)
   const config = compilations.map(
-    ({ entry, outputDir, outputFileName, mode, externals, alias, analyze }) => {
+    ({
+      entry,
+      outputDir,
+      outputFileName,
+      mode,
+      externals,
+      alias,
+      analyze,
+      remarkPlugins,
+      linkInstructions,
+    }) => {
       return webpackChain
         .createConfig({
           rootDir,
@@ -20,6 +30,8 @@ if (docsConfig) {
           outputFileName,
           alias,
           analyze,
+          remarkPlugins,
+          linkInstructions,
         })
         .toConfig()
     }

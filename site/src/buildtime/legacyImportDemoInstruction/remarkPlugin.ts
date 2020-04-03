@@ -1,3 +1,8 @@
+// gatsby+mdx无法识别require的import方式
+// 因此这个文件fork自：
+// packages/component/docBuildTools/legacyImportDemoInstruction/remarkPlugin.ts
+// 进行一些修改
+
 import visit from 'unist-util-visit-parents'
 import * as mdast from 'mdast'
 import * as path from 'path'
@@ -30,7 +35,7 @@ function paragraphVistor(
 ) {
   if (!(node.children.length === 1 && node.children[0].type === 'text')) return
 
-  const text = node.children[0].value as string
+  const text = node.children[0].value
   const demoPath = resolveText(text)
   if (!demoPath) return
 
@@ -41,7 +46,7 @@ function paragraphVistor(
     )
   }
 
-  const parent = ancestors[0] as mdast.Parent
+  const parent = ancestors[0]
 
   // insert mdx import and jsx
   // hash it to make identifer different: https://github.com/gatsbyjs/gatsby/issues/16799

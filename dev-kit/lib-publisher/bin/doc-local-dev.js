@@ -15,7 +15,13 @@ const {
 } = getCmdArgs()
 
 ;(async () => {
-  const { entryMDX, alias, externals } = (() => {
+  const {
+    entryMDX,
+    alias,
+    externals,
+    remarkPlugins,
+    linkInstructions,
+  } = (() => {
     if (docsConfig) {
       const compilation = normalizeConfig(docsConfig, 'preview', argv)[0]
 
@@ -23,6 +29,8 @@ const {
         entryMDX: compilation.entry,
         alias: compilation.alias,
         externals: compilation.externals,
+        remarkPlugins: compilation.remarkPlugins,
+        linkInstructions: compilation.linkInstructions,
       }
     }
     return { entryMDX: argEntryMDX }
@@ -42,6 +50,8 @@ const {
       prodPkgName,
       alias,
       externals,
+      remarkPlugins,
+      linkInstructions,
     }
   )
 

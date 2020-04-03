@@ -21,8 +21,8 @@ const resolveParam = {
 }
 
 const urls = [
-  loadDocModule.resolveDocDef('aliUnpkg', resolveParam),
-  loadDocModule.resolveDocDef('antUnpkg', resolveParam),
+  loadDocModule.resolveDocUrl('aliUnpkg', resolveParam),
+  loadDocModule.resolveDocUrl('antUnpkg', resolveParam),
 ]
 
 // urls传入数组时，从多个cdn并发加载，并提供容灾

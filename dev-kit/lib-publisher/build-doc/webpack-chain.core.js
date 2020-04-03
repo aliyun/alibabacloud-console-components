@@ -18,6 +18,8 @@ module.exports.createConfig = ({
   tsApiJson,
   alias,
   externals,
+  remarkPlugins = [],
+  linkInstructions = [],
 }) => {
   const config = new Config()
 
@@ -127,12 +129,13 @@ module.exports.createConfig = ({
               require('../lib/buildtools/remarkPlugins/linkInstructions/importDemo'),
               require('../lib/buildtools/remarkPlugins/linkInstructions/lazyImportDemo'),
               require('../lib/buildtools/remarkPlugins/linkInstructions/renderInterface'),
+              ...linkInstructions,
             ],
           },
         ],
-        require('../lib/buildtools/remarkPlugins/legacyImportDemoInstruction'),
         require('../lib/buildtools/remarkPlugins/transformImg'),
         require('../lib/buildtools/remarkPlugins/addHeadings'),
+        ...remarkPlugins,
       ],
       rehypePlugins: [require('rehype-slug')],
     })
