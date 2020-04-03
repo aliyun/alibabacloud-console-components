@@ -87,8 +87,8 @@ export default Layout
 
 const ScLayout = styled.div`
   display: flex;
-  align-items: stretch;
   justify-content: flex-start;
+  align-items: flex-start;
 `
 
 const ScLayoutLeft = styled.div`

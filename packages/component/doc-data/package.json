@@ -1,0 +1,14 @@
+{
+  "name": "@alife/console-components-doc-data-dont-use-me",
+  "version": "0.0.2",
+  "license": "MIT",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "prepare": "cd ../ && npm run doc:build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
+  }
+}

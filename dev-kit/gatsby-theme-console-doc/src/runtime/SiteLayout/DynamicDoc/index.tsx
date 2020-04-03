@@ -42,6 +42,7 @@ const DynamicDoc: React.FC<{}> = () => {
         console.error('loadDocModule error:', err)
         setDocComp('error')
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [docDef.actualLoadPkgName, docDef.actualLoadPkgVersion])
 
   if (DocComp === 'error') {

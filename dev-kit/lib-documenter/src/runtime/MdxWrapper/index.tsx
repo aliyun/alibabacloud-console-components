@@ -1,9 +1,10 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import mdComps from '../MarkdownComponents'
-import { ITocHeading } from './TableOfContent'
+import type { ITocHeading } from './TableOfContent'
 import Layout from './Layout'
 import { docMetaCtx } from '../utils/context'
+import type { IDemoInfo } from '../DemoRenderer'
 
 /** lib-publisher打包mdx文档得到的模块 */
 export interface IOriginalMdxModule {
@@ -25,16 +26,18 @@ export interface IWrappedMdxModule {
 
 export interface IMdxDocProps {
   /** 动态文档的加载信息 */
-  pkgInfo?: {
-    prodPkgName: string
-    actualLoadPkgName: string
-    actualLoadPkgVersion: string
-  }
+  // pkgInfo?: {
+  //   prodPkgName: string
+  //   actualLoadPkgName: string
+  //   actualLoadPkgVersion: string
+  // }
+
   /** 本地开发环境下有一些特殊的行为，比如codesanbox不能使用 */
   mode?: 'local-dev'
   autoPadding?: boolean
   /** 指定哪个容器是负责文档滚动，用于计算TOC的激活标题 */
   scrollContainer?: string
+  changeDemoInfo?: (demoInfo: IDemoInfo) => IDemoInfo | Promise<IDemoInfo>
 }
 
 export interface IMdxDocCtx extends IMdxDocProps {
@@ -57,13 +60,13 @@ export function wrapMdxModule(
   mdxExport: IOriginalMdxModule
 ): IWrappedMdxModule {
   const frontmatter = getFrontmatter(mdxExport)
-  const tocHeadings = mdxExport.tocHeadings
+  const { tocHeadings } = mdxExport
   const DocComp = mdxExport.default
-  const WrappedDocComp: React.FC<IMdxDocProps> = props => {
+  const WrappedDocComp: React.FC<IMdxDocProps> = (props) => {
     const ctxVal: IMdxDocCtx = {
+      frontmatter,
+      tocHeadings,
       ...props,
-      frontmatter: frontmatter,
-      tocHeadings: tocHeadings,
     }
     return (
       <MDXProvider components={mdComps}>

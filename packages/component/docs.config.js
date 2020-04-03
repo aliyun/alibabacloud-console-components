@@ -27,7 +27,7 @@ const compilations = getBaseComponentList().reduce((acc, cur) => {
 module.exports = {
   // mode: 'production',
   // mode: 'development',
-  outputDir: path.resolve(__dirname, 'dist/docs'),
+  outputDir: path.resolve(__dirname, 'doc-data/dist'),
   compilations,
   devServeConfig: {
     mode: 'development',

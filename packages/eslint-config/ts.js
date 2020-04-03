@@ -4,6 +4,8 @@ module.exports = {
     // https://github.com/iamturns/eslint-config-airbnb-typescript#i-wish-this-config-would-support-
     'airbnb-typescript',
     'airbnb/hooks',
+    // https://stackoverflow.com/a/56696478/8175856
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',

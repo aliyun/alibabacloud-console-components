@@ -2,6 +2,7 @@
   "name": "@alicloud/console-components-lib-documenter",
   "version": "0.1.17",
   "license": "MIT",
+  "main": "src/runtime/index.ts",
   "publishConfig": {
     "access": "public"
   },

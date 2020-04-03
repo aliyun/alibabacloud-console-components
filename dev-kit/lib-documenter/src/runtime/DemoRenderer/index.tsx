@@ -2,9 +2,9 @@ import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { Card, Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import _ from 'lodash'
-import createCodesandbox from './createCodesandbox'
-import HeaderWithAnchor from './HeaderWithAnchor'
-import { useDocMetaCtx } from './utils/context'
+import createCodesandbox from '../createCodesandbox'
+import HeaderWithAnchor from '../HeaderWithAnchor'
+import { useDocMetaCtx } from '../utils/context'
 
 const { Row } = Grid
 
@@ -23,7 +23,7 @@ const CustomCard = styled(Card)`
   }
 `
 
-const SIcon = styled.div`
+const SIcon = styled(({ disabled, ...restProps }) => <div {...restProps} />)`
   float: right;
   margin-left: 12px;
   width: 20px;
@@ -35,6 +35,7 @@ const SIcon = styled.div`
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  ${({ disabled }) => (disabled ? 'cursor: disabled;' : '')}
 `
 
 const SIframeCtn = styled.div<{ hiding?: boolean }>`
@@ -66,8 +67,8 @@ const generateIframeSrc = (projMeta) => (sandboxId: string) =>
 export interface IDemoInfo {
   // 用户在demo模块export default Demo组件，我们在这里拿到
   default: React.ComponentType
-  // _demoSrcFiles是demoPlugin收集到的demo源码，用于创建codesandbox
-  _demoSrcFiles: {
+  // demoFiles是demoPlugin收集到的demo源码，用于创建codesandbox
+  demoFiles: {
     [fileName: string]: string
   }
   // demoMeta是用户在单个demo中标注的元数据，比如demo名称、描述
@@ -76,6 +77,7 @@ export interface IDemoInfo {
     zhName?: string
     zhDesc?: string
   }
+  disableCodesandbox?: boolean
 }
 
 type IProps = {
@@ -89,45 +91,23 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
   const [demoInfo, setDemoInfo] = useState<IDemoInfo | null>(null)
 
   useEffect(() => {
-    // 异步加载的demo
-    if (isPromiseLike(demoInfoOrPromise)) {
-      demoInfoOrPromise.then((demoInfo) => {
-        setDemoInfo(fixDemoPkgJson(demoInfo))
-      })
-    } else {
-      // 同步加载的demo
-      setDemoInfo(fixDemoPkgJson(demoInfoOrPromise))
-    }
-
-    function fixDemoPkgJson(demoInfo) {
-      const demoSrcFiles = (() => {
-        // 修改demo的package.json，让codesandbox正确解析依赖：
-        // 将demo中的import xxx from '${prodPkgName}' 解析到
-        // actualLoadPkgName的actualLoadPkgVersion版本
-        if (docMetaCtxVal.pkgInfo) {
-          const {
-            prodPkgName,
-            actualLoadPkgName,
-            actualLoadPkgVersion,
-          } = docMetaCtxVal.pkgInfo
-          const pkgJson = JSON.parse(demoInfo._demoSrcFiles['package.json'])
-          pkgJson.dependencies[actualLoadPkgName] = actualLoadPkgVersion
-
-          const alias = pkgJson.alias || {}
-          alias[prodPkgName] = actualLoadPkgName
-          pkgJson.alias = alias
-          return {
-            ...demoInfo._demoSrcFiles,
-            'package.json': JSON.stringify(pkgJson, null, 2),
-          }
-        }
-        return demoInfo._demoSrcFiles
-      })()
-      return {
-        ...demoInfo,
-        _demoSrcFiles: demoSrcFiles,
+    ;(async () => {
+      const demoInfoBeforeProcess = await demoInfoOrPromise
+      if (!demoInfoBeforeProcess.demoFiles) {
+        // compatibale with legacy interface
+        demoInfoBeforeProcess.demoFiles = (demoInfoBeforeProcess as any)._demoSrcFiles
       }
+      const demoInfoAfterProcess = await processDemoInfo(demoInfoBeforeProcess)
+      setDemoInfo(demoInfoAfterProcess)
+    })()
+
+    function processDemoInfo(demoInfoBeforeProcess: IDemoInfo) {
+      if (docMetaCtxVal.changeDemoInfo) {
+        return docMetaCtxVal.changeDemoInfo(demoInfoBeforeProcess)
+      }
+      return demoInfoBeforeProcess
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // 通过codesandbox API来上传demo，得到iframe的URL
@@ -142,8 +122,8 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
     if (!demoInfo) return
     setIsShowingIframe(true)
     if (!iframeSrc) {
-      const projMeta = JSON.parse(demoInfo._demoSrcFiles['demoMeta.json'])
-      createCodesandbox(demoInfo._demoSrcFiles)
+      const projMeta = JSON.parse(demoInfo.demoFiles['demoMeta.json'])
+      createCodesandbox(demoInfo.demoFiles)
         .then(generateIframeSrc(projMeta))
         .then(setIframeSrc)
     }
@@ -160,15 +140,15 @@ const DemoRenderer: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
   })()
 
   const iframeController = (() => {
-    if (docMetaCtxVal.mode === 'local-dev') {
+    if (demoInfo?.disableCodesandbox) {
       return (
         <Balloon
-          trigger={<SIcon />}
+          trigger={<SIcon disabled />}
           closable={false}
           followTrigger
           popupContainer={() => domRef.current || document.body}
           popupStyle={{
-            width: '480px',
+            width: '180px',
             textAlign: 'center',
           }}
         >

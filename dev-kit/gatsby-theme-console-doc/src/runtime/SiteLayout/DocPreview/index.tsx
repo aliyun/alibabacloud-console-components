@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react'
-import { IDocDef } from '@alicloud/console-components-lib-documenter/src/runtime/loadDocModule'
+import { IDocDef } from '@alicloud/console-components-lib-documenter'
 import RcAnnouncement from '@alicloud/console-components-announcement'
 import styled from 'styled-components'
 import _ from 'lodash'
