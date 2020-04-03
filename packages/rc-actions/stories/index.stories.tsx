@@ -9,6 +9,9 @@ import CustomChildren from './customChildren'
 import Fragment from './fragment'
 import Wrap from './wrap'
 import CustomExpandTrigger from './customExpandTrigger'
+import CustomWidth from './customWidth'
+import WithHref from './withHref'
+import WithLink from './withLink'
 
 storiesOf('WindRcActions', module)
   .add('Basic', () => <Basic />)
@@ -18,3 +21,6 @@ storiesOf('WindRcActions', module)
   .add('Fragment', () => <Fragment />)
   .add('Wrap', () => <Wrap />)
   .add('CustomExpandTrigger', () => <CustomExpandTrigger />)
+  .add('CustomWidth', () => <CustomWidth />)
+  .add('WithHref', () => <WithHref />)
+  .add('WithLink', () => <WithLink />)

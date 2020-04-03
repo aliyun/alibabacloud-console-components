@@ -6,9 +6,11 @@ import React, {
   ReactElement,
 } from 'react'
 import classNames from 'classnames'
-import { PartitionFn, RenderItemsByParts } from './index'
+import { ConfigProvider } from '@alicloud/console-components'
+import { PartitionFn, RenderItemsByParts, IActionsProps } from './actions'
 
 /**
+ * @public
  * merge className and style from props with 'addition'
  */
 export function getWrapperProps(
@@ -27,6 +29,9 @@ export function getWrapperProps(
   }
 }
 
+/**
+ * @internal
+ */
 export function renderActionsChildren(
   children: ReactNode,
   partitionFn: PartitionFn,
@@ -44,14 +49,14 @@ export function renderActionsChildren(
   newChildren = spreadFragmentInChildren(newChildren)
     // only consider these nodes
     .filter(
-      node => isValidElement(node) && node.props.visible !== false
+      (node) => isValidElement(node) && node.props.visible !== false
     ) as ReactElement[]
   const parts = partitionFn(newChildren as ReactElement[])
   return remderItemsByParts(...parts)
 }
 
 /**
- * flattern the React.Fragment inside children:
+ * `flattern the React.Fragment inside children:
  * children: [<A>, <B>, <React.Fragment><C><D></React.Fragment>, <E>]
  * =>
  * result: [<A>, <B>, <C>, <D>, <E>]
@@ -66,7 +71,11 @@ export function renderActionsChildren(
  * <E>]
  * =>
  * if recursive: true, result will be:  [<A>, <B>, <C>, <D>, <E>] ()
- * if recursive: false, result will be: [<A>, <B>, <C>, <React.Fragment><D></React.Fragment>, <E>]
+ * if recursive: false, result will be: [<A>, <B>, <C>, <React.Fragment><D></React.Fragment>, <E>]`
+ */
+
+/**
+ * @public
  */
 export function spreadFragmentInChildren(
   children: ReactNode,
@@ -77,7 +86,7 @@ export function spreadFragmentInChildren(
   }
   const result: ReactNode[] = []
   // children can be a single element or array of it
-  Children.forEach(children, node => {
+  Children.forEach(children, (node) => {
     if (!isValidElement(node)) {
       // node maybe 0, '', boolean, null, undefined
       // React.Children.forEach auto spread array into nodes, so node can't be array
@@ -100,6 +109,9 @@ export function spreadFragmentInChildren(
   return result
 }
 
+/**
+ * @internal
+ */
 export function partitionWithThreshold<T>(arr: T[], threshold: number) {
   const front: T[] = []
   const back: T[] = []
@@ -111,4 +123,33 @@ export function partitionWithThreshold<T>(arr: T[], threshold: number) {
     }
   })
   return [front, back] as [T[], T[]]
+}
+
+/**
+ * @public
+ */
+export interface IFusionConfig {
+  prefix?: string
+}
+
+/**
+ * @public
+ */
+export interface IFusionConfigProps {
+  fusionConfig?: IFusionConfig
+}
+
+/**
+ * @public
+ */
+export function GetFusionConfig<PropType>(Wrapped: React.ComponentType<IActionsProps & IFusionConfigProps>) {
+  const ConfifgConsumer: any = (ConfigProvider as any).Consumer
+  const HOC: React.FC<IActionsProps> = (props) => (
+    <ConfifgConsumer>
+      {(context: IFusionConfig) => (
+        <Wrapped {...props} fusionConfig={context} />
+      )}
+    </ConfifgConsumer>
+  )
+  return HOC
 }

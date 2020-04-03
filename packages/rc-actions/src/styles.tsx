@@ -55,13 +55,16 @@ export const SActions = styled(DummyDiv)`
  * 由于下拉菜单DOM是直接挂载在body下的，
  * 所以无法用普通的styled-component来添加样式
  */
-export const DropDownStyle = createGlobalStyle`
+export const DropDownStyle = createGlobalStyle<{ prefix: string }>`
   .${expandMenuClassName} {
-    .next-menu-item {
-      position: relative;
-      .next-menu-item-text {
+		max-width: 200px;
+    .${getPrefix}menu-item {
+      .${getPrefix}menu-item-text {
         display: block;
       }
     }
   }
 `
+export function getPrefix({ prefix }: { prefix: string }) {
+  return prefix
+}
