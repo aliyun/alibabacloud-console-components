@@ -13,7 +13,7 @@
     "prepare": "yarn run build",
     "publishInternal": "node ./scripts/publish-to-tnpm/index.js",
     "doc:local-dev": "cc-doc-local-dev",
-    "doc:build": "rm -rf dist/docs && cc-build-doc",
+    "doc:build": "rm -rf doc-data/dist && cc-build-doc",
     "publish-preview": "cc-publish-preview"
   },
   "keywords": [

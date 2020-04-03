@@ -2,6 +2,7 @@
 /demo
 /scripts
 /src
+/doc-data
 /.demoProjectTemplate
 
 babel.config.js
