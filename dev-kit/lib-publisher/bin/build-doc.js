@@ -1,5 +1,8 @@
 #! /usr/bin/env node
 
+const fs = require('fs-extra')
+const path = require('path')
+
 const { getCmdArgs, normalizeConfig, bootWebpack } = require('./utils')
 
 const { argv, entryMDX, rootDir, prodPkgName, docsConfig } = getCmdArgs()
@@ -36,7 +39,22 @@ if (docsConfig) {
         .toConfig()
     }
   )
-  bootWebpack(config)
+  bootWebpack(config, () => {
+    const docBuildMeta = {
+      buildTime: new Date().toISOString(),
+      docs: compilations.map(({ name, outputFileName }) => {
+        return {
+          name,
+          fileName: outputFileName,
+        }
+      }),
+    }
+    fs.writeFileSync(
+      path.resolve(docsConfig.outputDir, 'docBuildMeta.json'),
+      JSON.stringify(docBuildMeta),
+      'utf-8'
+    )
+  })
 } else {
   const mode =
     argv.mode === 'dev' || argv.mode === 'development'

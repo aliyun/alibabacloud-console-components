@@ -1,6 +1,6 @@
 {
-  "name": "@alife/console-components-doc-data-dont-use-me",
-  "version": "0.0.2",
+  "name": "@alicloud/console-components-doc-data-dont-use-me",
+  "version": "0.0.3",
   "license": "MIT",
   "files": [
     "dist/*"
@@ -10,6 +10,6 @@
     "build": "cd ../ && npm run doc:build"
   },
   "publishConfig": {
-    "registry": "https://registry.npm.alibaba-inc.com"
+    "access": "public"
   }
 }

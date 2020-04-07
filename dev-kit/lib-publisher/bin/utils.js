@@ -5,8 +5,8 @@ const fs = require('fs-extra')
 const { argv } = require('yargs')
 const pkgJson = require('../package.json')
 
-exports.bootWebpack = (webpackConfig) => {
-  webpack(webpackConfig, (err, stats) => {
+exports.bootWebpack = (webpackConfig, cb) => {
+  webpack(webpackConfig, async (err, stats) => {
     // Stats Object
     if (err) {
       process.exitCode = 1
@@ -30,6 +30,10 @@ exports.bootWebpack = (webpackConfig) => {
         console.log('\n')
       })
       return
+    }
+
+    if (typeof cb === 'function') {
+      await cb(stats)
     }
 
     console.log(
