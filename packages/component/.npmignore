@@ -3,6 +3,8 @@
 /scripts
 /src
 /doc-data
+/docBuildTools
+/docBuildToolsOut
 /.demoProjectTemplate
 
 babel.config.js

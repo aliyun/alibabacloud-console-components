@@ -11,8 +11,10 @@ const compilations = getBaseComponentList().reduce((acc, cur) => {
   return acc
 }, {})
 
+const OUT_DIR = path.resolve(__dirname, 'doc-data/dist')
+
 module.exports = {
-  outputDir: path.resolve(__dirname, 'doc-data/dist'),
+  outputDir: OUT_DIR,
   compilations,
   devServeConfig: {
     mode: 'development',
