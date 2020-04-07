@@ -254,8 +254,8 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
                 Object.defineProperty(dep, '__inject_demo_info__', {
                   enumerable: false,
                   value: true,
-                })
-                parser.state.current.addDependency(dep)
+                });
+                (parser as any).state.current.addDependency(dep)
                 return true
               })
           })
