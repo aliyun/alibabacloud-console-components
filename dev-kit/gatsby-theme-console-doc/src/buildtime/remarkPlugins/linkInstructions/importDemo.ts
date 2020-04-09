@@ -34,7 +34,7 @@ const handleLinkNode = ({
   )
 }
 
-const beforeVisitTree = tree => {
+const beforeVisitTree = (tree) => {
   tree.children.unshift({
     type: 'import',
     value: `import DemoRenderer__LinkInstructions from '@runtime/DemoRenderer'`,

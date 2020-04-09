@@ -1,0 +1,24 @@
+{
+  "name": "@alicloud/console-components-build-doc",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "watch": "npm run clean && tsc -w",
+    "prepare": "npm run clean && tsc"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/pluginutils": "^3.0.8"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "rollup": "^2.3.3"
+  }
+}
