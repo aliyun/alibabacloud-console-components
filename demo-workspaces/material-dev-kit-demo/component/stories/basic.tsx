@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from 'react'
 import MyButton from '@alicloud/cc-demo-component'
+import utils from './demo-utils'
 
 const Example: React.FC<{}> = () => {
+  useEffect(() => {
+    utils()
+  }, [])
   return (
     <p>
       This is a React demo: <MyButton />
     </p>
-  );
-};
+  )
+}
 
-export default Example;
+export default Example
