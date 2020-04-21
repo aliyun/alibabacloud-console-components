@@ -38,7 +38,7 @@ FragmentDemo：
 
 自定义下拉菜单的宽度
 
-[MDXInstruction:importDemo:WrapDemo](./stories/customWidth.tsx)
+[MDXInstruction:importDemo:CustomWidthDemo](./stories/customWidth.tsx)
 
 ## APIs
 
@@ -48,23 +48,17 @@ FragmentDemo：
 
 ### LinkButton
 
-[MDXInstruction:renderInterface:IWithLinkProps](./api-json/api.json)
+`<LinkButton>`用于定义`<Actions>`中的操作按钮，接受的 props 与普通的`<span>`相同，经常使用的是`onClick`。
 
-使用LinkButton进行站外跳转，传入`href`属性, `LinkButton`将被渲染为`<a />`
+[MDXInstruction:renderInterface:ILinkButtonProps](./api-json/api.json)
+
+使用LinkButton进行站外跳转，通过`props.Component`将`LinkButton`将被渲染为`<a />`
 
 [MDXInstruction:importDemo:WithHref](./stories/WithHref.tsx)
 
-使用LinkButton进行内跳转，传入`to`属性，`LinkButton`将被渲染为`<Link />`
+使用LinkButton进行内跳转，通过`props.Component`将`LinkButton`将被渲染为`<Link />`
 
 [MDXInstruction:importDemo:WithLink](./stories/WithLink.tsx)
-
-`<LinkButton>`用于定义`<Actions>`中的操作按钮，接受的 props 与普通的`<span>`相同，经常使用的是`onClick`。
-
-为什么你不应该直接将`<a>`当做按钮使用：
-
-- 使用`<a>`来定义“按钮”是不符合语义的。
-- 控制`<a>`的样式是一件很麻烦的事情，你需要控制`:hover` `:visited` `:active` `:focus`等状态下的样式。并且不同浏览器的表现可能也会不同。
-- 在`<a>`的 onClick 中，你需要时刻记得`event.preventDefault()`，否则可能出现难以预料的跳转行为，见前面的“基本用法”DEMO。
 
 ### LinkMore
 

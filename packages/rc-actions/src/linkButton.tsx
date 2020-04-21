@@ -2,20 +2,20 @@ import React from 'react'
 import { Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import { expandMenuClassName, collapsedItemClassName } from './constants'
-import WithLink from './with-link'
 
 /**
  * @public
  */
-export interface IWithLinkProps {
+export interface ILinkButtonProps {
   /**
-   * 跳转链接，使用该属性后`LinkButton`将被渲染为`a`标签，此时开发者需要注意`onClick`等事件的影响
+   * 用什么组件来渲染链接。请传入一个组件。
+   * 你可以渲染为'a'或者react-router的Link组件。
+   *
+   * @defaultValue 'span'
    */
-  href?: string
-  /**
-   * 跳转链接，使用该属性后`LinkButton`将被渲染为`<Link />`
-   */
-  to?: string
+  Component?: string | React.ComponentType<any>
+
+  [key: string]: any
 }
 
 /**
@@ -52,26 +52,22 @@ export const SLinkButton = styled.span<{ disabled?: boolean }>`
 /**
  * @public
  */
-const LinkButton: React.FC<React.HTMLProps<HTMLSpanElement>> = ({
-  children,
-  onClick,
-  disabled,
-  ...props
-}) => {
+export const LinkButton: React.FC<
+  React.HTMLProps<HTMLSpanElement> & ILinkButtonProps
+> = ({ children, onClick, disabled, Component, ...props }) => {
   return (
     <SLinkButton
       {...(props as any)}
+      as={Component}
       disabled={disabled}
       onClick={(e) => {
-        !disabled && typeof onClick === 'function' && onClick(e)
+        if (!disabled && typeof onClick === 'function') onClick(e)
       }}
     >
       {children}
     </SLinkButton>
   )
 }
-
-export default WithLink(LinkButton)
 
 /**
  * @public

@@ -1,5 +1,5 @@
-import Actions from './actions'
-import LinkButton, { LinkMore } from './linkButton'
+import Actions, { IActionsProps } from './actions'
+import { LinkButton, LinkMore, ILinkButtonProps } from './linkButton'
 /**
  * @public
  */
@@ -18,14 +18,6 @@ const ExpActions: IActions = Object.assign(Actions, {
 
 export default ExpActions
 
-export { LinkButton, Actions, LinkMore }
-
-export * from './linkButton'
-
-export * from './actions'
+export { Actions, IActionsProps, LinkButton, LinkMore, ILinkButtonProps }
 
 export * from './constants'
-
-export * from './utils'
-
-export * from './with-link'
