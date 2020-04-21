@@ -1,10 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {
-  demoImportAlias,
-  loadDocModule,
-} from '@alicloud/console-components-lib-documenter'
-import _ from 'lodash'
+import { demoImportAlias } from '@alicloud/console-components-lib-documenter'
+import loadDocModule from '@alicloud/console-components-lib-documenter/src/runtime/loadDocModule2/index'
+import * as prodPkg from '@alicloud/cc-demo-component'
 
 const aliasConfig = {
   // 预览包的生产包名（用户在生产环境应该使用的包名，即你在demo中用什么名称来import这个物料）
@@ -14,20 +12,22 @@ const aliasConfig = {
   actualLoadPkgVersion: 'latest',
 }
 
-const resolveParam = {
-  pkgName: '@alife/console-components-doc-data-dont-use-me',
-  version: 'latest',
-  path: 'dist/button.system.js',
-}
+// const resolveParam = {
+//   pkgName: '@alife/console-components-doc-data-dont-use-me',
+//   version: 'latest',
+//   path: 'dist/button.system.js',
+// }
 
-const urls = [
-  loadDocModule.resolveDocUrl('aliUnpkg', resolveParam),
-  loadDocModule.resolveDocUrl('antUnpkg', resolveParam),
-]
+// const urls = [
+//   loadDocModule.resolveDocUrl('aliUnpkg', resolveParam),
+//   loadDocModule.resolveDocUrl('antUnpkg', resolveParam),
+// ]
+const urls = 'http://localhost:5000/docs/doc.amd.js'
 
 // urls传入数组时，从多个cdn并发加载，并提供容灾
 loadDocModule(urls, {
-  lodash: _,
+  // lodash: _,
+  '@alicloud/cc-demo-component': prodPkg,
 }).then(({ default: DocComp }) => {
   ReactDOM.render(
     <DocComp changeDemoInfo={demoImportAlias(aliasConfig)} />,

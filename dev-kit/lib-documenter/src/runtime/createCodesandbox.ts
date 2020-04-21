@@ -1,25 +1,30 @@
-async function createCodesandbox(demoInfo: any) {
+async function createCodesandbox(demoFiles: {
+  [modulesName: string]: string
+}): Promise<string> {
   const files: { [key: string]: { content: string } } = {}
-  if (typeof demoInfo !== 'object' || demoInfo === null) {
+  if (typeof demoFiles !== 'object' || demoFiles === null) {
     throw new Error(`createCodesandbox: demoInfo is not object`)
   }
-  Object.keys(demoInfo).forEach(key => {
+  Object.keys(demoFiles).forEach((key) => {
     files[key] = {
-      content: demoInfo[key],
+      content: demoFiles[key],
     }
   })
-  return fetch('https://codesandbox.io/api/v1/sandboxes/define?json=1', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      files,
-    }),
-  })
-    .then(x => x.json())
-    .then(({ sandbox_id }) => sandbox_id)
+  return (
+    fetch('https://codesandbox.io/api/v1/sandboxes/define?json=1', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        files,
+      }),
+    })
+      .then((x) => x.json())
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      .then(({ sandbox_id }) => sandbox_id)
+  )
 }
 
 export default createCodesandbox
