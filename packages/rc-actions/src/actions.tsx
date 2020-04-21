@@ -80,20 +80,10 @@ export interface IActionsProps {
   menuProps?: MenuProps
   /**
    * @internal
-   * @defaultValue 根据{@link IActionsProps.threshold | threshold}将子节点分为两组：`[前threshold个, 剩下的x个]`
-   */
-  partitionFn?: PartitionFn
-  /**
-   * @internal
    * @deprecated 请直接使用`children`
    * 效果等价于设置`children`。
    */
   dataSource?: ReactNode
-  /**
-   * @internal
-   * @defaultValue 默认的渲染函数假设{@link IActionsProps.partitionFn | partitionFn}已经将子元素分为了两组：`[前threshold个, 剩下的x个]`，它会将前面这组直接展示，并用竖线分开，将后面这组收敛在一个下拉菜单中
-   */
-  remderItemsByParts?: RenderItemsByParts
 }
 
 /**
@@ -108,19 +98,25 @@ const Actions: React.FC<IActionsProps & IFusionConfigProps> = (props) => {
     dataSource,
     expandTrigger = <Icon type="more" size="xs" tabIndex={0} />,
     expandTriggerType = 'click' as IActionsProps['expandTriggerType'],
-    // threshold option is just a suger for partitionFn
-    partitionFn = ((childrenArg) =>
-      partitionWithThreshold(childrenArg, threshold)) as PartitionFn,
-    remderItemsByParts = defaultRemderItemsByParts.bind(
-      null,
-      expandTrigger,
-      expandTriggerType
-    ),
     wrap = false,
     dropdownProps = {},
     menuProps = {},
     fusionConfig = {},
   } = props
+
+  /**
+   * 根据threshold将子节点分为两组：`[前threshold个, 剩下的x个]`
+   */
+  const partitionFn: PartitionFn = ((childrenArg) =>
+    partitionWithThreshold(childrenArg, threshold)) as PartitionFn
+  /**
+   * partitionFn已经将子元素分为了两组：`[前threshold个, 剩下的x个]`，它会将前面这组直接展示，并用竖线分开，将后面这组收敛在一个下拉菜单中
+   */
+  const renderItemsByParts: RenderItemsByParts = defaultRenderItemsByParts.bind(
+    null,
+    expandTrigger,
+    expandTriggerType
+  )
 
   const { prefix = 'next-' } = fusionConfig
 
@@ -139,7 +135,7 @@ const Actions: React.FC<IActionsProps & IFusionConfigProps> = (props) => {
         {renderActionsChildren(
           children || dataSource || [],
           partitionFn,
-          remderItemsByParts
+          renderItemsByParts
         )}
       </SActions>
     </Context.Provider>
@@ -147,8 +143,6 @@ const Actions: React.FC<IActionsProps & IFusionConfigProps> = (props) => {
 }
 
 export default GetFusionConfig(Actions)
-
-export { GetFusionConfig } from './utils'
 
 function defaultRenderDisplayedItems(items: ReactElement[]) {
   return items.map((item, index) => (
@@ -208,7 +202,7 @@ function defaultRenderShrinkItems(
   )
 }
 
-function defaultRemderItemsByParts(
+function defaultRenderItemsByParts(
   expandTrigger: ReactNode,
   expandTriggerType: IActionsProps['expandTriggerType'],
   displayedItems: ReactElement[],
@@ -227,7 +221,7 @@ function defaultRemderItemsByParts(
 
 /**
  * 这个函数将子元素划分为多个“部分”。比如，可以分为【需要直接展示的元素】和【需要藏在下拉菜单的元素】。
- * 用户可以通过这个API来自定义如何将子元素**过滤、排序、分类**。分好类以后会被传给  `IActionsProps.remderItemsByParts` 处理。
+ * 用户可以通过这个API来自定义如何将子元素**过滤、排序、分类**。分好类以后会被传给  `IActionsProps.renderItemsByParts` 处理。
  * @param children - Actions组件的所有子元素。
  * @returns 经过过滤、排序、分类后的子元素。比如可以返回`[Array<需要直接展示的元素>, Array<需要隐藏在下拉菜单的元素>]`。
  * @public
