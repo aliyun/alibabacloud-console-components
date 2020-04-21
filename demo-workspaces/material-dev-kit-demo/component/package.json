@@ -12,7 +12,7 @@
     "prepare": "npm run clean && npm run build && npm run types && npm run doc:build",
     "build": "cc-build-material",
     "doc:local-dev": "cc-doc-local-dev",
-    "doc:build": "cc-extract-api && cc-build-doc",
+    "doc:build": "cc-extract-api && npm run rollup",
     "publish-preview": "cc-publish-preview",
     "rollup": "rollup -c"
   },

@@ -14,3 +14,8 @@ const Example: React.FC<{}> = () => {
 }
 
 export default Example
+
+export const demoMeta = {
+  zhName: 'demo名称',
+  zhDesc: 'demo描述',
+}

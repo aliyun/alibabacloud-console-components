@@ -12,13 +12,25 @@
     "prepare": "npm run clean && tsc"
   },
   "dependencies": {
+    "@microsoft/api-documenter": "^7.7.18",
+    "@microsoft/api-extractor-model": "^7.7.11",
+    "@microsoft/tsdoc": "^0.12.19",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "@rollup/pluginutils": "^3.0.8"
+    "@rollup/pluginutils": "^3.0.9",
+    "enhanced-resolve": "^4.1.1",
+    "query-string": "^6.12.0",
+    "read-pkg-up": "^7.0.1",
+    "rollup": "^2.4.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-pluginutils": "^2.8.2",
+    "tiny-invariant": "^1.1.0"
   },
   "devDependencies": {
+    "@types/enhanced-resolve": "^3.0.6",
+    "@types/node": "^13.11.1",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "rollup": "^2.3.3"
+    "rollup": "^2.4.0"
   }
 }

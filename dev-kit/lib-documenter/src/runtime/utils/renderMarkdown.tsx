@@ -6,6 +6,7 @@ import remark2rehype from 'remark-rehype'
 import rehype2react from 'rehype-react'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
+import defaultSanitizeConfig from 'hast-util-sanitize/lib/github.json'
 import styled from 'styled-components'
 import CodeBlock from '../CodeBlock'
 import mdCodeComps from '../MarkdownComponents/code'
@@ -16,12 +17,18 @@ const SParagraph = styled.p`
   margin: 0;
 `
 
+const mySanitizeConfig = (() => {
+  const config = JSON.parse(JSON.stringify(defaultSanitizeConfig))
+  config.attributes['*'].push('className', 'style')
+  return config
+})()
+
 export function renderMarkdown(markdown: string) {
   const Comp = (unified()
     .use(parse)
     .use(remark2rehype, { allowDangerousHTML: true })
     .use(rehypeRaw)
-    .use(rehypeSanitize)
+    .use(rehypeSanitize, mySanitizeConfig)
     .use(rehype2react, {
       createElement: React.createElement,
       Fragment: React.Fragment,

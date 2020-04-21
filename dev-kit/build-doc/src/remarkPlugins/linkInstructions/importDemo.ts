@@ -3,7 +3,7 @@ import { makeLegalIdentifier } from '@rollup/pluginutils'
 const handleLinkNode = ({
   node,
   ancestors,
-  instructionParam,
+  instructionParam: demoName,
   linkURL,
   file,
 }) => {
@@ -15,7 +15,7 @@ const handleLinkNode = ({
   parent.children.splice(parent.children.indexOf(node), 1)
 
   const importIdentiferName = makeLegalIdentifier(
-    `${instructionParam} ${linkURL}`
+    `${demoName} ${linkURL}`
   ).replace(/_+/, '_')
 
   ancestors[0].children.splice(
@@ -27,7 +27,7 @@ const handleLinkNode = ({
     },
     {
       type: 'jsx',
-      value: `<DemoRenderer__LinkInstructions demoInfo={${importIdentiferName}} />`,
+      value: `<DemoRenderer2__LinkInstructions demoInfo={${importIdentiferName}} />`,
     }
   )
 }

@@ -34,8 +34,8 @@ const InterfaceTable: React.FC<IInterfaceTableProps> = ({ properties }) => {
     <STable dataSource={properties}>
       <Table.Column title="属性名" cell={renderName} />
       <Table.Column title="类型" cell={renderType} />
-      <Table.Column title="说明" cell={renderDescription}></Table.Column>
-      <Table.Column title="默认值" cell={renderDefaultValue}></Table.Column>
+      <Table.Column title="说明" cell={renderDescription} />
+      <Table.Column title="默认值" cell={renderDefaultValue} />
     </STable>
   )
 }

@@ -4,6 +4,7 @@ import code from './code'
 import list from './list'
 import table from './table'
 import DemoRenderer__LinkInstructions from '../DemoRenderer'
+import DemoRenderer2__LinkInstructions from '../DemoRenderer2'
 import InterfaceRenderer__LinkInstructions from '../TypescriptMetadataRenderer/interface'
 
 // 模仿github渲染markdown的样式
@@ -70,4 +71,5 @@ export default {
   // 在mdx中可以无需import直接使用shortcodes组件
   DemoRenderer__LinkInstructions,
   InterfaceRenderer__LinkInstructions,
+  DemoRenderer2__LinkInstructions,
 }

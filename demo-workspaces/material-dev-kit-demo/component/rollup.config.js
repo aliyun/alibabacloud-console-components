@@ -7,7 +7,9 @@ export default {
   input: { doc: './README.mdx' },
   output: {
     dir: 'docs',
-    format: 'esm',
+    // 输出为systemjs、esm的情况下，无法 import React from 'react'
+    format: 'amd',
+    // exports: 'named',
     entryFileNames: '[name].[format].js',
   },
   plugins: [

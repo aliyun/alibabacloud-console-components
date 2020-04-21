@@ -4,6 +4,7 @@
     "outDir": "../../lib/runtime",
     "rootDir": ".",
     "baseUrl": ".",
-    "lib": ["DOM"]
+    "lib": ["DOM"],
+    "resolveJsonModule": true
   }
 }
