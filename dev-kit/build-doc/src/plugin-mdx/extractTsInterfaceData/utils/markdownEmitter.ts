@@ -4,7 +4,6 @@ import {
   IResolveDeclarationReferenceResult,
   ApiItem,
 } from '@microsoft/api-extractor-model'
-
 import {
   MarkdownEmitter,
   IMarkdownEmitterContext,

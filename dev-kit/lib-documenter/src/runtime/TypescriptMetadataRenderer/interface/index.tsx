@@ -8,6 +8,7 @@ import Table, { IInterfaceTableRow } from './table'
 const InterfaceRenderer: React.FC<{
   data: IInterfaceData
 }> = ({ data }) => {
+  const interfaceName = data.name
   const properties: IInterfaceTableRow[] = Object.keys(data.properties)
     .map((propertyName) => ({
       name: propertyName,
@@ -18,21 +19,13 @@ const InterfaceRenderer: React.FC<{
       if (a.isRequired) return -1
       return 1
     })
-    .map(
-      ({
-        excerpt: type,
-        defaultValue,
-        name: propertyId,
-        description,
-        isRequired,
-      }) => ({
-        propertyId,
-        displayName: propertyId,
-        type,
-        description,
-        defaultValue: addIsRequiredNote(defaultValue, isRequired),
-      })
-    )
+    .map(({ excerpt: type, defaultValue, name, description, isRequired }) => ({
+      propertyId: `${interfaceName}.${name}`,
+      displayName: name,
+      type,
+      description,
+      defaultValue: addIsRequiredNote(defaultValue, isRequired),
+    }))
   return <Table properties={properties} />
 }
 

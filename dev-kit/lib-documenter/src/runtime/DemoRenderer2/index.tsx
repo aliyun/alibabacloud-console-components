@@ -16,6 +16,9 @@ export interface IDemoInfo {
     modules: {
       [modulesName: string]: string
     }
+    styles: {
+      [name: string]: string
+    }
     externals: {
       [name: string]: string
     }
@@ -34,7 +37,6 @@ type IProps = {
 }
 
 const Demo: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
-  debugger
   // docMeta是对整个markdown文档标注的元数据
   // const docMetaCtxVal = useDocMetaCtx()
 
@@ -48,7 +50,7 @@ const Demo: React.FC<IProps> = ({ demoInfo: demoInfoOrPromise }) => {
   return (
     <div>
       <DemoMeta demoInfo={demoInfo} />
-      <CustomCard>
+      <CustomCard contentHeight="auto">
         <DemoRenderer demoInfo={demoInfo} />
         <hr />
         <DemoDetailController demoInfo={demoInfo} />
