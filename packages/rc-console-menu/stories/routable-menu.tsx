@@ -9,7 +9,12 @@ const regions = ['cn-beijing', 'cn-shanghai', 'cn-hangzhou']
 
 const items: IRoutableItemDescriptor[] = [
   { key: '/home', to: '/', label: '首页' },
-  { key: '/instance', to: '/instance', label: '实例概览' },
+  {
+    key: '/instance',
+		to: '/instance',
+    label:
+      '实例概览实例',
+  },
   {
     key: '/instance/:region',
     // 可以使用函数来返回动态的 pathname 或 location
@@ -71,7 +76,10 @@ const Example = () => {
   return (
     <FakeBrowser>
       <div>
-        <RoutableMenu header="阿里云控制台" items={items} />
+        <RoutableMenu
+          header="阿里云控制台"
+          items={items}
+        />
         <p>
           Tips: 在地址栏输入<code>/daily/cn-beijing</code>，父节点会自动展开
         </p>

@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@alicloud/console-components-truncate": "^1.0.11",
-    "@researchgate/react-intersection-observer": "^1.0.1"
+    "@researchgate/react-intersection-observer": "^1.0.1",
+		"@alicloud/console-components-menu-select": "^1.0.0"
   }
 }

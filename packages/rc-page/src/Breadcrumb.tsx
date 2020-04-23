@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { Breadcrumb as RawBreadcrumb } from '@alicloud/console-components'
 
-type BreadcrumbItemType = typeof import('@alicloud/console-components/types/breadcrumb').Item
+/**
+ * @public
+ */
+export type BreadcrumbItemType = typeof import('@alicloud/console-components/types/breadcrumb').Item
 
 /**
  * @public

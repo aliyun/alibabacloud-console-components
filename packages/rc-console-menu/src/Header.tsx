@@ -1,76 +1,37 @@
-import React, { useState } from 'react'
-import { Icon, Dropdown, Menu } from '@alicloud/console-components'
-import cs from 'classnames'
+import React, { useMemo } from 'react'
+import MenuSelect from '@alicloud/console-components-menu-select'
 import * as S from './styles'
-import { IConsoleMenuProps, IOnSelect } from './ConsoleMenu'
+import { IConsoleMenuProps } from './ConsoleMenu'
 
-export interface IHeaderProps {
-  header?: IConsoleMenuProps['header']
-  headers?: IConsoleMenuProps['headers']
-  onSelectHeader?: IOnSelect
-}
-
-const renderItem = (headers: IConsoleMenuProps['headers']) =>
-  Array.isArray(headers)
-    ? headers.map((item: string) => <Menu.Item key={item}>{item}</Menu.Item>)
-    : null
-
-const Header: React.FC<IConsoleMenuProps & {
-  /**
-   * 来自ConfigProvider
-   */
-  fusionPrefix: string
-}> = ({ header, headers, onSelectHeader, fusionPrefix }) => {
-  const [direction, setDirection] = useState('down')
-
-  const handleChangeDirection = () => {
-    setDirection(direction === 'down' ? 'up' : 'down')
-  }
-
-  const handleClick = (selectedKey: string) => {
-    handleChangeDirection()
-    onSelectHeader && onSelectHeader(selectedKey)
-  }
+const Header: React.FC<IConsoleMenuProps> = ({
+  header,
+  headers = [],
+  onSelectHeader,
+  headerDropdownProps = {},
+}) => {
+  const headerSource = useMemo(() => {
+    return headers.map(item => ({
+      label: item,
+      value: item,
+    }))
+  }, [headers])
 
   return (
     <S.Header id="container">
       <div className="header-text">{header}</div>
       {headers && headers.length > 0 && (
-        <div className="header-select">
-          <Dropdown
-            visible={direction === 'up'}
-            triggerType="click"
-            offset={[16, 10]}
-            onVisibleChange={(visible: boolean) => {
-              setDirection(visible ? 'up' : 'down')
-            }}
-            container={(trigger: any) => trigger.parentNode}
-            cache
-            trigger={
-              <div className="trigger-wrap">
-                <Icon
-                  onClick={handleChangeDirection}
-                  size="small"
-                  type={`sort-${direction}`}
-                  className={cs({
-                    'trigger-icon': true,
-                    'icon-up': direction === 'up',
-                  })}
-                />
-              </div>
-            }
-          >
-            <S.SDropMenu
-              fusionPrefix={fusionPrefix}
-              style={{ left: 0, minWidth: '100%' }}
-              selectedKeys={React.isValidElement(header) ? [] : header}
-              selectMode="single"
-              onItemClick={handleClick}
-            >
-              {renderItem(headers)}
-            </S.SDropMenu>
-          </Dropdown>
-        </div>
+        <MenuSelect
+          className="wind-console-menu-select"
+          dataSource={headerSource}
+          value={header as string}
+          onSelect={onSelectHeader}
+          dropdownProps={{
+            align: 'tr, br',
+            offset: [16, 5],
+            style: { width: '208px' },
+            ...headerDropdownProps,
+          }}
+        />
       )}
     </S.Header>
   )

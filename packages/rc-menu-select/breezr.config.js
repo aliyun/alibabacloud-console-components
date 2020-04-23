@@ -1,0 +1,14 @@
+module.exports = {
+  presets: [
+    [
+      '@alicloud/console-toolkit-preset-wind-component',
+      {
+        moduleName: 'WindRcMenuSelect',
+        useTypescript: true,
+        externals: {
+          '@alicloud/console-components': 'wind',
+        },
+      },
+    ],
+  ],
+}

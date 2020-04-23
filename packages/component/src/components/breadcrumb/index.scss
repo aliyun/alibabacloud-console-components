@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+
+$breadcrumb-cls-name: '#{$css-prefix}breadcrumb';
+
+@mixin height{
+	height: 20px;
+	line-height: 20px;
+} 
+
+// fix: https://work.aone.alibaba-inc.com/issue/26061171
+.#{$breadcrumb-cls-name} {
+	// 高度默认由内容撑开，最小为20px
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	min-height: 20px;
+	white-space: normal;
+	height: auto;
+	line-height: normal;
+
+	&-item {
+		@include height;
+	}
+
+	&-text {
+		&#{&}#{&} {
+			@include height;
+			max-width: 160px;
+		}
+	}
+
+	&-separator {
+		&#{&}#{&} {
+			margin: 0 6px;
+			@include height;
+		}
+	}
+}
