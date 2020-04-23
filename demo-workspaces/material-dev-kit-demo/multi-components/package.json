@@ -1,0 +1,37 @@
+{
+  "name": "@alicloud/cc-demo-multi-components",
+  "version": "0.0.13",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "types": "tsc -p ./components/tsconfig.json",
+    "clean": "rm -rf dist lib es cc-dev-out docs",
+    "prepare": "npm run clean && npm run types && npm run doc:build",
+    "build": "cc-build-material",
+    "doc:local-dev": "cc-doc-local-dev",
+    "doc:build": "cc-extract-api && npm run rollup",
+    "publish-preview": "cc-publish-preview",
+    "rollup": "rollup -c"
+  },
+  "devDependencies": {
+    "@alicloud/console-components-lib-publisher": "^0.1.22",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@types/react": "^16.9.17",
+    "@types/styled-components": "^4.4.1",
+    "cross-env": "^6.0.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^2.3.3",
+    "rollup-plugin-babel": "^4.4.0",
+    "typescript": "^3.8.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "enhanced-resolve": "^4.1.1"
+  }
+}

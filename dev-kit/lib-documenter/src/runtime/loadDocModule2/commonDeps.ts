@@ -37,10 +37,3 @@ externalsObj['react-dom'] = External8
 import * as External9 from '@alicloud/console-components-fake-browser'
 externalsObj['@alicloud/console-components-fake-browser'] = External9
 
-import * as External10 from 'style-loader/dist/runtime/injectStylesIntoStyleTag.js'
-externalsObj[
-  'style-loader/dist/runtime/injectStylesIntoStyleTag.js'
-] = External10
-
-import * as External11 from 'css-loader/dist/runtime/api.js'
-externalsObj['css-loader/dist/runtime/api.js'] = External11

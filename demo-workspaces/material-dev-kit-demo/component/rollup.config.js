@@ -9,8 +9,8 @@ export default {
     dir: 'docs',
     // 输出为systemjs、esm的情况下，无法 import React from 'react'
     format: 'amd',
-    // exports: 'named',
-    entryFileNames: '[name].[format].js',
+    exports: 'named',
+    entryFileNames: '[name].js',
   },
   plugins: [
     MdxPlugin(),

@@ -1,9 +1,13 @@
+/* eslint-disable no-await-in-loop */
 import path from 'path'
 import babel from 'rollup-plugin-babel'
 import * as enhancedResolve from 'enhanced-resolve'
 import * as rollup from 'rollup'
 import invariant from 'tiny-invariant'
 import findPkgJson from 'read-pkg-up'
+import findUp from 'find-up'
+import fs from 'fs-extra'
+import postcss from 'rollup-plugin-postcss'
 
 export async function loadDemoCode(
   demoEntry: string,
@@ -53,10 +57,16 @@ export async function loadDemoCode(
           })
         },
       },
+      postcss({
+        inject(cssVariableName) {
+          return `__stylesθ["${cssVariableName}"] = ${cssVariableName}`
+        },
+      }),
     ],
   })
   const { output } = await bundle.generate({
     format: 'esm',
+    dir: 'demo-out',
   })
   invariant(
     output.length === 1,
@@ -70,13 +80,17 @@ export async function loadDemoCode(
       code: string
       path: string
     }
-  } = bundle.cache.modules.reduce((acc, module) => {
-    const { id: demoModulePath, originalCode } = module
-    invariant(path.isAbsolute(demoModulePath))
-    const relativePath = path.relative(path.dirname(demoEntry), demoModulePath)
-    acc[relativePath] = { code: originalCode, path: demoModulePath }
-    return acc
-  }, {})
+  } = {}
+  await Promise.all(
+    bundle.watchFiles.map(async (filePath) => {
+      invariant(await fs.pathExists(filePath))
+      const relativePath = path.relative(path.dirname(demoEntry), filePath)
+      modules[relativePath] = {
+        path: filePath,
+        code: await fs.readFile(filePath, 'utf-8'),
+      }
+    })
+  )
   const entry = path.basename(demoEntry)
   invariant(modules[entry])
   const moduleCode = Object.keys(modules).reduce((acc, key) => {
@@ -84,15 +98,17 @@ export async function loadDemoCode(
     acc[key] = code
     return acc
   }, {})
-  const externals = await resolveDemoExternalVersion(chunk.imports, demoEntry)
+  const externals = await resolveDemoExternals(chunk.imports, demoEntry)
   const demoModulesInfo = {
     entry,
     modules: moduleCode,
     externals,
   }
   const actualcode = `
+const __stylesθ = {};\n
 ${chunk.code};
 export const __demoSrcInfo = ${JSON.stringify(demoModulesInfo)};
+__demoSrcInfo.styles = __stylesθ;
 `
   return { actualcode, info: { entry, modules, externals } }
 }
@@ -100,29 +116,73 @@ export const __demoSrcInfo = ${JSON.stringify(demoModulesInfo)};
 /**
  * demo external掉的依赖，要找到这些依赖的版本，
  * 从而能在codesandbox中加载对应的版本。
- * 我们从package.json的dependencies或devDependencies找
+ * 我们从package.json的dependencies或devDependencies找，或者demo-config.json。
+ *
+ * demo的dependency包含以下几种：
+ * - 正在开发的npm包
+ * - 正在开发的npm包的peerDependencies（比如moment、styled-components）
+ * - demo本身引入的依赖（比如通过react-dnd在demo中加入拖拽能力）
  */
-async function resolveDemoExternalVersion(externals: string[], from: string) {
+async function resolveDemoExternals(externals: string[], demoEntry: string) {
   const result = await findPkgJson({
-    cwd: path.dirname(from),
+    cwd: path.dirname(demoEntry),
   })
+  const demoConfig = await resolveDemoConfig(demoEntry)
+
   invariant(result)
   const pkgJson = result.packageJson
   const map = {
     [pkgJson.name]: pkgJson.version,
-    ...pkgJson.dependencies,
     ...pkgJson.devDependencies,
+    ...pkgJson.dependencies,
+    ...demoConfig?.externals,
   }
   const externalsVersion = externals.reduce((acc, external) => {
     const version = map[external]
+    // 检查所有的externals都已经显式指定
     invariant(
       typeof version === 'string',
-      `can't resolve version for demo's external dependency.
-    demo entry: ${from}
+      `Can't resolve version for demo's external dependency.
+    demoEntry: ${demoEntry}
     dependency: ${external}`
     )
     acc[external] = version
     return acc
   }, {})
-  return externalsVersion
+
+  return { ...externalsVersion, ...demoConfig?.externals }
+}
+
+async function resolveDemoConfig(startPath: string): Promise<IDemoConfig> {
+  let demoConfig: IDemoConfig = {}
+  const curPath = startPath
+  do {
+    const nextConfigPath = await findUp('demo-config.json', {
+      type: 'file',
+      cwd: curPath,
+    })
+    const nextConfig: IDemoConfig | undefined =
+      nextConfigPath && (await fs.readJSON(nextConfigPath))
+    if (!nextConfig) break
+    demoConfig = mergeDemoConfig(demoConfig, nextConfig)
+  } while (demoConfig.inherit)
+  return demoConfig
+}
+
+function mergeDemoConfig(base: IDemoConfig, next: IDemoConfig): IDemoConfig {
+  return {
+    inherit: next.inherit ?? false,
+    externals: {
+      // 距离远的config被距离近的覆盖
+      ...next.externals,
+      ...base.externals,
+    },
+  }
+}
+
+export interface IDemoConfig {
+  inherit?: boolean
+  externals?: {
+    [name: string]: string
+  }
 }

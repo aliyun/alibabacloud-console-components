@@ -4,7 +4,7 @@ import { Grid, Balloon, Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 
 import type { IDemoInfo } from './index'
-import createCodesandbox from '../createCodesandbox'
+import { renderCodesandboxDetail } from './CodesandboxDetail'
 // import { useDocMetaCtx } from '../utils/context'
 
 const { Row } = Grid
@@ -23,7 +23,7 @@ const DemoDetailController: React.FC<IProps> = ({ demoInfo }) => {
   useEffect(() => {
     if (isShowing && !details && !isFetching) {
       setIsFetching(true)
-      createCodesandboxDetail(demoInfo).then((ui) => {
+      renderCodesandboxDetail(demoInfo).then((ui) => {
         setDetails(ui)
         setIsFetching(false)
       })
@@ -37,20 +37,19 @@ const DemoDetailController: React.FC<IProps> = ({ demoInfo }) => {
         trigger: <SCodesandboxIcon onClick={() => setIsShowing(true)} />,
       })
     }
-    if (isShowing && details) {
-      return buttonWithBalloon({
-        children: '收起codesandbox',
-        trigger: <SArrowIcon onClick={() => setIsShowing(false)} />,
-      })
-    }
-    return null
+    return buttonWithBalloon({
+      children: '收起codesandbox',
+      trigger: <SArrowIcon onClick={() => setIsShowing(false)} />,
+    })
   })()
 
   return (
     <div>
-      <SDemoDetailCtn hiding={isShowing}>{details}</SDemoDetailCtn>
-      <hr />
-      <Row justify="center">{controllerButton}</Row>
+      <SDemoDetailCtn hiding={!isShowing}>{details}</SDemoDetailCtn>
+      {isShowing && <hr />}
+      <Row justify="center" key={String(isShowing)}>
+        {controllerButton}
+      </Row>
     </div>
   )
 }
@@ -80,57 +79,6 @@ const SArrowIcon = styled((props: React.ComponentProps<typeof Icon>) => (
   cursor: pointer;
 `
 
-async function createCodesandboxDetail(demoInfo: IDemoInfo) {
-  const info = demoInfo.__demoSrcInfo
-  const files = {
-    'package.json': pkgJson(info.externals),
-    ...info.modules,
-  }
-  const sandboxId = await createCodesandbox(files)
-  const iframeSrc = generateIframeSrc(sandboxId, info.entry)
-  const ui = <SIframe {...iFramePreset} src={iframeSrc} />
-  return ui
-}
-
-const SIframe = styled.iframe`
-  width: 100%;
-  height: 500px;
-  border: 0;
-  border-radius: 4px;
-`
-
-const iFramePreset = {
-  sandbox:
-    'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
-}
-
-const pkgJson = (extraDeps: { [name: string]: string }) =>
-  JSON.stringify({
-    name: 'parcel-sandbox',
-    version: '1.0.0',
-    description: 'Simple Parcel Sandbox',
-    main: 'index.html',
-    scripts: {
-      start: 'parcel index.html --open',
-      build: 'parcel build index.html',
-    },
-    dependencies: {
-      ...extraDeps,
-    },
-    devDependencies: {
-      'parcel-bundler': '^1.6.1',
-    },
-  })
-
-const generateIframeSrc = (
-  sandboxId: string,
-  entryPath: string,
-  onlyEditor?: boolean
-) =>
-  `https://codesandbox.io/embed/${sandboxId}?fontsize=14&codemirror=1${
-    onlyEditor ? '&view=editor' : '&view=split'
-  }&module=/${entryPath}`
-
 const SDemoDetailCtn = styled.div<{ hiding?: boolean }>`
   width: 100%;
   height: 520px;
@@ -141,14 +89,7 @@ const SDemoDetailCtn = styled.div<{ hiding?: boolean }>`
 `
 
 function buttonWithBalloon(props: React.ComponentProps<typeof Balloon>) {
-  return (
-    <SBalloon
-      closable={false}
-      followTrigger
-      // popupContainer={() => domRef.current || document.body}
-      {...props}
-    />
-  )
+  return <SBalloon closable={false} followTrigger {...props} />
 }
 
 const SBalloon = styled(Balloon)`
