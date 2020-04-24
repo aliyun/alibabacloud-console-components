@@ -9,7 +9,7 @@ import WithPrimaryOperation from './withPrimaryOperation'
 import WithOperation from './withOperation'
 import WithSearch from './withSearch'
 import WithCustomSearch from './withCustomSearch'
-import WithContainer from './withContainer'
+import WithFixedHeader from './withFixedHeader'
 import WithAppLayout from './withAppLayout'
 
 storiesOf('WindRcTable', module)
@@ -21,5 +21,5 @@ storiesOf('WindRcTable', module)
   .add('WithOperation', () => <WithOperation />)
   .add('WithSearch', () => <WithSearch />)
   .add('WithCustomSearch', () => <WithCustomSearch />)
-  .add('WithContainer', () => <WithContainer />)
+  .add('withFixedHeader', () => <WithFixedHeader />)
   .add('WithAppLayout', () => <WithAppLayout />)

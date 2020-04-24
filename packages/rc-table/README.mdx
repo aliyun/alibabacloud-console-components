@@ -221,22 +221,15 @@ search直接传入Search组件的props即可, 如下Demo所示。
 
 [MDXInstruction:importDemo:WithLayout](./stories/withAppLayout.tsx)
 
-## 指定affix-bar的渲染节点
+## fixedHeader实现固定操作栏
 
-通过`affixBarOverlayProps`来指定affix-bar的 `target`和`container`。可参考基础组件`overlay`
-- target affix-bar定位的参照元素，最好是距离table最近的滚动祖先节点。
-- container 渲染组件的容器，是affix-bar的定位父级，需设置样式为`position: relative`。container节点的宽度决定了affix-bar的宽度，affix-bar理论上与container同宽。
+当遇到Table的外层有类似于`Tab.Item`这样的“盒子”，使设置的affixActionBar属性失效时。
+我们强烈建议您使用`fixedHeader`结合`maxBodyHeight`促使Table的body部分进行滚动，从而实现action-bar的固定。
 ```jsx
-<SContainer ref={containerRef}>
-  <SWrapper ref={targetRef}>
-    <Table
-      affixBarOverlayProps={{
-        target: () => targetRef.current,
-        container: () => containerRef.current,
-      }}
-    />
-  </SWrapper>
-</SContainer>
+<Table
+  maxBodyHeight={300}
+  fixedHeader={true}
+/>
 ``` 
 
-[MDXInstruction:importDemo:WithContainer](./stories/withContainer.tsx)
+[MDXInstruction:importDemo:WithFixedHeader](./stories/WithFixedHeader.tsx)
