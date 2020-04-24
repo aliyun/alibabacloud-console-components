@@ -50,6 +50,10 @@ const secondaryOperation = () => () => (
   </>
 )
 
+// Tab组件会加入一个overflow:hidden的容器，使得position:sticky失效。
+// https://stackoverflow.com/a/49080822/8175856
+// 这种情况下通过 fixedHeader + maxBodyHeight来固定操作栏，而不使用affixActionBar
+
 const App: React.FC<{
   creatable?: boolean
 }> = (props) => {
@@ -59,6 +63,7 @@ const App: React.FC<{
         <div style={{ marginTop: '16px' }}>
           <Table
             exact
+            // affixActionBar
             fixedHeader
             maxBodyHeight={300}
             afterFixedBarIntersectChanged={(

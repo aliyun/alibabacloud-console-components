@@ -27,12 +27,12 @@
 
 **分页器 (Pagination)** 是数据列表中常用的功能组件，根据UED规约，位于数据表格的右下角区域。
 
-`@alicloud/console-components-table` 内置了Pagination的能力，用户可以通过`props.pagination` 属性来定义分页器的属性和行为。有三种方式控制分页器：
-- 直接传入Pagination的props
+`@alicloud/console-components-table` 内置了Pagination的能力，用户可以通过`props.pagination` 属性来定义分页器的属性和行为。有以下三种方式定义分页器区域：
+- 使用属性定义。直接传入Pagination的props
 - 传入jsx。比如`<Table.Pagination {...props} />`
 - 传入一个渲染函数。比如`(tableProps) => (<Table.Pagination {...props} />)`
 
-#### 使用属性定义（推荐）
+#### 使用属性来定义
 
 在 ``@alicloud/console-components-table`` 中，预设了符合UED规约的分页器组件，在绝大多数情况下，你只需要关心分页器的部分属性，比如：
 
@@ -66,7 +66,7 @@
 [MDXInstruction:importDemo:WithPaginationProps](./stories/withPaginationProps.tsx)
 
 
-#### 使用jsx来定义分页器区域
+#### 使用jsx来定义
 
 在大多数情况下，直接向 ``pagination`` 属性传入分页器的属性定义就可以完成标准场景的分页展示。如果你有一些情况下需要自定义这个区域的内容，也可以传入一个自定义组件来完成特定的业务需求。
 
@@ -76,7 +76,7 @@
 
 [MDXInstruction:importDemo:WithPaginationProps](./stories/withCustomPagination.tsx)
 
-#### 使用渲染函数来定义分页器区域, 传入 (tableProps) => ReactNode
+#### 使用渲染函数来定义
 
 ```jsx
 <Table
@@ -92,9 +92,9 @@
 
 **批量操作 (Selection)** 区域位于 ``Table`` 的左下角。用于辅助表格数据的选择和操作。
 
-#### 使用自定义组件
+#### 使用渲染函数来定义
 
-可以通过 ``selection`` 属性传入一个函数来进行定义，可以与`rowSelection`结合使用。
+可以通过 ``selection`` 属性传入一个函数来进行定义，渲染函数能够拿到当前选择状态。
 
 [MDXInstruction:importDemo:WithSelection](./stories/withSelection.tsx)
 
@@ -105,7 +105,7 @@
 操作区默认为空，用户可以通过 `props.operation` 来定义操作区的内容。其中，`props.operation.primary`定义左上角的主操作区，`props.operation.secondary`定义右上角的次操作区。
 如果用户给`props.operation`直接传入了一个jsx element，那么它将作为主操作区。
 
-#### 使用自定义组件, 传入 ReactNode
+#### 使用jsx来定义
 
 ##### 只定义左上角操作区
 ```jsx
@@ -151,7 +151,7 @@
 
 **搜索区域 (Search)** 也会经常使用到，在 ``@alicloud/console-components-table`` 中预设了符合UED规约的搜索组件，在大多数场景下，你只需要关注一部分 ``Search`` 组件的属性。开发者也可自行传入组件`<Table.Search {...props} />`或者函数`(tableProps) => (<Table.Search {...props} />)`，来进行定制。
 
-#### 使用属性定义（推荐）
+#### 使用属性来定义
 
 search直接传入Search组件的props即可, 如下Demo所示。
 
@@ -180,7 +180,7 @@ search直接传入Search组件的props即可, 如下Demo所示。
 
 [MDXInstruction:importDemo:WithSearch](./stories/withSearch.tsx)
 
-#### 使用自定义组件
+#### 使用jsx来定义
 
 在 search 右边添加一个自定义按钮（custom button）
 
@@ -212,19 +212,19 @@ search直接传入Search组件的props即可, 如下Demo所示。
 ```
 [MDXInstruction:importDemo:WithCustomSearch](./stories/withCustomSearch.tsx)
 
-同样Search自定义组件时也可传入`(tableProps) => ReactNode`， 请参考`pagination`中的实现方式
+同样Search自定义组件时也可传入`(tableProps) => ReactNode`渲染函数， 请参考`pagination`中的实现方式
 
 
-## 在AppLayout中使用
+## 调整操作栏吸附宽度
 
-在AppLayout中使用时，可以通过`fixedBarExpandWidth`来调整顶栏、底栏吸附时的宽度，让它们更美观：
+使用`affixActionBar`时，可以通过`fixedBarExpandWidth`来调整操作栏吸附时的宽度，让它们更美观：
 
 [MDXInstruction:importDemo:WithLayout](./stories/withAppLayout.tsx)
 
 ## fixedHeader实现固定操作栏
 
-当遇到Table的外层有类似于`Tab.Item`这样的“盒子”，使设置的affixActionBar属性失效时。
-我们强烈建议您使用`fixedHeader`结合`maxBodyHeight`促使Table的body部分进行滚动，从而实现action-bar的固定。
+有时候`affixActionBar`无法帮助你固定操作栏（由于`position:sticky`的机制），您可以使用`fixedHeader`结合`maxBodyHeight`促使Table的body部分进行滚动，从而实现操作栏的固定。
+
 ```jsx
 <Table
   maxBodyHeight={300}
