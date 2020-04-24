@@ -1,0 +1,68 @@
+# @alicloud/console-components-button
+
+对基础组件Button进行扩展的合集，有 **<a href="#复选按钮（buttoncheckbox）">按钮复选组</a>**, **<a href="#方形图标按钮（iconbutton）">方形图标按钮</a>**, **<a href="#链接按钮（linkbutton）">链接按钮</a>**
+
+
+## 按钮复选组（ButtonCheckbox）
+
+### APIs
+
+#### ButtonCheckbox
+
+> 继承基础组件`Button`的API，除非特别说明
+[MDXInstruction:renderInterface:IButtonCheckboxProps](./api-json/api.json)
+
+#### ButtonCheckbox.Group
+
+[MDXInstruction:renderInterface:IGroupProps](./api-json/api.json)
+
+### 用法示例
+
+#### 基本用法
+[MDXInstruction:importDemo:BasicDemo](./stories/basic/index.tsx)
+
+#### 文本按钮
+设置`text`属性
+
+[MDXInstruction:importDemo:TextButton](./stories/text-button/index.tsx)
+
+#### 方形按钮
+
+[MDXInstruction:importDemo:squareButton](./stories/square-button/index.tsx)
+
+
+## 方形图标按钮（IconButton）
+
+### APIs
+
+> 继承基础组件`Button`的API，除非特别说明
+
+[MDXInstruction:renderInterface:IIconButtonProps](./api-json/api.json)
+
+### 用法示例
+
+#### 基本用法
+
+[MDXInstruction:importDemo:iconButton](./stories/icon-button/index.tsx)
+
+## 链接按钮（linkbutton）
+
+### APIs
+
+[MDXInstruction:renderInterface:ILinkButtonProps](./api-json/api.json)
+
+### 用法示例
+
+#### 站外跳转
+
+使用LinkButton进行站外跳转，通过`props.Component`将`LinkButton`将被渲染为`<a />`
+
+[MDXInstruction:importDemo:linkButtonHref](./stories/link-button-href/index.tsx)
+
+#### 站内跳转
+
+使用LinkButton进行内跳转，通过`props.Component`将`LinkButton`将被渲染为`<Link />`
+
+[MDXInstruction:importDemo:linkButtonHref](./stories/link-button-link/index.tsx)
+
+

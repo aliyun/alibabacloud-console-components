@@ -1,18 +1,17 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import cs from 'classnames'
-import { isFunction, isArray } from 'lodash'
 import Context from './context'
-import * as S from './style'
+import * as S from './styles'
 
 function useGroupSelected({
   selectedIds,
   onChange,
 }: {
   selectedIds: string[]
-  onChange: (ids: string[], e: React.SyntheticEvent) => void
+  onChange: (ids: string[]) => void
 }) {
   const onSelect = useCallback(
-    (id: string, e: React.SyntheticEvent) => {
+    (id: string) => {
       const nextSelecteds = ((ids) => {
         // 没有则添加
         if (!ids.includes(id)) {
@@ -22,7 +21,7 @@ function useGroupSelected({
         return ids.filter((v) => v !== id)
       })(selectedIds)
 
-      onChange(nextSelecteds, e)
+      onChange(nextSelecteds)
     },
     [onChange, selectedIds]
   )
@@ -59,9 +58,9 @@ export interface IGroupProps {
    */
   style?: React.CSSProperties
   /**
-   * 点击之`ButtonCheckbox`后的回调函数
+   * 用户选择发生变化的回调
    */
-  onChange?: (selectedIds: string[], e: React.SyntheticEvent) => void
+  onChange?: (selectedIds: string[]) => void
   /**
    * 当前选中的ButtonCheckbox的一组id（受控）。
    */
@@ -73,25 +72,33 @@ export interface IGroupProps {
 }
 
 function useSelected({
-	defaultValue,
-	value,
-	onChange,
+  defaultValue,
+  value,
+  onChange,
 }: {
-	defaultValue: IGroupProps['defaultValue'],
-	value: IGroupProps['value'],
-	onChange: IGroupProps['onChange']
+  defaultValue: IGroupProps['defaultValue']
+  value: IGroupProps['value']
+  onChange: IGroupProps['onChange']
 }) {
-	const [selectedIds, setSelectedIds] = useState<string[]>(defaultValue || []);
-	// 当前是否是受控模式
-	const isControlled = isArray(value);
-	const actualValue = isControlled ? value : selectedIds
-	const onSelectedIds = useCallback((ids, e) => {
-		isFunction(onChange) && onChange(ids, e)
-		if (!isControlled) {
-			setSelectedIds(ids)
-		}
-	}, [onChange, isControlled])
-	return [actualValue, onSelectedIds] as [string[], (selectedIds: string[], e: React.SyntheticEvent) => void]
+  const [selectedIds, setSelectedIds] = useState<string[]>(defaultValue || [])
+  // 当前是否是受控模式
+  const isControlled = Array.isArray(value)
+  const actualValue = isControlled ? value : selectedIds
+  const onSelectedIds = useCallback(
+    (ids) => {
+      if (onChange) {
+        onChange(ids)
+      }
+      if (!isControlled) {
+        setSelectedIds(ids)
+      }
+    },
+    [onChange, isControlled]
+  )
+  return [actualValue, onSelectedIds] as [
+    string[],
+    (selectedIds: string[]) => void
+  ]
 }
 
 /**
@@ -105,11 +112,11 @@ const Group: React.FC<IGroupProps> = ({
   defaultValue,
   ...restProps
 }) => {
-	const [selectedIds, onSelectedIds] = useSelected({
-		defaultValue,
-		value,
-		onChange,
-	})
+  const [selectedIds, onSelectedIds] = useSelected({
+    defaultValue,
+    value,
+    onChange,
+  })
 
   const wrapProvider = useGroupSelected({
     selectedIds,

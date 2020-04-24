@@ -3,7 +3,7 @@ module.exports = {
     [
       '@alicloud/console-toolkit-preset-wind-component',
       {
-        moduleName: 'WindRcButtonCheckbox',
+        moduleName: 'WindRcButton',
         useTypescript: true,
         externals: {
           '@alicloud/console-components': 'wind',

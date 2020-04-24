@@ -5,8 +5,8 @@
     "baseUrl": ".",
     "outDir": "./lib",
     "paths": {
-      "@alicloud/console-components-button-checkbox": ["./"],
-      "@alicloud/console-components-button-checkbox/*": ["./*"]
+      "@alicloud/console-components-button": ["./"],
+      "@alicloud/console-components-button/*": ["./*"]
     }
   }
 }

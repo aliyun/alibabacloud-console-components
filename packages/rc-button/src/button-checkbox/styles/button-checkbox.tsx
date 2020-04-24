@@ -2,15 +2,15 @@ import styled from 'styled-components'
 import { Button } from '@alicloud/console-components'
 
 const sizeMap = {
-	'large': '36px',
-	'medium': '32px',
-	'small': '24px',
+  large: '36px',
+  medium: '32px',
+  small: '24px',
 }
 
 const textPadding = {
-	'large': '0 24px',
-	'medium': '0 16px',
-	'small': '0 8px',
+  large: '0 24px',
+  medium: '0 16px',
+  small: '0 8px',
 }
 
 export const SButton = styled(Button)`
@@ -40,9 +40,9 @@ export const SButton = styled(Button)`
       }
     }
     &.text {
-			height: ${({ size = 'medium' }) => sizeMap[size]};
+      height: ${({ size = 'medium' }) => sizeMap[size]};
       border: 1px solid transparent;
-			padding: ${({ size = 'medium' }) => textPadding[size]};
+      padding: ${({ size = 'medium' }) => textPadding[size]};
       &:hover {
         color: ${({ disabled }) => (disabled ? '#c1c1c1' : '#0070cc')};
       }

@@ -117,10 +117,10 @@ module.exports = [
     },
   },
   {
-    name: 'rc-button-checkbox',
-    zhName: '按钮复选框',
+    name: 'rc-button',
+    zhName: '扩展按钮',
     category: 'biz-components',
-    prodPkgName: '@alicloud/console-components-button-checkbox',
+    prodPkgName: '@alicloud/console-components-button',
     tags: {
       button: true,
       checkbox: true,

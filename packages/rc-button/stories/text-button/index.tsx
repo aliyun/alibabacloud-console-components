@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react'
-import ButtonCheckbox from '@alicloud/console-components-button-checkbox'
+import { ButtonCheckbox } from '@alicloud/console-components-button'
+
+const { Group } = ButtonCheckbox
 
 const TextButton: React.FC<{}> = () => {
   const handleChange = useCallback((selectedIds) => {
@@ -9,7 +11,7 @@ const TextButton: React.FC<{}> = () => {
   return (
     <div>
       <h3>请选择城市：</h3>
-      <ButtonCheckbox.Group defaultValue={['beijing']} onChange={handleChange}>
+      <Group defaultValue={['beijing']} onChange={handleChange}>
         <ButtonCheckbox text id="beijing">
           北京
         </ButtonCheckbox>
@@ -22,7 +24,7 @@ const TextButton: React.FC<{}> = () => {
         <ButtonCheckbox text id="shenzhen">
           深圳
         </ButtonCheckbox>
-      </ButtonCheckbox.Group>
+      </Group>
     </div>
   )
 }

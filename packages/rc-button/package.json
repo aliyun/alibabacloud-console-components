@@ -1,5 +1,5 @@
 {
-  "name": "@alicloud/console-components-button-checkbox",
+  "name": "@alicloud/console-components-button",
   "version": "1.0.0",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "wind",
-    "wind-rc-button-checkbox",
+    "wind-rc-button",
     "react",
     "react component"
   ],
