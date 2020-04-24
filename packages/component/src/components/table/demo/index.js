@@ -25,6 +25,7 @@ import Demo23 from './demo23'
 import Demo24 from './demo24'
 import Demo25 from './demo25'
 import Demo26 from './demo26'
+import Demo27 from './demo27'
 import './index.less'
 
 const TableDemo = () => (
@@ -69,6 +70,8 @@ const TableDemo = () => (
     <Demo19 />
     <h2>混合模式</h2>
     <Demo20 />
+    <h2>树型Table全选子节点</h2>
+    <Demo27 />
     <h2>数据集为空</h2>
     <Demo21 />
     <h2>自定义Loading组件</h2>

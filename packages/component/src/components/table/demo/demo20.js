@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Table } from '@alicloud/console-components'
 import styled from 'styled-components'
 
@@ -68,20 +68,6 @@ const data = [
   },
 ]
 
-const tableMixTree = (
-  <Table
-    dataSource={data}
-    primaryKey="key"
-    isTree
-    rowSelection={{ onChange: () => {} }}
-  >
-    <Table.Column title="Key" dataIndex="key" />
-    <Table.Column title="Name" dataIndex="name" />
-    <Table.Column title="Age" dataIndex="age" />
-    <Table.Column title="Address" dataIndex="address" />
-  </Table>
-)
-
 const tableMixExpanded = (
   <Table
     dataSource={data}
@@ -94,22 +80,6 @@ const tableMixExpanded = (
     <Table.Column title="Age" dataIndex="age" />
     <Table.Column title="Address" dataIndex="address" />
   </Table>
-)
-
-const tableMixSelectionTreeLock = (
-  <div style={{ width: '500px' }}>
-    <Table
-      dataSource={data}
-      primaryKey="key"
-      rowSelection={{ onChange: () => {} }}
-      isTree
-    >
-      <Table.Column title="Key" dataIndex="key" width={100} />
-      <Table.Column title="Name" dataIndex="name" lock width={100} />
-      <Table.Column title="Age" dataIndex="age" width={200} lock="right" />
-      <Table.Column title="Address" dataIndex="address" width={200} />
-    </Table>
-  </div>
 )
 
 const tableMixLock = (
@@ -158,16 +128,8 @@ const tableMixTreeLock = (
 const Demo20 = () => (
   <SWrapper>
     <div className="row">
-      <h4>tree & select</h4>
-      {tableMixTree}
-    </div>
-    <div className="row">
       <h4>extra & select</h4>
       {tableMixExpanded}
-    </div>
-    <div className="row">
-      <h4>tree & lock column & select</h4>
-      {tableMixSelectionTreeLock}
     </div>
     <div className="row">
       <h4>extra & lock column & select</h4>
