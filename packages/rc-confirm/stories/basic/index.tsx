@@ -7,60 +7,67 @@ const BasicDemo: React.FC<{}> = () => {
     <>
       <Confirm
         type="error"
-        title="确认删除"
-        content="确认要删除这些实例？"
+        title="错误"
+        content="格式错误，请以“XXX”格式输入"
         onConfirm={() => {
-          console.log('删除成功')
+          console.log('onConfirm被点击了')
+        }}
+        dialogProps={{
+          footerActions: ['ok'],
+          okProps: { children: '关闭' },
         }}
       >
         <Button>error</Button>
       </Confirm>
       <Confirm
-        type="help"
-        title="确认删除"
-        content="确认要删除这些实例？"
-        onConfirm={() => {
-          console.log('删除成功')
-        }}
-      >
-        <Button>help</Button>
-      </Confirm>
-      <Confirm
         type="loading"
-        title="确认删除"
-        content="确认要删除这些实例？"
+        title="创建实例中"
+        content="创建中，可关闭弹窗，进程将在后台继续"
         onConfirm={() => {
-          console.log('删除成功')
+          console.log('onConfirm被点击了')
+        }}
+        dialogProps={{
+          okProps: { children: '关闭' },
         }}
       >
         <Button>loading</Button>
       </Confirm>
       <Confirm
         type="notice"
-        title="确认删除"
-        content="确认要删除这些实例？"
+        title="提示"
+        content="有可下载的新版插件"
         onConfirm={() => {
-          console.log('删除成功')
+          console.log('onConfirm被点击了')
+        }}
+        dialogProps={{
+          footerActions: ['ok'],
+          okProps: { children: '关闭' },
         }}
       >
         <Button>notice</Button>
       </Confirm>
       <Confirm
         type="success"
-        title="确认删除"
-        content="确认要删除这些实例？"
+        title="创建实例成功"
+        content="如需查看实例，请前往实例列表"
         onConfirm={() => {
-          console.log('删除成功')
+          console.log('onConfirm被点击了')
+        }}
+        dialogProps={{
+          footerActions: ['ok'],
         }}
       >
         <Button>success</Button>
       </Confirm>
       <Confirm
         type="warning"
-        title="确认删除"
-        content="确认要删除这些实例？"
+        title="警告"
+        content="更改后可能导致不可用，是否继续？"
         onConfirm={() => {
-          console.log('删除成功')
+          console.log('onConfirm被点击了')
+        }}
+        dialogProps={{
+          okProps: { children: '继续' },
         }}
       >
         <Button>warning</Button>
