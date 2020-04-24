@@ -54,17 +54,17 @@ export type ISearchProps = TableOperaion | SearchProps
 export interface IRcTableProps {
   /**
    * 位于 Table 左上角和右上角的操作区，没有任何预设组件和行为，通过 operation 来定义操作区的内容。<br />
-	 * `operation`可传入一个对象，通过指定`primary`和`secondary`来定义左上角和右上角的内容。<br />
-	 * 也可直接传入ReactNode只定义左上角行为。<br />
-	 * 详见下<a href="#operation">operation</a>小节
+   * `operation`可传入一个对象，通过指定`primary`和`secondary`来定义左上角和右上角的内容。<br />
+   * 也可直接传入ReactNode只定义左上角行为。<br />
+   * 详见下<a href="#operation">operation</a>小节
    * @defaultValue `null`
    */
   operation?: Operation
   /**
    * 搜索，组件内置`Search`组件，开发者只需要传入`SearchProps`即可。<br />
-	 * 也可以传入自定义Search组件来覆盖内置的Search。<br />
-	 * 也可以传入一个函数返回一个Search组件。<br />
-	 * 详见下<a href="#search">search</a>小节 
+   * 也可以传入自定义Search组件来覆盖内置的Search。<br />
+   * 也可以传入一个函数返回一个Search组件。<br />
+   * 详见下<a href="#search">search</a>小节
    * @defaultValue `null`
    */
   search?: ISearchProps
@@ -75,17 +75,17 @@ export interface IRcTableProps {
   selection?: (selection: ISelectionRenderParams) => React.ReactNode
   /**
    * 分页，组件内置`Pagination`组件，开发者只需要传入`PaginationProps`即可。<br />
-	 * 也可以传入自定义Pagination组件来覆盖内置的Pagination。<br />
-	 * 也可以传入一个函数返回Pagination组件。<br />
-	 * 详见下 <a href="#pagination">pagination</a>小节
+   * 也可以传入自定义Pagination组件来覆盖内置的Pagination。<br />
+   * 也可以传入一个函数返回Pagination组件。<br />
+   * 详见下 <a href="#pagination">pagination</a>小节
    * @defaultValue `null`
    */
   pagination?: IPaginationProps
   /**
    * 动作区滚动锁定, 在 rc-table 中最多会有上下两个动作区, 可以指定 `affixActionBar` 的值为 `true` 来同时开启两个动作区的滚动锁定特性, <br />
-	 * 也可以通过字符串`affixActionBar: ('bottom'|'top')`或者是数组`['bottom', 'top']`声明  指定某一个动作区开启该特性。<br />
-	 * 顶部和底部的操作栏affix的状态的时候，使用`position: sticky`来实现。需满足祖先元素的`overflow`不能为: `auto | hidden | overlay | scroll`，详情见 {@link https://developer.mozilla.org/zh-CN/docs/Web/CSS/position | sticky定位 }<br />
-	 * 或者指定affix-bar渲染的节点，详见 <a href="#指定affix-bar的渲染节点">Demo</a>
+   * 也可以通过字符串`affixActionBar: ('bottom'|'top')`或者是数组`['bottom', 'top']`声明  指定某一个动作区开启该特性。<br />
+   * 顶部和底部的操作栏affix的状态的时候，使用`position: sticky`来实现。需满足祖先元素的`overflow`不能为: `auto | hidden | overlay | scroll`，详情见 {@link https://developer.mozilla.org/zh-CN/docs/Web/CSS/position | sticky定位 }<br />
+   * 或者使用`fixedHeader`结合`maxBodyHeight`让body区域滚动实现操作栏固定，详见 <a href="#fixedHeader实现固定操作栏">Demo</a>
    * @defaultValue `false`
    */
   affixActionBar?: boolean | string | string[]
@@ -130,6 +130,7 @@ export interface IRcTableProps {
     UNSTABLE_defaultSelectedRowKeys?: any[]
   }
   /**
+   * @internal
    * 当action-bar为affix状态的时候，透传给弹层overlay，继承基础组件`Overlay`。可以指定action-bar在affix状态时候渲染的容器
    */
   affixBarOverlayProps?: OverlayProps
@@ -236,7 +237,7 @@ const getExpandedStyle = (
   }
 }
 
-const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = props => {
+const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
   const {
     operation,
     search,

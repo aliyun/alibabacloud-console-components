@@ -1,13 +1,10 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { Button, Badge, Icon, Tab } from '@alicloud/console-components'
 import { TableProps } from '@alicloud/console-components/types/table'
-import styled from 'styled-components'
 import Table, { ITableProps } from '@alicloud/console-components-table'
 
-const TabItem = Tab.Item
-
 const dataSource = (() =>
-  new Array(30).fill(null).map((item, i) => ({
+  new Array(100).fill(null).map((item, i) => ({
     id: i + 1,
     name: `Wind Table Item - ${i}`,
     repo: `https://www.aliyun.com/repo?id=${i}`,
@@ -56,26 +53,14 @@ const secondaryOperation = () => () => (
 const App: React.FC<{
   creatable?: boolean
 }> = (props) => {
-  const targetRef = useRef<HTMLDivElement | null>(null)
-  const containerRef = useRef<HTMLDivElement | null>(null)
-
   return (
-    // 顶栏、底栏吸附的时候，DOM节点会挂载在它下面
-    <SContainer ref={containerRef}>
-      {/* SScroll是滚动的容器 */}
-      <SScroll ref={targetRef}>
-        <SWidthControl>
-          {Array.from(Array(50)).map((_, idx) => (
-            <p>这是表格前面的内容{idx}</p>
-          ))}
+    <Tab>
+      <Tab.Item key="list" title="列表">
+        <div style={{ marginTop: '16px' }}>
           <Table
             exact
-            affixActionBar
-            fixedBarZIndex={1000}
-            affixBarOverlayProps={{
-              target: () => targetRef.current,
-              container: () => containerRef.current,
-            }}
+            fixedHeader
+            maxBodyHeight={300}
             afterFixedBarIntersectChanged={(
               alignType: 'top' | 'bottom',
               isIntersecting: boolean
@@ -120,26 +105,18 @@ const App: React.FC<{
               )
             }}
           />
-          {Array.from(Array(50)).map((_, idx) => (
-            <p>这是表格后面的内容{idx}</p>
-          ))}
-        </SWidthControl>
-      </SScroll>
-    </SContainer>
+        </div>
+      </Tab.Item>
+      <Tab.Item key="other" title="其他">
+        <div>
+          {Array.from(Array(10)).map((_, idx) => {
+            const index = idx
+            return <p key={index}>其他内容{idx}</p>
+          })}
+        </div>
+      </Tab.Item>
+    </Tab>
   )
 }
-
-const SContainer = styled.div`
-  position: relative;
-`
-
-const SScroll = styled.div`
-  height: 600px;
-  overflow-y: auto;
-  /* 控制内容的宽度 */
-  padding: 0 48px;
-`
-
-const SWidthControl = styled.div``
 
 export default App
