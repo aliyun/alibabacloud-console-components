@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, createGlobalStyle } from 'styled-components'
 
 export const slideInRight = keyframes`
   0% {
@@ -38,4 +38,13 @@ export const SPanelsWrapper = styled('div')<{
   &.slideOutRight {
     animation: 0.25s ${slideOutRight} ease-out;
   }
+`
+export const SGlobalStyle = createGlobalStyle<{ top: string }>`
+	.wind-slide-panel-wrapper {
+		&& {
+			.next-overlay-backdrop {
+				top: ${({ top }) => top}
+			}
+		}
+	}	
 `
