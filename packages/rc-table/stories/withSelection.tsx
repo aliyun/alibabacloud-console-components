@@ -47,6 +47,7 @@ const App: React.FC<{}> = () => {
             columns={columns}
             rowSelection={{
               onChange: (rowKeys) => {
+                // 可以这样把Table内的选择状态同步给父组件
                 setSelectedRowKeys(rowKeys)
               },
             }}
@@ -65,7 +66,8 @@ const App: React.FC<{}> = () => {
               total: 40,
               pageSize: 10,
             }}
-            selection={(selectionParams: { selectedRowKeys: any[] }) => {
+            selection={(selectionParams: any) => {
+              // selection 可以传入render function
               const { selectedRowKeys } = selectionParams
               return (
                 <>

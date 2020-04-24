@@ -52,7 +52,7 @@ const secondaryOperation = () => () => (
 
 const App: React.FC<{
   creatable?: boolean
-}> = props => {
+}> = (props) => {
   return (
     <Grid.Row>
       <Grid.Col span="24">
@@ -96,13 +96,11 @@ const App: React.FC<{
             }}
             selection={({ selectedRowKeys }: { selectedRowKeys: any[] }) => {
               return (
-                <>
-                  <Badge count={selectedRowKeys.length}>
-                    <Button disabled={selectedRowKeys.length === 0}>
-                      Delete
-                    </Button>
-                  </Badge>
-                </>
+                <Badge count={selectedRowKeys.length}>
+                  <Button disabled={selectedRowKeys.length === 0}>
+                    Delete
+                  </Button>
+                </Badge>
               )
             }}
           />
