@@ -43,14 +43,10 @@ const Demo1 = () => (
       Secondary
     </Button>
     <div className="ghost-dark-background">
-      <Button ghost="dark">Ghost</Button>
-      <Button ghost="dark" loading>
+      <Button style={{ marginLeft: '16px' }} ghost="dark">
         Ghost
       </Button>
       <Button ghost="dark" disabled>
-        Ghost
-      </Button>
-      <Button ghost="dark" text>
         Ghost
       </Button>
     </div>
