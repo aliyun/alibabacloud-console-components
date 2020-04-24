@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Overlay } from '@alicloud/console-components'
 import slidePanelGroupContext from '../context'
-import { SPanelsWrapper } from './style'
+import { SPanelsWrapper, SGlobalStyle } from './style'
 
 const { Popup } = Overlay
 
@@ -112,12 +112,14 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
 
   return (
     <slidePanelGroupContext.Provider value={ctxValue}>
+      <SGlobalStyle top={actualTop} />
       <Popup
         align="tr tr"
         animation={{
           in: 'slideInRight',
           out: 'slideOutRight',
         }}
+        wrapperClassName="wind-slide-panel-wrapper"
         disableScroll
         delay={0}
         afterOpen={handleCompleted}
