@@ -25,7 +25,12 @@
 
 ### Pagination
 
-**分页器 (Pagination)** 是数据列表中常用的功能组件，根据UED规约，位于数据表格的右下角区域，在 ``@alicloud/console-components-table`` 中，可以通过 ``pagination`` 属性来定义分页器的属性和行为。开发者也可自行传入组件`<Table.Pagination {...props} />`或者函数`(tableProps) => (<Table.Pagination {...props} />)`，来进行定制。
+**分页器 (Pagination)** 是数据列表中常用的功能组件，根据UED规约，位于数据表格的右下角区域。
+
+`@alicloud/console-components-table` 内置了Pagination的能力，用户可以通过`props.pagination` 属性来定义分页器的属性和行为。有三种方式控制分页器：
+- 直接传入Pagination的props
+- 传入jsx。比如`<Table.Pagination {...props} />`
+- 传入一个渲染函数。比如`(tableProps) => (<Table.Pagination {...props} />)`
 
 #### 使用属性定义（推荐）
 
@@ -61,9 +66,9 @@
 [MDXInstruction:importDemo:WithPaginationProps](./stories/withPaginationProps.tsx)
 
 
-#### 使用自定义组件
+#### 使用jsx来定义分页器区域
 
-在大多数情况下，直接向 ``pagination`` 属性传入分页器的属性定义就可以完成标准场景的分页展示。如果你有一些情况下需要自定义这个区域的内容，也可以传入一个自定义组件来完成特定的业务需求
+在大多数情况下，直接向 ``pagination`` 属性传入分页器的属性定义就可以完成标准场景的分页展示。如果你有一些情况下需要自定义这个区域的内容，也可以传入一个自定义组件来完成特定的业务需求。
 
 如下Demo所示
 
@@ -71,7 +76,7 @@
 
 [MDXInstruction:importDemo:WithPaginationProps](./stories/withCustomPagination.tsx)
 
-#### 使用自定义组件, 传入 (tableProps) => ReactNode
+#### 使用渲染函数来定义分页器区域, 传入 (tableProps) => ReactNode
 
 ```jsx
 <Table
@@ -83,10 +88,9 @@
 
 不再列举Demo，开发者可自行尝试
 
-
 ### Selection
 
-**批量操作 (Selection)** 也是常用的功能组件，在 ``@alicloud/console-components-table`` 中，由于需要和 ``Table`` 内置的行选择进行交互，在底层使用了 ``Selection.Provider`` 重新封装了 ``Table`` 的行为，通过 ``Context API`` 对行选择的相关数据及行为进行传递交互，位于 ``Table`` 的左下角
+**批量操作 (Selection)** 区域位于 ``Table`` 的左下角。用于辅助表格数据的选择和操作。
 
 #### 使用自定义组件
 
@@ -96,7 +100,10 @@
 
 ### Operation
 
-位于 Table 左上角和右上角的操作区，没有任何预设组件和行为，通过 operation 来定义操作区的内容，也可`operation`传入一个对象，通过指定`primary`和`secondary`来定义左上角和右上角的内容。也可直接传入ReactNode只定义左上角行为
+位于 Table 左上角和右上角的操作区。比如放置“新建按钮”、“刷新按钮”等等。
+
+操作区默认为空，用户可以通过 `props.operation` 来定义操作区的内容。其中，`props.operation.primary`定义左上角的主操作区，`props.operation.secondary`定义右上角的次操作区。
+如果用户给`props.operation`直接传入了一个jsx element，那么它将作为主操作区。
 
 #### 使用自定义组件, 传入 ReactNode
 
@@ -210,12 +217,14 @@ search直接传入Search组件的props即可, 如下Demo所示。
 
 ## 在AppLayout中使用
 
+在AppLayout中使用时，可以通过`fixedBarExpandWidth`来调整顶栏、底栏吸附时的宽度，让它们更美观：
+
 [MDXInstruction:importDemo:WithLayout](./stories/withAppLayout.tsx)
 
 ## 指定affix-bar的渲染节点
 
 通过`affixBarOverlayProps`来指定affix-bar的 `target`和`container`。可参考基础组件`overlay`
-- target affix-bar定位的参照元素，最好是距离table最近的滚动祖先节点，否则可能会出现affix-bar位置错乱的问题。
+- target affix-bar定位的参照元素，最好是距离table最近的滚动祖先节点。
 - container 渲染组件的容器，是affix-bar的定位父级，需设置样式为`position: relative`。container节点的宽度决定了affix-bar的宽度，affix-bar理论上与container同宽。
 ```jsx
 <SContainer ref={containerRef}>
