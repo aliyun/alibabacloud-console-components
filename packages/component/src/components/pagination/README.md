@@ -48,6 +48,9 @@ zhName: 翻页器
 
 #include "demo/demo8.js"
 
-<!-- ### 配合 react-router 使用 -->
+### 分页按钮连接
 
-<!-- #include "demo/demo9.js" -->
+#include "demo/demo8.js"
+
+
+#include "demo/demo9.js"
