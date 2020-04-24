@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Overlay } from '@alicloud/console-components'
+import { Overlay, Button } from '@alicloud/console-components'
 import styled from 'styled-components'
 
 const { Popup } = Overlay
@@ -10,7 +10,7 @@ const Demo6 = () => {
   return (
     <SContainer ref={containerRef}>
       <Popup
-        trigger={<button style={{ marginTop: '40px' }}>Open</button>}
+        trigger={<Button style={{ marginTop: '40px' }}>Open</Button>}
         triggerType="click"
         container={trigger => trigger.parentNode}
         target={containerRef.current}
@@ -34,8 +34,8 @@ const SInner = styled.div`
   width: 300px;
   height: 100px;
   padding: 10px;
-  border: 1px solid #999999;
   background: #ffffff;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ebebeb;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.13);
 `
 export default Demo6
