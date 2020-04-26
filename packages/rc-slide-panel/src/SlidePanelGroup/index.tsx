@@ -57,7 +57,7 @@ export interface ISlidePanelGroupProps {
    */
   onSlideCompleted?: () => void
   /**
-   * 渲染组件的容器，如果是函数需要返回 ref，如果是字符串则是该 DOM 的 id，也可以直接传入 DOM 节点
+   * 渲染组件的容器，如果是函数需要返回 DOM 节点，如果是字符串则是该 DOM 的 id，也可以直接传入 DOM 节点
    */
   container?: any
 }

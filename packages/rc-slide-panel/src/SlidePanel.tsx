@@ -135,6 +135,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     processingText,
     customFooter,
   }
+  checkPanelShouldBeClosable(slidePanelGroupProps, slidePanelItemProps)
   return (
     <SlidePanelGroup {...slidePanelGroupProps}>
       <SlidePanelItem {...slidePanelItemProps} />
@@ -143,3 +144,18 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
 }
 
 export default SlidePanel
+
+function checkPanelShouldBeClosable(
+  slidePanelGroupProps: ISlidePanelGroupProps,
+  slidePanelItemProps: ISlidePanelItemProps
+) {
+  if (
+    !slidePanelGroupProps.onMaskClick &&
+    !slidePanelItemProps.onClose &&
+    !slidePanelItemProps.onCancel
+  ) {
+    console.warn(
+      `All onMaskClick, onClose and onCancel are not enabled. User is not able to close this SlidePanel. This will lead to bad user experience.`
+    )
+  }
+}
