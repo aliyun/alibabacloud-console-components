@@ -28,8 +28,8 @@ const AlterSlidePanelGroupContext: React.FC = ({ children }) => {
  */
 export interface IUsePanelStackReturn {
   /**
-   * 当前展示的面板（栈顶）。
-   * 注意，当你把所有面板都出栈以后，top为undefined。
+   * 当前展示的面板（栈顶）。<br />
+   * 请将它渲染到`<SlidePanelGroup>`中。当你把所有面板都出栈以后，top为undefined。
    */
   top: React.ReactElement
   /**
@@ -53,10 +53,10 @@ export function usePanelStack(initer?: () => React.ReactElement) {
   const top: React.ReactElement | undefined = panelStack.slice(-1)[0]
 
   const push = useCallback((el: React.ReactElement) => {
-    setPanelStack(prevStack => [...prevStack, el])
+    setPanelStack((prevStack) => [...prevStack, el])
   }, [])
   const pop = useCallback(() => {
-    setPanelStack(prevStack => prevStack.slice(0, -1))
+    setPanelStack((prevStack) => prevStack.slice(0, -1))
   }, [])
 
   const panelStackCtxValue = useMemo(() => ({ push, pop }), [pop, push])

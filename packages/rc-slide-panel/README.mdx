@@ -16,7 +16,7 @@ SlidePanel 适用于**只展示一个 panel**的情况(其实这应该符合大�
 
 [MDXInstruction:importDemo:StackPanelDemo](./stories/StackPanel/index.tsx)
 
-渲染到指定容器，通过指定containerId属性，来指定SlidePanel要被渲染的容器
+渲染到指定容器，通过`props.container`来指定 SlidePanel 要被渲染的容器
 
 [MDXInstruction:importDemo:SlidePanelWithContainer](./stories/SlidePanelWithContainer/index.tsx)
 
@@ -24,7 +24,7 @@ SlidePanel 适用于**只展示一个 panel**的情况(其实这应该符合大�
 
 ### SlidePanel
 
-SlidePanel 是基于 SlidePanelGroup 和 SlidePanelItem 的简单封装，将自己 props 直接代理给它们：
+SlidePanel 是基于 SlidePanelGroup 和 SlidePanelItem 的简单封装，将自己 props 透传给它们：
 
 ```tsx
 <SlidePanelGroup {...slidePanelGroupProps}>
@@ -32,11 +32,13 @@ SlidePanel 是基于 SlidePanelGroup 和 SlidePanelItem 的简单封装，将自
 </SlidePanelGroup>
 ```
 
-对于**只展示一个 panel**的情况(其实这应该符合大部分情况)，直接使用 SlidePanel 就很方便。使用方式见上面的[基本用法](#基本用法)。
+`<SlidePanel>` 同时接受`SlidePanelGroup`和`SlidePanelItem`的 props。`<SlidePanel>` 内部自动将自己的 props 分类成`slidePanelGroupProps`和`slidePanelItemProps`，像上面的代码片段展示的那样，透传给对应组件。
 
 [MDXInstruction:renderInterface:ISlidePanelProps](./api-json/api.json)
 
-如果要同时展示多个 panel，请使用 SlidePanelGroup 和 SlidePanelItem。
+对于**只展示一个 panel**的情况(其实这应该符合大部分情况)，直接使用 SlidePanel 就很方便。使用方式见上面的[基本用法](#基本用法)。
+
+如果要同时展示多个 panel，请直接使用 SlidePanelGroup 和 SlidePanelItem。
 
 ### SlidePanelGroup
 
@@ -70,9 +72,12 @@ initer?: () => React.ReactElement
 
 [MDXInstruction:renderInterface:IUsePanelStackReturn](./api-json/api.json)
 
+你需要将`top`渲染到`SlidePanelGroup`中。使用示例见前面的“基本用法”小节。
+
 #### usePanelStackCtx
 
 为了方便用户【在面板中】操作面板栈，我们提供了`usePanelStackCtx()`这个 hooks 来获得栈的操作方法：`push`和`pop`，这两个操作方法就是 usePanelStack 返回值中的`push`和`pop`。
+
 ```tsx
 const FirstPanel: React.FC<{
   setIsPanelShowing: (v: boolean) => void
@@ -99,4 +104,5 @@ const FirstPanel: React.FC<{
   )
 }
 ```
+
 使用示例见前面的“基本用法”小节。
