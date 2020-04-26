@@ -50,5 +50,9 @@
     "intersection-observer": "^0.7.0",
     "react-responsive": "^5.0.0",
     "recompose": "^0.27.0"
+  },
+  "devDependencies": {
+    "@alicloud/console-components-app-layout": "^1.0.8",
+    "@alicloud/console-components-page": "^1.0.11"
   }
 }
