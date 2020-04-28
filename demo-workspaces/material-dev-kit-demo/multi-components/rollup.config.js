@@ -1,5 +1,4 @@
 import { MdxPlugin } from '@alicloud/console-components-build-doc'
-import babel from 'rollup-plugin-babel'
 
 const commomDeps = ['react', '@mdx-js/react']
 
@@ -15,14 +14,7 @@ const config = (name, path) => {
       exports: 'named',
       entryFileNames: '[name].js',
     },
-    plugins: [
-      MdxPlugin(),
-      babel({
-        babelrc: false,
-        presets: [['@babel/env', { modules: false }], '@babel/react'],
-        extensions: ['md', 'mdx'],
-      }),
-    ],
+    plugins: [MdxPlugin()],
     external: [...commomDeps, '@alicloud/cc-demo-multi-components'],
   }
 }

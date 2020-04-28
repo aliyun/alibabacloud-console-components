@@ -9,15 +9,16 @@
   "scripts": {
     "types": "tsc -p ./components/tsconfig.json",
     "clean": "rm -rf dist lib es cc-dev-out docs",
-    "prepare": "npm run clean && npm run types && npm run doc:build",
+    "prepare": "npm run clean && npm run types && npm run extract-api && npm run doc:build",
     "build": "cc-build-material",
-    "doc:local-dev": "cc-doc-local-dev",
-    "doc:build": "cc-extract-api && npm run rollup",
-    "publish-preview": "cc-publish-preview",
-    "rollup": "rollup -c"
+    "doc:local-dev": "breezr docs --dev",
+    "extract-api": "breezr docs --extract-api",
+    "doc:build": "breezr docs --build",
+    "publish-preview": "breezr docs --publish-preview",
+    "debug:doc:build": "npx --node-arg=--inspect breezr docs --extract-api"
   },
   "devDependencies": {
-    "@alicloud/console-components-lib-publisher": "^0.1.22",
+    "@alicloud/console-toolkit-cli": "^1.0.2",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@types/react": "^16.9.17",
     "@types/styled-components": "^4.4.1",

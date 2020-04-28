@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import path from 'path'
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
 import * as enhancedResolve from 'enhanced-resolve'
 import * as rollup from 'rollup'
 import invariant from 'tiny-invariant'
@@ -24,11 +24,9 @@ export async function loadDemoCode(
     plugins: [
       babel({
         babelrc: false,
-        presets: [
-          ['@babel/env', { modules: false }],
-          '@babel/preset-typescript',
-          '@babel/react',
-        ],
+        // no need to add preset-env, this bunle will be processed by outer rollup again
+        presets: ['@babel/preset-typescript', '@babel/react'],
+        babelHelpers: 'bundled',
         extensions,
       }),
       {
