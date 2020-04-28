@@ -1,0 +1,14 @@
+{
+  "name": "@alicloud/console-toolkit-plugin-docs",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "compile": "rm -rf lib && tsc",
+    "watch": "rm -rf lib && tsc -w"
+  },
+  "devDependencies": {
+    "@alicloud/console-toolkit-core": "^1.0.1",
+    "typescript": "^3.8.3"
+  }
+}

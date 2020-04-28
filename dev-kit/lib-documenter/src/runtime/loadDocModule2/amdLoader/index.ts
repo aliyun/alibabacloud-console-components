@@ -77,6 +77,7 @@ export function createLoader(): ILoader {
       if (Array.isArray(dependencies) && typeof factory === 'function') {
         const depVals = dependencies.map((depId) => {
           if (depId === 'exports') return exports
+          // 模块的依赖必须已经加载完成，loader不自动加载
           if (!has(depId)) throwErr(`Can't resolve dependency "${depId}".`)
           return get(depId)
         })

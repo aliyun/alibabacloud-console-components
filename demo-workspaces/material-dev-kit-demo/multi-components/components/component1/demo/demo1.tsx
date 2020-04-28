@@ -1,7 +1,8 @@
 import React from 'react'
 import { MyButton1 } from '@alicloud/cc-demo-multi-components'
 
-const Example: React.FC<{}> = () => {
+const Example: React.FC<any> = ({ prop1, ...rest }) => {
+  console.log('log from demo', prop1, rest)
   return (
     <p>
       This is demo1: <MyButton1 />

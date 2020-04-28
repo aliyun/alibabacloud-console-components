@@ -5,11 +5,10 @@ import path from 'path'
 import { createFilter } from '@rollup/pluginutils'
 import type { Plugin } from 'rollup'
 import mdx from '@mdx-js/mdx'
+import babel from '@rollup/plugin-babel'
 import { getOpts } from './getOpts'
 import { extractTsInterfaceDataPlugin } from './extractTsInterfaceData/plugin'
 import { loadDemoPlugin } from './loadDemo/plugin'
-
-// import * as babel from '@babel/core'
 
 // imitate @mdx-js/loader:
 // https://github.com/mdx-js/mdx/blob/b77e2945bbde9fd3b595ee0a09a2323dac37ad61/packages/loader/index.js#L9
@@ -17,10 +16,7 @@ import { loadDemoPlugin } from './loadDemo/plugin'
 const ext = /\.md$|\.mdx$/
 
 const DEFAULT_RENDERER = `
-import React from 'react'
 import { mdx } from '@mdx-js/react'
-// avoid UNUSED_EXTERNAL_IMPORT warning from rollup
-React;
 `
 
 export default function plugin({
@@ -46,7 +42,7 @@ export default function plugin({
 
         // const { code: transpiled } = babel.transformSync(code, {
         //   babelrc: false,
-        //   presets: [['@babel/env', { modules: 'commonjs' }], '@babel/react'],
+        //   presets: ['@babel/react'],
         // })!
 
         return {
@@ -60,6 +56,14 @@ export default function plugin({
       const plugins = opts.plugins ?? []
       plugins.push(loadDemoPlugin())
       plugins.push(extractTsInterfaceDataPlugin())
+      plugins.push(
+        babel({
+          babelrc: false,
+          presets: [['@babel/env', { modules: false }], '@babel/react'],
+          babelHelpers: 'bundled',
+          extensions: ['md', 'mdx'],
+        })
+      )
       return {
         ...opts,
         plugins,

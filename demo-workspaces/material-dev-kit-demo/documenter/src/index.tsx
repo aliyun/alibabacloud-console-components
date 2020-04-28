@@ -23,7 +23,7 @@ const aliasConfig = {
 //   loadDocModule.resolveDocUrl('aliUnpkg', resolveParam),
 //   loadDocModule.resolveDocUrl('antUnpkg', resolveParam),
 // ]
-const urls = 'http://localhost:5000/docs/doc.js'
+const urls = 'http://localhost:5000/docs/component1.js'
 
 // urls传入数组时，从多个cdn并发加载，并提供容灾
 loadDocModule(urls, {
