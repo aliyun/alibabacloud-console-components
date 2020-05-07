@@ -116,4 +116,13 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-copy-id',
+    zhName: '表格中的id复制器',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-copy-id',
+    tags: {
+      table: true,
+    },
+  },
 ]
