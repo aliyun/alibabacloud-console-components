@@ -3,9 +3,52 @@ import { Button } from '@alicloud/console-components'
 import {
   SlidePanelGroup,
   SlidePanelItem,
+  usePanelStack,
+  usePanelStackCtx,
 } from '@alicloud/console-components-slide-panel'
 
 /* eslint-disable no-console */
+
+const FirstPanel: React.FC<{
+  setIsPanelShowing: (v: boolean) => void
+}> = ({ setIsPanelShowing }) => {
+  const panelStackManager = usePanelStackCtx()
+  return (
+    <SlidePanelItem
+      width="medium"
+      title="stack1"
+      headerExtra="extra1"
+      onOk={() => setIsPanelShowing(false)}
+      onClose={() => setIsPanelShowing(false)}
+      onCancel={() => setIsPanelShowing(false)}
+    >
+      stack1
+      <Button
+        onClick={() => {
+          panelStackManager.push(<SecondPanel />)
+        }}
+      >
+        下探一级
+      </Button>
+    </SlidePanelItem>
+  )
+}
+
+const SecondPanel: React.FC = () => {
+  const panelStackManager = usePanelStackCtx()
+  return (
+    <SlidePanelItem
+      width="medium"
+      title="stack2"
+      onOk={() => panelStackManager.pop()}
+      onCancel={() => panelStackManager.pop()}
+      onClose={() => panelStackManager.pop()}
+      onBackArrowClicked={() => panelStackManager.pop()}
+    >
+      stack2
+    </SlidePanelItem>
+  )
+}
 
 const onSwitchHandlers = {
   onSwitchStarted: () => {
@@ -22,6 +65,9 @@ const onSwitchHandlers = {
 const Basic: React.FC<{}> = () => {
   const [activeId, setActiveId] = useState('item1')
   const [isShowing, setIsShowing] = useState(false)
+  const { top } = usePanelStack(() => {
+    return <FirstPanel setIsPanelShowing={setIsShowing} />
+  }, 'stackPanelId')
 
   return (
     <>
@@ -78,6 +124,7 @@ const Basic: React.FC<{}> = () => {
         >
           item2
         </SlidePanelItem>
+        {top}
         <SlidePanelItem id="item3" width="tiny" {...onSwitchHandlers}>
           item3 without header
         </SlidePanelItem>

@@ -44,16 +44,16 @@ export interface ISlidePanelGroupProps {
    */
   onSwitchPanelItem?: (id: string) => void
   /**
-   * **整个面板组**的滑出、滑入动画开始了。
+   * 【整个面板组】的滑出、滑入动画开始了。
    */
   onSlideStarted?: () => void
   /**
-   * **整个面板组**的滑出、滑入动画被中断了。原因是动画还没完成，`isShowing`又变了。
+   * 【整个面板组】 的滑出、滑入动画被中断了。原因是动画还没完成，`isShowing`又变了。
    * @internal
    */
   onSlideCancled?: () => void
   /**
-   * **整个面板组**的滑出、滑入动画完成了。
+   * 【整个面板组】 的滑出、滑入动画完成了。
    */
   onSlideCompleted?: () => void
   /**
@@ -68,7 +68,7 @@ export interface ISlidePanelGroupProps {
  */
 const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   isShowing = false,
-  activeId = '',
+  activeId,
   top = 0,
   hasMask = true,
   className,

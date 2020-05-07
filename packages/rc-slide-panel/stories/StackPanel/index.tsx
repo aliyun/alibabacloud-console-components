@@ -77,9 +77,6 @@ const Stack: React.FC<{}> = () => {
         onSlideStarted={() => {
           console.log('onSlideStarted')
         }}
-        onSlideCancled={() => {
-          console.log('onSlideCancled')
-        }}
         onSlideCompleted={() => {
           console.log('onSlideCompleted')
         }}

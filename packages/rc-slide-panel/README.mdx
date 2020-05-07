@@ -4,21 +4,35 @@
 
 ## 基本用法
 
+### 单个panel
+
 SlidePanel 适用于**只展示一个 panel**的情况(其实这应该符合大部分情况)，点击 open 按钮时弹出面板：
 
 [MDXInstruction:importDemo:SlidePanelDemo](./stories/SlidePanel/index.tsx)
+
+### 多个panel
 
 弹出多个面板，用户可以在面板之间切换。这种场景需要使用 SlidePanelGroup 和 SlidePanelItem：
 
 [MDXInstruction:importDemo:MultiPanelDemo](./stories/MultiPanel/index.tsx)
 
-基于栈的多面板管理：每次只展示一个面板，但是可以进行下探、返回。使用`usePanelStack`来帮助你快速实现栈式面板管理：
+### 基于栈的多面板管理
+
+每次只展示一个面板，但是可以进行下探、返回。使用`usePanelStack`来帮助你快速实现栈式面板管理：
 
 [MDXInstruction:importDemo:StackPanelDemo](./stories/StackPanel/index.tsx)
 
-渲染到指定容器，通过`props.container`来指定 SlidePanel 要被渲染的容器
+### 渲染到指定容器，通过
+
+通过`props.container`来指定 SlidePanel 要被渲染的容器
 
 [MDXInstruction:importDemo:SlidePanelWithContainer](./stories/SlidePanelWithContainer/index.tsx)
+
+### SlidePanelItem与StackPanel混用
+
+通过传入`stackPanelId`，来为栈中的stackPanel指定id。详见[usePanelStack小节](#usepanelstack "标题")
+
+[MDXInstruction:importDemo:SlidePanelWithContainer](./stories/StackPanelMixedSlidePanelItem/index.tsx)
 
 ## APIs
 
@@ -60,11 +74,22 @@ SlidePanelGroup 定义一个滑动面板**组**，其中可以包含多个 Slide
 2. 当加入新的面板时，展示新的面板（下探）
 3. 当新面板返回时，展示最初的那个面板
 
+#### 用法
+```tsx
+const Panel = () => (<FirstPanel setIsPanelShowing={setIsShowing} />)
+const stackPanelId = 'stackPanelId'
+const { top } = usePanelStack(Panel, stackPanelId)
+```
+
 #### 参数
 
 ```tsx
-initer?: () => React.ReactElement
+usePanelStack(initer?: () => React.ReactElement, stackPanelId?: string)
 ```
+- initer, 是初始化时入栈的Panel。
+- stackPanelId，是被当前所有的stackPanel共享的id。
+
+当`stackPanel`被激活时`stackPanelId`会在`onSwitchPanelItem`函数中被透出。此时用户可通过setState指定当前的activeId从而激活stackPanel。详见[Demo](#slidepanelitem与stackpanel混用 "标题")
 
 初始化最初展示的面板。
 
