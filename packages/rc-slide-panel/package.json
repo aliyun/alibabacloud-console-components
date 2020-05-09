@@ -46,6 +46,7 @@
     "styled-components": "^4.2.0"
   },
   "dependencies": {
+    "@alicloud/console-components-intl": "^1.0.12",
     "classnames": "^2.2.5"
   }
 }

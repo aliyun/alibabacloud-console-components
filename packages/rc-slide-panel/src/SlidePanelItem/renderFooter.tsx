@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '@alicloud/console-components'
+import { withRcIntl } from '@alicloud/console-components-intl'
 import defaultMessages from '../defaultMessages'
 import { SFooterWrapper } from './style'
 import { ISlidePanelItemProps } from './index'
@@ -13,6 +14,7 @@ function renderFooter({
   onCancel,
   cancelText,
   isActive,
+  intl,
 }: Pick<
   ISlidePanelItemProps,
   | 'customFooter'
@@ -22,15 +24,17 @@ function renderFooter({
   | 'processingText'
   | 'onCancel'
   | 'cancelText'
-> & { isActive: boolean }): React.ReactNode {
+> & { isActive: boolean; intl: (message: string, args?: any) => string }) {
   if (!isActive) return null
   let footerContent = customFooter
   if (!footerContent) {
     // 如果没有事件处理函数，则不渲染footer
     if (onOk || onCancel) {
-      const actualProcessingText = processingText || defaultMessages.processing
-      const actualOkText = okText || defaultMessages.ok
-      const actualCancelText = cancelText || defaultMessages.cancel
+      const actualProcessingText =
+        processingText || intl('processing') || defaultMessages.processing
+      const actualOkText = okText || intl('ok') || defaultMessages.ok
+      const actualCancelText =
+        cancelText || intl('cancel') || defaultMessages.cancel
       footerContent = (
         <>
           {/* 如果没有某个事件处理函数，则不渲染对应的button */}
@@ -58,4 +62,8 @@ function renderFooter({
   return <SFooterWrapper>{footerContent}</SFooterWrapper>
 }
 
-export default renderFooter
+export default withRcIntl({
+  componentName: 'SlidePanel',
+  defaultMessages,
+  warningIfNoMessageFromCtx: false,
+})(renderFooter)
