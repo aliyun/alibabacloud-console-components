@@ -231,9 +231,9 @@ export type PartitionFn = (
 ) => [ReactElement[], ReactElement[]]
 
 /**
- * 这个函数接受经过 {@link IActionsProps.partitionFn | partitionFn}处理的子元素。返回需要渲染的元素。
- * 比如，如果 {@link IActionsProps.partitionFn | partitionFn}将子元素划分为`[Array<displayedItem>, Array<shrinkItems>]`，那么这个函数的签名就应该是:"(displayedItems: ReactElement[], shrinkItems: ReactElement[]) =\> ReactNode"
- * @param parts - 经过 {@link IActionsProps.partitionFn | partitionFn}分类以后的数组。
+ * 这个函数接受经过 partitionFn 处理的子元素。返回需要渲染的元素。
+ * 比如，如果 partitionFn 将子元素划分为`[Array<displayedItem>, Array<shrinkItems>]`，那么这个函数的签名就应该是:"(displayedItems: ReactElement[], shrinkItems: ReactElement[]) =\> ReactNode"
+ * @param parts - 经过 partitionFn 分类以后的数组。
  * @returns 最终需要渲染的ReactNode。
  * @internal
  */
