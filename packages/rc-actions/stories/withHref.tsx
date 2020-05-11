@@ -6,13 +6,21 @@ const Basic: React.FC<{}> = () => {
   return (
     <Container>
       <div className="block">
-        <Actions threshold={2}>
+        <Actions threshold={3}>
           <LinkButton
             Component="a"
             href="https://www.taobao.com"
             target="_blank"
           >
             淘宝
+          </LinkButton>
+          <LinkButton
+            Component="a"
+            href="https://www.taobao.com"
+            target="_blank"
+            disabled
+          >
+            编辑
           </LinkButton>
           <LinkButton
             Component="a"

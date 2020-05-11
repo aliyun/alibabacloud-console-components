@@ -55,10 +55,13 @@ export const SLinkButton = styled.span<{ disabled?: boolean }>`
 export const LinkButton: React.FC<
   React.HTMLProps<HTMLSpanElement> & ILinkButtonProps
 > = ({ children, onClick, disabled, Component, ...props }) => {
+  // disbaled的时候需要渲染为span 以阻止<a /> 和 <Link /> 的跳转事件
+  const actualComponent = disabled ? 'span' : Component
+
   return (
     <SLinkButton
       {...(props as any)}
-      as={Component}
+      as={actualComponent}
       disabled={disabled}
       onClick={(e) => {
         if (!disabled && typeof onClick === 'function') onClick(e)
