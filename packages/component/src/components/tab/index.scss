@@ -15,7 +15,11 @@ $tabs-cls-name: '#{$css-prefix}tabs';
       &:last-child {
         border-right-width: 1px;
 			}
-    }
+		}
+		// fix: https://github.com/aliyun/alibabacloud-console-components/issues/85
+		.#{$tabs-cls-name}-nav-extra {
+			z-index: 2!important;
+		}
   }
 }
 
