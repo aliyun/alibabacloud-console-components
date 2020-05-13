@@ -12,7 +12,7 @@ export interface ISlidePanelItemBaseProps {
   /**
    * 面板的id。用于在`SlidePanelGroup`中匹配`props.activeId`。id匹配的面板处于激活状态（全宽度展示）。非激活状态的panel会有宽度坍缩，并展示`...`而不是实际内容，使用户注意力聚焦于激活状态的面板。
    */
-  id: string
+  id?: string
   children: React.ReactNode
   /**
    * 面板处于激活状态时的正常宽度。
@@ -60,6 +60,8 @@ const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({
     onCompleted: onSwitchCompleted,
   })[1]
 
+  const actualPanelId = ctxValue.stackPanelId || id || ''
+
   return (
     <SPanelItemWrapper
       className={classNames('wind3-slide-panel', className)}
@@ -68,9 +70,9 @@ const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({
       onClick={() =>
         !isActive &&
         ctxValue.onSwitchPanelItem &&
-        ctxValue.onSwitchPanelItem(id)
+        ctxValue.onSwitchPanelItem(actualPanelId)
       }
-      onTransitionEnd={e => {
+      onTransitionEnd={(e) => {
         if (e.currentTarget === e.target) {
           transitionEndSignal()
         }
@@ -84,7 +86,7 @@ const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({
 export default SlidePanelItemBase
 
 SlidePanelItemBase.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   width: PropTypes.string.isRequired,

@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo, useContext } from 'react'
 import slidePanelGroupContext, {
   useSlidePanelContext,
   ActiveIdForAll,
+  defaultStackPanelId,
 } from './context'
 
 const panelStackCtx = React.createContext<null | Pick<
@@ -9,12 +10,19 @@ const panelStackCtx = React.createContext<null | Pick<
   'push' | 'pop'
 >>(null)
 
-const AlterSlidePanelGroupContext: React.FC = ({ children }) => {
+const AlterSlidePanelGroupContext: React.FC<{ stackPanelId: string }> = ({
+  children,
+  stackPanelId,
+}) => {
   const ctxVal = useSlidePanelContext()
-  const { onSwitchPanelItem } = ctxVal
+
+  const { onSwitchPanelItem, activeId = defaultStackPanelId } = ctxVal
+
+  const actualActiveId = activeId === stackPanelId ? ActiveIdForAll : activeId
+
   const alteredCtxVal = useMemo(
-    () => ({ onSwitchPanelItem, activeId: ActiveIdForAll }),
-    [onSwitchPanelItem]
+    () => ({ onSwitchPanelItem, activeId: actualActiveId, stackPanelId }),
+    [onSwitchPanelItem, actualActiveId, stackPanelId]
   )
   return (
     <slidePanelGroupContext.Provider value={alteredCtxVal}>
@@ -45,7 +53,12 @@ export interface IUsePanelStackReturn {
 /**
  * @public
  */
-export function usePanelStack(initer?: () => React.ReactElement) {
+export function usePanelStack(
+  initer?: () => React.ReactElement,
+  stackPanelId?: string
+) {
+  const actualStackPanelId = stackPanelId || defaultStackPanelId
+
   const [panelStack, setPanelStack] = useState<React.ReactElement[]>(() =>
     typeof initer === 'function' ? [initer()] : []
   )
@@ -65,7 +78,9 @@ export function usePanelStack(initer?: () => React.ReactElement) {
   // 从而使得top中的面板被激活
   const actualTop = top ? (
     <panelStackCtx.Provider value={panelStackCtxValue}>
-      <AlterSlidePanelGroupContext>{top}</AlterSlidePanelGroupContext>
+      <AlterSlidePanelGroupContext stackPanelId={actualStackPanelId}>
+        {top}
+      </AlterSlidePanelGroupContext>
     </panelStackCtx.Provider>
   ) : (
     top

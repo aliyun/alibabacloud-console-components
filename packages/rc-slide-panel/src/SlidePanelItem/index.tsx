@@ -4,7 +4,7 @@ import SlidePanelItemBase from './SlidePanelItemBase'
 import { SBodyWrapper, SPlaceHolder, SSlidePanelContentWrapper } from './style'
 import { useSlidePanelContext, ActiveIdForAll } from '../context'
 import renderHeader from './renderHeader'
-import renderFooter from './renderFooter'
+import Footer from './renderFooter'
 
 /**
  * @public
@@ -13,7 +13,7 @@ export interface ISlidePanelItemProps {
   /**
    * 面板的id。用于在`SlidePanelGroup`中匹配`props.activeId`。id匹配的面板处于激活状态（全宽度展示）。非激活状态的panel会有宽度坍缩，并展示`...`而不是实际内容，使用户注意力聚焦于激活状态的面板。
    */
-  id: string
+  id?: string
   /**
    * 面板的内容。
    */
@@ -78,7 +78,7 @@ export interface ISlidePanelItemProps {
    */
   onSwitchCancled?: () => void
   /**
-   * **面板之间的切换**动画完成了。
+   * 【面板之间的切换】动画完成了。
    */
   onSwitchCompleted?: () => void
 }
@@ -159,16 +159,16 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
         <SBodyWrapper display={isActive ? 'block' : 'none'}>
           {children}
         </SBodyWrapper>
-        {renderFooter({
-          isActive,
-          customFooter,
-          onOk,
-          okText,
-          isProcessing,
-          processingText,
-          onCancel,
-          cancelText,
-        })}
+        <Footer
+          isActive={isActive}
+          customFooter={customFooter}
+          onOk={onOk}
+          okText={okText}
+          isProcessing={isProcessing}
+          processingText={processingText}
+          onCancel={onCancel}
+          cancelText={cancelText}
+        />
       </SSlidePanelContentWrapper>
     </SlidePanelItemBase>
   )
@@ -179,7 +179,7 @@ export default SlidePanelItem
 SlidePanelItem.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   title: PropTypes.node,
   headerExtra: PropTypes.node,

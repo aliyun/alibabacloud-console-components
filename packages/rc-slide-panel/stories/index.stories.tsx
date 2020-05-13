@@ -7,6 +7,7 @@ import SlidePanelDemo from './SlidePanel'
 import StackPanelDemo from './StackPanel'
 import SlidePanelWithContainer from './SlidePanelWithContainer'
 import CheckPanelShouldBeClosable from './CheckPanelShouldBeClosable'
+import StackPanelMixedSlidePanelItem from './StackPanelMixedSlidePanelItem'
 
 storiesOf('WindRcActions', module)
   .add('MultiPanelDemo', () => <MultiPanelDemo />)
@@ -14,3 +15,4 @@ storiesOf('WindRcActions', module)
   .add('StackPanelDemo', () => <StackPanelDemo />)
   .add('SlidePanelWithContainer', () => <SlidePanelWithContainer />)
   .add('CheckPanelShouldBeClosable', () => <CheckPanelShouldBeClosable />)
+  .add('StackPanelMixedSlidePanelItem', () => <StackPanelMixedSlidePanelItem />)
