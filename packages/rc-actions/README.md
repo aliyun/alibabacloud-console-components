@@ -48,9 +48,9 @@ FragmentDemo：
 
 ### LinkButton
 
-`<LinkButton>`用于定义`<Actions>`中的操作按钮，接受的 props 与普通的`<span>`相同，经常使用的是`onClick`。
+> 继承`@alicloud/console-components-button`中的`LinkButton`的API
 
-[MDXInstruction:renderInterface:ILinkButtonProps](./api-json/api.json)
+`<LinkButton>`用于定义`<Actions>`中的操作按钮，接受的 props 与普通的`<span>`相同，经常使用的是`onClick`。
 
 使用LinkButton进行站外跳转，通过`props.Component`将`LinkButton`将被渲染为`<a />`
 
