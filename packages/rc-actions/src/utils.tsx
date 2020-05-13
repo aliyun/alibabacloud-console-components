@@ -35,7 +35,7 @@ export function getWrapperProps(
 export function renderActionsChildren(
   children: ReactNode,
   partitionFn: PartitionFn,
-  remderItemsByParts: RenderItemsByParts
+  renderItemsByParts: RenderItemsByParts
 ) {
   let newChildren = children
   if (isValidElement(newChildren)) {
@@ -52,7 +52,7 @@ export function renderActionsChildren(
       (node) => isValidElement(node) && node.props.visible !== false
     ) as ReactElement[]
   const parts = partitionFn(newChildren as ReactElement[])
-  return remderItemsByParts(...parts)
+  return renderItemsByParts(...parts)
 }
 
 /**
@@ -142,7 +142,9 @@ export interface IFusionConfigProps {
 /**
  * @public
  */
-export function GetFusionConfig<PropType>(Wrapped: React.ComponentType<IActionsProps & IFusionConfigProps>) {
+export function GetFusionConfig<PropType>(
+  Wrapped: React.ComponentType<IActionsProps & IFusionConfigProps>
+) {
   const ConfifgConsumer: any = (ConfigProvider as any).Consumer
   const HOC: React.FC<IActionsProps> = (props) => (
     <ConfifgConsumer>
