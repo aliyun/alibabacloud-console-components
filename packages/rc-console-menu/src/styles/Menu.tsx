@@ -67,6 +67,7 @@ const PrimaryMenu = styled(NavFilterProps)<{
 
       a {
         color: #555555;
+        display: inline;
         &:hover {
           text-decoration: none;
         }

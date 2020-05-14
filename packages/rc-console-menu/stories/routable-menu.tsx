@@ -1,6 +1,4 @@
 import React from 'react'
-import { Route } from 'dva/router'
-import { Input } from '@alicloud/console-components'
 import RoutableMenu from '@alicloud/console-components-console-menu/RoutableMenu'
 import { IRoutableItemDescriptor } from '@alicloud/console-components-console-menu'
 import { FakeBrowserWithWrapper as FakeBrowser } from '@alicloud/console-components-fake-browser'
@@ -9,7 +7,15 @@ const regions = ['cn-beijing', 'cn-shanghai', 'cn-hangzhou']
 
 const items: IRoutableItemDescriptor[] = [
   { key: '/home', to: '/', label: '首页' },
-  { key: '/instance', to: '/instance', label: '实例概览' },
+  {
+    key: '/long',
+    to: '/long',
+    label: '这是一段很长很长的文本，我猜测一定会溢出的',
+    linkProps: {
+      // Routable Menu不会自动设置title需要开发者手动设置
+      title: '这是一段很长很长的文本，我猜测一定会溢出的',
+    },
+  },
   {
     key: '/instance/:region',
     // 可以使用函数来返回动态的 pathname 或 location
@@ -52,7 +58,11 @@ const items: IRoutableItemDescriptor[] = [
         key: '/help',
         label: '帮助',
         render: ({ key, label }) => (
-          <a href="https://www.aliyun.com" target="_blank">
+          <a
+            href="https://www.aliyun.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {label}
           </a>
         ),
@@ -70,12 +80,12 @@ const items: IRoutableItemDescriptor[] = [
 const Example = () => {
   return (
     <FakeBrowser>
-      <div>
+      <div style={{ width: 208 }}>
         <RoutableMenu header="阿里云控制台" items={items} />
-        <p>
-          Tips: 在地址栏输入<code>/daily/cn-beijing</code>，父节点会自动展开
-        </p>
       </div>
+      <p>
+        Tips: 在地址栏输入<code>/daily/cn-beijing</code>，父节点会自动展开
+      </p>
     </FakeBrowser>
   )
 }
