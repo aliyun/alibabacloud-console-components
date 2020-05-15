@@ -30,6 +30,14 @@ zhName: 面包屑
 
 #include "demo/demo3.js"
 
+可以设置不同的分隔符
+
+#include "demo/demo3.js"
+
+超出换行
+
+#include "demo/demo4.js"
+
 
 
 
