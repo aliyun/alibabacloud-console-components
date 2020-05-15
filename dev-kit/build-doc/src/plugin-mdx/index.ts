@@ -56,14 +56,14 @@ export default function plugin({
       const plugins = opts.plugins ?? []
       plugins.push(loadDemoPlugin())
       plugins.push(extractTsInterfaceDataPlugin())
-      plugins.push(
-        babel({
-          babelrc: false,
-          presets: [['@babel/env', { modules: false }], '@babel/react'],
-          babelHelpers: 'bundled',
-          extensions: ['md', 'mdx'],
-        })
-      )
+      // plugins.push(
+      //   babel({
+      //     babelrc: false,
+      //     presets: [['@babel/env', { modules: false }], '@babel/react'],
+      //     babelHelpers: 'bundled',
+      //     extensions: ['md', 'mdx'],
+      //   })
+      // )
       return {
         ...opts,
         plugins,

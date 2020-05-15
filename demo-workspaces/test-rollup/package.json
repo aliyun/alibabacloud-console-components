@@ -1,0 +1,16 @@
+{
+  "name": "test-rollup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^5.0.0",
+    "@rollup/plugin-commonjs": "11.0.2",
+    "@rollup/plugin-json": "^4.0.3",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-replace": "^2.3.2",
+    "rollup": "^2.4.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0"
+  }
+}

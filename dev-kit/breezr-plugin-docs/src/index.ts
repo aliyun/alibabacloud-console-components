@@ -2,6 +2,7 @@ import { PluginAPI } from '@alicloud/console-toolkit-core'
 import {
   build,
   extractApi,
+  local
 } from '@alicloud/console-components-build-doc/lib/runner'
 import type { IBuildArgs } from '@alicloud/console-components-build-doc/lib/runner'
 
@@ -26,6 +27,11 @@ export default (api: PluginAPI, config: IBuildArgs['config']) => {
       } else if (args['extract-api']) {
         extractApi({ cwd })
       } else if (args.dev) {
+        local({
+          config,
+          cwd,
+          ...args,
+        })
         // TODO
       }
 

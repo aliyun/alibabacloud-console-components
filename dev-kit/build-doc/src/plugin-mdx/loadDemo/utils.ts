@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import path from 'path'
 import babel from '@rollup/plugin-babel'
+import { transform } from '@babel/core'
 import * as enhancedResolve from 'enhanced-resolve'
 import * as rollup from 'rollup'
 import invariant from 'tiny-invariant'
@@ -9,13 +10,18 @@ import findUp from 'find-up'
 import fs from 'fs-extra'
 import postcss from 'rollup-plugin-postcss'
 
+/**
+ * Load a module tree that starts with demoEntry.
+ * Can only do relative import.
+ * Deps from node_modules must be external.
+ */
 export async function loadDemoCode(
   demoEntry: string,
   canExternal: (request: string, from: string) => boolean | Promise<boolean>
 ) {
   const extensions = ['.js', '.jsx', '.ts', '.tsx']
-  const myResolve = enhancedResolve.create({
-    // don't resolve demo modules from node_modules
+  const strictResolve = enhancedResolve.create({
+    // never resolve modules from node_modules
     modules: [],
     extensions,
   })
@@ -36,15 +42,16 @@ export async function loadDemoCode(
             invariant(request === demoEntry)
             return null
           }
+          // strict resolve only resolve relative path. never search node_modules.
           return new Promise((res, rej) => {
-            myResolve(path.dirname(from), request, async (err, result) => {
+            strictResolve(path.dirname(from), request, async (err, result) => {
               if (err) {
                 if (await canExternal(request, from)) {
                   res({ external: true, id: request })
                   return
                 }
-                // force user to mark dependency of demo as "external"
-                const wrapperErr: any = new Error(`Dependency of demo can't be resolved. Please config this dependency as "external" explicitly.
+                // force user to mark deps from node_modules as "external"
+                const wrapperErr: any = new Error(`Dependency can't be resolved. Please config this dependency as "external" explicitly.
                 info: ${JSON.stringify({ request, from }, null, 2)}.`)
                 wrapperErr.childError = err
                 rej(wrapperErr)
@@ -65,6 +72,7 @@ export async function loadDemoCode(
   const { output } = await bundle.generate({
     format: 'esm',
     dir: 'demo-out',
+    exports: 'named',
   })
   invariant(
     output.length === 1,
@@ -73,6 +81,17 @@ export async function loadDemoCode(
   )
   const chunk = output[0]
   invariant(chunk.facadeModuleId === demoEntry)
+  invariant(
+    chunk.dynamicImports.length === 0,
+    'Demo chunk should not have dynamicImports'
+  )
+  invariant(
+    chunk.exports.includes('default'),
+    `Demo module should have default export. demoEntry: ${demoEntry}`
+  )
+  if (!chunk.exports.includes('demoMeta')) {
+    console.warn(`Demo module should export demoMeta. demoEntry: ${demoEntry}`)
+  }
   const modules: {
     [key: string]: {
       code: string
@@ -102,13 +121,30 @@ export async function loadDemoCode(
     modules: moduleCode,
     externals,
   }
-  const actualcode = `
+  const actualcodeESM = `
 const __stylesθ = {};\n
 ${chunk.code};
 export const __demoSrcInfo = ${JSON.stringify(demoModulesInfo)};
 __demoSrcInfo.styles = __stylesθ;
 `
-  return { actualcode, info: { entry, modules, externals } }
+  const actualCodeAMD = await new Promise((res, rej) => {
+    transform(
+      actualcodeESM,
+      {
+        plugins: ['@babel/plugin-transform-modules-amd'],
+      },
+      (err, result) => {
+        if (err) rej(err)
+        res(result?.code)
+      }
+    )
+  })
+  return {
+    codeESM: actualcodeESM,
+    codeAMD: actualCodeAMD,
+    actualCodeAMD,
+    info: { entry, modules, externals },
+  }
 }
 
 /**

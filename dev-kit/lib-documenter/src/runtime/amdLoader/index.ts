@@ -13,7 +13,8 @@ export function createLoader(): ILoader {
   return {
     register,
     registerAMD,
-    loadAMD,
+    loadAMD: loadAMDWithCache,
+    loadAMDFromString,
     has,
     get,
   }
@@ -33,18 +34,18 @@ export function createLoader(): ILoader {
   }
 
   async function registerAMD(id: string, url: string) {
-    const exports = await loadAMD(url)
+    const exports = await loadAMDWithCache(url)
     register(id, exports)
     return exports
   }
 
-  async function loadAMD(url: string) {
+  async function loadAMDWithCache(url: string) {
     const cached = loadCache[url]
     if (cached) return cached
-    return (loadCache[url] = _loadAMD(url))
+    return (loadCache[url] = loadAMD(url))
   }
 
-  async function _loadAMD(url: string) {
+  async function loadAMD(url: string) {
     const response = await fetch(url)
     if (!response.ok) throwErr(`${response.status} ${response.statusText}`)
     const contentType = response.headers.get('content-type')
@@ -56,6 +57,14 @@ export function createLoader(): ILoader {
       throwErr(`Invalid content type "${contentType}"`)
 
     const code = await response.text()
+    return loadAMDFromString(code)
+
+    function throwErr(msg: string): never {
+      throw new Error(`[loader] Fail to load "${url}".\n${msg}`)
+    }
+  }
+
+  function loadAMDFromString(code: string) {
     // eslint-disable-next-line @typescript-eslint/no-implied-eval, no-new-func
     const fn = new Function('define', code)
     let exports: null | object = null
@@ -89,11 +98,11 @@ export function createLoader(): ILoader {
       }
     }
 
-    function throwErr(msg: string): never {
-      throw new Error(`[loader] Fail to load "${url}".\n${msg}`)
-    }
-
     type IFactory = (...args: unknown[]) => void
+
+    function throwErr(msg: string): never {
+      throw new Error(`[loader] Fail to load.\n${msg}`)
+    }
   }
 }
 
@@ -113,6 +122,11 @@ interface ILoader {
    * The dependencies is resolved from this scope.
    */
   loadAMD: (url: string) => Promise<object>
+  /**
+   * Execute amd module string.
+   * The dependencies is resolved from this scope.
+   */
+  loadAMDFromString: (code: string) => object
   has: (id: string) => boolean
   get: (id: string) => unknown
 }

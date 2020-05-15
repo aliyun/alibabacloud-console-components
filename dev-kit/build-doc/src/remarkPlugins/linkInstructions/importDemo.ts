@@ -23,7 +23,7 @@ const handleLinkNode = ({
     0,
     {
       type: 'import',
-      value: `import * as ${importIdentiferName} from "${linkURL}?loadDemo"`,
+      value: `import ${importIdentiferName} from "${linkURL}?loadDemo"`,
     },
     {
       type: 'jsx',

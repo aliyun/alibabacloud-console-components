@@ -8,6 +8,7 @@ module.exports = {
           component2: './components/component2/README.mdx',
           README: './README.md',
         },
+        externals: ['@alicloud/cc-demo-multi-components'],
       },
     ],
   ],
