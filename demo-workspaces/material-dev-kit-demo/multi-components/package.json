@@ -11,14 +11,15 @@
     "clean": "rm -rf dist lib es cc-dev-out docs",
     "prepare": "npm run clean && npm run types && npm run extract-api && npm run doc:build",
     "build": "cc-build-material",
-    "doc:local-dev": "breezr docs --dev",
+    "doc:local-dev": "rm -rf docs-output && breezr docs --dev --devInputName=component1",
     "extract-api": "breezr docs --extract-api",
     "doc:build": "breezr docs --build",
     "publish-preview": "breezr docs --publish-preview",
-    "debug:doc:build": "npx --node-arg=--inspect breezr docs --extract-api"
+    "debug": "npx --node-arg=--inspect breezr docs --dev --devInputName=component1"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.2",
+    "@rollup/plugin-babel": "^5.0.0",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@types/react": "^16.9.17",
     "@types/styled-components": "^4.4.1",
@@ -33,6 +34,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.3",
     "enhanced-resolve": "^4.1.1"
   }
 }

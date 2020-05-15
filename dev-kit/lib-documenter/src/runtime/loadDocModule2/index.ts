@@ -2,7 +2,7 @@
 import externalsObj from './commonDeps'
 import { wrapMdxModule, IWrappedMdxModule } from '../MdxWrapper'
 import resolveDocUrl from './resolveDocUrl'
-import { createLoader } from './amdLoader'
+import { createLoader } from '../amdLoader'
 
 export interface IDocDef {
   prodPkgName: string

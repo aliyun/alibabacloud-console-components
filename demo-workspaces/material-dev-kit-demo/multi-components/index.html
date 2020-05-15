@@ -1,0 +1,9 @@
+<!doctype html>
+<script src="http://localhost:5000/dist/index.js"></script>
+<script>
+  const loader = window.DocRuntime.getLoader()
+  console.log(loader.get('react'))
+  const res = loader.loadAMD('http://localhost:64849/docs-output/local-dev.js')
+  console.log(res)
+</script>
+<!-- <script src="docs-output/local-dev.js"></script> -->
