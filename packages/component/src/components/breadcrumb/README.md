@@ -38,6 +38,14 @@ zhName: 面包屑
 
 #include "demo/demo4.js"
 
+Breadcrumb.Item长文本展示
+
+#include "demo/demo5.js"
+
+Breadcrumb.Item下拉选择
+
+#include "demo/demo6.js"
+
 
 
 
