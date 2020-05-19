@@ -8,7 +8,7 @@ const Fragment: React.FC<{}> = () => {
       <p>Actions中的React.Fragment会被拍平, 就像将数组作为子元素一样</p>
       <div className="block">
         <Actions>
-          <React.Fragment>
+          <>
             <LinkButton>详情</LinkButton>
             <LinkButton>删除</LinkButton>
             {[
@@ -16,7 +16,7 @@ const Fragment: React.FC<{}> = () => {
               <LinkButton key={2}>释放</LinkButton>,
               <LinkButton key={3}>暂停</LinkButton>,
             ]}
-          </React.Fragment>
+          </>
         </Actions>
       </div>
       <p className="block">效果等价于：</p>

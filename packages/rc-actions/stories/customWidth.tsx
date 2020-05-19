@@ -6,7 +6,7 @@ const Basic: React.FC<{}> = () => {
   return (
     <Container>
       <div className="block">
-        <p>下拉Menu内置最大的宽度为150px：</p>
+        <p>下拉Menu内置最大的宽度为200px：</p>
         <Actions>
           <LinkButton
             onClick={() => {
