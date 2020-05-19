@@ -1,13 +1,11 @@
-import React, {
-  Children,
-  isValidElement,
+import {
   CSSProperties,
   ReactNode,
-  ReactElement,
+  isValidElement,
+  Children,
+  Fragment,
 } from 'react'
 import classNames from 'classnames'
-import { ConfigProvider } from '@alicloud/console-components'
-import { PartitionFn, RenderItemsByParts, IActionsProps } from './actions'
 
 /**
  * @public
@@ -30,32 +28,6 @@ export function getWrapperProps(
 }
 
 /**
- * @internal
- */
-export function renderActionsChildren(
-  children: ReactNode,
-  partitionFn: PartitionFn,
-  remderItemsByParts: RenderItemsByParts
-) {
-  let newChildren = children
-  if (isValidElement(newChildren)) {
-    newChildren = [newChildren]
-  }
-  if (!Array.isArray(newChildren)) {
-    throw new Error(
-      `unexpected children type: ${{}.toString.call(newChildren)}`
-    )
-  }
-  newChildren = spreadFragmentInChildren(newChildren)
-    // only consider these nodes
-    .filter(
-      (node) => isValidElement(node) && node.props.visible !== false
-    ) as ReactElement[]
-  const parts = partitionFn(newChildren as ReactElement[])
-  return remderItemsByParts(...parts)
-}
-
-/**
  * `flattern the React.Fragment inside children:
  * children: [<A>, <B>, <React.Fragment><C><D></React.Fragment>, <E>]
  * =>
@@ -73,10 +45,6 @@ export function renderActionsChildren(
  * if recursive: true, result will be:  [<A>, <B>, <C>, <D>, <E>] ()
  * if recursive: false, result will be: [<A>, <B>, <C>, <React.Fragment><D></React.Fragment>, <E>]`
  */
-
-/**
- * @public
- */
 export function spreadFragmentInChildren(
   children: ReactNode,
   recursive = true
@@ -91,11 +59,7 @@ export function spreadFragmentInChildren(
       // node maybe 0, '', boolean, null, undefined
       // React.Children.forEach auto spread array into nodes, so node can't be array
       result.push(node)
-    } else if (
-      node.type === React.Fragment &&
-      node.props &&
-      node.props.children
-    ) {
+    } else if (node.type === Fragment && node.props && node.props.children) {
       // node.props.children can be a single element or array of it
       if (recursive) {
         result.push(...spreadFragmentInChildren(node.props.children))
@@ -107,49 +71,4 @@ export function spreadFragmentInChildren(
     }
   })
   return result
-}
-
-/**
- * @internal
- */
-export function partitionWithThreshold<T>(arr: T[], threshold: number) {
-  const front: T[] = []
-  const back: T[] = []
-  arr.forEach((item, i) => {
-    if (i < threshold) {
-      front.push(item)
-    } else {
-      back.push(item)
-    }
-  })
-  return [front, back] as [T[], T[]]
-}
-
-/**
- * @public
- */
-export interface IFusionConfig {
-  prefix?: string
-}
-
-/**
- * @public
- */
-export interface IFusionConfigProps {
-  fusionConfig?: IFusionConfig
-}
-
-/**
- * @public
- */
-export function GetFusionConfig<PropType>(Wrapped: React.ComponentType<IActionsProps & IFusionConfigProps>) {
-  const ConfifgConsumer: any = (ConfigProvider as any).Consumer
-  const HOC: React.FC<IActionsProps> = (props) => (
-    <ConfifgConsumer>
-      {(context: IFusionConfig) => (
-        <Wrapped {...props} fusionConfig={context} />
-      )}
-    </ConfifgConsumer>
-  )
-  return HOC
 }

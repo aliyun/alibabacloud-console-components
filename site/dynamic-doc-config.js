@@ -116,4 +116,14 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-button',
+    zhName: '扩展按钮',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-button',
+    tags: {
+      button: true,
+      checkbox: true,
+    },
+  },
 ]

@@ -1,4 +1,7 @@
-import Actions, { LinkMore, LinkButton } from '@alicloud/console-components-actions'
+import Actions, {
+  LinkMore,
+  LinkButton,
+} from '@alicloud/console-components-actions'
 import React from 'react'
 import { Button } from '@alicloud/console-components'
 import { Container } from './styles'

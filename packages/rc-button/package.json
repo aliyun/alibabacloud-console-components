@@ -1,6 +1,6 @@
 {
-  "name": "@alicloud/console-components-actions",
-  "version": "1.0.10",
+  "name": "@alicloud/console-components-button",
+  "version": "1.0.0",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "wind",
-    "wind-rc-actions",
+    "wind-rc-button",
     "react",
     "react component"
   ],
@@ -37,16 +37,14 @@
     "doc:build": "cc-build-doc",
     "publish-preview": "cc-publish-preview"
   },
-  "dependencies": {
-    "babel-runtime": "^6.26.0",
-		"classnames": "^2.2.6",
-		"@alicloud/console-components-button": "^1.0.0"
-  },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
     "prop-types": "^15.x",
     "react": "^16.x",
     "react-dom": "^16.x",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.3.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
   }
 }
