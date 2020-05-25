@@ -34,13 +34,13 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
       const workingModule = BFSQueue.shift()!
       BFSSet.add(workingModule)
       const deps = workingModule.dependencies
-        .filter(dependency => dependency instanceof ModuleDependency)
-        .map(dependency => dependency.module)
+        .filter((dependency) => dependency instanceof ModuleDependency)
+        .map((dependency) => dependency.module)
 
       // async filter for `deps`
       const shouldCollect = await Promise.all(
         deps.map(
-          async module =>
+          async (module) =>
             module instanceof NormalModule &&
             (await shouldBeCollected(module, entryModule))
         )
@@ -57,7 +57,7 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
   function removeDuplicateModules(modules: WebpackModule[]) {
     const modulePaths = new Set<string>()
     const result: WebpackModule[] = []
-    modules.forEach(m => {
+    modules.forEach((m) => {
       if (modulePaths.has(m.resource)) {
         return
       }
@@ -124,7 +124,7 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
       )
     })
 
-    const projectFiles = files.filter(f => f !== 'projectTemplateConfig.js')
+    const projectFiles = files.filter((f) => f !== 'projectTemplateConfig.js')
     if (files.length - 1 !== projectFiles.length) {
       // There is no "projectTemplateConfig.js" in 'files'
       throw new Error(
@@ -138,7 +138,7 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
 
     const loadedFiles: { [key: string]: string } = {}
     await Promise.all(
-      projectFiles.map(async projectFile => {
+      projectFiles.map(async (projectFile) => {
         const fileContent = await readFileAsync(
           join(projectTemplatePath, projectFile),
           'utf8'
@@ -186,7 +186,7 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
     }
     let entryModulePathInMergedProject
     await Promise.all(
-      demoModules.map(async demoModule => {
+      demoModules.map(async (demoModule) => {
         // demoModule.resource could be `path/to/module?query=value`
         const modulePath = demoModule.resource.split('?')[0]
         const relativePath = relative(demoBaseDir, modulePath)
@@ -237,10 +237,10 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
     }
 
     public apply(compiler: WebpackCompiler) {
-      compiler.hooks.normalModuleFactory.tap('testPlugin', factory => {
+      compiler.hooks.normalModuleFactory.tap('testPlugin', (factory) => {
         factory.hooks.parser
           .for('javascript/auto')
-          .tap('testPlugin', parser => {
+          .tap('testPlugin', (parser) => {
             parser.hooks.expression
               .for('__demo_loader_placeholder__')
               .tap('testPlugin', (expr: Node) => {
@@ -255,17 +255,17 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
                   enumerable: false,
                   value: true,
                 })
-                parser.state.current.addDependency(dep)
+                ;(parser as any).state.current.addDependency(dep)
                 return true
               })
           })
       })
-      compiler.hooks.compilation.tap('testPlugin', compilation => {
+      compiler.hooks.compilation.tap('testPlugin', (compilation) => {
         compilation.hooks.finishModules.tapPromise(
           'testPlugin',
           async (modules: any) => {
             await Promise.all(
-              modules.map(async module => {
+              modules.map(async (module) => {
                 const { loaders } = module
                 if (
                   loaders &&
@@ -274,7 +274,7 @@ function getDemoPlugin({ ConstDependency, ModuleDependency, NormalModule }) {
                   // this module is an entry of demo
                   const entryPath = module.resource
                   const injectToDependency = module.dependencies.find(
-                    dep => (dep as any).__inject_demo_info__
+                    (dep) => (dep as any).__inject_demo_info__
                   )
                   if (!injectToDependency) {
                     // this may be caused by using const enum with @babel/plugin-transform-typescript

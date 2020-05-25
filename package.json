@@ -73,8 +73,10 @@
     "prettier": "^2.0.2"
   },
   "resolutions": {
-    "@babel/plugin-transform-typescript": "7.9.6",
-    "@babel/preset-typescript": "7.9.0"
+    "@types/styled-components": "5.1.0",
+    "@microsoft/api-extractor": "~7.7.0",
+    "gatsby": "~2.19.45",
+    "gatsby-cli": "~2.10.11"
   },
   "config": {
     "commitizen": {
