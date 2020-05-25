@@ -1,23 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import Tag from '@alifd/next/lib/tag'
+import { Tag } from '@alifd/next' // 兼容cjs和esm的import方式
 import { Color, COLORED_CLASS_NAME, PROTECTED_TYPE } from './constants'
 
-const ColoredTag = ({
-  type,
-  className,
-  ...restProps
-}) => (
+const ColoredTag = ({ type, className, ...restProps }) => (
   <Tag
     {...restProps}
-    className={
-      classNames(
-        COLORED_CLASS_NAME,
-        `${COLORED_CLASS_NAME}-${type}`,
-        className,
-      )
-    }
+    className={classNames(
+      COLORED_CLASS_NAME,
+      `${COLORED_CLASS_NAME}-${type}`,
+      className
+    )}
   />
 )
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Card from '@alifd/next/lib/card'
+import { Card } from '@alifd/next' // 兼容cjs和esm的import方式
 import classNames from 'classnames'
 import hoistStatics from 'hoist-non-react-statics'
 import getDisplayName from '../../utils/getDisplayName'

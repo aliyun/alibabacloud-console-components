@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import hoistStatics from 'hoist-non-react-statics'
 import classNames from 'classnames'
-import Step from '@alifd/next/lib/step'
+import { Step } from '@alifd/next' // 兼容cjs和esm的import方式
 
 import getDisplayName from '../../utils/getDisplayName'
 import withWindConfig from '../../utils/withWindConfig'

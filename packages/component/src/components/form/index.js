@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Form from '@alifd/next/lib/form'
+import { Form } from '@alifd/next' // 兼容cjs和esm的import方式
 import './index.scss'
 import hoistStatics from 'hoist-non-react-statics'
 
@@ -7,7 +7,7 @@ const { Item } = Form
 
 const PropsCtx = React.createContext()
 
-const WrappedForm = props => {
+const WrappedForm = (props) => {
   return (
     <PropsCtx.Provider value={props}>
       <Form {...props} />
@@ -15,10 +15,10 @@ const WrappedForm = props => {
   )
 }
 
-const WrappedItem = props => {
+const WrappedItem = (props) => {
   return (
     <PropsCtx.Consumer>
-      {formProps => {
+      {(formProps) => {
         // fusion默认label靠右对齐，wind希望默认靠左对齐
         const labelTextAlign = (() => {
           // Item有可能不用在Form中

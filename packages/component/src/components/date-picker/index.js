@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DatePicker from '@alifd/next/lib/date-picker'
+import { DatePicker } from '@alifd/next' // 兼容cjs和esm的import方式
 import moment from 'moment'
 import './index.scss'
 

@@ -1,4 +1,4 @@
-import Transfer from '@alifd/next/lib/transfer'
+import { Transfer } from '@alifd/next' // 兼容cjs和esm的import方式
 import './index.scss'
 
 export default Transfer

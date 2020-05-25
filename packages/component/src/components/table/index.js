@@ -1,4 +1,4 @@
-import Table from '@alifd/next/lib/table'
+import { Table } from '@alifd/next' // 兼容cjs和esm的import方式
 import './index.scss'
 
 export default Table

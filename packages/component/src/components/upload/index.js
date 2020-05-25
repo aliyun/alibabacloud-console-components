@@ -1,4 +1,4 @@
-import Upload from '@alifd/next/lib/upload'
+import { Upload } from '@alifd/next' // 兼容cjs和esm的import方式
 import './index.scss'
 
 export default Upload

@@ -1,4 +1,4 @@
-import Tag from '@alifd/next/lib/tag'
+import { Tag } from '@alifd/next' // 兼容cjs和esm的import方式
 import Colored from './Colored'
 import ColoredGroup from './ColoredGroup'
 import { PROTECTED_TYPE } from './constants'

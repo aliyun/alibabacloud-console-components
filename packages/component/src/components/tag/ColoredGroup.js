@@ -1,7 +1,7 @@
 import React, { Children } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import Tag from '@alifd/next/lib/tag'
+import { Tag } from '@alifd/next' // 兼容cjs和esm的import方式
 import ColoredTag from './Colored'
 import { Color, COLORED_GROUP_CLASS_NAME, PROTECTED_TYPE } from './constants'
 
@@ -25,25 +25,22 @@ const ColoredGroup = ({
     className={classNames(COLORED_GROUP_CLASS_NAME, className)}
     style={style}
   >
-    {
-      Children.map(children, (elem, i) => {
-        let hijackedElem = elem
+    {Children.map(children, (elem, i) => {
+      let hijackedElem = elem
 
-        try {
-          const protectedElemType = elem.type[PROTECTED_TYPE]
-          if (protectedElemType === 'Tag') {
-            hijackedElem = (
-              <ColoredTag
-                {...elem.props}
-                type={avaliableColors[i % 5]}
-              />
-            )
-          }
-        } catch (err) { /** DO NOT thrown unexpected error but swallow it */ }
+      try {
+        const protectedElemType = elem.type[PROTECTED_TYPE]
+        if (protectedElemType === 'Tag') {
+          hijackedElem = (
+            <ColoredTag {...elem.props} type={avaliableColors[i % 5]} />
+          )
+        }
+      } catch (err) {
+        /** DO NOT thrown unexpected error but swallow it */
+      }
 
-        return hijackedElem
-      })
-    }
+      return hijackedElem
+    })}
   </TagGroup>
 )
 
