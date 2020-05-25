@@ -38,8 +38,8 @@
     "@types/styled-components": "4.1.8",
     "@types/systemjs": "^6.1.0",
     "@types/warning": "^3.0.0",
-		"@types/webpack-env": "^1.14.0",
-		"@types/react-responsive": "^8.0.2",
+    "@types/webpack-env": "^1.14.0",
+    "@types/react-responsive": "^8.0.2",
     "@types/recompose": "^0.30.7",
     "commitizen": "^4.0.3",
     "cross-env": "^6.0.3",
@@ -71,6 +71,10 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "prettier": "^2.0.2"
+  },
+  "resolutions": {
+    "@babel/plugin-transform-typescript": "7.9.6",
+    "@babel/preset-typescript": "7.9.0"
   },
   "config": {
     "commitizen": {

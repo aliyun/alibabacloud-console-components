@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { ConfigProvider } from '@alicloud/console-components'
-import { PartitionFn, RenderItemsByParts, IActionsProps } from './actions'
+import type { PartitionFn, RenderItemsByParts, IActionsProps } from './actions'
 
 /**
  * @public
@@ -142,7 +142,9 @@ export interface IFusionConfigProps {
 /**
  * @public
  */
-export function GetFusionConfig<PropType>(Wrapped: React.ComponentType<IActionsProps & IFusionConfigProps>) {
+export function GetFusionConfig<PropType>(
+  Wrapped: React.ComponentType<IActionsProps & IFusionConfigProps>
+) {
   const ConfifgConsumer: any = (ConfigProvider as any).Consumer
   const HOC: React.FC<IActionsProps> = (props) => (
     <ConfifgConsumer>
