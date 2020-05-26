@@ -7,7 +7,16 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { ConfigProvider } from '@alicloud/console-components'
-import type { PartitionFn, RenderItemsByParts, IActionsProps } from './actions'
+// eslint-disable-next-line import/no-cycle
+import {
+  PartitionFn as IPartitionFn_,
+  RenderItemsByParts as RenderItemsByParts_,
+  IActionsProps as IActionsProps_,
+} from './actions'
+
+type PartitionFn = IPartitionFn_
+type RenderItemsByParts = RenderItemsByParts_
+type IActionsProps = IActionsProps_
 
 /**
  * @public
