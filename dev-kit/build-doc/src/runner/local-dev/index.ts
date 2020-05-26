@@ -12,12 +12,6 @@ import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import builtins from 'rollup-plugin-node-builtins';
 
-import * as react from 'react'
-import * as reactDom from 'react-dom'
-import * as reactIs from 'react-is'
-import * as propTypes from 'prop-types'
-import * as ConsoleComponents from '@alicloud/console-components'
-
 import { IDocsConfig, defaultConfig } from '../build'
 import MdxPlugin from '../../plugin-mdx'
 
@@ -92,18 +86,7 @@ render(
         extensions: ['js', 'jsx', 'md', 'mdx'],
         exclude: /node_modules/,
       }),
-      // https://github.com/rollup/rollup-plugin-commonjs/issues/290#issuecomment-537683484
-      commonjs({
-        namedExports: {
-          react: Object.keys(react).filter((k) => k !== 'default'),
-          'react-dom': Object.keys(reactDom).filter((k) => k !== 'default'),
-          'react-is': Object.keys(reactIs).filter((k) => k !== 'default'),
-          'prop-types': Object.keys(propTypes).filter((k) => k !== 'default'),
-          '@alicloud/console-components': Object.keys(ConsoleComponents).filter(
-            (k) => k !== 'default'
-          ),
-        },
-      }),
+      commonjs(),
       // resolve({
       //   browser: true
       // }),

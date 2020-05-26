@@ -11,7 +11,10 @@
     "."
   ],
   "scripts": {
-    "bootstrap": "yarn && lerna run prepare --scope @alicloud/console-components-lib-publisher --scope @alicloud/console-components --include-dependencies && lerna run prepare --ignore @alicloud/console-components --ignore @alicloud/console-components-lib-publisher --ignore @alicloud/console-components-lib-documenter --ignore @alicloud/console-components-lib-api-documenter --ignore @alicloud/console-components-fake-browser",
+    "bootstrap:1": "lerna run prepare --scope @alicloud/console-components-build-doc --include-dependencies",
+    "bootstrap:2": "lerna run prepare --scope @alicloud/console-components-lib-publisher --scope @alicloud/console-components --include-dependencies",
+    "bootstrap:3": "lerna run prepare --ignore @alicloud/console-components --ignore @alicloud/console-components-lib-publisher --ignore @alicloud/console-components --ignore @alicloud/console-components-build-doc --ignore @alicloud/console-components-lib-documenter --ignore @alicloud/console-components-lib-api-documenter --ignore @alicloud/console-components-fake-browser",
+    "bootstrap": "yarn && npm run bootstrap:1 && npm run bootstrap:2 && npm run bootstrap:3",
     "clean": "lerna clean --yes && rm -rf node_modules",
     "link-bin": "link-parent-bin && link-parent-bin -c ./dev-kit",
     "postinstall": "npm run link-bin",
@@ -81,7 +84,8 @@
     "@types/styled-components": "5.1.0",
     "@microsoft/api-extractor": "~7.7.0",
     "gatsby": "~2.19.45",
-    "gatsby-cli": "~2.10.11"
+    "gatsby-cli": "~2.10.11",
+    "@microsoft/tsdoc": "0.12.14"
   },
   "config": {
     "commitizen": {

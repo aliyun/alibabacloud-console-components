@@ -20,7 +20,7 @@
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.2",
     "@rollup/plugin-babel": "^5.0.0",
-    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-commonjs": "^12.0.0",
     "@types/react": "^16.9.17",
     "@types/styled-components": "^4.4.1",
     "cross-env": "^6.0.3",
