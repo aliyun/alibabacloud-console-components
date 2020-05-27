@@ -6,6 +6,7 @@
     "demo-workspaces/gatsby-theme-console-doc-template/site",
     "demo-workspaces/material-dev-kit-demo/*",
     "demo-workspaces/test-rollup",
+    "demo-workspaces/vite-mdx-dev",
     "dev-kit/*",
     "site",
     "."
