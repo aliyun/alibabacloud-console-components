@@ -86,7 +86,8 @@
     "@microsoft/api-extractor": "~7.7.0",
     "gatsby": "~2.19.45",
     "gatsby-cli": "~2.10.11",
-    "@microsoft/tsdoc": "0.12.14"
+    "@microsoft/tsdoc": "0.12.14",
+    "typescript": "3.9.3"
   },
   "config": {
     "commitizen": {

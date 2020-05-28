@@ -2,11 +2,9 @@
   "exclude": ["./lib/**/*"],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
     "outDir": "./lib",
-    "types": [],
+    "rootDir": "./src",
     "noImplicitAny": false,
-    "baseUrl": "./src"
+    "resolveJsonModule": true
   }
 }

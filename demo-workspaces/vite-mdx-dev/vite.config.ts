@@ -3,13 +3,55 @@ import { readBody } from 'vite'
 import { createPlugin } from 'vite-plugin-mdx'
 import react from 'vite-plugin-react'
 import glob from 'glob'
+import rehypeSlug from 'rehype-slug'
+import {
+  linkInstructionsRemarkPlugin,
+  linkInstructionsImportDemo,
+  linkInstructionsRenderInterface,
+  // remarkPluginsTransformImg,
+} from '@alicloud/console-components-build-doc'
+import replace from '@rollup/plugin-replace'
 
 module.exports = {
+  alias: {
+    'styled-components':
+      'styled-components/dist/styled-components.browser.esm.js',
+  },
   jsx: 'react',
+  rollupInputOptions: {
+    // next目前用rollup的tree-shaking无法正确构建
+    // https://github.com/alibaba-fusion/next/issues/1862
+    treeshake: false,
+    plugins: [
+      replace({
+        'window.process.env.NODE_ENV': JSON.stringify('development'),
+        'process.env.NODE_ENV': JSON.stringify('development'),
+        include: ['**/@alifd/next/es/util/env.js'],
+      }),
+      {
+        name: 'resolve-node-path',
+        resolveId(id) {
+          if (id === 'path') return this.resolve('path-browserify')
+        },
+      },
+    ],
+  },
   plugins: [
     react,
     createPlugin({
-      remarkPlugins: [],
+      remarkPlugins: [
+        [
+          linkInstructionsRemarkPlugin,
+          {
+            instructions: [
+              linkInstructionsImportDemo,
+              linkInstructionsRenderInterface,
+            ],
+          },
+        ],
+        // remarkPluginsTransformImg
+      ],
+      rehypePlugins: [rehypeSlug],
     }),
   ],
   configureServer: ({ app, root }) => {
@@ -64,4 +106,7 @@ module.exports = {
       },
     },
   ],
+  optimizeDeps: {
+    commonJSWhitelist: ['moment', 'path-browserify'],
+  },
 } as UserConfig

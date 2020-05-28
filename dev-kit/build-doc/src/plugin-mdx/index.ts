@@ -52,7 +52,7 @@ export default function plugin({
       })
     },
 
-    options: (opts) => {
+    options: opts => {
       const plugins = opts.plugins ?? []
       plugins.push(loadDemoPlugin())
       plugins.push(extractTsInterfaceDataPlugin())
@@ -71,3 +71,5 @@ export default function plugin({
     },
   } as Plugin
 }
+
+export { loadDemoCode } from './loadDemo/utils'

@@ -2,13 +2,15 @@
   "name": "@alicloud/console-components-lib-documenter",
   "version": "0.1.17",
   "license": "MIT",
-  "main": "src/runtime/index.ts",
+  "main": "lib/runtime/index.ts",
+  "module": "lib/runtime/index.js",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "clean": "rm -rf ./lib",
-    "prepare": "npm run clean && tsc -p ./src/runtime"
+    "prepare": "npm run clean && tsc -p ./src/runtime",
+    "watch": "npm run clean && tsc -p ./src/runtime -w"
   },
   "devDependencies": {
     "copyfiles": "^2.1.1"
