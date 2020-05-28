@@ -39,9 +39,13 @@ const ShadowDom: React.FC<{}> = ({ children }) => {
 
   const portal = shadowRoot
     ? createPortal(
-        <StyleSheetManager target={shadowRoot as any}>
-          <>{children}</>
-        </StyleSheetManager>,
+        <>
+          {/* https://stackoverflow.com/a/50457238/8175856 */}
+          <style>{`:host { all: initial; }`}</style>
+          <StyleSheetManager target={shadowRoot as any}>
+            <>{children}</>
+          </StyleSheetManager>
+        </>,
         shadowRoot as any
       )
     : null
