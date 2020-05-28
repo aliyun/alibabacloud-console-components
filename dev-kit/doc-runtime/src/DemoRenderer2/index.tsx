@@ -9,9 +9,9 @@ import DemoMeta from './DemoMeta'
 
 export interface IDemoInfo {
   // 用户在demo模块export default Demo组件，我们在这里拿到
-  default: React.ComponentType
+  DemoComponent: React.ComponentType
   // demoFiles是demoPlugin收集到的demo源码，用于创建codesandbox
-  __demoSrcInfo: {
+  demoSrcInfo: {
     entry: 'string'
     modules: {
       [modulesName: string]: string
@@ -83,9 +83,21 @@ function useDemoInfo(demoInfoOrPromise: Promise<IDemoInfo> | IDemoInfo) {
   useEffect(() => {
     ;(async () => {
       const demoInfoBeforeProcess = await demoInfoOrPromise
-      setDemoInfo(demoInfoBeforeProcess)
+      setDemoInfo(() => demoInfoBeforeProcess)
     })()
   }, [demoInfoOrPromise])
 
   return demoInfo
+}
+
+export function getDemoInfoFromModule(module: {
+  default: any
+  __demoSrcInfo: any
+  demoMeta?: any
+}): IDemoInfo {
+  return {
+    DemoComponent: module.default,
+    demoSrcInfo: module.__demoSrcInfo,
+    demoMeta: module.demoMeta,
+  }
 }

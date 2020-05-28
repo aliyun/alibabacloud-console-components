@@ -5,7 +5,7 @@ const handleLinkNode = ({
   ancestors,
   instructionParam: demoName,
   linkURL,
-  file,
+  ctx,
 }) => {
   if (ancestors.length < 2) {
     throw new Error(`remarkPlugin: unexpected ancestors length`)
@@ -18,13 +18,16 @@ const handleLinkNode = ({
     `${demoName} ${linkURL}`
   ).replace(/_+/, '_')
 
+  ctx.registerCb(`import demo: ${linkURL}`, (tree) => {
+    tree.children.unshift({
+      type: 'import',
+      value: `import ${importIdentiferName} from "${linkURL}?loadDemo"`,
+    })
+  })
+
   ancestors[0].children.splice(
     ancestors[0].children.indexOf(ancestors[1]) + 1,
     0,
-    {
-      type: 'import',
-      value: `import ${importIdentiferName} from "${linkURL}?loadDemo"`,
-    },
     {
       type: 'jsx',
       value: `<DemoRenderer2__LinkInstructions demoInfo={${importIdentiferName}} />`,

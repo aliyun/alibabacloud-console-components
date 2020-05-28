@@ -12,10 +12,10 @@ interface IProps {
 }
 
 const DemoRenderer: React.FC<IProps> = ({ demoInfo }) => {
-  const Demo = demoInfo.default
+  const Demo = demoInfo.DemoComponent
   return (
     <ShadowDom>
-      {Object.entries(demoInfo.__demoSrcInfo.styles).map(([styleId, code]) => {
+      {Object.entries(demoInfo.demoSrcInfo.styles).map(([styleId, code]) => {
         return (
           <style data-id={styleId} key={styleId}>
             {code}

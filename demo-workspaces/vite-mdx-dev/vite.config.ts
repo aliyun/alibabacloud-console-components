@@ -1,5 +1,6 @@
 import type { UserConfig } from 'vite'
 import { readBody } from 'vite'
+import path from 'path'
 import { createPlugin } from 'vite-plugin-mdx'
 import react from 'vite-plugin-react'
 import glob from 'glob'
@@ -9,14 +10,11 @@ import {
   linkInstructionsImportDemo,
   linkInstructionsRenderInterface,
   // remarkPluginsTransformImg,
+  loadDemoCode,
 } from '@alicloud/console-components-build-doc'
 import replace from '@rollup/plugin-replace'
 
 module.exports = {
-  alias: {
-    'styled-components':
-      'styled-components/dist/styled-components.browser.esm.js',
-  },
   jsx: 'react',
   rollupInputOptions: {
     // next目前用rollup的tree-shaking无法正确构建
@@ -29,9 +27,14 @@ module.exports = {
         include: ['**/@alifd/next/es/util/env.js'],
       }),
       {
-        name: 'resolve-node-path',
+        name: 'my-resolve',
         resolveId(id) {
           if (id === 'path') return this.resolve('path-browserify')
+          if (id === 'styled-components') {
+            return this.resolve(
+              'styled-components/dist/styled-components.browser.esm.js'
+            )
+          }
         },
       },
     ],
@@ -87,6 +90,13 @@ module.exports = {
         }
         ctx.status = 200
         await next()
+      } else if ('loadDemo' in ctx.query) {
+        let demoPath = ctx.path.replace(/\?loadDemo$/, '').replace(/^\//, '')
+        demoPath = path.join(root, demoPath)
+        const data = await loadDemoCode(demoPath, () => true)
+        ctx.body = data.codeWithDepsLoaded
+        ctx.type = 'js'
+        ctx.status = 200
       } else {
         await next()
       }

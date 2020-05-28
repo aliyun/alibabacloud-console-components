@@ -4,8 +4,8 @@ const generateProjectFiles = (demoInfo: IDemoInfo) => {
   const { modules, entry } = prependDir(
     'demo',
     normalizePath({
-      modules: Object.entries(demoInfo.__demoSrcInfo.modules),
-      entry: demoInfo.__demoSrcInfo.entry,
+      modules: Object.entries(demoInfo.demoSrcInfo.modules),
+      entry: demoInfo.demoSrcInfo.entry,
     })
   )
   const demoFiles = modules.reduce((acc, [name, code]) => {
@@ -49,7 +49,7 @@ render(<App />, rootElement)
         dependencies: {
           'react-dom': '^16.0.0',
           react: '^16.0.0',
-          ...demoInfo.__demoSrcInfo.externals,
+          ...demoInfo.demoSrcInfo.externals,
         },
         devDependencies: {
           'parcel-bundler': '^1.6.1',

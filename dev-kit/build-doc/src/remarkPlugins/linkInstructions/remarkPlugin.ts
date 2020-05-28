@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import visit from 'unist-util-visit-parents'
 import assertMdAST from 'mdast-util-assert'
 
@@ -23,12 +24,11 @@ function resolveLinkInstructions(options: {
     instructionHandlers[name] = handleLinkNode
   })
 
-  return async (tree, file) => {
-    instructions.forEach(({ beforeVisitTree }) => {
-      if (typeof beforeVisitTree === 'function') {
-        beforeVisitTree(tree, file)
-      }
-    })
+  return async (tree, ctx) => {
+    ctx.registeredCb = {}
+    ctx.registerCb = (key, cb) => {
+      ctx.registeredCb[key] = cb
+    }
 
     let passCount = 0
     do {
@@ -40,25 +40,23 @@ function resolveLinkInstructions(options: {
       }
 
       // loop until we can't find any link instruction (which means stable)
-      const found = await fineOneInstructionAndExectue(tree, file)
+      const found = await fineOneInstructionAndExectue(tree, ctx)
       // validate tree structure
       assertMdAST(tree)
       assertMdAST.parent(tree)
       if (!found) break // ast reach stable
     } while (true)
 
-    instructions.forEach(({ afterVisitTree }) => {
-      if (typeof afterVisitTree === 'function') {
-        afterVisitTree(tree, file)
-      }
+    Object.values(ctx.registeredCb).forEach((cb: any) => {
+      cb(tree)
     })
   }
 
   /**
    * return whether we found a link instruction and execute it
    */
-  async function fineOneInstructionAndExectue(tree, file) {
-    return new Promise(res => {
+  async function fineOneInstructionAndExectue(tree, ctx) {
+    return new Promise((res) => {
       let foundLinkInstruction = false
       visit(tree, 'link', (node, ancestors) => {
         const linkURL = node.url
@@ -74,7 +72,7 @@ function resolveLinkInstructions(options: {
                   ancestors,
                   instructionParam: inst.instructionParam,
                   linkURL,
-                  file,
+                  ctx,
                 })
               ).then(() => res(true))
               // stop traversal because the instruction may change ast.

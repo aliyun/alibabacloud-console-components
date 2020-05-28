@@ -5,8 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "vite serve . --force",
-    "debug": "npx --node-arg=--inspect vite serve . --force",
+    "dev": "vite serve .",
+    "debug": "npx --node-arg=--inspect vite serve .",
     "clean": "rm -rf node_modules/.vite_opt_cache"
   },
   "devDependencies": {

@@ -4,7 +4,7 @@ const handleLinkNode = ({
   node,
   ancestors,
   instructionParam: interfaceName,
-  file,
+  ctx,
 }) => {
   if (ancestors.length < 2) {
     throw new Error(`remarkPlugin: unexpected ancestors length`)

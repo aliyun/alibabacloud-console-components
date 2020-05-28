@@ -1,0 +1,132 @@
+/* eslint-disable no-return-assign */
+
+/**
+ * amd loader without global cache
+ */
+export function createLoader(): ILoader {
+  const moduleCache: IModuleCache = Object.create(null)
+
+  const loadCache: {
+    [url: string]: Promise<object> | undefined
+  } = Object.create(null)
+
+  return {
+    register,
+    registerAMD,
+    loadAMD: loadAMDWithCache,
+    loadAMDFromString,
+    has,
+    get,
+  }
+
+  function register(id: string, value: unknown) {
+    if (has(id)) throw new Error(`Should not register twice. id: "${id}"`)
+    moduleCache[id] = value
+  }
+
+  function has(id: string) {
+    return {}.propertyIsEnumerable.call(moduleCache, id)
+  }
+
+  function get(id: string) {
+    if (!has(id)) throw new Error(`Value not exists. id: "${id}"`)
+    return moduleCache[id]
+  }
+
+  async function registerAMD(id: string, url: string) {
+    const exports = await loadAMDWithCache(url)
+    register(id, exports)
+    return exports
+  }
+
+  async function loadAMDWithCache(url: string) {
+    const cached = loadCache[url]
+    if (cached) return cached
+    return (loadCache[url] = loadAMD(url))
+  }
+
+  async function loadAMD(url: string) {
+    const response = await fetch(url)
+    if (!response.ok) throwErr(`${response.status} ${response.statusText}`)
+    const contentType = response.headers.get('content-type')
+    if (
+      !contentType ||
+      // regexp from https://github.com/systemjs/systemjs/blob/f1e5ec58fa67a156948951b81ade87e8c320682d/src/extras/module-types.js#L27
+      !/^(text|application)\/(x-)?javascript(;|$)/.test(contentType)
+    )
+      throwErr(`Invalid content type "${contentType}"`)
+
+    const code = await response.text()
+    return loadAMDFromString(code)
+
+    function throwErr(msg: string): never {
+      throw new Error(`[loader] Fail to load "${url}".\n${msg}`)
+    }
+  }
+
+  function loadAMDFromString(code: string) {
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval, no-new-func
+    const fn = new Function('define', code)
+    let exports: null | object = null
+    fn(define)
+    if (!exports) throwErr(`define is not called in this amd module.`)
+    return exports as object
+
+    function define(dependencies: string[], factory: IFactory): void
+    function define(factory: IFactory): void
+    function define(
+      dependencies: string[] | IFactory,
+      factory?: IFactory
+    ): void {
+      if (typeof dependencies === 'string')
+        throwErr(`AMD format with id is not supported.`)
+      if (exports) throwErr(`define is called twice in this amd module.`)
+
+      exports = Object.create(null)
+      if (Array.isArray(dependencies) && typeof factory === 'function') {
+        const depVals = dependencies.map((depId) => {
+          if (depId === 'exports') return exports
+          // 模块的依赖必须已经加载完成，loader不自动加载
+          if (!has(depId)) throwErr(`Can't resolve dependency "${depId}".`)
+          return get(depId)
+        })
+        factory(...depVals)
+      } else if (typeof dependencies === 'function') {
+        dependencies()
+      } else {
+        throwErr(`Invalid define call.`)
+      }
+    }
+
+    type IFactory = (...args: unknown[]) => void
+
+    function throwErr(msg: string): never {
+      throw new Error(`[loader] Fail to load.\n${msg}`)
+    }
+  }
+}
+
+interface IModuleCache {
+  [name: string]: unknown
+}
+
+interface ILoader {
+  register: (id: string, value: unknown) => void
+  /**
+   * Load and execute amd module. And register its exports to this scope.
+   * The dependencies is resolved from this scope.
+   */
+  registerAMD: (id: string, url: string) => Promise<object>
+  /**
+   * Load and execute amd module.
+   * The dependencies is resolved from this scope.
+   */
+  loadAMD: (url: string) => Promise<object>
+  /**
+   * Execute amd module string.
+   * The dependencies is resolved from this scope.
+   */
+  loadAMDFromString: (code: string) => object
+  has: (id: string) => boolean
+  get: (id: string) => unknown
+}

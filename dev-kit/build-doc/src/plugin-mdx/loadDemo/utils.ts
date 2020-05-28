@@ -46,8 +46,15 @@ export async function loadDemoCode(
           return new Promise((res, rej) => {
             strictResolve(path.dirname(from), request, async (err, result) => {
               if (err) {
-                if (await canExternal(request, from)) {
-                  res({ external: true, id: request })
+                const resolvedExternal = await canExternal(request, from)
+                if (resolvedExternal) {
+                  res({
+                    external: true,
+                    id:
+                      typeof resolvedExternal === 'string'
+                        ? resolvedExternal
+                        : request,
+                  })
                   return
                 }
                 // force user to mark deps from node_modules as "external"
@@ -131,7 +138,14 @@ __demoSrcInfo.styles = __stylesθ;
     transform(
       actualcodeESM,
       {
-        plugins: ['@babel/plugin-transform-modules-amd'],
+        plugins: [
+          [
+            '@babel/plugin-transform-modules-amd',
+            {
+              noInterop: true,
+            },
+          ],
+        ],
       },
       (err, result) => {
         if (err) rej(err)
@@ -139,10 +153,26 @@ __demoSrcInfo.styles = __stylesθ;
       }
     )
   })
+
+  const installDep = Object.keys(externals)
+    .map((depName, idx) => {
+      const varName = `Dep_${idx}`
+      return `import * as ${varName} from "${depName}";
+        loader.register("${depName}", ${varName});`
+    })
+    .join('\n')
+  const codeWithDepsLoaded = `
+    import { createLoader, getDemoInfoFromModule } from '@alicloud/console-components-doc-runtime';
+    const code = ${JSON.stringify(actualCodeAMD)};
+    const loader = createLoader();
+    ${installDep}
+    const module = loader.loadAMDFromString(code);
+    export default getDemoInfoFromModule(module);
+    `
   return {
     codeESM: actualcodeESM,
     codeAMD: actualCodeAMD,
-    actualCodeAMD,
+    codeWithDepsLoaded,
     info: { entry, modules, externals },
   }
 }
