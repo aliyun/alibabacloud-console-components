@@ -5,8 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "vite serve .",
-    "debug": "npx --node-arg=--inspect vite serve .",
+    "dev": "node ./node_modules/vite/bin/vite.js serve . --force",
+    "debug": "node --inspect ./node_modules/vite/bin/vite.js serve . --force",
     "clean": "rm -rf node_modules/.vite_opt_cache"
   },
   "devDependencies": {
@@ -19,7 +19,6 @@
     "@alicloud/console-components-doc-runtime": "link:/Users/csr/workspace/console-components/dev-kit/doc-runtime",
     "@pika/react": "^16.13.1",
     "@pika/react-dom": "^16.13.1",
-    "path-browserify": "^1.0.1",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.1"
   }

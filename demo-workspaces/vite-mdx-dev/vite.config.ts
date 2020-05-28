@@ -29,7 +29,6 @@ module.exports = {
       {
         name: 'my-resolve',
         resolveId(id) {
-          if (id === 'path') return this.resolve('path-browserify')
           if (id === 'styled-components') {
             return this.resolve(
               'styled-components/dist/styled-components.browser.esm.js'
@@ -117,6 +116,7 @@ module.exports = {
     },
   ],
   optimizeDeps: {
-    commonJSWhitelist: ['moment', 'path-browserify'],
+    exclude: ['@alicloud/console-components-doc-runtime'],
+    commonJSWhitelist: ['moment'],
   },
 } as UserConfig

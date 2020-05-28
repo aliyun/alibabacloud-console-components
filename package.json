@@ -25,10 +25,6 @@
     "release:nightly": "lerna publish --npm-tag=nightly",
     "commit": "git-cz"
   },
-  "//1": "yarn有bug，需要将一些依赖移动到dependencies https://github.com/yarnpkg/yarn/issues/7734#issuecomment-588271471",
-  "dependencies": {
-    "@types/styled-components": "^4.4.2"
-  },
   "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
   "devDependencies": {
     "@alicloud/console-components-lib-api-documenter": "*",
@@ -87,7 +83,8 @@
     "gatsby": "~2.19.45",
     "gatsby-cli": "~2.10.11",
     "@microsoft/tsdoc": "0.12.14",
-    "typescript": "3.9.3"
+    "typescript": "3.9.3",
+    "rollup": "^2.11.2"
   },
   "config": {
     "commitizen": {

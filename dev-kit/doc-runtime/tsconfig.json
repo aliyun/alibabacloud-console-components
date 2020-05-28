@@ -5,6 +5,7 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "noImplicitAny": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "importHelpers": true
   }
 }
