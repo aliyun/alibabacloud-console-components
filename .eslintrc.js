@@ -15,6 +15,7 @@ module.exports = {
         'react/static-property-placement': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         'no-continue': 'off',
+        '@typescript-eslint/no-empty-interface': 'off',
       },
     },
     {

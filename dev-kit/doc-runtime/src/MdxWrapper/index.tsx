@@ -1,10 +1,9 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import mdComps from '../MarkdownComponents'
-import type { ITocHeading } from './TableOfContent'
 import Layout from './Layout'
 import { docMetaCtx } from '../utils/context'
-import type { IDemoInfo } from '../DemoRenderer'
+import type { IDemoInfo } from '../DemoRenderer2'
 
 /** lib-publisher打包mdx文档得到的模块 */
 export interface IOriginalMdxModule {
@@ -12,8 +11,6 @@ export interface IOriginalMdxModule {
   _frontMatter: any
   /** export const frontmatter... 格式的 frontmatter */
   frontmatter: any
-  /** 工具提取的heading */
-  tocHeadings: any
   /** 文档渲染组件 */
   default: React.FC
 }
@@ -21,7 +18,6 @@ export interface IOriginalMdxModule {
 export interface IWrappedMdxModule {
   default: React.FC<IMdxDocProps>
   frontmatter: any
-  tocHeadings: any
 }
 
 export interface IMdxDocProps {
@@ -42,7 +38,6 @@ export interface IMdxDocProps {
 
 export interface IMdxDocCtx extends IMdxDocProps {
   frontmatter: any
-  tocHeadings: ITocHeading[]
 }
 
 export const MdxDocumentLayout: React.FC<IMdxDocCtx> = ({
@@ -60,14 +55,13 @@ export function wrapMdxModule(
   mdxExport: IOriginalMdxModule
 ): IWrappedMdxModule {
   const frontmatter = getFrontmatter(mdxExport)
-  const { tocHeadings } = mdxExport
   const DocComp = mdxExport.default
   const WrappedDocComp: React.FC<IMdxDocProps> = (props) => {
     const ctxVal: IMdxDocCtx = {
       frontmatter,
-      tocHeadings,
       ...props,
     }
+    console.log('mdComps', mdComps)
     return (
       <MDXProvider components={mdComps}>
         <MdxDocumentLayout {...ctxVal}>
@@ -79,11 +73,10 @@ export function wrapMdxModule(
   return {
     default: WrappedDocComp,
     frontmatter,
-    tocHeadings,
   }
 }
 
-export function getFrontmatter(mdxExport: IOriginalMdxModule) {
+function getFrontmatter(mdxExport: IOriginalMdxModule) {
   const {
     // 在markdown顶部通过yaml来定义的元数据
     _frontMatter: classicFrontmatter = {},

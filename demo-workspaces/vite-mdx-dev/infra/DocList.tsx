@@ -3,19 +3,19 @@ import React, { useEffect, useState } from 'react'
 const DocList: React.FC = () => {
   const data = useDocList()
   if (!data) return <p>Loading...</p>
-  const { root, files } = data
-  if (!Array.isArray(files) || files.length === 0)
+  const { pages } = data
+  if (!Array.isArray(pages) || pages.length === 0)
     return (
       <p>
-        No <code>*.md|mdx</code> file is found under <code>{root}</code>.
+        No <code>*.md|mdx</code> file is found.
       </p>
     )
   return (
     <ul>
-      {files.map(filePath => {
+      {pages.map((filePath) => {
         return (
-          <li>
-            <a href={`docs?path=/${filePath}`}>{filePath}</a>
+          <li key={filePath}>
+            <a href={`workspace/${filePath}`}>{filePath}</a>
           </li>
         )
       })}
@@ -29,7 +29,7 @@ function useDocList() {
   const [data, setData] = useState<any>(null)
   useEffect(() => {
     ;(async () => {
-      const response = await fetch('/api/docs')
+      const response = await fetch('/api/pages')
       setData(await response.json())
     })()
   }, [])

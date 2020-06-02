@@ -2,76 +2,70 @@ import React, { useEffect, useRef, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import debounce from 'lodash.debounce'
 import isequal from 'lodash.isequal'
-import { useDocMetaCtx } from '../utils/context'
-import getScrollParent from '../utils/getScrollParent'
 import TOC, { ITocHeading } from './TableOfContent'
 
 const Layout: React.FC = ({ children }) => {
-  const {
-    // tocHeadings: headings,
-    autoPadding = true,
-    scrollContainer,
-  } = useDocMetaCtx()
-  const [padding, setPadding] = useState(0)
-  const paddingRef = useRef<HTMLDivElement | null>(null)
+  // const { autoPadding = true, scrollContainer } = useDocMetaCtx()
+  // const [padding, setPadding] = useState(0)
+  // const paddingRef = useRef<HTMLDivElement | null>(null)
 
   const { ctnRef, headings } = useTOC()
 
-  useEffect(() => {
-    if (!autoPadding) return
-    handle()
-    window.addEventListener('resize', handle)
+  // useEffect(() => {
+  //   if (!autoPadding) return
+  //   handle()
+  //   window.addEventListener('resize', handle)
 
-    return () => {
-      window.removeEventListener('resize', handle)
-    }
-    function handle() {
-      setPadding(getPadding())
-    }
-    function getPadding() {
-      if (!headings || headings.length === 0) return 0
-      const last = headings[headings.length - 1]
-      const headingEl = document && document.getElementById(last.id)
-      if (!headingEl) return 0
-      const { viewportHeight, contentTopPos, contentHeight } = (() => {
-        const parent =
-          (scrollContainer && document.querySelector(scrollContainer)) ||
-          getScrollParent(headingEl) ||
-          window
-        const currentPadding = paddingRef.current?.offsetHeight ?? 0
-        // 滚动容器是window
-        if ('document' in parent) {
-          return {
-            viewportHeight: document.documentElement.clientHeight,
-            contentTopPos: document.documentElement.getBoundingClientRect().top,
-            contentHeight:
-              document.documentElement.scrollHeight - currentPadding,
-          }
-        }
-        return {
-          viewportHeight: parent.clientHeight,
-          contentTopPos: parent.getBoundingClientRect().top - parent.scrollTop,
-          contentHeight: parent.scrollHeight - currentPadding,
-        }
-      })()
-      // 最后一个heading与文档顶部之间的滚动距离
-      const offset = headingEl.getBoundingClientRect().top - contentTopPos
-      return viewportHeight - (contentHeight - offset)
-    }
-  }, [headings, autoPadding, scrollContainer])
+  //   return () => {
+  //     window.removeEventListener('resize', handle)
+  //   }
+  //   function handle() {
+  //     setPadding(getPadding())
+  //   }
+  //   function getPadding() {
+  //     if (!headings || headings.length === 0) return 0
+  //     const last = headings[headings.length - 1]
+  //     const headingEl = document && document.getElementById(last.id)
+  //     if (!headingEl) return 0
+  //     const { viewportHeight, contentTopPos, contentHeight } = (() => {
+  //       const parent =
+  //         (scrollContainer && document.querySelector(scrollContainer)) ||
+  //         getScrollParent(headingEl) ||
+  //         window
+  //       const currentPadding = paddingRef.current?.offsetHeight ?? 0
+  //       // 滚动容器是window
+  //       if ('document' in parent) {
+  //         return {
+  //           viewportHeight: document.documentElement.clientHeight,
+  //           contentTopPos: document.documentElement.getBoundingClientRect().top,
+  //           contentHeight:
+  //             document.documentElement.scrollHeight - currentPadding,
+  //         }
+  //       }
+  //       return {
+  //         viewportHeight: parent.clientHeight,
+  //         contentTopPos: parent.getBoundingClientRect().top - parent.scrollTop,
+  //         contentHeight: parent.scrollHeight - currentPadding,
+  //       }
+  //     })()
+  //     // 最后一个heading与文档顶部之间的滚动距离
+  //     const offset = headingEl.getBoundingClientRect().top - contentTopPos
+  //     return viewportHeight - (contentHeight - offset)
+  //   }
+  // }, [headings, autoPadding, scrollContainer])
 
   return (
     <ScLayout>
       <ScLayoutLeft>
         <ScDocStyle className="auto-padding-container">
           <div ref={ctnRef}>{children}</div>
-          {autoPadding && (
+          {/* {autoPadding && (
             <div
               className="auto-padding"
               style={{ height: padding }}
               ref={paddingRef}
             />
-          )}
+          )} */}
         </ScDocStyle>
       </ScLayoutLeft>
       {headings && (

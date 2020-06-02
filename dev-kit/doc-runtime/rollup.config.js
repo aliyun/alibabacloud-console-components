@@ -40,5 +40,6 @@ export default {
     '@alicloud/console-components',
     'react-dom',
     'react',
+    '@mdx-js/react',
   ],
 }
