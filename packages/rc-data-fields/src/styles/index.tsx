@@ -1,25 +1,26 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@alicloud/console-components'
 
 const { Col } = Grid
 
-const WindCol: React.FC<React.ComponentProps<typeof Col>> = (props) => {
-  return <Col {...props} />
-}
+const componentId = 'WindDataFieldCol'
 
-WindCol.displayName = 'WindDataFieldCol'
-
-export const SFieldItem = styled(WindCol)`
+export const SFieldItem = styled(Col).withConfig({
+  componentId: `${componentId}1`,
+} as any)`
   margin: 0 0 8px 0;
   min-height: 20px;
   line-height: 20px;
 `
 
-export const SFieldLabel = styled(WindCol)`
+export const SFieldLabel = styled(Col).withConfig({
+  componentId: `${componentId}2`,
+} as any)`
   color: #555;
 `
 
-export const SFieldValue = styled(WindCol)`
+export const SFieldValue = styled(Col).withConfig({
+  componentId: `${componentId}3`,
+} as any)`
   color: #333;
 `
