@@ -4528,7 +4528,7 @@
 
 "@types/styled-components@5.1.0", "@types/styled-components@^4.4.1":
   version "5.1.0"
-  resolved "https://registry.npm.taobao.org/@types/styled-components/download/@types/styled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
+  resolved "https://registry.npm.taobao.org/@types/styled-components/download/@types/styled-components-5.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fstyled-components%2Fdownload%2F%40types%2Fstyled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
   integrity sha1-JNNBK6U5WqBuFPvJPFL5RUzr0NY=
   dependencies:
     "@types/hoist-non-react-statics" "*"
@@ -11617,7 +11617,7 @@ fwd-stream@^1.0.4:
 
 gatsby-cli@^2.10.11, gatsby-cli@^2.10.13, gatsby-cli@~2.10.11:
   version "2.10.13"
-  resolved "https://registry.npm.taobao.org/gatsby-cli/download/gatsby-cli-2.10.13.tgz?cache=0&sync_timestamp=1590680786549&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgatsby-cli%2Fdownload%2Fgatsby-cli-2.10.13.tgz#f9b47ee318a7b3ddabdb4212185bfb7cf359acb7"
+  resolved "https://registry.npm.taobao.org/gatsby-cli/download/gatsby-cli-2.10.13.tgz#f9b47ee318a7b3ddabdb4212185bfb7cf359acb7"
   integrity sha1-+bR+4xins92r20ISGFv7fPNZrLc=
   dependencies:
     "@babel/code-frame" "^7.8.3"
@@ -11677,7 +11677,7 @@ gatsby-core-utils@^1.0.34, gatsby-core-utils@^1.3.3:
 
 gatsby-graphiql-explorer@^0.2.36, gatsby-graphiql-explorer@^0.2.37:
   version "0.2.37"
-  resolved "https://registry.npm.taobao.org/gatsby-graphiql-explorer/download/gatsby-graphiql-explorer-0.2.37.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgatsby-graphiql-explorer%2Fdownload%2Fgatsby-graphiql-explorer-0.2.37.tgz#09c2b395c31ffcfbec0038d7e245caecb419667e"
+  resolved "https://registry.npm.taobao.org/gatsby-graphiql-explorer/download/gatsby-graphiql-explorer-0.2.37.tgz#09c2b395c31ffcfbec0038d7e245caecb419667e"
   integrity sha1-CcKzlcMf/PvsADjX4kXK7LQZZn4=
   dependencies:
     "@babel/runtime" "^7.8.7"
@@ -11933,7 +11933,7 @@ gatsby-transformer-sharp@^2.3.18:
 
 gatsby@2.19.45, gatsby@~2.19.45:
   version "2.19.50"
-  resolved "https://registry.npm.taobao.org/gatsby/download/gatsby-2.19.50.tgz?cache=0&sync_timestamp=1590680779605&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fgatsby%2Fdownload%2Fgatsby-2.19.50.tgz#a725e9ec152c32bc64d9f8cfac93835516d7dfb2"
+  resolved "https://registry.npm.taobao.org/gatsby/download/gatsby-2.19.50.tgz#a725e9ec152c32bc64d9f8cfac93835516d7dfb2"
   integrity sha1-pyXp7BUsMrxk2fjPrJODVRbX37I=
   dependencies:
     "@babel/code-frame" "^7.8.3"
@@ -17049,7 +17049,7 @@ mini-css-extract-plugin@^0.7.0:
 
 mini-css-extract-plugin@^0.8.0, mini-css-extract-plugin@^0.8.2:
   version "0.8.2"
-  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.8.2.tgz#a875e169beb27c88af77dd962771c9eedc3da161"
+  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.8.2.tgz?cache=0&sync_timestamp=1576856580721&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmini-css-extract-plugin%2Fdownload%2Fmini-css-extract-plugin-0.8.2.tgz#a875e169beb27c88af77dd962771c9eedc3da161"
   integrity sha1-qHXhab6yfIivd92WJ3HJ7tw9oWE=
   dependencies:
     loader-utils "^1.1.0"
@@ -21915,7 +21915,7 @@ rollup-plugin-uglify@^4.0.0:
     "@babel/code-frame" "^7.0.0-beta.47"
     uglify-js "^3.3.25"
 
-rollup-plugin-vue@^6.0.0-beta.3:
+rollup-plugin-vue@^6.0.0-beta.4:
   version "6.0.0-beta.4"
   resolved "https://registry.npm.taobao.org/rollup-plugin-vue/download/rollup-plugin-vue-6.0.0-beta.4.tgz?cache=0&sync_timestamp=1591064509009&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frollup-plugin-vue%2Fdownload%2Frollup-plugin-vue-6.0.0-beta.4.tgz#e6beff35c0bc23c06656058a3375bc54482bb739"
   integrity sha1-5r7/NcC8I8BmVgWKM3W8VEgrtzk=
@@ -25046,10 +25046,10 @@ vinyl@^2.2.0:
     remove-trailing-separator "^1.0.1"
     replace-ext "^1.0.0"
 
-vite@^0.19.3:
-  version "0.19.3"
-  resolved "https://registry.npm.taobao.org/vite/download/vite-0.19.3.tgz#301e81dd979489831601eba88b2d9de28b53c920"
-  integrity sha1-MB6B3ZeUiYMWAeuoiy2d4otTySA=
+vite@^0.20.2:
+  version "0.20.2"
+  resolved "https://registry.npm.taobao.org/vite/download/vite-0.20.2.tgz#9ad6b4dfb5a08f886d54d3c7f7b3ee513808f75a"
+  integrity sha1-mta037Wgj4htVNPH97PuUTgI91o=
   dependencies:
     "@babel/parser" "^7.9.4"
     "@rollup/plugin-commonjs" "^12.0.0"
@@ -25091,7 +25091,7 @@ vite@^0.19.3:
     resolve "^1.17.0"
     rollup "^2.11.2"
     rollup-plugin-terser "^5.3.0"
-    rollup-plugin-vue "^6.0.0-beta.3"
+    rollup-plugin-vue "^6.0.0-beta.4"
     selfsigned "^1.10.7"
     slash "^3.0.0"
     vue "^3.0.0-beta.14"

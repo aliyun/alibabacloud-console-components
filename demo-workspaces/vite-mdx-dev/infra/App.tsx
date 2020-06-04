@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import DocList from './DocList'
-import DocLoader from './DocLoader'
+import PageRenderer from './PageRenderer'
 
 const App: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const App: React.FC = () => {
           <DocList />
         </Route>
         <Route path="/workspace">
-          <DocLoader />
+          <PageRenderer />
         </Route>
         <Route>
           <Redirect to="/workspace" />

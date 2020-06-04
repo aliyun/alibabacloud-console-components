@@ -61,7 +61,6 @@ export function wrapMdxModule(
       frontmatter,
       ...props,
     }
-    console.log('mdComps', mdComps)
     return (
       <MDXProvider components={mdComps}>
         <MdxDocumentLayout {...ctxVal}>
@@ -71,6 +70,7 @@ export function wrapMdxModule(
     )
   }
   return {
+    ...mdxExport,
     default: WrappedDocComp,
     frontmatter,
   }

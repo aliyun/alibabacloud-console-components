@@ -3,7 +3,6 @@ import type { UserConfig } from 'vite'
 import path from 'path'
 import { createPlugin } from 'vite-plugin-mdx'
 import react from 'vite-plugin-react'
-import glob from 'glob'
 import rehypeSlug from 'rehype-slug'
 import {
   linkInstructionsRemarkPlugin,
@@ -14,7 +13,9 @@ import {
 } from '@alicloud/console-components-build-doc'
 import replace from '@rollup/plugin-replace'
 import * as fs from 'fs-extra'
-import invariant from 'tiny-invariant'
+import { findPages } from './findPages.ts'
+import { resolvePageFile } from './resolvePageFile.ts'
+import { resolvePageConfig } from './resolvePageConfig.ts'
 
 const pagesDirPath = path.join(__dirname, 'pages')
 
@@ -66,6 +67,23 @@ module.exports = {
         ctx.body = `export { default } from "${actualModulePath}";
 export * from "${actualModulePath}";`
         ctx.type = 'js'
+      } else if (ctx.path === '/page-config' && ctx.query.path) {
+        const pageConfigs = await resolvePageConfig(
+          ctx.query.path,
+          pagesDirPath
+        )
+        const pageConfigImportExp = pageConfigs
+          .map((v) => resolver.fileToRequest(v))
+          .map((publicPath, idx) => {
+            const varName = `config${idx}`
+            return (
+              `import ${varName} from "${publicPath}";\n` +
+              `configs.push(${varName});`
+            )
+          })
+          .join('\n')
+        ctx.body = `export const configs = [];\n${pageConfigImportExp}`
+        ctx.type = 'js'
       } else if (ctx.path === '/api/pages') {
         ctx.body = {
           pages: await findPages(pagesDirPath),
@@ -85,118 +103,9 @@ export * from "${actualModulePath}";`
     })
   },
   optimizeDeps: {
+    include: ['@alicloud/console-components-app-layout'],
     exclude: ['@alicloud/console-components-doc-runtime'],
-    auto: false,
+    // auto: false,
   },
+  port: 3100,
 } as UserConfig
-
-async function findPages(root: string) {
-  const dirPages: string[] = await new Promise((resolve, reject) => {
-    glob(
-      '**/*$/',
-      {
-        cwd: root,
-        ignore: '**/node_modules/**/*',
-      },
-      async (err, res) => {
-        if (err) reject(err)
-        const pages = await Promise.all(
-          res.map((pageDir) => {
-            const pagePath = pageDir.slice(0, -2)
-            return pagePath
-          })
-        )
-        resolve(pages)
-      }
-    )
-  })
-  const filePages: string[] = await new Promise((resolve, reject) => {
-    glob(
-      '**/*$.@(md|mdx|js|jsx|ts|tsx)',
-      {
-        cwd: root,
-        ignore: '**/node_modules/**/*',
-        nodir: true,
-      },
-      (err, res) => {
-        if (err) reject(err)
-        const pages = res.map((filePath) => {
-          const pagePath = filePath.replace(/\$\.(md|mdx|js|jsx|ts|tsx)$/, '')
-          return pagePath
-        })
-        resolve(pages)
-      }
-    )
-  })
-  const pages = [...dirPages, ...filePages]
-  return pages
-}
-
-async function resolvePageFile(
-  pagePath: string,
-  root: string
-): Promise<null | string> {
-  const filePage: string | null = await new Promise((resolve, reject) => {
-    glob(
-      `${pagePath}$.@(md|mdx|js|jsx|ts|tsx)`,
-      {
-        cwd: root,
-        ignore: '**/node_modules/**/*',
-        nodir: true,
-      },
-      (err, res) => {
-        if (err) reject(err)
-        invariant(
-          res.length <= 1,
-          `pagePath "${pagePath}" should have one index file.`
-        )
-
-        if (res.length === 0) {
-          resolve(null)
-          return
-        }
-        const absPath = path.join(root, res[0])
-        resolve(absPath)
-      }
-    )
-  })
-  if (filePage) return filePage
-
-  const dirPage: string | null = await new Promise((resolve, reject) => {
-    glob(
-      `${pagePath}$/`,
-      {
-        cwd: root,
-        ignore: '**/node_modules/**/*',
-      },
-      async (err, res) => {
-        if (err) reject(err)
-        invariant(
-          res.length <= 1,
-          `pagePath "${pagePath}" should have one index file.`
-        )
-        if (res.length === 0) {
-          resolve(null)
-          return
-        }
-        const pageDirAbs = path.join(root, res[0])
-        const indexFile = await resolveDirIndexFile(pageDirAbs)
-        resolve(indexFile)
-      }
-    )
-  })
-  if (dirPage) return dirPage
-  return null
-}
-
-async function resolveDirIndexFile(dir: string) {
-  const indexs = (await fs.readdir(dir)).filter((filePath) =>
-    /index\.(md|mdx|js|jsx|ts|tsx)$/.test(filePath)
-  )
-  invariant(
-    indexs.length === 1,
-    `Directory "${dir}" should contain one index file.`
-  )
-  const index = path.join(dir, indexs[0])
-  return index
-}

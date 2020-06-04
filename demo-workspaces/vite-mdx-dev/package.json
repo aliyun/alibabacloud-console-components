@@ -5,14 +5,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "node ./node_modules/vite/bin/vite.js serve .",
+    "dev": "node ./node_modules/vite/bin/vite.js serve . --force",
     "debug": "node --inspect ./node_modules/vite/bin/vite.js serve .",
     "clean": "rm -rf node_modules/.vite_opt_cache"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
+    "find-up": "^4.1.0",
     "glob": "^7.1.6",
-    "vite": "^0.19.3"
+    "vite": "^0.20.2"
   },
   "dependencies": {
     "@alicloud/console-components": "link:/Users/csr/workspace/console-components/packages/component",
