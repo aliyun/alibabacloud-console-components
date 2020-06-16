@@ -1,16 +1,19 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "demo-workspaces/gatsby-theme-console-doc-template/site",
-    "demo-workspaces/material-dev-kit-demo/*",
-    "demo-workspaces/test-rollup",
-    "demo-workspaces/vite-mdx-dev",
-    "dev-kit/*",
-    "site",
-    "."
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "demo-workspaces/gatsby-theme-console-doc-template/site",
+      "demo-workspaces/material-dev-kit-demo/*",
+      "demo-workspaces/test-rollup",
+      "demo-workspaces/vite-mdx-dev",
+      "dev-kit/*",
+      "site",
+      "."
+    ],
+    "nohoist": ["**/@pika/react", "**/@pika/react-dom"]
+  },
   "scripts": {
     "bootstrap:1": "lerna run prepare --scope @alicloud/console-components-build-doc --include-dependencies",
     "bootstrap:2": "lerna run prepare --scope @alicloud/console-components-lib-publisher --scope @alicloud/console-components --include-dependencies",
