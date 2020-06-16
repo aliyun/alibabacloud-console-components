@@ -9,7 +9,7 @@ const urls = [
   'http://unpkg.alipay.com/@alife/theme-test1234/icons.scss',
 ]
 
-const outDir = path.join(__dirname, '../', 'src', 'fetched-files')
+const outDir = path.join(__dirname, '../design-tokens')
 
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir)
@@ -17,7 +17,7 @@ if (!fs.existsSync(outDir)) {
 
 ;(async function main() {
   await Promise.all(
-    urls.map(async url => {
+    urls.map(async (url) => {
       const fileName = path.basename(url)
       const response = await axios.get(url)
       let content = response.data

@@ -1,4 +1,4 @@
 // 这个文件作为样式编译入口
-@import './styles/prerequisite.scss';
+@import '~@alicloud/xconsole-theme/styles/prerequisite.scss';
 
 @import './overwrite.scss';

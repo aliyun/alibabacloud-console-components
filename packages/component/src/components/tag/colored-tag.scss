@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '~@alicloud/xconsole-theme/styles/variables.scss';
 
 .#{$css-prefix}tag {
   $tag-body-cls-name: '#{$css-prefix}tag-body';

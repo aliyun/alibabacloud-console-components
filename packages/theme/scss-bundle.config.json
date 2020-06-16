@@ -1,0 +1,9 @@
+{
+  "bundlerOptions": {
+    "entryFile": "./styles/overwrite.scss",
+    "rootDir": ".",
+    "ignoreImports": ["~@alicloud/xconsole-theme/.*"],
+    "outFile": "./style-overwrite/overwrite.scss",
+    "project": "../../"
+  }
+}
