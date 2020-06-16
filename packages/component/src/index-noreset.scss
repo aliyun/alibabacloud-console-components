@@ -1,4 +1,4 @@
 // 这个文件作为noreset样式编译入口
-@import './styles/prerequisite-noreset.scss';
+@import '~@alicloud/xconsole-theme/styles/prerequisite-noreset.scss';
 
 @import './overwrite.scss';

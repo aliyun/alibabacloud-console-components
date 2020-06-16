@@ -1,0 +1,17 @@
+{
+  "name": "@alicloud/xconsole-theme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "fetch": "node ./scripts/fetch-files-from-tnpm.js",
+    "bundle-overwrite": "scss-bundle --config ./scss-bundle.config.json",
+    "prepare": "npm run fetch && npm run bundle-overwrite"
+  },
+  "devDependencies": {
+    "@alicloud/console-components": "^1.0.25",
+    "scss-bundle": "^3.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

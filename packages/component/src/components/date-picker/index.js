@@ -66,11 +66,12 @@ const withIntlFormat = WrappedComponent =>
     }
   }
 
-const { RangePicker, MonthPicker, YearPicker } = DatePicker
+const { RangePicker, MonthPicker, YearPicker, WeekPicker } = DatePicker
 
 const WrappedDatePicker = withIntlFormat(DatePicker)
 WrappedDatePicker.RangePicker = withIntlFormat(RangePicker)
 WrappedDatePicker.MonthPicker = withIntlFormat(MonthPicker)
 WrappedDatePicker.YearPicker = withIntlFormat(YearPicker)
+WrappedDatePicker.WeekPicker = withIntlFormat(WeekPicker)
 
 export default WrappedDatePicker
