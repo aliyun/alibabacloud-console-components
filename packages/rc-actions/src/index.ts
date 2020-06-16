@@ -1,15 +1,8 @@
-import Actions, { PartitionFn as PartitionFn_ } from './actions'
-import {
-  LinkButton,
-  LinkMore,
-  ILinkButtonProps as ILinkButtonProps_,
-} from './linkButton'
+import Actions from './actions'
+import { LinkButton, LinkMore } from './linkButton'
 
-// wait for api-extractor to support ts3.8, and we can migrate to type import
-/** @public */
-export type IActionsProps = PartitionFn_
-/** @public */
-export type ILinkButtonProps = ILinkButtonProps_
+export type { IActionsProps } from './actions'
+export type { ILinkButtonProps } from './linkButton'
 
 /**
  * @public
