@@ -1,15 +1,22 @@
 {
   "name": "@alicloud/xconsole-theme",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "scripts": {
+    "clean": "rm -rf ./design-tokens ./style-overwrite ./dist",
     "fetch": "node ./scripts/fetch-files-from-tnpm.js",
     "bundle-overwrite": "scss-bundle --config ./scss-bundle.config.json",
-    "prepare": "npm run fetch && npm run bundle-overwrite"
+    "build": "webpack && rm -rf ./dist/index.js ./dist/index-noreset.js",
+    "prepare": "npm run clean && npm run fetch && npm run bundle-overwrite && npm run build"
   },
   "devDependencies": {
     "@alicloud/console-components": "^1.0.25",
-    "scss-bundle": "^3.1.2"
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "sass": "^1.26.8",
+    "scss-bundle": "^3.1.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "publishConfig": {
     "access": "public"
