@@ -12,7 +12,10 @@
       "site",
       "."
     ],
-    "nohoist": ["**/@pika/react", "**/@pika/react-dom"]
+    "nohoist": [
+      "**/@pika/react",
+      "**/@pika/react-dom"
+    ]
   },
   "scripts": {
     "bootstrap:1": "lerna run prepare --scope @alicloud/console-components-build-doc --include-dependencies",
@@ -78,7 +81,16 @@
     "react-dom": "^16.3.0",
     "rollup": "^2.3.3",
     "styled-components": "^4.3.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "vite": "^0.20.8",
+    "vite-plugin-mdx": "^0.1.2",
+    "vite-plugin-react": "^2.0.3",
+    "vite-plugin-react-pages": "^0.2.1",
+    "@mdx-js/react": "^1.6.5",
+    "@pika/react": "^16.13.1",
+    "@pika/react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "vite-pages-theme-basic": "^0.2.1"
   },
   "resolutions": {
     "@types/styled-components": "5.1.0",

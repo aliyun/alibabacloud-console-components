@@ -1,0 +1,7 @@
+{
+  "externals": {
+    "react": "^16.13.1",
+    "@alicloud/console-components": "^1.0.0",
+    "@alicloud/console-components-fake-browser": "^1.0.0"
+  }
+}

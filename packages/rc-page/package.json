@@ -23,6 +23,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
+    "dev": "vite serve -c ./demos/vite.config.ts",
     "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build",
     "clean": "rm -rf dist lib es cc-dev-out",
     "babel": "breezr build --engine babel",

@@ -37,7 +37,7 @@
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
     "dva": "^2.4.1",
-    "prop-types": "^15.x",
+    "react-router-dom": "^5.2.0",
     "react": "^16.x",
     "react-dom": "^16.x",
     "styled-components": "^4.2.0"
