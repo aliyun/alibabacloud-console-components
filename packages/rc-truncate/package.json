@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-truncate",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
@@ -47,6 +47,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.17.15",
-    "react-sizeme": "^2.6.7"
+    "react-sizeme": "^2.6.7",
+    "react-truncate-markup": "^5.0.0"
   }
 }

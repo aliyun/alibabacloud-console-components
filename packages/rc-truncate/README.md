@@ -4,6 +4,8 @@
 
 ## 基本用法
 
+### 单行截断
+
 比较常见的使用方式：
 [MDXInstruction:importDemo:BasicDemo](./stories/basic.tsx)
 
@@ -25,6 +27,18 @@
 设置 tooltip 样式：
 [MDXInstruction:importDemo:PopupStyleDemo](./stories/popupStyle.tsx)
 
+### 多行截断
+
+[MDXInstruction:importDemo:MultiLinesDemo](./stories/multi-lines.tsx)
+
+想要做多行截断的时候，先考虑能否**通过普通的滚动来让用户浏览全部内容**。从用户体验的角度来看，后者的体验更好，无需使用多行截断。
+
 ## APIs
 
+单行截断：
+
 [MDXInstruction:renderInterface:ITruncateProps](./api-json/api.json)
+
+多行截断：
+
+[MDXInstruction:renderInterface:IMultiLinesProps](./api-json/api.json)

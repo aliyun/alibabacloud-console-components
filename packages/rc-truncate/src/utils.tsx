@@ -22,15 +22,13 @@ export function useTooltip({
 }: {
   showTooltip: boolean
   tooltipMaxWidth?: number
-  align: AlignType
+  align?: AlignType
   originalContent: React.ReactNode
   truncatedContent: React.ReactNode
   popupStyle?: React.CSSProperties
   popupClassName?: string
   patchPopupProps?: IPatchPopupProps
 }) {
-  const [visible, setVisible] = useState(false)
-
   const actualPopupStyle: React.CSSProperties = {
     ...popupStyle,
   }
@@ -44,18 +42,18 @@ export function useTooltip({
 
   const ballonProps = (() => {
     const originalProps: BalloonProps = {
-      visible,
       trigger: truncatedContent,
-      onVisibleChange: (newVisible: boolean) => {
-        if (showTooltip && newVisible) setVisible(true)
-        else setVisible(false)
-      },
       align,
       popupStyle: actualPopupStyle as {},
       popupClassName: classnames(tooltipPopupClassName, popupClassName),
       alignEdge: true,
       needAdjust: true,
       closable: false, // hidden close icon
+    }
+    if (!showTooltip) {
+      // showTooltip:true时，使用balloon默认的非受控模式；
+      // showTooltip:false时，使用balloon的受控模式来阻止弹层
+      originalProps.visible = false
     }
     if (!patchPopupProps) return originalProps
     return patchPopupProps(originalProps)
