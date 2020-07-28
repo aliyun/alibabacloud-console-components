@@ -1,244 +1,208 @@
 @import "variables.scss";
 
 
+.#{$css-prefix}icon-32::before {
+    content: $icon-content-32;
+}
+
+.#{$css-prefix}icon-321::before {
+    content: $icon-content-321;
+}
+
+.#{$css-prefix}icon-322::before {
+    content: $icon-content-322;
+}
+
+.#{$css-prefix}icon-323::before {
+    content: $icon-content-323;
+}
+
+.#{$css-prefix}icon-324::before {
+    content: $icon-content-324;
+}
+
+.#{$css-prefix}icon-326::before {
+    content: $icon-content-326;
+}
+
+.#{$css-prefix}icon-327::before {
+    content: $icon-content-327;
+}
+
+.#{$css-prefix}icon-328::before {
+    content: $icon-content-328;
+}
+
+.#{$css-prefix}icon-329::before {
+    content: $icon-content-329;
+}
+
+.#{$css-prefix}icon-3210::before {
+    content: $icon-content-3210;
+}
+
+.#{$css-prefix}icon-3211::before {
+    content: $icon-content-3211;
+}
+
+.#{$css-prefix}icon-3212::before {
+    content: $icon-content-3212;
+}
+
+.#{$css-prefix}icon-3213::before {
+    content: $icon-content-3213;
+}
+
+.#{$css-prefix}icon-3214::before {
+    content: $icon-content-3214;
+}
+
+.#{$css-prefix}icon-3215::before {
+    content: $icon-content-3215;
+}
+
+.#{$css-prefix}icon-3216::before {
+    content: $icon-content-3216;
+}
+
+.#{$css-prefix}icon-3217::before {
+    content: $icon-content-3217;
+}
+
+.#{$css-prefix}icon-3218::before {
+    content: $icon-content-3218;
+}
+
+.#{$css-prefix}icon-3219::before {
+    content: $icon-content-3219;
+}
+
+.#{$css-prefix}icon-3220::before {
+    content: $icon-content-3220;
+}
+
+.#{$css-prefix}icon-3221::before {
+    content: $icon-content-3221;
+}
+
+.#{$css-prefix}icon-3222::before {
+    content: $icon-content-3222;
+}
+
+.#{$css-prefix}icon-3223::before {
+    content: $icon-content-3223;
+}
+
+.#{$css-prefix}icon-3224::before {
+    content: $icon-content-3224;
+}
+
+.#{$css-prefix}icon-3225::before {
+    content: $icon-content-3225;
+}
+
+.#{$css-prefix}icon-3226::before {
+    content: $icon-content-3226;
+}
+
+.#{$css-prefix}icon-1688-copy::before {
+    content: $icon-content-1688-copy;
+}
+
 .#{$css-prefix}icon-Directory-tree::before {
     content: $icon-content-Directory-tree;
-}
-
-.#{$css-prefix}icon-Xconsole::before {
-    content: $icon-content-Xconsole;
-}
-
-.#{$css-prefix}icon-Group1::before {
-    content: $icon-content-Group1;
 }
 
 .#{$css-prefix}icon-Group::before {
     content: $icon-content-Group;
 }
 
-.#{$css-prefix}icon-shoppingcart::before {
-    content: $icon-content-shoppingcart;
-}
-
-.#{$css-prefix}icon-wind-loading::before {
-    content: $icon-content-wind-loading;
-}
-
-.#{$css-prefix}icon-add-subset::before {
-    content: $icon-content-add-subset;
-}
-
-.#{$css-prefix}icon-diagnose::before {
-    content: $icon-content-diagnose;
-}
-
-.#{$css-prefix}icon-monitoring::before {
-    content: $icon-content-monitoring;
-}
-
-.#{$css-prefix}icon-home::before {
-    content: $icon-content-home;
-}
-
-.#{$css-prefix}icon-vector::before {
-    content: $icon-content-vector;
-}
-
-.#{$css-prefix}icon-structured-data::before {
-    content: $icon-content-structured-data;
-}
-
-.#{$css-prefix}icon-bell::before {
-    content: $icon-content-bell;
-}
-
-.#{$css-prefix}icon-left-arrow-rect::before {
-    content: $icon-content-left-arrow-rect;
-}
-
-.#{$css-prefix}icon-right-arrow-rect::before {
-    content: $icon-content-right-arrow-rect;
-}
-
-.#{$css-prefix}icon-waiting::before {
-    content: $icon-content-waiting;
-}
-
-.#{$css-prefix}icon-waiting-fill::before {
-    content: $icon-content-waiting-fill;
-}
-
-.#{$css-prefix}icon-NEW::before {
-    content: $icon-content-NEW;
+.#{$css-prefix}icon-Group1::before {
+    content: $icon-content-Group1;
 }
 
 .#{$css-prefix}icon-HOT::before {
     content: $icon-content-HOT;
 }
 
-.#{$css-prefix}icon-scrollingmode::before {
-    content: $icon-content-scrollingmode;
+.#{$css-prefix}icon-NEW::before {
+    content: $icon-content-NEW;
 }
 
-.#{$css-prefix}icon-stepmode::before {
-    content: $icon-content-stepmode;
+.#{$css-prefix}icon-WIFI::before {
+    content: $icon-content-WIFI;
 }
 
-.#{$css-prefix}icon-plus-square::before {
-    content: $icon-content-plus-square;
+.#{$css-prefix}icon-Xconsole::before {
+    content: $icon-content-Xconsole;
 }
 
-.#{$css-prefix}icon-minus-square::before {
-    content: $icon-content-minus-square;
+.#{$css-prefix}icon-accesskeys::before {
+    content: $icon-content-accesskeys;
 }
 
-.#{$css-prefix}icon-plus-square-fill::before {
-    content: $icon-content-plus-square-fill;
+.#{$css-prefix}icon-account-plus::before {
+    content: $icon-content-account-plus;
 }
 
-.#{$css-prefix}icon-minus-square-fill::before {
-    content: $icon-content-minus-square-fill;
+.#{$css-prefix}icon-account1::before {
+    content: $icon-content-account1;
 }
 
-.#{$css-prefix}icon-arrow-sortdown-smal::before {
-    content: $icon-content-arrow-sortdown-smal;
+.#{$css-prefix}icon-add-subset::before {
+    content: $icon-content-add-subset;
 }
 
-.#{$css-prefix}icon-share::before {
-    content: $icon-content-share;
+.#{$css-prefix}icon-add1::before {
+    content: $icon-content-add1;
 }
 
-.#{$css-prefix}icon-icon-drag::before {
-    content: $icon-content-icon-drag;
+.#{$css-prefix}icon-align-center::before {
+    content: $icon-content-align-center;
 }
 
-.#{$css-prefix}icon-menu::before {
-    content: $icon-content-menu;
+.#{$css-prefix}icon-align-left::before {
+    content: $icon-content-align-left;
 }
 
-.#{$css-prefix}icon-arrow-alt-from-bottom::before {
-    content: $icon-content-arrow-alt-from-bottom;
+.#{$css-prefix}icon-align-right::before {
+    content: $icon-content-align-right;
 }
 
-.#{$css-prefix}icon-arrow-alt-from-top::before {
-    content: $icon-content-arrow-alt-from-top;
+.#{$css-prefix}icon-aligncenter-fill::before {
+    content: $icon-content-aligncenter-fill;
 }
 
-.#{$css-prefix}icon-compass::before {
-    content: $icon-content-compass;
+.#{$css-prefix}icon-alignleft-fill::before {
+    content: $icon-content-alignleft-fill;
 }
 
-.#{$css-prefix}icon-sync-alt::before {
-    content: $icon-content-sync-alt;
+.#{$css-prefix}icon-alignright-fill::before {
+    content: $icon-content-alignright-fill;
 }
 
-.#{$css-prefix}icon-rank::before {
-    content: $icon-content-rank;
+.#{$css-prefix}icon-alipay-copy::before {
+    content: $icon-content-alipay-copy;
 }
 
-.#{$css-prefix}icon-resource::before {
-    content: $icon-content-resource;
+.#{$css-prefix}icon-aliwangwang::before {
+    content: $icon-content-aliwangwang;
 }
 
-.#{$css-prefix}icon-folder-open::before {
-    content: $icon-content-folder-open;
+.#{$css-prefix}icon-aliyun-logo::before {
+    content: $icon-content-aliyun-logo;
 }
 
-.#{$css-prefix}icon-shopping-cart::before {
-    content: $icon-content-shopping-cart;
+.#{$css-prefix}icon-all::before {
+    content: $icon-content-all;
 }
 
-.#{$css-prefix}icon-terminal::before {
-    content: $icon-content-terminal;
+.#{$css-prefix}icon-all-fill::before {
+    content: $icon-content-all-fill;
 }
 
-.#{$css-prefix}icon-terminal-fill::before {
-    content: $icon-content-terminal-fill;
-}
-
-.#{$css-prefix}icon-cloud-machine::before {
-    content: $icon-content-cloud-machine;
-}
-
-.#{$css-prefix}icon-cloud-machine-fill::before {
-    content: $icon-content-cloud-machine-fill;
-}
-
-.#{$css-prefix}icon-user-circle::before {
-    content: $icon-content-user-circle;
-}
-
-.#{$css-prefix}icon-star-circle1::before {
-    content: $icon-content-star-circle1;
-}
-
-.#{$css-prefix}icon-integral::before {
-    content: $icon-content-integral;
-}
-
-.#{$css-prefix}icon-gem::before {
-    content: $icon-content-gem;
-}
-
-.#{$css-prefix}icon-backspace::before {
-    content: $icon-content-backspace;
-}
-
-.#{$css-prefix}icon-wind-warning::before {
-    content: $icon-content-wind-warning;
-}
-
-.#{$css-prefix}icon-release::before {
-    content: $icon-content-release;
-}
-
-.#{$css-prefix}icon-new-releases::before {
-    content: $icon-content-new-releases;
-}
-
-.#{$css-prefix}icon-print::before {
-    content: $icon-content-print;
-}
-
-.#{$css-prefix}icon-save::before {
-    content: $icon-content-save;
-}
-
-.#{$css-prefix}icon-news::before {
-    content: $icon-content-news;
-}
-
-.#{$css-prefix}icon-process::before {
-    content: $icon-content-process;
-}
-
-.#{$css-prefix}icon-training::before {
-    content: $icon-content-training;
-}
-
-.#{$css-prefix}icon-connection::before {
-    content: $icon-content-connection;
-}
-
-.#{$css-prefix}icon-paperclip::before {
-    content: $icon-content-paperclip;
-}
-
-.#{$css-prefix}icon-angle-left::before {
-    content: $icon-content-angle-left;
-}
-
-.#{$css-prefix}icon-angle-right::before {
-    content: $icon-content-angle-right;
-}
-
-.#{$css-prefix}icon-angle-up::before {
-    content: $icon-content-angle-up;
-}
-
-.#{$css-prefix}icon-angle-down::before {
-    content: $icon-content-angle-down;
+.#{$css-prefix}icon-angle-double-down::before {
+    content: $icon-content-angle-double-down;
 }
 
 .#{$css-prefix}icon-angle-double-left::before {
@@ -253,12 +217,156 @@
     content: $icon-content-angle-double-up;
 }
 
-.#{$css-prefix}icon-angle-double-down::before {
-    content: $icon-content-angle-double-down;
+.#{$css-prefix}icon-angle-down::before {
+    content: $icon-content-angle-down;
+}
+
+.#{$css-prefix}icon-angle-left::before {
+    content: $icon-content-angle-left;
+}
+
+.#{$css-prefix}icon-angle-right::before {
+    content: $icon-content-angle-right;
+}
+
+.#{$css-prefix}icon-angle-up::before {
+    content: $icon-content-angle-up;
+}
+
+.#{$css-prefix}icon-arrow-alt-from-bottom::before {
+    content: $icon-content-arrow-alt-from-bottom;
+}
+
+.#{$css-prefix}icon-arrow-alt-from-top::before {
+    content: $icon-content-arrow-alt-from-top;
+}
+
+.#{$css-prefix}icon-arrow-double-left1::before {
+    content: $icon-content-arrow-double-left1;
+}
+
+.#{$css-prefix}icon-arrow-double-right1::before {
+    content: $icon-content-arrow-double-right1;
+}
+
+.#{$css-prefix}icon-arrow-down1::before {
+    content: $icon-content-arrow-down1;
+}
+
+.#{$css-prefix}icon-arrow-left1::before {
+    content: $icon-content-arrow-left1;
+}
+
+.#{$css-prefix}icon-arrow-right1::before {
+    content: $icon-content-arrow-right1;
+}
+
+.#{$css-prefix}icon-arrow-sortdown-smal::before {
+    content: $icon-content-arrow-sortdown-smal;
+}
+
+.#{$css-prefix}icon-arrow-to-bottom::before {
+    content: $icon-content-arrow-to-bottom;
+}
+
+.#{$css-prefix}icon-arrow-to-top::before {
+    content: $icon-content-arrow-to-top;
+}
+
+.#{$css-prefix}icon-arrow-up1::before {
+    content: $icon-content-arrow-up1;
+}
+
+.#{$css-prefix}icon-arrows-alt::before {
+    content: $icon-content-arrows-alt;
 }
 
 .#{$css-prefix}icon-arrows-v::before {
     content: $icon-content-arrows-v;
+}
+
+.#{$css-prefix}icon-ascending1::before {
+    content: $icon-content-ascending1;
+}
+
+.#{$css-prefix}icon-ashbin1::before {
+    content: $icon-content-ashbin1;
+}
+
+.#{$css-prefix}icon-atm1::before {
+    content: $icon-content-atm1;
+}
+
+.#{$css-prefix}icon-attachment1::before {
+    content: $icon-content-attachment1;
+}
+
+.#{$css-prefix}icon-backspace::before {
+    content: $icon-content-backspace;
+}
+
+.#{$css-prefix}icon-ban::before {
+    content: $icon-content-ban;
+}
+
+.#{$css-prefix}icon-bell::before {
+    content: $icon-content-bell;
+}
+
+.#{$css-prefix}icon-border-bottom::before {
+    content: $icon-content-border-bottom;
+}
+
+.#{$css-prefix}icon-border-top::before {
+    content: $icon-content-border-top;
+}
+
+.#{$css-prefix}icon-border-verticle::before {
+    content: $icon-content-border-verticle;
+}
+
+.#{$css-prefix}icon-borderbottom-fill::before {
+    content: $icon-content-borderbottom-fill;
+}
+
+.#{$css-prefix}icon-bordertop-fill::before {
+    content: $icon-content-bordertop-fill;
+}
+
+.#{$css-prefix}icon-borderverticle-fill::before {
+    content: $icon-content-borderverticle-fill;
+}
+
+.#{$css-prefix}icon-box::before {
+    content: $icon-content-box;
+}
+
+.#{$css-prefix}icon-box-fill::before {
+    content: $icon-content-box-fill;
+}
+
+.#{$css-prefix}icon-box-fill1::before {
+    content: $icon-content-box-fill1;
+}
+
+.#{$css-prefix}icon-bug-report::before {
+    content: $icon-content-bug-report;
+}
+
+.#{$css-prefix}icon-bujinmoshi::before {
+    content: $icon-content-bujinmoshi;
+}
+
+.#{$css-prefix}icon-calendar-alt::before {
+    content: $icon-content-calendar-alt;
+}
+
+.#{$css-prefix}icon-calendar1::before {
+    content: $icon-content-calendar1;
+}
+
+.#{$css-prefix}icon-calendaralt-fill::before {
+    content: $icon-content-calendaralt-fill;
 }
 
 .#{$css-prefix}icon-caret-left::before {
@@ -269,344 +377,88 @@
     content: $icon-content-caret-right;
 }
 
-.#{$css-prefix}icon-sort-up::before {
-    content: $icon-content-sort-up;
+.#{$css-prefix}icon-chart-area::before {
+    content: $icon-content-chart-area;
 }
 
-.#{$css-prefix}icon-sort-down::before {
-    content: $icon-content-sort-down;
+.#{$css-prefix}icon-chart-line::before {
+    content: $icon-content-chart-line;
 }
 
-.#{$css-prefix}icon-sort::before {
-    content: $icon-content-sort;
+.#{$css-prefix}icon-chart-pie-alt::before {
+    content: $icon-content-chart-pie-alt;
 }
 
-.#{$css-prefix}icon-wind-arrow-left::before {
-    content: $icon-content-wind-arrow-left;
+.#{$css-prefix}icon-chart-relation::before {
+    content: $icon-content-chart-relation;
 }
 
-.#{$css-prefix}icon-wind-arrow-right::before {
-    content: $icon-content-wind-arrow-right;
-}
-
-.#{$css-prefix}icon-long-arrow-up::before {
-    content: $icon-content-long-arrow-up;
-}
-
-.#{$css-prefix}icon-long-arrow-down::before {
-    content: $icon-content-long-arrow-down;
-}
-
-.#{$css-prefix}icon-arrow-to-top::before {
-    content: $icon-content-arrow-to-top;
-}
-
-.#{$css-prefix}icon-arrow-to-bottom::before {
-    content: $icon-content-arrow-to-bottom;
-}
-
-.#{$css-prefix}icon-wind-upload::before {
-    content: $icon-content-wind-upload;
-}
-
-.#{$css-prefix}icon-wind-download::before {
-    content: $icon-content-wind-download;
-}
-
-.#{$css-prefix}icon-wind-descending::before {
-    content: $icon-content-wind-descending;
-}
-
-.#{$css-prefix}icon-wind-ascending::before {
-    content: $icon-content-wind-ascending;
-}
-
-.#{$css-prefix}icon-wind-switch::before {
-    content: $icon-content-wind-switch;
-}
-
-.#{$css-prefix}icon-wind-sorting::before {
-    content: $icon-content-wind-sorting;
-}
-
-.#{$css-prefix}icon-outdent::before {
-    content: $icon-content-outdent;
-}
-
-.#{$css-prefix}icon-indent::before {
-    content: $icon-content-indent;
-}
-
-.#{$css-prefix}icon-arrows-alt::before {
-    content: $icon-content-arrows-alt;
-}
-
-.#{$css-prefix}icon-external-link::before {
-    content: $icon-content-external-link;
-}
-
-.#{$css-prefix}icon-redo::before {
-    content: $icon-content-redo;
-}
-
-.#{$css-prefix}icon-undo::before {
-    content: $icon-content-undo;
-}
-
-.#{$css-prefix}icon-reply::before {
-    content: $icon-content-reply;
-}
-
-.#{$css-prefix}icon-wind-search::before {
-    content: $icon-content-wind-search;
-}
-
-.#{$css-prefix}icon-search-plus::before {
-    content: $icon-content-search-plus;
-}
-
-.#{$css-prefix}icon-search-minus::before {
-    content: $icon-content-search-minus;
+.#{$css-prefix}icon-chart-scatter-plot::before {
+    content: $icon-content-chart-scatter-plot;
 }
 
 .#{$css-prefix}icon-check::before {
     content: $icon-content-check;
 }
 
-.#{$css-prefix}icon-times::before {
-    content: $icon-content-times;
-}
-
-.#{$css-prefix}icon-plus::before {
-    content: $icon-content-plus;
-}
-
-.#{$css-prefix}icon-wind-minus::before {
-    content: $icon-content-wind-minus;
-}
-
-.#{$css-prefix}icon-ban::before {
-    content: $icon-content-ban;
-}
-
-.#{$css-prefix}icon-expand-alt::before {
-    content: $icon-content-expand-alt;
-}
-
-.#{$css-prefix}icon-compress-alt::before {
-    content: $icon-content-compress-alt;
-}
-
 .#{$css-prefix}icon-check-circle::before {
     content: $icon-content-check-circle;
 }
 
-.#{$css-prefix}icon-times-circle::before {
-    content: $icon-content-times-circle;
+.#{$css-prefix}icon-check-circle-fill::before {
+    content: $icon-content-check-circle-fill;
 }
 
-.#{$css-prefix}icon-plus-circle::before {
-    content: $icon-content-plus-circle;
+.#{$css-prefix}icon-clock-fill::before {
+    content: $icon-content-clock-fill;
 }
 
-.#{$css-prefix}icon-minus-circle::before {
-    content: $icon-content-minus-circle;
+.#{$css-prefix}icon-clock1::before {
+    content: $icon-content-clock1;
 }
 
-.#{$css-prefix}icon-exclamation-circle::before {
-    content: $icon-content-exclamation-circle;
+.#{$css-prefix}icon-close1::before {
+    content: $icon-content-close1;
 }
 
-.#{$css-prefix}icon-question-circle::before {
-    content: $icon-content-question-circle;
+.#{$css-prefix}icon-cloud-machine::before {
+    content: $icon-content-cloud-machine;
 }
 
-.#{$css-prefix}icon-info-circle::before {
-    content: $icon-content-info-circle;
-}
-
-.#{$css-prefix}icon-exchange::before {
-    content: $icon-content-exchange;
-}
-
-.#{$css-prefix}icon-cloudupload::before {
-    content: $icon-content-cloudupload;
+.#{$css-prefix}icon-cloud-machine-fill::before {
+    content: $icon-content-cloud-machine-fill;
 }
 
 .#{$css-prefix}icon-clouddownload::before {
     content: $icon-content-clouddownload;
 }
 
-.#{$css-prefix}icon-calendar-alt::before {
-    content: $icon-content-calendar-alt;
+.#{$css-prefix}icon-clouddownload-fill::before {
+    content: $icon-content-clouddownload-fill;
 }
 
-.#{$css-prefix}icon-wind-clock::before {
-    content: $icon-content-wind-clock;
+.#{$css-prefix}icon-cloudupload::before {
+    content: $icon-content-cloudupload;
+}
+
+.#{$css-prefix}icon-cloudupload-fill::before {
+    content: $icon-content-cloudupload-fill;
 }
 
 .#{$css-prefix}icon-cog::before {
     content: $icon-content-cog;
 }
 
-.#{$css-prefix}icon-wind-account::before {
-    content: $icon-content-wind-account;
-}
-
-.#{$css-prefix}icon-account-plus::before {
-    content: $icon-content-account-plus;
-}
-
-.#{$css-prefix}icon-user-group::before {
-    content: $icon-content-user-group;
+.#{$css-prefix}icon-cog-fill::before {
+    content: $icon-content-cog-fill;
 }
 
 .#{$css-prefix}icon-collection::before {
     content: $icon-content-collection;
 }
 
-.#{$css-prefix}icon-like::before {
-    content: $icon-content-like;
-}
-
-.#{$css-prefix}icon-mail::before {
-    content: $icon-content-mail;
-}
-
-.#{$css-prefix}icon-wind-picture::before {
-    content: $icon-content-wind-picture;
-}
-
-.#{$css-prefix}icon-delete::before {
-    content: $icon-content-delete;
-}
-
-.#{$css-prefix}icon-playcircle::before {
-    content: $icon-content-playcircle;
-}
-
-.#{$css-prefix}icon-stopcircle::before {
-    content: $icon-content-stopcircle;
-}
-
-.#{$css-prefix}icon-pausecircle::before {
-    content: $icon-content-pausecircle;
-}
-
-.#{$css-prefix}icon-phone::before {
-    content: $icon-content-phone;
-}
-
-.#{$css-prefix}icon-headset::before {
-    content: $icon-content-headset;
-}
-
-.#{$css-prefix}icon-file::before {
-    content: $icon-content-file;
-}
-
-.#{$css-prefix}icon-file-plus::before {
-    content: $icon-content-file-plus;
-}
-
-.#{$css-prefix}icon-file-SQL1::before {
-    content: $icon-content-file-SQL1;
-}
-
-.#{$css-prefix}icon-folder::before {
-    content: $icon-content-folder;
-}
-
-.#{$css-prefix}icon-folder-plus::before {
-    content: $icon-content-folder-plus;
-}
-
-.#{$css-prefix}icon-pic-side::before {
-    content: $icon-content-pic-side;
-}
-
-.#{$css-prefix}icon-pic-center::before {
-    content: $icon-content-pic-center;
-}
-
-.#{$css-prefix}icon-border-verticle::before {
-    content: $icon-content-border-verticle;
-}
-
-.#{$css-prefix}icon-align-center::before {
-    content: $icon-content-align-center;
-}
-
-.#{$css-prefix}icon-border-top::before {
-    content: $icon-content-border-top;
-}
-
-.#{$css-prefix}icon-border-bottom::before {
-    content: $icon-content-border-bottom;
-}
-
-.#{$css-prefix}icon-align-left::before {
-    content: $icon-content-align-left;
-}
-
-.#{$css-prefix}icon-align-right::before {
-    content: $icon-content-align-right;
-}
-
-.#{$css-prefix}icon-wind-smile::before {
-    content: $icon-content-wind-smile;
-}
-
-.#{$css-prefix}icon-wind-cry::before {
-    content: $icon-content-wind-cry;
-}
-
-.#{$css-prefix}icon-layer-group::before {
-    content: $icon-content-layer-group;
-}
-
-.#{$css-prefix}icon-database-set::before {
-    content: $icon-content-database-set;
-}
-
-.#{$css-prefix}icon-box::before {
-    content: $icon-content-box;
-}
-
-.#{$css-prefix}icon-inbox-in::before {
-    content: $icon-content-inbox-in;
-}
-
-.#{$css-prefix}icon-map::before {
-    content: $icon-content-map;
-}
-
-.#{$css-prefix}icon-location::before {
-    content: $icon-content-location;
-}
-
-.#{$css-prefix}icon-position::before {
-    content: $icon-content-position;
-}
-
-.#{$css-prefix}icon-tag::before {
-    content: $icon-content-tag;
-}
-
-.#{$css-prefix}icon-flag::before {
-    content: $icon-content-flag;
-}
-
-.#{$css-prefix}icon-lightbulb::before {
-    content: $icon-content-lightbulb;
-}
-
-.#{$css-prefix}icon-eye-slash::before {
-    content: $icon-content-eye-slash;
-}
-
-.#{$css-prefix}icon-paper-plane::before {
-    content: $icon-content-paper-plane;
+.#{$css-prefix}icon-collection-fill::before {
+    content: $icon-content-collection-fill;
 }
 
 .#{$css-prefix}icon-comment-dots::before {
@@ -617,262 +469,6 @@
     content: $icon-content-comment-lines;
 }
 
-.#{$css-prefix}icon-database::before {
-    content: $icon-content-database;
-}
-
-.#{$css-prefix}icon-database-plus::before {
-    content: $icon-content-database-plus;
-}
-
-.#{$css-prefix}icon-all::before {
-    content: $icon-content-all;
-}
-
-.#{$css-prefix}icon-wind-filter::before {
-    content: $icon-content-wind-filter;
-}
-
-.#{$css-prefix}icon-expandalt-fill::before {
-    content: $icon-content-expandalt-fill;
-}
-
-.#{$css-prefix}icon-compressalt-fill::before {
-    content: $icon-content-compressalt-fill;
-}
-
-.#{$css-prefix}icon-check-circle-fill::before {
-    content: $icon-content-check-circle-fill;
-}
-
-.#{$css-prefix}icon-times-circle-fill::before {
-    content: $icon-content-times-circle-fill;
-}
-
-.#{$css-prefix}icon-plus-circle-fill::before {
-    content: $icon-content-plus-circle-fill;
-}
-
-.#{$css-prefix}icon-minus-circle-fill::before {
-    content: $icon-content-minus-circle-fill;
-}
-
-.#{$css-prefix}icon-exclamationcircle-f::before {
-    content: $icon-content-exclamationcircle-f;
-}
-
-.#{$css-prefix}icon-question-circle-fill::before {
-    content: $icon-content-question-circle-fill;
-}
-
-.#{$css-prefix}icon-info-circle-fill::before {
-    content: $icon-content-info-circle-fill;
-}
-
-.#{$css-prefix}icon-exchange-fill::before {
-    content: $icon-content-exchange-fill;
-}
-
-.#{$css-prefix}icon-cloudupload-fill::before {
-    content: $icon-content-cloudupload-fill;
-}
-
-.#{$css-prefix}icon-clouddownload-fill::before {
-    content: $icon-content-clouddownload-fill;
-}
-
-.#{$css-prefix}icon-calendaralt-fill::before {
-    content: $icon-content-calendaralt-fill;
-}
-
-.#{$css-prefix}icon-clock-fill::before {
-    content: $icon-content-clock-fill;
-}
-
-.#{$css-prefix}icon-cog-fill::before {
-    content: $icon-content-cog-fill;
-}
-
-.#{$css-prefix}icon-user-fill::before {
-    content: $icon-content-user-fill;
-}
-
-.#{$css-prefix}icon-userplus-fill::before {
-    content: $icon-content-userplus-fill;
-}
-
-.#{$css-prefix}icon-user-group-fill::before {
-    content: $icon-content-user-group-fill;
-}
-
-.#{$css-prefix}icon-collection-fill::before {
-    content: $icon-content-collection-fill;
-}
-
-.#{$css-prefix}icon-heart-fill::before {
-    content: $icon-content-heart-fill;
-}
-
-.#{$css-prefix}icon-mail-fill::before {
-    content: $icon-content-mail-fill;
-}
-
-.#{$css-prefix}icon-picture-fill::before {
-    content: $icon-content-picture-fill;
-}
-
-.#{$css-prefix}icon-delete-fill::before {
-    content: $icon-content-delete-fill;
-}
-
-.#{$css-prefix}icon-playcircle-fill::before {
-    content: $icon-content-playcircle-fill;
-}
-
-.#{$css-prefix}icon-stopcircle-fill::before {
-    content: $icon-content-stopcircle-fill;
-}
-
-.#{$css-prefix}icon-pausecircle-fill::before {
-    content: $icon-content-pausecircle-fill;
-}
-
-.#{$css-prefix}icon-phone-fill::before {
-    content: $icon-content-phone-fill;
-}
-
-.#{$css-prefix}icon-headset-fill::before {
-    content: $icon-content-headset-fill;
-}
-
-.#{$css-prefix}icon-copy-fill::before {
-    content: $icon-content-copy-fill;
-}
-
-.#{$css-prefix}icon-file-fill::before {
-    content: $icon-content-file-fill;
-}
-
-.#{$css-prefix}icon-fileplus-fill::before {
-    content: $icon-content-fileplus-fill;
-}
-
-.#{$css-prefix}icon-file-SQL::before {
-    content: $icon-content-file-SQL;
-}
-
-.#{$css-prefix}icon-folder-fill::before {
-    content: $icon-content-folder-fill;
-}
-
-.#{$css-prefix}icon-folderplus-fill::before {
-    content: $icon-content-folderplus-fill;
-}
-
-.#{$css-prefix}icon-folderopen-fill::before {
-    content: $icon-content-folderopen-fill;
-}
-
-.#{$css-prefix}icon-picside-fill::before {
-    content: $icon-content-picside-fill;
-}
-
-.#{$css-prefix}icon-piccenter-fill::before {
-    content: $icon-content-piccenter-fill;
-}
-
-.#{$css-prefix}icon-borderverticle-fill::before {
-    content: $icon-content-borderverticle-fill;
-}
-
-.#{$css-prefix}icon-aligncenter-fill::before {
-    content: $icon-content-aligncenter-fill;
-}
-
-.#{$css-prefix}icon-bordertop-fill::before {
-    content: $icon-content-bordertop-fill;
-}
-
-.#{$css-prefix}icon-borderbottom-fill::before {
-    content: $icon-content-borderbottom-fill;
-}
-
-.#{$css-prefix}icon-alignleft-fill::before {
-    content: $icon-content-alignleft-fill;
-}
-
-.#{$css-prefix}icon-alignright-fill::before {
-    content: $icon-content-alignright-fill;
-}
-
-.#{$css-prefix}icon-lock-fill::before {
-    content: $icon-content-lock-fill;
-}
-
-.#{$css-prefix}icon-unlock-fill::before {
-    content: $icon-content-unlock-fill;
-}
-
-.#{$css-prefix}icon-smile-fill::before {
-    content: $icon-content-smile-fill;
-}
-
-.#{$css-prefix}icon-cry-fill::before {
-    content: $icon-content-cry-fill;
-}
-
-.#{$css-prefix}icon-layergroup-fill::before {
-    content: $icon-content-layergroup-fill;
-}
-
-.#{$css-prefix}icon-databaseset-fill::before {
-    content: $icon-content-databaseset-fill;
-}
-
-.#{$css-prefix}icon-box-fill::before {
-    content: $icon-content-box-fill;
-}
-
-.#{$css-prefix}icon-inboxin-fill::before {
-    content: $icon-content-inboxin-fill;
-}
-
-.#{$css-prefix}icon-map-fill::before {
-    content: $icon-content-map-fill;
-}
-
-.#{$css-prefix}icon-location-fill::before {
-    content: $icon-content-location-fill;
-}
-
-.#{$css-prefix}icon-position-fill::before {
-    content: $icon-content-position-fill;
-}
-
-.#{$css-prefix}icon-tag-fill::before {
-    content: $icon-content-tag-fill;
-}
-
-.#{$css-prefix}icon-flag-fill::before {
-    content: $icon-content-flag-fill;
-}
-
-.#{$css-prefix}icon-lightbulb-fill::before {
-    content: $icon-content-lightbulb-fill;
-}
-
-.#{$css-prefix}icon-eye-fill::before {
-    content: $icon-content-eye-fill;
-}
-
-.#{$css-prefix}icon-eyeslash-fill::before {
-    content: $icon-content-eyeslash-fill;
-}
-
-.#{$css-prefix}icon-paperplane-fill::before {
-    content: $icon-content-paperplane-fill;
-}
-
 .#{$css-prefix}icon-commentdots-fill::before {
     content: $icon-content-commentdots-fill;
 }
@@ -881,68 +477,92 @@
     content: $icon-content-commentlines-fill;
 }
 
+.#{$css-prefix}icon-compass::before {
+    content: $icon-content-compass;
+}
+
+.#{$css-prefix}icon-compress-alt::before {
+    content: $icon-content-compress-alt;
+}
+
+.#{$css-prefix}icon-compressalt-fill::before {
+    content: $icon-content-compressalt-fill;
+}
+
+.#{$css-prefix}icon-connection::before {
+    content: $icon-content-connection;
+}
+
+.#{$css-prefix}icon-copy-fill::before {
+    content: $icon-content-copy-fill;
+}
+
+.#{$css-prefix}icon-cry-fill::before {
+    content: $icon-content-cry-fill;
+}
+
+.#{$css-prefix}icon-cry1::before {
+    content: $icon-content-cry1;
+}
+
+.#{$css-prefix}icon-cut::before {
+    content: $icon-content-cut;
+}
+
+.#{$css-prefix}icon-database::before {
+    content: $icon-content-database;
+}
+
 .#{$css-prefix}icon-database-fill::before {
     content: $icon-content-database-fill;
+}
+
+.#{$css-prefix}icon-database-plus::before {
+    content: $icon-content-database-plus;
+}
+
+.#{$css-prefix}icon-database-set::before {
+    content: $icon-content-database-set;
 }
 
 .#{$css-prefix}icon-databaseplus-fill::before {
     content: $icon-content-databaseplus-fill;
 }
 
-.#{$css-prefix}icon-all-fill::before {
-    content: $icon-content-all-fill;
+.#{$css-prefix}icon-databaseset-fill::before {
+    content: $icon-content-databaseset-fill;
 }
 
-.#{$css-prefix}icon-filter-fill::before {
-    content: $icon-content-filter-fill;
+.#{$css-prefix}icon-dayin1::before {
+    content: $icon-content-dayin1;
 }
 
-.#{$css-prefix}icon-transanction::before {
-    content: $icon-content-transanction;
+.#{$css-prefix}icon-delete::before {
+    content: $icon-content-delete;
 }
 
-.#{$css-prefix}icon-dollar::before {
-    content: $icon-content-dollar;
+.#{$css-prefix}icon-delete-fill::before {
+    content: $icon-content-delete-fill;
 }
 
-.#{$css-prefix}icon-wind-edit::before {
-    content: $icon-content-wind-edit;
+.#{$css-prefix}icon-delete-filling1::before {
+    content: $icon-content-delete-filling1;
 }
 
-.#{$css-prefix}icon-nail-fixed::before {
-    content: $icon-content-nail-fixed;
+.#{$css-prefix}icon-dengdai::before {
+    content: $icon-content-dengdai;
 }
 
-.#{$css-prefix}icon-nail::before {
-    content: $icon-content-nail;
+.#{$css-prefix}icon-descending1::before {
+    content: $icon-content-descending1;
 }
 
-.#{$css-prefix}icon-aliwangwang::before {
-    content: $icon-content-aliwangwang;
+.#{$css-prefix}icon-diagnose::before {
+    content: $icon-content-diagnose;
 }
 
-.#{$css-prefix}icon-mobile-alt::before {
-    content: $icon-content-mobile-alt;
-}
-
-.#{$css-prefix}icon-mobile-check::before {
-    content: $icon-content-mobile-check;
-}
-
-.#{$css-prefix}icon-mobile-error::before {
-    content: $icon-content-mobile-error;
-}
-
-.#{$css-prefix}icon-laptop::before {
-    content: $icon-content-laptop;
-}
-
-.#{$css-prefix}icon-laptop-check::before {
-    content: $icon-content-laptop-check;
-}
-
-.#{$css-prefix}icon-laptop-error::before {
-    content: $icon-content-laptop-error;
+.#{$css-prefix}icon-dingtalk-copy::before {
+    content: $icon-content-dingtalk-copy;
 }
 
 .#{$css-prefix}icon-display-arrow-left::before {
@@ -957,258 +577,1662 @@
     content: $icon-content-display-code;
 }
 
-.#{$css-prefix}icon-chart-line::before {
-    content: $icon-content-chart-line;
+.#{$css-prefix}icon-dollar::before {
+    content: $icon-content-dollar;
 }
 
-.#{$css-prefix}icon-chart-area::before {
-    content: $icon-content-chart-area;
-}
-
-.#{$css-prefix}icon-chart-scatter-plot::before {
-    content: $icon-content-chart-scatter-plot;
-}
-
-.#{$css-prefix}icon-chart-relation::before {
-    content: $icon-content-chart-relation;
-}
-
-.#{$css-prefix}icon-chart-pie-alt::before {
-    content: $icon-content-chart-pie-alt;
-}
-
-.#{$css-prefix}icon-tag-subscipt::before {
-    content: $icon-content-tag-subscipt;
-}
-
-.#{$css-prefix}icon-supervise::before {
-    content: $icon-content-supervise;
-}
-
-.#{$css-prefix}icon-safety-certificate::before {
-    content: $icon-content-safety-certificate;
-}
-
-.#{$css-prefix}icon-key::before {
-    content: $icon-content-key;
-}
-
-.#{$css-prefix}icon-poweroff::before {
-    content: $icon-content-poweroff;
-}
-
-.#{$css-prefix}icon-link::before {
-    content: $icon-content-link;
-}
-
-.#{$css-prefix}icon-gift::before {
-    content: $icon-content-gift;
-}
-
-.#{$css-prefix}icon-cut::before {
-    content: $icon-content-cut;
-}
-
-.#{$css-prefix}icon-scan::before {
-    content: $icon-content-scan;
-}
-
-.#{$css-prefix}icon-qrcode::before {
-    content: $icon-content-qrcode;
-}
-
-.#{$css-prefix}icon-bug-report::before {
-    content: $icon-content-bug-report;
-}
-
-.#{$css-prefix}icon-WIFI::before {
-    content: $icon-content-WIFI;
-}
-
-.#{$css-prefix}icon-gallery-view::before {
-    content: $icon-content-gallery-view;
-}
-
-.#{$css-prefix}icon-ellipsis-vertical::before {
-    content: $icon-content-ellipsis-vertical;
-}
-
-.#{$css-prefix}icon-drag::before {
-    content: $icon-content-drag;
-}
-
-.#{$css-prefix}icon-aliyun-logo::before {
-    content: $icon-content-aliyun-logo;
-}
-
-.#{$css-prefix}icon-management::before {
-    content: $icon-content-management;
-}
-
-.#{$css-prefix}icon-accesskeys::before {
-    content: $icon-content-accesskeys;
-}
-
-.#{$css-prefix}icon-arrow-left1::before {
-    content: $icon-content-arrow-left1;
-}
-
-.#{$css-prefix}icon-delete-filling1::before {
-    content: $icon-content-delete-filling1;
-}
-
-.#{$css-prefix}icon-arrow-double-right1::before {
-    content: $icon-content-arrow-double-right1;
-}
-
-.#{$css-prefix}icon-arrow-double-left1::before {
-    content: $icon-content-arrow-double-left1;
-}
-
-.#{$css-prefix}icon-loading1::before {
-    content: $icon-content-loading1;
-}
-
-.#{$css-prefix}icon-semi-select1::before {
-    content: $icon-content-semi-select1;
-}
-
-.#{$css-prefix}icon-close1::before {
-    content: $icon-content-close1;
-}
-
-.#{$css-prefix}icon-picture1::before {
-    content: $icon-content-picture1;
-}
-
-.#{$css-prefix}icon-success-filling1::before {
-    content: $icon-content-success-filling1;
-}
-
-.#{$css-prefix}icon-upload1::before {
-    content: $icon-content-upload1;
-}
-
-.#{$css-prefix}icon-descending1::before {
-    content: $icon-content-descending1;
-}
-
-.#{$css-prefix}icon-ascending1::before {
-    content: $icon-content-ascending1;
-}
-
-.#{$css-prefix}icon-sorting1::before {
-    content: $icon-content-sorting1;
-}
-
-.#{$css-prefix}icon-prompt1::before {
-    content: $icon-content-prompt1;
-}
-
-.#{$css-prefix}icon-search1::before {
-    content: $icon-content-search1;
-}
-
-.#{$css-prefix}icon-warning1::before {
-    content: $icon-content-warning1;
-}
-
-.#{$css-prefix}icon-success1::before {
-    content: $icon-content-success1;
-}
-
-.#{$css-prefix}icon-calendar1::before {
-    content: $icon-content-calendar1;
-}
-
-.#{$css-prefix}icon-ashbin1::before {
-    content: $icon-content-ashbin1;
-}
-
-.#{$css-prefix}icon-select1::before {
-    content: $icon-content-select1;
-}
-
-.#{$css-prefix}icon-error1::before {
-    content: $icon-content-error1;
-}
-
-.#{$css-prefix}icon-edit1::before {
-    content: $icon-content-edit1;
-}
-
-.#{$css-prefix}icon-minus1::before {
-    content: $icon-content-minus1;
-}
-
-.#{$css-prefix}icon-add1::before {
-    content: $icon-content-add1;
-}
-
-.#{$css-prefix}icon-arrow-up1::before {
-    content: $icon-content-arrow-up1;
-}
-
-.#{$css-prefix}icon-arrow-down1::before {
-    content: $icon-content-arrow-down1;
-}
-
-.#{$css-prefix}icon-arrow-right1::before {
-    content: $icon-content-arrow-right1;
-}
-
-.#{$css-prefix}icon-smile1::before {
-    content: $icon-content-smile1;
-}
-
-.#{$css-prefix}icon-favorites-filling1::before {
-    content: $icon-content-favorites-filling1;
-}
-
-.#{$css-prefix}icon-ellipsis1::before {
-    content: $icon-content-ellipsis1;
+.#{$css-prefix}icon-dollar1::before {
+    content: $icon-content-dollar1;
 }
 
 .#{$css-prefix}icon-download1::before {
     content: $icon-content-download1;
 }
 
-.#{$css-prefix}icon-filter1::before {
-    content: $icon-content-filter1;
+.#{$css-prefix}icon-drag::before {
+    content: $icon-content-drag;
 }
 
-.#{$css-prefix}icon-attachment1::before {
-    content: $icon-content-attachment1;
+.#{$css-prefix}icon-edit1::before {
+    content: $icon-content-edit1;
 }
 
-.#{$css-prefix}icon-clock1::before {
-    content: $icon-content-clock1;
+.#{$css-prefix}icon-ellipsis-vertical::before {
+    content: $icon-content-ellipsis-vertical;
 }
 
-.#{$css-prefix}icon-atm1::before {
-    content: $icon-content-atm1;
-}
-
-.#{$css-prefix}icon-account1::before {
-    content: $icon-content-account1;
-}
-
-.#{$css-prefix}icon-set1::before {
-    content: $icon-content-set1;
-}
-
-.#{$css-prefix}icon-refresh1::before {
-    content: $icon-content-refresh1;
-}
-
-.#{$css-prefix}icon-help1::before {
-    content: $icon-content-help1;
+.#{$css-prefix}icon-ellipsis1::before {
+    content: $icon-content-ellipsis1;
 }
 
 .#{$css-prefix}icon-email1::before {
     content: $icon-content-email1;
 }
 
-.#{$css-prefix}icon-cry1::before {
-    content: $icon-content-cry1;
+.#{$css-prefix}icon-error1::before {
+    content: $icon-content-error1;
+}
+
+.#{$css-prefix}icon-exchange::before {
+    content: $icon-content-exchange;
+}
+
+.#{$css-prefix}icon-exchange-fill::before {
+    content: $icon-content-exchange-fill;
+}
+
+.#{$css-prefix}icon-exclamation-circle::before {
+    content: $icon-content-exclamation-circle;
+}
+
+.#{$css-prefix}icon-exclamationcircle-f::before {
+    content: $icon-content-exclamationcircle-f;
+}
+
+.#{$css-prefix}icon-expand-alt::before {
+    content: $icon-content-expand-alt;
+}
+
+.#{$css-prefix}icon-expandalt-fill::before {
+    content: $icon-content-expandalt-fill;
+}
+
+.#{$css-prefix}icon-external-link::before {
+    content: $icon-content-external-link;
+}
+
+.#{$css-prefix}icon-eye-fill::before {
+    content: $icon-content-eye-fill;
+}
+
+.#{$css-prefix}icon-eye-slash::before {
+    content: $icon-content-eye-slash;
+}
+
+.#{$css-prefix}icon-eyeslash-fill::before {
+    content: $icon-content-eyeslash-fill;
+}
+
+.#{$css-prefix}icon-favorites-filling1::before {
+    content: $icon-content-favorites-filling1;
+}
+
+.#{$css-prefix}icon-file::before {
+    content: $icon-content-file;
+}
+
+.#{$css-prefix}icon-file-SQL::before {
+    content: $icon-content-file-SQL;
+}
+
+.#{$css-prefix}icon-file-SQL1::before {
+    content: $icon-content-file-SQL1;
+}
+
+.#{$css-prefix}icon-file-fill::before {
+    content: $icon-content-file-fill;
+}
+
+.#{$css-prefix}icon-file-plus::before {
+    content: $icon-content-file-plus;
+}
+
+.#{$css-prefix}icon-fileplus-fill::before {
+    content: $icon-content-fileplus-fill;
+}
+
+.#{$css-prefix}icon-filter-fill::before {
+    content: $icon-content-filter-fill;
+}
+
+.#{$css-prefix}icon-filter1::before {
+    content: $icon-content-filter1;
+}
+
+.#{$css-prefix}icon-flag::before {
+    content: $icon-content-flag;
+}
+
+.#{$css-prefix}icon-flag-fill::before {
+    content: $icon-content-flag-fill;
+}
+
+.#{$css-prefix}icon-folder::before {
+    content: $icon-content-folder;
+}
+
+.#{$css-prefix}icon-folder-fill::before {
+    content: $icon-content-folder-fill;
+}
+
+.#{$css-prefix}icon-folder-open::before {
+    content: $icon-content-folder-open;
+}
+
+.#{$css-prefix}icon-folder-plus::before {
+    content: $icon-content-folder-plus;
+}
+
+.#{$css-prefix}icon-folderopen-fill::before {
+    content: $icon-content-folderopen-fill;
+}
+
+.#{$css-prefix}icon-folderplus-fill::before {
+    content: $icon-content-folderplus-fill;
+}
+
+.#{$css-prefix}icon-fuzhi::before {
+    content: $icon-content-fuzhi;
+}
+
+.#{$css-prefix}icon-gallery-view::before {
+    content: $icon-content-gallery-view;
+}
+
+.#{$css-prefix}icon-gem::before {
+    content: $icon-content-gem;
+}
+
+.#{$css-prefix}icon-gift::before {
+    content: $icon-content-gift;
+}
+
+.#{$css-prefix}icon-gundongmoshi::before {
+    content: $icon-content-gundongmoshi;
+}
+
+.#{$css-prefix}icon-headset::before {
+    content: $icon-content-headset;
+}
+
+.#{$css-prefix}icon-headset-fill::before {
+    content: $icon-content-headset-fill;
+}
+
+.#{$css-prefix}icon-heart-fill::before {
+    content: $icon-content-heart-fill;
+}
+
+.#{$css-prefix}icon-help1::before {
+    content: $icon-content-help1;
+}
+
+.#{$css-prefix}icon-home::before {
+    content: $icon-content-home;
+}
+
+.#{$css-prefix}icon-huaban10::before {
+    content: $icon-content-huaban10;
+}
+
+.#{$css-prefix}icon-huaban101::before {
+    content: $icon-content-huaban101;
+}
+
+.#{$css-prefix}icon-huaban101fuben::before {
+    content: $icon-content-huaban101fuben;
+}
+
+.#{$css-prefix}icon-huaban102::before {
+    content: $icon-content-huaban102;
+}
+
+.#{$css-prefix}icon-huaban103::before {
+    content: $icon-content-huaban103;
+}
+
+.#{$css-prefix}icon-huaban104::before {
+    content: $icon-content-huaban104;
+}
+
+.#{$css-prefix}icon-huaban1041::before {
+    content: $icon-content-huaban1041;
+}
+
+.#{$css-prefix}icon-huaban1042::before {
+    content: $icon-content-huaban1042;
+}
+
+.#{$css-prefix}icon-huaban105::before {
+    content: $icon-content-huaban105;
+}
+
+.#{$css-prefix}icon-huaban1051::before {
+    content: $icon-content-huaban1051;
+}
+
+.#{$css-prefix}icon-huaban106::before {
+    content: $icon-content-huaban106;
+}
+
+.#{$css-prefix}icon-huaban107::before {
+    content: $icon-content-huaban107;
+}
+
+.#{$css-prefix}icon-huaban1071::before {
+    content: $icon-content-huaban1071;
+}
+
+.#{$css-prefix}icon-huaban108::before {
+    content: $icon-content-huaban108;
+}
+
+.#{$css-prefix}icon-huaban1081::before {
+    content: $icon-content-huaban1081;
+}
+
+.#{$css-prefix}icon-huaban109::before {
+    content: $icon-content-huaban109;
+}
+
+.#{$css-prefix}icon-huaban1091::before {
+    content: $icon-content-huaban1091;
+}
+
+.#{$css-prefix}icon-huaban11::before {
+    content: $icon-content-huaban11;
+}
+
+.#{$css-prefix}icon-huaban110::before {
+    content: $icon-content-huaban110;
+}
+
+.#{$css-prefix}icon-huaban111::before {
+    content: $icon-content-huaban111;
+}
+
+.#{$css-prefix}icon-huaban1111::before {
+    content: $icon-content-huaban1111;
+}
+
+.#{$css-prefix}icon-huaban112::before {
+    content: $icon-content-huaban112;
+}
+
+.#{$css-prefix}icon-huaban1121::before {
+    content: $icon-content-huaban1121;
+}
+
+.#{$css-prefix}icon-huaban113::before {
+    content: $icon-content-huaban113;
+}
+
+.#{$css-prefix}icon-huaban1131::before {
+    content: $icon-content-huaban1131;
+}
+
+.#{$css-prefix}icon-huaban114::before {
+    content: $icon-content-huaban114;
+}
+
+.#{$css-prefix}icon-huaban1141::before {
+    content: $icon-content-huaban1141;
+}
+
+.#{$css-prefix}icon-huaban1161::before {
+    content: $icon-content-huaban1161;
+}
+
+.#{$css-prefix}icon-huaban1171::before {
+    content: $icon-content-huaban1171;
+}
+
+.#{$css-prefix}icon-huaban118::before {
+    content: $icon-content-huaban118;
+}
+
+.#{$css-prefix}icon-huaban119::before {
+    content: $icon-content-huaban119;
+}
+
+.#{$css-prefix}icon-huaban12::before {
+    content: $icon-content-huaban12;
+}
+
+.#{$css-prefix}icon-huaban120::before {
+    content: $icon-content-huaban120;
+}
+
+.#{$css-prefix}icon-huaban121::before {
+    content: $icon-content-huaban121;
+}
+
+.#{$css-prefix}icon-huaban122::before {
+    content: $icon-content-huaban122;
+}
+
+.#{$css-prefix}icon-huaban1221::before {
+    content: $icon-content-huaban1221;
+}
+
+.#{$css-prefix}icon-huaban123::before {
+    content: $icon-content-huaban123;
+}
+
+.#{$css-prefix}icon-huaban1231::before {
+    content: $icon-content-huaban1231;
+}
+
+.#{$css-prefix}icon-huaban124::before {
+    content: $icon-content-huaban124;
+}
+
+.#{$css-prefix}icon-huaban125::before {
+    content: $icon-content-huaban125;
+}
+
+.#{$css-prefix}icon-huaban126::before {
+    content: $icon-content-huaban126;
+}
+
+.#{$css-prefix}icon-huaban127::before {
+    content: $icon-content-huaban127;
+}
+
+.#{$css-prefix}icon-huaban128::before {
+    content: $icon-content-huaban128;
+}
+
+.#{$css-prefix}icon-huaban1281::before {
+    content: $icon-content-huaban1281;
+}
+
+.#{$css-prefix}icon-huaban129::before {
+    content: $icon-content-huaban129;
+}
+
+.#{$css-prefix}icon-huaban1291::before {
+    content: $icon-content-huaban1291;
+}
+
+.#{$css-prefix}icon-huaban12fuben::before {
+    content: $icon-content-huaban12fuben;
+}
+
+.#{$css-prefix}icon-huaban12fuben2::before {
+    content: $icon-content-huaban12fuben2;
+}
+
+.#{$css-prefix}icon-huaban12fuben4::before {
+    content: $icon-content-huaban12fuben4;
+}
+
+.#{$css-prefix}icon-huaban12fuben6::before {
+    content: $icon-content-huaban12fuben6;
+}
+
+.#{$css-prefix}icon-huaban13::before {
+    content: $icon-content-huaban13;
+}
+
+.#{$css-prefix}icon-huaban130::before {
+    content: $icon-content-huaban130;
+}
+
+.#{$css-prefix}icon-huaban1301::before {
+    content: $icon-content-huaban1301;
+}
+
+.#{$css-prefix}icon-huaban131::before {
+    content: $icon-content-huaban131;
+}
+
+.#{$css-prefix}icon-huaban132::before {
+    content: $icon-content-huaban132;
+}
+
+.#{$css-prefix}icon-huaban1321::before {
+    content: $icon-content-huaban1321;
+}
+
+.#{$css-prefix}icon-huaban133::before {
+    content: $icon-content-huaban133;
+}
+
+.#{$css-prefix}icon-huaban1331::before {
+    content: $icon-content-huaban1331;
+}
+
+.#{$css-prefix}icon-huaban134::before {
+    content: $icon-content-huaban134;
+}
+
+.#{$css-prefix}icon-huaban1341::before {
+    content: $icon-content-huaban1341;
+}
+
+.#{$css-prefix}icon-huaban135::before {
+    content: $icon-content-huaban135;
+}
+
+.#{$css-prefix}icon-huaban1351::before {
+    content: $icon-content-huaban1351;
+}
+
+.#{$css-prefix}icon-huaban136::before {
+    content: $icon-content-huaban136;
+}
+
+.#{$css-prefix}icon-huaban1361::before {
+    content: $icon-content-huaban1361;
+}
+
+.#{$css-prefix}icon-huaban137::before {
+    content: $icon-content-huaban137;
+}
+
+.#{$css-prefix}icon-huaban138::before {
+    content: $icon-content-huaban138;
+}
+
+.#{$css-prefix}icon-huaban1381::before {
+    content: $icon-content-huaban1381;
+}
+
+.#{$css-prefix}icon-huaban139::before {
+    content: $icon-content-huaban139;
+}
+
+.#{$css-prefix}icon-huaban1391::before {
+    content: $icon-content-huaban1391;
+}
+
+.#{$css-prefix}icon-huaban14::before {
+    content: $icon-content-huaban14;
+}
+
+.#{$css-prefix}icon-huaban140::before {
+    content: $icon-content-huaban140;
+}
+
+.#{$css-prefix}icon-huaban1401::before {
+    content: $icon-content-huaban1401;
+}
+
+.#{$css-prefix}icon-huaban144::before {
+    content: $icon-content-huaban144;
+}
+
+.#{$css-prefix}icon-huaban15::before {
+    content: $icon-content-huaban15;
+}
+
+.#{$css-prefix}icon-huaban16::before {
+    content: $icon-content-huaban16;
+}
+
+.#{$css-prefix}icon-huaban161::before {
+    content: $icon-content-huaban161;
+}
+
+.#{$css-prefix}icon-huaban17::before {
+    content: $icon-content-huaban17;
+}
+
+.#{$css-prefix}icon-huaban18::before {
+    content: $icon-content-huaban18;
+}
+
+.#{$css-prefix}icon-huaban19::before {
+    content: $icon-content-huaban19;
+}
+
+.#{$css-prefix}icon-huaban1fuben101::before {
+    content: $icon-content-huaban1fuben101;
+}
+
+.#{$css-prefix}icon-huaban1fuben19::before {
+    content: $icon-content-huaban1fuben19;
+}
+
+.#{$css-prefix}icon-huaban1fuben21::before {
+    content: $icon-content-huaban1fuben21;
+}
+
+.#{$css-prefix}icon-huaban1fuben30::before {
+    content: $icon-content-huaban1fuben30;
+}
+
+.#{$css-prefix}icon-huaban1fuben341::before {
+    content: $icon-content-huaban1fuben341;
+}
+
+.#{$css-prefix}icon-huaban1fuben36::before {
+    content: $icon-content-huaban1fuben36;
+}
+
+.#{$css-prefix}icon-huaban1fuben41::before {
+    content: $icon-content-huaban1fuben41;
+}
+
+.#{$css-prefix}icon-huaban1fuben45::before {
+    content: $icon-content-huaban1fuben45;
+}
+
+.#{$css-prefix}icon-huaban1fuben47::before {
+    content: $icon-content-huaban1fuben47;
+}
+
+.#{$css-prefix}icon-huaban1fuben59::before {
+    content: $icon-content-huaban1fuben59;
+}
+
+.#{$css-prefix}icon-huaban1fuben591::before {
+    content: $icon-content-huaban1fuben591;
+}
+
+.#{$css-prefix}icon-huaban1fuben63::before {
+    content: $icon-content-huaban1fuben63;
+}
+
+.#{$css-prefix}icon-huaban1fuben67::before {
+    content: $icon-content-huaban1fuben67;
+}
+
+.#{$css-prefix}icon-huaban1fuben7::before {
+    content: $icon-content-huaban1fuben7;
+}
+
+.#{$css-prefix}icon-huaban1fuben80::before {
+    content: $icon-content-huaban1fuben80;
+}
+
+.#{$css-prefix}icon-huaban1fuben91::before {
+    content: $icon-content-huaban1fuben91;
+}
+
+.#{$css-prefix}icon-huaban20::before {
+    content: $icon-content-huaban20;
+}
+
+.#{$css-prefix}icon-huaban21::before {
+    content: $icon-content-huaban21;
+}
+
+.#{$css-prefix}icon-huaban22::before {
+    content: $icon-content-huaban22;
+}
+
+.#{$css-prefix}icon-huaban23::before {
+    content: $icon-content-huaban23;
+}
+
+.#{$css-prefix}icon-huaban24::before {
+    content: $icon-content-huaban24;
+}
+
+.#{$css-prefix}icon-huaban25::before {
+    content: $icon-content-huaban25;
+}
+
+.#{$css-prefix}icon-huaban26::before {
+    content: $icon-content-huaban26;
+}
+
+.#{$css-prefix}icon-huaban27::before {
+    content: $icon-content-huaban27;
+}
+
+.#{$css-prefix}icon-huaban28::before {
+    content: $icon-content-huaban28;
+}
+
+.#{$css-prefix}icon-huaban2fuben::before {
+    content: $icon-content-huaban2fuben;
+}
+
+.#{$css-prefix}icon-huaban2fuben2::before {
+    content: $icon-content-huaban2fuben2;
+}
+
+.#{$css-prefix}icon-huaban2fuben4::before {
+    content: $icon-content-huaban2fuben4;
+}
+
+.#{$css-prefix}icon-huaban2fuben5::before {
+    content: $icon-content-huaban2fuben5;
+}
+
+.#{$css-prefix}icon-huaban3::before {
+    content: $icon-content-huaban3;
+}
+
+.#{$css-prefix}icon-huaban31::before {
+    content: $icon-content-huaban31;
+}
+
+.#{$css-prefix}icon-huaban32::before {
+    content: $icon-content-huaban32;
+}
+
+.#{$css-prefix}icon-huaban33::before {
+    content: $icon-content-huaban33;
+}
+
+.#{$css-prefix}icon-huaban34::before {
+    content: $icon-content-huaban34;
+}
+
+.#{$css-prefix}icon-huaban35::before {
+    content: $icon-content-huaban35;
+}
+
+.#{$css-prefix}icon-huaban4::before {
+    content: $icon-content-huaban4;
+}
+
+.#{$css-prefix}icon-huaban42fuben::before {
+    content: $icon-content-huaban42fuben;
+}
+
+.#{$css-prefix}icon-huaban42fuben2::before {
+    content: $icon-content-huaban42fuben2;
+}
+
+.#{$css-prefix}icon-huaban45::before {
+    content: $icon-content-huaban45;
+}
+
+.#{$css-prefix}icon-huaban46::before {
+    content: $icon-content-huaban46;
+}
+
+.#{$css-prefix}icon-huaban46fuben::before {
+    content: $icon-content-huaban46fuben;
+}
+
+.#{$css-prefix}icon-huaban48::before {
+    content: $icon-content-huaban48;
+}
+
+.#{$css-prefix}icon-huaban49::before {
+    content: $icon-content-huaban49;
+}
+
+.#{$css-prefix}icon-huaban5::before {
+    content: $icon-content-huaban5;
+}
+
+.#{$css-prefix}icon-huaban50::before {
+    content: $icon-content-huaban50;
+}
+
+.#{$css-prefix}icon-huaban51::before {
+    content: $icon-content-huaban51;
+}
+
+.#{$css-prefix}icon-huaban52::before {
+    content: $icon-content-huaban52;
+}
+
+.#{$css-prefix}icon-huaban53::before {
+    content: $icon-content-huaban53;
+}
+
+.#{$css-prefix}icon-huaban54::before {
+    content: $icon-content-huaban54;
+}
+
+.#{$css-prefix}icon-huaban541::before {
+    content: $icon-content-huaban541;
+}
+
+.#{$css-prefix}icon-huaban55::before {
+    content: $icon-content-huaban55;
+}
+
+.#{$css-prefix}icon-huaban57::before {
+    content: $icon-content-huaban57;
+}
+
+.#{$css-prefix}icon-huaban58::before {
+    content: $icon-content-huaban58;
+}
+
+.#{$css-prefix}icon-huaban59::before {
+    content: $icon-content-huaban59;
+}
+
+.#{$css-prefix}icon-huaban5fuben::before {
+    content: $icon-content-huaban5fuben;
+}
+
+.#{$css-prefix}icon-huaban6::before {
+    content: $icon-content-huaban6;
+}
+
+.#{$css-prefix}icon-huaban60::before {
+    content: $icon-content-huaban60;
+}
+
+.#{$css-prefix}icon-huaban61::before {
+    content: $icon-content-huaban61;
+}
+
+.#{$css-prefix}icon-huaban62::before {
+    content: $icon-content-huaban62;
+}
+
+.#{$css-prefix}icon-huaban63::before {
+    content: $icon-content-huaban63;
+}
+
+.#{$css-prefix}icon-huaban64::before {
+    content: $icon-content-huaban64;
+}
+
+.#{$css-prefix}icon-huaban64-copy::before {
+    content: $icon-content-huaban64-copy;
+}
+
+.#{$css-prefix}icon-huaban65::before {
+    content: $icon-content-huaban65;
+}
+
+.#{$css-prefix}icon-huaban66::before {
+    content: $icon-content-huaban66;
+}
+
+.#{$css-prefix}icon-huaban67::before {
+    content: $icon-content-huaban67;
+}
+
+.#{$css-prefix}icon-huaban68::before {
+    content: $icon-content-huaban68;
+}
+
+.#{$css-prefix}icon-huaban69::before {
+    content: $icon-content-huaban69;
+}
+
+.#{$css-prefix}icon-huaban7::before {
+    content: $icon-content-huaban7;
+}
+
+.#{$css-prefix}icon-huaban70::before {
+    content: $icon-content-huaban70;
+}
+
+.#{$css-prefix}icon-huaban79::before {
+    content: $icon-content-huaban79;
+}
+
+.#{$css-prefix}icon-huaban8::before {
+    content: $icon-content-huaban8;
+}
+
+.#{$css-prefix}icon-huaban80::before {
+    content: $icon-content-huaban80;
+}
+
+.#{$css-prefix}icon-huaban801::before {
+    content: $icon-content-huaban801;
+}
+
+.#{$css-prefix}icon-huaban81::before {
+    content: $icon-content-huaban81;
+}
+
+.#{$css-prefix}icon-huaban810::before {
+    content: $icon-content-huaban810;
+}
+
+.#{$css-prefix}icon-huaban811::before {
+    content: $icon-content-huaban811;
+}
+
+.#{$css-prefix}icon-huaban82::before {
+    content: $icon-content-huaban82;
+}
+
+.#{$css-prefix}icon-huaban821::before {
+    content: $icon-content-huaban821;
+}
+
+.#{$css-prefix}icon-huaban83::before {
+    content: $icon-content-huaban83;
+}
+
+.#{$css-prefix}icon-huaban831::before {
+    content: $icon-content-huaban831;
+}
+
+.#{$css-prefix}icon-huaban84::before {
+    content: $icon-content-huaban84;
+}
+
+.#{$css-prefix}icon-huaban841::before {
+    content: $icon-content-huaban841;
+}
+
+.#{$css-prefix}icon-huaban85::before {
+    content: $icon-content-huaban85;
+}
+
+.#{$css-prefix}icon-huaban851::before {
+    content: $icon-content-huaban851;
+}
+
+.#{$css-prefix}icon-huaban86::before {
+    content: $icon-content-huaban86;
+}
+
+.#{$css-prefix}icon-huaban861::before {
+    content: $icon-content-huaban861;
+}
+
+.#{$css-prefix}icon-huaban87::before {
+    content: $icon-content-huaban87;
+}
+
+.#{$css-prefix}icon-huaban871::before {
+    content: $icon-content-huaban871;
+}
+
+.#{$css-prefix}icon-huaban88::before {
+    content: $icon-content-huaban88;
+}
+
+.#{$css-prefix}icon-huaban881::before {
+    content: $icon-content-huaban881;
+}
+
+.#{$css-prefix}icon-huaban89::before {
+    content: $icon-content-huaban89;
+}
+
+.#{$css-prefix}icon-huaban891::before {
+    content: $icon-content-huaban891;
+}
+
+.#{$css-prefix}icon-huaban8fuben::before {
+    content: $icon-content-huaban8fuben;
+}
+
+.#{$css-prefix}icon-huaban8fuben10::before {
+    content: $icon-content-huaban8fuben10;
+}
+
+.#{$css-prefix}icon-huaban8fuben12::before {
+    content: $icon-content-huaban8fuben12;
+}
+
+.#{$css-prefix}icon-huaban8fuben3::before {
+    content: $icon-content-huaban8fuben3;
+}
+
+.#{$css-prefix}icon-huaban8fuben4::before {
+    content: $icon-content-huaban8fuben4;
+}
+
+.#{$css-prefix}icon-huaban8fuben6::before {
+    content: $icon-content-huaban8fuben6;
+}
+
+.#{$css-prefix}icon-huaban8fuben7::before {
+    content: $icon-content-huaban8fuben7;
+}
+
+.#{$css-prefix}icon-huaban8fuben8::before {
+    content: $icon-content-huaban8fuben8;
+}
+
+.#{$css-prefix}icon-huaban8fuben9::before {
+    content: $icon-content-huaban8fuben9;
+}
+
+.#{$css-prefix}icon-huaban9::before {
+    content: $icon-content-huaban9;
+}
+
+.#{$css-prefix}icon-huaban90::before {
+    content: $icon-content-huaban90;
+}
+
+.#{$css-prefix}icon-huaban901::before {
+    content: $icon-content-huaban901;
+}
+
+.#{$css-prefix}icon-huaban91::before {
+    content: $icon-content-huaban91;
+}
+
+.#{$css-prefix}icon-huaban92::before {
+    content: $icon-content-huaban92;
+}
+
+.#{$css-prefix}icon-huaban921::before {
+    content: $icon-content-huaban921;
+}
+
+.#{$css-prefix}icon-huaban93::before {
+    content: $icon-content-huaban93;
+}
+
+.#{$css-prefix}icon-huaban931::before {
+    content: $icon-content-huaban931;
+}
+
+.#{$css-prefix}icon-huaban94::before {
+    content: $icon-content-huaban94;
+}
+
+.#{$css-prefix}icon-huaban941::before {
+    content: $icon-content-huaban941;
+}
+
+.#{$css-prefix}icon-huaban95::before {
+    content: $icon-content-huaban95;
+}
+
+.#{$css-prefix}icon-huaban96::before {
+    content: $icon-content-huaban96;
+}
+
+.#{$css-prefix}icon-huaban961::before {
+    content: $icon-content-huaban961;
+}
+
+.#{$css-prefix}icon-huaban97::before {
+    content: $icon-content-huaban97;
+}
+
+.#{$css-prefix}icon-huaban98::before {
+    content: $icon-content-huaban98;
+}
+
+.#{$css-prefix}icon-huaban99::before {
+    content: $icon-content-huaban99;
+}
+
+.#{$css-prefix}icon-huixingzhen::before {
+    content: $icon-content-huixingzhen;
+}
+
+.#{$css-prefix}icon-icon-drag::before {
+    content: $icon-content-icon-drag;
+}
+
+.#{$css-prefix}icon-inbox-in::before {
+    content: $icon-content-inbox-in;
+}
+
+.#{$css-prefix}icon-inboxin-fill::before {
+    content: $icon-content-inboxin-fill;
+}
+
+.#{$css-prefix}icon-inboxin-fill1::before {
+    content: $icon-content-inboxin-fill1;
+}
+
+.#{$css-prefix}icon-indent::before {
+    content: $icon-content-indent;
+}
+
+.#{$css-prefix}icon-info-circle::before {
+    content: $icon-content-info-circle;
+}
+
+.#{$css-prefix}icon-info-circle-fill::before {
+    content: $icon-content-info-circle-fill;
+}
+
+.#{$css-prefix}icon-integral::before {
+    content: $icon-content-integral;
+}
+
+.#{$css-prefix}icon-jia::before {
+    content: $icon-content-jia;
+}
+
+.#{$css-prefix}icon-jia1::before {
+    content: $icon-content-jia1;
+}
+
+.#{$css-prefix}icon-jian::before {
+    content: $icon-content-jian;
+}
+
+.#{$css-prefix}icon-key::before {
+    content: $icon-content-key;
+}
+
+.#{$css-prefix}icon-laptop::before {
+    content: $icon-content-laptop;
+}
+
+.#{$css-prefix}icon-laptop-check::before {
+    content: $icon-content-laptop-check;
+}
+
+.#{$css-prefix}icon-laptop-error::before {
+    content: $icon-content-laptop-error;
+}
+
+.#{$css-prefix}icon-layer-group::before {
+    content: $icon-content-layer-group;
+}
+
+.#{$css-prefix}icon-layergroup-fill::before {
+    content: $icon-content-layergroup-fill;
+}
+
+.#{$css-prefix}icon-left-arrow-rect::before {
+    content: $icon-content-left-arrow-rect;
+}
+
+.#{$css-prefix}icon-lightbulb::before {
+    content: $icon-content-lightbulb;
+}
+
+.#{$css-prefix}icon-lightbulb-fill::before {
+    content: $icon-content-lightbulb-fill;
+}
+
+.#{$css-prefix}icon-like::before {
+    content: $icon-content-like;
+}
+
+.#{$css-prefix}icon-link::before {
+    content: $icon-content-link;
+}
+
+.#{$css-prefix}icon-loading1::before {
+    content: $icon-content-loading1;
+}
+
+.#{$css-prefix}icon-location::before {
+    content: $icon-content-location;
+}
+
+.#{$css-prefix}icon-location-fill::before {
+    content: $icon-content-location-fill;
+}
+
+.#{$css-prefix}icon-lock-fill::before {
+    content: $icon-content-lock-fill;
+}
+
+.#{$css-prefix}icon-long-arrow-down::before {
+    content: $icon-content-long-arrow-down;
+}
+
+.#{$css-prefix}icon-long-arrow-up::before {
+    content: $icon-content-long-arrow-up;
+}
+
+.#{$css-prefix}icon-luopan::before {
+    content: $icon-content-luopan;
+}
+
+.#{$css-prefix}icon-mail::before {
+    content: $icon-content-mail;
+}
+
+.#{$css-prefix}icon-mail-fill::before {
+    content: $icon-content-mail-fill;
+}
+
+.#{$css-prefix}icon-management::before {
+    content: $icon-content-management;
+}
+
+.#{$css-prefix}icon-map::before {
+    content: $icon-content-map;
+}
+
+.#{$css-prefix}icon-map-fill::before {
+    content: $icon-content-map-fill;
+}
+
+.#{$css-prefix}icon-menu::before {
+    content: $icon-content-menu;
+}
+
+.#{$css-prefix}icon-minus-circle::before {
+    content: $icon-content-minus-circle;
+}
+
+.#{$css-prefix}icon-minus-circle-fill::before {
+    content: $icon-content-minus-circle-fill;
+}
+
+.#{$css-prefix}icon-minus-square::before {
+    content: $icon-content-minus-square;
+}
+
+.#{$css-prefix}icon-minus-square-fill::before {
+    content: $icon-content-minus-square-fill;
+}
+
+.#{$css-prefix}icon-minus1::before {
+    content: $icon-content-minus1;
+}
+
+.#{$css-prefix}icon-mobile-alt::before {
+    content: $icon-content-mobile-alt;
+}
+
+.#{$css-prefix}icon-mobile-check::before {
+    content: $icon-content-mobile-check;
+}
+
+.#{$css-prefix}icon-mobile-error::before {
+    content: $icon-content-mobile-error;
+}
+
+.#{$css-prefix}icon-monitoring::before {
+    content: $icon-content-monitoring;
+}
+
+.#{$css-prefix}icon-nail::before {
+    content: $icon-content-nail;
+}
+
+.#{$css-prefix}icon-nail-fixed::before {
+    content: $icon-content-nail-fixed;
+}
+
+.#{$css-prefix}icon-new-releases::before {
+    content: $icon-content-new-releases;
+}
+
+.#{$css-prefix}icon-news::before {
+    content: $icon-content-news;
+}
+
+.#{$css-prefix}icon-outdent::before {
+    content: $icon-content-outdent;
+}
+
+.#{$css-prefix}icon-paper-plane::before {
+    content: $icon-content-paper-plane;
+}
+
+.#{$css-prefix}icon-paperclip::before {
+    content: $icon-content-paperclip;
+}
+
+.#{$css-prefix}icon-paperplane-fill::before {
+    content: $icon-content-paperplane-fill;
+}
+
+.#{$css-prefix}icon-pausecircle::before {
+    content: $icon-content-pausecircle;
+}
+
+.#{$css-prefix}icon-pausecircle-fill::before {
+    content: $icon-content-pausecircle-fill;
+}
+
+.#{$css-prefix}icon-peijian::before {
+    content: $icon-content-peijian;
+}
+
+.#{$css-prefix}icon-phone::before {
+    content: $icon-content-phone;
+}
+
+.#{$css-prefix}icon-phone-fill::before {
+    content: $icon-content-phone-fill;
+}
+
+.#{$css-prefix}icon-pic-center::before {
+    content: $icon-content-pic-center;
+}
+
+.#{$css-prefix}icon-pic-side::before {
+    content: $icon-content-pic-side;
+}
+
+.#{$css-prefix}icon-piccenter-fill::before {
+    content: $icon-content-piccenter-fill;
+}
+
+.#{$css-prefix}icon-picside-fill::before {
+    content: $icon-content-picside-fill;
+}
+
+.#{$css-prefix}icon-picture-fill::before {
+    content: $icon-content-picture-fill;
+}
+
+.#{$css-prefix}icon-picture1::before {
+    content: $icon-content-picture1;
+}
+
+.#{$css-prefix}icon-playcircle::before {
+    content: $icon-content-playcircle;
+}
+
+.#{$css-prefix}icon-playcircle-fill::before {
+    content: $icon-content-playcircle-fill;
+}
+
+.#{$css-prefix}icon-plus::before {
+    content: $icon-content-plus;
+}
+
+.#{$css-prefix}icon-plus-circle::before {
+    content: $icon-content-plus-circle;
+}
+
+.#{$css-prefix}icon-plus-circle-fill::before {
+    content: $icon-content-plus-circle-fill;
+}
+
+.#{$css-prefix}icon-plus-square::before {
+    content: $icon-content-plus-square;
+}
+
+.#{$css-prefix}icon-plus-square-fill::before {
+    content: $icon-content-plus-square-fill;
+}
+
+.#{$css-prefix}icon-position::before {
+    content: $icon-content-position;
+}
+
+.#{$css-prefix}icon-position-fill::before {
+    content: $icon-content-position-fill;
+}
+
+.#{$css-prefix}icon-poweroff::before {
+    content: $icon-content-poweroff;
+}
+
+.#{$css-prefix}icon-print::before {
+    content: $icon-content-print;
+}
+
+.#{$css-prefix}icon-process::before {
+    content: $icon-content-process;
+}
+
+.#{$css-prefix}icon-prompt1::before {
+    content: $icon-content-prompt1;
+}
+
+.#{$css-prefix}icon-qrcode::before {
+    content: $icon-content-qrcode;
+}
+
+.#{$css-prefix}icon-question-circle::before {
+    content: $icon-content-question-circle;
+}
+
+.#{$css-prefix}icon-question-circle-fill::before {
+    content: $icon-content-question-circle-fill;
+}
+
+.#{$css-prefix}icon-rank::before {
+    content: $icon-content-rank;
+}
+
+.#{$css-prefix}icon-re::before {
+    content: $icon-content-re;
+}
+
+.#{$css-prefix}icon-redo::before {
+    content: $icon-content-redo;
+}
+
+.#{$css-prefix}icon-refresh1::before {
+    content: $icon-content-refresh1;
+}
+
+.#{$css-prefix}icon-release::before {
+    content: $icon-content-release;
+}
+
+.#{$css-prefix}icon-reply::before {
+    content: $icon-content-reply;
+}
+
+.#{$css-prefix}icon-resource::before {
+    content: $icon-content-resource;
+}
+
+.#{$css-prefix}icon-right-arrow-rect::before {
+    content: $icon-content-right-arrow-rect;
+}
+
+.#{$css-prefix}icon-rili::before {
+    content: $icon-content-rili;
+}
+
+.#{$css-prefix}icon-safety-certificate::before {
+    content: $icon-content-safety-certificate;
+}
+
+.#{$css-prefix}icon-save::before {
+    content: $icon-content-save;
+}
+
+.#{$css-prefix}icon-scan::before {
+    content: $icon-content-scan;
+}
+
+.#{$css-prefix}icon-scrollingmode::before {
+    content: $icon-content-scrollingmode;
+}
+
+.#{$css-prefix}icon-search-minus::before {
+    content: $icon-content-search-minus;
+}
+
+.#{$css-prefix}icon-search-plus::before {
+    content: $icon-content-search-plus;
+}
+
+.#{$css-prefix}icon-search1::before {
+    content: $icon-content-search1;
+}
+
+.#{$css-prefix}icon-select1::before {
+    content: $icon-content-select1;
+}
+
+.#{$css-prefix}icon-semi-select1::before {
+    content: $icon-content-semi-select1;
+}
+
+.#{$css-prefix}icon-set1::before {
+    content: $icon-content-set1;
+}
+
+.#{$css-prefix}icon-share::before {
+    content: $icon-content-share;
+}
+
+.#{$css-prefix}icon-shopping-cart::before {
+    content: $icon-content-shopping-cart;
+}
+
+.#{$css-prefix}icon-shoppingcart::before {
+    content: $icon-content-shoppingcart;
+}
+
+.#{$css-prefix}icon-smile-fill::before {
+    content: $icon-content-smile-fill;
+}
+
+.#{$css-prefix}icon-smile1::before {
+    content: $icon-content-smile1;
+}
+
+.#{$css-prefix}icon-sort::before {
+    content: $icon-content-sort;
+}
+
+.#{$css-prefix}icon-sort-down::before {
+    content: $icon-content-sort-down;
+}
+
+.#{$css-prefix}icon-sort-up::before {
+    content: $icon-content-sort-up;
+}
+
+.#{$css-prefix}icon-sorting1::before {
+    content: $icon-content-sorting1;
+}
+
+.#{$css-prefix}icon-star-circle1::before {
+    content: $icon-content-star-circle1;
+}
+
+.#{$css-prefix}icon-stepmode::before {
+    content: $icon-content-stepmode;
+}
+
+.#{$css-prefix}icon-stopcircle::before {
+    content: $icon-content-stopcircle;
+}
+
+.#{$css-prefix}icon-stopcircle-fill::before {
+    content: $icon-content-stopcircle-fill;
+}
+
+.#{$css-prefix}icon-structured-data::before {
+    content: $icon-content-structured-data;
+}
+
+.#{$css-prefix}icon-success-filling1::before {
+    content: $icon-content-success-filling1;
+}
+
+.#{$css-prefix}icon-success1::before {
+    content: $icon-content-success1;
+}
+
+.#{$css-prefix}icon-supervise::before {
+    content: $icon-content-supervise;
+}
+
+.#{$css-prefix}icon-sync-alt::before {
+    content: $icon-content-sync-alt;
+}
+
+.#{$css-prefix}icon-tag::before {
+    content: $icon-content-tag;
+}
+
+.#{$css-prefix}icon-tag-::before {
+    content: $icon-content-tag-;
+}
+
+.#{$css-prefix}icon-tag-fill::before {
+    content: $icon-content-tag-fill;
+}
+
+.#{$css-prefix}icon-tag-fill1::before {
+    content: $icon-content-tag-fill1;
+}
+
+.#{$css-prefix}icon-tag-subscipt::before {
+    content: $icon-content-tag-subscipt;
+}
+
+.#{$css-prefix}icon-taobao-copy::before {
+    content: $icon-content-taobao-copy;
+}
+
+.#{$css-prefix}icon-terminal::before {
+    content: $icon-content-terminal;
+}
+
+.#{$css-prefix}icon-terminal-fill::before {
+    content: $icon-content-terminal-fill;
+}
+
+.#{$css-prefix}icon-times::before {
+    content: $icon-content-times;
+}
+
+.#{$css-prefix}icon-times-circle::before {
+    content: $icon-content-times-circle;
+}
+
+.#{$css-prefix}icon-times-circle-fill::before {
+    content: $icon-content-times-circle-fill;
+}
+
+.#{$css-prefix}icon-training::before {
+    content: $icon-content-training;
+}
+
+.#{$css-prefix}icon-transanction::before {
+    content: $icon-content-transanction;
+}
+
+.#{$css-prefix}icon-transanction1::before {
+    content: $icon-content-transanction1;
+}
+
+.#{$css-prefix}icon-undo::before {
+    content: $icon-content-undo;
+}
+
+.#{$css-prefix}icon-unlock-fill::before {
+    content: $icon-content-unlock-fill;
+}
+
+.#{$css-prefix}icon-upload1::before {
+    content: $icon-content-upload1;
+}
+
+.#{$css-prefix}icon-user-circle::before {
+    content: $icon-content-user-circle;
+}
+
+.#{$css-prefix}icon-user-fill::before {
+    content: $icon-content-user-fill;
+}
+
+.#{$css-prefix}icon-user-group::before {
+    content: $icon-content-user-group;
+}
+
+.#{$css-prefix}icon-user-group-fill::before {
+    content: $icon-content-user-group-fill;
+}
+
+.#{$css-prefix}icon-userplus-fill::before {
+    content: $icon-content-userplus-fill;
+}
+
+.#{$css-prefix}icon-vector::before {
+    content: $icon-content-vector;
+}
+
+.#{$css-prefix}icon-waiting::before {
+    content: $icon-content-waiting;
+}
+
+.#{$css-prefix}icon-waiting-fill::before {
+    content: $icon-content-waiting-fill;
+}
+
+.#{$css-prefix}icon-warning1::before {
+    content: $icon-content-warning1;
+}
+
+.#{$css-prefix}icon-wind-account::before {
+    content: $icon-content-wind-account;
+}
+
+.#{$css-prefix}icon-wind-arrow-left::before {
+    content: $icon-content-wind-arrow-left;
+}
+
+.#{$css-prefix}icon-wind-arrow-right::before {
+    content: $icon-content-wind-arrow-right;
+}
+
+.#{$css-prefix}icon-wind-ascending::before {
+    content: $icon-content-wind-ascending;
+}
+
+.#{$css-prefix}icon-wind-clock::before {
+    content: $icon-content-wind-clock;
+}
+
+.#{$css-prefix}icon-wind-cry::before {
+    content: $icon-content-wind-cry;
+}
+
+.#{$css-prefix}icon-wind-descending::before {
+    content: $icon-content-wind-descending;
+}
+
+.#{$css-prefix}icon-wind-download::before {
+    content: $icon-content-wind-download;
+}
+
+.#{$css-prefix}icon-wind-edit::before {
+    content: $icon-content-wind-edit;
+}
+
+.#{$css-prefix}icon-wind-filter::before {
+    content: $icon-content-wind-filter;
+}
+
+.#{$css-prefix}icon-wind-loading::before {
+    content: $icon-content-wind-loading;
+}
+
+.#{$css-prefix}icon-wind-minus::before {
+    content: $icon-content-wind-minus;
+}
+
+.#{$css-prefix}icon-wind-picture::before {
+    content: $icon-content-wind-picture;
+}
+
+.#{$css-prefix}icon-wind-search::before {
+    content: $icon-content-wind-search;
+}
+
+.#{$css-prefix}icon-wind-smile::before {
+    content: $icon-content-wind-smile;
+}
+
+.#{$css-prefix}icon-wind-sorting::before {
+    content: $icon-content-wind-sorting;
+}
+
+.#{$css-prefix}icon-wind-switch::before {
+    content: $icon-content-wind-switch;
+}
+
+.#{$css-prefix}icon-wind-upload::before {
+    content: $icon-content-wind-upload;
+}
+
+.#{$css-prefix}icon-wind-warning::before {
+    content: $icon-content-wind-warning;
+}
+
+.#{$css-prefix}icon-xin::before {
+    content: $icon-content-xin;
+}
+
+.#{$css-prefix}icon-yingyong::before {
+    content: $icon-content-yingyong;
+}
+
+.#{$css-prefix}icon-youjiantoujuxing::before {
+    content: $icon-content-youjiantoujuxing;
+}
+
+.#{$css-prefix}icon-yunji::before {
+    content: $icon-content-yunji;
+}
+
+.#{$css-prefix}icon-yunjitianchong::before {
+    content: $icon-content-yunjitianchong;
+}
+
+.#{$css-prefix}icon-yunshangchuan::before {
+    content: $icon-content-yunshangchuan;
+}
+
+.#{$css-prefix}icon-yunxiazai::before {
+    content: $icon-content-yunxiazai;
+}
+
+.#{$css-prefix}icon-zhenduan::before {
+    content: $icon-content-zhenduan;
+}
+
+.#{$css-prefix}icon-zhongduan::before {
+    content: $icon-content-zhongduan;
+}
+
+.#{$css-prefix}icon-zhongduantianchong::before {
+    content: $icon-content-zhongduantianchong;
+}
+
+.#{$css-prefix}icon-zuojiantoujuxing::before {
+    content: $icon-content-zuojiantoujuxing;
 }
