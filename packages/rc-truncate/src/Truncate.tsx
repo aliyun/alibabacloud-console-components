@@ -176,7 +176,7 @@ const Truncate: React.FC<ITruncateProps> = ({
   // 其余情况 type 视为 'width'
   if (actualThreshold === 'auto') {
     return (
-      <SizeMe>
+      <SizeMe noPlaceholder>
         {({ size }) => {
           // 获得可用宽度（即Wrapper的宽度）
           let actualActualThreshold: number
