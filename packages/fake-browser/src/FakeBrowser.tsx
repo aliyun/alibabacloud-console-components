@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MemoryRouter, Route } from 'dva/router'
+import { MemoryRouter, Route } from 'react-router-dom'
 import { Location } from 'history'
 import styled from 'styled-components'
 
