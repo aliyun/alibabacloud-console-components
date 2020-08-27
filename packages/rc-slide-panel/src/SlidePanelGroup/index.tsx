@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Overlay } from '@alicloud/console-components'
 import slidePanelGroupContext from '../context'
-import { SPanelsWrapper, SGlobalStyle } from './style'
+import { SPanelsWrapper, SGlobalStyle, SPanelsWrapperHorizontal } from './style'
 
 const { Popup } = Overlay
 
@@ -11,6 +11,10 @@ const { Popup } = Overlay
  * @public
  */
 export interface ISlidePanelGroupProps {
+  /**
+   * 位于页面的位置
+   */
+  placement?: 'right' | 'bottom'
   /**
    * 控制整个SlidePanelGroup的滑入、滑出。
    */
@@ -78,6 +82,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   onSlideStarted,
   onSlideCompleted,
   container,
+  placement
 }) => {
   const ctxValue = useMemo(() => ({ activeId, onSwitchPanelItem }), [
     activeId,
@@ -116,8 +121,8 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
       <Popup
         align="tr tr"
         animation={{
-          in: 'slideInRight',
-          out: 'slideOutRight',
+          in: 'slideIn',
+          out: 'slideOut',
         }}
         wrapperClassName="wind-slide-panel-wrapper"
         disableScroll
@@ -133,13 +138,22 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         canCloseByEsc={false}
         target="viewport"
       >
-        <SPanelsWrapper
-          className={classNames('wind3-slide-panels', className)}
-          isShowing={isShowing}
-          top={actualTop}
-        >
-          {children}
-        </SPanelsWrapper>
+        { placement === 'bottom' ? 
+          <SPanelsWrapperHorizontal
+            className={classNames('wind3-slide-panels', className)}
+            isShowing={isShowing}
+            top={actualTop}
+          >
+            {children}
+          </SPanelsWrapperHorizontal> : 
+          <SPanelsWrapper
+            className={classNames('wind3-slide-panels', className)}
+            isShowing={isShowing}
+            top={actualTop}
+          >
+            {children}
+          </SPanelsWrapper>
+        }
       </Popup>
     </slidePanelGroupContext.Provider>
   )

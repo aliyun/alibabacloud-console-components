@@ -11,6 +11,10 @@ import renderFooter from './renderFooter'
  */
 export interface ISlidePanelItemProps {
   /**
+   * 位于页面的位置
+   */
+  placement?: 'right' | 'bottom'
+  /**
    * 面板的id。用于在`SlidePanelGroup`中匹配`props.activeId`。id匹配的面板处于激活状态（全宽度展示）。非激活状态的panel会有宽度坍缩，并展示`...`而不是实际内容，使用户注意力聚焦于激活状态的面板。
    */
   id: string
@@ -118,6 +122,7 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
   onSwitchStarted,
   onSwitchCancled,
   onSwitchCompleted,
+  placement
 }) => {
   const ctxValue = useSlidePanelContext()
   // 当ctxValue.activeId为ActiveIdForALL时，必定激活当前面板
@@ -140,6 +145,10 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
       break
     default:
       break
+  }
+
+  if (placement === 'bottom') {
+    actualWidth = '100%'
   }
 
   const baseProps = {
