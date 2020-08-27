@@ -39,7 +39,6 @@ const SlidePanelDemo: React.FC<{}> = () => {
         onSlideCompleted={() => {
           console.log('completed')
         }}
-        hasMask
         onClose={
           onClose
             ? () => {

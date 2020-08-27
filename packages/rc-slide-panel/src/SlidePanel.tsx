@@ -14,6 +14,10 @@ export interface ISlidePanelProps {
    */
   children: React.ReactNode
   /**
+   * 位于页面的位置
+   */
+  placement?: 'right' | 'bottom'
+  /**
    * 面板处于激活状态时的正常宽度。
    */
   width?: 'tiny' | 'small' | 'medium' | 'large' | number | string
@@ -94,6 +98,7 @@ export interface ISlidePanelProps {
 const SlidePanel: React.FC<ISlidePanelProps> = ({
   children,
   width,
+  placement,
   title,
   headerExtra,
   onClose,
@@ -119,6 +124,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     onSlideCompleted,
     top,
     container,
+    placement,
   }
   const slidePanelItemProps: ISlidePanelItemProps = {
     id: '__SlidePanelId__',
@@ -134,6 +140,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     isProcessing,
     processingText,
     customFooter,
+    placement,
   }
   checkPanelShouldBeClosable(slidePanelGroupProps, slidePanelItemProps)
   return (
