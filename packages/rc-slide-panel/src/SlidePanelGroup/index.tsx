@@ -115,6 +115,12 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
     }
   }, [onSlideCompleted])
 
+  const slidePanelWrapperProps = {
+    className: classNames('wind3-slide-panels', className),
+    isShowing: isShowing,
+    top: actualTop
+  }
+
   return (
     <slidePanelGroupContext.Provider value={ctxValue}>
       <SGlobalStyle top={actualTop} />
@@ -139,19 +145,11 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         target="viewport"
       >
         { placement === 'bottom' ? 
-          <SPanelsWrapperHorizontal
-            className={classNames('wind3-slide-panels', className)}
-            isShowing={isShowing}
-            top={actualTop}
-          >
+          <SPanelsWrapperHorizontal {...slidePanelWrapperProps}>
             {children}
           </SPanelsWrapperHorizontal> : 
-          <SPanelsWrapper
-            className={classNames('wind3-slide-panels', className)}
-            isShowing={isShowing}
-            top={actualTop}
-          >
-            {children}
+          <SPanelsWrapper {...slidePanelWrapperProps}>
+              {children}
           </SPanelsWrapper>
         }
       </Popup>
