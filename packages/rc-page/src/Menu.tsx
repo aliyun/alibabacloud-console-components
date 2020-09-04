@@ -1,15 +1,16 @@
 import * as React from 'react'
+import { Nav } from '@alicloud/console-components'
 import StyledMenu, { Item, Group, SubMenu, PopupItem } from './styles/Menu'
 
 /**
  * Menu组件的类型。我们通过Page的对象属性导出了其余的Menu组件。
  * @public
  */
-export interface IMenu extends React.FC<{}> {
-  Item: React.ComponentType
-  Group: React.ComponentType
-  SubMenu: React.ComponentType
-  PopupItem: React.ComponentType
+export interface IMenu extends React.FC<React.ComponentProps<typeof Nav>> {
+  Item: React.ComponentType<React.ComponentProps<typeof Nav['Item']>>
+  Group: React.ComponentType<React.ComponentProps<typeof Nav['Group']>>
+  SubMenu: React.ComponentType<React.ComponentProps<typeof Nav['SubNav']>>
+  PopupItem: React.ComponentType<React.ComponentProps<typeof Nav['PopupItem']>>
 }
 
 /**
