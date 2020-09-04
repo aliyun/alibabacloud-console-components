@@ -4,20 +4,6 @@ const merge = require('webpack-merge')
 const path = require('./path')
 const commonConfig = require('./webpack.common')
 
-const getExternalsConfig = externals =>
-  externals.reduce((result, external) => {
-    const [name, root] = external
-    return {
-      ...result,
-      [name]: {
-        commonjs: name,
-        commonjs2: name,
-        amd: name,
-        root,
-      },
-    }
-  }, {})
-
 module.exports = (...args) => {
   return merge(commonConfig(...args), {
     cache: false,
@@ -34,12 +20,32 @@ module.exports = (...args) => {
       library: 'wind',
       libraryTarget: 'umd',
     },
-    externals: getExternalsConfig([
-      ['react', 'React'],
-      ['react-dom', 'ReactDOM'],
-      ['moment', 'moment'],
-      ['prop-types', 'PropTypes'],
-    ]),
+    externals: [
+      {
+        react: {
+          root: 'React',
+          commonjs2: 'react',
+          commonjs: 'react',
+          amd: 'react',
+        },
+      },
+      {
+        'react-dom': {
+          root: 'ReactDOM',
+          commonjs2: 'react-dom',
+          commonjs: 'react-dom',
+          amd: 'react-dom',
+        },
+      },
+      {
+        moment: {
+          root: 'moment',
+          commonjs2: 'moment',
+          commonjs: 'moment',
+          amd: 'moment',
+        },
+      },
+    ],
     optimization: {
       minimizer: [
         new TerserPlugin({
