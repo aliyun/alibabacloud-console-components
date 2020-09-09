@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "unpkg": "dist/wind.js",
   "scripts": {
     "start": "NODE_ENV=development npx webpack-dev-server",
     "compile": "rm -rf dist/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files npx webpack && rm dist/wind-noreset.js dist/wind-noreset.min.js",
