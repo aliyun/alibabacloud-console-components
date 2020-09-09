@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-fake-browser",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -37,10 +37,10 @@
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
-    "react-router-dom": "^5.2.0",
     "prop-types": "^15.x",
     "react": "^16.x",
     "react-dom": "^16.x",
+    "react-router-dom": "^5.2.0",
     "styled-components": "^4.2.0"
   },
   "dependencies": {

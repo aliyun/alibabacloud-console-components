@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-theme",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf ./design-tokens ./style-overwrite ./dist",
@@ -10,7 +10,7 @@
     "prepare": "npm run clean && npm run fetch && npm run bundle-overwrite && npm run build"
   },
   "devDependencies": {
-    "@alicloud/console-components": "^1.0.25",
+    "@alicloud/console-components": "^1.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "sass": "^1.26.8",

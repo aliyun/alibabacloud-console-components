@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/gatsby-theme-console-doc",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "main": "index.js",
   "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
@@ -13,12 +13,12 @@
     "prepare": "npm run compile-build-tools"
   },
   "dependencies": {
-    "@alicloud/console-components": "^1.0.23",
-    "@alicloud/console-components-announcement": "^1.0.5",
-    "@alicloud/console-components-app-layout": "^1.0.8",
-    "@alicloud/console-components-console-menu": "^1.0.7",
-    "@alicloud/console-components-lib-publisher": "^0.1.22",
-    "@alicloud/console-components-page": "^1.0.11",
+    "@alicloud/console-components": "^1.2.0",
+    "@alicloud/console-components-announcement": "^1.0.6",
+    "@alicloud/console-components-app-layout": "^1.0.9",
+    "@alicloud/console-components-console-menu": "^1.0.8",
+    "@alicloud/console-components-lib-publisher": "^0.1.23",
+    "@alicloud/console-components-page": "^1.0.13",
     "@mdx-js/mdx": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby-plugin-catch-links": "^2.1.28",

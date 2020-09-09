@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -25,14 +25,14 @@
   "author": "MacroXing <macroxing@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@alicloud/xconsole-theme": "^1.1.0",
     "@alifd/next": "~1.19.31",
     "@babel/runtime-corejs2": "^7.7.4",
     "classnames": "^2.2.5",
     "hoist-non-react-statics": "^3.3.0",
     "lodash": "^4.17.5",
     "rc-form": "^2.2.1",
-    "recompose": "^0.26.0",
-    "@alicloud/xconsole-theme": "^1.0.0"
+    "recompose": "^0.26.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
