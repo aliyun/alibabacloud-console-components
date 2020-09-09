@@ -6,7 +6,7 @@ module.exports = {
         moduleName: 'WindRcTruncate',
         useTypescript: true,
         externals: {
-          '@alicloud/console-components': 'wind',
+          '@alicloud/console-components': '@alicloud/console-components',
         },
       },
     ],

@@ -7,7 +7,7 @@ module.exports = {
         useTypescript: true,
         entry: './index.umd.js',
         externals: {
-          '@alicloud/console-components': 'wind',
+          '@alicloud/console-components': '@alicloud/console-components',
           dva: 'dva',
         },
       },

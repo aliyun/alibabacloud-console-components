@@ -6,7 +6,7 @@ module.exports = {
         moduleName: 'WindRcSlidePanel',
         useTypescript: true,
         externals: {
-          '@alicloud/console-components': 'wind',
+          '@alicloud/console-components': '@alicloud/console-components',
         },
       },
     ],
