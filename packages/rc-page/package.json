@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-page",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
@@ -46,7 +46,7 @@
     "styled-components": "^4.2.1"
   },
   "dependencies": {
-    "@alicloud/console-components-truncate": "^1.0.14",
+    "@alicloud/console-components-truncate": "^1.0.15",
     "@researchgate/react-intersection-observer": "^1.0.1"
   }
 }

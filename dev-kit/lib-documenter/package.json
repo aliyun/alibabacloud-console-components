@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-lib-documenter",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@alicloud/console-components": "^1.2.0",
-    "@alicloud/console-components-fake-browser": "^2.0.6",
+    "@alicloud/console-components-fake-browser": "^2.0.7",
     "@mdx-js/react": "^1.5.1",
     "@microsoft/api-extractor": "^7.7.0",
     "@types/node": "^13.1.0",

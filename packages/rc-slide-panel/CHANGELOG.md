@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/aliyun/console-components/compare/@alicloud/console-components-slide-panel@2.2.0...@alicloud/console-components-slide-panel@2.2.1) (2020-09-09)
+
+
+### Bug Fixes
+
+* externals name ([3eed790](https://github.com/aliyun/console-components/commit/3eed7905b68950f17e7a011a62d64953e5171f78))
+
+
+
+
+
 # [2.2.0](https://github.com/aliyun/console-components/compare/@alicloud/console-components-slide-panel@2.0.8...@alicloud/console-components-slide-panel@2.2.0) (2020-09-09)
 
 
