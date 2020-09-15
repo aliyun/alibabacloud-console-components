@@ -5,7 +5,7 @@ import { IconProps } from '@alicloud/console-components/types/icon'
 
 const { Row } = Grid
 
-const WrappedBackIcon: React.FC<IconProps> = props => (
+const WrappedBackIcon: React.FC<IconProps> = (props) => (
   <Icon type="wind-arrow-left" {...props} size="small" />
 )
 export const SBackIcon = styled(WrappedBackIcon)``
@@ -61,12 +61,7 @@ export const SFooterWrapper = styled.div`
   padding: 0 24px;
   height: 64px;
   line-height: 64px;
-
-  .btn-con {
-    float: left;
-  }
-
-  .next-btn:not(:first-child) {
+  > button:not(:first-child) {
     margin-left: 8px;
   }
 `
