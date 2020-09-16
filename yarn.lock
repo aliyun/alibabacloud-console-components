@@ -316,16 +316,17 @@
     "@alifd/validate" "^1.2.0"
     prop-types "^15.5.8"
 
-"@alifd/next@~1.20.28":
-  version "1.20.28"
-  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.20.28.tgz?cache=0&sync_timestamp=1600168248552&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40alifd%2Fnext%2Fdownload%2F%40alifd%2Fnext-1.20.28.tgz#99467d74ac481705b3e662411902387f374d87a5"
-  integrity sha1-mUZ9dKxIFwWz5mJBGQI4fzdNh6U=
+"@alifd/next@~1.21.1":
+  version "1.21.4"
+  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.21.4.tgz?cache=0&sync_timestamp=1600168248552&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40alifd%2Fnext%2Fdownload%2F%40alifd%2Fnext-1.21.4.tgz#7d6a9f95cef38dbc580f2b19e43df56680063004"
+  integrity sha1-fWqflc7zjbxYDysZ5D31ZoAGMAQ=
   dependencies:
     "@alifd/field" "~1.4.1"
     "@alifd/validate" "~1.2.0"
     babel-runtime "^6.26.0"
     classnames "^2.2.3"
     hoist-non-react-statics "^2.1.0"
+    lodash.clonedeep "^4.5.0"
     prop-types "^15.6.0"
     react-lifecycles-compat "^3.0.4"
     react-transition-group "^2.2.1"
