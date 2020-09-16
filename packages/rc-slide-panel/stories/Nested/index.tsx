@@ -4,6 +4,7 @@ import SlidePanel from '@alicloud/console-components-slide-panel'
 
 const SlidePanelDemo: React.FC<{}> = () => {
   const [active, setActive] = useState(false)
+  const [innerActive, setInnerActive] = useState(false)
 
   return (
     <>
@@ -15,8 +16,7 @@ const SlidePanelDemo: React.FC<{}> = () => {
         open
       </Button>
       <SlidePanel
-        placement="bottom"
-        title="BottonPanel"
+        title="CheckPanelShouldBeClosable"
         isShowing={active}
         width="medium"
         onMaskClick={() => {
@@ -24,6 +24,23 @@ const SlidePanelDemo: React.FC<{}> = () => {
         }}
       >
         content
+        <Button
+          onClick={() => {
+            setInnerActive(true)
+          }}
+        >
+          open inner
+        </Button>
+        <SlidePanel
+          title="CheckPanelShouldBeClosable"
+          isShowing={innerActive}
+          width="small"
+          onMaskClick={() => {
+            setInnerActive(false)
+          }}
+        >
+          content
+        </SlidePanel>
       </SlidePanel>
     </>
   )

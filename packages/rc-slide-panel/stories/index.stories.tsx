@@ -8,6 +8,8 @@ import StackPanelDemo from './StackPanel'
 import SlidePanelWithContainer from './SlidePanelWithContainer'
 import CheckPanelShouldBeClosable from './CheckPanelShouldBeClosable'
 import BottomPanel from './BottomPanel'
+import Nested from './Nested'
+import InLayout from './InLayout'
 
 storiesOf('WindRcActions', module)
   .add('MultiPanelDemo', () => <MultiPanelDemo />)
@@ -16,3 +18,5 @@ storiesOf('WindRcActions', module)
   .add('SlidePanelWithContainer', () => <SlidePanelWithContainer />)
   .add('CheckPanelShouldBeClosable', () => <CheckPanelShouldBeClosable />)
   .add('BottomPanel', () => <BottomPanel />)
+  .add('Nested', () => <Nested />)
+  .add('InLayout', () => <InLayout />)

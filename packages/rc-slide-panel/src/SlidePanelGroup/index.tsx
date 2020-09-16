@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Overlay } from '@alicloud/console-components'
 import slidePanelGroupContext from '../context'
-import { SPanelsWrapper, SGlobalStyle, SPanelsWrapperHorizontal } from './style'
+import { SPanelsWrapper, SGlobalStyle } from './style'
 
 const { Popup } = Overlay
 
@@ -64,6 +64,10 @@ export interface ISlidePanelGroupProps {
    * 渲染组件的容器，如果是函数需要返回 DOM 节点，如果是字符串则是该 DOM 的 id，也可以直接传入 DOM 节点
    */
   container?: any
+  /**
+   * 透传给Popup的属性
+   */
+  popupProps?: any
 }
 
 /**
@@ -73,7 +77,7 @@ export interface ISlidePanelGroupProps {
 const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   isShowing = false,
   activeId = '',
-  top = 0,
+  top,
   hasMask = true,
   className,
   onMaskClick,
@@ -82,16 +86,13 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   onSlideStarted,
   onSlideCompleted,
   container,
-  placement
+  placement,
+  popupProps,
 }) => {
   const ctxValue = useMemo(() => ({ activeId, onSwitchPanelItem }), [
     activeId,
     onSwitchPanelItem,
   ])
-
-  const actualTop = useMemo(() => {
-    return typeof top === 'number' ? `${top}px` : `${top}`
-  }, [top])
 
   const handleVisibleChange = (visible: boolean, type: string): void => {
     if (
@@ -115,17 +116,26 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
     }
   }, [onSlideCompleted])
 
+  const placeBottom = placement === 'bottom'
+
   const slidePanelWrapperProps = {
-    className: classNames('wind3-slide-panels', className),
-    isShowing: isShowing,
-    top: actualTop
+    className: classNames(
+      'wind3-slide-panels',
+      className,
+      placeBottom ? 'placeBottom' : 'placeRight'
+    ),
+    isShowing,
+    top,
+    placeBottom,
   }
+
+  const align = placeBottom ? 'bl bl' : 'tr tr'
 
   return (
     <slidePanelGroupContext.Provider value={ctxValue}>
-      <SGlobalStyle top={actualTop} />
+      <SGlobalStyle top={top} />
       <Popup
-        align="tr tr"
+        align={align}
         animation={{
           in: 'slideIn',
           out: 'slideOut',
@@ -143,15 +153,9 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         canCloseByOutSideClick={false}
         canCloseByEsc={false}
         target="viewport"
+        {...popupProps}
       >
-        { placement === 'bottom' ? 
-          <SPanelsWrapperHorizontal {...slidePanelWrapperProps}>
-            {children}
-          </SPanelsWrapperHorizontal> : 
-          <SPanelsWrapper {...slidePanelWrapperProps}>
-              {children}
-          </SPanelsWrapper>
-        }
+        <SPanelsWrapper {...slidePanelWrapperProps}>{children}</SPanelsWrapper>
       </Popup>
     </slidePanelGroupContext.Provider>
   )

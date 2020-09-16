@@ -12,8 +12,14 @@ SlidePanel 适用于**只展示一个 panel**的情况(其实这应该符合大�
 
 [MDXInstruction:importDemo:MultiPanelDemo](./stories/MultiPanel/index.tsx)
 
+另一种多面板的方式：在一个 SlidePanel 中弹出另一个 SlidePanel
+[MDXInstruction:importDemo:Nested](./stories/Nested/index.tsx)
+
 从底部滑出的面板：
 [MDXInstruction:importDemo:BottomPanelDemo](./stories/BottomPanel/index.tsx)
+
+通过控制 popupProps，可以让 SlidePanel 从内容区域的底部滑出：
+[MDXInstruction:importDemo:InLayout](./stories/InLayout/index.tsx)
 
 基于栈的多面板管理：每次只展示一个面板，但是可以进行下探、返回。使用`usePanelStack`来帮助你快速实现栈式面板管理：
 

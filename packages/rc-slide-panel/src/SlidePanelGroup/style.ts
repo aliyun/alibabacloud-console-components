@@ -45,48 +45,48 @@ export const slideOutBottom = keyframes`
 `
 
 export const SPanelsWrapper = styled('div')<{
-  top: string | number
+  top: string | number | undefined
   isShowing: boolean
+  placeBottom: boolean
 }>`
   background: #fff;
-  position: fixed;
-  bottom: 0;
-  left: auto !important; // 强行覆盖掉Popup中的默认根据left来定位
-  right: 0; // 设置根据right来定位
-  top: ${({ top }) => top}!important;
+  &.placeRight {
+    position: fixed;
+    bottom: 0;
+    left: auto !important; // 强行覆盖掉Popup中的默认根据left来定位
+    right: 0;
+  }
+  &.placeBottom {
+    right: 0;
+  }
+
+  ${({ top }) =>
+    top === undefined ? '' : `top: ${ensureUnit(top)} !important;`}
+
   &.slideIn {
-    animation: 0.25s ${slideInRight} ease-out;
+    animation: 0.25s
+      ${({ placeBottom }) => (placeBottom ? slideInBottom : slideInRight)}
+      ease-out;
   }
   &.slideOut {
-    animation: 0.25s ${slideOutRight} ease-out;
+    animation: 0.25s
+      ${({ placeBottom }) => (placeBottom ? slideOutBottom : slideOutRight)}
+      ease-out;
   }
 `
 
-export const SPanelsWrapperHorizontal = styled('div')<{
-  top: string | number
-  isShowing: boolean
+export const SGlobalStyle = createGlobalStyle<{
+  top: string | number | undefined
 }>`
-  background: #fff;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  left: auto !important; // 强行覆盖掉Popup中的默认根据left来定位
-  right: 0; // 设置根据right来定位
-  top: auto !important;
-  &.slideIn {
-    animation: 0.25s ${slideInBottom} ease-out;
-  }
-  &.slideOut {
-    animation: 0.25s ${slideOutBottom} ease-out;
-  }
-`
-
-export const SGlobalStyle = createGlobalStyle<{ top: string }>`
 	.wind-slide-panel-wrapper {
 		&& {
 			.next-overlay-backdrop {
-				top: ${({ top }) => top}
+				${({ top }) => (top === undefined ? '' : `top: ${ensureUnit(top)}`)}
 			}
 		}
-	}	
+  }
 `
+
+function ensureUnit(v: number | string) {
+  return typeof v === 'number' ? `${v}px` : `${v}`
+}

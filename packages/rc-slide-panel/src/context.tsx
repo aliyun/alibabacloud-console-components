@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ISlidePanelGroupProps } from './SlidePanelGroup'
+import type { ISlidePanelGroupProps } from './SlidePanelGroup'
 
 // 当面板感知到ctxValue.activeId为ActiveIdForALL时，必定激活
 export const ActiveIdForAll = '__ActiveIdForALL' as const
