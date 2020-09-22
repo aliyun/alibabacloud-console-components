@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useCallback, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Location } from 'history'
-import { withRouter, Link, matchPath } from 'dva/router'
+import { withRouter, Link, matchPath } from 'react-router-dom'
 import ConsoleMenu from './ConsoleMenu'
 import { isNil } from './utils'
 import { IRoutableItemDescriptor, IItemDescriptor } from './ItemDescriptor'

@@ -12,37 +12,39 @@ const PrimaryMenu = styled(NavFilterProps)<{
   fusionPrefix: string
 }>`
   ${getPriority(5)} {
+    --nav-ver-height: 32px;
+    --nav-ver-sub-nav-height: 32px;
     padding: 0;
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    background-color: #f5f5f5;
+    background-color: var(--console-menu-bg, #fff);
 
     .${getPrefix}menu-header {
       box-sizing: border-box;
-      border-bottom: 1px solid #ebebeb;
-      padding: 15px 0 14px;
+      padding: var(--console-menu-padding, 24px) 0
+        calc(var(--console-menu-padding, 24px) - 8px);
     }
 
     ${SubMenu} {
-      background-color: #f5f5f5;
+      background-color: var(--console-menu-bg, #fff);
       > .${getPrefix}nav-item {
         > .${getPrefix}menu-item-inner {
-          padding-right: 28px;
+          padding-right: var(--console-menu-padding-inner, 28px);
         }
       }
       .${getPrefix}nav-item.${getPrefix}menu-item {
-        background-color: #f5f5f5;
-        color: #555555;
-        padding: 0 16px 0 16px;
+        background-color: var(--console-menu-bg, #fff);
+        color: var(--console-menu-normal-text, #333333);
+        padding: 0 var(--console-menu-padding, 24px) 0
+          var(--console-menu-padding, 24px);
 
         &:hover {
-          background-color: #ebebeb;
-          color: #111111;
+          background-color: var(--console-menu-hover-bg, #f7f9fa);
         }
 
         &.${getPrefix}opened {
-          color: #555555;
+          color: var(--console-menu-normal-text, #333333);
         }
 
         .${getPrefix}menu-item-inner {
@@ -56,30 +58,32 @@ const PrimaryMenu = styled(NavFilterProps)<{
     }
 
     ${Item} {
-      color: #555555;
-      background-color: #f5f5f5;
+      color: var(--console-menu-normal-text, #333333);
+      background-color: var(--console-menu-bg, #fff);
       padding: 0 16px;
 
       &:hover {
-        background-color: #ebebeb;
-        color: #111111;
+        background-color: var(--console-menu-hover-bg, #f7f9fa);
       }
 
       a {
-        color: #555555;
+        color: var(--console-menu-normal-text, #333333);
         &:hover {
           text-decoration: none;
         }
       }
 
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}selected.${getPrefix}selected {
-        background-color: #dedede;
-        color: #333333;
+        background-color: var(--console-menu-active-bg, #eff3f8);
+        color: var(--console-menu-active-text-color, #0064c8);
+        a {
+          color: var(--console-menu-active-text-color, #0064c8);
+        }
       }
 
       > .${getPrefix}menu-item {
         > .${getPrefix}menu-item-inner {
-          padding-right: 28px;
+          padding-right: var(--console-menu-padding-inner, 28px);
         }
       }
 

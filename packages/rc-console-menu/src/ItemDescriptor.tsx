@@ -35,7 +35,9 @@ export interface IItemDescriptor {
   /**
    * 透传给基础组件`<Nav>`或者`<Nav.SubNav>`的props，极少数情况下可能会用到。见【使用结构化声明】demo
    */
-  navProps?: any
+  navProps?: any;
+
+  type?: 'divider' | 'item'
 }
 
 /**
@@ -89,6 +91,7 @@ export function mapItemToJSX(item: IItemDescriptor): React.ReactNode {
     render,
     items: subItems,
     navProps,
+    type,
   } = item
   if (visible) {
     if (subItems) {
@@ -98,6 +101,11 @@ export function mapItemToJSX(item: IItemDescriptor): React.ReactNode {
         </S.SubMenu>
       )
     }
+
+    if (type === 'divider') {
+      return <S.Divider key={key} />
+    }
+
     return (
       <S.Item key={key} disabled={disabled} {...navProps}>
         {render ? render(item) : label}
