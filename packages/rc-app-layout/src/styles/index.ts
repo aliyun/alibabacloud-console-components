@@ -6,5 +6,6 @@ export {
   NavCollapseTriggerWrapper,
   NavCollapseTriggerIcon,
   NavCollapseTriggerContainer,
+  NavWrapper,
 } from './Nav'
 export { default as Content } from './Content'

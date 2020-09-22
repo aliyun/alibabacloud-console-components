@@ -17,6 +17,8 @@ const calcLeft = (props: INavProps) =>
 const getRotate = (props: INavCollapseTriggerProps) =>
   props.collapsed ? 180 : 0
 
+const tiggerOpcity = (props: INavProps) => (props.collapsed ? 1 : 0)
+
 interface INavProps {
   collapsed: boolean
 }
@@ -34,18 +36,14 @@ const Nav = styled.div<INavProps>`
   flex: 0 1 auto;
   height: 100%;
   background-color: var(--console-menu-bg, #fff);
-  box-shadow: var(
-    --console-menu-box-shadow,
-    2px 0 4px 0 rgba(0, 0, 0, 0.16),
-    1px 0 0 0 #c0c6cc
-  );
   overflow-x: hidden;
   overflow-y: ${calcOverflow};
   width: ${calcWidth}px;
   min-width: ${calcWidth}px;
-  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out;
   position: relative;
   z-index: 100;
+  border-right: 1px solid #c0c6cc;
+  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out;
 
   ${NavChildenWrapper} {
     position: relative;
@@ -53,6 +51,34 @@ const Nav = styled.div<INavProps>`
     transition: left 0.3s ease-in-out;
   }
 `
+
+export const NavCollapseTriggerWrapper = styled.div`
+  order: 0;
+  flex: 0 1 auto;
+  height: 100%;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  opacity: ${tiggerOpcity};
+  z-index: 101;
+  left: ${calcWidth}px;
+  transition: left 0.3s ease-in-out;
+`
+
+export const NavWrapper = styled.div`
+  height: 100%;
+  overflow-y: ${calcOverflow};
+  width: ${calcWidth}px;
+  min-width: ${calcWidth}px;
+  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out;
+  &:hover {
+    ${NavCollapseTriggerWrapper} {
+      opacity: 1;
+    }
+    box-shadow: var(--console-menu-box-shadow, 2px 0 4px 0 rgba(0, 0, 0, 0.16));
+  }
+`
+
 export default Nav
 
 export const NavCollapseTriggerIcon = styled(Icon)``
@@ -93,17 +119,7 @@ export const NavCollapseTriggerContainer = styled.div`
   &:hover {
     ${NavCollapseTrigger} {
       border-left: ${triggerWidth + evulsedWidth}px solid #ebebeb;
-      /* left: 2px; */
       border-left-color: #eff3f8;
     }
   }
-`
-
-export const NavCollapseTriggerWrapper = styled.div`
-  order: 0;
-  flex: 0 1 auto;
-  height: 100%;
-  width: 0px;
-  position: relative;
-  /* border: 1px solid red; */
 `
