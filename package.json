@@ -76,7 +76,8 @@
     "@types/styled-components": "5.1.0",
     "@microsoft/api-extractor": "~7.7.0",
     "gatsby": "~2.19.45",
-    "gatsby-cli": "~2.10.11"
+    "gatsby-cli": "~2.10.11",
+    "postcss-calc": "^7.0.4"
   },
   "config": {
     "commitizen": {
