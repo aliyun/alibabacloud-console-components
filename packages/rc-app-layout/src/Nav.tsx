@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useCallback } from 'react'
-import PropTypes from 'prop-types'
 import NavCollapseTrigger from './NavCollapseTrigger'
 import * as S from './styles'
 import { IAppLayoutProps } from '.'
@@ -65,14 +64,6 @@ const Nav: React.FC<INavProps> = ({
       )}
     </>
   )
-}
-
-Nav.propTypes = {
-  collapsible: PropTypes.bool,
-  collapsed: PropTypes.bool,
-  defaultCollapsed: PropTypes.bool,
-  onCollapseTriggerClick: PropTypes.func,
-  children: PropTypes.node,
 }
 
 export default Nav

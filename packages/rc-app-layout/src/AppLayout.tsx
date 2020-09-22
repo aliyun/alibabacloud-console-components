@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Nav from './Nav'
 import * as S from './styles'
@@ -82,21 +81,5 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
     <S.Content className="windcc-app-layout__content">{children}</S.Content>
   </S.AppLayout>
 )
-
-AppLayout.propTypes = {
-  nav: PropTypes.node,
-  navCollapsible: PropTypes.bool,
-  navCollapsed: PropTypes.bool,
-  defaultNavCollapsed: PropTypes.bool,
-  onNavCollapseTriggerClick: PropTypes.func,
-  adjustHeight: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.func,
-  ]),
-  children: PropTypes.node,
-  className: PropTypes.string,
-  style: PropTypes.objectOf(PropTypes.any),
-}
 
 export default AppLayout

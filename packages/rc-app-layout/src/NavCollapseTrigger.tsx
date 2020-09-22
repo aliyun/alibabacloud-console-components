@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import * as S from './styles'
 
 export interface INavCollapseTrigger {
@@ -19,10 +18,5 @@ const NavCollapseTrigger: React.FC<INavCollapseTrigger> = ({
     </S.NavCollapseTriggerContainer>
   </S.NavCollapseTriggerWrapper>
 )
-
-NavCollapseTrigger.propTypes = {
-  collapsed: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-}
 
 export default NavCollapseTrigger

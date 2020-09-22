@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const navWidth = 208
 const navCollapsedWidth = 8
-const triggerHeight = 66
+const triggerHeight = 34
 const triggerWidth = 16
 const iconWidth = 12
 const evulsedWidth = 2
@@ -33,7 +33,12 @@ const Nav = styled.div<INavProps>`
   order: 0;
   flex: 0 1 auto;
   height: 100%;
-  background-color: #f5f5f5;
+  background-color: var(--console-menu-bg, #fff);
+  box-shadow: var(
+    --console-menu-box-shadow,
+    2px 0 4px 0 rgba(0, 0, 0, 0.16),
+    1px 0 0 0 #c0c6cc
+  );
   overflow-x: hidden;
   overflow-y: ${calcOverflow};
   width: ${calcWidth}px;
@@ -57,18 +62,17 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   height: ${triggerHeight}px;
   position: absolute;
   top: calc(50% - ${triggerHeight / 2}px);
-	/* right: ${-triggerWidth - triggerWidth / 2}px; */
-	left: 0;
+  left: 0;
   z-index: 99;
   line-height: ${triggerHeight - 18}px;
-  border: ${triggerWidth / 2}px solid transparent;
-  /* border-left: ${triggerWidth + evulsedWidth}px solid #ebebeb; */
-  border-left: ${triggerWidth}px solid #ebebeb;
+  border: 1px solid #c0c6cc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+  border-left: ${triggerWidth}px solid #fff;
   cursor: pointer;
   color: #bfbfbf;
-  /* transition: right 0.1s ease-in-out, border 0.1s ease; */
   transition: left 0.1s ease-in-out, border 0.1s ease;
   ${NavCollapseTriggerIcon} {
+    top: 8px;
     width: ${iconWidth}px;
     position: relative;
     left: ${-(triggerWidth / 2) - iconWidth / 2}px;
@@ -84,18 +88,13 @@ export const NavCollapseTriggerContainer = styled.div`
   transform: translateY(-50%);
   left: 0;
   width: 24px;
-  height: 100px;
-  /* border: 1px solid blue; */
+  height: 34px;
   cursor: pointer;
   &:hover {
     ${NavCollapseTrigger} {
       border-left: ${triggerWidth + evulsedWidth}px solid #ebebeb;
       /* left: 2px; */
-      border-left-color: #dedede;
-
-      ${NavCollapseTriggerIcon} {
-        color: #888888;
-      }
+      border-left-color: #eff3f8;
     }
   }
 `
