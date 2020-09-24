@@ -35,6 +35,7 @@
     "recompose": "^0.26.0"
   },
   "devDependencies": {
+    "@alife/alicloud-components": "0.2.36",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/parser": "^7.4.5",
