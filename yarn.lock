@@ -2,6 +2,23 @@
 # yarn lockfile v1
 
 
+"@alicloud/console-components-app-layout@1.0.10", "@alicloud/console-components-app-layout@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-components-app-layout/download/@alicloud/console-components-app-layout-1.0.10.tgz#ee77fb31f2bc5f4e322b3f09c8286117b19764dd"
+  integrity sha1-7nf7MfK8X04yKz8JyChhF7GXZN0=
+  dependencies:
+    "@babel/runtime" "^7.4.3"
+    classnames "^2.2.5"
+
+"@alicloud/console-components-console-menu@1.0.9", "@alicloud/console-components-console-menu@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-components-console-menu/download/@alicloud/console-components-console-menu-1.0.9.tgz#3cb8dbfa4b81360606c01c9606f9ffcbbacbf62c"
+  integrity sha1-PLjb+kuBNgYGwByWBvn/y7rL9iw=
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    classnames "^2.2.6"
+    warning "^4.0.3"
+
 "@alicloud/console-toolkit-cli@^1.0.2":
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/@alicloud/console-toolkit-cli/download/@alicloud/console-toolkit-cli-1.0.3.tgz#a065a9fd21ddde7a99a1b1a89d285b4c7f577940"
@@ -316,6 +333,22 @@
     "@alifd/validate" "^1.2.0"
     prop-types "^15.5.8"
 
+"@alifd/next@1.21.5":
+  version "1.21.5"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.5.tgz#77783528766adb9eae1cc218834ad97fbba8533c"
+  integrity sha1-d3g1KHZq256uHMIYg0rZf7uoUzw=
+  dependencies:
+    "@alifd/field" "~1.4.1"
+    "@alifd/validate" "~1.2.0"
+    babel-runtime "^6.26.0"
+    classnames "^2.2.3"
+    hoist-non-react-statics "^2.1.0"
+    lodash.clonedeep "^4.5.0"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^3.0.4"
+    react-transition-group "^2.2.1"
+    shallow-element-equals "^1.0.1"
+
 "@alifd/next@~1.21.1":
   version "1.21.4"
   resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.21.4.tgz?cache=0&sync_timestamp=1600168248552&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40alifd%2Fnext%2Fdownload%2F%40alifd%2Fnext-1.21.4.tgz#7d6a9f95cef38dbc580f2b19e43df56680063004"
@@ -336,6 +369,19 @@
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/@alifd/validate/download/@alifd/validate-1.2.0.tgz#252e0add24e64efd54fe611ba8c66d0147d850f6"
   integrity sha1-JS4K3STmTv1U/mEbqMZtAUfYUPY=
+
+"@alife/alicloud-components@0.2.36":
+  version "0.2.36"
+  resolved "https://registry.npm.alibaba-inc.com/@alife/alicloud-components/download/@alife/alicloud-components-0.2.36.tgz#c8e1957513a7eb053a466455a17a61c531877839"
+  integrity sha1-yOGVdROn6wU6RmRVoXphxTGHeDk=
+  dependencies:
+    "@alifd/next" "1.21.5"
+    "@pika/react" "^16.13.1"
+    "@pika/react-dom" "^16.13.1"
+    classnames "^2.2.6"
+    hoist-non-react-statics "^3.3.2"
+    react-loading-skeleton "^2.1.1"
+    react-router-dom "^5.2.0"
 
 "@babel/cli@^7.4.4":
   version "7.8.4"
@@ -1479,6 +1525,18 @@
   version "10.0.28"
   resolved "https://registry.npm.taobao.org/@emotion/core/download/@emotion/core-10.0.28.tgz#bb65af7262a234593a9e952c041d0f1c9b9bef3d"
   integrity sha1-u2WvcmKiNFk6npUsBB0PHJub7z0=
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    "@emotion/cache" "^10.0.27"
+    "@emotion/css" "^10.0.27"
+    "@emotion/serialize" "^0.11.15"
+    "@emotion/sheet" "0.9.4"
+    "@emotion/utils" "0.11.3"
+
+"@emotion/core@^10.0.22":
+  version "10.0.35"
+  resolved "https://registry.npm.alibaba-inc.com/@emotion/core/download/@emotion/core-10.0.35.tgz#513fcf2e22cd4dfe9d3894ed138c9d7a859af9b3"
+  integrity sha1-UT/PLiLNTf6dOJTtE4ydeoWa+bM=
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@emotion/cache" "^10.0.27"
@@ -2921,7 +2979,7 @@
 
 "@microsoft/api-extractor@^7.5.1", "@microsoft/api-extractor@^7.7.0", "@microsoft/api-extractor@~7.7.0":
   version "7.7.13"
-  resolved "https://registry.npm.taobao.org/@microsoft/api-extractor/download/@microsoft/api-extractor-7.7.13.tgz#7ee70978825a36d294d26e50b5d888ca3789d1b0"
+  resolved "https://registry.npm.alibaba-inc.com/@microsoft/api-extractor/download/@microsoft/api-extractor-7.7.13.tgz#7ee70978825a36d294d26e50b5d888ca3789d1b0"
   integrity sha1-fucJeIJaNtKU0m5QtdiIyjeJ0bA=
   dependencies:
     "@microsoft/api-extractor-model" "7.7.11"
@@ -3121,6 +3179,16 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
     strip-ansi "^3"
+
+"@pika/react-dom@^16.13.1":
+  version "16.13.1"
+  resolved "https://registry.npm.alibaba-inc.com/@pika/react-dom/download/@pika/react-dom-16.13.1.tgz#8e684617ea2e3e0741e418954f74e8ec1c93f81d"
+  integrity sha1-jmhGF+ouPgdB5BiVT3To7ByT+B0=
+
+"@pika/react@^16.13.1":
+  version "16.13.1"
+  resolved "https://registry.npm.alibaba-inc.com/@pika/react/download/@pika/react-16.13.1.tgz#20e47997d2a2f1e5da39a8e28b75db2ec77d99c6"
+  integrity sha1-IOR5l9Ki8eXaOajii3XbLsd9mcY=
 
 "@pmmmwh/react-refresh-webpack-plugin@^0.2.0":
   version "0.2.0"
@@ -4193,7 +4261,7 @@
 
 "@types/styled-components@4.1.8", "@types/styled-components@5.1.0", "@types/styled-components@^4.4.1":
   version "5.1.0"
-  resolved "https://registry.npm.taobao.org/@types/styled-components/download/@types/styled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
+  resolved "https://registry.npm.alibaba-inc.com/@types/styled-components/download/@types/styled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
   integrity sha1-JNNBK6U5WqBuFPvJPFL5RUzr0NY=
   dependencies:
     "@types/hoist-non-react-statics" "*"
@@ -4301,7 +4369,7 @@
 
 "@typescript-eslint/eslint-plugin@^2.23.0", "@typescript-eslint/eslint-plugin@^2.24.0", "@typescript-eslint/eslint-plugin@^2.25.0":
   version "2.34.0"
-  resolved "https://registry.npm.taobao.org/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.34.0.tgz?cache=0&sync_timestamp=1595124721165&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-2.34.0.tgz#6f8ce8a46c7dea4a6f1d171d2bb8fbae6dac2be9"
+  resolved "https://registry.npm.alibaba-inc.com/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.34.0.tgz#6f8ce8a46c7dea4a6f1d171d2bb8fbae6dac2be9"
   integrity sha1-b4zopGx96kpvHRcdK7j7rm2sK+k=
   dependencies:
     "@typescript-eslint/experimental-utils" "2.34.0"
@@ -11102,7 +11170,7 @@ fwd-stream@^1.0.4:
 
 gatsby-cli@^2.10.11, gatsby-cli@^2.10.13, gatsby-cli@~2.10.11:
   version "2.10.13"
-  resolved "https://registry.npm.taobao.org/gatsby-cli/download/gatsby-cli-2.10.13.tgz#f9b47ee318a7b3ddabdb4212185bfb7cf359acb7"
+  resolved "https://registry.npm.alibaba-inc.com/gatsby-cli/download/gatsby-cli-2.10.13.tgz#f9b47ee318a7b3ddabdb4212185bfb7cf359acb7"
   integrity sha1-+bR+4xins92r20ISGFv7fPNZrLc=
   dependencies:
     "@babel/code-frame" "^7.8.3"
@@ -11162,7 +11230,7 @@ gatsby-core-utils@^1.0.34, gatsby-core-utils@^1.3.3:
 
 gatsby-graphiql-explorer@^0.2.36, gatsby-graphiql-explorer@^0.2.37:
   version "0.2.37"
-  resolved "https://registry.npm.taobao.org/gatsby-graphiql-explorer/download/gatsby-graphiql-explorer-0.2.37.tgz#09c2b395c31ffcfbec0038d7e245caecb419667e"
+  resolved "https://registry.npm.alibaba-inc.com/gatsby-graphiql-explorer/download/gatsby-graphiql-explorer-0.2.37.tgz#09c2b395c31ffcfbec0038d7e245caecb419667e"
   integrity sha1-CcKzlcMf/PvsADjX4kXK7LQZZn4=
   dependencies:
     "@babel/runtime" "^7.8.7"
@@ -11321,7 +11389,7 @@ gatsby-plugin-typescript@^2.1.15:
 
 gatsby-react-router-scroll@^2.1.24, gatsby-react-router-scroll@^2.1.25:
   version "2.3.1"
-  resolved "https://registry.npm.taobao.org/gatsby-react-router-scroll/download/gatsby-react-router-scroll-2.3.1.tgz#4cf59e3eaf5dc1721256f47b6aa40b2636b8af89"
+  resolved "https://registry.npm.alibaba-inc.com/gatsby-react-router-scroll/download/gatsby-react-router-scroll-2.3.1.tgz#4cf59e3eaf5dc1721256f47b6aa40b2636b8af89"
   integrity sha1-TPWePq9dwXISVvR7aqQLJja4r4k=
   dependencies:
     "@babel/runtime" "^7.9.6"
@@ -11418,7 +11486,7 @@ gatsby-transformer-sharp@^2.3.18:
 
 gatsby@2.19.45, gatsby@~2.19.45:
   version "2.19.50"
-  resolved "https://registry.npm.taobao.org/gatsby/download/gatsby-2.19.50.tgz#a725e9ec152c32bc64d9f8cfac93835516d7dfb2"
+  resolved "https://registry.npm.alibaba-inc.com/gatsby/download/gatsby-2.19.50.tgz#a725e9ec152c32bc64d9f8cfac93835516d7dfb2"
   integrity sha1-pyXp7BUsMrxk2fjPrJODVRbX37I=
   dependencies:
     "@babel/code-frame" "^7.8.3"
@@ -12491,7 +12559,7 @@ highlight.js@~9.13.0:
   resolved "https://registry.npm.taobao.org/highlight.js/download/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
   integrity sha1-BUWG1TpoYzERaEiKD1jWxQXOZB4=
 
-history@^4.6.3, history@^4.7.2:
+history@^4.6.3, history@^4.7.2, history@^4.9.0:
   version "4.10.1"
   resolved "https://registry.npm.taobao.org/history/download/history-4.10.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhistory%2Fdownload%2Fhistory-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
   integrity sha1-MzcaZeOoOyZ0NOKz87G0xYqtTPM=
@@ -12517,7 +12585,7 @@ hoist-non-react-statics@^2.1.0, hoist-non-react-statics@^2.3.1, hoist-non-react-
   resolved "https://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha1-xZA89AnA39kI84jmGdhrnBF0y0c=
 
-hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha1-7OCsr3HWLClpwuxZ/v9CpLGoW0U=
@@ -16349,6 +16417,14 @@ min-indent@^1.0.0:
   resolved "https://registry.npm.taobao.org/min-indent/download/min-indent-1.0.0.tgz#cfc45c37e9ec0d8f0a0ec3dd4ef7f7c3abe39256"
   integrity sha1-z8RcN+nsDY8KDsPdTvf3w6vjklY=
 
+mini-create-react-context@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npm.alibaba-inc.com/mini-create-react-context/download/mini-create-react-context-0.4.0.tgz#df60501c83151db69e28eac0ef08b4002efab040"
+  integrity sha1-32BQHIMVHbaeKOrA7wi0AC76sEA=
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    tiny-warning "^1.0.3"
+
 mini-css-extract-plugin@^0.7.0:
   version "0.7.0"
   resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.7.0.tgz#5ba8290fbb4179a43dd27cca444ba150bee743a0"
@@ -16361,7 +16437,7 @@ mini-css-extract-plugin@^0.7.0:
 
 mini-css-extract-plugin@^0.8.0, mini-css-extract-plugin@^0.8.2:
   version "0.8.2"
-  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.8.2.tgz#a875e169beb27c88af77dd962771c9eedc3da161"
+  resolved "https://registry.npm.alibaba-inc.com/mini-css-extract-plugin/download/mini-css-extract-plugin-0.8.2.tgz#a875e169beb27c88af77dd962771c9eedc3da161"
   integrity sha1-qHXhab6yfIivd92WJ3HJ7tw9oWE=
   dependencies:
     loader-utils "^1.1.0"
@@ -18331,7 +18407,7 @@ posix-character-classes@^0.1.0:
 
 postcss-calc@^5.2.0, postcss-calc@^7.0.1, postcss-calc@^7.0.4:
   version "7.0.4"
-  resolved "https://registry.npm.taobao.org/postcss-calc/download/postcss-calc-7.0.4.tgz?cache=0&sync_timestamp=1598957836882&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss-calc%2Fdownload%2Fpostcss-calc-7.0.4.tgz#5e177ddb417341e6d4a193c5d9fd8ada79094f8b"
+  resolved "https://registry.npm.alibaba-inc.com/postcss-calc/download/postcss-calc-7.0.4.tgz#5e177ddb417341e6d4a193c5d9fd8ada79094f8b"
   integrity sha1-Xhd920FzQebUoZPF2f2K2nkJT4s=
   dependencies:
     postcss "^7.0.27"
@@ -19797,6 +19873,13 @@ react-loadable@^5.3.1:
   dependencies:
     prop-types "^15.5.0"
 
+react-loading-skeleton@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.alibaba-inc.com/react-loading-skeleton/download/react-loading-skeleton-2.1.1.tgz#2c075ea9683587c163408c8eec0703047c4203b1"
+  integrity sha1-LAdeqWg1h8FjQIyO7AcDBHxCA7E=
+  dependencies:
+    "@emotion/core" "^10.0.22"
+
 react-popper-tooltip@^2.8.3:
   version "2.11.1"
   resolved "https://registry.npm.taobao.org/react-popper-tooltip/download/react-popper-tooltip-2.11.1.tgz#3c4bdfd8bc10d1c2b9a162e859bab8958f5b2644"
@@ -19888,6 +19971,19 @@ react-router-dom@^4.1.2, react-router-dom@^4.2.2:
     react-router "^4.3.1"
     warning "^4.0.1"
 
+react-router-dom@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npm.alibaba-inc.com/react-router-dom/download/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
+  integrity sha1-nmWk0MReEyieZsexfH4XXQ6hVmI=
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    history "^4.9.0"
+    loose-envify "^1.3.1"
+    prop-types "^15.6.2"
+    react-router "5.2.0"
+    tiny-invariant "^1.0.2"
+    tiny-warning "^1.0.0"
+
 react-router-redux@5.0.0-alpha.9:
   version "5.0.0-alpha.9"
   resolved "https://registry.npm.taobao.org/react-router-redux/download/react-router-redux-5.0.0-alpha.9.tgz#825431516e0e6f1fd93b8807f6bd595e23ec3d10"
@@ -19896,6 +19992,22 @@ react-router-redux@5.0.0-alpha.9:
     history "^4.7.2"
     prop-types "^15.6.0"
     react-router "^4.2.0"
+
+react-router@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npm.alibaba-inc.com/react-router/download/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"
+  integrity sha1-Qk51ZByodH+/duXsyml4GqN+opM=
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    history "^4.9.0"
+    hoist-non-react-statics "^3.1.0"
+    loose-envify "^1.3.1"
+    mini-create-react-context "^0.4.0"
+    path-to-regexp "^1.7.0"
+    prop-types "^15.6.2"
+    react-is "^16.6.0"
+    tiny-invariant "^1.0.2"
+    tiny-warning "^1.0.0"
 
 react-router@^4.2.0, react-router@^4.3.1:
   version "4.3.1"
@@ -23046,7 +23158,7 @@ tiny-invariant@^1.0.2:
   resolved "https://registry.npm.taobao.org/tiny-invariant/download/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
   integrity sha1-Y0xfjv3CdxS384bDXmdgmR0jCHU=
 
-tiny-warning@^1.0.0:
+tiny-warning@^1.0.0, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/tiny-warning/download/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha1-lKMNtFPfTGQ9D9VmBg1gqHXYR1Q=
@@ -24435,7 +24547,7 @@ webpack-stats-plugin@^0.3.0:
 
 webpack-stats-plugin@^0.3.1:
   version "0.3.2"
-  resolved "https://registry.npm.taobao.org/webpack-stats-plugin/download/webpack-stats-plugin-0.3.2.tgz#c06b185aa5dcc93b3f0c3a7891d24a111f849740"
+  resolved "https://registry.npm.alibaba-inc.com/webpack-stats-plugin/download/webpack-stats-plugin-0.3.2.tgz#c06b185aa5dcc93b3f0c3a7891d24a111f849740"
   integrity sha1-wGsYWqXcyTs/DDp4kdJKER+El0A=
 
 webpack-virtual-modules@^0.2.0:
@@ -24505,7 +24617,7 @@ webpack@~4.41.6:
 
 webpack@~4.42.0:
   version "4.42.1"
-  resolved "https://registry.npm.taobao.org/webpack/download/webpack-4.42.1.tgz?cache=0&sync_timestamp=1594294588188&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack%2Fdownload%2Fwebpack-4.42.1.tgz#ae707baf091f5ca3ef9c38b884287cfe8f1983ef"
+  resolved "https://registry.npm.alibaba-inc.com/webpack/download/webpack-4.42.1.tgz#ae707baf091f5ca3ef9c38b884287cfe8f1983ef"
   integrity sha1-rnB7rwkfXKPvnDi4hCh8/o8Zg+8=
   dependencies:
     "@webassemblyjs/ast" "1.9.0"
