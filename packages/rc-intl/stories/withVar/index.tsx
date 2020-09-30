@@ -4,7 +4,7 @@ import { reactIntlFactory } from '@alicloud/console-components-intl'
 
 const intl = reactIntlFactory()
 
-const messages = {
+export const messages = {
   'text.with.vars': 'This is a { type } text.',
   'text.with.condition.vars': `
     This is a { 
@@ -49,14 +49,14 @@ const App: React.FC<{}> = () => {
       <p>{intl('text.with.number.and.plural', { count: 1000 })}</p>
       <h2>intl中使用defaultMessage（当找不到文案时使用）</h2>
       <p>
-        {intl({
+        {intl<any>({
           id: 'text.with.default.message',
           defaultMessage: 'This is a text with default message.',
         })}
       </p>
       <h2>intl中的defaultMessage使用变量</h2>
       <p>
-        {intl({
+        {intl<any>({
           id: 'text.with.default.message.and.vars',
           defaultMessage: 'This is a text with {defaultMessage} and {vars}.',
           values: {

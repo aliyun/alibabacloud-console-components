@@ -47,12 +47,23 @@ export interface IFormatMessageContext {
   [key: string]: any
 }
 
+// 支持用户为intl的key提供类型，让ts对key做类型检查
+export interface ExtendIntl {
+  [prop: string]: any
+}
+// https://stackoverflow.com/a/57744230/8175856
+export type NoInfer<T> = [T][T extends any ? 0 : never]
+
+export type IntlKeys = 'Write this and you will get fired!' extends ExtendIntl['keys'] // 说明用户没有为IntlKeys提供declaration merging, keys接受任何合法值
+  ? string
+  : ExtendIntl['keys']
+
 /**
  * @public
  * if use ReactIntl, user can pass react node as format context
  */
-export interface IFormatMessageOptionsReact {
-  id: string
+export interface IFormatMessageOptionsReact<CustomKeys> {
+  id: ExtendIntl['keys'] | NoInfer<CustomKeys>
   defaultMessage?: string
   values?: IFormatMessageContextReact
 }

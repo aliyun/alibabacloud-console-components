@@ -3,7 +3,7 @@ import { reactIntlFactory } from '@alicloud/console-components-intl'
 
 const intl = reactIntlFactory()
 
-const messages = {
+export const messages = {
   'text.normal': 'This is a normal text.',
   'text.normal.with.non.runtime': 'This is a normal text with non-runtime.',
   'text.normal.with.chinese': '这是一段优美的文字',

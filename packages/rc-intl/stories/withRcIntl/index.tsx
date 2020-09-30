@@ -16,7 +16,7 @@ intl.set({
 const RComponent: React.FC<{ intl: IWindIntlPublic }> = ({ intl: intl0 }) => (
   <div style={{ marginLeft: '16px' }}>
     <h2>通过使用withRcIntl，让你的组件拥有可动态配置的文案。</h2>
-    <p>{intl0('test')}</p>
+    <p>{intl0<any>('test')}</p>
   </div>
 )
 

@@ -4,6 +4,8 @@ import {
   IWindIntlExtended,
 } from '@alicloud/console-components-intl-core'
 
+export { ExtendIntl } from '@alicloud/console-components-intl-core'
+
 const __intl = createReactIntlFromCfg()
 /** @public */
 const IntlProvider: IWindIntlExtended['IntlProvider'] = __intl.IntlProvider

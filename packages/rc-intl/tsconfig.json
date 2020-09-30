@@ -3,6 +3,7 @@
   "compilerOptions": {
     "lib": ["es2018.intl", "dom"],
     "baseUrl": ".",
+    "skipLibCheck": true,
     "paths": {
       "@alicloud/console-components-intl": ["./src"],
       "@alicloud/console-components-intl/*": ["./src/*"]

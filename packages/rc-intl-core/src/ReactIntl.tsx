@@ -15,6 +15,8 @@ import {
   IFormatMessageContextReact,
   IFormatMessageOptions,
   IFormatMessageContext,
+  IntlKeys,
+  NoInfer,
 } from './types'
 
 const createTokenGenerator = (uid: string) => {
@@ -30,30 +32,38 @@ const createTokenGenerator = (uid: string) => {
 /** @public */
 class ReactIntl extends IntlBase {
   // To make things clear, we don't use optional parameter syntax here
-  public formatMessage(key: string): string
+  public formatMessage<
+    CustomKeys extends string = "可以提供key泛型，比如intl<'mykey'>('mykey')或者intl<any>('mykey')"
+  >(key: IntlKeys | NoInfer<CustomKeys>): string
 
-  public formatMessage(
-    options: IFormatMessageOptionsReact
-  ): string | ReactElement
+  public formatMessage<
+    CustomKeys extends string = "可以提供key泛型，比如intl<'mykey'>('mykey')或者intl<any>('mykey')"
+  >(options: IFormatMessageOptionsReact<CustomKeys>): string | ReactElement
 
-  public formatMessage(
-    key: string,
+  public formatMessage<
+    CustomKeys extends string = "可以提供key泛型，比如intl<'mykey'>('mykey')或者intl<any>('mykey')"
+  >(
+    key: IntlKeys | NoInfer<CustomKeys>,
     values: IFormatMessageContextReact
   ): string | ReactElement
 
-  public formatMessage(
-    options: IFormatMessageOptionsReact,
+  public formatMessage<
+    CustomKeys extends string = "可以提供key泛型，比如intl<'mykey'>('mykey')或者intl<any>('mykey')"
+  >(
+    options: IFormatMessageOptionsReact<CustomKeys>,
     preferString: false
   ): ReactElement
 
-  public formatMessage(
-    key: string,
+  public formatMessage<
+    CustomKeys extends string = "可以提供key泛型，比如intl<'mykey'>('mykey')或者intl<any>('mykey')"
+  >(
+    key: IntlKeys | NoInfer<CustomKeys>,
     values: IFormatMessageContextReact,
     preferString: false
   ): ReactElement
 
   public formatMessage(
-    key: string | IFormatMessageOptionsReact,
+    key: string | IFormatMessageOptionsReact<any>,
     values?: IFormatMessageContextReact | boolean,
     preferString?: boolean
   ): string | ReactElement {
@@ -71,7 +81,7 @@ class ReactIntl extends IntlBase {
 
     let valuesForSuper: IFormatMessageContext
     if (isPlainObject(exactValues) && !isEmpty(exactValues)) {
-      valuesForSuper = mapValues(exactValues, value => {
+      valuesForSuper = mapValues(exactValues, (value) => {
         if (isValidElement(value)) {
           const token = generateToken()
           // TODO: this random key break snapshot testing
@@ -100,7 +110,7 @@ class ReactIntl extends IntlBase {
     if (hasReactElementValue) {
       nodes = message
         .split(tokenDelimiter)
-        .map(part => get(valuesMap, part, part))
+        .map((part) => get(valuesMap, part, part))
     }
 
     return <>{nodes}</>
@@ -135,7 +145,7 @@ class ReactIntl extends IntlBase {
 export default ReactIntl
 
 function getExactOptionsForFormat(
-  key: string | IFormatMessageOptionsReact,
+  key: string | IFormatMessageOptionsReact<any>,
   values?: IFormatMessageContextReact | boolean,
   preferString?: boolean
 ) {
@@ -151,7 +161,7 @@ function getExactOptionsForFormat(
       id,
       defaultMessage,
       values: vals,
-    } = key as IFormatMessageOptionsReact
+    } = key as IFormatMessageOptionsReact<any>
     exactId = id
     exactDefaultMessage = defaultMessage
     if (isPlainObject(vals)) {
