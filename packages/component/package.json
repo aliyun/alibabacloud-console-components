@@ -1,10 +1,10 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.3.0",
+  "version": "2.0.0-alpha.1",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "module": "esm/index.js",
-  "types": "types/index.d.ts",
+  "types": "lib/index.d.ts",
   "unpkg": "dist/wind.js",
   "scripts": {
     "start": "NODE_ENV=development npx webpack-dev-server",
@@ -13,7 +13,7 @@
     "babel:esm": "rm -rf esm/ && NODE_ENV=production COMPILE_OPTION=ignore_style_files,esm npx babel src/ --out-dir esm/_ --extensions \".js,.jsx,.ts,.tsx\"",
     "make": "rm -rf types/ && node scripts/make.js",
     "build": "yarn run babel && yarn run babel:esm && yarn run make && yarn run compile && node scripts/generateCssWithoutIconFont.js",
-    "prepare": "yarn run build",
+    "prepare": "node ./scripts/copy-cloud-component.js",
     "publishInternal": "node ./scripts/publish-to-tnpm/index.js"
   },
   "keywords": [
@@ -25,17 +25,13 @@
   "author": "MacroXing <macroxing@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@alicloud/xconsole-theme": "^1.1.0",
-    "@alifd/next": "~1.21.1",
-    "@babel/runtime-corejs2": "^7.7.4",
-    "classnames": "^2.2.5",
-    "hoist-non-react-statics": "^3.3.0",
-    "lodash": "^4.17.5",
-    "rc-form": "^2.2.1",
-    "recompose": "^0.26.0"
+    "@alifd/next": "1.21.7",
+    "classnames": "^2.2.6",
+    "hoist-non-react-statics": "^3.3.2",
+    "react-loading-skeleton": "^2.1.1"
   },
   "devDependencies": {
-    "@alife/alicloud-components": "0.2.36",
+    "@alicloudfe/components": "^1.0.3",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/parser": "^7.4.5",
@@ -55,6 +51,7 @@
     "chalk": "^2.4.2",
     "cross-env": "^5.1.3",
     "css-loader": "^3.0.0",
+    "cssnano": "^4.1.10",
     "ejs": "^2.5.8",
     "fast-sass-loader": "^1.5.0",
     "fetch-jsonp": "^1.1.3",
@@ -64,8 +61,10 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.7.0",
     "moment": "^2.22.1",
+    "ncp": "^2.0.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss": "^8.1.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-copy-to-clipboard": "^5.0.1",
@@ -79,6 +78,7 @@
     "recursive-readdir": "^2.2.2",
     "redux": "^4.0.0",
     "relative": "^3.0.2",
+    "rimraf": "^3.0.2",
     "semver": "^6.3.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.3.0",

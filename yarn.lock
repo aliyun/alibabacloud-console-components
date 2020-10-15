@@ -19,6 +19,20 @@
     classnames "^2.2.6"
     warning "^4.0.3"
 
+"@alicloud/console-components@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-components/download/@alicloud/console-components-1.2.0.tgz#b2ec30ae1534723a8ed517847fff8b326fc59d1e"
+  integrity sha1-suwwrhU0cjqO1ReEf/+LMm/FnR4=
+  dependencies:
+    "@alicloud/xconsole-theme" "^1.1.0"
+    "@alifd/next" "~1.19.31"
+    "@babel/runtime-corejs2" "^7.7.4"
+    classnames "^2.2.5"
+    hoist-non-react-statics "^3.3.0"
+    lodash "^4.17.5"
+    rc-form "^2.2.1"
+    recompose "^0.26.0"
+
 "@alicloud/console-toolkit-cli@^1.0.2":
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/@alicloud/console-toolkit-cli/download/@alicloud/console-toolkit-cli-1.0.3.tgz#a065a9fd21ddde7a99a1b1a89d285b4c7f577940"
@@ -325,6 +339,27 @@
     fs-extra "^8.1.0"
     lodash "^4.17.11"
 
+"@alicloudfe/components@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.3.tgz#dffabbde86c27e6f3f3f3ee6777072c056114e83"
+  integrity sha1-3/q73obCfm8/Pz7md3BywFYRToM=
+  dependencies:
+    "@alifd/next" "1.21.7"
+    "@pika/react" "^16.13.1"
+    "@pika/react-dom" "^16.13.1"
+    classnames "^2.2.6"
+    hoist-non-react-statics "^3.3.2"
+    react-loading-skeleton "^2.1.1"
+    react-router-dom "^5.2.0"
+
+"@alifd/field@~1.3.3":
+  version "1.3.5"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/field/download/@alifd/field-1.3.5.tgz#b8f370b8d9dbc2aba2ac85f6a5989ecd51f36673"
+  integrity sha1-uPNwuNnbwquirIX2pZiezVHzZnM=
+  dependencies:
+    "@alifd/validate" "^1.1.3"
+    prop-types "^15.5.8"
+
 "@alifd/field@~1.4.1":
   version "1.4.5"
   resolved "https://registry.npm.taobao.org/@alifd/field/download/@alifd/field-1.4.5.tgz?cache=0&sync_timestamp=1599638128611&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40alifd%2Ffield%2Fdownload%2F%40alifd%2Ffield-1.4.5.tgz#1e1e5e83c143637d6efe92eb91dcde9e08a73a9f"
@@ -333,10 +368,10 @@
     "@alifd/validate" "^1.2.0"
     prop-types "^15.5.8"
 
-"@alifd/next@1.21.5":
-  version "1.21.5"
-  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.5.tgz#77783528766adb9eae1cc218834ad97fbba8533c"
-  integrity sha1-d3g1KHZq256uHMIYg0rZf7uoUzw=
+"@alifd/next@1.21.7":
+  version "1.21.7"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.7.tgz#943c1fe91db7687bfa4a525458458ab5ce18ee98"
+  integrity sha1-lDwf6R23aHv6SlJUWEWKtc4Y7pg=
   dependencies:
     "@alifd/field" "~1.4.1"
     "@alifd/validate" "~1.2.0"
@@ -349,39 +384,30 @@
     react-transition-group "^2.2.1"
     shallow-element-equals "^1.0.1"
 
-"@alifd/next@~1.21.1":
-  version "1.21.4"
-  resolved "https://registry.npm.taobao.org/@alifd/next/download/@alifd/next-1.21.4.tgz?cache=0&sync_timestamp=1600168248552&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40alifd%2Fnext%2Fdownload%2F%40alifd%2Fnext-1.21.4.tgz#7d6a9f95cef38dbc580f2b19e43df56680063004"
-  integrity sha1-fWqflc7zjbxYDysZ5D31ZoAGMAQ=
+"@alifd/next@~1.19.31":
+  version "1.19.31"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.19.31.tgz#e4315243750aff6f0a59950e72f9de0d2fcd6e54"
+  integrity sha1-5DFSQ3UK/28KWZUOcvneDS/NblQ=
   dependencies:
-    "@alifd/field" "~1.4.1"
-    "@alifd/validate" "~1.2.0"
+    "@alifd/field" "~1.3.3"
+    "@alifd/validate" "~1.1.4"
     babel-runtime "^6.26.0"
     classnames "^2.2.3"
     hoist-non-react-statics "^2.1.0"
-    lodash.clonedeep "^4.5.0"
     prop-types "^15.6.0"
     react-lifecycles-compat "^3.0.4"
     react-transition-group "^2.2.1"
     shallow-element-equals "^1.0.1"
 
-"@alifd/validate@^1.2.0", "@alifd/validate@~1.2.0":
+"@alifd/validate@^1.1.3", "@alifd/validate@^1.2.0", "@alifd/validate@~1.2.0":
   version "1.2.0"
-  resolved "https://registry.npm.taobao.org/@alifd/validate/download/@alifd/validate-1.2.0.tgz#252e0add24e64efd54fe611ba8c66d0147d850f6"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/validate/download/@alifd/validate-1.2.0.tgz#252e0add24e64efd54fe611ba8c66d0147d850f6"
   integrity sha1-JS4K3STmTv1U/mEbqMZtAUfYUPY=
 
-"@alife/alicloud-components@0.2.36":
-  version "0.2.36"
-  resolved "https://registry.npm.alibaba-inc.com/@alife/alicloud-components/download/@alife/alicloud-components-0.2.36.tgz#c8e1957513a7eb053a466455a17a61c531877839"
-  integrity sha1-yOGVdROn6wU6RmRVoXphxTGHeDk=
-  dependencies:
-    "@alifd/next" "1.21.5"
-    "@pika/react" "^16.13.1"
-    "@pika/react-dom" "^16.13.1"
-    classnames "^2.2.6"
-    hoist-non-react-statics "^3.3.2"
-    react-loading-skeleton "^2.1.1"
-    react-router-dom "^5.2.0"
+"@alifd/validate@~1.1.4":
+  version "1.1.5"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/validate/download/@alifd/validate-1.1.5.tgz#e44896785051182cb94db7ec2b33a99b4c86943a"
+  integrity sha1-5EiWeFBRGCy5TbfsKzOpm0yGlDo=
 
 "@babel/cli@^7.4.4":
   version "7.8.4"
@@ -1407,9 +1433,9 @@
     "@babel/plugin-transform-typescript" "^7.9.0"
 
 "@babel/runtime-corejs2@^7.7.4":
-  version "7.9.6"
-  resolved "https://registry.npm.taobao.org/@babel/runtime-corejs2/download/@babel/runtime-corejs2-7.9.6.tgz#acd5d6351384cc2828dc211aa5426a90476bf4a8"
-  integrity sha1-rNXWNROEzCgo3CEapUJqkEdr9Kg=
+  version "7.12.0"
+  resolved "https://registry.npm.alibaba-inc.com/@babel/runtime-corejs2/download/@babel/runtime-corejs2-7.12.0.tgz#e57adca9d8a28dcea0c17816a9a7c8c950a7865a"
+  integrity sha1-5Xrcqdiijc6gwXgWqafIyVCnhlo=
   dependencies:
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
@@ -4793,7 +4819,7 @@ acorn@^7.1.0, acorn@^7.1.1:
 
 add-dom-event-listener@^1.1.0:
   version "1.1.0"
-  resolved "https://registry.npm.taobao.org/add-dom-event-listener/download/add-dom-event-listener-1.1.0.tgz#6a92db3a0dd0abc254e095c0f1dc14acbbaae310"
+  resolved "https://registry.npm.alibaba-inc.com/add-dom-event-listener/download/add-dom-event-listener-1.1.0.tgz#6a92db3a0dd0abc254e095c0f1dc14acbbaae310"
   integrity sha1-apLbOg3Qq8JU4JXA8dwUrLuq4xA=
   dependencies:
     object-assign "4.x"
@@ -5327,7 +5353,7 @@ async-limiter@~1.0.0:
 
 async-validator@~1.11.3:
   version "1.11.5"
-  resolved "https://registry.npm.taobao.org/async-validator/download/async-validator-1.11.5.tgz#9d43cf49ef6bb76be5442388d19fb9a6e47597ea"
+  resolved "https://registry.npm.alibaba-inc.com/async-validator/download/async-validator-1.11.5.tgz#9d43cf49ef6bb76be5442388d19fb9a6e47597ea"
   integrity sha1-nUPPSe9rt2vlRCOI0Z+5puR1l+o=
 
 async@1.5.2:
@@ -7440,6 +7466,11 @@ color@^3.0.0, color@^3.1.2:
     color-convert "^1.9.1"
     color-string "^1.5.2"
 
+colorette@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npm.alibaba-inc.com/colorette/download/colorette-1.2.1.tgz#4d0b921325c14faf92633086a536db6e89564b1b"
+  integrity sha1-TQuSEyXBT6+SYzCGpTbbbolWSxs=
+
 colormin@^1.0.5:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/colormin/download/colormin-1.1.2.tgz#ea2f7420a72b96881a38aae59ec124a6f7298133"
@@ -8009,7 +8040,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
 
 create-react-class@^15.5.3:
   version "15.6.3"
-  resolved "https://registry.npm.taobao.org/create-react-class/download/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+  resolved "https://registry.npm.alibaba-inc.com/create-react-class/download/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
   integrity sha1-LXMjf7P5cK5uvgEanmb0bbyoADY=
   dependencies:
     fbjs "^0.8.9"
@@ -8389,7 +8420,7 @@ cssnano@^3.10.0:
 
 cssnano@^4.1.10:
   version "4.1.10"
-  resolved "https://registry.npm.taobao.org/cssnano/download/cssnano-4.1.10.tgz#0ac41f0b13d13d465487e111b778d42da631b8b2"
+  resolved "https://registry.npm.alibaba-inc.com/cssnano/download/cssnano-4.1.10.tgz#0ac41f0b13d13d465487e111b778d42da631b8b2"
   integrity sha1-CsQfCxPRPUZUh+ERt3jULaYxuLI=
   dependencies:
     cosmiconfig "^5.0.0"
@@ -9084,7 +9115,7 @@ dom-helpers@^5.0.1:
 
 dom-scroll-into-view@1.x:
   version "1.2.1"
-  resolved "https://registry.npm.taobao.org/dom-scroll-into-view/download/dom-scroll-into-view-1.2.1.tgz#e8f36732dd089b0201a88d7815dc3f88e6d66c7e"
+  resolved "https://registry.npm.alibaba-inc.com/dom-scroll-into-view/download/dom-scroll-into-view-1.2.1.tgz#e8f36732dd089b0201a88d7815dc3f88e6d66c7e"
   integrity sha1-6PNnMt0ImwIBqI14Fdw/iObWbH4=
 
 dom-serializer@0:
@@ -15247,6 +15278,14 @@ libnpmteam@^1.0.2:
     get-stream "^4.0.0"
     npm-registry-fetch "^4.0.0"
 
+line-column@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.alibaba-inc.com/line-column/download/line-column-1.0.2.tgz#d25af2936b6f4849172b312e4792d1d987bc34a2"
+  integrity sha1-0lryk2tvSEkXKzEuR5LR2Ye8NKI=
+  dependencies:
+    isarray "^1.0.0"
+    isobject "^2.0.0"
+
 line-height@0.3.1:
   version "0.3.1"
   resolved "https://registry.npm.taobao.org/line-height/download/line-height-0.3.1.tgz#4b1205edde182872a5efa3c8f620b3187a9c54c9"
@@ -16732,6 +16771,11 @@ nan@^2.12.1, nan@^2.13.2:
   resolved "https://registry.npm.taobao.org/nan/download/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
   integrity sha1-174036MQW5FJTDFHCJMV7/iHSwE=
 
+nanoid@^3.1.12:
+  version "3.1.12"
+  resolved "https://registry.npm.alibaba-inc.com/nanoid/download/nanoid-3.1.12.tgz#6f7736c62e8d39421601e4a0c77623a97ea69654"
+  integrity sha1-b3c2xi6NOUIWAeSgx3YjqX6mllQ=
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.npm.taobao.org/nanomatch/download/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -16758,6 +16802,11 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npm.taobao.org/natural-compare/download/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
+
+ncp@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.alibaba-inc.com/ncp/download/ncp-2.0.0.tgz#195a21d6c46e361d2fb1281ba38b91e9df7bdbb3"
+  integrity sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=
 
 nearley@^2.7.10:
   version "2.19.3"
@@ -18406,9 +18455,9 @@ posix-character-classes@^0.1.0:
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
 postcss-calc@^5.2.0, postcss-calc@^7.0.1, postcss-calc@^7.0.4:
-  version "7.0.4"
-  resolved "https://registry.npm.alibaba-inc.com/postcss-calc/download/postcss-calc-7.0.4.tgz#5e177ddb417341e6d4a193c5d9fd8ada79094f8b"
-  integrity sha1-Xhd920FzQebUoZPF2f2K2nkJT4s=
+  version "7.0.5"
+  resolved "https://registry.npm.alibaba-inc.com/postcss-calc/download/postcss-calc-7.0.5.tgz#f8a6e99f12e619c2ebc23cf6c486fdc15860933e"
+  integrity sha1-+KbpnxLmGcLrwjz2xIb9wVhgkz4=
   dependencies:
     postcss "^7.0.27"
     postcss-selector-parser "^6.0.2"
@@ -19057,6 +19106,16 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.2
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
+postcss@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.npm.alibaba-inc.com/postcss/download/postcss-8.1.1.tgz#c3a287dd10e4f6c84cb3791052b96a5d859c9389"
+  integrity sha1-w6KH3RDk9shMs3kQUrlqXYWck4k=
+  dependencies:
+    colorette "^1.2.1"
+    line-column "^1.0.2"
+    nanoid "^3.1.12"
+    source-map "^0.6.1"
+
 potrace@^2.1.6:
   version "2.1.6"
   resolved "https://registry.npm.taobao.org/potrace/download/potrace-2.1.6.tgz#687d48d4441eebca9539f4c39f6815b6e2480e67"
@@ -19569,7 +19628,7 @@ raw-loader@^3.1.0:
 
 rc-form@^2.2.1:
   version "2.4.11"
-  resolved "https://registry.npm.taobao.org/rc-form/download/rc-form-2.4.11.tgz#61ee3ae579259684ae30f2c48f55f0f23a5d3d08"
+  resolved "https://registry.npm.alibaba-inc.com/rc-form/download/rc-form-2.4.11.tgz#61ee3ae579259684ae30f2c48f55f0f23a5d3d08"
   integrity sha1-Ye465XklloSuMPLEj1Xw8jpdPQg=
   dependencies:
     async-validator "~1.11.3"
@@ -19582,9 +19641,9 @@ rc-form@^2.2.1:
     warning "^4.0.3"
 
 rc-util@^4.15.3:
-  version "4.20.7"
-  resolved "https://registry.npm.taobao.org/rc-util/download/rc-util-4.20.7.tgz#8c19f3a489744ec00c9871ffe3701cdb7ff4a38e"
-  integrity sha1-jBnzpIl0TsAMmHH/43Ac23/0o44=
+  version "4.21.1"
+  resolved "https://registry.npm.alibaba-inc.com/rc-util/download/rc-util-4.21.1.tgz#88602d0c3185020aa1053d9a1e70eac161becb05"
+  integrity sha1-iGAtDDGFAgqhBT2aHnDqwWG+ywU=
   dependencies:
     add-dom-event-listener "^1.1.0"
     prop-types "^15.5.10"
@@ -20358,7 +20417,7 @@ rechoir@^0.6.2:
 
 recompose@^0.26.0:
   version "0.26.0"
-  resolved "https://registry.npm.taobao.org/recompose/download/recompose-0.26.0.tgz#9babff039cb72ba5bd17366d55d7232fbdfb2d30"
+  resolved "https://registry.npm.alibaba-inc.com/recompose/download/recompose-0.26.0.tgz#9babff039cb72ba5bd17366d55d7232fbdfb2d30"
   integrity sha1-m6v/A5y3K6W9FzZtVdcjL737LTA=
   dependencies:
     change-emitter "^0.1.2"
@@ -21068,7 +21127,7 @@ rimraf@2.6.3:
   dependencies:
     glob "^7.1.3"
 
-rimraf@^3.0.0:
+rimraf@^3.0.0, rimraf@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npm.taobao.org/rimraf/download/rimraf-3.0.2.tgz#f1a5402ba6220ad52cc1282bac1ae3aa49fd061a"
   integrity sha1-8aVAK6YiCtUswSgrrBrjqkn9Bho=
