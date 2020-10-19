@@ -85,7 +85,7 @@
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2",
     "webpack-merge": "^4.2.1",
-    "yargs-parser": "^9.0.2"
+    "yargs-parser": "^19.0.4"
   },
   "peerDependencies": {
     "moment": "^2.21.0",
