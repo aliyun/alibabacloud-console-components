@@ -136,7 +136,7 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
       actualWidth = '880px'
       break
     case 'medium':
-      actualWidth = '620px'
+      actualWidth = '640px'
       break
     case 'small':
       actualWidth = '400px'
