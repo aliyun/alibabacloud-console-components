@@ -339,12 +339,12 @@
     fs-extra "^8.1.0"
     lodash "^4.17.11"
 
-"@alicloudfe/components@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.3.tgz#dffabbde86c27e6f3f3f3ee6777072c056114e83"
-  integrity sha1-3/q73obCfm8/Pz7md3BywFYRToM=
+"@alicloudfe/components@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.8.tgz#301cd7e81be9f6704b6db0f2e039089f1e7b8f28"
+  integrity sha1-MBzX6Bvp9nBLbbDy4DkInx57jyg=
   dependencies:
-    "@alifd/next" "1.21.7"
+    "@alifd/next" "1.21.8"
     "@pika/react" "^16.13.1"
     "@pika/react-dom" "^16.13.1"
     classnames "^2.2.6"
@@ -368,10 +368,10 @@
     "@alifd/validate" "^1.2.0"
     prop-types "^15.5.8"
 
-"@alifd/next@1.21.7":
-  version "1.21.7"
-  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.7.tgz#943c1fe91db7687bfa4a525458458ab5ce18ee98"
-  integrity sha1-lDwf6R23aHv6SlJUWEWKtc4Y7pg=
+"@alifd/next@1.21.8":
+  version "1.21.8"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.8.tgz#c901b32854cbde99aaab8d92e4e735204a41ee7c"
+  integrity sha1-yQGzKFTL3pmqq42S5Oc1IEpB7nw=
   dependencies:
     "@alifd/field" "~1.4.1"
     "@alifd/validate" "~1.2.0"
