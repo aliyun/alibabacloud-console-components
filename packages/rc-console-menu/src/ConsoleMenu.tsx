@@ -22,7 +22,7 @@ const PrimaryMenu: React.FC<{
     activeDirection={null}
     mode="inline"
     triggerType="click"
-    inlineIndent={16}
+    // inlineIndent={16}
     popupAlign="follow"
     hasArrow
   />

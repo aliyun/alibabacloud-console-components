@@ -60,7 +60,7 @@ const PrimaryMenu = styled(NavFilterProps)<{
     ${Item} {
       color: var(--console-menu-normal-text, #333333);
       background-color: var(--console-menu-bg, #fff);
-      padding: 0 16px;
+      padding: 0 var(--console-menu-padding, 24px);
 
       &:hover {
         background-color: var(--console-menu-hover-bg, #f7f9fa);
