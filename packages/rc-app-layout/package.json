@@ -50,6 +50,7 @@
     "classnames": "^2.2.5"
   },
   "devDependencies": {
-    "@alicloud/console-components-page": "^1.0.14"
+    "@alicloud/console-components-page": "^1.0.14",
+    "@alicloud/console-components-console-menu": "^2.0.0-alpha.0"
   }
 }

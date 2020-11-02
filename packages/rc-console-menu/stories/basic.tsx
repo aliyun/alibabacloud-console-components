@@ -1,26 +1,32 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import ConsoleMenu from '@alicloud/console-components-console-menu'
 import { FakeBrowserWithWrapper as FakeBrowser } from '@alicloud/console-components-fake-browser'
-
-/**
- * @param {String|Number} key 被点击的 `<Item>` 的 key
- * @param {Item} item 被点击的 `<Item>` 的序列化对象
- * @param {SyntheticEvent} e
- */
-const onItemClick = (key: string, itemInfo: any, e: MouseEvent) => {
-  console.log(`Item ${key} has been clicked.`)
-  console.log([itemInfo, e])
-}
 
 /**
  * 使用组件方式声明导航菜单
  */
 const Example = () => {
+  const [activeKey, setActiveKey] = useState('home')
+
+  /**
+   * @param {String|Number} key 被点击的 `<Item>` 的 key
+   * @param {Item} item 被点击的 `<Item>` 的序列化对象
+   * @param {SyntheticEvent} e
+   */
+  const onItemClick = useCallback(
+    (key: string, itemInfo: any, e: MouseEvent) => {
+      console.log(`Item ${key} has been clicked.`)
+      console.log([itemInfo, e])
+      setActiveKey(key)
+    },
+    []
+  )
+
   return (
     <ConsoleMenu
       header="Aliyun Console"
       onItemClick={onItemClick}
-      defaultActiveKey="home"
+      activeKey={activeKey}
     >
       <ConsoleMenu.Item key="home">首页</ConsoleMenu.Item>
       <ConsoleMenu.Item key="list">实例</ConsoleMenu.Item>
@@ -37,6 +43,8 @@ const Example = () => {
         </ConsoleMenu.Item>
       </ConsoleMenu.SubMenu>
       <ConsoleMenu.Item key="monitor">监控</ConsoleMenu.Item>
+      <ConsoleMenu.Divider />
+      <ConsoleMenu.Item key="test">测试</ConsoleMenu.Item>
     </ConsoleMenu>
   )
 }

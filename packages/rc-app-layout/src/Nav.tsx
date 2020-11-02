@@ -54,7 +54,7 @@ const Nav: React.FC<INavProps> = ({
   return (
     <S.NavWrapper collapsed={derivedCollapsed}>
       <S.Nav collapsed={derivedCollapsed} className="windcc-app-layout__nav">
-        <S.NavChildenWrapper>{children}</S.NavChildenWrapper>
+        {children}
       </S.Nav>
       {collapsible && (
         <NavCollapseTrigger

@@ -9,8 +9,7 @@ const Header = styled.h2`
     position: relative;
     font-size: 14px;
     font-weight: 600;
-    color: #333333;
-    padding: 0 var(--console-menu-padding, 24px);
+    color: var(--console-menu-header-color, #333333);
     margin: 0;
     line-height: 18px;
     display: flex;

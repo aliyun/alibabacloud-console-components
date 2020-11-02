@@ -9,6 +9,8 @@ import RoutableMenu from './routable-menu'
 import RoutableMenuDefaultOpen from './routable-menu-default-open'
 import WithDivider from './with-divider'
 import SwitchHeader from './switch-header'
+import HybridcloudLightBasic from './hybridcloud-light/basic'
+import HybridcloudDarkBasic from './hybridcloud-dark/basic'
 
 storiesOf('wind-rc-console-menu', module)
   .add('Basic', () => <Basic />)
@@ -19,3 +21,5 @@ storiesOf('wind-rc-console-menu', module)
   .add('RoutableMenuDefaultOpen', () => <RoutableMenuDefaultOpen />)
   .add('WithDivider', () => <WithDivider />)
   .add('SwitchHeader', () => <SwitchHeader />)
+  .add('HybridcloudLightBasic', () => <HybridcloudLightBasic />)
+  .add('HybridcloudDarkBasic', () => <HybridcloudDarkBasic />)
