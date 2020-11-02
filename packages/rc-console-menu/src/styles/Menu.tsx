@@ -11,9 +11,8 @@ import { getPriority } from '../utils'
 const PrimaryMenu = styled(NavFilterProps)<{
   fusionPrefix: string
 }>`
+  ${(props) => props.theme.varDef}
   ${getPriority(5)} {
-    --nav-ver-height: 32px;
-    --nav-ver-sub-nav-height: 32px;
     padding: 0;
     border: 0;
     border-radius: 0;
@@ -164,6 +163,6 @@ function getPrefix({ fusionPrefix }: { fusionPrefix: string }) {
   return fusionPrefix
 }
 
-function NavFilterProps({ fusionPrefix, ...props }: any) {
+function NavFilterProps({ fusionPrefix, theme, ...props }: any) {
   return <Nav {...props} />
 }

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import classNames from 'classnames'
 import Nav from './Nav'
 import * as S from './styles'
+import themeCtx from './theme/context'
 
 /**
  * @public
@@ -62,24 +63,32 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
   children,
   className,
   style,
-}) => (
-  <S.AppLayout
-    adjustHeight={adjustHeight}
-    className={classNames('wind-rc-app-layout', 'windcc-app-layout', className)}
-    style={style}
-  >
-    {nav && (
-      <Nav
-        collapsible={navCollapsible}
-        collapsed={navCollapsed}
-        defaultCollapsed={defaultNavCollapsed}
-        onCollapseTriggerClick={onNavCollapseTriggerClick}
-      >
-        {nav}
-      </Nav>
-    )}
-    <S.Content className="windcc-app-layout__content">{children}</S.Content>
-  </S.AppLayout>
-)
+}) => {
+  const themeCtxValue = useContext(themeCtx)
+  return (
+    <S.AppLayout
+      adjustHeight={adjustHeight}
+      className={classNames(
+        'wind-rc-app-layout',
+        'windcc-app-layout',
+        className
+      )}
+      style={style}
+      theme={themeCtxValue}
+    >
+      {nav && (
+        <Nav
+          collapsible={navCollapsible}
+          collapsed={navCollapsed}
+          defaultCollapsed={defaultNavCollapsed}
+          onCollapseTriggerClick={onNavCollapseTriggerClick}
+        >
+          {nav}
+        </Nav>
+      )}
+      <S.Content className="windcc-app-layout__content">{children}</S.Content>
+    </S.AppLayout>
+  )
+}
 
 export default AppLayout

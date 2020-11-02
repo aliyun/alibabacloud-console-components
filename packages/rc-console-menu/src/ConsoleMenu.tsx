@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Nav } from '@alicloud/console-components'
 import * as S from './styles'
 import { IItemDescriptor, mapItemToJSX } from './ItemDescriptor'
 import Header from './Header'
 import { GetFusionConfig } from './utils'
+import themeContext from './theme/context'
 
 type NavProps = React.ComponentProps<typeof Nav>
 
@@ -13,20 +14,24 @@ type NavProps = React.ComponentProps<typeof Nav>
 const PrimaryMenu: React.FC<{
   fusionPrefix: string
   [key: string]: any
-}> = (props) => (
-  <S.Menu
-    openMode="multiple"
-    {...props}
-    type="normal"
-    direction="ver"
-    activeDirection={null}
-    mode="inline"
-    triggerType="click"
-    // inlineIndent={16}
-    popupAlign="follow"
-    hasArrow
-  />
-)
+}> = (props) => {
+  const theme = useContext(themeContext)
+  return (
+    <S.Menu
+      openMode="multiple"
+      {...props}
+      type="normal"
+      direction="ver"
+      activeDirection={null}
+      mode="inline"
+      triggerType="click"
+      // inlineIndent={16}
+      popupAlign="follow"
+      hasArrow
+      theme={theme}
+    />
+  )
+}
 
 const SecondaryMenu: React.FC<{
   fusionPrefix: string

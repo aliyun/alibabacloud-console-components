@@ -25,28 +25,33 @@ const Controlled: React.FC<{}> = () => {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <AppLayout
-      nav={<Nav />}
-      navCollapsed={collapsed}
-      onNavCollapseTriggerClick={(prevCollapsed: boolean) => {
-        setCollapsed(!prevCollapsed)
-      }}
+    <div
+      className="demo-container"
+      style={{ height: '100%', overflow: 'hidden' }}
     >
-      <Page>
-        <Page.Header title="概览" />
-        <Page.Content>
-          <Button
-            type="primary"
-            size="large"
-            onClick={() => {
-              setCollapsed(!collapsed)
-            }}
-          >
-            {collapsed ? '展开当前已关闭的导航区' : '收起当前已展开的导航区'}
-          </Button>
-        </Page.Content>
-      </Page>
-    </AppLayout>
+      <AppLayout
+        nav={<Nav />}
+        navCollapsed={collapsed}
+        onNavCollapseTriggerClick={(prevCollapsed: boolean) => {
+          setCollapsed(!prevCollapsed)
+        }}
+      >
+        <Page>
+          <Page.Header title="概览" />
+          <Page.Content>
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                setCollapsed(!collapsed)
+              }}
+            >
+              {collapsed ? '展开当前已关闭的导航区' : '收起当前已展开的导航区'}
+            </Button>
+          </Page.Content>
+        </Page>
+      </AppLayout>
+    </div>
   )
 }
 

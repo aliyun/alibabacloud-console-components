@@ -29,20 +29,25 @@ const Nav = () => {
 }
 
 const Example = () => (
-  <AppLayout nav={<Nav />}>
-    <Page>
-      <Page.Header title="概览" />
-      <Page.Content>
-        <Message type="success">
-          您购买的位于新加坡的 A3 型实例
-          <a href="#" style={{ padding: '0 4px' }}>
-            ecs-7ui6t9vra
-          </a>
-          已经部署完毕
-        </Message>
-      </Page.Content>
-    </Page>
-  </AppLayout>
+  <div
+    className="demo-container"
+    style={{ height: '100%', overflow: 'hidden' }}
+  >
+    <AppLayout nav={<Nav />}>
+      <Page>
+        <Page.Header title="概览" />
+        <Page.Content>
+          <Message type="success">
+            您购买的位于新加坡的 A3 型实例
+            <a href="#" style={{ padding: '0 4px' }}>
+              ecs-7ui6t9vra
+            </a>
+            已经部署完毕
+          </Message>
+        </Page.Content>
+      </Page>
+    </AppLayout>
+  </div>
 )
 
 export default Example
