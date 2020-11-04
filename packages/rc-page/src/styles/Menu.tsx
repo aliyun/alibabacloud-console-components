@@ -6,11 +6,10 @@ export const Group = styled(Nav.Group)``
 export const PopupItem = styled(Nav.PopupItem)``
 export const SubMenu = styled(Nav.SubNav)``
 
+// page组件本身已经有padding-left，因此Nav自己不需要padding-left
 const Menu = styled(Nav)`
   &&& {
-    ${Item} {
-      padding: 0 16px 0 0;
-    }
+    margin-left: -20px;
   }
 `
 
