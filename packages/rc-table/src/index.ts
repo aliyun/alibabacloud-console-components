@@ -6,6 +6,7 @@ import withSelectionProvider from './selection/withProvider'
 import renderColumns from './renderColumns'
 import withDefaultProps from './withDefaultProps'
 import Layout, { ITableProps } from './layout'
+import { Table } from '@alicloud/console-components'
 
 import './index.css'
 
@@ -28,6 +29,10 @@ export type ITable = typeof EnhancedTable & {
   Selection: typeof Selection
   Pagination: typeof Pagination
   Search: typeof Search
+  Column: typeof Table.Column
+  ColumnGroup: typeof Table.ColumnGroup
+  GroupHeader: typeof Table.GroupHeader
+  GroupFooter: typeof Table.GroupFooter
 }
 
 /**
@@ -37,6 +42,10 @@ const ExpEnhancedTable: ITable = Object.assign(EnhancedTable, {
   Selection,
   Pagination,
   Search,
+  Column: Table.Column,
+  ColumnGroup: Table.ColumnGroup,
+  GroupHeader: Table.GroupHeader,
+  GroupFooter: Table.GroupFooter,
 })
 
 export default ExpEnhancedTable

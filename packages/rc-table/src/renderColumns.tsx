@@ -39,6 +39,7 @@ function renderColumns<T>(
             (restProps as { primaryKey?: ITableProps['primaryKey'] }).primaryKey
           )
         )}
+        {restProps.children}
       </WrappedComponent>
     )
   }
