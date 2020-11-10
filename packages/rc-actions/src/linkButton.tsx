@@ -31,7 +31,7 @@ export const SLinkButton = styled.span<{ disabled?: boolean }>`
     text-decoration: ${({ disabled }) => (disabled ? 'none' : 'underline')};
   }
   /* 在下拉菜单中的SLinkButton，不应该展示下划线，字体颜色也不应该是蓝色 */
-  .${expandMenuClassName} .${collapsedItemClassName} & {
+  .${expandMenuClassName} .${collapsedItemClassName} && {
     color: ${({ disabled }) => (disabled ? '#c1c1c1' : '#333333')};
     text-decoration: none;
     overflow: hidden;
