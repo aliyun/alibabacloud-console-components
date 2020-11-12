@@ -339,10 +339,10 @@
     fs-extra "^8.1.0"
     lodash "^4.17.11"
 
-"@alicloudfe/components@^1.0.20":
-  version "1.0.20"
-  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.20.tgz#9f8604e23c8a52e0f90ec77a483a8a7465c92566"
-  integrity sha1-n4YE4jyKUuD5Dsd6SDqKdGXJJWY=
+"@alicloudfe/components@^1.0.21":
+  version "1.0.21"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.21.tgz#77271fa12cdaa431e120f33b82ffd83d3c57128e"
+  integrity sha1-dycfoSzapDHhIPM7gv/YPTxXEo4=
   dependencies:
     "@alifd/next" "1.21.8"
     "@pika/react" "^16.13.1"

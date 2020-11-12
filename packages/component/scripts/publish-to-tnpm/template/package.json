@@ -2,8 +2,7 @@
   "name": "@ali/wind",
   "version": "{{internalWindVersion}}",
   "description": "Aliyun web components",
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
+  "main": "esm/index.js",
   "repository": {
     "type": "git",
     "url": "http://gitlab.alibaba-inc.com/wind/wind"

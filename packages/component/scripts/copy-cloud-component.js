@@ -21,19 +21,35 @@ rimraf.sync(distDir)
     copy(path.join(cloudComponentDir, 'lib'), libDir),
     fs.copy(
       path.join(cloudComponentDir, 'dist/xconsole.css'),
-      path.join(distDir, 'wind.css')
+      path.join(distDir, 'xconsole.css')
     ),
     fs.copy(
       path.join(cloudComponentDir, 'dist/xconsole-no-reset.css'),
-      path.join(distDir, 'wind-noreset.css')
+      path.join(distDir, 'xconsole-noreset.css')
     ),
     fs.copy(
       path.join(cloudComponentDir, 'dist/xconsole-var.css'),
+      path.join(distDir, 'xconsole-var.css')
+    ),
+    fs.copy(
+      path.join(cloudComponentDir, 'dist/wind.css'),
+      path.join(distDir, 'wind.css')
+    ),
+    fs.copy(
+      path.join(cloudComponentDir, 'dist/wind-no-reset.css'),
+      path.join(distDir, 'wind-noreset.css')
+    ),
+    fs.copy(
+      path.join(cloudComponentDir, 'dist/wind-var.css'),
       path.join(distDir, 'wind-var.css')
     ),
     fs.copy(
       path.join(cloudComponentDir, 'dist/index.js'),
       path.join(distDir, 'wind.js')
+    ),
+    fs.copy(
+      path.join(cloudComponentDir, 'dist/index.js'),
+      path.join(distDir, 'wind.min.js')
     ),
   ])
 
@@ -48,7 +64,7 @@ rimraf.sync(distDir)
 
 async function copy(source, dest) {
   return new Promise((res, rej) => {
-    ncp(source, dest, function(err) {
+    ncp(source, dest, function (err) {
       if (err) return rej(err)
       return res()
     })
