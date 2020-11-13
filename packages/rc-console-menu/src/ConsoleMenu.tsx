@@ -5,7 +5,8 @@ import * as S from './styles'
 import { IItemDescriptor, mapItemToJSX } from './ItemDescriptor'
 import Header from './Header'
 import { GetFusionConfig } from './utils'
-import themeContext from './theme/context'
+import themeContext, { withThemeProvider } from './theme/context'
+import { WindTheme } from './theme/wind'
 
 type NavProps = React.ComponentProps<typeof Nav>
 
@@ -186,4 +187,6 @@ ConsoleMenu.propTypes = {
   children: PropTypes.node,
 }
 
-export default GetFusionConfig(ConsoleMenu) as React.FC<IConsoleMenuProps>
+export default GetFusionConfig(
+  withThemeProvider(WindTheme, ConsoleMenu)
+) as React.FC<IConsoleMenuProps>

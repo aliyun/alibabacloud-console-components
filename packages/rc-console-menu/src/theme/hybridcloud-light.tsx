@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from 'styled-components'
-import ctx from './context'
+import { Provider } from './context'
 
 interface IProps {}
 
@@ -19,5 +19,5 @@ const varDef = css`
 const ctxValue = { varDef }
 
 export const HybridCloudLightTheme: React.FC<IProps> = (props) => {
-  return <ctx.Provider value={ctxValue}>{props.children}</ctx.Provider>
+  return <Provider value={ctxValue}>{props.children}</Provider>
 }

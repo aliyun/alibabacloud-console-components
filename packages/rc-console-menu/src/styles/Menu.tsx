@@ -11,7 +11,7 @@ import { getPriority } from '../utils'
 const PrimaryMenu = styled(NavFilterProps)<{
   fusionPrefix: string
 }>`
-  ${(props) => props.theme.varDef}
+  ${(props) => props.theme.varDef || ''}
   ${getPriority(5)} {
     padding: 0;
     border: 0;
