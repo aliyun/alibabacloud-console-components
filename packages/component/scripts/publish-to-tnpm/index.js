@@ -65,11 +65,11 @@ const libIndexScssPath = path.join(OUT_PATH, 'lib', 'index.scss')
 
 const libIndexJsCode = [
   ...utils.getCommonJSReExport('@alicloud/console-components/lib/index.js'),
-  `module.exports['__VERSION__'] = '${internalVersion}';`,
+  `module.exports['__VERSION__'] = (void 0, 'version!!@ali/wind', '${internalVersion}');`,
 ]
 const esmIndexJsCode = [
   ...utils.getESMReExport('@alicloud/console-components/esm/index.js'),
-  `module.exports['__VERSION__'] = '${internalVersion}';`,
+  `export const __VERSION__ = (void 0, 'version!!@ali/wind', '${internalVersion}');`,
 ]
 const libIndexScssCode = ['@import "~@alicloud/console-components/index.scss";']
 

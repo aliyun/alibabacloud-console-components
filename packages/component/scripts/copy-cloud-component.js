@@ -53,11 +53,24 @@ rimraf.sync(distDir)
     ),
   ])
 
+  const version = await (async () => {
+    const pkgJson = await fs.readJson(path.join(__dirname, '../package.json'))
+    return pkgJson['version']
+  })()
+
   await Promise.all([
     minify(path.join(distDir, 'wind.css'), path.join(distDir, 'wind.min.css')),
     minify(
       path.join(distDir, 'wind-noreset.css'),
       path.join(distDir, 'wind-noreset.min.css')
+    ),
+    appendFile(
+      path.join(esmDir, 'index.js'),
+      `export const __VERSION__ = (void 0, 'version!!@alicloud/console-components', '${version}');`
+    ),
+    appendFile(
+      path.join(libDir, 'index.js'),
+      `Object.defineProperty(exports, "__VERSION__", { enumerable: true, get: function () { return '${version}'; } });`
     ),
   ])
 })()
@@ -79,4 +92,10 @@ async function minify(source, dest) {
     }),
   ]).process(sourceContent, { from: source, to: dest })
   await fs.writeFile(dest, result.css)
+}
+
+async function appendFile(filePath, append) {
+  const source = await fs.readFile(filePath, 'utf-8')
+  const result = source + '\n' + append
+  await fs.writeFile(filePath, result)
 }
