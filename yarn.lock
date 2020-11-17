@@ -19,6 +19,15 @@
     classnames "^2.2.6"
     warning "^4.0.3"
 
+"@alicloud/console-components-console-menu@^2.0.0-alpha.0":
+  version "2.0.0-alpha.1"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-components-console-menu/download/@alicloud/console-components-console-menu-2.0.0-alpha.1.tgz#4801588d3d03a13283906eaaaa2db36d71227247"
+  integrity sha1-SAFYjT0DoTKDkG6qqi2zbXEickc=
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    classnames "^2.2.6"
+    warning "^4.0.3"
+
 "@alicloud/console-components@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-components/download/@alicloud/console-components-1.2.0.tgz#b2ec30ae1534723a8ed517847fff8b326fc59d1e"

@@ -34,7 +34,7 @@ const Nav = styled.div<INavProps>`
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
-  background-color: var(--console-layout-nav-bg, #f7f7f7);
+  background-color: var(--console-layout-nav-bg, #fff);
   width: ${navWidth}px;
   border-right: var(--console-layout-nav-border, 1px solid #c0c6cc);
   left: ${calcLeft}px;
