@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
 import { withProps } from 'recompose'
 import styled from 'styled-components'
-import { isArray } from 'lodash'
+import isArray from 'lodash/isArray'
 import { PaginationProps } from '@alicloud/console-components/types/pagination'
 import {
   TableProps,

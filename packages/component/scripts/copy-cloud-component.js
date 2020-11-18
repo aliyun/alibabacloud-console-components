@@ -3,10 +3,13 @@ const path = require('path')
 const fs = require('fs-extra')
 const rimraf = require('rimraf')
 const postcss = require('postcss')
+const { getComponentNames } = require('./utils')
+const _ = require('lodash')
 
 const esmDir = path.join(__dirname, '../esm')
 const libDir = path.join(__dirname, '../lib')
 const distDir = path.join(__dirname, '../dist')
+const typesDir = path.resolve(__dirname, '../types')
 
 const cloudComponentDir = path.dirname(
   require.resolve('@alicloudfe/components/package.json')
@@ -15,6 +18,7 @@ const cloudComponentDir = path.dirname(
 rimraf.sync(esmDir)
 rimraf.sync(libDir)
 rimraf.sync(distDir)
+rimraf.sync(typesDir)
 ;(async () => {
   await Promise.all([
     copy(path.join(cloudComponentDir, 'es'), esmDir),
@@ -53,6 +57,8 @@ rimraf.sync(distDir)
     ),
   ])
 
+  const componentNames = getComponentNames()
+
   const version = await (async () => {
     const pkgJson = await fs.readJson(path.join(__dirname, '../package.json'))
     return pkgJson['version']
@@ -72,6 +78,26 @@ rimraf.sync(distDir)
       path.join(libDir, 'index.js'),
       `Object.defineProperty(exports, "__VERSION__", { enumerable: true, get: function () { return '${version}'; } });`
     ),
+    ...componentNames.map(async (componentName) => {
+      const dtsFilePath = path.resolve(typesDir, componentName, 'index.d.ts')
+      const dtsFileContent = [
+        `export { default } from '@alifd/next/types/${componentName}'`,
+        `export * from '@alifd/next/types/${componentName}'`,
+      ].join('\n')
+      await fs.ensureDir(path.dirname(dtsFilePath))
+      await fs.writeFile(dtsFilePath, dtsFileContent)
+    }),
+    (async () => {
+      const dtsFilePath = path.resolve(typesDir, 'index.d.ts')
+      const dtsEntrySource = componentNames
+        .map((componentName) => {
+          const componentDisplayName = _.upperFirst(_.camelCase(componentName))
+          return `export { default as ${componentDisplayName} } from './${componentName}'`
+        })
+        .join('\n')
+      await fs.ensureDir(path.dirname(dtsFilePath))
+      await fs.writeFile(dtsFilePath, dtsEntrySource)
+    })(),
   ])
 })()
 

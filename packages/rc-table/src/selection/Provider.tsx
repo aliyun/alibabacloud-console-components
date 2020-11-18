@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import {
-  isFunction,
-  isPlainObject,
-  isArray,
-  compact,
-  get,
-  find,
-  intersection,
-  omit,
-  isNil,
-} from 'lodash'
+import isFunction from 'lodash/isFunction';
+import isPlainObject from 'lodash/isPlainObject';
+import isArray from 'lodash/isArray';
+import compact from 'lodash/compact';
+import get from 'lodash/get';
+import find from 'lodash/find';
+import intersection from 'lodash/intersection';
+import omit from 'lodash/omit';
+import isNil from 'lodash/isNil';
 import renderProps from '../renderProps'
 import Context from './Context'
 import { Mode } from './index'

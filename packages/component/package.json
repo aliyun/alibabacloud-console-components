@@ -7,7 +7,8 @@
   "types": "lib/index.d.ts",
   "unpkg": "dist/wind.js",
   "scripts": {
-    "prepare": "node ./scripts/copy-cloud-component.js",
+    "clean": "rm -rf dist esm lib types",
+    "prepare": "npm run clean && node ./scripts/copy-cloud-component.js",
     "publishInternal": "node ./scripts/publish-to-tnpm/index.js",
     "publishInternal:pre": "NPM_TAG=alpha node ./scripts/publish-to-tnpm/index.js"
   },

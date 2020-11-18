@@ -1,5 +1,5 @@
 import { isValidElement } from 'react'
-import { isFunction } from 'lodash'
+import isFunction from 'lodash/isFunction'
 
 const renderProps = (ownerProps: any, ...args: any[]): React.ReactNode => {
   const { children, render } = ownerProps
