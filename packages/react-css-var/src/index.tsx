@@ -8,6 +8,9 @@ interface IDict {
 
 const style = { display: 'none' }
 
+// TODO: support reading from document.documentElement
+// which can avoid creating a dummy div
+
 export const CssVarReader: React.FC<{
   varNames: string[]
 }> = ({ varNames, children }) => {
