@@ -1,0 +1,15 @@
+{
+  "name": "react-css-var",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
