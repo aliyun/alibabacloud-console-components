@@ -91,6 +91,7 @@ typings/
 lib/
 dist/
 es/
+esm/
 
 # Swap files
 *.json.swp

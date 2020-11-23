@@ -1,4 +1,4 @@
-# react-css-var
+# @alicloud/css-var-react
 
 Read and consume CSS custom properties (CSS variables) in react.
 

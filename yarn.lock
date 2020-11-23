@@ -3012,7 +3012,7 @@
     "@microsoft/tsdoc" "0.12.19"
     "@rushstack/node-core-library" "3.19.7"
 
-"@microsoft/api-extractor@^7.5.1", "@microsoft/api-extractor@^7.7.0":
+"@microsoft/api-extractor@^7.5.1", "@microsoft/api-extractor@^7.7.0", "@microsoft/api-extractor@~7.7.0":
   version "7.7.13"
   resolved "https://registry.npm.alibaba-inc.com/@microsoft/api-extractor/download/@microsoft/api-extractor-7.7.13.tgz#7ee70978825a36d294d26e50b5d888ca3789d1b0"
   integrity sha1-fucJeIJaNtKU0m5QtdiIyjeJ0bA=
@@ -4294,19 +4294,10 @@
   resolved "https://registry.npm.taobao.org/@types/stack-utils/download/@types/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha1-CoUdO9lkmPolwzq3J47TvWXwbD4=
 
-"@types/styled-components@4.1.8":
-  version "4.1.8"
-  resolved "https://registry.npm.alibaba-inc.com/@types/styled-components/download/@types/styled-components-4.1.8.tgz#15c8a53bb4b9066e528fafb7558963dee5690ae0"
-  integrity sha1-FcilO7S5Bm5Sj6+3VYlj3uVpCuA=
-  dependencies:
-    "@types/node" "*"
-    "@types/react" "*"
-    csstype "^2.2.0"
-
-"@types/styled-components@^4.4.1":
-  version "4.4.3"
-  resolved "https://registry.npm.alibaba-inc.com/@types/styled-components/download/@types/styled-components-4.4.3.tgz#74dd00ad760845a98890a8539361d8afc32059de"
-  integrity sha1-dN0ArXYIRamIkKhTk2HYr8MgWd4=
+"@types/styled-components@4.1.8", "@types/styled-components@5.1.0", "@types/styled-components@^4.4.1":
+  version "5.1.0"
+  resolved "https://registry.npm.alibaba-inc.com/@types/styled-components/download/@types/styled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
+  integrity sha1-JNNBK6U5WqBuFPvJPFL5RUzr0NY=
   dependencies:
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
@@ -4411,7 +4402,7 @@
   resolved "https://registry.npm.taobao.org/@types/yoga-layout/download/@types/yoga-layout-1.9.2.tgz#efaf9e991a7390dc081a0b679185979a83a9639a"
   integrity sha1-76+emRpzkNwIGgtnkYWXmoOpY5o=
 
-"@typescript-eslint/eslint-plugin@^2.23.0", "@typescript-eslint/eslint-plugin@^2.25.0":
+"@typescript-eslint/eslint-plugin@^2.23.0", "@typescript-eslint/eslint-plugin@^2.24.0", "@typescript-eslint/eslint-plugin@^2.25.0":
   version "2.34.0"
   resolved "https://registry.npm.alibaba-inc.com/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.34.0.tgz#6f8ce8a46c7dea4a6f1d171d2bb8fbae6dac2be9"
   integrity sha1-b4zopGx96kpvHRcdK7j7rm2sK+k=
@@ -6031,11 +6022,6 @@ bail@^1.0.0:
   version "1.0.5"
   resolved "https://registry.npm.taobao.org/bail/download/bail-1.0.5.tgz#b6fa133404a392cbc1f8c4bf63f5953351e7a776"
   integrity sha1-tvoTNASjksvB+MS/Y/WVM1Hnp3Y=
-
-balanced-match@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.npm.alibaba-inc.com/balanced-match/download/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
-  integrity sha1-yz8+PHMtwPAe5wtAPzAuYddwmDg=
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -11222,7 +11208,7 @@ fwd-stream@^1.0.4:
   dependencies:
     readable-stream "~1.0.26-4"
 
-gatsby-cli@^2.10.11:
+gatsby-cli@^2.10.11, gatsby-cli@^2.10.13, gatsby-cli@~2.10.11:
   version "2.10.13"
   resolved "https://registry.npm.alibaba-inc.com/gatsby-cli/download/gatsby-cli-2.10.13.tgz#f9b47ee318a7b3ddabdb4212185bfb7cf359acb7"
   integrity sha1-+bR+4xins92r20ISGFv7fPNZrLc=
@@ -11282,7 +11268,7 @@ gatsby-core-utils@^1.0.34, gatsby-core-utils@^1.3.3:
     proper-lockfile "^4.1.1"
     xdg-basedir "^4.0.0"
 
-gatsby-graphiql-explorer@^0.2.36:
+gatsby-graphiql-explorer@^0.2.36, gatsby-graphiql-explorer@^0.2.37:
   version "0.2.37"
   resolved "https://registry.npm.alibaba-inc.com/gatsby-graphiql-explorer/download/gatsby-graphiql-explorer-0.2.37.tgz#09c2b395c31ffcfbec0038d7e245caecb419667e"
   integrity sha1-CcKzlcMf/PvsADjX4kXK7LQZZn4=
@@ -11441,7 +11427,7 @@ gatsby-plugin-typescript@^2.1.15:
     "@babel/runtime" "^7.9.6"
     babel-plugin-remove-graphql-queries "^2.9.2"
 
-gatsby-react-router-scroll@^2.1.24:
+gatsby-react-router-scroll@^2.1.24, gatsby-react-router-scroll@^2.1.25:
   version "2.3.1"
   resolved "https://registry.npm.alibaba-inc.com/gatsby-react-router-scroll/download/gatsby-react-router-scroll-2.3.1.tgz#4cf59e3eaf5dc1721256f47b6aa40b2636b8af89"
   integrity sha1-TPWePq9dwXISVvR7aqQLJja4r4k=
@@ -11538,10 +11524,10 @@ gatsby-transformer-sharp@^2.3.18:
     semver "^5.7.1"
     sharp "^0.25.1"
 
-gatsby@2.19.45:
-  version "2.19.45"
-  resolved "https://registry.npm.alibaba-inc.com/gatsby/download/gatsby-2.19.45.tgz#6a90275ea4c86bcf3916cb62d1446202c98b3adb"
-  integrity sha1-apAnXqTIa885Fsti0URiAsmLOts=
+gatsby@2.19.45, gatsby@~2.19.45:
+  version "2.19.50"
+  resolved "https://registry.npm.alibaba-inc.com/gatsby/download/gatsby-2.19.50.tgz#a725e9ec152c32bc64d9f8cfac93835516d7dfb2"
+  integrity sha1-pyXp7BUsMrxk2fjPrJODVRbX37I=
   dependencies:
     "@babel/code-frame" "^7.8.3"
     "@babel/core" "^7.8.7"
@@ -11554,11 +11540,11 @@ gatsby@2.19.45:
     "@pieh/friendly-errors-webpack-plugin" "1.7.0-chalk-2"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.2.0"
     "@reach/router" "^1.3.3"
-    "@typescript-eslint/eslint-plugin" "^2.23.0"
-    "@typescript-eslint/parser" "^2.23.0"
+    "@typescript-eslint/eslint-plugin" "^2.24.0"
+    "@typescript-eslint/parser" "^2.24.0"
     address "1.1.2"
     autoprefixer "^9.7.4"
-    axios "^0.19.0"
+    axios "^0.19.2"
     babel-core "7.0.0-bridge.0"
     babel-eslint "^10.1.0"
     babel-loader "^8.0.6"
@@ -11604,12 +11590,12 @@ gatsby@2.19.45:
     flat "^4.1.0"
     fs-exists-cached "1.0.0"
     fs-extra "^8.1.0"
-    gatsby-cli "^2.10.11"
+    gatsby-cli "^2.10.13"
     gatsby-core-utils "^1.0.34"
-    gatsby-graphiql-explorer "^0.2.36"
+    gatsby-graphiql-explorer "^0.2.37"
     gatsby-link "^2.2.31"
     gatsby-plugin-page-creator "^2.1.46"
-    gatsby-react-router-scroll "^2.1.24"
+    gatsby-react-router-scroll "^2.1.25"
     gatsby-telemetry "^1.1.56"
     glob "^7.1.6"
     got "8.3.2"
@@ -11631,7 +11617,7 @@ gatsby@2.19.45:
     md5-file "^3.2.3"
     micromatch "^3.1.10"
     mime "^2.4.4"
-    mini-css-extract-plugin "^0.8.0"
+    mini-css-extract-plugin "^0.8.2"
     mitt "^1.2.0"
     mkdirp "^0.5.1"
     moment "^2.24.0"
@@ -11671,12 +11657,12 @@ gatsby@2.19.45:
     util.promisify "^1.0.1"
     uuid "^3.4.0"
     v8-compile-cache "^1.1.2"
-    webpack "~4.41.6"
+    webpack "~4.42.0"
     webpack-dev-middleware "^3.7.2"
     webpack-dev-server "^3.10.3"
     webpack-hot-middleware "^2.25.0"
     webpack-merge "^4.2.2"
-    webpack-stats-plugin "^0.3.0"
+    webpack-stats-plugin "^0.3.1"
     xstate "^4.8.0"
     yaml-loader "^0.5.0"
 
@@ -16054,11 +16040,6 @@ material-colors@^1.2.1:
   resolved "https://registry.npm.taobao.org/material-colors/download/material-colors-1.2.6.tgz#6d1958871126992ceecc72f4bcc4d8f010865f46"
   integrity sha1-bRlYhxEmmSzuzHL0vMTY8BCGX0Y=
 
-math-expression-evaluator@^1.2.14:
-  version "1.3.3"
-  resolved "https://registry.npm.alibaba-inc.com/math-expression-evaluator/download/math-expression-evaluator-1.3.3.tgz#8b61badc2aadffb166c3847707057ca955c1684f"
-  integrity sha1-i2G63Cqt/7Fmw4R3BwV8qVXBaE8=
-
 md5-file@^3.2.3:
   version "3.2.3"
   resolved "https://registry.npm.taobao.org/md5-file/download/md5-file-3.2.3.tgz#f9bceb941eca2214a4c0727f5e700314e770f06f"
@@ -16502,7 +16483,7 @@ mini-css-extract-plugin@^0.7.0:
     schema-utils "^1.0.0"
     webpack-sources "^1.1.0"
 
-mini-css-extract-plugin@^0.8.0:
+mini-css-extract-plugin@^0.8.0, mini-css-extract-plugin@^0.8.2:
   version "0.8.2"
   resolved "https://registry.npm.alibaba-inc.com/mini-css-extract-plugin/download/mini-css-extract-plugin-0.8.2.tgz#a875e169beb27c88af77dd962771c9eedc3da161"
   integrity sha1-qHXhab6yfIivd92WJ3HJ7tw9oWE=
@@ -18482,16 +18463,7 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.npm.taobao.org/posix-character-classes/download/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
-postcss-calc@^5.2.0:
-  version "5.3.1"
-  resolved "https://registry.npm.alibaba-inc.com/postcss-calc/download/postcss-calc-5.3.1.tgz#77bae7ca928ad85716e2fda42f261bf7c1d65b5e"
-  integrity sha1-d7rnypKK2FcW4v2kLyYb98HWW14=
-  dependencies:
-    postcss "^5.0.2"
-    postcss-message-helpers "^2.0.0"
-    reduce-css-calc "^1.2.6"
-
-postcss-calc@^7.0.1:
+postcss-calc@^5.2.0, postcss-calc@^7.0.1, postcss-calc@^7.0.4:
   version "7.0.5"
   resolved "https://registry.npm.alibaba-inc.com/postcss-calc/download/postcss-calc-7.0.5.tgz#f8a6e99f12e619c2ebc23cf6c486fdc15860933e"
   integrity sha1-+KbpnxLmGcLrwjz2xIb9wVhgkz4=
@@ -18694,11 +18666,6 @@ postcss-merge-rules@^4.0.3:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
     vendors "^1.0.0"
-
-postcss-message-helpers@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.alibaba-inc.com/postcss-message-helpers/download/postcss-message-helpers-2.0.0.tgz#a4f2f4fab6e4fe002f0aed000478cdf52f9ba60e"
-  integrity sha1-pPL0+rbk/gAvCu0ABHjN9S+bpg4=
 
 postcss-minify-font-values@^1.0.2:
   version "1.0.5"
@@ -19213,10 +19180,10 @@ prettier@^1.16.4:
   resolved "https://registry.npm.taobao.org/prettier/download/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha1-99f1/4qc2HKnvkyhQglZVqYHl8s=
 
-prettier@^2.0.2:
-  version "2.0.5"
-  resolved "https://registry.npm.taobao.org/prettier/download/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
-  integrity sha1-1tVigkVSQ/L5LMFxZpLAiqMVItQ=
+prettier@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npm.alibaba-inc.com/prettier/download/prettier-2.2.0.tgz#8a03c7777883b29b37fb2c4348c66a78e980418b"
+  integrity sha1-igPHd3iDsps3+yxDSMZqeOmAQYs=
 
 pretty-bytes@^5.2.0, pretty-bytes@^5.3.0:
   version "5.3.0"
@@ -20516,22 +20483,6 @@ redent@^3.0.0:
   dependencies:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
-
-reduce-css-calc@^1.2.6:
-  version "1.3.0"
-  resolved "https://registry.npm.alibaba-inc.com/reduce-css-calc/download/reduce-css-calc-1.3.0.tgz#747c914e049614a4c9cfbba629871ad1d2927716"
-  integrity sha1-dHyRTgSWFKTJz7umKYca0dKSdxY=
-  dependencies:
-    balanced-match "^0.4.2"
-    math-expression-evaluator "^1.2.14"
-    reduce-function-call "^1.0.1"
-
-reduce-function-call@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.npm.alibaba-inc.com/reduce-function-call/download/reduce-function-call-1.0.3.tgz#60350f7fb252c0a67eb10fd4694d16909971300f"
-  integrity sha1-YDUPf7JSwKZ+sQ/UaU0WkJlxMA8=
-  dependencies:
-    balanced-match "^1.0.0"
 
 redux-saga@^0.16.0:
   version "0.16.2"
@@ -23629,6 +23580,11 @@ typescript@^4.0.5:
   resolved "https://registry.npm.alibaba-inc.com/typescript/download/typescript-4.0.5.tgz#ae9dddfd1069f1cb5beb3ef3b2170dd7c1332389"
   integrity sha1-rp3d/RBp8ctb6z7zshcN18EzI4k=
 
+typescript@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.npm.alibaba-inc.com/typescript/download/typescript-4.1.2.tgz#6369ef22516fe5e10304aae5a5c4862db55380e9"
+  integrity sha1-Y2nvIlFv5eEDBKrlpcSGLbVTgOk=
+
 typescript@~3.7.2:
   version "3.7.5"
   resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.7.5.tgz?cache=0&sync_timestamp=1590390909369&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftypescript%2Fdownload%2Ftypescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
@@ -24667,6 +24623,11 @@ webpack-stats-plugin@^0.3.0:
   resolved "https://registry.npm.taobao.org/webpack-stats-plugin/download/webpack-stats-plugin-0.3.1.tgz#1103c39a305a4e6ba15d5078db84bc0b35447417"
   integrity sha1-EQPDmjBaTmuhXVB424S8CzVEdBc=
 
+webpack-stats-plugin@^0.3.1:
+  version "0.3.2"
+  resolved "https://registry.npm.alibaba-inc.com/webpack-stats-plugin/download/webpack-stats-plugin-0.3.2.tgz#c06b185aa5dcc93b3f0c3a7891d24a111f849740"
+  integrity sha1-wGsYWqXcyTs/DDp4kdJKER+El0A=
+
 webpack-virtual-modules@^0.2.0:
   version "0.2.2"
   resolved "https://registry.npm.taobao.org/webpack-virtual-modules/download/webpack-virtual-modules-0.2.2.tgz#20863dc3cb6bb2104729fff951fbe14b18bd0299"
@@ -24724,6 +24685,35 @@ webpack@~4.41.6:
     memory-fs "^0.4.1"
     micromatch "^3.1.10"
     mkdirp "^0.5.1"
+    neo-async "^2.6.1"
+    node-libs-browser "^2.2.1"
+    schema-utils "^1.0.0"
+    tapable "^1.1.3"
+    terser-webpack-plugin "^1.4.3"
+    watchpack "^1.6.0"
+    webpack-sources "^1.4.1"
+
+webpack@~4.42.0:
+  version "4.42.1"
+  resolved "https://registry.npm.alibaba-inc.com/webpack/download/webpack-4.42.1.tgz#ae707baf091f5ca3ef9c38b884287cfe8f1983ef"
+  integrity sha1-rnB7rwkfXKPvnDi4hCh8/o8Zg+8=
+  dependencies:
+    "@webassemblyjs/ast" "1.9.0"
+    "@webassemblyjs/helper-module-context" "1.9.0"
+    "@webassemblyjs/wasm-edit" "1.9.0"
+    "@webassemblyjs/wasm-parser" "1.9.0"
+    acorn "^6.2.1"
+    ajv "^6.10.2"
+    ajv-keywords "^3.4.1"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^4.1.0"
+    eslint-scope "^4.0.3"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^2.4.0"
+    loader-utils "^1.2.3"
+    memory-fs "^0.4.1"
+    micromatch "^3.1.10"
+    mkdirp "^0.5.3"
     neo-async "^2.6.1"
     node-libs-browser "^2.2.1"
     schema-utils "^1.0.0"
