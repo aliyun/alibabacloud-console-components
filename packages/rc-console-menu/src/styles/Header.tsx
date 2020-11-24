@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { vars } from '../theme'
 
 /**
  * @public
@@ -9,7 +10,7 @@ const Header = styled.h2`
     position: relative;
     font-size: 14px;
     font-weight: 600;
-    color: var(--console-menu-header-color, #333333);
+    color: ${vars['--console-menu-header-color'].useTheme};
     margin: 0;
     line-height: 18px;
     display: flex;

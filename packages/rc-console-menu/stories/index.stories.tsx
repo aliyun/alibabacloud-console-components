@@ -9,10 +9,24 @@ import RoutableMenu from './routable-menu'
 import RoutableMenuDefaultOpen from './routable-menu-default-open'
 import WithDivider from './with-divider'
 import SwitchHeader from './switch-header'
-import HybridcloudLightBasic from './hybridcloud-light/basic'
-import HybridcloudDarkBasic from './hybridcloud-dark/basic'
+import { useTheme } from './utils/theme-switcher'
 
 storiesOf('wind-rc-console-menu', module)
+  .addDecorator((Story) => {
+    const theme = useTheme()
+    return (
+      <div className="storybook-switch-theme">
+        {theme.switchUI}
+        <hr />
+        <div style={{ position: 'relative' }}>
+          <theme.current.wrapper>
+            {/* @ts-ignore */}
+            <Story />
+          </theme.current.wrapper>
+        </div>
+      </div>
+    )
+  })
   .add('Basic', () => <Basic />)
   .add('Secondary', () => <Secondary />)
   .add('ControlledMenu', () => <ControlledMenu />)
@@ -21,5 +35,3 @@ storiesOf('wind-rc-console-menu', module)
   .add('RoutableMenuDefaultOpen', () => <RoutableMenuDefaultOpen />)
   .add('WithDivider', () => <WithDivider />)
   .add('SwitchHeader', () => <SwitchHeader />)
-  .add('HybridcloudLightBasic', () => <HybridcloudLightBasic />)
-  .add('HybridcloudDarkBasic', () => <HybridcloudDarkBasic />)

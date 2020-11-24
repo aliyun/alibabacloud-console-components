@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Nav } from '@alicloud/console-components'
 import * as S from './styles'
 import { IItemDescriptor, mapItemToJSX } from './ItemDescriptor'
 import Header from './Header'
 import { GetFusionConfig } from './utils'
-import themeContext, { withThemeProvider } from './theme/context'
-import { WindTheme } from './theme/wind'
 
 type NavProps = React.ComponentProps<typeof Nav>
 
@@ -16,7 +14,6 @@ const PrimaryMenu: React.FC<{
   fusionPrefix: string
   [key: string]: any
 }> = (props) => {
-  const theme = useContext(themeContext)
   return (
     <S.Menu
       openMode="multiple"
@@ -29,7 +26,6 @@ const PrimaryMenu: React.FC<{
       // inlineIndent={16}
       popupAlign="follow"
       hasArrow
-      theme={theme}
     />
   )
 }
@@ -187,6 +183,4 @@ ConsoleMenu.propTypes = {
   children: PropTypes.node,
 }
 
-export default GetFusionConfig(
-  withThemeProvider(WindTheme, ConsoleMenu)
-) as React.FC<IConsoleMenuProps>
+export default GetFusionConfig(ConsoleMenu) as React.FC<IConsoleMenuProps>

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-console-menu",
-  "version": "1.2.0-alpha.0",
+  "version": "1.2.0-alpha.2",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
@@ -24,7 +24,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build && npm run gen-css-var",
     "clean": "rm -rf dist lib es cc-dev-out",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
@@ -36,7 +36,8 @@
     "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write",
     "doc:local-dev": "cc-doc-local-dev",
     "doc:build": "cc-build-doc",
-    "publish-preview": "cc-publish-preview"
+    "publish-preview": "cc-publish-preview",
+    "gen-css-var": "node ./scripts/gen-css-var.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
