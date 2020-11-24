@@ -1,1 +1,1 @@
-module.exports = require('./lib/withStyledTheme')
+module.exports = require('./lib/react')
