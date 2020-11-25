@@ -3,9 +3,16 @@
   "version": "{{internalWindVersion}}",
   "description": "Aliyun web components",
   "main": "esm/index.js",
+  "sideEffects": [
+    "dist/*",
+    "esm/index.js",
+    "lib/index.js",
+    "*.scss",
+    "*.css"
+  ],
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/wind/wind"
+    "url": "https://github.com/aliyun/alibabacloud-console-components"
   },
   "keywords": [
     "react",

@@ -3,7 +3,11 @@ const path = require('path')
 const fs = require('fs-extra')
 const rimraf = require('rimraf')
 const postcss = require('postcss')
-const { getComponentNames } = require('./utils')
+const {
+  getComponentNames,
+  codeExportLibInfoESM,
+  codeExportLibInfoCJS,
+} = require('./utils')
 const _ = require('lodash')
 
 const esmDir = path.join(__dirname, '../esm')
@@ -72,11 +76,11 @@ rimraf.sync(typesDir)
     ),
     appendFile(
       path.join(esmDir, 'index.js'),
-      `export const __VERSION__ = (void 0, 'version!!@alicloud/console-components', '${version}');`
+      codeExportLibInfoESM('@alicloud/console-components', version)
     ),
     appendFile(
       path.join(libDir, 'index.js'),
-      `Object.defineProperty(exports, "__VERSION__", { enumerable: true, get: function () { return '${version}'; } });`
+      codeExportLibInfoCJS('@alicloud/console-components', version)
     ),
     ...componentNames.map(async (componentName) => {
       const dtsFilePath = path.resolve(typesDir, componentName, 'index.d.ts')

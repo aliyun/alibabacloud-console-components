@@ -36,9 +36,34 @@ function isDirHasFile(dir) {
   return hasFile
 }
 
+function codeExportLibInfoESM(name, version) {
+  return `export const __LIB_INFO = {
+  'type': '__LIB_INFO',
+  'name': '${name}',
+  'version': '${version}'
+};
+if (typeof window === "object" && typeof window['__lib_info_hook'] === "function") {
+  window['__lib_info_hook'](__LIB_INFO);
+}`
+}
+
+function codeExportLibInfoCJS(name, version) {
+  return `const __LIB_INFO = {
+  'type': '__LIB_INFO',
+  'name': '${name}',
+  'version': '${version}'
+};
+if (typeof window === "object" && typeof window['__lib_info_hook'] === "function") {
+  window['__lib_info_hook'](__LIB_INFO);
+}
+Object.defineProperty(exports, "__LIB_INFO", { enumerable: true, get: function () { return __LIB_INFO; } });`
+}
+
 module.exports = {
   getComponentNames,
   getCommonJSReExport,
   getESMReExport,
   isDirHasFile,
+  codeExportLibInfoESM,
+  codeExportLibInfoCJS,
 }
