@@ -37,24 +37,27 @@ function isDirHasFile(dir) {
 }
 
 function codeExportLibInfoESM(name, version) {
-  return `export const __LIB_INFO = {
+  return `export var __LIB_INFO = {
   'type': '__LIB_INFO',
   'name': '${name}',
   'version': '${version}'
 };
-if (typeof window === "object" && typeof window['__lib_info_hook'] === "function") {
-  window['__lib_info_hook'](__LIB_INFO);
-}`
+if (typeof window === "object") {
+  window['__lib_info_array'] = window['__lib_info_array'] || [];
+  window['__lib_info_array'].push(__LIB_INFO);
+}
+`
 }
 
 function codeExportLibInfoCJS(name, version) {
-  return `const __LIB_INFO = {
+  return `var __LIB_INFO = {
   'type': '__LIB_INFO',
   'name': '${name}',
   'version': '${version}'
 };
-if (typeof window === "object" && typeof window['__lib_info_hook'] === "function") {
-  window['__lib_info_hook'](__LIB_INFO);
+if (typeof window === "object") {
+  window['__lib_info_array'] = window['__lib_info_array'] || [];
+  window['__lib_info_array'].push(__LIB_INFO);
 }
 Object.defineProperty(exports, "__LIB_INFO", { enumerable: true, get: function () { return __LIB_INFO; } });`
 }
