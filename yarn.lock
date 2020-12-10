@@ -348,12 +348,12 @@
     fs-extra "^8.1.0"
     lodash "^4.17.11"
 
-"@alicloudfe/components@^1.0.26":
-  version "1.0.26"
-  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.26.tgz#6d727a9a66cefdfaf5b86dad22292f8f0475f636"
-  integrity sha1-bXJ6mmbO/fr1uG2tIikvjwR19jY=
+"@alicloudfe/components@^1.0.43":
+  version "1.0.43"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.43.tgz#84b27606e7dbef73036f0a44563c4c5e79bc7f5e"
+  integrity sha1-hLJ2Bufb73MDbwpEVjxMXnm8f14=
   dependencies:
-    "@alifd/next" "1.21.8"
+    "@alifd/next" "1.21.11"
     "@pika/react" "^16.13.1"
     "@pika/react-dom" "^16.13.1"
     classnames "^2.2.6"
@@ -376,6 +376,22 @@
   dependencies:
     "@alifd/validate" "^1.2.0"
     prop-types "^15.5.8"
+
+"@alifd/next@1.21.11":
+  version "1.21.11"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.11.tgz#118d92259ef92dc4aec8345257e1b4234387eb5c"
+  integrity sha1-EY2SJZ75LcSuyDRSV+G0I0OH61w=
+  dependencies:
+    "@alifd/field" "~1.4.1"
+    "@alifd/validate" "~1.2.0"
+    babel-runtime "^6.26.0"
+    classnames "^2.2.3"
+    hoist-non-react-statics "^2.1.0"
+    lodash.clonedeep "^4.5.0"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^3.0.4"
+    react-transition-group "^2.2.1"
+    shallow-element-equals "^1.0.1"
 
 "@alifd/next@1.21.8":
   version "1.21.8"
