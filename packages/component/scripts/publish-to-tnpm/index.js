@@ -68,7 +68,7 @@ const libIndexJsCode = [
   utils.codeExportLibInfoCJS('@ali/wind', internalVersion),
 ]
 const esmIndexJsCode = [
-  ...utils.getESMReExport('@alicloud/console-components/esm/index.js'),
+  utils.getESMReExport('@alicloud/console-components/esm/index.js')[0],
   utils.codeExportLibInfoESM('@ali/wind', internalVersion),
 ]
 const libIndexScssCode = ['@import "~@alicloud/console-components/index.scss";']
