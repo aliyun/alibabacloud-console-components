@@ -116,4 +116,13 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-inline-editor',
+    zhName: '表格中的行编辑器',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-inline-editor',
+    tags: {
+      table: true,
+    },
+  },
 ]

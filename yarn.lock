@@ -4281,6 +4281,11 @@
     "@types/webpack-sources" "*"
     source-map "^0.6.0"
 
+"@types/xregexp@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.npm.taobao.org/@types/xregexp/download/@types/xregexp-4.3.0.tgz#e981c9b7281579019cc5740e08d206f3403e029f"
+  integrity sha1-6YHJtygVeQGcxXQOCNIG80A+Ap8=
+
 "@types/yargs-parser@*":
   version "15.0.0"
   resolved "https://registry.npm.taobao.org/@types/yargs-parser/download/@types/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"
@@ -24962,7 +24967,7 @@ xregexp@2.0.0:
 
 xregexp@^4.3.0:
   version "4.3.0"
-  resolved "https://registry.npm.taobao.org/xregexp/download/xregexp-4.3.0.tgz#7e92e73d9174a99a59743f67a4ce879a04b5ae50"
+  resolved "https://registry.npm.taobao.org/xregexp/download/xregexp-4.3.0.tgz?cache=0&sync_timestamp=1581429148456&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fxregexp%2Fdownload%2Fxregexp-4.3.0.tgz#7e92e73d9174a99a59743f67a4ce879a04b5ae50"
   integrity sha1-fpLnPZF0qZpZdD9npM6HmgS1rlA=
   dependencies:
     "@babel/runtime-corejs3" "^7.8.3"
