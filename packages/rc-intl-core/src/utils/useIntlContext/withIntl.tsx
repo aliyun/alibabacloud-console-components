@@ -30,10 +30,9 @@ const withIntl = <
   return <WrappedComponentProps extends {}>(
     WrappedComponent: React.ComponentType<WrappedComponentProps>
   ) => {
-    const HOC: React.FC<Omit<
-      WrappedComponentProps & ReceivedProps,
-      keyof PropsToInject
-    >> = props => {
+    const HOC = React.forwardRef<
+      Omit<WrappedComponentProps & ReceivedProps, keyof PropsToInject>
+    >((props, ref) => {
       const hocProps = props
       return (
         <Consumer>
@@ -41,11 +40,11 @@ const withIntl = <
             const injectProps = mapIntlToProps
               ? mapIntlToProps(value, hocProps)
               : value
-            return <WrappedComponent {...hocProps} {...injectProps} />
+            return <WrappedComponent {...hocProps} {...injectProps} ref={ref} />
           }}
         </Consumer>
       )
-    }
+    })
     HOC.displayName = wrapDisplayName(WrappedComponent, 'withIntl')
     return HOC
   }
