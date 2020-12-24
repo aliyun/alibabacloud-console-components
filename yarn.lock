@@ -393,10 +393,10 @@
     react-transition-group "^2.2.1"
     shallow-element-equals "^1.0.1"
 
-"@alifd/next@1.21.8":
-  version "1.21.8"
-  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.8.tgz#c901b32854cbde99aaab8d92e4e735204a41ee7c"
-  integrity sha1-yQGzKFTL3pmqq42S5Oc1IEpB7nw=
+"@alifd/next@1.21.15":
+  version "1.21.15"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.15.tgz#b120ff4ffd71f4c9bc3d71ac3282408751b73a61"
+  integrity sha1-sSD/T/1x9Mm8PXGsMoJAh1G3OmE=
   dependencies:
     "@alifd/field" "~1.4.1"
     "@alifd/validate" "~1.2.0"
