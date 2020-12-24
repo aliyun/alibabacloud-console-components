@@ -3,6 +3,7 @@
   "version": "{{internalWindVersion}}",
   "description": "Aliyun web components",
   "main": "esm/index.js",
+  "types": "lib/index.d.ts",
   "sideEffects": [
     "dist/*",
     "esm/index.js",

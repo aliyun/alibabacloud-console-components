@@ -62,6 +62,7 @@ fs.copySync(
 const libIndexJsPath = path.join(OUT_PATH, 'lib', 'index.js')
 const esmIndexJsPath = path.join(OUT_PATH, 'esm', 'index.js')
 const libIndexScssPath = path.join(OUT_PATH, 'lib', 'index.scss')
+const libIndexDTSPath = path.join(OUT_PATH, 'lib', 'index.d.ts')
 
 const libIndexJsCode = [
   ...utils.getCommonJSReExport('@alicloud/console-components/lib/index.js'),
@@ -73,12 +74,18 @@ const esmIndexJsCode = [
 ]
 const libIndexScssCode = ['@import "~@alicloud/console-components/index.scss";']
 
+const libIndexDTSCode = [
+  utils.getESMReExport('@alicloud/console-components/lib/index.d.ts')[0],
+]
+
 fs.ensureFileSync(libIndexJsPath)
 fs.writeFileSync(libIndexJsPath, libIndexJsCode.join('\n'))
 fs.ensureFileSync(esmIndexJsPath)
 fs.writeFileSync(esmIndexJsPath, esmIndexJsCode.join('\n'))
 fs.ensureFileSync(libIndexScssPath)
 fs.writeFileSync(libIndexScssPath, libIndexScssCode.join('\n'))
+fs.ensureFileSync(libIndexDTSPath)
+fs.writeFileSync(libIndexDTSPath, libIndexDTSCode.join('\n'))
 
 // 为每个组件创建re-export，
 // 比如button：/lib/button/index.js /lib/button/index.scss /types/button/index.d.ts
@@ -92,6 +99,14 @@ function createReExportForComponent(componentName) {
     .join('\n')
   fs.ensureFileSync(libIndexJsPath)
   fs.writeFileSync(libIndexJsPath, jsFileContent)
+
+  const libIndexDTSPath = path.join(OUT_PATH, 'lib', componentName, 'index.d.ts')
+  const dtsFileContent = utils
+    .getESMReExport(
+      `@alicloud/console-components/lib/${componentName}/index.d.ts`
+    )[1]
+  fs.ensureFileSync(libIndexDTSPath)
+  fs.writeFileSync(libIndexDTSPath, dtsFileContent)
 
   const libIndexScssPath = path.join(
     OUT_PATH,
