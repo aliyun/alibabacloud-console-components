@@ -10,6 +10,12 @@ export const messages = {
     This is a { 
       type, select, simple { SIMPLE } vars { VARIABLES-INCLUDES } cond { CONDITIONAL-VARIABLES-INCLUDES }
     } text.`,
+  'text.with.wrong.condition.vars': `
+    This is {region, select,
+      cn-huabei {华北}
+      cn-qingdao {青岛}
+      other {{region}}
+    }.`,
   'text.with.date': 'Current datetime is { current, date }',
   'text.with.number.and.plural': `You have { count, plural,
       =0 { no messages }
@@ -39,6 +45,8 @@ const App: React.FC<{}> = () => {
       <p>{intl('text.with.condition.vars', { type: 'simple' })}</p>
       <p>{intl('text.with.condition.vars', { type: 'vars' })}</p>
       <p>{intl('text.with.condition.vars', { type: 'cond' })}</p>
+      <h2>错误的select写法（case不能包含连字符“-”）</h2>
+      <p>{intl('text.with.wrong.condition.vars', { region: 'cn-huabei' })}</p>
       <h2>文案中使用日期</h2>
       <p>{intl('text.with.date', { current: new Date() })}</p>
       <h2>文案中使用plural</h2>
