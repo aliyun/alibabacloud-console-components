@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     [
-      '@alicloud/console-toolkit-preset-wind-component',
+      '@alicloud/console-toolkit-preset-component',
       {
         moduleName: 'WindSDK',
         useTypescript: true,
