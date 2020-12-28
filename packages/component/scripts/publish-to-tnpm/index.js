@@ -75,7 +75,7 @@ const esmIndexJsCode = [
 const libIndexScssCode = ['@import "~@alicloud/console-components/index.scss";']
 
 const libIndexDTSCode = [
-  utils.getESMReExport('@alicloud/console-components/lib/index.d.ts')[0],
+  utils.getESMReExport('@alicloud/console-components/lib/index')[0],
 ]
 
 fs.ensureFileSync(libIndexJsPath)
@@ -100,11 +100,15 @@ function createReExportForComponent(componentName) {
   fs.ensureFileSync(libIndexJsPath)
   fs.writeFileSync(libIndexJsPath, jsFileContent)
 
-  const libIndexDTSPath = path.join(OUT_PATH, 'lib', componentName, 'index.d.ts')
-  const dtsFileContent = utils
-    .getESMReExport(
-      `@alicloud/console-components/lib/${componentName}/index.d.ts`
-    )[1]
+  const libIndexDTSPath = path.join(
+    OUT_PATH,
+    'lib',
+    componentName,
+    'index.d.ts'
+  )
+  const dtsFileContent = utils.getESMReExport(
+    `@alicloud/console-components/lib/${componentName}/index`
+  )[1]
   fs.ensureFileSync(libIndexDTSPath)
   fs.writeFileSync(libIndexDTSPath, dtsFileContent)
 

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.4.0-alpha.14",
+  "version": "1.4.0-alpha.15",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "module": "esm/index.js",
