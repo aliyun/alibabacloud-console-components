@@ -5,10 +5,12 @@ import Provider from './Provider'
 function withProvider<T>(
   WrappedComponent: React.ComponentType<T>
 ): React.FC<T> {
-  const H: React.FC<T> = props => {
+  const H: React.FC<T> = (props) => {
     return (
       <Provider {...props}>
-        {(newProps: T) => <WrappedComponent {...(newProps as T)} />}
+        {(newProps: T) => (
+          <WrappedComponent {...(newProps as T)} children={props.children} />
+        )}
       </Provider>
     )
   }
