@@ -1,5 +1,4 @@
-import { defineCssVars } from '@alicloud/css-var-utils'
-import { withStyledTheme } from '@alicloud/css-var-utils/react'
+import { defineCssVars, withStyledTheme } from '@alicloud/css-var-utils'
 
 export const vars = defineCssVars({
   '--console-menu-divider-margin': { default: '15px' },

@@ -1,6 +1,5 @@
 import React from 'react'
-import { overwriteCssVars } from '@alicloud/css-var-utils'
-import { withStyledTheme } from '@alicloud/css-var-utils/react'
+import { overwriteCssVars, withStyledTheme } from '@alicloud/css-var-utils'
 import { vars as sourceVars } from './xconsole'
 
 export const vars = overwriteCssVars(sourceVars, {

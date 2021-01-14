@@ -78,10 +78,11 @@ export function defineCssVars<Definition extends IDefineCssVars>(
   return result as any
 }
 
-export function overwriteCssVars<
-  CssVars extends ICssVars,
-  Overwrite extends OverWriteCssVars<CssVars>
->(vars: CssVars, overwrite: Overwrite): GetOverwritten<CssVars, Overwrite> {
+export function overwriteCssVars<CssVars extends ICssVars>(
+  vars: CssVars,
+  // 禁止用户传入CssVars之外的属性
+  overwrite: OverWriteCssVars<CssVars> & {}
+): GetOverwritten<CssVars, OverWriteCssVars<CssVars>> {
   const result: { [name: string]: any } = {}
   Object.entries(vars).forEach(([name, cssVar]) => {
     const overwriteVal = overwrite[name]
