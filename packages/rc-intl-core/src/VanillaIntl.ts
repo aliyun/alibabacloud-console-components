@@ -68,8 +68,8 @@ class VanillaIntl extends IntlBase {
       if (err.message === `Expected "{" but "-" found.` || err.found === '-') {
         warning(
           false,
-          `文案格式不正确。使用select语法的时候， select case不能包含连字符“-”。
-比如
+          `文案格式不正确。文案key："${exactKey}"。
+使用select语法的时候， select case不能包含连字符“-”。比如：
 This is {region, select,
   cn-huabei {华北}
   cn-qingdao {青岛}
@@ -83,7 +83,11 @@ This is {region, select,
 `
         )
       } else {
-        warning(false, err.message || 'Uncaught error')
+        const msg = err.message || 'Uncaught error'
+        warning(
+          false,
+          `文案格式不正确。文案key："${exactKey}"。错误信息："${msg}"`
+        )
       }
     }
 
