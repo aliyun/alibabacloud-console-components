@@ -78,6 +78,10 @@ export function defineCssVars<Definition extends IDefineCssVars>(
   return result as any
 }
 
+/**
+ * overwrite参数中，只能传入vars中定义过的属性，否则ts类型报错。
+ * 这样能防止用户写错属性名。
+ */
 export function overwriteCssVars<CssVars extends ICssVars>(
   vars: CssVars,
   // 禁止用户传入CssVars之外的属性
