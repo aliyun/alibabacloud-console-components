@@ -84,7 +84,8 @@ export function defineCssVars<Definition extends IDefineCssVars>(
  */
 export function overwriteCssVars<CssVars extends ICssVars>(
   vars: CssVars,
-  // 禁止用户传入CssVars之外的属性
+  // Type & {} 的作用是禁止用户传入CssVars之外的属性
+  // https://stackoverflow.com/a/57117594/8175856
   overwrite: OverWriteCssVars<CssVars> & {}
 ): GetOverwritten<CssVars, OverWriteCssVars<CssVars>> {
   const result: { [name: string]: any } = {}
