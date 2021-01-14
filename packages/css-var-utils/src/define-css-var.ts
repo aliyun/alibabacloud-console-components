@@ -24,7 +24,7 @@ export class CssVar implements IDefineCssVar {
     this.desc = opts.desc
   }
 
-  get use() {
+  get putWithoutContext() {
     if (this.default) {
       return `var(${this.name}, ${this.default})`
     } else {
@@ -32,8 +32,11 @@ export class CssVar implements IDefineCssVar {
     }
   }
 
-  get useTheme(): (props: any) => string {
-    return (props: any) => props.theme?.cssVars?.[this.name]?.use ?? this.use
+  get put(): (props: any) => string {
+    // 优先使用外层Provider的主题
+    return (props: any) =>
+      props.theme?.cssVars?.[this.name]?.putWithoutContext ??
+      this.putWithoutContext
   }
 }
 

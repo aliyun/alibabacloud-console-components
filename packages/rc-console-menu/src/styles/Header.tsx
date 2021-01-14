@@ -10,7 +10,7 @@ const Header = styled.h2`
     position: relative;
     font-size: 14px;
     font-weight: 600;
-    color: ${vars['--console-menu-header-color'].useTheme};
+    color: ${vars['--console-menu-header-color'].put};
     margin: 0;
     line-height: 18px;
     display: flex;
