@@ -1,31 +1,27 @@
-import { defineCssVars, overwriteCssVars } from "./src";
+import { CssVarTheme } from './src'
 
-const a = defineCssVars({
+const t1 = CssVarTheme.create({
   var1: { default: 'def 1', desc: 'desc1' },
   var2: { default: 'def 2' },
   var3: {},
 } as const)
 
-a.var2
-
-a.toStyleObject().var2
-
-const o1 = overwriteCssVars(a, {
-  var1: 'overwrite 1',
+const t2 = t1.extends({
+  var1: 'overwrite1',
 } as const)
 
-o1.var1.desc
-o1.toStyleObject().var1
-
-const o2 = overwriteCssVars(a, {
-  var2: 'overwrite 2',
+const t3 = t2.extends({
+  var1: 'o2',
+  var2: 'o3',
 } as const)
 
-o2.var1.desc
-
-const o3 = overwriteCssVars(o1, {
-  var1: 'overwrite 4',
-  var2: 'overwrite 3',
+const t4 = t3.extends({
+  var1: 'o4',
+  var2: 'o5',
+  var3: 'o6',
 } as const)
 
-o3.var1
+t4.vars.var1
+t4.vars.var3
+t4.vars.var2
+

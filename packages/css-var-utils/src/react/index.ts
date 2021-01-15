@@ -1,2 +1,2 @@
 export * from './CssVarReader'
-export * from './withStyledTheme'
+export * from './StyledThemeProvider'
