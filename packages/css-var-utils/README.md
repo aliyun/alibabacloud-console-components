@@ -2,12 +2,12 @@
 
 css-var-utils 帮助你管理 css-var 的 fallback value，生成的代码类似于`background-color: var(--btn-bg-color, #ccc)`。因此组件使用者可以通过定义`--btn-bg-color`来覆盖这个颜色。
 
-css-var-utils 帮助你在 Typescript 中定义、覆盖、使用 Css Variables：
+css-var-utils 帮助你使用 Typescript 来定义、扩展、使用 Css Variables 主题：
 
 - **定义**一套【css-var 主题】，其中包含 css-var 的名称、默认值、描述
 - **覆盖**【css-var 主题】中的默认值，得到一套新的主题
   - 比如原本的 【css-var 主题】是一套亮色主题，你可以通过覆盖其中的默认值，扩展出一套暗色主题的变量定义
-- 在 styled-components 中 **使用**【css-var 主题】中的默认值
+- 在 js（如styled-components） 中 **使用**【css-var 主题】中的变量
 - 多主题 UI 组件的开发：
   - 组件提供者可以定义多套主题变量，给消费者选择
   - 组件消费者可以选择自己需要的主题
