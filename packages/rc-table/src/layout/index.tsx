@@ -134,6 +134,11 @@ export interface IRcTableProps {
    * 当action-bar为affix状态的时候，透传给弹层overlay，继承基础组件`Overlay`。可以指定action-bar在affix状态时候渲染的容器
    */
   affixBarOverlayProps?: OverlayProps
+  /**
+   * @internal
+   * Table组件，可以是fusion的Table或者Table.StickyLock
+   */
+  TableComponent?: React.ComponentType
 }
 
 /**
@@ -250,6 +255,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     afterFixedBarIntersectChanged,
     fixedBarExpandWidth = [defaultExpandedWidth, defaultExpandedWidth],
     affixBarOverlayProps,
+    TableComponent = Table,
     ...restProps
   } = props
 
@@ -296,7 +302,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
           </ExactTopActionBar>
         )}
         <div>
-          <Table {...restProps} />
+          <TableComponent {...restProps} />
         </div>
         {(selection || pagination) && (
           <ExactBottomActionBar
@@ -356,3 +362,7 @@ const STableWrapper = styled.div`
     }
   }
 `
+
+export const StickyLockLayout: React.FC<ITableProps> = (props) => {
+  return <Layout TableComponent={Table.StickyLock} {...props} />
+}
