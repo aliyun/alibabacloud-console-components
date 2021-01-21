@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.4.0-alpha.16",
+  "version": "1.4.0-alpha.17",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -32,13 +32,13 @@
     "*.css"
   ],
   "dependencies": {
-    "@alifd/next": "1.21.15",
+    "@alifd/next": "1.21.16",
     "classnames": "^2.2.6",
     "hoist-non-react-statics": "^3.3.2",
     "react-loading-skeleton": "^2.1.1"
   },
   "devDependencies": {
-    "@alicloudfe/components": "1.0.48",
+    "@alicloudfe/components": "1.0.54",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/parser": "^7.4.5",

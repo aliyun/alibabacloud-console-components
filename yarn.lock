@@ -450,14 +450,12 @@
     mkdirp "^0.5.1"
     yeoman-generator "^2.0.1"
 
-"@alicloudfe/components@1.0.48":
-  version "1.0.48"
-  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.48.tgz#1893b2c85e550049ed46b73ca7f8ac159303eba3"
-  integrity sha1-GJOyyF5VAEntRrc8p/isFZMD66M=
+"@alicloudfe/components@1.0.54":
+  version "1.0.54"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.54.tgz#a500329eaa62b00341518f9993f22edf5f2e0d43"
+  integrity sha1-pQAynqpisANBUY+Zk/Iu318uDUM=
   dependencies:
-    "@alifd/next" "1.21.15"
-    "@pika/react" "^16.13.1"
-    "@pika/react-dom" "^16.13.1"
+    "@alifd/next" "1.21.16"
     classnames "^2.2.6"
     hoist-non-react-statics "^3.3.2"
     react-loading-skeleton "^2.1.1"
@@ -479,10 +477,10 @@
     "@alifd/validate" "^1.2.0"
     prop-types "^15.5.8"
 
-"@alifd/next@1.21.15":
-  version "1.21.15"
-  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.15.tgz#b120ff4ffd71f4c9bc3d71ac3282408751b73a61"
-  integrity sha1-sSD/T/1x9Mm8PXGsMoJAh1G3OmE=
+"@alifd/next@1.21.16":
+  version "1.21.16"
+  resolved "https://registry.npm.alibaba-inc.com/@alifd/next/download/@alifd/next-1.21.16.tgz#4419c7ab0cc5f9fcd57c7222702bae0f1bece801"
+  integrity sha1-RBnHqwzF+fzVfHIicCuuDxvs6AE=
   dependencies:
     "@alifd/field" "~1.4.1"
     "@alifd/validate" "~1.2.0"
@@ -4277,16 +4275,6 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
     strip-ansi "^3"
-
-"@pika/react-dom@^16.13.1":
-  version "16.13.1"
-  resolved "https://registry.npm.alibaba-inc.com/@pika/react-dom/download/@pika/react-dom-16.13.1.tgz#8e684617ea2e3e0741e418954f74e8ec1c93f81d"
-  integrity sha1-jmhGF+ouPgdB5BiVT3To7ByT+B0=
-
-"@pika/react@^16.13.1":
-  version "16.13.1"
-  resolved "https://registry.npm.alibaba-inc.com/@pika/react/download/@pika/react-16.13.1.tgz#20e47997d2a2f1e5da39a8e28b75db2ec77d99c6"
-  integrity sha1-IOR5l9Ki8eXaOajii3XbLsd9mcY=
 
 "@pmmmwh/react-refresh-webpack-plugin@^0.2.0":
   version "0.2.0"
