@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-slide-panel",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "cc-dev-out/index.d.ts",
