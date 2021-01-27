@@ -88,6 +88,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   container,
   placement,
   popupProps,
+  ...rest
 }) => {
   const ctxValue = useMemo(() => ({ activeId, onSwitchPanelItem }), [
     activeId,
@@ -127,6 +128,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
     isShowing,
     top,
     placeBottom,
+    ...rest,
   }
 
   const align = placeBottom ? 'bl bl' : 'tr tr'

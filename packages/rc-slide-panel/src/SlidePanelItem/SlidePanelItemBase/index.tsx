@@ -47,6 +47,7 @@ const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({
   onSwitchStarted,
   onSwitchCancled,
   onSwitchCompleted,
+  ...rest
 }) => {
   const ctxValue = useSlidePanelContext()
   // 当ctxValue.activeId为ActiveIdForALL时，必定激活当前面板
@@ -70,11 +71,12 @@ const SlidePanelItemBase: React.FC<ISlidePanelItemBaseProps> = ({
         ctxValue.onSwitchPanelItem &&
         ctxValue.onSwitchPanelItem(id)
       }
-      onTransitionEnd={e => {
+      onTransitionEnd={(e) => {
         if (e.currentTarget === e.target) {
           transitionEndSignal()
         }
       }}
+      {...rest}
     >
       {children}
     </SPanelItemWrapper>

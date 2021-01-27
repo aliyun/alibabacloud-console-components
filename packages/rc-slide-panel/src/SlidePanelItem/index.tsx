@@ -123,6 +123,7 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
   onSwitchCancled,
   onSwitchCompleted,
   placement,
+  ...rest
 }) => {
   const ctxValue = useSlidePanelContext()
   // 当ctxValue.activeId为ActiveIdForALL时，必定激活当前面板
@@ -158,6 +159,7 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
     onSwitchStarted,
     onSwitchCancled,
     onSwitchCompleted,
+    ...rest,
   }
 
   return (
