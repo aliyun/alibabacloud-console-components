@@ -18,7 +18,7 @@ function renderHeader({
     return null
   }
   return (
-    <SHeaderWrapper justify="space-between">
+    <SHeaderWrapper justify="space-between" className="panel-header">
       {onBackArrowClicked && <SBackIcon onClick={onBackArrowClicked} />}
       {title && (
         <Col style={{ flex: '0 0 auto' }} className="panel-header-title">

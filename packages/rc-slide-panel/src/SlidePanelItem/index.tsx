@@ -122,7 +122,7 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
   onSwitchStarted,
   onSwitchCancled,
   onSwitchCompleted,
-  placement
+  placement,
 }) => {
   const ctxValue = useSlidePanelContext()
   // 当ctxValue.activeId为ActiveIdForALL时，必定激活当前面板
@@ -165,7 +165,10 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
       <SSlidePanelContentWrapper>
         {renderHeader({ title, onBackArrowClicked, headerExtra, onClose })}
         <SPlaceHolder display={isActive ? 'none' : 'block'}>...</SPlaceHolder>
-        <SBodyWrapper display={isActive ? 'block' : 'none'}>
+        <SBodyWrapper
+          display={isActive ? 'block' : 'none'}
+          className="panel-body"
+        >
           {children}
         </SBodyWrapper>
         {renderFooter({

@@ -55,7 +55,9 @@ function renderFooter({
   }
   // 如果没有事件处理函数，则不渲染footer
   if (!footerContent) return null
-  return <SFooterWrapper>{footerContent}</SFooterWrapper>
+  return (
+    <SFooterWrapper className="panel-footer">{footerContent}</SFooterWrapper>
+  )
 }
 
 export default renderFooter
