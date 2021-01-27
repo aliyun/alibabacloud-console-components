@@ -450,10 +450,10 @@
     mkdirp "^0.5.1"
     yeoman-generator "^2.0.1"
 
-"@alicloudfe/components@1.0.54":
-  version "1.0.54"
-  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.54.tgz#a500329eaa62b00341518f9993f22edf5f2e0d43"
-  integrity sha1-pQAynqpisANBUY+Zk/Iu318uDUM=
+"@alicloudfe/components@1.0.57":
+  version "1.0.57"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloudfe/components/download/@alicloudfe/components-1.0.57.tgz#7b647d386934649ec50b7f2172699ec8bcaf21cf"
+  integrity sha1-e2R9OGk0ZJ7FC38hcmmeyLyvIc8=
   dependencies:
     "@alifd/next" "1.21.16"
     classnames "^2.2.6"

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components",
-  "version": "1.4.0-alpha.17",
+  "version": "1.4.0-alpha.20",
   "description": "Alibaba Cloud React Components",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -38,7 +38,7 @@
     "react-loading-skeleton": "^2.1.1"
   },
   "devDependencies": {
-    "@alicloudfe/components": "1.0.54",
+    "@alicloudfe/components": "1.0.57",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/parser": "^7.4.5",
