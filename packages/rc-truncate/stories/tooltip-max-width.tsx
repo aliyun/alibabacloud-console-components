@@ -13,6 +13,16 @@ const Demo = () => {
         superc alifragilis ticexpialidoc ous@supercal ifragil isticexpial idocio
         ussdfgds
       </Truncate>
+      <br />
+      <br />
+      <Truncate
+        type="width"
+        threshold={200}
+        tooltipMaxWidth={120}
+        popupStyle={{ wordBreak: 'break-word' }}
+      >
+        supercalifragilisticexpialidocious@supercalifragilisticexpialidocious.com
+      </Truncate>
     </div>
   )
 }
