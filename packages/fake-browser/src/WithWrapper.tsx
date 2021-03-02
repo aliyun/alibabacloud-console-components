@@ -24,7 +24,8 @@ const FakeBrowserWithWrapper: React.FC<{
       bottomLeft: false,
       left: false,
       topLeft: false,
-      ...(rndProps && rndProps.enableResizing),
+      ...(typeof rndProps?.enableResizing === 'object' &&
+        rndProps.enableResizing),
     }}
     style={{
       backgroundColor: 'rgb(250, 250, 250)',

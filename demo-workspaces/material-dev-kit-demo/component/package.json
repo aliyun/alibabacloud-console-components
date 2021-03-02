@@ -17,8 +17,6 @@
   },
   "devDependencies": {
     "@alicloud/console-components-lib-publisher": "^0.1.24",
-    "@types/react": "^16.9.17",
-    "@types/styled-components": "^4.4.1",
     "cross-env": "^6.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
