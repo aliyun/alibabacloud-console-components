@@ -7,8 +7,6 @@ import {
   usePanelStackCtx,
 } from '@alicloud/console-components-slide-panel'
 
-/* eslint-disable no-console */
-
 const FirstPanel: React.FC<{
   setIsPanelShowing: (v: boolean) => void
 }> = ({ setIsPanelShowing }) => {

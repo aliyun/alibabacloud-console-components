@@ -24,7 +24,7 @@ const Example = () => {
   const [active, setActive] = useState(false)
 
   return (
-    <AppLayout nav={<Nav />}>
+    <AppLayout nav={<Nav />} style={{ height: 300 }}>
       <Page>
         <Page.Header title="概览" />
         <Page.Content>

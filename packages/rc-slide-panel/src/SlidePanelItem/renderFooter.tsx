@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@alicloud/console-components'
 import defaultMessages from '../defaultMessages'
 import { SFooterWrapper } from './style'
-import { ISlidePanelItemProps } from './index'
+import type { ISlidePanelItemProps } from '../types/ISlidePanelItemProps.type'
 
 function renderFooter({
   customFooter,

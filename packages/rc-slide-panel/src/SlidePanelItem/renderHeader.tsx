@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Icon } from '@alicloud/console-components'
 import { SHeaderWrapper, SBackIcon } from './style'
-import { ISlidePanelItemProps } from './index'
+import type { ISlidePanelItemProps } from '../types/ISlidePanelItemProps.type'
 
 const { Col } = Grid
 
