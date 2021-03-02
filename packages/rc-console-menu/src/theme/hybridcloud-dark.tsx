@@ -1,8 +1,7 @@
-import React from 'react'
-import { overwriteCssVars, withStyledTheme } from '@alicloud/css-var-utils'
-import { vars as sourceVars } from './xconsole'
+import { withStyledTheme } from '@alicloud/css-var-utils'
+import { theme as sourceTheme } from './xconsole'
 
-export const vars = overwriteCssVars(sourceVars, {
+export const theme = sourceTheme.overwrite({
   '--console-menu-padding': '16px',
   '--console-menu-bg': '#1f1f1f',
   '--console-menu-hover-bg': '#303030',
@@ -18,7 +17,7 @@ export const vars = overwriteCssVars(sourceVars, {
   '--console-menu-divider-border': '1px solid #6b6b6b',
 })
 
-export const HybridCloudDarkTheme: React.FC = withStyledTheme(
-  vars,
+export const HybridCloudDarkTheme = withStyledTheme(
+  theme,
   (props) => props.children
 )

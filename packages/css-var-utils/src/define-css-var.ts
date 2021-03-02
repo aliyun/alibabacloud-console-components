@@ -134,7 +134,7 @@ export class CssVarTheme<CssVars extends ICssVars> {
   ): CssVarTheme<GetCssVars<Definition>> {
     return new CssVarTheme(defineCssVars(definitions), constructor_key)
   }
-  extends<Overwrite extends OverWriteCssVars<CssVars>>(
+  overwrite<Overwrite extends OverWriteCssVars<CssVars>>(
     overwrite: OverWriteCssVars<CssVars> &
       NoExtraProperties<OverWriteCssVars<CssVars>, Overwrite>
   ): CssVarTheme<GetOverwritten<CssVars, Overwrite>> {

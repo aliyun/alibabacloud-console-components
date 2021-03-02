@@ -20,12 +20,12 @@ export const defaultTheme = CssVarTheme.create({
   // },
 } as const)
 
-export const darkTheme = defaultTheme.extends({
+export const darkTheme = defaultTheme.overwrite({
   '--btn-bg-color': defaultTheme.vars['--input-border-color'].default,
   '--input-border-color': '#6b6f83',
 } as const)
 
-export const anotherDarkTheme = darkTheme.extends({
+export const anotherDarkTheme = darkTheme.overwrite({
   '--input-border-color': '#8272ec',
   '--card-border-radius': '2px',
 } as const)

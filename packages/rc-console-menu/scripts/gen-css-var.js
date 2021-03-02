@@ -1,4 +1,3 @@
-var cssVarTheme = require('@alicloud/css-var-utils')
 var fs = require('fs-extra')
 var path = require('path')
 
@@ -12,7 +11,7 @@ var themes = {
 fs.ensureDirSync(path.join(__dirname, `../dist/vars`))
 
 Object.entries(themes).forEach(([themeName, theme]) => {
-  const style = cssVarTheme.toStyleObject(theme.vars)
+  const style = theme.theme.values()
   const code = `:root {
 ${Object.entries(style)
   .map(([propName, propValue]) => {

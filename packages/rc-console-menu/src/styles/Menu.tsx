@@ -18,27 +18,27 @@ const PrimaryMenu = styled(NavFilterProps)<{
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    background-color: ${vars['--console-menu-bg'].put};
+    background-color: ${vars['--console-menu-bg'].consumeStyled};
 
     .${getPrefix}menu-header {
       box-sizing: border-box;
-      padding: ${vars['--console-menu-header-padding'].put};
+      padding: ${vars['--console-menu-header-padding'].consumeStyled};
     }
 
     ${SubMenu} {
-      background-color: ${vars['--console-menu-bg'].put};
+      background-color: ${vars['--console-menu-bg'].consumeStyled};
       .${getPrefix}nav-item.${getPrefix}menu-item {
-        background-color: ${vars['--console-menu-bg'].put};
-        color: ${vars['--console-menu-normal-text-color'].put};
-        padding: 0 ${vars['--console-menu-padding'].put} 0
-          ${vars['--console-menu-padding'].put};
+        background-color: ${vars['--console-menu-bg'].consumeStyled};
+        color: ${vars['--console-menu-normal-text-color'].consumeStyled};
+        padding: 0 ${vars['--console-menu-padding'].consumeStyled} 0
+          ${vars['--console-menu-padding'].consumeStyled};
 
         &:hover {
-          background-color: ${vars['--console-menu-hover-bg'].put};
+          background-color: ${vars['--console-menu-hover-bg'].consumeStyled};
         }
 
         &.${getPrefix}opened {
-          color: ${vars['--console-menu-normal-text-color'].put};
+          color: ${vars['--console-menu-normal-text-color'].consumeStyled};
         }
 
         .${getPrefix}menu-item-inner {
@@ -46,9 +46,9 @@ const PrimaryMenu = styled(NavFilterProps)<{
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: ${vars['--console-menu-item-height'].put};
+          height: ${vars['--console-menu-item-height'].consumeStyled};
           > .${getPrefix}menu-icon-arrow {
-            color: ${vars['--console-menu-icon-arrow-color'].put};
+            color: ${vars['--console-menu-icon-arrow-color'].consumeStyled};
             line-height: 12px;
             position: static;
           }
@@ -57,48 +57,48 @@ const PrimaryMenu = styled(NavFilterProps)<{
     }
 
     ${Item} {
-      color: ${vars['--console-menu-normal-text-color'].put};
-      background-color: ${vars['--console-menu-bg'].put};
-      padding: 0 ${vars['--console-menu-padding'].put};
+      color: ${vars['--console-menu-normal-text-color'].consumeStyled};
+      background-color: ${vars['--console-menu-bg'].consumeStyled};
+      padding: 0 ${vars['--console-menu-padding'].consumeStyled};
 
       &:hover {
-        background-color: ${vars['--console-menu-hover-bg'].put};
+        background-color: ${vars['--console-menu-hover-bg'].consumeStyled};
       }
 
       a {
-        color: ${vars['--console-menu-normal-text-color'].put};
+        color: ${vars['--console-menu-normal-text-color'].consumeStyled};
         &:hover {
           text-decoration: none;
         }
       }
 
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}selected.${getPrefix}selected {
-        background-color: ${vars['--console-menu-active-bg'].put};
-        color: ${vars['--console-menu-active-text-color'].put};
+        background-color: ${vars['--console-menu-active-bg'].consumeStyled};
+        color: ${vars['--console-menu-active-text-color'].consumeStyled};
         a {
-          color: ${vars['--console-menu-active-text-color'].put};
+          color: ${vars['--console-menu-active-text-color'].consumeStyled};
         }
         ::before {
-          display: ${vars['--console-menu-active-bar-display'].put};
+          display: ${vars['--console-menu-active-bar-display'].consumeStyled};
           right: 0;
         }
       }
 
       > .${getPrefix}menu-item-inner {
-        height: ${vars['--console-menu-item-height'].put};
+        height: ${vars['--console-menu-item-height'].consumeStyled};
         display: flex;
         align-items: center;
       }
 
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}disabled {
-        color: ${vars['--console-menu-disabled-text-color'].put};
+        color: ${vars['--console-menu-disabled-text-color'].consumeStyled};
 
         a {
           background-color: #f5f5f5;
         }
 
         &:hover {
-          background-color: ${vars['--console-menu-disabled-bg'].put};
+          background-color: ${vars['--console-menu-disabled-bg'].consumeStyled};
         }
       }
     }

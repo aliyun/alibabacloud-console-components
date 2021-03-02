@@ -1,8 +1,7 @@
-import React from 'react'
-import { overwriteCssVars, withStyledTheme } from '@alicloud/css-var-utils'
-import { vars as sourceVars } from './xconsole'
+import { withStyledTheme } from '@alicloud/css-var-utils'
+import { theme as sourceTheme } from './xconsole'
 
-export const vars = overwriteCssVars(sourceVars, {
+export const theme = sourceTheme.overwrite({
   '--console-menu-padding': '16px',
   '--console-menu-bg': '#f7f7f7',
   '--console-menu-hover-bg': '#f0f0f0',
@@ -14,7 +13,4 @@ export const vars = overwriteCssVars(sourceVars, {
   '--console-menu-header-padding': '18px 16px',
 })
 
-export const WindTheme: React.FC = withStyledTheme(
-  vars,
-  (props) => props.children
-)
+export const WindTheme = withStyledTheme(theme, (props) => props.children)

@@ -1,6 +1,6 @@
-import { defineCssVars, withStyledTheme } from '@alicloud/css-var-utils'
+import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils'
 
-export const vars = defineCssVars({
+export const theme = CssVarTheme.create({
   '--console-menu-divider-margin': { default: '15px' },
   '--console-menu-divider-border': { default: '1px solid #e3e4e6' },
   '--console-menu-header-color': { default: '#333333' },
@@ -18,7 +18,4 @@ export const vars = defineCssVars({
   '--console-menu-disabled-bg': { default: '#f5f5f5' },
 })
 
-export const XConsoleTheme: React.FC = withStyledTheme(
-  vars,
-  (props) => props.children
-)
+export const XConsoleTheme = withStyledTheme(theme, (props) => props.children)
