@@ -4,7 +4,6 @@ import { Menu } from '@alicloud/console-components'
 
 const SMenu = styled(MenuFilterProps)`
   &&& {
-    left: 0 !important;
     .${getPrefix}menu-item {
       height: 35px;
       line-height: 35px;

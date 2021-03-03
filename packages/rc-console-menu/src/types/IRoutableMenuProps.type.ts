@@ -1,7 +1,7 @@
 import { RouteComponentProps } from 'react-router-dom'
 import { Location } from 'history'
-import { IConsoleMenuProps } from './ConsoleMenu'
-import { IRoutableItemDescriptor } from './ItemDescriptor'
+import { IConsoleMenuProps } from './IConsoleMenuProps.type'
+import { IRoutableItemDescriptor } from './IRoutableItemDescriptor.type'
 
 /**
  * @public

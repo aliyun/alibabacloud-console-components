@@ -25,7 +25,7 @@
   },
   "scripts": {
     "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
-    "clean": "rm -rf dist lib es cc-dev-out",
+    "clean": "rm -rf dist lib es doc-dist",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
     "types": "tsc -p src --emitDeclarationOnly",

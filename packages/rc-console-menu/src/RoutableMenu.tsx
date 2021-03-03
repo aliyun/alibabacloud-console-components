@@ -4,8 +4,9 @@ import { Location } from 'history'
 import { withRouter, Link, matchPath } from 'react-router-dom'
 import ConsoleMenu from './ConsoleMenu'
 import { isNil } from './utils'
-import { IRoutableItemDescriptor, IItemDescriptor } from './ItemDescriptor'
-import { IRoutableMenuProps } from './RoutableMenuTypes'
+import { IItemDescriptor } from './types/IItemDescriptor.type'
+import { IRoutableMenuProps } from './types/IRoutableMenuProps.type'
+import { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
 
 /* eslint-disable @typescript-eslint/no-explicit-any, no-restricted-syntax */
 

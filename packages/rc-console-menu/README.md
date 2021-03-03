@@ -278,25 +278,25 @@ npm i -S @alicloud/console-components-console-menu
 
 下面的示例展示了使用 `<ConsoleMenu>` / `<ConsoleMenu.Item>` 以及 `<ConsoleMenu.SubMenu>` 等组件，组合而成一个完整的视图级别的导航菜单
 
-[MDXInstruction:importDemo:BasicDemo](./stories/basic.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=basic)
 
 ### 次级导航
 
 使用 `type="secondary"` 可以将导航的样式变为次级导航，功能与主导航一致
 
-[MDXInstruction:importDemo:SecondaryNavDemo](./stories/secondary.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=secondary)
 
 ### 组件受控
 
 使用 `activeKey` 可以控制导航的当前选中的 key ，下面的示例展示了如何结合 `<Route>` 和 `<Link>` 来自定义受路由控制的导航菜单
 
-[MDXInstruction:importDemo:ControlledMenuDemo](./stories/controlled-menu.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=controlled-menu)
 
 ### 使用结构化声明
 
 使用 `items` 可以将所有的菜单项进行结构化声明，就像 `Table.dataSource` 一样
 
-[MDXInstruction:importDemo:ItemsDeclarationDemo](./stories/with-items-declaration.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=with-items-declaration)
 
 ### 可路由的导航菜单
 
@@ -304,34 +304,35 @@ npm i -S @alicloud/console-components-console-menu
 
 _该功能同级依赖于 `dva^2.0.0` ，请确保你的项目中安装了该依赖的正确版本_
 
-[MDXInstruction:importDemo:RoutableMenuDemo](./stories/routable-menu.tsx)
-
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=routable-menu)
 
 ### 可切换header的导航菜单
 
 可以通过配置`headers`来为header提供数据源，当提供headers之后，header类型应为string非ReactNode, 否则会导致下拉菜单不能勾选☑️
 
-[MDXInstruction:importDemo:SwitchHeaderMenuDemo](./stories/switch-header.tsx)
-
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=switch-header)
 
 ## APIs
 
 ### ConsoleMenu
 
-[MDXInstruction:renderInterface:IConsoleMenuProps](./api-json/api.json)
+继承`Nav`组件的props，下表不列出继承的属性。
+
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=types/IConsoleMenuProps)
 
 #### IItemDescriptor
 
-[MDXInstruction:renderInterface:IItemDescriptor](./api-json/api.json)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=types/IItemDescriptor)
+
 
 ### RoutableMenu
 
 继承自 `<ConsoleMenu>` ，重复的属性不再赘述，请参阅 [ConsoleMenu API](#consolemenu)
 
-[MDXInstruction:renderInterface:IRoutableMenuProps](./api-json/api.json)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=types/IRoutableMenuProps)
 
 #### IRoutableItemDescriptor
 
 继承自 `IItemDescriptor` ，重复的属性不再赘述，请参阅 [IItemDescriptor](#iitemdescriptor)
 
-[MDXInstruction:renderInterface:IRoutableItemDescriptor](./api-json/api.json)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-console-menu-docs&entryKey=types/IRoutableItemDescriptor)
