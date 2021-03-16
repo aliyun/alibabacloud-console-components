@@ -1,6 +1,7 @@
 import React from 'react'
 import * as c from '@alicloud/console-components'
 import { useTheme } from '../demos/utils/theme-switcher'
+import './test.css'
 
 export default ({ children }: any) => {
   let content = children

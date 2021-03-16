@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-console-menu",
-  "version": "1.2.0-alpha.2",
+  "version": "1.2.0-alpha.5",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "es/index.d.ts",
@@ -39,7 +39,8 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "classnames": "^2.2.6",
-    "warning": "^4.0.3"
+    "warning": "^4.0.3",
+    "@alicloud/css-var-utils": "^0.1.0"
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",

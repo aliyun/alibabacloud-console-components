@@ -13,6 +13,10 @@ module.exports = {
             usePathInDev: path.resolve(__dirname, '../src/index.ts'),
           },
           {
+            moduleName: '@alicloud/console-components-console-menu/RoutableMenu',
+            usePathInDev: path.resolve(__dirname, '../src/RoutableMenu.tsx'),
+          },
+          {
             moduleName: '@alicloud/console-components',
             usePathInDev: path.resolve(__dirname, './configedComponents.tsx'),
           },
