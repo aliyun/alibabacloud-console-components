@@ -17,7 +17,7 @@ import {
   partitionWithThreshold,
   renderActionsChildren,
 } from './utils'
-
+import { LinkButton } from './linkButton'
 import {
   baseClassName,
   itemClassName,
@@ -185,7 +185,11 @@ function defaultRenderShrinkItems(
                 {items.map((item, i) => {
                   const {
                     props: { disabled },
+                    type,
                   } = item
+                  if (type && (type as any).__windType === 'LinkButton') {
+                    return <Menu.Item {...item.props} />
+                  }
                   return (
                     // eslint-disable-next-line react/no-array-index-key
                     <Menu.Item disabled={disabled} key={i}>

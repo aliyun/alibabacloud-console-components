@@ -22,7 +22,13 @@ export interface ILinkButtonProps {
  * looks like a link
  * @internal
  */
-export const SLinkButton = styled.span<{ disabled?: boolean }>`
+export const SLinkButton = styled.button<{ disabled?: boolean }>`
+  /* reset button style */
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: inherit;
+
   display: inline-flex;
   align-items: center;
   color: ${({ disabled }) => (disabled ? '#c1c1c1' : '#0070cc')};
@@ -68,6 +74,7 @@ export const LinkButton: React.FC<
     </SLinkButton>
   )
 }
+;(LinkButton as any).__windType = 'LinkButton'
 
 /**
  * @public
