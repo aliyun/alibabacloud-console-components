@@ -56,6 +56,10 @@ export interface ISlidePanelProps {
   /* ----------------Copyed from ISlidePanelGroupProps---------------- */
 
   /**
+   * 自定义整个SlidePanelGroup的wrapper div的类名。
+   */
+  className?: string
+  /**
    * 是否在`isShowing===true`时展示背景蒙板。
    */
   hasMask?: boolean

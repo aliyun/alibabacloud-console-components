@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Overlay } from '@alicloud/console-components'
@@ -71,6 +71,20 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
 
   const align = placeBottom ? 'bl bl' : 'tr tr'
 
+  useLayoutEffect(() => {
+    if (isShowing) {
+      // 保存之前的focus元素
+      const preFocusEl = document.activeElement
+      console.log('preFocusEl', preFocusEl)
+      return () => {
+        if (preFocusEl && document.contains(preFocusEl)) {
+          // 恢复到之前的focus
+          ;(preFocusEl as HTMLElement).focus()
+        }
+      }
+    }
+  }, [isShowing])
+
   return (
     <slidePanelGroupContext.Provider value={ctxValue}>
       <SGlobalStyle top={top} />
@@ -93,9 +107,17 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         canCloseByOutSideClick={false}
         canCloseByEsc={false}
         target="viewport"
+        autoFocus={popupProps?.autoFocus ?? true}
         {...popupProps}
       >
-        <SPanelsWrapper {...slidePanelWrapperProps}>{children}</SPanelsWrapper>
+        <SPanelsWrapper
+          role="dialog"
+          aria-modal="true"
+          aria-hidden={isShowing ? 'false' : 'true'}
+          {...slidePanelWrapperProps}
+        >
+          {children}
+        </SPanelsWrapper>
       </Popup>
     </slidePanelGroupContext.Provider>
   )

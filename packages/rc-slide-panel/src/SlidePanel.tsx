@@ -31,6 +31,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
   top,
   container,
   popupProps,
+  className,
 }) => {
   const slidePanelGroupProps: ISlidePanelGroupProps = {
     isShowing,
@@ -42,6 +43,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     container,
     placement,
     popupProps,
+    className,
   }
   const slidePanelItemProps: ISlidePanelItemProps = {
     id: '__SlidePanelId__',
