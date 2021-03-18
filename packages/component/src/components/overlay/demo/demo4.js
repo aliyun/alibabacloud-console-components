@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Overlay } from '@alicloud/console-components'
+import { Overlay, Button } from '@alicloud/console-components'
 import styled from 'styled-components'
 
 const { Popup } = Overlay
@@ -13,7 +13,7 @@ const Demo4 = () => {
 
   return (
     <Popup
-      trigger={<button>Open</button>}
+      trigger={<Button>Open</Button>}
       triggerType="click"
       visible={visible}
       onVisibleChange={onVisibleChange}
@@ -27,9 +27,9 @@ const SInner = styled.div`
   width: 300px;
   height: 100px;
   padding: 10px;
-  border: 1px solid #999999;
   background: #ffffff;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ebebeb;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.13);
 `
 
 export default Demo4

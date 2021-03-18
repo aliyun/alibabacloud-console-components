@@ -7,6 +7,7 @@ import Demo5 from './demo5'
 import Demo6 from './demo6'
 import Demo7 from './demo7'
 import Demo8 from './demo8'
+import Demo9 from './demo9'
 import './index.less'
 
 const PaginationDemo = () => (
@@ -27,6 +28,8 @@ const PaginationDemo = () => (
     <Demo7 />
     <h2>分页按钮链接</h2>
     <Demo8 />
+    <h2>每页展示条数(受控)</h2>
+    <Demo9 />
   </div>
 )
 

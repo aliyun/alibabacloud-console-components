@@ -11,6 +11,80 @@ tags:
 
 输入或选择日期的控件。当用户需要输入一个日期，可以点击标准输入框，弹出日期面板进行选择。
 
+### 日期选择模式
+
+DatePicker/RangePicker 在交互上增加了**操作焦点**的设置，意味着，如果某个输入框处于 focus 态，那么当前选择的日期将会作用于该输入框对应的日期。
+
+如上图所示，带时间的 RangePicker 有 4 个输入焦点，分别为开始日期、开始时间、结束日期、结束时间。当用户激活某个输入框时，此时下拉选择的日期将会作用域该输入框。同时设置了如下两个规则：
+
+1.  已选定日期范围后，当焦点在开始日期时，如果即将选择的日期大于结束日期，将会重设开始日期。
+2.  已选定日期范围后，当焦点在结束日期时，如果即将选择的日期小于开始日期，将会重设开始日期。
+
+### 日期值的多语言
+
+由于 Calendar 组件内部使用 moment 对象来设置日期（请使用最新版 moment），部分 Locale 读取自 moment，因此用户需要在外部使用时[正确的设置 moment 的 locale](http://momentjs.cn/docs/#/i18n/changing-locale/) 。
+
+-   Q: 文档站点上看是中式日历，为什么我本地却是美式日历呢？如何进行多语言适配？<br/>
+    A: 日期的多语言情况比较复杂，涉及到年、月、日、星期、阅读习惯等多方面(美式从周日到周六，中式从周一到周日)，因此我们借助了成熟的时间库 moment.js 来进行日期的多语言处理。
+     moment.js 默认支持美式表达，如需中文等其他语言，请引入moment-with-locales.js语言包。
+
+```js
+import moment from 'moment';
+
+moment.locale('zh-cn');
+```
+
+此外，当改变 moment 的全局 locale 时并不会修改之前的已有实例，例如：
+
+```js
+moment.locale('fr');
+const m = moment(1316116057189);
+m.fromNow(); // il y a une heure
+
+moment.locale('en');
+m.fromNow(); // il y a une heure
+moment(1316116057189).fromNow(); // an hour ago
+```
+
+除了全局设置 moment 的多语言，还可以只对某个 moment 实例设置多语言。比如：
+
+```js
+const value = moment();
+value.locale('fr'); // set this instance to use French
+```
+
+### Moment 对象和字符串
+
+DatePicker 默认情况下接收和返回的数据类型都是 Moment 对象。为了便于用户的使用，DatePikcer 还支持直接传入字符串（组件内部仍然会格式化为 Moment 对象）。使用方法如下：
+
+标准非受控
+
+```jsx
+<DatePicker onChange={val => console.log(val)} />
+// select 2019-01-23
+// >> MomentObject
+
+<DatePicker defaultValue={moment()} onChange={val => console.log(val)} />
+// select 2019-01-23
+// >> MomentObject
+
+<DatePicker defaultValue="2018-01-23" onChange={val => console.log(val)} />
+// select 2019-01-23
+// >> "2019-01-23"
+```
+
+标准受控
+
+```jsx
+<DatePicker value={moment()} onChange={val => console.log(val)} />
+// setProps({ value: moment().add(1, 'months') })
+// >> MomentObject
+
+<DatePicker value="2018-01-23" onChange={val => console.log(val)} />
+// setProps({ value: '2019-01-23' })
+// >> "2019-01-23"
+```
+
 交互说明
 
 DatePicker/RangePicker 在交互上增加了操作焦点的设置，意味着，如果某个输入框处于 focus 态，那么当前选择的日期将会作用于该输入框对应的日期。

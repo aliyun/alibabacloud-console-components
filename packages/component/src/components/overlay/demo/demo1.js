@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react'
-import { Overlay } from '@alicloud/console-components'
+import { Overlay, Button } from '@alicloud/console-components'
 import styled from 'styled-components'
 
 const Demo1 = () => {
@@ -17,9 +17,9 @@ const Demo1 = () => {
 
   return (
     <div>
-      <button onClick={handleClick} ref={btnRef}>
+      <Button onClick={handleClick} ref={btnRef}>
         Toggle visible
-      </button>
+      </Button>
       <Overlay
         visible={visible}
         target={() => btnRef.current}
@@ -32,13 +32,13 @@ const Demo1 = () => {
   )
 }
 
-const SInner = styled.span`
+const SInner = styled.div`
   width: 300px;
   height: 100px;
   padding: 10px;
-  border: 1px solid #999999;
   background: #ffffff;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ebebeb;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.13);
 `
 
 export default Demo1
