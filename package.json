@@ -26,7 +26,7 @@
     "@alicloud/console-components-lib-publisher": "*",
     "@alicloud/console-toolkit-cli": "^1.2.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.8",
-    "@alicloud/console-toolkit-preset-docs": "^1.0.28",
+    "@alicloud/console-toolkit-preset-docs": "^1.0.29",
     "@microsoft/api-extractor": "^7.5.1",
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.2",

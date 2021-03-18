@@ -521,10 +521,10 @@
     babel-preset-breezr "^1.0.14"
     rollup-plugin-auto-external "^2.0.0"
 
-"@alicloud/console-toolkit-preset-docs@^1.0.28":
-  version "1.0.28"
-  resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.28.tgz#0a18fa8be2d79157bb72ffd3a1b0177f040d62be"
-  integrity sha1-Chj6i+LXkVe7cv/TobAXfwQNYr4=
+"@alicloud/console-toolkit-preset-docs@^1.0.29":
+  version "1.0.29"
+  resolved "https://registry.npm.alibaba-inc.com/@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.29.tgz#1cf8a5ca3edbc3d685b759ce69df5527c1545fd9"
+  integrity sha1-HPilyj7bw9aFt1nOad9VJ8FUX9k=
   dependencies:
     "@alicloud/console-os-react-portal" "0.4.1"
     "@alicloud/console-toolkit-docs-consumer" "^1.0.0"
