@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import { baseClassName } from './constant'
 
-const success = '#06B624'
-const warning = '#FFCE03'
-const error = '#F54745'
+const success = '#1E8E3E'
+const warning = '#FFC440'
+const error = '#D93026'
 const disabled = '#D7D8D9'
 
 const StyledWrapper = styled.span`
+  line-height: 1.27;
   .${baseClassName} {
     line-height: 24px;
 
@@ -67,10 +68,6 @@ const StyledWrapper = styled.span`
     &-text {
       display: inline-block;
       padding-left: 8px;
-
-      &-disabled {
-        color: ${disabled} - 30%;
-      }
     }
   }
 `
