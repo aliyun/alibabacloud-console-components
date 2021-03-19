@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Radio } from '@alicloud/console-components'
-import { Provider, Consumer } from '../..'
+import { Provider, Consumer } from '@alicloud/console-components-intl-context'
 
 /* eslint-disable */
 

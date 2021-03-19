@@ -1,9 +1,11 @@
 importers:
   .:
     devDependencies:
+      '@alicloud/console-components': 1.4.7_a07e313083451758bfc26fe1194774af
       '@alicloud/console-toolkit-cli': 1.2.0
       '@alicloud/console-toolkit-preset-component': 1.2.9_91fc91371b669d87b9c9f6447d2ef22c
       '@alicloud/console-toolkit-preset-docs': 1.0.29_ac55eb0727908bb6a0e72bd83a7eee79
+      '@pnpm/link-bins': 5.3.24
       '@types/classnames': 2.2.11
       '@types/fs-extra': 8.1.1
       '@types/lodash': 4.14.168
@@ -12,7 +14,7 @@ importers:
       '@types/react-dom': 17.0.2
       '@types/react-responsive': 8.0.2
       '@types/recompose': 0.30.7
-      '@types/styled-components': 4.1.8
+      '@types/styled-components': 5.1.0
       '@types/warning': 3.0.0
       '@types/webpack-env': 1.16.0
       '@typescript-eslint/eslint-plugin': 2.34.0_d6bc6d76af0df2b06ba3fa8648a0ba36
@@ -30,7 +32,7 @@ importers:
       eslint-plugin-import: 2.22.1_eslint@6.8.0
       eslint-plugin-jest: 23.20.0_eslint@6.8.0+typescript@4.2.3
       eslint-plugin-jsx-a11y: 6.4.1_eslint@6.8.0
-      eslint-plugin-prettier: 3.3.1_eslint@6.8.0+prettier@2.2.1
+      eslint-plugin-prettier: 3.3.1_d9f75d6ea79d885f9cc83ea96476ae4d
       eslint-plugin-react: 7.22.0_eslint@6.8.0
       eslint-plugin-react-hooks: 2.5.1_eslint@6.8.0
       glob: 7.1.6
@@ -45,9 +47,11 @@ importers:
       styled-components: 4.4.1_react-dom@16.14.0+react@16.14.0
       typescript: 4.2.3
     specifiers:
+      '@alicloud/console-components': ^1.4.0
       '@alicloud/console-toolkit-cli': ^1.2.0
       '@alicloud/console-toolkit-preset-component': ^1.2.8
       '@alicloud/console-toolkit-preset-docs': ^1.0.29
+      '@pnpm/link-bins': ^5.3.24
       '@types/classnames': ^2.2.9
       '@types/fs-extra': ^8.0.1
       '@types/lodash': ^4.14.139
@@ -56,7 +60,7 @@ importers:
       '@types/react-dom': ^17.0.1
       '@types/react-responsive': ^8.0.2
       '@types/recompose': ^0.30.7
-      '@types/styled-components': 4.1.8
+      '@types/styled-components': 5.1.0
       '@types/warning': ^3.0.0
       '@types/webpack-env': ^1.14.0
       '@typescript-eslint/eslint-plugin': ^2.25.0
@@ -368,6 +372,25 @@ packages:
       hoist-non-react-statics: 3.3.2
       react-loading-skeleton: 2.2.0
     dev: false
+    peerDependencies:
+      moment: ^2.21.0
+      prop-types: ^15.6.1
+      react: ^16.2.0 || ^17.0.0
+      react-dom: ^16.2.0 || ^17.0.0
+    resolution:
+      integrity: sha1-v+bAuNBMIVOJqxLutFeDixYNARk=
+      tarball: '@alicloud/console-components/download/@alicloud/console-components-1.4.7.tgz'
+  /@alicloud/console-components/1.4.7_a07e313083451758bfc26fe1194774af:
+    dependencies:
+      '@alifd/next': 1.22.11_34b4f1d7246574b2a379e486f8e03366
+      classnames: 2.2.6
+      hoist-non-react-statics: 3.3.2
+      moment: 2.29.1
+      prop-types: 15.7.2
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      react-loading-skeleton: 2.2.0_react@16.14.0
+    dev: true
     peerDependencies:
       moment: ^2.21.0
       prop-types: ^15.6.1
@@ -827,7 +850,7 @@ packages:
       '@storybook/addon-storysource': 5.3.21_ac55eb0727908bb6a0e72bd83a7eee79
       '@storybook/addon-viewport': 5.3.21_ac55eb0727908bb6a0e72bd83a7eee79
       '@storybook/addons': 5.3.21_react-dom@16.14.0
-      '@storybook/react': 5.3.21_ac55eb0727908bb6a0e72bd83a7eee79
+      '@storybook/react': 5.3.21_91fc91371b669d87b9c9f6447d2ef22c
       autoprefixer: 9.8.6
       css-loader: 3.6.0
       less: 3.13.1
@@ -1162,7 +1185,6 @@ packages:
     dependencies:
       '@alifd/validate': 1.2.1
       prop-types: 15.7.2
-    dev: false
     resolution:
       integrity: sha1-dHl7ufZArfg1B6o5KD64m8HwCDA=
       tarball: '@alifd/field/download/@alifd/field-1.4.6.tgz'
@@ -1189,8 +1211,33 @@ packages:
     resolution:
       integrity: sha1-1Wcn4UHBZ/uk1vWYYq5bCMqyREI=
       tarball: '@alifd/next/download/@alifd/next-1.22.11.tgz'
+  /@alifd/next/1.22.11_34b4f1d7246574b2a379e486f8e03366:
+    dependencies:
+      '@alifd/field': 1.4.6
+      '@alifd/validate': 1.2.1
+      babel-runtime: 6.26.0
+      classnames: 2.2.6
+      dayjs: 1.10.4
+      hoist-non-react-statics: 2.5.5
+      lodash.clonedeep: 4.5.0
+      moment: 2.29.1
+      prop-types: 15.7.2
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      react-lifecycles-compat: 3.0.4
+      react-transition-group: 2.9.0_react-dom@16.14.0+react@16.14.0
+      resize-observer-polyfill: 1.5.1
+      shallow-element-equals: 1.0.1
+    dev: true
+    peerDependencies:
+      '@alifd/meet-react': ^2.0.0
+      moment: ^2.22.1
+      react: ^16.0.0
+      react-dom: ^16.0.0
+    resolution:
+      integrity: sha1-1Wcn4UHBZ/uk1vWYYq5bCMqyREI=
+      tarball: '@alifd/next/download/@alifd/next-1.22.11.tgz'
   /@alifd/validate/1.2.1:
-    dev: false
     resolution:
       integrity: sha1-JxyL8HTQ4Y85RV98QZPexs3mLo4=
       tarball: '@alifd/validate/download/@alifd/validate-1.2.1.tgz'
@@ -4040,6 +4087,23 @@ packages:
     resolution:
       integrity: sha1-bZV1JHX4bufe0GU23jCaZfyJZsw=
       tarball: '@babel/traverse/download/@babel/traverse-7.13.0.tgz'
+  /@babel/traverse/7.13.0_supports-color@5.5.0:
+    dependencies:
+      '@babel/code-frame': 7.12.13
+      '@babel/generator': 7.13.9
+      '@babel/helper-function-name': 7.12.13
+      '@babel/helper-split-export-declaration': 7.12.13
+      '@babel/parser': 7.13.11
+      '@babel/types': 7.13.0
+      debug: 4.3.1_supports-color@5.5.0
+      globals: 11.12.0
+      lodash: 4.17.21
+    dev: true
+    peerDependencies:
+      supports-color: '*'
+    resolution:
+      integrity: sha1-bZV1JHX4bufe0GU23jCaZfyJZsw=
+      tarball: '@babel/traverse/download/@babel/traverse-7.13.0.tgz'
   /@babel/types/7.12.12:
     dependencies:
       '@babel/helper-validator-identifier': 7.12.11
@@ -5531,6 +5595,106 @@ packages:
     resolution:
       integrity: sha1-W0St0HmkeLjrJ9eM84TMR+RBE2I=
       tarball: '@octokit/types/download/@octokit/types-6.12.2.tgz'
+  /@pnpm/error/1.4.0:
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-ajzpii4/GwYU3rrd0zpsZZe0k/M=
+      tarball: '@pnpm/error/download/@pnpm/error-1.4.0.tgz'
+  /@pnpm/link-bins/5.3.24:
+    dependencies:
+      '@pnpm/error': 1.4.0
+      '@pnpm/package-bins': 4.0.11
+      '@pnpm/read-modules-dir': 2.0.3
+      '@pnpm/read-package-json': 3.1.9
+      '@pnpm/read-project-manifest': 1.1.7
+      '@pnpm/types': 6.4.0
+      '@zkochan/cmd-shim': 5.1.0
+      is-subdir: 1.2.0
+      is-windows: 1.0.2
+      mz: 2.7.0
+      normalize-path: 3.0.0
+      p-settle: 4.1.1
+      ramda: 0.27.1
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-YX2SUloMOYB1VMYm+6bqeYyzDuQ=
+      tarball: '@pnpm/link-bins/download/@pnpm/link-bins-5.3.24.tgz'
+  /@pnpm/package-bins/4.0.11:
+    dependencies:
+      '@pnpm/types': 6.4.0
+      graceful-fs: 4.2.4
+      is-subdir: 1.2.0
+      p-filter: 2.1.0
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-fRW1AZhSy7HVbWO9eBHNMdJfCNQ=
+      tarball: '@pnpm/package-bins/download/@pnpm/package-bins-4.0.11.tgz'
+  /@pnpm/read-modules-dir/2.0.3:
+    dependencies:
+      mz: 2.7.0
+    dev: true
+    engines:
+      node: '>=10.13'
+    resolution:
+      integrity: sha1-B/8K5/xdj87+f1woSKguK9iyCAI=
+      tarball: '@pnpm/read-modules-dir/download/@pnpm/read-modules-dir-2.0.3.tgz'
+  /@pnpm/read-package-json/3.1.9:
+    dependencies:
+      '@pnpm/error': 1.4.0
+      '@pnpm/types': 6.4.0
+      read-package-json: 3.0.1
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-JPzcas6XJ996Tpf6ipu19njmVOo=
+      tarball: '@pnpm/read-package-json/download/@pnpm/read-package-json-3.1.9.tgz'
+  /@pnpm/read-project-manifest/1.1.7:
+    dependencies:
+      '@pnpm/error': 1.4.0
+      '@pnpm/types': 6.4.0
+      '@pnpm/write-project-manifest': 1.1.7
+      detect-indent: 6.0.0
+      fast-deep-equal: 3.1.3
+      graceful-fs: 4.2.4
+      is-windows: 1.0.2
+      json5: 2.2.0
+      parse-json: 5.2.0
+      read-yaml-file: 2.1.0
+      sort-keys: 4.2.0
+      strip-bom: 4.0.0
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-Tu4l0owaZIA5cS4UqAU13YrVquA=
+      tarball: '@pnpm/read-project-manifest/download/@pnpm/read-project-manifest-1.1.7.tgz'
+  /@pnpm/types/6.4.0:
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-MSw78LQ7ADUIyyG9OBVAbqDztmk=
+      tarball: '@pnpm/types/download/@pnpm/types-6.4.0.tgz'
+  /@pnpm/write-project-manifest/1.1.7:
+    dependencies:
+      '@pnpm/types': 6.4.0
+      json5: 2.2.0
+      mz: 2.7.0
+      write-file-atomic: 3.0.3
+      write-yaml-file: 4.2.0
+    dev: true
+    engines:
+      node: '>=10.16'
+    resolution:
+      integrity: sha1-vDthASoChs85wrgs+srAlqS/FAs=
+      tarball: '@pnpm/write-project-manifest/download/@pnpm/write-project-manifest-1.1.7.tgz'
   /@reach/router/1.3.4_react-dom@16.14.0+react@16.14.0:
     dependencies:
       create-react-context: 0.3.0_prop-types@15.7.2+react@16.14.0
@@ -5579,6 +5743,9 @@ packages:
       '@babel/core': ^7.0.0
       '@types/babel__core': ^7.1.9
       rollup: ^1.20.0||^2.0.0
+    peerDependenciesMeta:
+      '@types/babel__core':
+        optional: true
     resolution:
       integrity: sha1-nLHFFG3daklorZbyCcUMYvkvmHk=
       tarball: '@rollup/plugin-babel/download/@rollup/plugin-babel-5.3.0.tgz'
@@ -6003,7 +6170,7 @@ packages:
     resolution:
       integrity: sha1-QdgcPxBzAqAyVF/Ib/NEIwwEuek=
       tarball: '@storybook/core-events/download/@storybook/core-events-5.3.21.tgz'
-  /@storybook/core/5.3.21_ac55eb0727908bb6a0e72bd83a7eee79:
+  /@storybook/core/5.3.21_91fc91371b669d87b9c9f6447d2ef22c:
     dependencies:
       '@babel/plugin-proposal-class-properties': 7.13.0
       '@babel/plugin-proposal-object-rest-spread': 7.13.8
@@ -6055,7 +6222,7 @@ packages:
       micromatch: 4.0.2
       node-fetch: 2.6.1
       open: 7.4.2
-      pnp-webpack-plugin: 1.5.0
+      pnp-webpack-plugin: 1.5.0_typescript@4.2.3
       postcss-flexbugs-fixes: 4.2.1
       postcss-loader: 3.0.0
       pretty-hrtime: 1.0.3
@@ -6087,6 +6254,7 @@ packages:
       babel-loader: ^7.0.0 || ^8.0.0
       react: '*'
       react-dom: '*'
+      typescript: '*'
     resolution:
       integrity: sha1-2pYxZuokYB8xgmajqmu8BvyPsXU=
       tarball: '@storybook/core/download/@storybook/core-5.3.21.tgz'
@@ -6109,13 +6277,13 @@ packages:
     resolution:
       integrity: sha1-8R1FBCvVfcaekDfY83TZ/QqtgHE=
       tarball: '@storybook/node-logger/download/@storybook/node-logger-5.3.21.tgz'
-  /@storybook/react/5.3.21_ac55eb0727908bb6a0e72bd83a7eee79:
+  /@storybook/react/5.3.21_91fc91371b669d87b9c9f6447d2ef22c:
     dependencies:
       '@babel/plugin-transform-react-constant-elements': 7.13.10
       '@babel/preset-flow': 7.12.13
       '@babel/preset-react': 7.12.13
       '@storybook/addons': 5.3.21_553a6a1eff5429c148b1acaf704365ba
-      '@storybook/core': 5.3.21_ac55eb0727908bb6a0e72bd83a7eee79
+      '@storybook/core': 5.3.21_91fc91371b669d87b9c9f6447d2ef22c
       '@storybook/node-logger': 5.3.21
       '@svgr/webpack': 4.3.3
       '@types/webpack-env': 1.16.0
@@ -6144,6 +6312,7 @@ packages:
       babel-loader: ^7.0.0 || ^8.0.0
       react: '*'
       react-dom: '*'
+      typescript: '*'
     resolution:
       integrity: sha1-9/Nk09OtxwdGoSz4tmFJUvQdS9A=
       tarball: '@storybook/react/download/@storybook/react-5.3.21.tgz'
@@ -6534,6 +6703,14 @@ packages:
     resolution:
       integrity: sha1-STSDh5gwdXBf6PTgL7Z/farsSTQ=
       tarball: '@types/history/download/@types/history-4.7.8.tgz'
+  /@types/hoist-non-react-statics/3.3.1:
+    dependencies:
+      '@types/react': 17.0.3
+      hoist-non-react-statics: 3.3.2
+    dev: true
+    resolution:
+      integrity: sha1-ESSq/lEYy1kZd66xzqrtEHDrA58=
+      tarball: '@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz'
   /@types/html-minifier-terser/5.1.1:
     dev: true
     resolution:
@@ -6691,6 +6868,13 @@ packages:
     resolution:
       integrity: sha1-NWVM9sSa4WLVvJCEPVQ33DgAjUM=
       tarball: '@types/react-dom/download/@types/react-dom-17.0.2.tgz'
+  /@types/react-native/0.63.52:
+    dependencies:
+      '@types/react': 17.0.3
+    dev: true
+    resolution:
+      integrity: sha1-RJvrSkE+wPLBcsv2dqlfWwlSrfQ=
+      tarball: '@types/react-native/download/@types/react-native-0.63.52.tgz'
   /@types/react-responsive/8.0.2:
     dependencies:
       '@types/react': 17.0.3
@@ -6804,15 +6988,16 @@ packages:
     resolution:
       integrity: sha1-CoUdO9lkmPolwzq3J47TvWXwbD4=
       tarball: '@types/stack-utils/download/@types/stack-utils-1.0.1.tgz'
-  /@types/styled-components/4.1.8:
+  /@types/styled-components/5.1.0:
     dependencies:
-      '@types/node': 12.20.6
+      '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 17.0.3
+      '@types/react-native': 0.63.52
       csstype: 2.6.16
     dev: true
     resolution:
-      integrity: sha1-FcilO7S5Bm5Sj6+3VYlj3uVpCuA=
-      tarball: '@types/styled-components/download/@types/styled-components-4.1.8.tgz'
+      integrity: sha1-JNNBK6U5WqBuFPvJPFL5RUzr0NY=
+      tarball: '@types/styled-components/download/@types/styled-components-5.1.0.tgz'
   /@types/tapable/1.0.6:
     dev: true
     resolution:
@@ -6898,6 +7083,7 @@ packages:
       functional-red-black-tree: 1.0.1
       regexpp: 3.1.0
       tsutils: 3.21.0_typescript@4.2.3
+      typescript: 4.2.3
     dev: true
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
@@ -6905,6 +7091,9 @@ packages:
       '@typescript-eslint/parser': ^2.0.0
       eslint: ^5.0.0 || ^6.0.0
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-b4zopGx96kpvHRcdK7j7rm2sK+k=
       tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-2.34.0.tgz'
@@ -6931,12 +7120,16 @@ packages:
       '@typescript-eslint/typescript-estree': 2.34.0_typescript@4.2.3
       eslint: 6.8.0
       eslint-visitor-keys: 1.3.0
+      typescript: 4.2.3
     dev: true
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-UCUmMMoxloVCDpo5ygX+GFola8g=
       tarball: '@typescript-eslint/parser/download/@typescript-eslint/parser-2.34.0.tgz'
@@ -6949,11 +7142,15 @@ packages:
       lodash: 4.17.21
       semver: 7.3.4
       tsutils: 3.21.0_typescript@4.2.3
+      typescript: 4.2.3
     dev: true
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     peerDependencies:
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-FK62NTs57wcyzH8bgoUpSTfPN9U=
       tarball: '@typescript-eslint/typescript-estree/download/@typescript-eslint/typescript-estree-2.34.0.tgz'
@@ -7342,6 +7539,15 @@ packages:
     resolution:
       integrity: sha1-KrjtgfW7VFKoXyV1jrm4aBmC/S4=
       tarball: '@zkochan/cmd-shim/download/@zkochan/cmd-shim-3.1.0.tgz'
+  /@zkochan/cmd-shim/5.1.0:
+    dependencies:
+      is-windows: 1.0.2
+    dev: true
+    engines:
+      node: '>=10.13'
+    resolution:
+      integrity: sha1-9yu4cHMRMHlRE7P43Eyzw/XpFTM=
+      tarball: '@zkochan/cmd-shim/download/@zkochan/cmd-shim-5.1.0.tgz'
   /JSONStream/1.3.5:
     dependencies:
       jsonparse: 1.3.1
@@ -7733,6 +7939,11 @@ packages:
     resolution:
       integrity: sha1-vNZ5HqWuCXJeF+WtmIE0zUCz2RE=
       tarball: argparse/download/argparse-1.0.10.tgz
+  /argparse/2.0.1:
+    dev: true
+    resolution:
+      integrity: sha1-JG9Q88p4oyQPbJl+ipvR6sSeSzg=
+      tarball: argparse/download/argparse-2.0.1.tgz
   /aria-query/4.2.2:
     dependencies:
       '@babel/runtime': 7.13.10
@@ -8126,10 +8337,12 @@ packages:
     resolution:
       integrity: sha1-BXujDwSIRpSZOozQf6OUz/EcUL0=
       tarball: axios/download/axios-0.20.0.tgz
-  /axios/0.21.1:
+  /axios/0.21.1_debug@3.2.7:
     dependencies:
-      follow-redirects: 1.13.3
+      follow-redirects: 1.13.3_debug@3.2.7
     dev: true
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
       tarball: axios/download/axios-0.21.1.tgz
@@ -8850,6 +9063,15 @@ packages:
     resolution:
       integrity: sha1-CcQNkuk2xkd3qjhcTpuQT4FH6vA=
       tarball: before-after-hook/download/before-after-hook-2.2.0.tgz
+  /better-path-resolve/1.0.0:
+    dependencies:
+      is-windows: 1.0.2
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-E6NaEQTN1Ip7dL+HWPlqHuYT+Z0=
+      tarball: better-path-resolve/download/better-path-resolve-1.0.0.tgz
   /bfj/6.1.2:
     dependencies:
       bluebird: 3.7.2
@@ -11126,7 +11348,6 @@ packages:
       integrity: sha1-puN0maTZqc+F71hyBE1ikByYia4=
       tarball: dateformat/download/dateformat-3.0.3.tgz
   /dayjs/1.10.4:
-    dev: false
     resolution:
       integrity: sha1-jlRKm4aD9heD9XCYCoqA6vVKseI=
       tarball: dayjs/download/dayjs-1.10.4.tgz
@@ -11156,6 +11377,41 @@ packages:
     dev: true
     engines:
       node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
+      tarball: debug/download/debug-4.3.1.tgz
+  /debug/4.3.1_supports-color@5.5.0:
+    dependencies:
+      ms: 2.1.2
+      supports-color: 5.5.0
+    dev: true
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
+      tarball: debug/download/debug-4.3.1.tgz
+  /debug/4.3.1_supports-color@6.1.0:
+    dependencies:
+      ms: 2.1.2
+      supports-color: 6.1.0
+    dev: true
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     resolution:
       integrity: sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
       tarball: debug/download/debug-4.3.1.tgz
@@ -11609,7 +11865,6 @@ packages:
   /dom-helpers/3.4.0:
     dependencies:
       '@babel/runtime': 7.13.10
-    dev: false
     resolution:
       integrity: sha1-6bNpcA+Vn2Ls3lprq95LzNkWmvg=
       tarball: dom-helpers/download/dom-helpers-3.4.0.tgz
@@ -12506,9 +12761,10 @@ packages:
     resolution:
       integrity: sha1-othMqkl1aUL0Lx/6uQAkNjkXGP0=
       tarball: eslint-plugin-jsx-a11y/download/eslint-plugin-jsx-a11y-6.4.1.tgz
-  /eslint-plugin-prettier/3.3.1_eslint@6.8.0+prettier@2.2.1:
+  /eslint-plugin-prettier/3.3.1_d9f75d6ea79d885f9cc83ea96476ae4d:
     dependencies:
       eslint: 6.8.0
+      eslint-config-prettier: 6.15.0_eslint@6.8.0
       prettier: 2.2.1
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -12516,7 +12772,11 @@ packages:
       node: '>=6.0.0'
     peerDependencies:
       eslint: '>=5.0.0'
+      eslint-config-prettier: '*'
       prettier: '>=1.13.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
     resolution:
       integrity: sha1-cHnPoklweJBQEeb4Lo3YRT0Tcbc=
       tarball: eslint-plugin-prettier/download/eslint-plugin-prettier-3.3.1.tgz
@@ -13405,6 +13665,39 @@ packages:
     dev: true
     engines:
       node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    resolution:
+      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
+      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
+  /follow-redirects/1.13.3_debug@3.2.7:
+    dependencies:
+      debug: 3.2.7
+    dev: true
+    engines:
+      node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    resolution:
+      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
+      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
+  /follow-redirects/1.13.3_debug@4.3.1:
+    dependencies:
+      debug: 4.3.1_supports-color@6.1.0
+    dev: true
+    engines:
+      node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     resolution:
       integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
       tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
@@ -13665,6 +13958,8 @@ packages:
     engines:
       node: '>= 4.0'
     optional: true
+    os:
+      - darwin
     requiresBuild: true
     resolution:
       integrity: sha1-8yXLBFVZJCi88Rs4M3DvcOO/zDg=
@@ -13675,6 +13970,8 @@ packages:
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     optional: true
+    os:
+      - darwin
     resolution:
       integrity: sha1-+3OHA66NL5/pAMM4Nt3r7ouX8j4=
       tarball: fsevents/download/fsevents-2.1.3.tgz
@@ -13683,6 +13980,8 @@ packages:
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     optional: true
+    os:
+      - darwin
     resolution:
       integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=
       tarball: fsevents/download/fsevents-2.3.2.tgz
@@ -14272,6 +14571,11 @@ packages:
     resolution:
       integrity: sha1-7fRefWf5lUVwXeH3u+7rEhdl7YU=
       tarball: got/download/got-9.6.0.tgz
+  /graceful-fs/4.2.4:
+    dev: true
+    resolution:
+      integrity: sha1-Ila94U02MpWMRl68ltxGfKB6Kfs=
+      tarball: graceful-fs/download/graceful-fs-4.2.4.tgz
   /graceful-fs/4.2.6:
     dev: true
     resolution:
@@ -14709,6 +15013,15 @@ packages:
     resolution:
       integrity: sha1-nwZjmpC+/2bKyubnf4OHtDHWHdw=
       tarball: hosted-git-info/download/hosted-git-info-4.0.0.tgz
+  /hosted-git-info/4.0.1:
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha1-cQ71RS6kKahEq8M8mBBW5zce2rc=
+      tarball: hosted-git-info/download/hosted-git-info-4.0.1.tgz
   /hpack.js/2.1.6:
     dependencies:
       inherits: 2.0.4
@@ -14924,15 +15237,17 @@ packages:
     resolution:
       integrity: sha1-5IIb7vWyFCogJr1zkm/lN2McVAU=
       tarball: http-proxy-agent/download/http-proxy-agent-2.1.0.tgz
-  /http-proxy-middleware/0.19.1:
+  /http-proxy-middleware/0.19.1_debug@4.3.1:
     dependencies:
-      http-proxy: 1.18.1
+      http-proxy: 1.18.1_debug@4.3.1
       is-glob: 4.0.1
       lodash: 4.17.21
       micromatch: 3.1.10
     dev: true
     engines:
       node: '>=4.0.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-GDx9xKoUeRUDBkmMIQza+WCApDo=
       tarball: http-proxy-middleware/download/http-proxy-middleware-0.19.1.tgz
@@ -14957,6 +15272,19 @@ packages:
     dev: true
     engines:
       node: '>=8.0.0'
+    resolution:
+      integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=
+      tarball: http-proxy/download/http-proxy-1.18.1.tgz
+  /http-proxy/1.18.1_debug@4.3.1:
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.13.3_debug@4.3.1
+      requires-port: 1.0.0
+    dev: true
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=
       tarball: http-proxy/download/http-proxy-1.18.1.tgz
@@ -15992,6 +16320,15 @@ packages:
     resolution:
       integrity: sha1-QEk+0ZjvP/R3uMf5L2ROyCpc06Y=
       tarball: is-string/download/is-string-1.0.5.tgz
+  /is-subdir/1.2.0:
+    dependencies:
+      better-path-resolve: 1.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-t5HNKPq1IC6RoIKA1R2dclT9INQ=
+      tarball: is-subdir/download/is-subdir-1.2.0.tgz
   /is-subset/0.1.1:
     dev: true
     resolution:
@@ -16542,6 +16879,9 @@ packages:
       node: '>=6'
     peerDependencies:
       jest-resolve: '*'
+    peerDependenciesMeta:
+      jest-resolve:
+        optional: true
     resolution:
       integrity: sha1-twSsCuAoqJEIpNBAs/kZ393I4zw=
       tarball: jest-pnp-resolver/download/jest-pnp-resolver-1.2.2.tgz
@@ -16774,6 +17114,14 @@ packages:
     resolution:
       integrity: sha1-2ugS/bOCX6MGYJqHFzg8UMNqBTc=
       tarball: js-yaml/download/js-yaml-3.14.1.tgz
+  /js-yaml/4.0.0:
+    dependencies:
+      argparse: 2.0.1
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha1-9Ca8D/S0BRkmzViMcRExg0CaEh8=
+      tarball: js-yaml/download/js-yaml-4.0.0.tgz
   /jsbn/0.1.1:
     dev: true
     resolution:
@@ -18953,6 +19301,18 @@ packages:
     resolution:
       integrity: sha1-mNxW3+Z1XZmxxT8Ebh49Ld5Vocc=
       tarball: normalize-package-data/download/normalize-package-data-3.0.1.tgz
+  /normalize-package-data/3.0.2:
+    dependencies:
+      hosted-git-info: 4.0.1
+      resolve: 1.20.0
+      semver: 7.3.4
+      validate-npm-package-license: 3.0.4
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha1-yuXEEK4kNPmmwbqmXVvDuTZshpk=
+      tarball: normalize-package-data/download/normalize-package-data-3.0.2.tgz
   /normalize-path/2.1.1:
     dependencies:
       remove-trailing-separator: 1.1.0
@@ -19002,17 +19362,19 @@ packages:
     resolution:
       integrity: sha1-RTNUCH5sqWlXvY9br3U/WYIUISk=
       tarball: normalize-url/download/normalize-url-4.5.0.tgz
-  /npm-api/1.0.1:
+  /npm-api/1.0.1_debug@3.2.7:
     dependencies:
       JSONStream: 1.3.5
       clone-deep: 4.0.1
       download-stats: 0.3.4
       moment: 2.29.1
       node-fetch: 2.6.1
-      paged-request: 2.0.2
+      paged-request: 2.0.2_debug@3.2.7
     dev: true
     engines:
       node: '>=10.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-Pe+bUa/tylfbFMoMlw2SRC0hycU=
       tarball: npm-api/download/npm-api-1.0.1.tgz
@@ -19498,6 +19860,15 @@ packages:
     resolution:
       integrity: sha1-kw89Et0fUOdDRFeiLNbwSsatf3E=
       tarball: p-each-series/download/p-each-series-1.0.0.tgz
+  /p-filter/2.1.0:
+    dependencies:
+      p-map: 2.1.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha1-GxRyVirnoPdC8PPT03GOpm/5wJw=
+      tarball: p-filter/download/p-filter-2.1.0.tgz
   /p-finally/1.0.0:
     dev: true
     engines:
@@ -19605,6 +19976,13 @@ packages:
     resolution:
       integrity: sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
       tarball: p-reduce/download/p-reduce-1.0.0.tgz
+  /p-reflect/2.1.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha1-XWfHs8V3xOeAuUUfyRKWdb2Z/mc=
+      tarball: p-reflect/download/p-reflect-2.1.0.tgz
   /p-retry/3.0.1:
     dependencies:
       retry: 0.12.0
@@ -19614,6 +19992,16 @@ packages:
     resolution:
       integrity: sha1-MWtMiJPiyNwc+okfQGxLQivr8yg=
       tarball: p-retry/download/p-retry-3.0.1.tgz
+  /p-settle/4.1.1:
+    dependencies:
+      p-limit: 2.3.0
+      p-reflect: 2.1.0
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha1-N/vOsrAsnvwoZY/I02lJkiJmA18=
+      tarball: p-settle/download/p-settle-4.1.1.tgz
   /p-timeout/1.2.1:
     dependencies:
       p-finally: 1.0.0
@@ -19683,12 +20071,14 @@ packages:
     resolution:
       integrity: sha1-b+7ayjXnVyWHbQsOZJdGl/7RRbA=
       tarball: package-json/download/package-json-6.5.0.tgz
-  /paged-request/2.0.2:
+  /paged-request/2.0.2_debug@3.2.7:
     dependencies:
-      axios: 0.21.1
+      axios: 0.21.1_debug@3.2.7
     dev: true
     engines:
       node: '>=8'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-TWIaCLjWvuRECgqSESNU7uzltbA=
       tarball: paged-request/download/paged-request-2.0.2.tgz
@@ -20137,12 +20527,14 @@ packages:
     resolution:
       integrity: sha1-4vTO8OIZ9GPBeas3Rj5OHs3Muvs=
       tarball: pn/download/pn-1.1.0.tgz
-  /pnp-webpack-plugin/1.5.0:
+  /pnp-webpack-plugin/1.5.0_typescript@4.2.3:
     dependencies:
-      ts-pnp: 1.2.0
+      ts-pnp: 1.2.0_typescript@4.2.3
     dev: true
     engines:
       node: '>=6'
+    peerDependencies:
+      typescript: '*'
     resolution:
       integrity: sha1-YqHNMGj0bVZLszxW6yUOTVhmdus=
       tarball: pnp-webpack-plugin/download/pnp-webpack-plugin-1.5.0.tgz
@@ -21197,6 +21589,11 @@ packages:
     resolution:
       integrity: sha1-oAGr7bP/YQd9T/HVd9RN536NCjU=
       tarball: ramda/download/ramda-0.21.0.tgz
+  /ramda/0.27.1:
+    dev: true
+    resolution:
+      integrity: sha1-Zvwt8++HOHT/wtpqqJhGWKus9ck=
+      tarball: ramda/download/ramda-0.27.1.tgz
   /randexp/0.4.6:
     dependencies:
       discontinuous-range: 1.0.0
@@ -21541,6 +21938,9 @@ packages:
       '@types/react': '^15.0.0 || ^16.0.0 || ^17.0.0 '
       react: '^15.0.0 || ^16.0.0 || ^17.0.0 '
       react-dom: '^15.0.0 || ^16.0.0 || ^17.0.0 '
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
     resolution:
       integrity: sha1-wn6UCFgcKmePUxbmnAYbIm3GogI=
       tarball: react-hot-loader/download/react-hot-loader-4.13.0.tgz
@@ -21588,6 +21988,16 @@ packages:
     dependencies:
       '@emotion/core': 10.1.1
     dev: false
+    peerDependencies:
+      react: ^15.6.1 || ^16.0.0 || ^17.0.0
+    resolution:
+      integrity: sha1-uM5Rb5okcekNfZ6tNdYUJTZ+M0A=
+      tarball: react-loading-skeleton/download/react-loading-skeleton-2.2.0.tgz
+  /react-loading-skeleton/2.2.0_react@16.14.0:
+    dependencies:
+      '@emotion/core': 10.1.1_react@16.14.0
+      react: 16.14.0
+    dev: true
     peerDependencies:
       react: ^15.6.1 || ^16.0.0 || ^17.0.0
     resolution:
@@ -21817,6 +22227,21 @@ packages:
     resolution:
       integrity: sha1-35zbAleWIRFRpDbGmo87l7WwfI0=
       tarball: react-transition-group/download/react-transition-group-2.9.0.tgz
+  /react-transition-group/2.9.0_react-dom@16.14.0+react@16.14.0:
+    dependencies:
+      dom-helpers: 3.4.0
+      loose-envify: 1.4.0
+      prop-types: 15.7.2
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      react-lifecycles-compat: 3.0.4
+    dev: true
+    peerDependencies:
+      react: '>=15.0.0'
+      react-dom: '>=15.0.0'
+    resolution:
+      integrity: sha1-35zbAleWIRFRpDbGmo87l7WwfI0=
+      tarball: react-transition-group/download/react-transition-group-2.9.0.tgz
   /react-transition-group/4.4.1_react-dom@16.14.0+react@16.14.0:
     dependencies:
       '@babel/runtime': 7.13.10
@@ -21899,6 +22324,18 @@ packages:
     resolution:
       integrity: sha1-aZKytmxxdyWf646qxzw6zSi5Iio=
       tarball: read-package-json/download/read-package-json-2.1.2.tgz
+  /read-package-json/3.0.1:
+    dependencies:
+      glob: 7.1.6
+      json-parse-even-better-errors: 2.3.1
+      normalize-package-data: 3.0.2
+      npm-normalize-package-bin: 1.0.1
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha1-xxCPC5OQJXsIwh4wBNJATIBnRLk=
+      tarball: read-package-json/download/read-package-json-3.0.1.tgz
   /read-package-tree/5.3.1:
     dependencies:
       read-package-json: 2.1.2
@@ -22014,6 +22451,16 @@ packages:
     resolution:
       integrity: sha1-e/KVQ4yloz5WzTDgU7NO5yUMk8w=
       tarball: read-pkg/download/read-pkg-5.2.0.tgz
+  /read-yaml-file/2.1.0:
+    dependencies:
+      js-yaml: 4.0.0
+      strip-bom: 4.0.0
+    dev: true
+    engines:
+      node: '>=10.13'
+    resolution:
+      integrity: sha1-xYZnEtue9TQ7TQLCQTutpTxBxKk=
+      tarball: read-yaml-file/download/read-yaml-file-2.1.0.tgz
   /read/1.0.7:
     dependencies:
       mute-stream: 0.0.8
@@ -23183,7 +23630,6 @@ packages:
   /shallow-element-equals/1.0.1:
     dependencies:
       style-equal: 1.0.0
-    dev: false
     resolution:
       integrity: sha1-UHObfZStdWehNBc9P0QiOH7VfOY=
       tarball: shallow-element-equals/download/shallow-element-equals-1.0.1.tgz
@@ -23490,6 +23936,15 @@ packages:
     resolution:
       integrity: sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=
       tarball: sort-keys/download/sort-keys-2.0.0.tgz
+  /sort-keys/4.2.0:
+    dependencies:
+      is-plain-obj: 2.1.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha1-a3Y4zuQsUG//jBzs3nN20hMVvhg=
+      tarball: sort-keys/download/sort-keys-4.2.0.tgz
   /source-list-map/2.0.1:
     dev: true
     resolution:
@@ -23575,28 +24030,32 @@ packages:
     resolution:
       integrity: sha1-6cGKQQ5e1+EkQqVJ+9ivp2cDjWU=
       tarball: spdx-license-ids/download/spdx-license-ids-3.0.7.tgz
-  /spdy-transport/3.0.0:
+  /spdy-transport/3.0.0_supports-color@6.1.0:
     dependencies:
-      debug: 4.3.1
+      debug: 4.3.1_supports-color@6.1.0
       detect-node: 2.0.5
       hpack.js: 2.1.6
       obuf: 1.1.2
       readable-stream: 3.6.0
       wbuf: 1.7.3
     dev: true
+    peerDependencies:
+      supports-color: '*'
     resolution:
       integrity: sha1-ANSGOmQArXXfkzYaFghgXl3NzzE=
       tarball: spdy-transport/download/spdy-transport-3.0.0.tgz
-  /spdy/4.0.2:
+  /spdy/4.0.2_supports-color@6.1.0:
     dependencies:
-      debug: 4.3.1
+      debug: 4.3.1_supports-color@6.1.0
       handle-thing: 2.0.1
       http-deceiver: 1.2.7
       select-hose: 2.0.0
-      spdy-transport: 3.0.0
+      spdy-transport: 3.0.0_supports-color@6.1.0
     dev: true
     engines:
       node: '>=6.0.0'
+    peerDependencies:
+      supports-color: '*'
     resolution:
       integrity: sha1-t09GYgOj7aRSwCSSuR+56EonZ3s=
       tarball: spdy/download/spdy-4.0.2.tgz
@@ -24142,7 +24601,6 @@ packages:
       integrity: sha1-D17XjTJeBCGsb5D38Q5pHWrjrhA=
       tarball: strong-log-transformer/download/strong-log-transformer-2.1.0.tgz
   /style-equal/1.0.0:
-    dev: false
     resolution:
       integrity: sha1-mKHFkiImv+E8GW5z8ZQOkbjmZZU=
       tarball: style-equal/download/style-equal-1.0.0.tgz
@@ -24191,7 +24649,7 @@ packages:
   /styled-components/4.4.1_react-dom@16.14.0+react@16.14.0:
     dependencies:
       '@babel/helper-module-imports': 7.12.13
-      '@babel/traverse': 7.13.0
+      '@babel/traverse': 7.13.0_supports-color@5.5.0
       '@emotion/is-prop-valid': 0.8.8
       '@emotion/unitless': 0.7.5
       babel-plugin-styled-components: 1.12.0_styled-components@4.4.1
@@ -24858,10 +25316,17 @@ packages:
     resolution:
       integrity: sha1-3/o4ebAaGh4KS4XiuEIdwN//HFg=
       tarball: ts-loader/download/ts-loader-6.2.2.tgz
-  /ts-pnp/1.2.0:
+  /ts-pnp/1.2.0_typescript@4.2.3:
+    dependencies:
+      typescript: 4.2.3
     dev: true
     engines:
       node: '>=6'
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha1-pQCtCEsHmPHDBxrzkeZZEshrypI=
       tarball: ts-pnp/download/ts-pnp-1.2.0.tgz
@@ -24988,6 +25453,13 @@ packages:
     resolution:
       integrity: sha1-kzkqAIeUxFlRGf9i3eaAnbxAo9k=
       tarball: typed-styles/download/typed-styles-0.0.7.tgz
+  /typedarray-to-buffer/3.1.5:
+    dependencies:
+      is-typedarray: 1.0.0
+    dev: true
+    resolution:
+      integrity: sha1-qX7nqf9CaRufeD/xvFES/j/KkIA=
+      tarball: typedarray-to-buffer/download/typedarray-to-buffer-3.1.5.tgz
   /typedarray/0.0.6:
     dev: true
     resolution:
@@ -25389,6 +25861,9 @@ packages:
     peerDependencies:
       file-loader: '*'
       webpack: ^4.0.0
+    peerDependenciesMeta:
+      file-loader:
+        optional: true
     resolution:
       integrity: sha1-4OLvZY8APvuMpBsPP/v3a6uIZYs=
       tarball: url-loader/download/url-loader-2.3.0.tgz
@@ -25405,6 +25880,9 @@ packages:
     peerDependencies:
       file-loader: '*'
       webpack: ^4.0.0
+    peerDependenciesMeta:
+      file-loader:
+        optional: true
     resolution:
       integrity: sha1-4OLvZY8APvuMpBsPP/v3a6uIZYs=
       tarball: url-loader/download/url-loader-2.3.0.tgz
@@ -25488,6 +25966,9 @@ packages:
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0
       react: ^16.8.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
     resolution:
       integrity: sha1-YRXtJCz7rtWRVJnAqYQsopEvOKU=
       tarball: use-callback-ref/download/use-callback-ref-1.2.5.tgz
@@ -25871,11 +26352,11 @@ packages:
       chokidar: 2.1.8
       compression: 1.7.4
       connect-history-api-fallback: 1.6.0
-      debug: 4.3.1
+      debug: 4.3.1_supports-color@6.1.0
       del: 4.1.1
       express: 4.17.1
       html-entities: 1.4.0
-      http-proxy-middleware: 0.19.1
+      http-proxy-middleware: 0.19.1_debug@4.3.1
       import-local: 2.0.0
       internal-ip: 4.3.0
       ip: 1.1.5
@@ -25891,7 +26372,7 @@ packages:
       serve-index: 1.9.1
       sockjs: 0.3.21
       sockjs-client: 1.5.0
-      spdy: 4.0.2
+      spdy: 4.0.2_supports-color@6.1.0
       strip-ansi: 3.0.1
       supports-color: 6.1.0
       url: 0.11.0
@@ -25906,6 +26387,10 @@ packages:
     hasBin: true
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
     resolution:
       integrity: sha1-aV687Xakkp8NXef9c/r+GF/jNwg=
       tarball: webpack-dev-server/download/webpack-dev-server-3.11.2.tgz
@@ -26005,6 +26490,14 @@ packages:
     engines:
       node: '>=6.11.5'
     hasBin: true
+    peerDependencies:
+      webpack-cli: '*'
+      webpack-command: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
+      webpack-command:
+        optional: true
     resolution:
       integrity: sha1-v5tEBOogoHNgXgoBHRiNd8tq1UI=
       tarball: webpack/download/webpack-4.46.0.tgz
@@ -26262,6 +26755,16 @@ packages:
     resolution:
       integrity: sha1-H9Lprh3z51uNjDZ0Q8aS1MqB9IE=
       tarball: write-file-atomic/download/write-file-atomic-2.4.3.tgz
+  /write-file-atomic/3.0.3:
+    dependencies:
+      imurmurhash: 0.1.4
+      is-typedarray: 1.0.0
+      signal-exit: 3.0.3
+      typedarray-to-buffer: 3.1.5
+    dev: true
+    resolution:
+      integrity: sha1-Vr1cWlxwSBzRnFcb05q5ZaXeVug=
+      tarball: write-file-atomic/download/write-file-atomic-3.0.3.tgz
   /write-json-file/2.3.0:
     dependencies:
       detect-indent: 5.0.0
@@ -26300,6 +26803,16 @@ packages:
     resolution:
       integrity: sha1-DheP6Xgg04mokovHlTXb5ows/yE=
       tarball: write-pkg/download/write-pkg-3.2.0.tgz
+  /write-yaml-file/4.2.0:
+    dependencies:
+      js-yaml: 4.0.0
+      write-file-atomic: 3.0.3
+    dev: true
+    engines:
+      node: '>=10.13'
+    resolution:
+      integrity: sha1-hvygopdma/WcQNzZbhbb39FyKMI=
+      tarball: write-yaml-file/download/write-yaml-file-4.2.0.tgz
   /write/1.0.3:
     dependencies:
       mkdirp: 0.5.5
@@ -26502,7 +27015,7 @@ packages:
       log-symbols: 2.2.0
       mem-fs: 1.2.0
       mem-fs-editor: 6.0.0
-      npm-api: 1.0.1
+      npm-api: 1.0.1_debug@3.2.7
       semver: 7.3.4
       strip-ansi: 4.0.0
       text-table: 0.2.0

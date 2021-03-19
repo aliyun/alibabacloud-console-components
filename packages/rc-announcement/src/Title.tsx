@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import { IDataSourceItem } from './RcAnnouncement'
+import { IDataSourceItem } from './types/IDataSourceItem.type'
 
 const Title: React.FC<IDataSourceItem> = ({ title, link }) => (
   <span>

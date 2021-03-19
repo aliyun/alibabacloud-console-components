@@ -107,6 +107,7 @@ class IntlBase {
     }
 
     try {
+      // @ts-ignore
       result = new Intl.DateTimeFormat(this.getLocale(), opts).format(value)
     } catch (err) {
       warning(false, err.message || 'Uncaught error')
