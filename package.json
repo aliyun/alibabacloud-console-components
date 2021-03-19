@@ -2,10 +2,9 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn && lerna run prepare --scope @alicloud/console-components-lib-publisher --scope @alicloud/console-components --include-dependencies && lerna run prepare --ignore @alicloud/console-components --ignore @alicloud/console-components-lib-publisher --ignore @alicloud/console-components-lib-documenter --ignore @alicloud/console-components-lib-api-documenter --ignore @alicloud/console-components-fake-browser",
+    "bootstrap": "pnpm i --ignore-scripts && npm run link-bin && pnpm i",
     "clean": "lerna clean --yes && rm -rf node_modules",
-    "link-bin": "link-parent-bin && link-parent-bin -c ./dev-kit",
-    "postinstall": "node ./link.js",
+    "link-bin": "node ./link.js",
     "lint": "eslint ./packages",
     "release": "lerna publish --conventional-commits",
     "release:next": "lerna publish --npm-tag=next",
