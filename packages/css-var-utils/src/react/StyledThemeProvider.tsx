@@ -18,7 +18,7 @@ export const StyledThemeProvider: React.FC<{ theme: CssVarTheme<any> }> = ({
   }, [])
   return (
     <OriginalStyledThemeProvider theme={getTheme}>
-      {children}
+      <>{children}</>
     </OriginalStyledThemeProvider>
   )
 }
