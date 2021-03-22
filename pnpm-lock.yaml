@@ -2,6 +2,7 @@ importers:
   .:
     devDependencies:
       '@alicloud/console-components': 1.4.7_a07e313083451758bfc26fe1194774af
+      '@alicloud/console-components-fake-browser': 'link:packages/fake-browser'
       '@alicloud/console-toolkit-cli': 1.2.0
       '@alicloud/console-toolkit-preset-component': 1.2.9_91fc91371b669d87b9c9f6447d2ef22c
       '@alicloud/console-toolkit-preset-docs': 1.0.29_ac55eb0727908bb6a0e72bd83a7eee79
@@ -48,6 +49,7 @@ importers:
       typescript: 4.2.3
     specifiers:
       '@alicloud/console-components': ^1.4.0
+      '@alicloud/console-components-fake-browser': 'workspace:*'
       '@alicloud/console-toolkit-cli': ^1.2.0
       '@alicloud/console-toolkit-preset-component': ^1.2.8
       '@alicloud/console-toolkit-preset-docs': ^1.0.29
