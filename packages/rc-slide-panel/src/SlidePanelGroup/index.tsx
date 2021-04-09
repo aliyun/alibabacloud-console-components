@@ -116,6 +116,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         canCloseByEsc={true}
         target="viewport"
         autoFocus={popupProps?.autoFocus ?? true}
+        triggerType="click"
         {...popupProps}
       >
         <SPanelsWrapper

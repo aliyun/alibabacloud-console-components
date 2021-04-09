@@ -74,7 +74,7 @@ export interface ISlidePanelProps {
    */
   hasMask?: boolean
   /**
-   * 用户点击背景蒙板。大部分情况下，开发者想要在这个事件处理函数中设置`props.isShowing`为`false`。
+   * 用户点击背景蒙板。大部分情况下，开发者想要在这个事件处理函数中设置`props.isShowing`为`false`。已废弃，请使用 onVisibleChange。
    * @deprecated 请使用 onVisibleChange
    */
   onMaskClick?: () => void
