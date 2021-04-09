@@ -43,6 +43,8 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
   onSwitchCancled,
   onSwitchCompleted,
   placement,
+  okProps,
+  cancelProps,
   ...rest
 }) => {
   const ctxValue = useSlidePanelContext()
@@ -102,6 +104,8 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
           processingText,
           onCancel,
           cancelText,
+          okProps,
+          cancelProps,
         })}
       </SSlidePanelContentWrapper>
     </SlidePanelItemBase>

@@ -13,6 +13,8 @@ function renderFooter({
   onCancel,
   cancelText,
   isActive,
+  okProps,
+  cancelProps,
 }: Pick<
   ISlidePanelItemProps,
   | 'customFooter'
@@ -22,6 +24,8 @@ function renderFooter({
   | 'processingText'
   | 'onCancel'
   | 'cancelText'
+  | 'okProps'
+  | 'cancelProps'
 > & { isActive: boolean }): React.ReactNode {
   if (!isActive) return null
   let footerContent = customFooter
@@ -40,12 +44,13 @@ function renderFooter({
               size="medium"
               type="primary"
               loading={isProcessing}
+              {...okProps}
             >
               {isProcessing ? actualProcessingText : actualOkText}
             </Button>
           )}
           {onCancel && (
-            <Button onClick={onCancel} size="medium">
+            <Button onClick={onCancel} size="medium" {...cancelProps}>
               {actualCancelText}
             </Button>
           )}

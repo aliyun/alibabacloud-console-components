@@ -32,6 +32,8 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
   container,
   popupProps,
   className,
+  okProps,
+  cancelProps,
 }) => {
   const slidePanelGroupProps: ISlidePanelGroupProps = {
     isShowing,
@@ -60,6 +62,8 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     processingText,
     customFooter,
     placement,
+    okProps,
+    cancelProps,
   }
   checkPanelShouldBeClosable(slidePanelGroupProps, slidePanelItemProps)
   return (

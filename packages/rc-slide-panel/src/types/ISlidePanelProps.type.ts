@@ -1,3 +1,5 @@
+import type { ButtonProps } from '@alicloud/console-components/types/button'
+
 export interface ISlidePanelProps {
   /* ----------------Copyed from ISlidePanelItemProps---------------- */
   /**
@@ -33,6 +35,10 @@ export interface ISlidePanelProps {
    */
   cancelText?: React.ReactNode
   /**
+   * 自定义footer取消按钮的props，比如disabled
+   */
+  cancelProps?: ButtonProps
+  /**
    * footer确认按钮的点击事件。如果没有传入此事件处理函数，则不展示确认按钮。
    */
   onOk?: () => void
@@ -40,6 +46,10 @@ export interface ISlidePanelProps {
    * footer确认按钮文字。
    */
   okText?: React.ReactNode
+  /**
+   * 自定义footer确认按钮的props，比如disabled
+   */
+  okProps?: ButtonProps
   /**
    * footer确认按钮是否展示加载中状态。加载中的按钮不可点击。
    */
