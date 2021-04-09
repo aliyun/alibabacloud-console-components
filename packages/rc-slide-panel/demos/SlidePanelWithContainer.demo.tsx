@@ -19,8 +19,8 @@ const SlidePanelDemo: React.FC<{}> = () => {
       <SlidePanel
         title="指定渲染的容器container"
         isShowing={active}
-        onMaskClick={() => {
-          setActive(false)
+        onVisibleChange={(v) => {
+          setActive(v)
         }}
         container={ref.current}
         hasMask

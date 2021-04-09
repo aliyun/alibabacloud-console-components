@@ -40,8 +40,8 @@ const Example = () => {
             placement="bottom"
             isShowing={active}
             width="medium"
-            onMaskClick={() => {
-              setActive(false)
+            onVisibleChange={(v) => {
+              setActive(v)
             }}
             popupProps={{
               container: () =>

@@ -46,8 +46,8 @@ const Basic: React.FC<{}> = () => {
         onSwitchPanelItem={id => {
           setActiveId(id)
         }}
-        onMaskClick={() => {
-          setIsShowing(false)
+        onVisibleChange={(v) => {
+          setIsShowing(v)
         }}
         onSlideStarted={() => {
           console.log('onSlideStarted')

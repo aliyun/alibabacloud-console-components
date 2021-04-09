@@ -69,8 +69,8 @@ const Stack: React.FC<{}> = () => {
 
       <SlidePanelGroup
         isShowing={isShowing}
-        onMaskClick={() => {
-          setIsShowing(false)
+        onVisibleChange={(v) => {
+          setIsShowing(v)
         }}
         onSlideStarted={() => {
           console.log('onSlideStarted')

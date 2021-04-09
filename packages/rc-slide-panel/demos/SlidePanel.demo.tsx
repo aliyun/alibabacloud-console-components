@@ -25,8 +25,8 @@ const SlidePanelDemo: React.FC<{}> = () => {
         title="title"
         isShowing={active}
         width="medium"
-        onMaskClick={() => {
-          setActive(false)
+        onVisibleChange={(v) => {
+          setActive(v)
         }}
         onSlideCompleted={() => {
           console.log('completed')

@@ -19,8 +19,8 @@ const SlidePanelDemo: React.FC<{}> = () => {
         title="CheckPanelShouldBeClosable"
         isShowing={active}
         width="medium"
-        onMaskClick={() => {
-          setActive(false)
+        onVisibleChange={(v) => {
+          setActive(v)
         }}
       >
         content
@@ -35,8 +35,8 @@ const SlidePanelDemo: React.FC<{}> = () => {
           title="CheckPanelShouldBeClosable"
           isShowing={innerActive}
           width="small"
-          onMaskClick={() => {
-            setInnerActive(false)
+          onVisibleChange={(v) => {
+            setActive(v)
           }}
         >
           content
