@@ -113,7 +113,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
         container={container}
         onVisibleChange={handleVisibleChange}
         canCloseByOutSideClick={false}
-        canCloseByEsc={false}
+        canCloseByEsc={true}
         target="viewport"
         autoFocus={popupProps?.autoFocus ?? true}
         {...popupProps}
