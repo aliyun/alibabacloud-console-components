@@ -75,8 +75,13 @@ export interface ISlidePanelProps {
   hasMask?: boolean
   /**
    * 用户点击背景蒙板。大部分情况下，开发者想要在这个事件处理函数中设置`props.isShowing`为`false`。
+   * @deprecated 请使用 onVisibleChange
    */
   onMaskClick?: () => void
+  /**
+   * 弹层显示或隐藏时触发的回调函数，透传给Overlay.Popup
+   */
+  onVisibleChange?: (visible: boolean, type: string, e: object) => void
   /**
    * 控制整个SlidePanelGroup的滑入、滑出。
    */

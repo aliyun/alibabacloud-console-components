@@ -34,6 +34,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
   className,
   okProps,
   cancelProps,
+  onVisibleChange,
 }) => {
   const slidePanelGroupProps: ISlidePanelGroupProps = {
     isShowing,
@@ -46,6 +47,7 @@ const SlidePanel: React.FC<ISlidePanelProps> = ({
     placement,
     popupProps,
     className,
+    onVisibleChange,
   }
   const slidePanelItemProps: ISlidePanelItemProps = {
     id: '__SlidePanelId__',
@@ -81,11 +83,12 @@ function checkPanelShouldBeClosable(
 ) {
   if (
     !slidePanelGroupProps.onMaskClick &&
+    !slidePanelGroupProps.onVisibleChange &&
     !slidePanelItemProps.onClose &&
     !slidePanelItemProps.onCancel
   ) {
     console.warn(
-      `All onMaskClick, onClose and onCancel are not enabled. User is not able to close this SlidePanel. This will lead to bad user experience.`
+      `[console-components-slide-panel] All onVisibleChange, onMaskClick, onClose and onCancel are not passed. User is not able to close this SlidePanel. This will lead to bad user experience.`
     )
   }
 }

@@ -26,6 +26,7 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
   container,
   placement,
   popupProps,
+  onVisibleChange,
   ...rest
 }) => {
   const ctxValue = useMemo(() => ({ activeId, onSwitchPanelItem }), [
@@ -33,7 +34,14 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
     onSwitchPanelItem,
   ])
 
-  const handleVisibleChange = (visible: boolean, type: string): void => {
+  const handleVisibleChange = (
+    visible: boolean,
+    type: string,
+    e: object
+  ): void => {
+    if (typeof onVisibleChange === 'function') {
+      onVisibleChange(visible, type, e)
+    }
     if (
       typeof onMaskClick === 'function' &&
       type === 'maskClick' &&
