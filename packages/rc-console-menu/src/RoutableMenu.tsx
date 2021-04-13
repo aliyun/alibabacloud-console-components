@@ -255,8 +255,8 @@ const useRoutableMenu = (
 
   // 2. 将pathname与item的key匹配，得到最接近的item
   const matchResult = useBuiltInLocationMatcher(pathname, items) || {
-    key: null,
-    match: null,
+    key: undefined,
+    match: undefined,
   }
   const { key: matchedActiveKey, match } = matchResult
 
