@@ -33,8 +33,8 @@
     "test": "breezr test:unit",
     "dev": "breezr start --config config/breezr-docs.config.ts",
     "doc:build": "rm -rf doc-dist && breezr build --config config/breezr-docs.config.ts",
-    "upload": "OSS_NAME=@alicloud/console-components-slide-panel oss-upload",
-    "upload:pre": "OSS_TAG=pre npm run upload"
+    "upload": "breezr upload --config config/breezr-docs.config.ts",
+    "upload:pre": "npm run upload -- --tag=pre"
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
