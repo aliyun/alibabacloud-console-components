@@ -1,3 +1,7 @@
+/**
+* @title threshold
+*/
+
 import Actions, { LinkButton } from '@alicloud/console-components-actions'
 import React, { useState } from 'react'
 import { NumberPicker, Button } from '@alicloud/console-components'

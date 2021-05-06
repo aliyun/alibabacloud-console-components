@@ -1,3 +1,7 @@
+/**
+* @title customWidth
+*/
+
 import Actions, { LinkButton } from '@alicloud/console-components-actions'
 import React from 'react'
 import { Container } from './styles'
@@ -6,24 +10,7 @@ const Basic: React.FC<{}> = () => {
   return (
     <Container>
       <div className="block">
-        <p>不建议把a元素当作button使用：</p>
-        <Actions>
-          <a
-            href="#"
-            onClick={() => {
-              alert('on click')
-            }}
-          >
-            详情
-          </a>
-          <a href="#">删除</a>
-          <a href="#">编辑</a>
-          <a href="#">释放</a>
-          <a href="#">暂停</a>
-        </Actions>
-      </div>
-      <div className="block">
-        <p>建议使用LinkButton：</p>
+        <p>下拉Menu内置最大的宽度为150px：</p>
         <Actions>
           <LinkButton
             onClick={() => {
@@ -46,7 +33,7 @@ const Basic: React.FC<{}> = () => {
               alert('on click')
             }}
           >
-            释放
+            释放释放释放释放释放释放
           </LinkButton>
           <LinkButton
             // disabled
@@ -54,7 +41,43 @@ const Basic: React.FC<{}> = () => {
               alert('on click')
             }}
           >
-            暂停
+            暂停暂停暂停暂停暂停暂停
+          </LinkButton>
+        </Actions>
+      </div>
+      <div className="block">
+        <p>开发者可通过传入menuProps来自定义最大宽度</p>
+        <Actions menuProps={{ style: { maxWidth: '100px' } }}>
+          <LinkButton
+            onClick={() => {
+              alert('on click')
+            }}
+          >
+            详情
+          </LinkButton>
+          <LinkButton
+            disabled
+            onClick={() => {
+              alert('on click')
+            }}
+          >
+            删除
+          </LinkButton>
+          <LinkButton>编辑</LinkButton>
+          <LinkButton
+            onClick={() => {
+              alert('on click')
+            }}
+          >
+            释放释放释放释放释放释放
+          </LinkButton>
+          <LinkButton
+            // disabled
+            onClick={() => {
+              alert('on click')
+            }}
+          >
+            暂停暂停暂停暂停暂停暂停
           </LinkButton>
         </Actions>
       </div>
@@ -63,8 +86,3 @@ const Basic: React.FC<{}> = () => {
 }
 
 export default Basic
-
-export const demoMeta = {
-  zhName: `基本用法`,
-  zhDesc: `LinkButton、disabled的用法`,
-}

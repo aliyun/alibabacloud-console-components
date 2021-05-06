@@ -2,21 +2,8 @@ import React from 'react'
 import { Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import { expandMenuClassName, collapsedItemClassName } from './constants'
-
-/**
- * @public
- */
-export interface ILinkButtonProps {
-  /**
-   * 用什么组件来渲染链接。请传入一个组件。
-   * 你可以渲染为'a'或者react-router的Link组件。
-   *
-   * @defaultValue 'span'
-   */
-  Component?: string | React.ComponentType<any>
-
-  [key: string]: any
-}
+import { ILinkButtonProps } from './types/ILinkButtonProps.type'
+export type { ILinkButtonProps }
 
 /**
  * looks like a link
@@ -59,7 +46,7 @@ export const SLinkButton = styled.button<{ disabled?: boolean }>`
  * @public
  */
 export const LinkButton: React.FC<
-  React.HTMLProps<HTMLSpanElement> & ILinkButtonProps
+  React.HTMLProps<HTMLSpanElement> & ILinkButtonProps & { [key: string]: any }
 > = ({ children, onClick, disabled, Component, ...props }) => {
   return (
     <SLinkButton
