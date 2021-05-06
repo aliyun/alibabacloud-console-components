@@ -6,34 +6,34 @@
 
 ### 标准消息提醒
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=basic)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=basic)
 
 ### 带有链接的消息提醒
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=linkAnnouncement)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=linkAnnouncement)
 
 ### 强化的消息提醒
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=largeAnnouncement)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=largeAnnouncement)
 
 ### 带有轮播的消息提醒
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=carouselAnnouncement)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=carouselAnnouncement)
 
 ### 可关闭的消息提醒
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=closeableAnnouncement)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=closeableAnnouncement)
 
 ## APIs
 
 RcAnnouncement组件接受的props
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=types%2FIRcAnnouncementProps)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=types%2FIRcAnnouncementProps)
 
-dataSource（数组项 IRcAnnouncementProps.dataSource）的格式定义如下
+dataSource（数组项）的格式定义如下
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=types%2FIDataSourceItem)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=types%2FIDataSourceItem)
 
-sliderOptions（轮播属性 IRcAnnouncementProps.sliderOptions）的格式定义如下
+sliderOptions（轮播属性）的格式定义如下
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2F%2540alicloud%2Fconsole-components-slide-panel%2F-pre%2F&entryKey=types%2FISliderOptions)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-announcement-docs&entryKey=types%2FISliderOptions)
