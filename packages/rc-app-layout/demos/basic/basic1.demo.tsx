@@ -1,3 +1,7 @@
+/**
+* @title basic/basic1
+*/
+
 import React, { Fragment } from 'react'
 import { HashRouter } from 'dva/router'
 import { Button, Badge } from '@alicloud/console-components'

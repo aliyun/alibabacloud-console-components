@@ -1,7 +1,11 @@
+/**
+* @title hybridcloud-light/basic
+*/
+
 import { HybridCloudLightTheme as MenuTheme } from '@alicloud/console-components-console-menu'
 import { HybridCloudLightTheme } from '@alicloud/console-components-app-layout'
 
-import Basic from '../basic/basic2'
+import Basic from '../basic/basic2.demo'
 
 import React from 'react'
 

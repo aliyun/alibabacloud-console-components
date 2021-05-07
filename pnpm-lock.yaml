@@ -134,9 +134,11 @@ importers:
     devDependencies:
       '@alicloud/console-components-console-menu': 2.0.0-alpha.1
       '@alicloud/console-components-page': 'link:../rc-page'
+      '@alicloud/console-components-table': 'link:../rc-table'
     specifiers:
       '@alicloud/console-components-console-menu': ^2.0.0-alpha.0
       '@alicloud/console-components-page': ^1.0.14
+      '@alicloud/console-components-table': ^1.0.17
       '@babel/runtime': ^7.4.3
       classnames: ^2.2.5
   packages/rc-confirm:

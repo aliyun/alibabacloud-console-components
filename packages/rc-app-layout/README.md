@@ -1,24 +1,27 @@
 # @alicloud/console-components-app-layout
 
-基础的应用框架和布局。
+基础的应用框架和布局。预留了 topBar 和 sideBar 的槽位，控制 sideBar 的展开与收起。
+
+> 如果您正在使用 XConsole 框架，那么 XConsole 会帮您应用这个组件，你不需要直接使用它；<br/>
+> 如果您没有使用 XConsole 框架，而是单独使用`@alicloud/console-components`组件库，那么您需要使用它。
 
 ## 使用示例
 
 基本示例 1：
-[MDXInstruction:importDemo:BasicDemo1](./stories/basic/basic1.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=basic/basic1)
 
 基本示例 2：
-[MDXInstruction:importDemo:BasicDemo2](./stories/basic/basic2.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=basic/basic2)
 
 受控模式：
-[MDXInstruction:importDemo:ControlledDemo](./stories/controlled/controlled.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=controlled/controlled)
 
 非受控模式：
-[MDXInstruction:importDemo:UncontrolledDemo](./stories/uncontrolled/uncontrolled.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=uncontrolled/uncontrolled)
 
 ## APIs
 
-[MDXInstruction:renderInterface:IAppLayoutProps](./api-json/api.json)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=types/IAppLayoutProps)
 
 ### adjustHeight: 布局高度的调整
 
@@ -36,8 +39,8 @@
 
 ### 混合云亮色
 
-[MDXInstruction:importDemo:HybridCloudLight](./stories/hybridcloud-light/basic.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=hybridcloud-light/basic)
 
 ### 混合云暗色
 
-[MDXInstruction:importDemo:HybridCloudDark](./stories/hybridcloud-dark/basic.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-app-layout-docs&entryKey=hybridcloud-dark/basic)

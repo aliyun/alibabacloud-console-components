@@ -1,3 +1,7 @@
+/**
+* @title basic/basic2
+*/
+
 import React, { useState } from 'react'
 import { Message } from '@alicloud/console-components'
 import AppLayout from '@alicloud/console-components-app-layout'
