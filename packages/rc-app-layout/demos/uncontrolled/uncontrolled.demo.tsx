@@ -1,6 +1,6 @@
 /**
-* @title uncontrolled/uncontrolled
-*/
+ * @title uncontrolled/uncontrolled
+ */
 
 import React from 'react'
 import { Message } from '@alicloud/console-components'
@@ -25,25 +25,20 @@ const Nav = () => (
 
 // 使用 `defaultNavCollapsed` 在非受控的情况下控制第一次渲染时的导航区域是否展开或收起
 const Example: React.FC<{}> = () => (
-  <div
-    className="demo-container"
-    style={{ height: '100%', overflow: 'hidden' }}
-  >
-    <AppLayout nav={<Nav />} defaultNavCollapsed>
-      <Page>
-        <Page.Header title="概览" />
-        <Page.Content>
-          <Message type="success">
-            您购买的位于新加坡的 A3 型实例
-            <a href="#" style={{ padding: '0 4px' }}>
-              ecs-7ui6t9vra
-            </a>
-            已经部署完毕
-          </Message>
-        </Page.Content>
-      </Page>
-    </AppLayout>
-  </div>
+  <AppLayout nav={<Nav />} defaultNavCollapsed>
+    <Page>
+      <Page.Header title="概览" />
+      <Page.Content>
+        <Message type="success">
+          您购买的位于新加坡的 A3 型实例
+          <a href="#" style={{ padding: '0 4px' }}>
+            ecs-7ui6t9vra
+          </a>
+          已经部署完毕
+        </Message>
+      </Page.Content>
+    </Page>
+  </AppLayout>
 )
 
 export default Example

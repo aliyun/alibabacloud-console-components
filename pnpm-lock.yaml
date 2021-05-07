@@ -5,7 +5,7 @@ importers:
       '@alicloud/console-components-fake-browser': 'link:packages/fake-browser'
       '@alicloud/console-toolkit-cli': 1.2.0
       '@alicloud/console-toolkit-preset-component': 1.2.9_91fc91371b669d87b9c9f6447d2ef22c
-      '@alicloud/console-toolkit-preset-docs': 1.0.31_ac55eb0727908bb6a0e72bd83a7eee79
+      '@alicloud/console-toolkit-preset-docs': 1.0.34_ac55eb0727908bb6a0e72bd83a7eee79
       '@pnpm/link-bins': 5.3.24
       '@types/classnames': 2.2.11
       '@types/fs-extra': 8.1.1
@@ -52,7 +52,7 @@ importers:
       '@alicloud/console-components-fake-browser': 'workspace:*'
       '@alicloud/console-toolkit-cli': ^1.2.0
       '@alicloud/console-toolkit-preset-component': ^1.2.8
-      '@alicloud/console-toolkit-preset-docs': ^1.0.31
+      '@alicloud/console-toolkit-preset-docs': ^1.0.34
       '@pnpm/link-bins': ^5.3.24
       '@types/classnames': ^2.2.9
       '@types/fs-extra': ^8.0.1
@@ -478,7 +478,7 @@ packages:
   /@alicloud/console-toolkit-docs-consumer/1.0.12_react@16.14.0:
     dependencies:
       '@alicloud/console-os-react-app': 0.4.1_react@16.14.0
-      '@alicloud/console-toolkit-docs-shared': 1.0.4
+      '@alicloud/console-toolkit-docs-shared': 1.0.5
       query-string: 6.14.1
     dev: true
     peerDependencies:
@@ -486,11 +486,11 @@ packages:
     resolution:
       integrity: sha1-C1GEyvVfQjRHCnULyNw05Aao2vs=
       tarball: '@alicloud/console-toolkit-docs-consumer/download/@alicloud/console-toolkit-docs-consumer-1.0.12.tgz'
-  /@alicloud/console-toolkit-docs-shared/1.0.4:
+  /@alicloud/console-toolkit-docs-shared/1.0.5:
     dev: true
     resolution:
-      integrity: sha1-AA5yM2upHcP+LNivlB0t6+4HNLM=
-      tarball: '@alicloud/console-toolkit-docs-shared/download/@alicloud/console-toolkit-docs-shared-1.0.4.tgz'
+      integrity: sha1-gvjHA1wopWvvhlqb2YvHGRzE5zQ=
+      tarball: '@alicloud/console-toolkit-docs-shared/download/@alicloud/console-toolkit-docs-shared-1.0.5.tgz'
   /@alicloud/console-toolkit-fusion-css-loader/1.0.13:
     dependencies:
       loader-utils: 2.0.0
@@ -980,11 +980,11 @@ packages:
     resolution:
       integrity: sha1-BN22H32vhfJlzPQgmmITwT1ifSE=
       tarball: '@alicloud/console-toolkit-preset-component/download/@alicloud/console-toolkit-preset-component-1.2.9.tgz'
-  /@alicloud/console-toolkit-preset-docs/1.0.31_ac55eb0727908bb6a0e72bd83a7eee79:
+  /@alicloud/console-toolkit-preset-docs/1.0.34_ac55eb0727908bb6a0e72bd83a7eee79:
     dependencies:
       '@alicloud/console-os-react-portal': 0.4.1_react@16.14.0
       '@alicloud/console-toolkit-docs-consumer': 1.0.12_react@16.14.0
-      '@alicloud/console-toolkit-docs-shared': 1.0.4
+      '@alicloud/console-toolkit-docs-shared': 1.0.5
       '@alicloud/console-toolkit-fusion-css-loader': 1.0.13
       '@alicloud/console-toolkit-markdown-renderer': 3.0.14_react-dom@16.14.0+react@16.14.0
       '@alicloud/console-toolkit-plugin-os': 0.4.2_@babel+core@7.13.10
@@ -1006,6 +1006,7 @@ packages:
       open: 7.4.2
       query-string: 6.14.1
       raw-loader: 4.0.2
+      rc-dialog: 8.5.2_react-dom@16.14.0+react@16.14.0
       react-animate-height: 2.0.23_react-dom@16.14.0+react@16.14.0
       react-codemirror2: 7.2.1_codemirror@5.59.4+react@16.14.0
       react-error-boundary: 3.1.1_react@16.14.0
@@ -1018,8 +1019,8 @@ packages:
       react: '*'
       react-dom: '*'
     resolution:
-      integrity: sha1-IjxN7ZAgUT3EUZM265pvHaWpmOU=
-      tarball: '@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.31.tgz'
+      integrity: sha1-wUFt0NJDvE41rZcAsBMOlwI3R9M=
+      tarball: '@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.34.tgz'
   /@alicloud/console-toolkit-preset-official/1.2.8_2033ff76b2efdadc0dc2a137d3269adb:
     dependencies:
       '@alicloud/console-toolkit-plugin-arms': 1.1.3_@babel+core@7.13.10
@@ -8215,12 +8216,10 @@ packages:
     resolution:
       integrity: sha1-BXujDwSIRpSZOozQf6OUz/EcUL0=
       tarball: axios/download/axios-0.20.0.tgz
-  /axios/0.21.1_debug@3.2.7:
+  /axios/0.21.1:
     dependencies:
-      follow-redirects: 1.13.3_debug@3.2.7
+      follow-redirects: 1.13.3
     dev: true
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
       tarball: axios/download/axios-0.21.1.tgz
@@ -11787,7 +11786,7 @@ packages:
     dependencies:
       domelementtype: 2.1.0
       domhandler: 4.0.0
-      entities: 2.1.0
+      entities: 2.2.0
     dev: true
     resolution:
       integrity: sha1-NDPZE2rrPGJ5gdqjhfx/MtJ8SPE=
@@ -13562,20 +13561,6 @@ packages:
     resolution:
       integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
       tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
-  /follow-redirects/1.13.3_debug@3.2.7:
-    dependencies:
-      debug: 3.2.7
-    dev: true
-    engines:
-      node: '>=4.0'
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    resolution:
-      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
-      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
   /follow-redirects/1.5.10:
     dependencies:
       debug: 3.1.0
@@ -13661,7 +13646,7 @@ packages:
       tarball: fork-ts-checker-webpack-plugin/download/fork-ts-checker-webpack-plugin-1.6.0.tgz
   /fork-ts-checker-webpack-plugin/4.1.6:
     dependencies:
-      '@babel/code-frame': 7.10.4
+      '@babel/code-frame': 7.12.13
       chalk: 2.4.2
       micromatch: 3.1.10
       minimatch: 3.0.4
@@ -13834,8 +13819,6 @@ packages:
     engines:
       node: '>= 4.0'
     optional: true
-    os:
-      - darwin
     requiresBuild: true
     resolution:
       integrity: sha1-8yXLBFVZJCi88Rs4M3DvcOO/zDg=
@@ -15040,7 +15023,7 @@ packages:
       domelementtype: 2.1.0
       domhandler: 4.0.0
       domutils: 2.5.0
-      entities: 2.1.0
+      entities: 2.2.0
     dev: true
     resolution:
       integrity: sha1-QiUhIx721C5WvUEdqLpAqjbpFEY=
@@ -16744,9 +16727,6 @@ packages:
       node: '>=6'
     peerDependencies:
       jest-resolve: '*'
-    peerDependenciesMeta:
-      jest-resolve:
-        optional: true
     resolution:
       integrity: sha1-twSsCuAoqJEIpNBAs/kZ393I4zw=
       tarball: jest-pnp-resolver/download/jest-pnp-resolver-1.2.2.tgz
@@ -19226,19 +19206,17 @@ packages:
     resolution:
       integrity: sha1-RTNUCH5sqWlXvY9br3U/WYIUISk=
       tarball: normalize-url/download/normalize-url-4.5.0.tgz
-  /npm-api/1.0.1_debug@3.2.7:
+  /npm-api/1.0.1:
     dependencies:
       JSONStream: 1.3.5
       clone-deep: 4.0.1
       download-stats: 0.3.4
       moment: 2.29.1
       node-fetch: 2.6.1
-      paged-request: 2.0.2_debug@3.2.7
+      paged-request: 2.0.2
     dev: true
     engines:
       node: '>=10.0'
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-Pe+bUa/tylfbFMoMlw2SRC0hycU=
       tarball: npm-api/download/npm-api-1.0.1.tgz
@@ -19935,14 +19913,12 @@ packages:
     resolution:
       integrity: sha1-b+7ayjXnVyWHbQsOZJdGl/7RRbA=
       tarball: package-json/download/package-json-6.5.0.tgz
-  /paged-request/2.0.2_debug@3.2.7:
+  /paged-request/2.0.2:
     dependencies:
-      axios: 0.21.1_debug@3.2.7
+      axios: 0.21.1
     dev: true
     engines:
       node: '>=8'
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-TWIaCLjWvuRECgqSESNU7uzltbA=
       tarball: paged-request/download/paged-request-2.0.2.tgz
@@ -21543,6 +21519,49 @@ packages:
     resolution:
       integrity: sha1-GqxrfRrRUB5m79rBUixz5ZpYTrY=
       tarball: raw-loader/download/raw-loader-4.0.2.tgz
+  /rc-dialog/8.5.2_react-dom@16.14.0+react@16.14.0:
+    dependencies:
+      '@babel/runtime': 7.13.10
+      classnames: 2.2.6
+      rc-motion: 2.4.3_react-dom@16.14.0+react@16.14.0
+      rc-util: 5.12.2_react-dom@16.14.0+react@16.14.0
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+    dev: true
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    resolution:
+      integrity: sha1-Uw4onCWjHBXIWg6KS6PzNBS/9Bg=
+      tarball: rc-dialog/download/rc-dialog-8.5.2.tgz
+  /rc-motion/2.4.3_react-dom@16.14.0+react@16.14.0:
+    dependencies:
+      '@babel/runtime': 7.13.10
+      classnames: 2.2.6
+      rc-util: 5.12.2_react-dom@16.14.0+react@16.14.0
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+    dev: true
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    resolution:
+      integrity: sha1-Kv0Snah2TuA3K6g0QpSdjsscetI=
+      tarball: rc-motion/download/rc-motion-2.4.3.tgz
+  /rc-util/5.12.2_react-dom@16.14.0+react@16.14.0:
+    dependencies:
+      '@babel/runtime': 7.13.10
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      react-is: 16.13.1
+      shallowequal: 1.1.0
+    dev: true
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    resolution:
+      integrity: sha1-QVcmh6LNF0/a7AKNp1bSiOOY6fg=
+      tarball: rc-util/download/rc-util-5.12.2.tgz
   /rc/1.2.8:
     dependencies:
       deep-extend: 0.6.0
@@ -22820,6 +22839,7 @@ packages:
       request-promise-core: 1.1.4_request@2.88.2
       stealthy-require: 1.1.1
       tough-cookie: 2.5.0
+    deprecated: 'request-promise-native has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142'
     dev: true
     engines:
       node: '>=0.12.0'
@@ -26865,7 +26885,7 @@ packages:
       log-symbols: 2.2.0
       mem-fs: 1.2.0
       mem-fs-editor: 6.0.0
-      npm-api: 1.0.1_debug@3.2.7
+      npm-api: 1.0.1
       semver: 7.3.4
       strip-ansi: 4.0.0
       text-table: 0.2.0

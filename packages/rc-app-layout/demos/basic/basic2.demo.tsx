@@ -1,6 +1,6 @@
 /**
-* @title basic/basic2
-*/
+ * @title basic/basic2
+ */
 
 import React, { useState } from 'react'
 import { Message } from '@alicloud/console-components'
@@ -33,25 +33,20 @@ const Nav = () => {
 }
 
 const Example = () => (
-  <div
-    className="demo-container"
-    style={{ height: '100%', overflow: 'hidden' }}
-  >
-    <AppLayout nav={<Nav />}>
-      <Page>
-        <Page.Header title="概览" />
-        <Page.Content>
-          <Message type="success">
-            您购买的位于新加坡的 A3 型实例
-            <a href="#" style={{ padding: '0 4px' }}>
-              ecs-7ui6t9vra
-            </a>
-            已经部署完毕
-          </Message>
-        </Page.Content>
-      </Page>
-    </AppLayout>
-  </div>
+  <AppLayout nav={<Nav />}>
+    <Page>
+      <Page.Header title="概览" />
+      <Page.Content>
+        <Message type="success">
+          您购买的位于新加坡的 A3 型实例
+          <a href="#" style={{ padding: '0 4px' }}>
+            ecs-7ui6t9vra
+          </a>
+          已经部署完毕
+        </Message>
+      </Page.Content>
+    </Page>
+  </AppLayout>
 )
 
 export default Example
