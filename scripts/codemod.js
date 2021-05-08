@@ -7,7 +7,7 @@ const globby = require('globby')
 const comp = process.argv[2]
 const compDir = path.resolve(__dirname, '../packages', comp)
 
-// modDemos()
+modDemos()
 modREADME()
 
 function modDemos() {

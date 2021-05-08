@@ -1,3 +1,7 @@
+/**
+* @title basic
+*/
+
 import React, { Fragment } from 'react'
 import '@alicloud/console-components/dist/wind.css'
 import { Icon } from '@alicloud/console-components'
