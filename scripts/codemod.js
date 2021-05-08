@@ -28,7 +28,7 @@ function modDemos() {
     const demoPath = path.join(demoDir, demo)
     let code = fs.readFileSync(demoPath, 'utf-8')
     code = `/**
-* @title ${demoName}
+* @title ${demoName.replace(/\/index$/, '')}
 */
 
 ${code}`

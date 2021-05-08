@@ -1,3 +1,7 @@
+/**
+* @title imperative
+*/
+
 import React from 'react'
 import { showConfirmDialog } from '@alicloud/console-components-confirm'
 import { Button } from '@alicloud/console-components'

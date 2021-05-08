@@ -1,3 +1,7 @@
+/**
+* @title basic
+*/
+
 import React from 'react'
 import Confirm from '@alicloud/console-components-confirm'
 import { Button } from '@alicloud/console-components'
