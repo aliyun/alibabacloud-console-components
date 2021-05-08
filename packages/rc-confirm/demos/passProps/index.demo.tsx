@@ -1,6 +1,6 @@
 /**
-* @title passProps
-*/
+ * @title passProps
+ */
 
 import React from 'react'
 import Confirm from '@alicloud/console-components-confirm'
@@ -17,7 +17,6 @@ const PassPropsDemo: React.FC<{}> = () => {
           console.log('删除成功')
         }}
         dialogProps={{
-          footerAlign: 'center',
           okProps: {
             children: '自定义确认',
           },
@@ -26,7 +25,7 @@ const PassPropsDemo: React.FC<{}> = () => {
           },
         }}
         messageProps={{
-          size: 'medium',
+          iconType: 'account',
         }}
       >
         <Button>error</Button>
