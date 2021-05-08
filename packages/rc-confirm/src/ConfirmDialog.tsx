@@ -56,7 +56,7 @@ const SDialog = styled(Dialog)`
   &&& ${({ prefix }) => `.${prefix}message-title`} {
     color: #111;
   }
-  .wind-rc-confirm-message {
+  && .wind-rc-confirm-message {
     min-width: 300px;
     padding: 0;
     margin-top: 24px;
