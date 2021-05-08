@@ -35,6 +35,7 @@ const Controlled: React.FC<{}> = () => {
       onNavCollapseTriggerClick={(prevCollapsed: boolean) => {
         setCollapsed(!prevCollapsed)
       }}
+      style={{ minWidth: 1000 }}
     >
       <Page>
         <Page.Header title="概览" />

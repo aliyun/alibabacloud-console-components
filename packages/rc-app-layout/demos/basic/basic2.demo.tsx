@@ -33,7 +33,7 @@ const Nav = () => {
 }
 
 const Example = () => (
-  <AppLayout nav={<Nav />}>
+  <AppLayout nav={<Nav />} style={{ minWidth: 1000 }}>
     <Page>
       <Page.Header title="概览" />
       <Page.Content>

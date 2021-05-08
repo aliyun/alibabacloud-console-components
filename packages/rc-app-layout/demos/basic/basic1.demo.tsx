@@ -78,7 +78,7 @@ const Operation = () => (
 const Basic: React.FC<{}> = () => {
   return (
     <HashRouter>
-      <AppLayout nav={<Nav />}>
+      <AppLayout nav={<Nav />} style={{ minWidth: 1000 }}>
         <Page>
           <Page.Header title="阿里云控制台" />
           <Page.Content>

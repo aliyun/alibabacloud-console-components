@@ -25,7 +25,7 @@ const Nav = () => (
 
 // 使用 `defaultNavCollapsed` 在非受控的情况下控制第一次渲染时的导航区域是否展开或收起
 const Example: React.FC<{}> = () => (
-  <AppLayout nav={<Nav />} defaultNavCollapsed>
+  <AppLayout nav={<Nav />} defaultNavCollapsed style={{ minWidth: 1000 }}>
     <Page>
       <Page.Header title="概览" />
       <Page.Content>
