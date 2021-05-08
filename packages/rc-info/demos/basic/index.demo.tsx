@@ -1,3 +1,7 @@
+/**
+* @title basic
+*/
+
 import React from 'react'
 import { Button } from '@alicloud/console-components'
 import Info from '@alicloud/console-components-info'

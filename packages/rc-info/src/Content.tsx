@@ -3,24 +3,8 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styled from 'styled-components'
 import { contentClassName } from './constants'
-
-/**
- * @public
- */
-export interface IContentProps {
-  /**
-   * 内容节点
-   */
-  children?: React.ReactNode
-  /**
-   * 自定义wrapper div的类名
-   */
-  className?: string
-  /**
-   * 自定义wrapper div的样式
-   */
-  style?: React.CSSProperties
-}
+import type { IContentProps } from './types/IContentProps.type'
+export type { IContentProps }
 
 /**
  * @public

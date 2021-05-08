@@ -1,3 +1,7 @@
+/**
+* @title renderChildren
+*/
+
 import React from 'react'
 import Info from '@alicloud/console-components-info'
 
