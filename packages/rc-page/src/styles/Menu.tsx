@@ -48,6 +48,7 @@ const getAdjustedHeight = (value?: number | string): number => {
 export interface IIntersectionContainerProps {
   adjustHeight?: number | string
   isIntersecting?: boolean
+  prefix: string
 }
 
 const stickyIfNonIntersecting = (props: IIntersectionContainerProps): string =>
@@ -64,7 +65,7 @@ export const IntersectionContainer = styled.div<IIntersectionContainerProps>`
   height: 100%;
   ${stickyIfNonIntersecting};
 
-  .next-menu {
+  .${(props) => props.prefix}menu {
     height: 100%;
   }
 `

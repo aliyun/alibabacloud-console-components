@@ -1,3 +1,7 @@
+/**
+* @title basic
+*/
+
 import React, { useState } from 'react'
 import { Button, Input } from '@alicloud/console-components'
 import Page from '@alicloud/console-components-page'
@@ -64,7 +68,7 @@ const Example: React.FC<{}> = () => {
             change Title:
             <Input
               value={title}
-              onChange={(v) => {
+              onChange={v => {
                 setTitle(v)
               }}
             />
@@ -73,7 +77,7 @@ const Example: React.FC<{}> = () => {
             change subTitle:
             <Input
               value={subTitle}
-              onChange={(v) => {
+              onChange={v => {
                 setSubTitle(v)
               }}
             />

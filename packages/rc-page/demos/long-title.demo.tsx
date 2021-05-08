@@ -1,3 +1,7 @@
+/**
+* @title long-title
+*/
+
 import React from 'react'
 import { Button, Icon } from '@alicloud/console-components'
 import { FakeBrowserWithWrapper as FakeBrowser } from '@alicloud/console-components-fake-browser'

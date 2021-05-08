@@ -236,9 +236,11 @@ importers:
       warning: ^4.0.3
   packages/rc-page:
     dependencies:
+      '@alicloud/console-components-internal-helpers': 'link:../internal-helpers'
       '@alicloud/console-components-truncate': 'link:../rc-truncate'
       '@researchgate/react-intersection-observer': 1.3.5
     specifiers:
+      '@alicloud/console-components-internal-helpers': 'workspace:^1.0.7'
       '@alicloud/console-components-truncate': ^1.0.15
       '@researchgate/react-intersection-observer': ^1.0.1
   packages/rc-select-list:
