@@ -9,5 +9,6 @@ export default ({ children }: any) => {
     // @ts-ignore
     content = <c.ConfigWrapper>{content}</c.ConfigWrapper>
   }
-  return content
+  // 避免宽度太小
+  return <div style={{ minWidth: 1000 }}>{content}</div>
 }
