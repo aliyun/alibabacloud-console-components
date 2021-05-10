@@ -16,7 +16,7 @@
     "@alicloud/console-components": "^1.4.0",
     "@alicloud/console-toolkit-cli": "^1.2.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.8",
-    "@alicloud/console-toolkit-preset-docs": "^1.0.34",
+    "@alicloud/console-toolkit-preset-docs": "^1.0.35",
     "@alicloud/console-components-fake-browser": "workspace:*",
     "@pnpm/link-bins": "^5.3.24",
     "@types/classnames": "^2.2.9",

@@ -5,7 +5,7 @@ importers:
       '@alicloud/console-components-fake-browser': 'link:packages/fake-browser'
       '@alicloud/console-toolkit-cli': 1.2.0
       '@alicloud/console-toolkit-preset-component': 1.2.9_91fc91371b669d87b9c9f6447d2ef22c
-      '@alicloud/console-toolkit-preset-docs': 1.0.34_ac55eb0727908bb6a0e72bd83a7eee79
+      '@alicloud/console-toolkit-preset-docs': 1.0.35_ac55eb0727908bb6a0e72bd83a7eee79
       '@pnpm/link-bins': 5.3.24
       '@types/classnames': 2.2.11
       '@types/fs-extra': 8.1.1
@@ -52,7 +52,7 @@ importers:
       '@alicloud/console-components-fake-browser': 'workspace:*'
       '@alicloud/console-toolkit-cli': ^1.2.0
       '@alicloud/console-toolkit-preset-component': ^1.2.8
-      '@alicloud/console-toolkit-preset-docs': ^1.0.34
+      '@alicloud/console-toolkit-preset-docs': ^1.0.35
       '@pnpm/link-bins': ^5.3.24
       '@types/classnames': ^2.2.9
       '@types/fs-extra': ^8.0.1
@@ -240,7 +240,7 @@ importers:
       '@alicloud/console-components-truncate': 'link:../rc-truncate'
       '@researchgate/react-intersection-observer': 1.3.5
     specifiers:
-      '@alicloud/console-components-internal-helpers': 'workspace:^1.0.7'
+      '@alicloud/console-components-internal-helpers': ^1.0.8
       '@alicloud/console-components-truncate': ^1.0.15
       '@researchgate/react-intersection-observer': ^1.0.1
   packages/rc-select-list:
@@ -477,22 +477,22 @@ packages:
     resolution:
       integrity: sha1-8DZwQRw4A+ilEtEDXuveiYwBYw4=
       tarball: '@alicloud/console-toolkit-core/download/@alicloud/console-toolkit-core-1.1.3.tgz'
-  /@alicloud/console-toolkit-docs-consumer/1.0.12_react@16.14.0:
+  /@alicloud/console-toolkit-docs-consumer/1.0.13_react@16.14.0:
     dependencies:
       '@alicloud/console-os-react-app': 0.4.1_react@16.14.0
-      '@alicloud/console-toolkit-docs-shared': 1.0.5
+      '@alicloud/console-toolkit-docs-shared': 1.0.6
       query-string: 6.14.1
     dev: true
     peerDependencies:
       react: '*'
     resolution:
-      integrity: sha1-C1GEyvVfQjRHCnULyNw05Aao2vs=
-      tarball: '@alicloud/console-toolkit-docs-consumer/download/@alicloud/console-toolkit-docs-consumer-1.0.12.tgz'
-  /@alicloud/console-toolkit-docs-shared/1.0.5:
+      integrity: sha1-U9RoBO1vQ5Cn7FkeKJZApgY4jaU=
+      tarball: '@alicloud/console-toolkit-docs-consumer/download/@alicloud/console-toolkit-docs-consumer-1.0.13.tgz'
+  /@alicloud/console-toolkit-docs-shared/1.0.6:
     dev: true
     resolution:
-      integrity: sha1-gvjHA1wopWvvhlqb2YvHGRzE5zQ=
-      tarball: '@alicloud/console-toolkit-docs-shared/download/@alicloud/console-toolkit-docs-shared-1.0.5.tgz'
+      integrity: sha1-qrHh4n2WO0inm1g6jyu4cuPObcc=
+      tarball: '@alicloud/console-toolkit-docs-shared/download/@alicloud/console-toolkit-docs-shared-1.0.6.tgz'
   /@alicloud/console-toolkit-fusion-css-loader/1.0.13:
     dependencies:
       loader-utils: 2.0.0
@@ -506,7 +506,7 @@ packages:
       tarball: '@alicloud/console-toolkit-fusion-css-loader/download/@alicloud/console-toolkit-fusion-css-loader-1.0.13.tgz'
   /@alicloud/console-toolkit-markdown-renderer/3.0.14_react-dom@16.14.0+react@16.14.0:
     dependencies:
-      '@alicloud/console-toolkit-docs-consumer': 1.0.12_react@16.14.0
+      '@alicloud/console-toolkit-docs-consumer': 1.0.13_react@16.14.0
       '@mdx-js/mdx': 1.6.22
       '@mdx-js/react': 1.6.22_react@16.14.0
       classnames: 2.2.6
@@ -545,7 +545,7 @@ packages:
       tarball: '@alicloud/console-toolkit-plugin-arms/download/@alicloud/console-toolkit-plugin-arms-1.1.3.tgz'
   /@alicloud/console-toolkit-plugin-babel/1.1.3:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
       '@babel/core': 7.13.10
       assert: 2.0.0
@@ -601,9 +601,23 @@ packages:
     resolution:
       integrity: sha1-Vq7Q/WeqGWWG2GplWa8u0rs6u5c=
       tarball: '@alicloud/console-toolkit-plugin-builtin/download/@alicloud/console-toolkit-plugin-builtin-1.2.0.tgz'
+  /@alicloud/console-toolkit-plugin-builtin/1.2.0_@babel+core@7.13.10:
+    dependencies:
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
+      '@alicloud/console-toolkit-plugin-babel': 1.1.3
+      '@alicloud/console-toolkit-plugin-generator': 1.2.0_@babel+core@7.13.10
+      '@alicloud/console-toolkit-plugin-webpack': 1.1.3_@babel+core@7.13.10
+      '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
+      webpack-chain: 6.5.1
+    dev: true
+    peerDependencies:
+      '@babel/core': '*'
+    resolution:
+      integrity: sha1-Vq7Q/WeqGWWG2GplWa8u0rs6u5c=
+      tarball: '@alicloud/console-toolkit-plugin-builtin/download/@alicloud/console-toolkit-plugin-builtin-1.2.0.tgz'
   /@alicloud/console-toolkit-plugin-cdn/1.1.3_@babel+core@7.13.10:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
       lodash: 4.17.21
     dev: true
@@ -653,6 +667,27 @@ packages:
     resolution:
       integrity: sha1-0wBess4hU020eE3Vv2Gn1kfFyHQ=
       tarball: '@alicloud/console-toolkit-plugin-generator/download/@alicloud/console-toolkit-plugin-generator-1.2.0.tgz'
+  /@alicloud/console-toolkit-plugin-generator/1.2.0_@babel+core@7.13.10:
+    dependencies:
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
+      '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
+      '@alicloud/generator-breezr': 1.2.0
+      chalk: 2.4.2
+      execa: 2.1.0
+      lodash: 4.17.21
+      mkdirp: 0.5.5
+      ora: 3.4.0
+      package-json: 6.5.0
+      rimraf: 3.0.2
+      semver: 6.3.0
+      user-home: 2.0.0
+      yeoman-environment: 2.10.3
+    dev: true
+    peerDependencies:
+      '@babel/core': '*'
+    resolution:
+      integrity: sha1-0wBess4hU020eE3Vv2Gn1kfFyHQ=
+      tarball: '@alicloud/console-toolkit-plugin-generator/download/@alicloud/console-toolkit-plugin-generator-1.2.0.tgz'
   /@alicloud/console-toolkit-plugin-less/1.1.3:
     dependencies:
       '@alicloud/console-toolkit-core': 1.1.3
@@ -668,7 +703,7 @@ packages:
       tarball: '@alicloud/console-toolkit-plugin-less/download/@alicloud/console-toolkit-plugin-less-1.1.3.tgz'
   /@alicloud/console-toolkit-plugin-long-term-caching/1.1.3_@babel+core@7.13.10:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
     dev: true
     peerDependencies:
@@ -679,7 +714,7 @@ packages:
       tarball: '@alicloud/console-toolkit-plugin-long-term-caching/download/@alicloud/console-toolkit-plugin-long-term-caching-1.1.3.tgz'
   /@alicloud/console-toolkit-plugin-mocks/1.2.5_@babel+core@7.13.10:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
       body-parser: 1.19.0
       chalk: 2.4.2
@@ -692,15 +727,16 @@ packages:
     resolution:
       integrity: sha1-V24Zwju7tHceGxkDSafLKuZCnfo=
       tarball: '@alicloud/console-toolkit-plugin-mocks/download/@alicloud/console-toolkit-plugin-mocks-1.2.5.tgz'
-  /@alicloud/console-toolkit-plugin-oneconsole/1.1.3:
+  /@alicloud/console-toolkit-plugin-oneconsole/1.1.3_@babel+core@7.13.10:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       lodash: 4.17.21
       query-string: 6.14.1
       request-promise-native: 1.0.9
       safe-require: 1.0.4
     dev: true
     peerDependencies:
+      '@babel/core': '*'
       html-webpack-plugin: ^3
     resolution:
       integrity: sha1-qlUKU79Xh0klpumxdJzvKU6Kknw=
@@ -723,7 +759,7 @@ packages:
       tarball: '@alicloud/console-toolkit-plugin-os/download/@alicloud/console-toolkit-plugin-os-0.4.2.tgz'
   /@alicloud/console-toolkit-plugin-react/1.2.9_ac55eb0727908bb6a0e72bd83a7eee79:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
       '@babel/core': 7.13.10
       assert: 1.5.0
@@ -878,7 +914,7 @@ packages:
       tarball: '@alicloud/console-toolkit-plugin-typescript/download/@alicloud/console-toolkit-plugin-typescript-1.2.6.tgz'
   /@alicloud/console-toolkit-plugin-unit-jest/1.1.3_242221df33f95fbefd8f8e70b09e51c4:
     dependencies:
-      '@alicloud/console-toolkit-core': 1.1.3
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
       '@babel/plugin-transform-modules-commonjs': 7.13.8_@babel+core@7.13.10
       babel-jest: 24.9.0_@babel+core@7.13.10
       enzyme: 3.11.0
@@ -929,6 +965,20 @@ packages:
     resolution:
       integrity: sha1-pPzffQpyB6LWCWsF5yYbotNZ7mE=
       tarball: '@alicloud/console-toolkit-plugin-updator/download/@alicloud/console-toolkit-plugin-updator-1.1.3.tgz'
+  /@alicloud/console-toolkit-plugin-updator/1.1.3_@babel+core@7.13.10:
+    dependencies:
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
+      '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
+      execa: 2.1.0
+      inquirer: 7.3.3
+      rimraf: 3.0.2
+      update-notifier: 3.0.1
+    dev: true
+    peerDependencies:
+      '@babel/core': '*'
+    resolution:
+      integrity: sha1-pPzffQpyB6LWCWsF5yYbotNZ7mE=
+      tarball: '@alicloud/console-toolkit-plugin-updator/download/@alicloud/console-toolkit-plugin-updator-1.1.3.tgz'
   /@alicloud/console-toolkit-plugin-webpack/1.1.3:
     dependencies:
       '@alicloud/console-toolkit-core': 1.1.3
@@ -944,6 +994,27 @@ packages:
       webpack-dev-server: 3.11.2_webpack@4.46.0
       webpack-merge: 4.2.2
     dev: true
+    requiresBuild: true
+    resolution:
+      integrity: sha1-zm9knU4JW08V9sFVvaZuVZO2dOQ=
+      tarball: '@alicloud/console-toolkit-plugin-webpack/download/@alicloud/console-toolkit-plugin-webpack-1.1.3.tgz'
+  /@alicloud/console-toolkit-plugin-webpack/1.1.3_@babel+core@7.13.10:
+    dependencies:
+      '@alicloud/console-toolkit-core': 1.1.3_@babel+core@7.13.10
+      '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
+      assert: 2.0.0
+      chalk: 2.4.2
+      debug: 4.3.1
+      fs-extra: 8.1.0
+      lodash: 4.17.21
+      string.prototype.padend: 3.1.2
+      webpack: 4.46.0
+      webpack-chain: 6.5.1
+      webpack-dev-server: 3.11.2_webpack@4.46.0
+      webpack-merge: 4.2.2
+    dev: true
+    peerDependencies:
+      '@babel/core': '*'
     requiresBuild: true
     resolution:
       integrity: sha1-zm9knU4JW08V9sFVvaZuVZO2dOQ=
@@ -982,11 +1053,11 @@ packages:
     resolution:
       integrity: sha1-BN22H32vhfJlzPQgmmITwT1ifSE=
       tarball: '@alicloud/console-toolkit-preset-component/download/@alicloud/console-toolkit-preset-component-1.2.9.tgz'
-  /@alicloud/console-toolkit-preset-docs/1.0.34_ac55eb0727908bb6a0e72bd83a7eee79:
+  /@alicloud/console-toolkit-preset-docs/1.0.35_ac55eb0727908bb6a0e72bd83a7eee79:
     dependencies:
       '@alicloud/console-os-react-portal': 0.4.1_react@16.14.0
-      '@alicloud/console-toolkit-docs-consumer': 1.0.12_react@16.14.0
-      '@alicloud/console-toolkit-docs-shared': 1.0.5
+      '@alicloud/console-toolkit-docs-consumer': 1.0.13_react@16.14.0
+      '@alicloud/console-toolkit-docs-shared': 1.0.6
       '@alicloud/console-toolkit-fusion-css-loader': 1.0.13
       '@alicloud/console-toolkit-markdown-renderer': 3.0.14_react-dom@16.14.0+react@16.14.0
       '@alicloud/console-toolkit-plugin-os': 0.4.2_@babel+core@7.13.10
@@ -999,6 +1070,7 @@ packages:
       ali-oss: 6.13.2
       codemirror: 5.59.4
       connect-history-api-fallback: 1.6.0
+      copy-to-clipboard: 3.3.1
       execa: 5.0.0
       fs-extra: 9.1.0
       get-port: 5.1.1
@@ -1012,6 +1084,7 @@ packages:
       react-animate-height: 2.0.23_react-dom@16.14.0+react@16.14.0
       react-codemirror2: 7.2.1_codemirror@5.59.4+react@16.14.0
       react-error-boundary: 3.1.1_react@16.14.0
+      react-hot-toast: 1.0.2_react-dom@16.14.0+react@16.14.0
       webpack-chain: 6.5.1
       webpack-virtual-modules: 0.4.2
     dev: true
@@ -1021,25 +1094,25 @@ packages:
       react: '*'
       react-dom: '*'
     resolution:
-      integrity: sha1-wUFt0NJDvE41rZcAsBMOlwI3R9M=
-      tarball: '@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.34.tgz'
+      integrity: sha1-e9ZtuBaPcLdVWL52ygJxhQCWjmg=
+      tarball: '@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.35.tgz'
   /@alicloud/console-toolkit-preset-official/1.2.8_2033ff76b2efdadc0dc2a137d3269adb:
     dependencies:
       '@alicloud/console-toolkit-plugin-arms': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-browser-hint': 1.1.3_@babel+core@7.13.10
-      '@alicloud/console-toolkit-plugin-builtin': 1.2.0
+      '@alicloud/console-toolkit-plugin-builtin': 1.2.0_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-cdn': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-console-base': 1.2.1_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-dll': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-long-term-caching': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-mocks': 1.2.5_@babel+core@7.13.10
-      '@alicloud/console-toolkit-plugin-oneconsole': 1.1.3
+      '@alicloud/console-toolkit-plugin-oneconsole': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-react': 1.2.9_ac55eb0727908bb6a0e72bd83a7eee79
       '@alicloud/console-toolkit-plugin-styled-components-isolation': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-typescript': 1.2.6_@babel+core@7.13.10
       '@alicloud/console-toolkit-plugin-unit-jest': 1.1.3_242221df33f95fbefd8f8e70b09e51c4
-      '@alicloud/console-toolkit-plugin-updator': 1.1.3
-      '@alicloud/console-toolkit-plugin-webpack': 1.1.3
+      '@alicloud/console-toolkit-plugin-updator': 1.1.3_@babel+core@7.13.10
+      '@alicloud/console-toolkit-plugin-webpack': 1.1.3_@babel+core@7.13.10
       '@alicloud/console-toolkit-shared-utils': 1.0.16_@babel+core@7.13.10
     dev: true
     peerDependencies:
@@ -8218,10 +8291,12 @@ packages:
     resolution:
       integrity: sha1-BXujDwSIRpSZOozQf6OUz/EcUL0=
       tarball: axios/download/axios-0.20.0.tgz
-  /axios/0.21.1:
+  /axios/0.21.1_debug@3.2.7:
     dependencies:
-      follow-redirects: 1.13.3
+      follow-redirects: 1.13.3_debug@3.2.7
     dev: true
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
       tarball: axios/download/axios-0.21.1.tgz
@@ -13560,6 +13635,39 @@ packages:
     dev: true
     engines:
       node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    resolution:
+      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
+      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
+  /follow-redirects/1.13.3_debug@3.2.7:
+    dependencies:
+      debug: 3.2.7
+    dev: true
+    engines:
+      node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    resolution:
+      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
+      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
+  /follow-redirects/1.13.3_debug@4.3.1:
+    dependencies:
+      debug: 4.3.1_supports-color@6.1.0
+    dev: true
+    engines:
+      node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     resolution:
       integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
       tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
@@ -13821,6 +13929,8 @@ packages:
     engines:
       node: '>= 4.0'
     optional: true
+    os:
+      - darwin
     requiresBuild: true
     resolution:
       integrity: sha1-8yXLBFVZJCi88Rs4M3DvcOO/zDg=
@@ -13831,6 +13941,8 @@ packages:
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     optional: true
+    os:
+      - darwin
     resolution:
       integrity: sha1-+3OHA66NL5/pAMM4Nt3r7ouX8j4=
       tarball: fsevents/download/fsevents-2.1.3.tgz
@@ -13839,6 +13951,8 @@ packages:
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     optional: true
+    os:
+      - darwin
     resolution:
       integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=
       tarball: fsevents/download/fsevents-2.3.2.tgz
@@ -14361,6 +14475,13 @@ packages:
     resolution:
       integrity: sha1-/QKacGxwPSm90XD0tts6P3p8tj0=
       tarball: globby/download/globby-9.2.0.tgz
+  /goober/2.0.37:
+    dev: true
+    peerDependencies:
+      csstype: ^2.6.2
+    resolution:
+      integrity: sha1-VZjEH0wZvB/KLJJuh2pYpoX6/7g=
+      tarball: goober/download/goober-2.0.37.tgz
   /good-listener/1.2.2:
     dependencies:
       delegate: 3.2.0
@@ -15098,15 +15219,17 @@ packages:
     resolution:
       integrity: sha1-5IIb7vWyFCogJr1zkm/lN2McVAU=
       tarball: http-proxy-agent/download/http-proxy-agent-2.1.0.tgz
-  /http-proxy-middleware/0.19.1:
+  /http-proxy-middleware/0.19.1_debug@4.3.1:
     dependencies:
-      http-proxy: 1.18.1
+      http-proxy: 1.18.1_debug@4.3.1
       is-glob: 4.0.1
       lodash: 4.17.21
       micromatch: 3.1.10
     dev: true
     engines:
       node: '>=4.0.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-GDx9xKoUeRUDBkmMIQza+WCApDo=
       tarball: http-proxy-middleware/download/http-proxy-middleware-0.19.1.tgz
@@ -15131,6 +15254,19 @@ packages:
     dev: true
     engines:
       node: '>=8.0.0'
+    resolution:
+      integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=
+      tarball: http-proxy/download/http-proxy-1.18.1.tgz
+  /http-proxy/1.18.1_debug@4.3.1:
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.13.3_debug@4.3.1
+      requires-port: 1.0.0
+    dev: true
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=
       tarball: http-proxy/download/http-proxy-1.18.1.tgz
@@ -16729,6 +16865,9 @@ packages:
       node: '>=6'
     peerDependencies:
       jest-resolve: '*'
+    peerDependenciesMeta:
+      jest-resolve:
+        optional: true
     resolution:
       integrity: sha1-twSsCuAoqJEIpNBAs/kZ393I4zw=
       tarball: jest-pnp-resolver/download/jest-pnp-resolver-1.2.2.tgz
@@ -19208,17 +19347,19 @@ packages:
     resolution:
       integrity: sha1-RTNUCH5sqWlXvY9br3U/WYIUISk=
       tarball: normalize-url/download/normalize-url-4.5.0.tgz
-  /npm-api/1.0.1:
+  /npm-api/1.0.1_debug@3.2.7:
     dependencies:
       JSONStream: 1.3.5
       clone-deep: 4.0.1
       download-stats: 0.3.4
       moment: 2.29.1
       node-fetch: 2.6.1
-      paged-request: 2.0.2
+      paged-request: 2.0.2_debug@3.2.7
     dev: true
     engines:
       node: '>=10.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-Pe+bUa/tylfbFMoMlw2SRC0hycU=
       tarball: npm-api/download/npm-api-1.0.1.tgz
@@ -19915,12 +20056,14 @@ packages:
     resolution:
       integrity: sha1-b+7ayjXnVyWHbQsOZJdGl/7RRbA=
       tarball: package-json/download/package-json-6.5.0.tgz
-  /paged-request/2.0.2:
+  /paged-request/2.0.2_debug@3.2.7:
     dependencies:
-      axios: 0.21.1
+      axios: 0.21.1_debug@3.2.7
     dev: true
     engines:
       node: '>=8'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha1-TWIaCLjWvuRECgqSESNU7uzltbA=
       tarball: paged-request/download/paged-request-2.0.2.tgz
@@ -21833,6 +21976,20 @@ packages:
     resolution:
       integrity: sha1-wn6UCFgcKmePUxbmnAYbIm3GogI=
       tarball: react-hot-loader/download/react-hot-loader-4.13.0.tgz
+  /react-hot-toast/1.0.2_react-dom@16.14.0+react@16.14.0:
+    dependencies:
+      goober: 2.0.37
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+    dev: true
+    engines:
+      node: '>=10'
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    resolution:
+      integrity: sha1-Fi8CC6fAsg8vJbt3OEWMQ16EEHw=
+      tarball: react-hot-toast/download/react-hot-toast-1.0.2.tgz
   /react-hotkeys/2.0.0_react@16.14.0:
     dependencies:
       prop-types: 15.7.2
@@ -26227,7 +26384,7 @@ packages:
       del: 4.1.1
       express: 4.17.1
       html-entities: 1.4.0
-      http-proxy-middleware: 0.19.1
+      http-proxy-middleware: 0.19.1_debug@4.3.1
       import-local: 2.0.0
       internal-ip: 4.3.0
       ip: 1.1.5
@@ -26887,7 +27044,7 @@ packages:
       log-symbols: 2.2.0
       mem-fs: 1.2.0
       mem-fs-editor: 6.0.0
-      npm-api: 1.0.1
+      npm-api: 1.0.1_debug@3.2.7
       semver: 7.3.4
       strip-ansi: 4.0.0
       text-table: 0.2.0
