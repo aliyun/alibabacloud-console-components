@@ -31,7 +31,6 @@
     "types": "tsc -p src --emitDeclarationOnly",
     "build": "breezr build --engine webpack",
     "test": "breezr test:unit",
-    "storybook": "breezr start-storybook",
     "dev": "breezr start --config config/breezr-docs.config.ts",
     "doc:build": "rm -rf doc-dist && breezr build --config config/breezr-docs.config.ts",
     "upload": "breezr upload --config config/breezr-docs.config.ts",

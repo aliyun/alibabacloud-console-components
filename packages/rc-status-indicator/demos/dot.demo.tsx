@@ -1,3 +1,7 @@
+/**
+* @title dot
+*/
+
 import React from 'react'
 import StatusIndicator from '@alicloud/console-components-status-indicator'
 
@@ -5,27 +9,27 @@ export default () => {
   return (
     <div style={{ padding: '24px' }}>
       <div>
-        <StatusIndicator type="success" shape="icon" iconType="smile">
+        <StatusIndicator type="success" shape="dot">
           正常
         </StatusIndicator>
       </div>
       <div>
-        <StatusIndicator type="warning" shape="icon" iconType="cry">
+        <StatusIndicator type="warning" shape="dot">
           警告
         </StatusIndicator>
       </div>
       <div>
-        <StatusIndicator type="error" shape="icon" iconType="cry-fill">
+        <StatusIndicator type="error" shape="dot">
           异常
         </StatusIndicator>
       </div>
       <div>
-        <StatusIndicator type="disabled" shape="icon" iconType="eye-slash">
+        <StatusIndicator type="disabled" shape="dot">
           禁用
         </StatusIndicator>
       </div>
       <div>
-        <StatusIndicator type="loading" shape="icon" iconType="poweroff">
+        <StatusIndicator type="loading" shape="dot">
           启动
         </StatusIndicator>
       </div>

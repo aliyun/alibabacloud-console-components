@@ -1,3 +1,7 @@
+/**
+* @title basic
+*/
+
 import React from 'react'
 import StatusIndicator from '@alicloud/console-components-status-indicator'
 
