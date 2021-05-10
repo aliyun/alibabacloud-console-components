@@ -1,3 +1,7 @@
+/**
+* @title list
+*/
+
 import React from 'react'
 import List, { IDataItem } from '@alicloud/console-components-select-list/list'
 

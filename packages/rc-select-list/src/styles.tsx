@@ -50,11 +50,13 @@ export const SList = styled(WrappedCard)`
     border: 1px solid #ebebeb;
   }
 
-  ${({ prefix }) => `.${prefix}card-body`} {
-    padding: 0;
-    margin: 0;
-    ${({ prefix }) => `.${prefix}card-content`} {
+  && {
+    ${({ prefix }) => `.${prefix}card-body`} {
+      padding: 0;
       margin: 0;
+      ${({ prefix }) => `.${prefix}card-content`} {
+        margin: 0;
+      }
     }
   }
   ${SItem} {
