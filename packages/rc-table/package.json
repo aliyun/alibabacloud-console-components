@@ -32,11 +32,10 @@
     "build": "breezr build --engine webpack",
     "test": "breezr test:unit",
     "storybook": "breezr start-storybook",
-    "lint": "eslint src/",
-    "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write",
-    "doc:local-dev": "cc-doc-local-dev",
-    "doc:build": "cc-build-doc",
-    "publish-preview": "cc-publish-preview"
+    "dev": "breezr start --config config/breezr-docs.config.ts",
+    "doc:build": "rm -rf doc-dist && breezr build --config config/breezr-docs.config.ts",
+    "upload": "breezr upload --config config/breezr-docs.config.ts",
+    "upload:pre": "npm run upload -- --tag=pre"
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",

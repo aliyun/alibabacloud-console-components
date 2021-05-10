@@ -5,7 +5,7 @@ importers:
       '@alicloud/console-components-fake-browser': 'link:packages/fake-browser'
       '@alicloud/console-toolkit-cli': 1.2.0
       '@alicloud/console-toolkit-preset-component': 1.2.9_91fc91371b669d87b9c9f6447d2ef22c
-      '@alicloud/console-toolkit-preset-docs': 1.0.35_ac55eb0727908bb6a0e72bd83a7eee79
+      '@alicloud/console-toolkit-preset-docs': 1.0.36_ac55eb0727908bb6a0e72bd83a7eee79
       '@pnpm/link-bins': 5.3.24
       '@types/classnames': 2.2.11
       '@types/fs-extra': 8.1.1
@@ -52,7 +52,7 @@ importers:
       '@alicloud/console-components-fake-browser': 'workspace:*'
       '@alicloud/console-toolkit-cli': ^1.2.0
       '@alicloud/console-toolkit-preset-component': ^1.2.8
-      '@alicloud/console-toolkit-preset-docs': ^1.0.35
+      '@alicloud/console-toolkit-preset-docs': ^1.0.36
       '@pnpm/link-bins': ^5.3.24
       '@types/classnames': ^2.2.9
       '@types/fs-extra': ^8.0.1
@@ -1053,7 +1053,7 @@ packages:
     resolution:
       integrity: sha1-BN22H32vhfJlzPQgmmITwT1ifSE=
       tarball: '@alicloud/console-toolkit-preset-component/download/@alicloud/console-toolkit-preset-component-1.2.9.tgz'
-  /@alicloud/console-toolkit-preset-docs/1.0.35_ac55eb0727908bb6a0e72bd83a7eee79:
+  /@alicloud/console-toolkit-preset-docs/1.0.36_ac55eb0727908bb6a0e72bd83a7eee79:
     dependencies:
       '@alicloud/console-os-react-portal': 0.4.1_react@16.14.0
       '@alicloud/console-toolkit-docs-consumer': 1.0.13_react@16.14.0
@@ -1094,8 +1094,8 @@ packages:
       react: '*'
       react-dom: '*'
     resolution:
-      integrity: sha1-e9ZtuBaPcLdVWL52ygJxhQCWjmg=
-      tarball: '@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.35.tgz'
+      integrity: sha1-pL2BSm9R7QZ8GNxN9tmTosDAISA=
+      tarball: '@alicloud/console-toolkit-preset-docs/download/@alicloud/console-toolkit-preset-docs-1.0.36.tgz'
   /@alicloud/console-toolkit-preset-official/1.2.8_2033ff76b2efdadc0dc2a137d3269adb:
     dependencies:
       '@alicloud/console-toolkit-plugin-arms': 1.1.3_@babel+core@7.13.10
@@ -8291,12 +8291,10 @@ packages:
     resolution:
       integrity: sha1-BXujDwSIRpSZOozQf6OUz/EcUL0=
       tarball: axios/download/axios-0.20.0.tgz
-  /axios/0.21.1_debug@3.2.7:
+  /axios/0.21.1:
     dependencies:
-      follow-redirects: 1.13.3_debug@3.2.7
+      follow-redirects: 1.13.3
     dev: true
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
       tarball: axios/download/axios-0.21.1.tgz
@@ -13635,39 +13633,6 @@ packages:
     dev: true
     engines:
       node: '>=4.0'
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    resolution:
-      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
-      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
-  /follow-redirects/1.13.3_debug@3.2.7:
-    dependencies:
-      debug: 3.2.7
-    dev: true
-    engines:
-      node: '>=4.0'
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    resolution:
-      integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
-      tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
-  /follow-redirects/1.13.3_debug@4.3.1:
-    dependencies:
-      debug: 4.3.1_supports-color@6.1.0
-    dev: true
-    engines:
-      node: '>=4.0'
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
     resolution:
       integrity: sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
       tarball: follow-redirects/download/follow-redirects-1.13.3.tgz
@@ -13929,8 +13894,6 @@ packages:
     engines:
       node: '>= 4.0'
     optional: true
-    os:
-      - darwin
     requiresBuild: true
     resolution:
       integrity: sha1-8yXLBFVZJCi88Rs4M3DvcOO/zDg=
@@ -13941,8 +13904,6 @@ packages:
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     optional: true
-    os:
-      - darwin
     resolution:
       integrity: sha1-+3OHA66NL5/pAMM4Nt3r7ouX8j4=
       tarball: fsevents/download/fsevents-2.1.3.tgz
@@ -13951,8 +13912,6 @@ packages:
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
     optional: true
-    os:
-      - darwin
     resolution:
       integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=
       tarball: fsevents/download/fsevents-2.3.2.tgz
@@ -15219,17 +15178,15 @@ packages:
     resolution:
       integrity: sha1-5IIb7vWyFCogJr1zkm/lN2McVAU=
       tarball: http-proxy-agent/download/http-proxy-agent-2.1.0.tgz
-  /http-proxy-middleware/0.19.1_debug@4.3.1:
+  /http-proxy-middleware/0.19.1:
     dependencies:
-      http-proxy: 1.18.1_debug@4.3.1
+      http-proxy: 1.18.1
       is-glob: 4.0.1
       lodash: 4.17.21
       micromatch: 3.1.10
     dev: true
     engines:
       node: '>=4.0.0'
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-GDx9xKoUeRUDBkmMIQza+WCApDo=
       tarball: http-proxy-middleware/download/http-proxy-middleware-0.19.1.tgz
@@ -15254,19 +15211,6 @@ packages:
     dev: true
     engines:
       node: '>=8.0.0'
-    resolution:
-      integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=
-      tarball: http-proxy/download/http-proxy-1.18.1.tgz
-  /http-proxy/1.18.1_debug@4.3.1:
-    dependencies:
-      eventemitter3: 4.0.7
-      follow-redirects: 1.13.3_debug@4.3.1
-      requires-port: 1.0.0
-    dev: true
-    engines:
-      node: '>=8.0.0'
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=
       tarball: http-proxy/download/http-proxy-1.18.1.tgz
@@ -19347,19 +19291,17 @@ packages:
     resolution:
       integrity: sha1-RTNUCH5sqWlXvY9br3U/WYIUISk=
       tarball: normalize-url/download/normalize-url-4.5.0.tgz
-  /npm-api/1.0.1_debug@3.2.7:
+  /npm-api/1.0.1:
     dependencies:
       JSONStream: 1.3.5
       clone-deep: 4.0.1
       download-stats: 0.3.4
       moment: 2.29.1
       node-fetch: 2.6.1
-      paged-request: 2.0.2_debug@3.2.7
+      paged-request: 2.0.2
     dev: true
     engines:
       node: '>=10.0'
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-Pe+bUa/tylfbFMoMlw2SRC0hycU=
       tarball: npm-api/download/npm-api-1.0.1.tgz
@@ -20056,14 +19998,12 @@ packages:
     resolution:
       integrity: sha1-b+7ayjXnVyWHbQsOZJdGl/7RRbA=
       tarball: package-json/download/package-json-6.5.0.tgz
-  /paged-request/2.0.2_debug@3.2.7:
+  /paged-request/2.0.2:
     dependencies:
-      axios: 0.21.1_debug@3.2.7
+      axios: 0.21.1
     dev: true
     engines:
       node: '>=8'
-    peerDependencies:
-      debug: '*'
     resolution:
       integrity: sha1-TWIaCLjWvuRECgqSESNU7uzltbA=
       tarball: paged-request/download/paged-request-2.0.2.tgz
@@ -26384,7 +26324,7 @@ packages:
       del: 4.1.1
       express: 4.17.1
       html-entities: 1.4.0
-      http-proxy-middleware: 0.19.1_debug@4.3.1
+      http-proxy-middleware: 0.19.1
       import-local: 2.0.0
       internal-ip: 4.3.0
       ip: 1.1.5
@@ -26518,14 +26458,6 @@ packages:
     engines:
       node: '>=6.11.5'
     hasBin: true
-    peerDependencies:
-      webpack-cli: '*'
-      webpack-command: '*'
-    peerDependenciesMeta:
-      webpack-cli:
-        optional: true
-      webpack-command:
-        optional: true
     resolution:
       integrity: sha1-v5tEBOogoHNgXgoBHRiNd8tq1UI=
       tarball: webpack/download/webpack-4.46.0.tgz
@@ -27044,7 +26976,7 @@ packages:
       log-symbols: 2.2.0
       mem-fs: 1.2.0
       mem-fs-editor: 6.0.0
-      npm-api: 1.0.1_debug@3.2.7
+      npm-api: 1.0.1
       semver: 7.3.4
       strip-ansi: 4.0.0
       text-table: 0.2.0

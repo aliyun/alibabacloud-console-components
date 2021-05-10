@@ -5,15 +5,16 @@
 
 ## 基本用法
 
-[MDXInstruction:importDemo:BasicDemo](./stories/basic.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=basic)
 
 ## APIs
-> 继承 wind `Table` 的 API，除非特别说明
-[MDXInstruction:renderInterface:IRcTableProps](./api-json/api.json)
+> 继承 `@alicloud/console-components` 基础组件 `Table` 的 API
+
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=types/IRcTableProps)
 
 ## 卫星组件
 
-可以将 ``@alicloud/console-components-table`` 看做一个包含了不同功能区的 ``Table``，不同的功能区中使用的组件可以看做是 ``Table`` 的卫星组件
+可以将 `@alicloud/console-components-table` 看做一个包含了不同功能区的 ``Table``，不同的功能区中使用的组件可以看做是 ``Table`` 的卫星组件
 
 ```
 |PrimaryOperation | Search |      SecondaryOperation|
@@ -63,7 +64,7 @@
 ```
 如下的Demo所示
 
-[MDXInstruction:importDemo:WithPaginationProps](./stories/withPaginationProps.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withPaginationProps)
 
 
 #### 使用jsx来定义
@@ -74,7 +75,7 @@
 
 ##### 示例：在分页器左侧添加一个功能按钮`Custom Button`
 
-[MDXInstruction:importDemo:WithPaginationProps](./stories/withCustomPagination.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withCustomPagination)
 
 #### 使用渲染函数来定义
 
@@ -96,7 +97,7 @@
 
 可以通过 ``selection`` 属性传入一个函数来进行定义，渲染函数能够拿到当前选择状态。
 
-[MDXInstruction:importDemo:WithSelection](./stories/withSelection.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withSelection)
 
 ### Operation
 
@@ -120,7 +121,7 @@
 />
 ```
 
-[MDXInstruction:importDemo:WithPrimaryOperation](./stories/withPrimaryOperation.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withPrimaryOperation)
 
 ##### 同时定义右上角和左上角操作区
 ```jsx
@@ -142,7 +143,7 @@
 />
 ```
 
-[MDXInstruction:importDemo:WithOperation](./stories/withOperation.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withOperation)
 
 
 同样operation自定义组件时也可传入`(tableProps) => ReactNode`， 请参考`pagination`中的实现方式
@@ -178,7 +179,7 @@ search直接传入Search组件的props即可, 如下Demo所示。
 
 ```
 
-[MDXInstruction:importDemo:WithSearch](./stories/withSearch.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withSearch)
 
 #### 使用jsx来定义
 
@@ -210,7 +211,7 @@ search直接传入Search组件的props即可, 如下Demo所示。
 	}
 />
 ```
-[MDXInstruction:importDemo:WithCustomSearch](./stories/withCustomSearch.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withCustomSearch)
 
 同样Search自定义组件时也可传入`(tableProps) => ReactNode`渲染函数， 请参考`pagination`中的实现方式
 
@@ -219,7 +220,7 @@ search直接传入Search组件的props即可, 如下Demo所示。
 
 使用`affixActionBar`时，可以通过`fixedBarExpandWidth`来调整操作栏吸附时的宽度，让它们更美观：
 
-[MDXInstruction:importDemo:WithLayout](./stories/withAppLayout.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=withAppLayout)
 
 ## fixedHeader实现固定操作栏
 
@@ -232,4 +233,4 @@ search直接传入Search组件的props即可, 如下Demo所示。
 />
 ``` 
 
-[MDXInstruction:importDemo:WithFixedHeader](./stories/WithFixedHeader.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-table-docs&entryKey=WithFixedHeader)
