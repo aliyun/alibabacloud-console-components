@@ -1,3 +1,7 @@
+/**
+* @title overwriteBaseComponent
+*/
+
 import React from 'react'
 import { Pagination } from '@alicloud/console-components'
 import { reactIntlFactory } from '@alicloud/console-components-intl'

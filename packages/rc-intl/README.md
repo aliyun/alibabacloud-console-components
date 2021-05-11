@@ -67,12 +67,12 @@ const intl = reactIntlFactory()
 
 以下每个 demo 都使用了`reactIntlFactory`来创建独立的 intl 实例，避免 demo 之间的文案相互影响。
 
-[MDXInstruction:importDemo:BasicDemo](./stories/basic/index.tsx)
-[MDXInstruction:importDemo:WithVarDemo](./stories/withVar/index.tsx)
-[MDXInstruction:importDemo:DateDemo](./stories/date/index.tsx)
-[MDXInstruction:importDemo:NumberDemo](./stories/number/index.tsx)
-[MDXInstruction:importDemo:OverwriteDemo](./stories/overwriteBaseComponent/index.tsx)
-[MDXInstruction:importDemo:WithRcIntlDemo](./stories/withRcIntl/index.tsx)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=basic/index)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=withVar/index)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=date/index)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=number/index)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=overwriteBaseComponent/index)
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=withRcIntl/index)
 
 ## API
 

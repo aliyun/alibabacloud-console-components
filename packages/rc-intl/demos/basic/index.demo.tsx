@@ -1,3 +1,7 @@
+/**
+* @title basic
+*/
+
 import React from 'react'
 import { reactIntlFactory } from '@alicloud/console-components-intl'
 

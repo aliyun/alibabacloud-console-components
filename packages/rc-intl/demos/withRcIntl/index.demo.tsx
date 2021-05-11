@@ -1,3 +1,7 @@
+/**
+* @title withRcIntl
+*/
+
 import React from 'react'
 import {
   IWindIntlPublic,
