@@ -8,27 +8,21 @@ sort: 3
 
 ## 代码仓库组织结构
 
-本仓库使用 [yarn workspaces](https://yarnpkg.com/en/docs/workspaces) + lerna 进行管理，是 monorepo 的结构。
-将本仓库克隆到本地以后，执行`npm run bootstrap`即可完成项目的初始化。后续重新初始化直接通过在根目录执行`yarn`，如果不行的话再尝试`npm run bootstrap`。
+本仓库使用 [pnpm workspaces](https://pnpm.io/workspaces) 进行管理，是 monorepo 的结构。
+将本仓库克隆到本地以后，执行`npm run bootstrap`即可完成项目的初始化。后续重新安装依赖直接通过在根目录执行`pnpm i`，如果不行的话再尝试`npm run bootstrap`。
 
-> `npm run bootstrap`耗时较长，因为需要将所有 package 都构建一遍。
+> `npm run bootstrap`耗时较长，因为需要将所有 package 都构建一遍。如果之前已经有构建过，可以使用`npm run install`来执行只安装、不构建的流程。
 
-- 基础组件：在`packages/component`目录下。使用 webpack 来构建开发环境，进入`packages/component`目录并执行`npm run start`来启动。
-- 业务组件：在`packages/rc-*`目录下。使用 storybook 作为开发环境，通过各个子 package 下的`npm run storybook`来启动。
-- 文档站点：在`site`目录下。使用[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/dev-kit/gatsby-theme-console-doc)作为站点框架。通过`npm run start`来启动文档站开发环境。
+- 基础组件：维护在[aliyun/cloud-design](https://github.com/aliyun/cloud-design)仓库，与混合云、云效等组件库使用同一套工程体系和基础代码。
+- 业务组件：在本仓库的`packages/rc-*`目录下。使用`npm run dev`来启动本地开发环境。
 - 开发指南：原文放在`guides`目录下（比如本指南）。开发指南会被`site`项目打包，在文档站点中展示。
-- 组件开发者工具：在`dev-kit`目录下。沉淀 wind 的物料开发工具，帮助任何人开发物料、物料库。
+- 组件开发者工具：[breezr-docs](https://github.com/aliyun/alibabacloud-console-toolkit/tree/preset-demos/docs-sdk/docs-provider)。
 
 ## 开发期所需的依赖都安装在根项目
 
-yarn workspaces 的两个概念：
-
-- 根项目：monorepo 的根目录。
-- 子项目：monorepo 的每个子 package。[定义在这里](https://github.com/aliyun/alibabacloud-console-components/blob/master/package.json#L4)。
-
 新增业务组件时注意：**所有开发期所需的依赖都安装在根项目中**（比如 eslint、构建工具 breezr、@types/react），从而不需要每个子项目都维护一份自己的开发依赖，做到统一管理、升级。
 
-增加新的`devDependencies`时，优先考虑安装在根项目（在根项目执行`yarn install -DW 开发期依赖`）。除非这个开发依赖比较特殊，只有某个子项目会用到。
+增加新的`devDependencies`时，优先考虑安装在根项目（在根项目执行`pnpm install -D 开发期依赖`）。除非这个开发依赖比较特殊，只有某个子项目会用到。
 
 如果你要在子包中使用根项目下安装的 cli 工具(比如 `breezr build`)，需要先在根项目执行`npm run link-bin`，将`/node_modules/.bin`下的工具 link 到所有子包中。
 
@@ -42,57 +36,8 @@ yarn workspaces 的两个概念：
 
 ### 业务组件
 
-- 使用 typescript 开发
-- 使用 storybook 作为开发环境(`npm run storybook`)
-- 使用[api-extractor](https://api-extractor.com/pages/overview/intro/)来过滤掉不希望用户使用的属性类型，并提取类型、注释信息。然后，`packages/api-documenter`会将这个信息加工成 json 数据，作为 API 文档的数据。因此，业务组件的 API 文档由源码转化而成，而不是人工维护，避免文档腐化
-  - 需要暴露给用户的类型必须从`src/index.tsx?`导出，请模仿[已有组件](https://github.com/aliyun/console-components/blob/master/packages/rc-actions/src/index.tsx#L1)的做法
-  - 在文档中嵌入 typescript interface 作为 API 说明，请模仿[已有文档](https://raw.githubusercontent.com/aliyun/alibabacloud-console-components/master/packages/rc-actions/README.mdx)，使用`MDXInstruction:renderInterface`指令：`[MDXInstruction:renderInterface:IActionsProps](./api-json/api.json)`。将其中的`IActionsProps`替换成你想要展示的 interface 名称
-  - 在执行`npm run prepare`的过程中，会从源码中提取 ts 类型信息（以`index.tsx?`为入口），输出到`./api-json/api.json`中。然后，当构建文档站点的时候，如果在 markdown 中遇到了`MDXInstruction:renderInterface`指令，则从`./api-json/api.json`根据 interface 名称拿到 interface 的成员信息，这个成员信息就是 API 文档的表格的数据
-    - 请留意 prepare 过程中`api-extractor`给出的提示，改善你的类型导出。比如，api-extractor 会帮助你发现忘记 export 的类型，解决方式就是在`index.tsx?`导出对应的类型，详见[api-extractor 文档](https://api-extractor.com/pages/messages/ae-forgotten-export/)
-    - 如果文档站点发生报错：`Uncaught Error: data entry not exist. data: ....`，意味着你要渲染的 interface 数据不在`./api-json/api.json`里面。请检查你的 inteface 是否从`index.tsx?`导出
-- README 使用[mdx](https://mdxjs.com/)来编写，并被文档站打包渲染
-  - README 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 类型信息作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式。
-
-业务组件的典型目录树：
-
-```text
-.
-├── api-temp/               api-extractor提取源码中的类型信息、注释信息，产生的原始数据。见package.json中的scripts
-├── api-json/               wind-api-documenter加工api-temp/中的原始数据，产生json数据，文档从这里拿到Typescript interface的信息来展示。见package.json中的scripts
-├── lib/                    babel转译+cjs模块化的产物
-├── es/                     babel转译+es模块化的产物
-├── dist/                   webpack打包生成的umd bundle
-├── src/
-│   ├── styles/             将styled-components统一放在一个目录下，将样式与逻辑分离
-│   └── tsconfig.json       src目录下的ts配置，继承../tsconfig.json。ts转译的时候以它为入口，避免转译到stories、tests之类的文件
-├── stories/
-│   ├── demo-name.tsx       一个demo，导出一个React组件，既被storybook使用，又可以被README.mdx渲染到文档中
-│   └── index.stories.tsx   storybook的入口
-├── api-extractor.json      api-extractor的配置
-├── breezr.config.json      breezr的配置
-├── tsconfig.json           主要用于配置ts的路径映射，继承根项目的tsconfig。主要是为了帮助vscode分析当前目录
-├── package.json            里面定义了开发时要用到的各种工具命令
-├── .npmignore              发布到npm时，忽略掉对使用者无用的目录
-└── README.mdx              文档，既能在github上阅读，又能在文档站点中渲染。开头需要填写一些元数据
-```
-
-### 基础组件
-
-- `npm run start`启动开发环境（通过原生 webpack 搭建）
-- 基础组件文档的 API 部分完全拷贝自 fusion，通过[特制的 mdx 处理指令](https://github.com/aliyun/alibabacloud-console-components/blob/master/packages/component/src/components/button/README.md#apis)来抓取 mdx 的文档
-- 基础组件包通过[一个脚本](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/scripts/publish-to-tnpm)来发布到内网（`@ali/wind`）
-
-### 文档站
-
-使用 gatsbyjs 进行开发。从而文档站是完全静态化的，所有数据在构建期间就被收集（从仓库中），在运行期间无需服务端提供数据
-
-- 文档在代码仓库存放的位置：[指南文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/guides)、[基础组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/component/src/components/button)、[业务组件](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)
-- 文档能力已经抽离成一个通用的 gatsby 插件:[@alicloud/gatsby-theme-console-doc](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/gatsby-theme-console-doc)
-- 文档 markdown 通过特殊的处理，使用特制的语法，可以嵌入 demo、渲染 typescript 注释作为文档说明。请参考[已有文档](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages/rc-actions)的格式
-- 通过`npm run start`来启动文档站开发环境
-- 文档站很重，开发模式的热更新(HMR)目前无法正常工作，因此不要用它来作为你编写 markdown 文档、demo 时的预览环境，仅用于【在完成组件改动以后】预览文档站的效果
-- 文档站渲染 demo 时，会从这个 demo 文件出发，沿着文件系统向上查找`.demoProjectTemplate`，将这个 demo 文件放到`.demoProjectTemplate/src/demo/`文件夹下面，然后把这个文件夹作为一个 codesandbox 项目。因此，如果你需要在 demo 中使用外部的 npm 包，需要将这个 npm 加入到`.demoProjectTemplate/package.json`里面，否则 codesandbox 会报错找不到依赖。
-  - 目前本项目有两个`.demoProjectTemplate`: [基础组件的](https://github.com/aliyun/console-components/blob/ab0658f0125807e7376c2421d6b51191399049f7/packages/component/.demoProjectTemplate/package.json#L2)、[业务组件的](https://github.com/aliyun/console-components/blob/351ed737c734cdf266def07e7665ba26b3de09fc/.demoProjectTemplate/package.json#L2)
+- 使用 typescript 语言编写代码。通过类型定义约束自己以及下游开发者；通过类型定义中的注释，可以将说明信息提供给下游开发者（用户在 vscode hover 到对应字段的时候会看到对应注释）。
+- 使用 [breezr-docs](https://github.com/aliyun/alibabacloud-console-toolkit/tree/preset-demos/docs-sdk/docs-provider) 作为开发环境。使用`npm run dev`启动本地开发环境。更多用法参考[示例说明](http://gitlab.alibaba-inc.com/sirui.csr/breezr-doc-demo)。
 
 ## 代码规范
 
