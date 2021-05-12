@@ -29,7 +29,7 @@ const columns = [
 ]
 
 const rowSelection = {
-  mode: 'multiple',
+  mode: 'multiple' as const,
   // eslint-disable-next-line @typescript-eslint/camelcase
   UNSTABLE_defaultSelectedRowKeys: [1, 2],
 }

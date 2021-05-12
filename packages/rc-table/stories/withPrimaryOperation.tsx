@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Grid, Button, Badge } from '@alicloud/console-components'
 import Table from '@alicloud/console-components-table'
-import { SlidePanel } from '@alicloud/console-components-slide-panel'
 
 const dataSource = (() =>
   new Array(10).fill(null).map((item, i) => ({
