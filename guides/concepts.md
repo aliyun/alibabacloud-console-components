@@ -38,7 +38,7 @@ Console Components 选择基于 Fusion 做扩展的原因：
 1. 如果放在一个大 package 里面管理，那么版本号的语义不明确，当一个业务组件出现 minor 级别甚至 major 级别的 change 时，整个 package 就要出现较大的版本号跃迁，**即使其他的业务组件根本就没有变化**。有独立版本号以后，开发者可以清晰地知道，每次版本号升级对应于哪个组件。
 2. 如果放在一个大 package 里面管理，一旦出现 major 版本号升级，那么用户需要仔细检查**每个业务组件**的 breaking change。有独立版本号以后，用户可以以组件为粒度，进行渐进式升级，升级成本较小。
 
-业务组件维护在[本仓库](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages)。
+业务组件维护在[本仓库](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages)的`package/rc-*`目录中。
 
 ## styled-components
 
