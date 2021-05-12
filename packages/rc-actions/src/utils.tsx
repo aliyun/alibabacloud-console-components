@@ -1,7 +1,6 @@
 import React, {
   Children,
   isValidElement,
-  CSSProperties,
   ReactNode,
   ReactElement,
 } from 'react'
@@ -25,11 +24,11 @@ type IActionsProps = IActionsProps_
 export function getWrapperProps(
   props: {
     className?: string | string[]
-    style?: CSSProperties
+    style?: any
   },
   addition: {
     className?: string | string[]
-    style?: CSSProperties
+    style?: any
   }
 ) {
   return {

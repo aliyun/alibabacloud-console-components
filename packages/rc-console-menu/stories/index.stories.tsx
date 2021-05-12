@@ -9,8 +9,24 @@ import RoutableMenu from './routable-menu'
 import RoutableMenuDefaultOpen from './routable-menu-default-open'
 import WithDivider from './with-divider'
 import SwitchHeader from './switch-header'
+import { useTheme } from './utils/theme-switcher'
 
 storiesOf('wind-rc-console-menu', module)
+  .addDecorator((Story) => {
+    const theme = useTheme()
+    return (
+      <div className="storybook-switch-theme">
+        {theme.switchUI}
+        <hr />
+        <div style={{ position: 'relative' }}>
+          <theme.current.wrapper>
+            {/* @ts-ignore */}
+            <Story />
+          </theme.current.wrapper>
+        </div>
+      </div>
+    )
+  })
   .add('Basic', () => <Basic />)
   .add('Secondary', () => <Secondary />)
   .add('ControlledMenu', () => <ControlledMenu />)

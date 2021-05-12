@@ -1,4 +1,0 @@
-module.exports = {
-  root: true,
-  extends: ['@alicloud/eslint-config-console-components/test-ts'],
-}

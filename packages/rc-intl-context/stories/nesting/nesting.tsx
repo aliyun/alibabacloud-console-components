@@ -1,5 +1,5 @@
 import React from 'react'
-import { Provider, Consumer } from '../..'
+import { Provider, Consumer } from '@alicloud/console-components-intl-context'
 
 /* eslint-disable */
 

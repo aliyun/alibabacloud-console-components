@@ -1,7 +1,0 @@
-{
-  "extends": "@alicloud/console-components-lib-publisher/tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "./lib"
-  }
-}

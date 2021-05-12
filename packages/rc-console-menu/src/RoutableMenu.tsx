@@ -1,11 +1,12 @@
 import React, { useMemo, useState, useCallback, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Location } from 'history'
-import { withRouter, Link, matchPath } from 'dva/router'
+import { withRouter, Link, matchPath } from 'react-router-dom'
 import ConsoleMenu from './ConsoleMenu'
 import { isNil } from './utils'
-import { IRoutableItemDescriptor, IItemDescriptor } from './ItemDescriptor'
-import { IRoutableMenuProps } from './RoutableMenuTypes'
+import { IItemDescriptor } from './types/IItemDescriptor.type'
+import { IRoutableMenuProps } from './types/IRoutableMenuProps.type'
+import { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
 
 /* eslint-disable @typescript-eslint/no-explicit-any, no-restricted-syntax */
 
@@ -16,7 +17,7 @@ const Context = React.createContext<{ match: any; location: Location } | null>(
 const normalizeItems = (
   items: IRoutableItemDescriptor[] = []
 ): IItemDescriptor[] =>
-  items.map(item => {
+  items.map((item) => {
     const { to, href, linkProps = {}, disabled, render, items: subItems } = item
 
     if (subItems) {
@@ -35,12 +36,15 @@ const normalizeItems = (
           render: (renderItem: IRoutableItemDescriptor) => {
             return (
               <Context.Consumer>
-                {value => {
+                {(value) => {
                   if (!value)
                     throw new Error(`item is not rendered under RoutableMenu`)
                   return (
                     <Link
                       {...linkProps}
+                      // menu内部的链接不能被focus，
+                      // 必须通过menu的键盘机制来选中
+                      tabIndex="-1"
                       to={
                         typeof renderItem.to === 'function'
                           ? renderItem.to(value, renderItem)
@@ -63,7 +67,7 @@ const normalizeItems = (
           ...item,
           render: (renderItem: IRoutableItemDescriptor) => (
             <Context.Consumer>
-              {value => {
+              {(value) => {
                 if (!value)
                   throw new Error(`item is not rendered under RoutableMenu`)
                 return (
@@ -251,8 +255,8 @@ const useRoutableMenu = (
 
   // 2. 将pathname与item的key匹配，得到最接近的item
   const matchResult = useBuiltInLocationMatcher(pathname, items) || {
-    key: null,
-    match: null,
+    key: undefined,
+    match: undefined,
   }
   const { key: matchedActiveKey, match } = matchResult
 
@@ -266,7 +270,7 @@ const useRoutableMenu = (
     activeKeyFromLocation,
     matchedActiveKey,
     lastClickedKey,
-  ].filter(value => !isNil(value))[0] as string | undefined
+  ].filter((value) => !isNil(value))[0] as string | undefined
 
   return [
     normalizedItems,
@@ -339,7 +343,7 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
         // 找出激活节点的所有父节点
         const parentItems = findParents(actualActiveKey, normalizedItems, [])
         if (Array.isArray(parentItems)) {
-          return parentItems.map(i => i.key)
+          return parentItems.map((i) => i.key)
         }
       }
       return undefined
@@ -369,7 +373,16 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
         {...openKeysProp}
         defaultOpenKeys={defaultOpenKeys}
         onOpen={actualOnOpen}
-        onItemClick={routableOnItemClick}
+        onItemClick={(key, item, event) => {
+          if (event.type === 'keydown' && event.target) {
+            // 通过键盘点击菜单时，需要点击内部的链接，完成路由跳转
+            const linkEl = (event.target as any).querySelector('div span a')
+            if (linkEl && linkEl.click) {
+              linkEl.click()
+            }
+          }
+          routableOnItemClick(key, item, event)
+        }}
       />
     </Context.Provider>
   )

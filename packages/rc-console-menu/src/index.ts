@@ -31,5 +31,14 @@ export * from './ConsoleMenu'
 export { ConsoleMenu }
 
 export * from './ItemDescriptor'
-export * from './RoutableMenuTypes'
 export { Item, SubMenu, Divider, StyledComponents }
+
+export { IConsoleMenuProps } from './types/IConsoleMenuProps.type'
+export { IItemDescriptor } from './types/IItemDescriptor.type'
+export { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
+export { IRoutableMenuProps } from './types/IRoutableMenuProps.type'
+
+export { HybridCloudLightTheme } from './theme/hybridcloud-light'
+export { HybridCloudDarkTheme } from './theme/hybridcloud-dark'
+export { XConsoleTheme } from './theme/xconsole'
+export { WindTheme } from './theme/wind'

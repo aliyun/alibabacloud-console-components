@@ -3,7 +3,7 @@
   "version": "1.0.10",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
-  "typings": "cc-dev-out/index.d.ts",
+  "typings": "lib/index.d.ts",
   "module": "es/index.js",
   "unpkg": "dist/index.js",
   "publishConfig": {
@@ -24,19 +24,17 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
     "clean": "rm -rf dist lib es cc-dev-out",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
-    "types": "tsc -p src --emitDeclarationOnly && cc-extract-api",
+    "types": "tsc -p src --emitDeclarationOnly",
     "build": "breezr build --engine webpack",
     "test": "breezr test:unit",
-    "storybook": "breezr start-storybook",
-    "lint": "eslint src/",
-    "format": "prettier-eslint \"src/**/*.js?(x)\" \"test/**/*.js?(x)\" --write",
-    "doc:local-dev": "cc-doc-local-dev",
-    "doc:build": "cc-build-doc",
-    "publish-preview": "cc-publish-preview"
+    "dev": "breezr start --config config/breezr-docs.config.ts",
+    "doc:build": "rm -rf doc-dist && breezr build --config config/breezr-docs.config.ts",
+    "upload": "breezr upload --config config/breezr-docs.config.ts",
+    "upload:pre": "npm run upload -- --tag=pre"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",

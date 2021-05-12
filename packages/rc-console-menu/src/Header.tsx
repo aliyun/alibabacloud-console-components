@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Icon, Dropdown, Menu } from '@alicloud/console-components'
 import cs from 'classnames'
 import * as S from './styles'
-import { IConsoleMenuProps, IOnSelect } from './ConsoleMenu'
+import { IOnSelect } from './ConsoleMenu'
+import { IConsoleMenuProps } from './types/IConsoleMenuProps.type'
 
 export interface IHeaderProps {
   header?: IConsoleMenuProps['header']
@@ -15,12 +16,14 @@ const renderItem = (headers: IConsoleMenuProps['headers']) =>
     ? headers.map((item: string) => <Menu.Item key={item}>{item}</Menu.Item>)
     : null
 
-const Header: React.FC<IConsoleMenuProps & {
-  /**
-   * 来自ConfigProvider
-   */
-  fusionPrefix: string
-}> = ({ header, headers, onSelectHeader, fusionPrefix }) => {
+const Header: React.FC<
+  IConsoleMenuProps & {
+    /**
+     * 来自ConfigProvider
+     */
+    fusionPrefix: string
+  }
+> = ({ header, headers, onSelectHeader, fusionPrefix }) => {
   const [direction, setDirection] = useState('down')
 
   const handleChangeDirection = () => {
@@ -41,6 +44,7 @@ const Header: React.FC<IConsoleMenuProps & {
             visible={direction === 'up'}
             triggerType="click"
             offset={[16, 10]}
+            align="tr br"
             onVisibleChange={(visible: boolean) => {
               setDirection(visible ? 'up' : 'down')
             }}
@@ -60,15 +64,16 @@ const Header: React.FC<IConsoleMenuProps & {
               </div>
             }
           >
-            <S.SDropMenu
-              fusionPrefix={fusionPrefix}
-              style={{ left: 0, minWidth: '100%' }}
-              selectedKeys={React.isValidElement(header) ? [] : header}
-              selectMode="single"
-              onItemClick={handleClick}
-            >
-              {renderItem(headers)}
-            </S.SDropMenu>
+            <div style={{ minWidth: '100%' }}>
+              <S.SDropMenu
+                fusionPrefix={fusionPrefix}
+                selectedKeys={React.isValidElement(header) ? [] : header}
+                selectMode="single"
+                onItemClick={handleClick}
+              >
+                {renderItem(headers)}
+              </S.SDropMenu>
+            </div>
           </Dropdown>
         </div>
       )}

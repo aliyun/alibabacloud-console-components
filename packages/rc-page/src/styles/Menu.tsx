@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 import { Nav } from '@alicloud/console-components'
+import type { NavProps } from '@alicloud/console-components/types/nav'
 
 export const Item = styled(Nav.Item)``
 export const Group = styled(Nav.Group)``
 export const PopupItem = styled(Nav.PopupItem)``
 export const SubMenu = styled(Nav.SubNav)``
 
-const Menu = styled(Nav)`
+// page组件本身已经有padding-left，因此要抵消掉Nav自己的padding-left
+const Menu = styled(Nav as React.ComponentType<NavProps>)`
   &&& {
-    ${Item} {
-      padding: 0 16px 0 0;
-    }
+    margin-left: -20px;
+    margin-left: calc(-1 * var(--nav-ver-item-padding-lr, 20px));
   }
 `
 
@@ -47,6 +48,7 @@ const getAdjustedHeight = (value?: number | string): number => {
 export interface IIntersectionContainerProps {
   adjustHeight?: number | string
   isIntersecting?: boolean
+  prefix: string
 }
 
 const stickyIfNonIntersecting = (props: IIntersectionContainerProps): string =>
@@ -55,7 +57,7 @@ const stickyIfNonIntersecting = (props: IIntersectionContainerProps): string =>
     : `
     position: sticky;
     top: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100vh - ${getAdjustedHeight(props.adjustHeight)}px);
   `
 
@@ -63,7 +65,7 @@ export const IntersectionContainer = styled.div<IIntersectionContainerProps>`
   height: 100%;
   ${stickyIfNonIntersecting};
 
-  .next-menu {
+  .${(props) => props.prefix}menu {
     height: 100%;
   }
 `

@@ -18,4 +18,7 @@ Wind 是阿里云控制台视觉规范的实现者，帮助阿里内部以及生
 
 ## 共建
 
-请阅读[贡献指南](./guides/contributing.md)
+- 基础组件维护在[aliyun/cloud-design](https://github.com/aliyun/cloud-design)仓库，与混合云、云效等组件库使用同一套工程体系和基础代码。
+- 业务组件维护在[本仓库](https://github.com/aliyun/alibabacloud-console-components/tree/master/packages)的`package/rc-*`目录中。
+
+详情请阅读[贡献指南](./guides/contributing.md)

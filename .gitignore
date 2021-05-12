@@ -91,6 +91,7 @@ typings/
 lib/
 dist/
 es/
+esm/
 
 # Swap files
 *.json.swp
@@ -106,3 +107,4 @@ api-temp
 packages/component/types
 
 cc-dev-out
+doc-dist

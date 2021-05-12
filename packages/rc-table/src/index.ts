@@ -5,7 +5,8 @@ import Selection from './selection'
 import withSelectionProvider from './selection/withProvider'
 import renderColumns from './renderColumns'
 import withDefaultProps from './withDefaultProps'
-import Layout, { ITableProps } from './layout'
+import Layout, { ITableProps, StickyLockLayout } from './layout'
+import { Table } from '@alicloud/console-components'
 
 import './index.css'
 
@@ -24,10 +25,27 @@ const EnhancedTable = compose<
 /**
  * @public
  */
+const EnhancedStickyLockTable = compose<
+  Omit<ITableProps, 'columns' | 'exact'>,
+  ITableProps
+>(
+  withDefaultProps,
+  withSelectionProvider,
+  renderColumns
+)(StickyLockLayout)
+
+/**
+ * @public
+ */
 export type ITable = typeof EnhancedTable & {
   Selection: typeof Selection
   Pagination: typeof Pagination
   Search: typeof Search
+  Column: typeof Table.Column
+  ColumnGroup: typeof Table.ColumnGroup
+  GroupHeader: typeof Table.GroupHeader
+  GroupFooter: typeof Table.GroupFooter
+  StickyLock: typeof EnhancedStickyLockTable
 }
 
 /**
@@ -37,6 +55,11 @@ const ExpEnhancedTable: ITable = Object.assign(EnhancedTable, {
   Selection,
   Pagination,
   Search,
+  Column: Table.Column,
+  ColumnGroup: Table.ColumnGroup,
+  GroupHeader: Table.GroupHeader,
+  GroupFooter: Table.GroupFooter,
+  StickyLock: EnhancedStickyLockTable,
 })
 
 export default ExpEnhancedTable

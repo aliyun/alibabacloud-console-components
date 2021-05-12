@@ -9,89 +9,8 @@ import {
   IFusionConfigProps,
 } from './utils'
 import { SDots, SSlider, SWrapper, SMessageItem } from './styles'
-
-/**
- * 轮播属性
- * @public
- */
-export interface ISliderOptions {
-  /**
-   * 是否自动播放
-   * @defaultValue `true`
-   */
-  autoplay?: boolean
-  /**
-   * 自动播放速度
-   * @defaultValue `3000`
-   */
-  autoplaySpeed?: number
-  /**
-   * 切换速度
-   * @defaultValue `600`
-   */
-  speed?: number
-  /**
-   * 轮播切换的回调函数
-   */
-  onChange?: (index: number) => void
-  /**
-   * 轮播切换动画
-   * @defaultValue `slide`
-   */
-  animation?: 'fade' | 'slide'
-}
-
-/**
- * dataSource的属性
- * @public
- */
-export interface IDataSourceItem {
-  /**
-   * 标题
-   */
-  title: React.ReactNode
-  /**
-   * 内容
-   */
-  content?: React.ReactNode
-  /**
-   * 链接
-   */
-  link?: React.ReactNode
-}
-
-/**
- * Message的属性
- * @public
- */
-export interface IRcAnnouncementProps {
-  /**
-   * 内容, 数组类型，最多支持三条内容，多余的会被移除, 详情见下dataSource
-   */
-  dataSource: Array<IDataSourceItem>
-  /**
-   * 是否可关闭
-   * @defaultValue `false`
-   */
-  closeable?: boolean
-  /**
-   * 类型
-   * @defaultValue `success`
-   */
-  type?: 'success' | 'error' | 'notice' | 'warning' | 'info'
-  /**
-   * 自定义类名
-   */
-  className?: string
-  /**
-   * 自定义样式
-   */
-  style?: React.CSSProperties
-  /**
-   * 轮播属性，继承Slider的部分属性，详情见下sliderOptions
-   */
-  sliderOptions?: ISliderOptions
-}
+import { IRcAnnouncementProps } from './types/IRcAnnouncementProps.type'
+import { IDataSourceItem } from './types/IDataSourceItem.type'
 
 const RcMessage: React.FC<IRcAnnouncementProps & IFusionConfigProps> = ({
   dataSource = [],
@@ -131,7 +50,7 @@ const RcMessage: React.FC<IRcAnnouncementProps & IFusionConfigProps> = ({
   return (
     <SWrapper
       prefix={prefix}
-      size={newDataSource.some(item => item.content) ? 'large' : 'medium'}
+      size={newDataSource.some((item) => item.content) ? 'large' : 'medium'}
     >
       <Message
         type={type === 'info' ? 'help' : type}

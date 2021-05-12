@@ -1,9 +1,9 @@
 {
   "name": "@alicloud/console-components-intl-core",
-  "version": "1.0.14",
+  "version": "1.0.20",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "lib/index.d.ts",
   "module": "es/index.js",
   "unpkg": "dist/index.js",
   "publishConfig": {
@@ -24,11 +24,11 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run json",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
     "clean": "rm -rf dist lib es api-temp api-json",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
-    "types": "tsc -p src --emitDeclarationOnly && api-extractor run --local --verbose",
+    "types": "tsc -p src --emitDeclarationOnly",
     "build": "breezr build --engine webpack",
     "json": "wind-api-documenter flatten-json --input-folder api-temp --output-folder api-json --output-file-name api.json",
     "test": "breezr test:unit",

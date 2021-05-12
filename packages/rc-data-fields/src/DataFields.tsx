@@ -3,39 +3,12 @@ import PropTypes from 'prop-types'
 import { Grid } from '@alicloud/console-components'
 import classNames from 'classnames'
 import Context from './Context'
-import Item, { IItemProps } from './Item'
+import Item from './Item'
 import { baseClassName } from './constants'
+import type { IDataFieldsProps } from './types/IDataFieldsProps.type'
+export type { IDataFieldsProps }
 
 const { Row } = Grid
-
-/**
- * @public
- */
-export interface IDataFieldsProps {
-  /**
-   * 字段列表数据
-   */
-  dataSource: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any
-  }
-  /**
-   * 定义要展示哪些字段，以及如何展示。数组项的数据结构见`IItemProps`的API
-   */
-  items: IItemProps[]
-  /**
-   * 自定义wrapper div的类名
-   */
-  className?: string
-  /**
-   * 自定义wrapper div的样式
-   */
-  style?: React.CSSProperties
-  /**
-   * 自定义wrapper div中的额外内容
-   */
-  children?: React.ReactNode
-}
 
 /**
  * @public

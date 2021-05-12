@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isFunction, get, uniq, xor } from 'lodash'
+import isFunction from "lodash/isFunction";
+import get from "lodash/get";
+import uniq from "lodash/uniq";
+import xor from "lodash/xor";
 import { CheckboxProps } from '@alicloud/console-components/types/checkbox'
 import renderProps from '../renderProps'
 import connect from './connect'

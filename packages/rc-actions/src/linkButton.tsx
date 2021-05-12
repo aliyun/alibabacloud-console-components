@@ -2,27 +2,20 @@ import React from 'react'
 import { Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
 import { expandMenuClassName, collapsedItemClassName } from './constants'
-
-/**
- * @public
- */
-export interface ILinkButtonProps {
-  /**
-   * 用什么组件来渲染链接。请传入一个组件。
-   * 你可以渲染为'a'或者react-router的Link组件。
-   *
-   * @defaultValue 'span'
-   */
-  Component?: string | React.ComponentType<any>
-
-  [key: string]: any
-}
+import { ILinkButtonProps } from './types/ILinkButtonProps.type'
+export type { ILinkButtonProps }
 
 /**
  * looks like a link
  * @internal
  */
-export const SLinkButton = styled.span<{ disabled?: boolean }>`
+export const SLinkButton = styled.button<{ disabled?: boolean }>`
+  /* reset button style */
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: inherit;
+
   display: inline-flex;
   align-items: center;
   color: ${({ disabled }) => (disabled ? '#c1c1c1' : '#0070cc')};
@@ -31,7 +24,7 @@ export const SLinkButton = styled.span<{ disabled?: boolean }>`
     text-decoration: ${({ disabled }) => (disabled ? 'none' : 'underline')};
   }
   /* 在下拉菜单中的SLinkButton，不应该展示下划线，字体颜色也不应该是蓝色 */
-  .${expandMenuClassName} .${collapsedItemClassName} & {
+  .${expandMenuClassName} .${collapsedItemClassName} && {
     color: ${({ disabled }) => (disabled ? '#c1c1c1' : '#333333')};
     text-decoration: none;
     overflow: hidden;
@@ -53,7 +46,7 @@ export const SLinkButton = styled.span<{ disabled?: boolean }>`
  * @public
  */
 export const LinkButton: React.FC<
-  React.HTMLProps<HTMLSpanElement> & ILinkButtonProps
+  React.HTMLProps<HTMLSpanElement> & ILinkButtonProps & { [key: string]: any }
 > = ({ children, onClick, disabled, Component, ...props }) => {
   return (
     <SLinkButton
@@ -68,6 +61,7 @@ export const LinkButton: React.FC<
     </SLinkButton>
   )
 }
+;(LinkButton as any).__windType = 'LinkButton'
 
 /**
  * @public

@@ -1,77 +1,11 @@
 import React, { useMemo, useState } from 'react'
 import { Card } from '@alicloud/console-components'
-import { SelectProps } from '@alicloud/console-components/types/select'
-import List, { IDataItem, IListProps } from './list'
+import List, { IDataItem } from './list'
 import { SSelect } from './styles'
 import { IFusionConfigProps, GetFusionConfig } from './utils'
-
-/**
- * @public
- */
-export interface ISelectDataItem {
-  /**
-   * 列表项ID
-   */
-  id: string
-  /**
-   * 列表项标题
-   */
-  title?: React.ReactNode
-  /**
-   * 列表项内容
-   */
-  description?: React.ReactNode
-  /**
-   * 列表项是否被选中
-   */
-  selected?: boolean
-  /**
-   * 列表项标签
-   */
-  tags?: string[]
-}
-
-/**
- * @public
- */
-export interface IListSelectProps {
-  /**
-   * 单选还是多选
-   * @defaultValue `'single'`
-   */
-  mode?: 'multiple' | 'single'
-  /**
-   * 下拉选择列表数据。数据类型见`ISelectDataItem`
-   */
-  dataSource: ISelectDataItem[]
-  /**
-   * 当前被选中的id。必传，因为本组件只有受控模式
-   */
-  selectedIds: string[]
-  /**
-   * 用户选择发生变化的回调
-   */
-  onSelectChange?: (selectedIds: string[]) => void
-  /**
-   * 搜索框值发生变化的回调<br />
-   * 传入此属性，使得选择器拥有搜索功能，用户可以输入字符串进行搜索<br />
-   * 一般要在此回调中更新`dataSource`（下拉选择列表数据）
-   */
-  onSearchChange?: (searchStr: string) => void
-  /**
-   * 下拉菜单没有数据时的显示内容
-   * @defaultValue `<Card>No content</Card>`
-   */
-  noContentView?: React.ReactNode
-  /**
-   * @internal
-   */
-  listProps?: Omit<IListProps, 'data'>
-  /**
-   * 透传给`<Select>`基础组件的props
-   */
-  selectProps?: SelectProps
-}
+import type { IListSelectProps } from './types/IListSelectProps.type'
+export type { IListSelectProps }
+export type { ISelectDataItem } from './types/ISelectDataItem.type'
 
 interface ISelectedValue {
   value: string
@@ -105,12 +39,12 @@ const ListSelect: React.FC<IListSelectProps & IFusionConfigProps> = ({
   const [searchInput, setSearchInput] = useState('')
   const [popupVisible, setPopupVisible] = useState(false)
   const selectedValue: ISelectedValue[] = useMemo(
-    () => actualSelectedIds.map(id => ({ value: id, label: id })),
+    () => actualSelectedIds.map((id) => ({ value: id, label: id })),
     [actualSelectedIds]
   )
   const listData: IDataItem[] = useMemo(
     () =>
-      dataSource.map(item => {
+      dataSource.map((item) => {
         if (actualSelectedIds.indexOf(item.id) < 0)
           return { ...item, selected: false }
         return { ...item, selected: true }
@@ -125,7 +59,7 @@ const ListSelect: React.FC<IListSelectProps & IFusionConfigProps> = ({
       <List
         {...listProps}
         data={listData}
-        onItemClick={index => {
+        onItemClick={(index) => {
           if (listProps && listProps.onItemClick) listProps.onItemClick(index)
 
           const clickedId = dataSource[index].id
@@ -137,7 +71,7 @@ const ListSelect: React.FC<IListSelectProps & IFusionConfigProps> = ({
             if (actualSelectedIds.indexOf(clickedId) < 0) {
               return [...actualSelectedIds, clickedId]
             }
-            return actualSelectedIds.filter(v => v !== clickedId)
+            return actualSelectedIds.filter((v) => v !== clickedId)
           })()
 
           // 单选模式下，选中一个就收起弹层
@@ -178,7 +112,7 @@ const ListSelect: React.FC<IListSelectProps & IFusionConfigProps> = ({
       onChange={(newValue: ISelectedValue[], changeType: string) => {
         if (changeType !== 'tag') return
         // 用户通过点击标签上的“x”来删掉选项
-        const newSelectedIds = newValue.map(v => v.value)
+        const newSelectedIds = newValue.map((v) => v.value)
         typeof onSelectChange === 'function' && onSelectChange(newSelectedIds)
       }}
       popupContent={popupContent}

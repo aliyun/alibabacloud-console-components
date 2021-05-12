@@ -15,11 +15,21 @@ const breadcrumb = (
 // eslint-disable-next-line react/prop-types
 const CustomMenu: React.FC<{ itemCount: number }> = ({ itemCount }) => (
   <Menu>
-    {new Array(itemCount).fill(1).map((item, i) => (
-      <Menu.Item key={`section-${i + 1}`}>Section {i + 1}</Menu.Item>
-    ))}
+    {new Array(itemCount).fill(1).map((item, i) => {
+      if (i === itemCount - 2) {
+        return (
+          <Menu.SubMenu label="sub-menu">
+            {new Array(itemCount).fill(1).map((item, i) => (
+              <Menu.Item key={`sub-${i + 1}`}>Sub {i + 1}</Menu.Item>
+            ))}
+          </Menu.SubMenu>
+        )
+      }
+      return <Menu.Item key={`section-${i + 1}`}>Section {i + 1}</Menu.Item>
+    })}
   </Menu>
 )
+
 // eslint-disable-next-line react/prop-types
 const Content: React.FC<{ repeat: number }> = ({ repeat }) => (
   <>
@@ -67,11 +77,11 @@ const Example: React.FC<{}> = () => {
   const [menuItemCount, setMenuItemCount] = useState(5)
   const [contentRepeatCount, setContentRepeatCount] = useState(1)
 
-  const onMenuItemCountChange = useCallback(value => {
+  const onMenuItemCountChange = useCallback((value) => {
     setMenuItemCount(value)
   }, [])
 
-  const onContentRepeatCountChange = useCallback(value => {
+  const onContentRepeatCountChange = useCallback((value) => {
     setContentRepeatCount(value)
   }, [])
 

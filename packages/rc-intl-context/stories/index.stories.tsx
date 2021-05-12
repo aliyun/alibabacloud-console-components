@@ -1,5 +1,5 @@
 import * as React from 'react'
-import '@alife/dpl-console-design/index.css'
+import '@alicloud/console-components/dist/xconsole.css'
 
 import { storiesOf } from '@storybook/react'
 import Basic from './basic/basic'

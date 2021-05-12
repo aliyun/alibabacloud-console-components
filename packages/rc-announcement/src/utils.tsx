@@ -1,7 +1,7 @@
 import React from 'react'
-import { pick } from 'lodash'
+import pick from 'lodash/pick'
 import { ConfigProvider } from '@alicloud/console-components'
-import { ISliderOptions } from './RcAnnouncement'
+import { ISliderOptions } from './types/ISliderOptions.type'
 
 /**
  * @public

@@ -7,13 +7,16 @@ import { SelectProps } from '@alicloud/console-components/types/select'
 
 const { Colored: ColoredTag } = Tag as any
 
-const WrappedTag: React.FC<TagProps & { prefix: string }> = props => (
-  <ColoredTag type="silver" {...props} />
-)
-const WrappedCard: React.FC<CardProps & { prefix: string }> = props => (
+const WrappedTag: React.FC<TagProps & { prefix: string }> = (props) => {
+  // 兼容旧版wind的Color Tag
+  if (ColoredTag) return <ColoredTag type="silver" {...props} />
+  return <Tag type="primary" {...props} />
+}
+
+const WrappedCard: React.FC<CardProps & { prefix: string }> = (props) => (
   <Card contentHeight="auto" {...props} />
 )
-const WrappedSelect: React.FC<SelectProps & { prefix: string }> = props => (
+const WrappedSelect: React.FC<SelectProps & { prefix: string }> = (props) => (
   <Select {...props} />
 )
 
@@ -47,11 +50,13 @@ export const SList = styled(WrappedCard)`
     border: 1px solid #ebebeb;
   }
 
-  ${({ prefix }) => `.${prefix}card-body`} {
-    padding: 0;
-    margin: 0;
-    ${({ prefix }) => `.${prefix}card-content`} {
+  && {
+    ${({ prefix }) => `.${prefix}card-body`} {
+      padding: 0;
       margin: 0;
+      ${({ prefix }) => `.${prefix}card-content`} {
+        margin: 0;
+      }
     }
   }
   ${SItem} {

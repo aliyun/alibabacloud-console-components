@@ -65,7 +65,30 @@ class VanillaIntl extends IntlBase {
     try {
       result = new IntlMessageFormat(message, locale).format(exactValues)
     } catch (err) {
-      warning(false, err.message || 'Uncaught error')
+      if (err.message === `Expected "{" but "-" found.` || err.found === '-') {
+        warning(
+          false,
+          `文案格式不正确。文案key："${exactKey}"。
+使用select语法的时候， select case不能包含连字符“-”。比如：
+This is {region, select,
+  cn-huabei {华北}
+  cn-qingdao {青岛}
+}.
+是错误的文案，不符合最新的ICU语法规范： https://formatjs.io/docs/react-intl/upgrade-guide-3x#placeholder-argument-syntax-change
+应该改成以下形式：
+This is {region, select,
+  cnHuabei {华北}
+  cnQingdao {青岛}
+}.
+`
+        )
+      } else {
+        const msg = err.message || 'Uncaught error'
+        warning(
+          false,
+          `文案格式不正确。文案key："${exactKey}"。错误信息："${msg}"`
+        )
+      }
     }
 
     return result

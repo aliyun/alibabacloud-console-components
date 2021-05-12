@@ -1,6 +1,8 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import IntersectionObserver from '@researchgate/react-intersection-observer'
+import { withFusionConfig, useFusionConfig } from "@alicloud/console-components-internal-helpers";
+
 import * as S from './styles'
 
 export interface IProps {
@@ -20,6 +22,7 @@ const MenuContainer: React.FC<IProps> = ({ adjustHeight, children }) => {
     },
     []
   )
+  const config = useFusionConfig()
   return (
     <>
       <IntersectionObserver onChange={onIntersectionChange}>
@@ -28,6 +31,7 @@ const MenuContainer: React.FC<IProps> = ({ adjustHeight, children }) => {
       <S.MenuIntersectionContainer
         isIntersecting={isIntersecting}
         adjustHeight={adjustHeight}
+        prefix={config.prefix}
       >
         {children}
       </S.MenuIntersectionContainer>
@@ -40,4 +44,4 @@ MenuContainer.propTypes = {
   children: PropTypes.node,
 }
 
-export default MenuContainer
+export default withFusionConfig(MenuContainer)

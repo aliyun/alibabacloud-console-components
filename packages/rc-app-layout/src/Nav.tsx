@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useCallback } from 'react'
-import PropTypes from 'prop-types'
 import NavCollapseTrigger from './NavCollapseTrigger'
 import * as S from './styles'
 import { IAppLayoutProps } from '.'
@@ -53,9 +52,9 @@ const Nav: React.FC<INavProps> = ({
   })
 
   return (
-    <>
+    <S.NavWrapper collapsed={derivedCollapsed}>
       <S.Nav collapsed={derivedCollapsed} className="windcc-app-layout__nav">
-        <S.NavChildenWrapper>{children}</S.NavChildenWrapper>
+        {children}
       </S.Nav>
       {collapsible && (
         <NavCollapseTrigger
@@ -63,16 +62,8 @@ const Nav: React.FC<INavProps> = ({
           onClick={derivedOnCollapseTriggerClick}
         />
       )}
-    </>
+    </S.NavWrapper>
   )
-}
-
-Nav.propTypes = {
-  collapsible: PropTypes.bool,
-  collapsed: PropTypes.bool,
-  defaultCollapsed: PropTypes.bool,
-  onCollapseTriggerClick: PropTypes.func,
-  children: PropTypes.node,
 }
 
 export default Nav

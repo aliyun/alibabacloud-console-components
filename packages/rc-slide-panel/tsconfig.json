@@ -3,7 +3,7 @@
   "exclude": ["test/**"],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./lib",
+    "outDir": "./es",
     "paths": {
       "@alicloud/console-components-slide-panel": ["./src"],
       "@alicloud/console-components-slide-panel/*": ["./src/*"]

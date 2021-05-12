@@ -4,6 +4,7 @@ import { Nav } from '@alicloud/console-components'
 import Item from './Item'
 import SubMenu from './SubMenu'
 import { getPriority } from '../utils'
+import { vars } from '../theme'
 
 /**
  * @public
@@ -11,88 +12,93 @@ import { getPriority } from '../utils'
 const PrimaryMenu = styled(NavFilterProps)<{
   fusionPrefix: string
 }>`
+  ${(props) => props.theme.varDef || ''}
   ${getPriority(5)} {
     padding: 0;
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    background-color: #f5f5f5;
+    background-color: ${vars['--console-menu-bg'].consumeStyled};
 
     .${getPrefix}menu-header {
       box-sizing: border-box;
-      border-bottom: 1px solid #ebebeb;
-      padding: 15px 0 14px;
+      padding: ${vars['--console-menu-header-padding'].consumeStyled};
     }
 
     ${SubMenu} {
-      background-color: #f5f5f5;
-      > .${getPrefix}nav-item {
-        > .${getPrefix}menu-item-inner {
-          padding-right: 28px;
-        }
-      }
+      background-color: ${vars['--console-menu-bg'].consumeStyled};
       .${getPrefix}nav-item.${getPrefix}menu-item {
-        background-color: #f5f5f5;
-        color: #555555;
-        padding: 0 16px 0 16px;
+        background-color: ${vars['--console-menu-bg'].consumeStyled};
+        color: ${vars['--console-menu-normal-text-color'].consumeStyled};
+        padding: 0 ${vars['--console-menu-padding'].consumeStyled} 0
+          ${vars['--console-menu-padding'].consumeStyled};
 
         &:hover {
-          background-color: #ebebeb;
-          color: #111111;
+          background-color: ${vars['--console-menu-hover-bg'].consumeStyled};
         }
 
         &.${getPrefix}opened {
-          color: #555555;
+          color: ${vars['--console-menu-normal-text-color'].consumeStyled};
         }
 
         .${getPrefix}menu-item-inner {
           position: relative;
-          .${getPrefix}menu-icon-arrow {
-            color: #a8a8a8;
-            right: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: ${vars['--console-menu-item-height'].consumeStyled};
+          > .${getPrefix}menu-icon-arrow {
+            color: ${vars['--console-menu-icon-arrow-color'].consumeStyled};
+            line-height: 12px;
+            position: static;
           }
         }
       }
     }
 
     ${Item} {
-      color: #555555;
-      background-color: #f5f5f5;
-      padding: 0 16px;
+      color: ${vars['--console-menu-normal-text-color'].consumeStyled};
+      background-color: ${vars['--console-menu-bg'].consumeStyled};
+      padding: 0 ${vars['--console-menu-padding'].consumeStyled};
 
       &:hover {
-        background-color: #ebebeb;
-        color: #111111;
+        background-color: ${vars['--console-menu-hover-bg'].consumeStyled};
       }
 
       a {
-        color: #555555;
+        color: ${vars['--console-menu-normal-text-color'].consumeStyled};
         &:hover {
           text-decoration: none;
         }
       }
 
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}selected.${getPrefix}selected {
-        background-color: #dedede;
-        color: #333333;
-      }
-
-      > .${getPrefix}menu-item {
-        > .${getPrefix}menu-item-inner {
-          padding-right: 28px;
+        background-color: ${vars['--console-menu-active-bg'].consumeStyled};
+        color: ${vars['--console-menu-active-text-color'].consumeStyled};
+        a {
+          color: ${vars['--console-menu-active-text-color'].consumeStyled};
+        }
+        ::before {
+          display: ${vars['--console-menu-active-bar-display'].consumeStyled};
+          right: 0;
         }
       }
 
+      > .${getPrefix}menu-item-inner {
+        height: ${vars['--console-menu-item-height'].consumeStyled};
+        display: flex;
+        align-items: center;
+      }
+
       &.${getPrefix}nav-item.${getPrefix}menu-item.${getPrefix}disabled {
-        color: #c1c1c1;
+        color: ${vars['--console-menu-disabled-text-color'].consumeStyled};
 
         a {
           background-color: #f5f5f5;
         }
 
         &:hover {
-          background-color: #f5f5f5;
-          color: #c1c1c1;
+          background-color: ${vars['--console-menu-disabled-bg'].consumeStyled};
         }
       }
     }
@@ -158,6 +164,6 @@ function getPrefix({ fusionPrefix }: { fusionPrefix: string }) {
   return fusionPrefix
 }
 
-function NavFilterProps({ fusionPrefix, ...props }: any) {
+function NavFilterProps({ fusionPrefix, theme, ...props }: any) {
   return <Nav {...props} />
 }
