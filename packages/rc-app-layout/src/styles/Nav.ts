@@ -46,6 +46,9 @@ export default Nav
 export const NavCollapseTriggerIcon = styled(Icon)``
 
 export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
+  // 防止trigger被内容区域的东西挡住
+  z-index: 100;
+
   width: ${triggerWidth}px;
   height: ${triggerHeight}px;
   position: absolute;
