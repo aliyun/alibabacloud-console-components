@@ -1,9 +1,9 @@
 /**
-* @title date
-*/
+ * @title date
+ */
 
 import React from 'react'
-import { reactIntlFactory } from '@alicloud/console-components-intl'
+import { reactIntlFactory, presets } from '@alicloud/console-components-intl'
 
 const intl = reactIntlFactory()
 
@@ -19,23 +19,26 @@ intl.set({
 const App: React.FC<{}> = () => {
   return (
     <div style={{ marginLeft: '20px' }}>
+      <h1>处理标准时间对象 (Native JavaScript `Date` object)</h1>
       <h2>展示日期和时间</h2>
-      <p>{intl.date(new Date('2024-01-24 00:24:24'))}</p>
-      <h2>只展示日期</h2>
-      <p>{intl.date(new Date('2024-01-24 00:24:24'), 'date')}</p>
-      <h2>只展示时间</h2>
-      <p>{intl.date(new Date('2024-01-24 00:24:24'), 'time')}</p>
-      <h2>展示TimeZone</h2>
+      <p>{intl.date(date)}</p>
+      <h2>展示日期和时间（不含秒）</h2>
       <p>
-        {intl.date(new Date('2024-01-24 00:24:24'), 'dateTimeWithTimeZone')}
+        {intl.date(date, {
+          ...presets.dateTime,
+          second: undefined,
+        })}
       </p>
-      <h2>处理标准时间对象 (Native JavaScript `Date` object)</h2>
-      <p>原始的：{String(date)}</p>
-      <p>处理后：{intl.date(date)}</p>
-      <h2>处理Unix时间戳 (11-digits number)</h2>
+      <h2>只展示日期</h2>
+      <p>{intl.date(date, 'date')}</p>
+      <h2>只展示时间</h2>
+      <p>{intl.date(date, 'time')}</p>
+      <h2>展示TimeZone</h2>
+      <p>{intl.date(date, 'dateTimeWithTimeZone')}</p>
+      <h1>处理Unix时间戳 (11-digits number)</h1>
       <p>原始的：{timestamp}</p>
       <p>处理后：{intl.date(timestamp)}</p>
-      <h2>处理控制台时间戳 (yyyy-MM-ddThh:mmZ)</h2>
+      <h1>处理控制台时间戳 (yyyy-MM-ddThh:mmZ)</h1>
       <p>原始的：{consoleTimestamp}</p>
       <p>处理后：{intl.date(new Date(consoleTimestamp))}</p>
     </div>

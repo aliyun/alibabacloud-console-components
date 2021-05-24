@@ -1,5 +1,6 @@
 {
   "extends": "../../tsconfig.json",
+  "exclude": ["./test"],
   "compilerOptions": {
     "lib": ["es2018.intl", "dom"],
     "baseUrl": ".",
