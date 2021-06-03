@@ -10,13 +10,17 @@ const NavCollapseTrigger: React.FC<INavCollapseTrigger> = ({
   collapsed,
   onClick,
 }) => (
-  <S.NavCollapseTrigger
-    collapsed={collapsed}
-    className="nav-collapse-trigger"
-    onClick={onClick}
-  >
-    <S.NavCollapseTriggerIcon type="arrow-left" size="xs" />
-  </S.NavCollapseTrigger>
+  <S.NavCollapseTriggerLocator>
+    <S.NavCollapseTriggerWrapper>
+      <S.NavCollapseTrigger
+        collapsed={collapsed}
+        className="nav-collapse-trigger"
+        onClick={onClick}
+      >
+        <S.NavCollapseTriggerIcon type="arrow-left" size="xs" />
+      </S.NavCollapseTrigger>
+    </S.NavCollapseTriggerWrapper>
+  </S.NavCollapseTriggerLocator>
 )
 
 export default NavCollapseTrigger

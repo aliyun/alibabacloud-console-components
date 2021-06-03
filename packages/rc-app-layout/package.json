@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-app-layout",
-  "version": "2.0.0-alpha.4",
+  "version": "1.1.0",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -24,7 +24,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run gen-var",
     "clean": "rm -rf dist lib es cc-dev-out",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
@@ -34,7 +34,8 @@
     "dev": "breezr start --config config/breezr-docs.config.ts",
     "doc:build": "rm -rf doc-dist && breezr build --config config/breezr-docs.config.ts",
     "upload": "breezr upload --config config/breezr-docs.config.ts",
-    "upload:pre": "npm run upload -- --tag=pre"
+    "upload:pre": "npm run upload -- --tag=pre",
+    "gen-var": "node ./scripts/gen-css-var.js"
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.0",
@@ -44,12 +45,13 @@
     "styled-components": "^4.2.0"
   },
   "dependencies": {
+    "@alicloud/css-var-utils": "^0.1.0",
     "@babel/runtime": "^7.4.3",
     "classnames": "^2.2.5"
   },
   "devDependencies": {
+    "@alicloud/console-components-console-menu": "^1.2.4",
     "@alicloud/console-components-page": "^1.0.14",
-    "@alicloud/console-components-table": "^1.0.17",
-    "@alicloud/console-components-console-menu": "^2.0.0-alpha.0"
+    "@alicloud/console-components-table": "^1.0.17"
   }
 }

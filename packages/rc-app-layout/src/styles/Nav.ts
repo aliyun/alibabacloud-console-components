@@ -1,17 +1,16 @@
 import React from 'react'
 import { Icon } from '@alicloud/console-components'
 import styled from 'styled-components'
+import { vars } from '../theme'
 
-const navWidth = 208
-const navCollapsedWidth = 0
-const triggerHeight = 34
-const triggerWidth = 16
-const iconWidth = 12
+const navWidth = vars['--console-layout-nav-width'].consumeStyled
+const navCollapsedWidth =
+  vars['--console-layout-nav-width-collapsed'].consumeStyled
 
 const calcWidth = (props: INavProps) =>
   props.collapsed ? navCollapsedWidth : navWidth
 const calcLeft = (props: INavProps) =>
-  props.collapsed ? navCollapsedWidth - navWidth : 0
+  props.collapsed ? `calc(${navCollapsedWidth(props)} - ${navWidth(props)})` : 0
 const getRotate = (props: INavCollapseTriggerProps) =>
   props.collapsed ? 180 : 0
 
@@ -25,8 +24,8 @@ interface INavCollapseTriggerProps {
 }
 
 export const NavChildenWrapper = styled.div`
-  width: ${navWidth}px;
-  min-width: ${navWidth}px;
+  width: ${navWidth};
+  min-width: ${navWidth};
 `
 
 const Nav = styled.div<INavProps>`
@@ -34,10 +33,10 @@ const Nav = styled.div<INavProps>`
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
-  background-color: var(--console-layout-nav-bg, #fff);
-  width: ${navWidth}px;
-  border-right: var(--console-layout-nav-border, 1px solid #c0c6cc);
-  left: ${calcLeft}px;
+  background-color: ${vars['--console-layout-nav-bg'].consumeStyled};
+  width: ${navWidth};
+  border-right: ${vars['--console-layout-nav-border'].consumeStyled};
+  left: ${calcLeft};
   transition: left 0.3s ease-in-out;
 `
 
@@ -46,35 +45,70 @@ export default Nav
 export const NavCollapseTriggerIcon = styled(Icon)``
 
 export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
-  // 防止trigger被内容区域的东西挡住
-  z-index: 100;
-
-  width: ${triggerWidth}px;
-  height: ${triggerHeight}px;
+  /* 位置大小 */
+  width: ${vars['--console-layout-nav-trigger-width'].consumeStyled};
+  height: ${vars['--console-layout-nav-trigger-height'].consumeStyled};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: -${triggerWidth}px;
-  border: var(--console-layout-nav-trigger-border, 1px solid #c0c6cc);
-  border-left: none;
+  z-index: 100;
+
+  /* 形状颜色 */
+  border: ${vars['--console-layout-nav-trigger-border'].consumeStyled};
+  border-left: ${vars['--console-layout-nav-trigger-border-l'].consumeStyled};
   cursor: pointer;
   color: #bfbfbf;
-  background-color: var(--console-layout-nav-trigger-bg, #fff);
+  background-color: ${vars['--console-layout-nav-trigger-bg'].consumeStyled};
   border-radius: 0 2px 2px 0;
+  box-shadow: ${vars['--console-layout-nav-trigger-shadow'].consumeStyled};
+  transition: border 0.1s ease;
 
   /* 让内部图标垂直居中 */
   display: flex;
   justify-content: center;
   align-items: center;
 
-  box-shadow: var(--console-layout-nav-trigger-shadow, 0 2px 4px 0 rgba(0, 0, 0, 0.16));
-
   ${NavCollapseTriggerIcon} {
+    position: relative;
+    left: ${vars['--console-layout-nav-trigger-icon-left'].consumeStyled};
     line-height: 12px;
-    color: var(--console-layout-nav-trigger-icon-color, #c1c1c1);
+    color: ${vars['--console-layout-nav-trigger-icon-color'].consumeStyled};
     /* 展开/收起时，icon要转向 */
     transform: rotate(${getRotate}deg);
     transition: transform 0.5s ease-in-out, left 0.1s ease-in-out;
+  }
+`
+/** Trigger最外层，帮助定位到menu右边 */
+export const NavCollapseTriggerLocator = styled.div`
+  // 防止trigger被内容区域的东西挡住
+  z-index: 100;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 0px;
+  height: 100%;
+`
+
+/** Trigger次外层，确定点击区域 */
+export const NavCollapseTriggerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0px;
+  width: ${vars['--console-layout-nav-trigger-clickable-width'].consumeStyled};
+  height: ${vars['--console-layout-nav-trigger-clickable-height']
+    .consumeStyled};
+  cursor: pointer;
+  &:hover {
+    ${NavCollapseTrigger} {
+      border-left: ${vars['--console-layout-nav-trigger-border-l-hover']
+        .consumeStyled};
+      ${NavCollapseTriggerIcon} {
+        color: ${vars['--console-layout-nav-trigger-icon-color-hover']
+          .consumeStyled};
+      }
+    }
   }
 `
 
@@ -82,13 +116,10 @@ export const NavWrapper = styled.div`
   overflow-x: visible;
   position: relative;
   height: 100%;
-  width: ${calcWidth}px;
-  min-width: ${calcWidth}px;
+  width: ${calcWidth};
+  min-width: ${calcWidth};
   transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out;
   &:hover {
-    box-shadow: var(
-      --console-layout-nav-shadow,
-      2px 0 4px 0 rgba(0, 0, 0, 0.16)
-    );
+    box-shadow: ${vars['--console-layout-nav-shadow'].consumeStyled};
   }
 `

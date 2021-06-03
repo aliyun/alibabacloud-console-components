@@ -40,7 +40,6 @@ const calcHeight = (adjustHeight: string | number | (() => number)) => {
 const AppLayout = styled.div<{
   adjustHeight: string | number | (() => number)
 }>`
-  ${(props) => props.theme.varDef}
   position: relative;
   display: flex;
   flex-flow: row nowrap;

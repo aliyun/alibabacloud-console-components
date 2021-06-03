@@ -1,21 +1,17 @@
-import React from 'react'
-import { css } from 'styled-components'
-import ctx from './context'
+import { withStyledTheme } from '@alicloud/css-var-utils'
+import { theme as sourceTheme } from './xconsole'
 
-interface IProps {}
+export const theme = sourceTheme.overwrite({
+  '--console-layout-nav-shadow': 'none',
+  '--console-layout-nav-border': 'none',
+  '--console-layout-nav-trigger-bg': '#383838',
+  '--console-layout-nav-trigger-border': 'none',
+  '--console-layout-nav-trigger-shadow': 'none',
+  '--console-layout-nav-trigger-icon-color': '#6B6B6B',
+  '--console-layout-nav-bg': '#1f1f1f',
+})
 
-const varDef = css`
-  --console-layout-nav-shadow: none;
-  --console-layout-nav-border: none;
-  --console-layout-nav-trigger-bg: #383838;
-  --console-layout-nav-trigger-border: none;
-  --console-layout-nav-trigger-shadow: none;
-  --console-layout-nav-trigger-icon-color: #6B6B6B;
-  --console-layout-nav-bg: #1f1f1f;
-`
-
-const ctxValue = { varDef }
-
-export const HybridCloudDarkTheme: React.FC<IProps> = (props) => {
-  return <ctx.Provider value={ctxValue}>{props.children}</ctx.Provider>
-}
+export const HybridCloudDarkTheme = withStyledTheme(
+  theme,
+  (props) => props.children
+)

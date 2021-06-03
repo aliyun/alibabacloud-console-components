@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import classNames from 'classnames'
 import Nav from './Nav'
 import * as S from './styles'
-import themeCtx from './theme/context'
 import { IAppLayoutProps } from './types/IAppLayoutProps.type'
 export type { IAppLayoutProps }
 
@@ -20,7 +19,6 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
   className,
   style,
 }) => {
-  const themeCtxValue = useContext(themeCtx)
   return (
     <S.AppLayout
       adjustHeight={adjustHeight}
@@ -30,7 +28,6 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
         className
       )}
       style={style}
-      theme={themeCtxValue}
     >
       {nav && (
         <Nav
