@@ -8,6 +8,20 @@ import { SWrapper } from './styles'
 import type { ITruncateProps } from './types/ITruncateProps.type'
 export type { ITruncateProps }
 
+// 一般来说，都可以通过react-sizeme的refreshMode:"debounce"来提高首屏渲染性能，
+// 避免react-sizeme对DOM的度量阻塞渲染。
+// 保险起见，我们通过一个配置来开启这个行为，不要影响已有用户
+const debouncedMesure = (() => {
+  if (
+    typeof window !== undefined &&
+    // @ts-ignore
+    window['console-components-truncate-mesure'] === 'debounce'
+  ) {
+    return true
+  }
+  return false
+})()
+
 /**
  * @public
  */
@@ -89,7 +103,10 @@ const Truncate: React.FC<ITruncateProps> = ({
   // 其余情况 type 视为 'width'
   if (actualThreshold === 'auto') {
     return (
-      <SizeMe noPlaceholder>
+      <SizeMe
+        noPlaceholder
+        refreshMode={debouncedMesure ? 'debounce' : undefined}
+      >
         {({ size }) => {
           // 获得可用宽度（即Wrapper的宽度）
           let actualActualThreshold: number
