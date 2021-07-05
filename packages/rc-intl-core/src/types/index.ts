@@ -16,6 +16,11 @@ export interface IMessages {
 export interface IIntlCtxValue {
   locale?: string
   messages?: IMessages
+  /**
+   * 如果能够保证msg对象是一个扁平结构而不是嵌套对象（大部分情况是如此），
+   * 就能简化一些处理过程，提高性能
+   */
+  flatMode?: boolean
   // Provider allow users to extend IIntlCtxValue with anything
   [key: string]: any
 }
@@ -123,4 +128,9 @@ export interface IIntlProviderProps {
   messages?: IMessages
   baseComponentKeyPrefix?: string
   configProviderProps?: object
+  /**
+   * 如果能够保证msg对象是一个扁平结构而不是嵌套对象（大部分情况是如此），
+   * 就能简化一些处理过程，提高性能
+   */
+  flatMode?: boolean
 }

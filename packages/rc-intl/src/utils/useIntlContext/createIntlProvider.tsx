@@ -21,7 +21,7 @@ const compatLocale = (locale: string) => (locale === 'zh' ? 'zh-cn' : locale)
 // TODO: 把normalize放在set的时候
 const normalize = (obj: IMessages) => {
   const result = {}
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     set(result, key, obj[key])
   })
 
@@ -34,19 +34,21 @@ const createIntlProvider = (intl: IWindIntlPublic) => {
   /**
    * provide value to the intl-context.
    */
-  const IntlProvider: React.FC<IIntlProviderProps> = props => {
+  const IntlProvider: React.FC<IIntlProviderProps> = (props) => {
     const {
       messages = intl.getMessages() || {},
       locale = intl.getLocale(),
       baseComponentKeyPrefix = '@wind_v2.base',
       configProviderProps = {},
       children,
+      flatMode,
     } = props
     const extendProviderValue = () => {
       const { messages: rawMessages = intl.getMessages() || {} } = props
       return {
         rawMessages,
         intl,
+        flatMode,
       }
     }
     const baseComponentMessages = {
@@ -56,10 +58,13 @@ const createIntlProvider = (intl: IWindIntlPublic) => {
       momentLocale: locale && compatLocale(locale),
     }
 
+    // normalize操作比较耗时，因此提供了一个选项来绕过它
+    const normalized = flatMode === true ? messages : normalize(messages)
+
     return (
       <Provider
         locale={locale}
-        messages={normalize(messages)}
+        messages={normalized}
         extend={extendProviderValue}
       >
         <ConfigProvider {...configProviderProps} locale={baseComponentMessages}>
@@ -87,15 +92,16 @@ const createIntlProvider = (intl: IWindIntlPublic) => {
   >(
     WrappedComponent: React.ComponentType<WrappedComponentProps>
   ) => {
-    const HOC: React.FC<WrappedComponentProps> = props => {
+    const HOC: React.FC<WrappedComponentProps> = (props) => {
       return (
         <IntlProvider {...providerProps}>
           <WrappedComponent {...props} />
         </IntlProvider>
       )
     }
-    HOC.displayName = `withIntlProvider(${WrappedComponent.displayName ||
-      'UnknownComponent'})`
+    HOC.displayName = `withIntlProvider(${
+      WrappedComponent.displayName || 'UnknownComponent'
+    })`
     return HOC
   }
 

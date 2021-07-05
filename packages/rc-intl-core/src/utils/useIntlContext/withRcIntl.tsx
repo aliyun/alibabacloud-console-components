@@ -1,3 +1,4 @@
+import React from 'react'
 import warning from 'warning'
 import get from 'lodash/get'
 import set from 'lodash/set'
@@ -7,13 +8,24 @@ import withIntl from './withIntl'
 import { createReactIntlFromCfg } from '../../factory'
 import { IMessages } from '../../types'
 
-export const getPrefixedMessages = (messages: IMessages, prefix: string) => {
-  const flattenedMessages = {}
+export const getPrefixedMessages = (
+  messages: IMessages,
+  prefix: string,
+  flatMode?: boolean
+) => {
+  const flattenedMessages: Record<string, string> = {}
+  if (flatMode === true) {
+    Object.keys(messages)
+      .filter((key) => key.startsWith(prefix))
+      .forEach((key) => {
+        flattenedMessages[key] = messages[key]
+      })
+    return flattenedMessages
+  }
 
   forOwn(messages, (value, key) => {
     set(flattenedMessages, key, value)
   })
-
   return get(flattenedMessages, prefix)
 }
 
@@ -42,9 +54,14 @@ const withRcIntl = ({
       intl: globIntl = undefined,
       messages: globMessages = {},
       locale = 'en',
+      flatMode,
     } = value || {}
 
-    const pickedMessages = getPrefixedMessages(globMessages, keyPrefix)
+    const pickedMessages = getPrefixedMessages(
+      globMessages,
+      keyPrefix,
+      flatMode
+    )
     const pickMessageSuccess = isPlainObject(pickedMessages)
     if (!pickMessageSuccess && warningIfNoMessageFromCtx) {
       warning(

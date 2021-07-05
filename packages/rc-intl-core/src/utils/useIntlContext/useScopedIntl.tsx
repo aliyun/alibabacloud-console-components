@@ -3,7 +3,7 @@ import { Context } from '@alicloud/console-components-intl-context'
 import warning from 'warning'
 import isPlainObject from 'lodash/isPlainObject'
 import { createReactIntlFromCfg } from '../../factory'
-import { IMessages, IWindIntlExtended } from '../../types'
+import { IMessages, IWindIntlExtended, IIntlCtxValue } from '../../types'
 import { getPrefixedMessages } from './withRcIntl'
 
 /**
@@ -33,12 +33,12 @@ function useScopedIntl(
     defaultLocaleMessages = {},
   }: IUseScopedIntlOption = {}
 ) {
-  const value = useContext(Context)
+  const value: IIntlCtxValue = useContext(Context)
 
   const keyPrefix = `${namespace}.${componentName}`
-  const { messages: ctxMessages = {}, locale = 'en' } = value || {}
+  const { messages: ctxMessages = {}, locale = 'en', flatMode } = value || {}
 
-  const pickedMessages = getPrefixedMessages(ctxMessages, keyPrefix)
+  const pickedMessages = getPrefixedMessages(ctxMessages, keyPrefix, flatMode)
   const pickMessageSuccess = isPlainObject(pickedMessages)
   if (!pickMessageSuccess) {
     warning(
