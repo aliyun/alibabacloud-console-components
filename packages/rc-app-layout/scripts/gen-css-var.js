@@ -6,6 +6,7 @@ var themes = {
   'hybridcloud-light': require('../lib/theme/hybridcloud-light'),
   wind: require('../lib/theme/wind'),
   xconsole: require('../lib/theme/xconsole'),
+  'xconsole-dark': require('../lib/theme/xconsole-dark'),
 }
 
 fs.ensureDirSync(path.join(__dirname, `../dist/vars`))

@@ -5,7 +5,7 @@ import type { IPageProps } from './types/IPageProps.type'
 export type { IPageProps }
 
 enum SceneryThemeColorMap {
-  white = '#FFFFFF',
+  white = 'var(--body-bg, #ffffff)',
   grey = '#FAFAFA',
 }
 
