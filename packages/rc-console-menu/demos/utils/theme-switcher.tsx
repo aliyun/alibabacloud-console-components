@@ -14,7 +14,6 @@ const dataSource = [
   { value: 'WindTheme', wrapper: (props: any) => props.children },
   { value: 'HybridCloudLightTheme', wrapper: HybridCloudLightTheme },
   { value: 'HybridCloudDarkTheme', wrapper: HybridCloudDarkTheme },
-  { value: 'HybridCloudDarkTheme', wrapper: HybridCloudDarkTheme },
 ]
 
 export function useTheme() {

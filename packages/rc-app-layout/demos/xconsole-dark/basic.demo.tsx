@@ -1,5 +1,5 @@
 /**
-* @title hybridcloud-light/basic
+* @title xconsole-dark/basic
 */
 
 import { XConsoleDarkTheme as MenuTheme } from '@alicloud/console-components-console-menu'
