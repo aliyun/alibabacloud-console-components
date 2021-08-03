@@ -83,7 +83,8 @@ export const TopbarMain = styled.div`
   /* widget-normalize use class selector to reset css */
   && {
     a {
-      color: #333;
+      color: #666;
+      color: var(--breadcrumb-text-color,#666);
     }
   }
 `

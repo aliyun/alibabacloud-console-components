@@ -3,10 +3,10 @@ import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils'
 export const theme = CssVarTheme.create({
   '--console-menu-divider-margin': { default: '15px' },
   '--console-menu-divider-border': { default: '1px solid #e3e4e6' },
-  '--console-menu-header-color': { default: '#aaaaaa' },
+  '--console-menu-header-color': { default: '#0080ff' },
   '--console-menu-bg': { default: 'transparent' },
   '--console-menu-header-padding': { default: '24px 24px 16px' },
-  '--console-menu-normal-text-color': { default: '#aaaaaa' },
+  '--console-menu-normal-text-color': { default: '#cccccc' },
   '--console-menu-padding': { default: '24px' },
   '--console-menu-hover-bg': { default: 'rgba(255,255,255,0.04)' },
   '--console-menu-item-height': { default: '32px' },
