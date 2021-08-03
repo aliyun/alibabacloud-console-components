@@ -14,7 +14,7 @@ const version = fs.readJSONSync(path.join(__dirname, '../package.json')).version
 
 Object.entries(themes).forEach(([themeName, theme]) => {
   const style = theme.theme.values()
-  const code = `:root {
+  const code = `:root, .theme-${themeName} {
 --console-menu-version: "${version}";
 ${Object.entries(style)
   .map(([propName, propValue]) => {
