@@ -50,6 +50,7 @@ export const SPanelsWrapper = styled('div')<{
   placeBottom: boolean
 }>`
   background: #fff;
+  background: var(--dialog-bg, #fff);
   &.placeRight {
     position: fixed;
     bottom: 0;

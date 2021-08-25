@@ -6,6 +6,7 @@ var themes = {
   'hybridcloud-light': require('../lib/theme/hybridcloud-light'),
   wind: require('../lib/theme/wind'),
   xconsole: require('../lib/theme/xconsole'),
+  'xconsole-dark': require('../lib/theme/xconsole-dark'),
 }
 
 fs.ensureDirSync(path.join(__dirname, `../dist/vars`))
@@ -13,7 +14,7 @@ const version = fs.readJSONSync(path.join(__dirname, '../package.json')).version
 
 Object.entries(themes).forEach(([themeName, theme]) => {
   const style = theme.theme.values()
-  const code = `:root {
+  const code = `:root, .theme-${themeName} {
 --console-app-layout-version: "${version}";
 ${Object.entries(style)
   .map(([propName, propValue]) => {

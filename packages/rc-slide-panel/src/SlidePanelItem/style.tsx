@@ -28,6 +28,7 @@ export const SPlaceHolder = styled.div<{ display: 'none' | 'block' }>`
 
 export const SHeaderWrapper = styled(Row)`
   border-bottom: 1px solid #efefef;
+  border-color: var(--color-line1-1, #efefef);
   padding: 0 24px;
   height: 60px;
   position: relative;
@@ -35,6 +36,7 @@ export const SHeaderWrapper = styled(Row)`
   overflow: hidden;
   align-items: center;
   color: #333333;
+  color: var(--color-text1-9, #333333);
   ${SBackIcon} {
     margin-right: 12px;
     cursor: pointer;
@@ -43,7 +45,8 @@ export const SHeaderWrapper = styled(Row)`
     margin: 0;
     font-size: 18px;
     vertical-align: middle;
-    color: #111;
+    color:#111;
+    color: var(--color-text1-10, #111);
   }
   .panel-header-extra {
   }
@@ -57,6 +60,7 @@ export const SHeaderWrapper = styled(Row)`
 
 export const SFooterWrapper = styled.div`
   border-top: 1px solid #efefef;
+  border-color: var(--color-line1-1, #efefef);
   overflow: hidden;
   padding: 0 24px;
   height: 64px;
