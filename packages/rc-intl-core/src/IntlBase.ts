@@ -86,7 +86,7 @@ class IntlBase {
 
     if (locale) {
       this.setLocale(locale)
-    } else if (determineLocale) {
+    } else {
       this.setLocale(getLocale(determineLocale))
     }
 
