@@ -29,28 +29,59 @@ class VanillaIntl extends IntlBase {
     const message = get(messages, exactKey, exactDefaultMessage)
 
     if (isNil(message)) {
+      let result: string = exactKey
       if (!messages) {
+        try {
+          const fallback = this._onError?.({
+            code: 'formatMessage.messagesNotSetYet',
+            key: exactKey,
+            ctx: { defaultMessage: exactDefaultMessage, values: exactValues },
+          })
+          if (fallback) result = fallback
+        } catch (error) {}
         warning(
           false,
           `[@ali/wind-intl] Cannot format "${exactKey}" before messages is set.` +
-            `will resolve this message with key: ${exactKey}`
+            `will resolve this message with: ${result}`
+        )
+      } else {
+        try {
+          const fallback = this._onError?.({
+            code: 'formatMessage.notFound',
+            key: exactKey,
+            ctx: { defaultMessage: exactDefaultMessage, values: exactValues },
+          })
+          if (fallback) result = fallback
+        } catch (error) {}
+        warning(
+          false,
+          `[@ali/wind-intl] Cannot read ${exactKey} from messages, ` +
+            `will resolve this message with: ${result}`
         )
       }
-      warning(
-        false,
-        `[@ali/wind-intl] Cannot read ${exactKey} from messages, ` +
-          `will resolve this message with key: ${exactKey}`
-      )
-      return exactKey
+      return result
     }
     if (typeof message !== 'string') {
+      let result = exactKey
+      try {
+        const fallback = this._onError?.({
+          code: 'formatMessage.invalidMessage',
+          key: exactKey,
+          ctx: {
+            defaultMessage: exactDefaultMessage,
+            values: exactValues,
+            message,
+          },
+        })
+        if (fallback) result = fallback
+      } catch (error) {}
       warning(
         false,
         `[@ali/wind-intl] Expect message to be a string, but get ${Object.prototype.toString.call(
           message
-        )}. will resolve this message with key: ${exactKey}`
+        )}. will resolve this message with: ${result}`
       )
-      return exactKey
+      return result
     }
 
     const locale = this.getLocale()
@@ -60,12 +91,39 @@ class VanillaIntl extends IntlBase {
         `[@ali/wind-intl] Locale is not set. You should set locale using \`intl.setLocale\` or \`intl.set\`.
         Falling back to default locale from browser.`
       )
+      try {
+        this._onError?.({
+          code: 'formatMessage.localeNotSet',
+          key: exactKey,
+          ctx: {
+            defaultMessage: exactDefaultMessage,
+            values: exactValues,
+            message,
+          },
+        })
+      } catch (error) {}
     }
     let result = exactKey
     try {
       result = new IntlMessageFormat(message, locale).format(exactValues)
-    } catch (err) {
-      if (err.message === `Expected "{" but "-" found.` || err.found === '-') {
+    } catch (err: any) {
+      try {
+        const fallback = this._onError?.({
+          code: 'formatMessage.formatError',
+          key: exactKey,
+          ctx: {
+            defaultMessage: exactDefaultMessage,
+            values: exactValues,
+            message,
+          },
+          error: err,
+        })
+        if (fallback) result = fallback
+      } catch (error) {}
+      if (
+        err?.message === `Expected "{" but "-" found.` ||
+        err?.found === '-'
+      ) {
         warning(
           false,
           `文案格式不正确。文案key："${exactKey}"。
@@ -83,7 +141,7 @@ This is {region, select,
 `
         )
       } else {
-        const msg = err.message || 'Uncaught error'
+        const msg = err?.message || 'Uncaught error'
         warning(
           false,
           `文案格式不正确。文案key："${exactKey}"。错误信息："${msg}"`

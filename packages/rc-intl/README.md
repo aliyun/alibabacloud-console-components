@@ -333,3 +333,34 @@ const Counter = ({ count }) => <span>{intl.number(count)}</span>
 
 export default Counter
 ```
+
+### intl.registerOnError
+
+注册发生错误时的回调函数。在回调函数中，你可以获取到一些有用的上下文信息。
+
+- 回调函数可以用于日志上报，从而你能及时发现线上的文案问题。
+- 回调函数可以返回 fallback 的文案，从而你可以利用上下文信息来返回更合理的异常文案。
+
+```ts
+intl.registerOnError(onError: OnError)
+
+type OnError = (errorInfo: {
+  code: ErrorCode
+  key?: string
+  ctx?: unknown
+  error?: any
+}) => string | void
+
+type ErrorCode =
+  | 'formatDate'
+  | 'formatNumber'
+  | 'formatMessage.messagesNotSetYet'
+  | 'formatMessage.notFound'
+  | 'formatMessage.invalidMessage'
+  | 'formatMessage.localeNotSet'
+  | 'formatMessage.formatError'
+
+```
+
+参考以下 demo：
+[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-intl-docs&entryKey=onError/index)
