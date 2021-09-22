@@ -89,6 +89,7 @@ export type IWindIntlPublic = ReactIntl['formatMessage'] & {
   resetStore: ReactIntl['resetStore']
   setLocale: ReactIntl['setLocale']
   setMessages: ReactIntl['setMessages']
+  registerOnError: ReactIntl['registerOnError']
   getLocale: ReactIntl['getLocale']
   getMessages: ReactIntl['getMessages']
   message: ReactIntl['formatMessage']

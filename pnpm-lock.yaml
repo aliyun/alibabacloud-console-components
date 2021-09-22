@@ -140,7 +140,7 @@ importers:
       '@alicloud/console-components-console-menu': ^1.2.4
       '@alicloud/console-components-page': ^1.0.14
       '@alicloud/console-components-table': ^1.0.17
-      '@alicloud/css-var-utils': 'workspace:^0.1.0'
+      '@alicloud/css-var-utils': ^0.1.0
       '@babel/runtime': ^7.4.3
       classnames: ^2.2.5
   packages/rc-confirm:
@@ -279,7 +279,7 @@ importers:
       react-responsive: 5.0.0
       recompose: 0.27.1
     devDependencies:
-      '@alicloud/console-components-app-layout': 1.0.10
+      '@alicloud/console-components-app-layout': 'link:../rc-app-layout'
       '@alicloud/console-components-page': 'link:../rc-page'
     specifiers:
       '@alicloud/console-components-app-layout': ^1.0.10

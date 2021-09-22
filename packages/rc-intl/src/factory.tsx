@@ -21,6 +21,7 @@ const createReactIntlFromInstance = (
       resetStore: instance.resetStore.bind(instance),
       setLocale: instance.setLocale.bind(instance),
       setMessages: instance.setMessages.bind(instance),
+      registerOnError: instance.registerOnError.bind(instance),
       getLocale: instance.getLocale.bind(instance),
       getMessages: instance.getMessages.bind(instance),
       message: instance.formatMessage.bind(instance),

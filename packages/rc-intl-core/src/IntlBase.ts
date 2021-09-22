@@ -95,6 +95,20 @@ class IntlBase {
     }
   }
 
+  protected _onError?: OnError
+  public registerOnError(onError: OnError) {
+    const prevOnError = this._onError
+    if (prevOnError) {
+      this._onError = (...args) => {
+        const return1 = prevOnError(...args)
+        const return2 = onError(...args)
+        return return1 ?? return2
+      }
+    } else {
+      this._onError = onError
+    }
+  }
+
   public formatDate(value: Date | number, options?: IFormatDateOptions) {
     let result = String(value)
     let opts
@@ -110,7 +124,16 @@ class IntlBase {
       // @ts-ignore
       result = new Intl.DateTimeFormat(this.getLocale(), opts).format(value)
     } catch (err) {
-      warning(false, err.message || 'Uncaught error')
+      try {
+        // ensure no error is thrown
+        warning(false, err.message || 'Uncaught error')
+        const fallback = this._onError?.({
+          code: 'formatDate',
+          error: err,
+          ctx: { value, opts, locale: this.getLocale() },
+        })
+        if (fallback) result = fallback
+      } catch (error) {}
     }
 
     // fix: https://github.com/aliyun/alibabacloud-console-components/issues/50
@@ -127,7 +150,16 @@ class IntlBase {
     try {
       result = new Intl.NumberFormat(this.getLocale(), options).format(value)
     } catch (err) {
-      warning(false, err.message || 'Uncaught error')
+      try {
+        // ensure no error is thrown
+        warning(false, err.message || 'Uncaught error')
+        const fallback = this._onError?.({
+          code: 'formatNumber',
+          error: err,
+          ctx: { value, options, locale: this.getLocale() },
+        })
+        if (fallback) result = fallback
+      } catch (error) {}
     }
 
     return result
@@ -135,3 +167,19 @@ class IntlBase {
 }
 
 export default IntlBase
+
+type OnError = (errorInfo: {
+  code: ErrorCode
+  key?: string
+  ctx?: unknown
+  error?: any
+}) => string | void
+
+type ErrorCode =
+  | 'formatDate'
+  | 'formatNumber'
+  | 'formatMessage.messagesNotSetYet'
+  | 'formatMessage.notFound'
+  | 'formatMessage.invalidMessage'
+  | 'formatMessage.localeNotSet'
+  | 'formatMessage.formatError'
