@@ -4,6 +4,8 @@ import { OverlayProps } from '@alicloud/console-components/types/overlay'
 import withIntersectionFixed from './withIntersectionFixed'
 import { SActionBarWrapper, SActionBarLeft, SActionBarRight } from './styled'
 
+const baseClassName = 'action-bar'
+
 export interface IActionBarProps {
   align?: 'top' | 'bottom'
   afterIntersectChanged?: (
@@ -12,18 +14,19 @@ export interface IActionBarProps {
     prevIntersecting: boolean
   ) => void
   affixBarOverlayProps?: OverlayProps
+  className?: string
 }
 
-const ActionBar: React.FC<IActionBarProps> = props => (
-  <SActionBarWrapper {...props} />
+const ActionBar: React.FC<IActionBarProps> = (props) => (
+  <SActionBarWrapper className={baseClassName} {...props} />
 )
 
-const Left: React.FC<{ children: React.ReactNode }> = props => (
-  <SActionBarLeft {...props} />
+const Left: React.FC<{ children: React.ReactNode }> = (props) => (
+  <SActionBarLeft className={`${baseClassName}-left`} {...props} />
 )
 
-const Right: React.FC<{ children: React.ReactNode }> = props => (
-  <SActionBarRight offset="0" {...props} />
+const Right: React.FC<{ children: React.ReactNode }> = (props) => (
+  <SActionBarRight className={`${baseClassName}-right`} offset="0" {...props} />
 )
 
 const ExpActionBar = Object.assign(ActionBar, {

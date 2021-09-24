@@ -69,7 +69,7 @@ export interface IRcTableProps {
     isIntersecting: boolean
   ) => void
   /**
-   * 当 affixActionBar 开启时，锁定动作区向`左` `右`两边延伸的宽度, 左右相同可简写为一个如：[0], 按照控制台规范一般为[40, 24]
+   * 当 affixActionBar 开启时，锁定动作区向`左` `右`两边延伸的宽度, 左右相同可简写为一个，如：`[0]`。在阿里云控制台中，请传入`[24]`。
    * @defaultValue [0, 0]
    */
   fixedBarExpandWidth?: number[]

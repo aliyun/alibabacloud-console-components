@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isFunction from "lodash/isFunction";
-import get from "lodash/get";
-import uniq from "lodash/uniq";
-import xor from "lodash/xor";
+import isFunction from 'lodash/isFunction'
+import get from 'lodash/get'
+import uniq from 'lodash/uniq'
+import xor from 'lodash/xor'
 import { CheckboxProps } from '@alicloud/console-components/types/checkbox'
 import renderProps from '../renderProps'
 import connect from './connect'
@@ -190,9 +190,9 @@ const Selection: React.FC<ISelectionProps & ITableProps['rowSelection']> = (
 ) => {
   const { mode = 'multiple', isIndeterminate, isSelectedAll, selectAll } = props
   return (
-    <SSelectionWrapper>
+    <SSelectionWrapper className="selection">
       {isMultiMode(mode) && (
-        <SSelectAllContainer>
+        <SSelectAllContainer className="select-all-container">
           <SelectAll
             isIndeterminate={isIndeterminate}
             isSelectedAll={isSelectedAll}

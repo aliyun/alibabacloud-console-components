@@ -66,12 +66,13 @@ const WithFixed = (threshold: number) => (
               fixedClassName = '',
               fixedStyle = {},
             }) => {
-
-							const children = (className: string) => (
+              const children = (className?: string) => (
                 <SFixedBarWrapper
                   className={classNames(
                     fixedClassName,
-										className
+                    className,
+                    'fixed-bar',
+                    `fixed-to-${fixedAlign}`
                   )}
                   style={{
                     zIndex: fixedBarZIndex,
@@ -80,19 +81,24 @@ const WithFixed = (threshold: number) => (
                 >
                   <BaseComponent {...restProps} />
                 </SFixedBarWrapper>
-							)
+              )
 
-              const normalChildren = children(`fixed-to-${fixedAlign}`)
-              const overlayChildren = children(`overlay-fixed-to-${fixedAlign}`)
+              const normalChildren = children()
+              const overlayChildren = children(
+                `overlay-fixed overlay-fixed-to-${fixedAlign}`
+              )
 
+              // 当指定了affixBarOverlayProps时，会将action-bar渲染到一个Overlay中。
+              // 这是为了可以自定义渲染的容器。
               return (
                 <AffixBar
                   overlayProps={{
                     ...affixBarOverlayProps,
                     visible: !isIntersecting,
                     align: fixedAlign === 'top' ? 'tl tl' : 'bl bl',
-                    animation: false,
-                    className: 'overlay-inner',
+                    wrapperStyle: {
+                      zIndex: fixedBarZIndex,
+                    },
                   }}
                   showOverlay={!isEmpty(affixBarOverlayProps)}
                   normalChildren={normalChildren}

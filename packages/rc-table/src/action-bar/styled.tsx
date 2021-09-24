@@ -62,14 +62,14 @@ export const SFixedBarWrapper = styled.div`
     box-shadow: 0px 0.2px 10px #ccc;
   }
 
-  &.fixed-to-top {
+  &.fixed-to-top:not(.overlay-fixed) {
     top: 0;
     padding-top: 8px;
     border-bottom: 1px solid #dedede;
     box-shadow: 0px 0.2px 10px #ccc;
   }
 
-  &.fixed-to-bottom {
+  &.fixed-to-bottom:not(.overlay-fixed) {
     bottom: 0;
     padding-bottom: 8px;
     border-top: 1px solid #dedede;
