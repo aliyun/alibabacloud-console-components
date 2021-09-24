@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 import { OverlayProps } from '@alicloud/console-components/types/overlay'
 import { Overlay } from '@alicloud/console-components'
 
@@ -18,7 +19,11 @@ const AffixBar: React.FC<IOverlayBarProps> = ({
   return (
     <>
       {showOverlay ? (
-        <Overlay {...overlayProps} className="overlay-inner" animation={false}>
+        <Overlay
+          animation={false}
+          {...overlayProps}
+          className={classnames('overlay-inner', overlayProps?.className)}
+        >
           {overlayChildren}
         </Overlay>
       ) : (

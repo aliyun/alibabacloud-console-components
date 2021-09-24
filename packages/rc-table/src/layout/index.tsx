@@ -195,7 +195,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
         },
       }}
     >
-      <STableWrapper>
+      <STableWrapper className="wind-rc-table">
         {(operation || search) && (
           <ExactTopActionBar
             afterIntersectChanged={afterFixedBarIntersectChanged}
