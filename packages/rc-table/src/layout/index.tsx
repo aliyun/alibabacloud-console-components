@@ -140,10 +140,7 @@ const ScActionBarRight = styled(ActionBar.Right)`
 `
 const getExpandedStyle = (
   fixedBarExpandWidth: number[]
-): {
-  marginLeft: number
-  width: string
-} => {
+): React.CSSProperties => {
   let actualExpandedWidth = []
   if (isArray(fixedBarExpandWidth)) {
     if (fixedBarExpandWidth.length === 0) {
@@ -157,6 +154,8 @@ const getExpandedStyle = (
     actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth]
   }
   return {
+    paddingLeft: actualExpandedWidth[0],
+    paddingRight: actualExpandedWidth[1],
     marginLeft: -actualExpandedWidth[0],
     width: `calc(100% + ${actualExpandedWidth[0] + actualExpandedWidth[1]}px)`,
   }
