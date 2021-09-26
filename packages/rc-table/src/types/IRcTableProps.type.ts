@@ -50,7 +50,7 @@ export interface IRcTableProps {
   affixActionBar?: boolean | string | string[]
   /**
    * 设置上下操作栏 affix 时候的层级
-   * @defaultValue 1000
+   * @defaultValue 99
    */
   fixedBarZIndex?: number
   /**

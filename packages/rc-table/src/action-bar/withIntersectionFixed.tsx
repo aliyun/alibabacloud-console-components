@@ -62,7 +62,8 @@ const WithFixed = (threshold: number) => (
         {!isIntersecting && (
           <Context.Consumer>
             {({
-              fixedBarZIndex = 1000,
+              // zindex应该低于console-base的左上角抽屉栏
+              fixedBarZIndex = 99,
               fixedClassName = '',
               fixedStyle = {},
             }) => {
