@@ -61,9 +61,6 @@ export const SPanelsWrapper = styled('div')<{
     right: 0;
   }
 
-  ${({ top }) =>
-    top === undefined ? '' : `top: ${ensureUnit(top)} !important;`}
-
   &.slideIn {
     animation: 0.25s
       ${({ placeBottom }) => (placeBottom ? slideInBottom : slideInRight)}
@@ -80,9 +77,10 @@ export const SGlobalStyle = createGlobalStyle<{
   top: string | number | undefined
 }>`
 	.wind-slide-panel-wrapper {
-		&& {
-			.next-overlay-backdrop {
-				${({ top }) => (top === undefined ? '' : `top: ${ensureUnit(top)}`)}
+		&&& {
+			> * {
+				${({ top }) => (top === undefined ? '' : `top: ${ensureUnit(top)} !important;`)}
+        z-index: 101;
 			}
 		}
   }
