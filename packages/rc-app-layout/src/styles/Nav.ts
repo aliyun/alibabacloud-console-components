@@ -113,6 +113,7 @@ export const NavCollapseTriggerWrapper = styled.div`
 `
 
 export const NavWrapper = styled.div`
+  z-index: 1;
   overflow-x: visible;
   position: relative;
   height: 100%;
