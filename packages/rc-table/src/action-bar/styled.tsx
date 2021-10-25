@@ -12,7 +12,6 @@ const ActionBarPropsFilter: React.FC<IActionBarProps> = ({
 }
 
 export const SActionBarWrapper = styled(ActionBarPropsFilter)`
-  height: 40px;
   justify-content: space-between;
 `
 
