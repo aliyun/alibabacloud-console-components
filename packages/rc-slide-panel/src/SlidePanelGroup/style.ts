@@ -76,6 +76,13 @@ export const SPanelsWrapper = styled('div')<{
 export const SGlobalStyle = createGlobalStyle<{
   top: string | number | undefined
 }>`
+  .hasTopbar {
+    .wind-slide-panel-wrapper {
+        > * {
+          top: 50px !important;
+        }
+    }  
+  }
 	.wind-slide-panel-wrapper {
 		&&& {
 			> * {
