@@ -24,11 +24,11 @@ export interface IRcSearchProps {
   /**
    * 点击搜索按钮， 触发搜索回调。
    */
-  onSearch?: () => void;
+  onSearch?: (allFileds: any) => void;
   /**
    * 包括onInput的回车；onSelect； 对Tag的增减。
    */
-  onChange?: () => void;
+  onChange?: (changeFileds: any, allFileds: any) => void;
   /**
    * input的input
    */

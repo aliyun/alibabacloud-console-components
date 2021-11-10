@@ -51,24 +51,60 @@ const WrapDiv = styled.div`
   }
 `;
 
-let selectOptions = [
-    {label: '111', value: '999'}
-]
 
 const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const {
     options,
-    onSuggest
+    onSuggest,
+    onChange,
+    onSearch
   } = props;
   let optionItem = options[0];
-  const [selectDataSource, setSelectDataSource] = useState(selectOptions);
+  if (!optionItem.templateProps) {
+    optionItem.templateProps = {}
+  }
+  const [inputDataSource, setInputDataSource] = useState<any>([]);
+  const [visible, setVisible] = useState<any>(false);
+  const [allFileds, setAllFileds] = useState<any>({});
 
-  async function inputChange (value: any) {
-    console.log('value: ', value)
-    if (onSuggest) {
-        let res = await onSuggest(value, 'name');
-        console.log('res suggest', res);
-        setSelectDataSource(res);
+  async function inputChange (value: any, actionType: string, dataIndex: string) {
+    if (actionType === 'itemClick' && onChange) {
+      let changeFileds = Object.create({});
+      changeFileds[dataIndex] = value;
+      onChange(changeFileds, changeFileds);
+      setAllFileds(changeFileds);
+      setVisible(false);
+    } else {
+      if (value === '') {
+        setInputDataSource([]);
+      }
+      if (onSuggest) {
+          let list = await onSuggest(value, dataIndex);
+          // console.log('res suggest', res);
+          let newDataSource = [
+            {
+              label: optionItem.label,
+              children: list
+            }
+          ]
+          setInputDataSource(newDataSource);
+          setVisible(true)
+      }
+    }
+  }
+
+  async function selectChange (value: any, dataIndex: string) {
+    if (onChange) {
+        let changeFileds = Object.create({});
+        changeFileds[dataIndex] = value;
+        onChange(changeFileds, changeFileds);
+        setAllFileds(changeFileds);
+    }
+  }
+
+  function onCommonSearch () {
+    if (onSearch) {
+      onSearch(allFileds);
     }
   }
 
@@ -79,11 +115,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           <div className={classNames('left-wrap', 'next-input')}>
             <AutoComplete
               className={classNames('main-input')}
-              placeholder={`默认按${optionItem.label}搜索`}
+              placeholder={optionItem.templateProps.placeholder || `默认按${optionItem.label}搜索`}
               hasClear
               hasBorder={false}
-              dataSource={selectDataSource}
-              onChange={inputChange}
+              dataSource={inputDataSource}
+              visible={visible}
+              onChange={(value, actionType) => {inputChange(value, actionType, optionItem.dataIndex)}}
             />
           </div>
         )
@@ -95,16 +132,17 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           </div>
           <Select
             className={classNames('main-input')}
-            placeholder="请选择"
+            placeholder={optionItem.templateProps.placeholder || "请选择"}
             hasClear
             hasBorder={false}
-            dataSource={selectDataSource}
+            dataSource={optionItem.templateProps.dataSource}
+            onChange={(value) => {selectChange(value, optionItem.dataIndex)}}
           />
         </div>
       }
       
       <div className={classNames('right-wrap')}>
-        <Button className={classNames('search-btn')}><Icon type="search" /></Button>
+        <Button className={classNames('search-btn')} onClick={onCommonSearch}><Icon type="search" /></Button>
       </div>
     </WrapDiv>
   )
