@@ -22,6 +22,10 @@ export interface IRcSearchProps {
    */
   options: any;
   /**
+   * 类名
+   */
+  defaultDataIndex: string;
+  /**
    * 点击搜索按钮， 触发搜索回调。
    */
   onSearch?: (allFileds: any) => void;

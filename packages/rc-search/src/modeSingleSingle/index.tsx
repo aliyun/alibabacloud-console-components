@@ -120,6 +120,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
               hasBorder={false}
               dataSource={inputDataSource}
               visible={visible}
+              onBlur={() => {setVisible(false)}}
               onChange={(value, actionType) => {inputChange(value, actionType, optionItem.dataIndex)}}
             />
           </div>
