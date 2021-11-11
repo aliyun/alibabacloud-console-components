@@ -4,8 +4,8 @@
  * @canFullScreen
  */
 
-import React from "react";
-import { Search, IRcSearchProps } from "@alicloud/console-components-search";
+import React, {useState} from "react";
+import { Search, IRcSearchProps, SearchTagList } from "@alicloud/console-components-search";
 
 // interface IProps {}
 let options = [
@@ -49,6 +49,8 @@ let options = [
 ]
 
 const Demo2: React.FC<IRcSearchProps> = (props) => {
+  const [tagList, setTagList] = useState<any>([]);
+
   async function onSuggest (value: string, dataIndex: string) {
     if (!value) {
       return [];
@@ -67,15 +69,36 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
     console.log(`changedFileds:`,  changedFileds, 'allFileds', allFileds)
   }
 
+  function onTagChange(newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList(newTags);
+  }
+
+  function onTagChangeByTagList (action:string, item: any) {
+    if (action === 'remove') {
+      let resFindIndex = tagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
+      tagList.splice(resFindIndex, 1);
+      setTagList(tagList);
+      // todo, 通知search
+    }
+  }
+
 
   return (
-    <Search
-      mode="single-multi"
-      defaultDataIndex="name"
-      options={options}
-      onChange={onChange}
-      onSuggest={onSuggest}
-    />
+    <div>
+      <Search
+        mode="single-multi"
+        defaultDataIndex="name"
+        options={options}
+        onChange={onChange}
+        onSuggest={onSuggest}
+        onTagChange={onTagChange}
+      />
+      <br />
+      <SearchTagList tagList={tagList} onChange={onTagChangeByTagList} />
+      
+    </div>
+    
   )
 };
  

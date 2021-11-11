@@ -80,15 +80,17 @@ function getTagByFileds (fileds: any, options: any) {
       if (resItem.template === 'input') {
         tagItem.valueShow = fileds[key]
       } else if (resItem.template === 'select') {
-        tagItem.valueShow = resItem.dataSource.find((y:any) => y.value === fileds[key]).label
+        tagItem.valueShow = resItem.templateProps.dataSource.find((y:any) => y.value === fileds[key]).label
       } else if (resItem.template === 'multiple') {
         tagItem.valueShow = ''
+        let valueShowArr = new Array<any>();
         fileds[key].forEach((y:any) => {
-          let findMul = resItem.dataSource.find((z:any) => z.value === fileds[key])
+          let findMul = resItem.templateProps.dataSource.find((z:any) => z.value === y)
           if (findMul) {
-            tagItem.valueShow += findMul.label;
+            valueShowArr.push(findMul.label)
           }
         })
+        tagItem.valueShow = valueShowArr.join('/')
       }
       rtTags.push(tagItem)
     }
@@ -175,7 +177,27 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     if (onChange) {
       onChange(changeFileds, allFileds);
     }
-    
+    if (onTagChange) {
+        let newTags = getTagByFileds(allFileds, options);
+        setTagList(newTags);
+        onTagChange(newTags)
+        
+    }
+    // todo : func
+    let initCurType = ''
+    if (defaultDataIndex && defaultDataIndex !== '' && !defaultOptionItem) {
+        initCurType = 'default';
+        let defaultItem = options.find((x:any) => x.dataIndex === defaultDataIndex)
+        if (defaultItem) {
+            console.log(defaultItem)
+            setDefaultOptionItem(defaultItem);
+        } else {
+            initCurType = 'nodefault';
+        }
+    } else {
+        initCurType = 'nodefault';
+    }
+    setCurType(initCurType)
   }
 
   function onPrimaryMultiple(dataIndex: string) {

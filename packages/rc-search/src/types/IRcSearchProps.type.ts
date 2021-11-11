@@ -22,7 +22,8 @@ export interface IRcSearchProps {
    */
   options: any;
   /**
-   * 类名
+   * 默认类别
+   * 仅在mode是"single-multi" | "multi-multi"生效
    */
   defaultDataIndex: string;
   /**
@@ -48,5 +49,5 @@ export interface IRcSearchProps {
   /**
    * tag有增减时。
    */
-  onTagChange?: () => void;
+  onTagChange?: (newTags: any) => void;
 }
