@@ -78,14 +78,14 @@ export const SGlobalStyle = createGlobalStyle<{
 }>`
   .hasTopbar {
     .wind-slide-panel-wrapper {
-        > * {
+        > *:not(.placeBottom) {
           top: 50px !important;
         }
     }  
   }
 	.wind-slide-panel-wrapper {
 		&&& {
-			> * {
+			> *:not(.placeBottom) {
 				${({ top }) => (top === undefined ? '' : `top: ${ensureUnit(top)} !important;`)}
         z-index: 101;
 			}
