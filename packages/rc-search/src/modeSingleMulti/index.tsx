@@ -1,4 +1,4 @@
-import React, {Children, useState} from "react";
+import React, {Children, useState, useImperativeHandle} from "react";
 import classNames from 'classnames'
 import styled from "styled-components";
 import { Button, Icon, Tag, Select } from '@alicloud/console-components'
@@ -101,6 +101,7 @@ function getTagByFileds (fileds: any, options: any) {
 
 const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const {
+    mode,
     options,
     defaultDataIndex,
     onSuggest,
@@ -132,6 +133,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     initCurType = 'nodefault';
   }
   const [curType, setCurType] = useState<any>(initCurType); // defalut/nodefault/item
+
 
   let level1DataSource = [
     {
@@ -206,8 +208,15 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     if (onChangeItem) {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = multipleValues;
-      onChangeItem(changeFileds, changeFileds);
-      setAllFileds(changeFileds);
+      if (mode === 'single-multi') {
+        onChangeItem(changeFileds, changeFileds);
+        setAllFileds(changeFileds);
+      } else if (mode === 'multi-multi') {
+        allFileds[dataIndex] = multipleValues
+        onChangeItem(changeFileds, allFileds);
+        setAllFileds(allFileds);  
+      }
+      
     }
   }
   function onMultipleChange(values: any) {
@@ -225,11 +234,17 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function inputChange (value: any, actionType: string, dataIndex: string) {
-    if (actionType === 'itemClick' && onChangeItem) {
+    if ((actionType === 'itemClick' || actionType === 'enter') && onChangeItem) {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = value;
-      onChangeItem(changeFileds, changeFileds);
-      setAllFileds(changeFileds);
+      if (mode === 'single-multi') {
+        onChangeItem(changeFileds, changeFileds);
+        setAllFileds(changeFileds);
+      } else if (mode === 'multi-multi') {
+        allFileds[dataIndex] = value;
+        onChangeItem(changeFileds, allFileds);
+        setAllFileds(allFileds);
+      }
       setVisible(false);
     } else {
       if (value === '') {
@@ -254,8 +269,15 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     if (onChangeItem) {
         let changeFileds = Object.create({});
         changeFileds[dataIndex] = value;
-        onChangeItem(changeFileds, changeFileds);
-        setAllFileds(changeFileds);
+        if (mode === 'single-multi') {
+          onChangeItem(changeFileds, changeFileds);
+          setAllFileds(changeFileds);
+        } else if (mode === 'multi-multi'){
+          allFileds[dataIndex] = value;
+          onChangeItem(changeFileds, allFileds);
+          setAllFileds(allFileds);
+        }
+        
     }
   }
   
@@ -263,7 +285,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   function onCommonSearch () {
     if (onSearch) {
       onSearch(allFileds);
-      // todo: 只有搜索了才会被记录到，根据页面的路由为key，
+      // todo: 只有搜索了才会被记录到，根据页面的路由为key，history
     }
   }
 

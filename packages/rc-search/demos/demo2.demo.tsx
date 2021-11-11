@@ -4,7 +4,7 @@
  * @canFullScreen
  */
 
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import { Search, IRcSearchProps, SearchTagList } from "@alicloud/console-components-search";
 
 // interface IProps {}
@@ -49,6 +49,7 @@ let options = [
 ]
 
 const Demo2: React.FC<IRcSearchProps> = (props) => {
+  const childRef = useRef();
   const [tagList, setTagList] = useState<any>([]);
 
   async function onSuggest (value: string, dataIndex: string) {
@@ -80,6 +81,11 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
       tagList.splice(resFindIndex, 1);
       setTagList(tagList);
       // todo, 通知search
+      console.log('childRef', childRef)
+      // if (childRef.current && childRef.current.tagChange) {
+      //   childRef.current.tagChange(action, item);
+      // }
+      
     }
   }
 
@@ -93,6 +99,7 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
         onChange={onChange}
         onSuggest={onSuggest}
         onTagChange={onTagChange}
+        ref={childRef}
       />
       <br />
       <SearchTagList tagList={tagList} onChange={onTagChangeByTagList} />

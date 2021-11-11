@@ -14,6 +14,18 @@ const SearchWrap = styled.div`
   width: 400px;
 `;
 
+// export const Search: React.FC<IRcSearchProps> = (props, ref) => {
+//   const { className, mode } = props
+//   console.log('root ref', props)
+//   return (
+//     <SearchWrap className={classNames(baseClassName, className)}>
+//       {mode === 'single-single' && <ModeSingleSingle {...props} />}
+//       {mode === 'single-multi' &&  <ModeSingleMulti {...props} />}
+//       {mode === 'multi-multi' && <ModeMultiMulti {...props} />}
+//     </SearchWrap>
+//   );
+// };
+
 export const Search: React.FC<IRcSearchProps> = (props) => {
   const { className, mode } = props
   return (
@@ -24,3 +36,5 @@ export const Search: React.FC<IRcSearchProps> = (props) => {
     </SearchWrap>
   );
 };
+
+
