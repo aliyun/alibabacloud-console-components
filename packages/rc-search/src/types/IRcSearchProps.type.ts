@@ -22,10 +22,6 @@ export interface IRcSearchProps {
    */
   options: any;
   /**
-   * ref
-   */
-  ref: any;
-  /**
    * 默认类别
    * 仅在mode是"single-multi" | "multi-multi"生效
    */

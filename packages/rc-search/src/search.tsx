@@ -32,7 +32,7 @@ export const Search: React.FC<IRcSearchProps> = (props) => {
     <SearchWrap className={classNames(baseClassName, className)}>
       {mode === 'single-single' && <ModeSingleSingle {...props} />}
       {mode === 'single-multi' &&  <ModeSingleMulti {...props} />}
-      {mode === 'multi-multi' && <ModeMultiMulti {...props} />}
+      {mode === 'multi-multi' && <ModeSingleMulti {...props} />}
     </SearchWrap>
   );
 };

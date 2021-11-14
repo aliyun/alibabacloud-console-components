@@ -1,8 +1,14 @@
-import React, {Children, useState, useImperativeHandle} from "react";
+import React, {useState, useEffect} from "react";
 import classNames from 'classnames'
 import styled from "styled-components";
 import { Button, Icon, Tag, Select } from '@alicloud/console-components'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
+import {
+    getHistoryTag as getHistoryTagUtil,
+    setHistoryTag as setHistoryTagUtil,
+    removeHistoryTagItem as removeHistoryTagItemUtils,
+    getTagByFileds
+} from "../utils";
 
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
 
@@ -66,38 +72,6 @@ const WrapDiv = styled.div`
   }
 `;
 
-function getTagByFileds (fileds: any, options: any) {
-  let rtTags = new Array<any>();
-  Object.keys(fileds).forEach((key: string) => {
-    let resItem = options.find((x:any) => x.dataIndex === key)
-    if (resItem) {
-      let tagItem = {
-        label: resItem.label,
-        dataIndex: key,
-        value: fileds[key],
-        valueShow: ''
-      }  
-      if (resItem.template === 'input') {
-        tagItem.valueShow = fileds[key]
-      } else if (resItem.template === 'select') {
-        tagItem.valueShow = resItem.templateProps.dataSource.find((y:any) => y.value === fileds[key]).label
-      } else if (resItem.template === 'multiple') {
-        tagItem.valueShow = ''
-        let valueShowArr = new Array<any>();
-        fileds[key].forEach((y:any) => {
-          let findMul = resItem.templateProps.dataSource.find((z:any) => z.value === y)
-          if (findMul) {
-            valueShowArr.push(findMul.label)
-          }
-        })
-        tagItem.valueShow = valueShowArr.join('/')
-      }
-      rtTags.push(tagItem)
-    }
-  })
-  return rtTags;
-}
-
 
 const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const {
@@ -118,6 +92,14 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [multipleValues, setMultipleValues] = useState<any>([]);
   const [tagList, setTagList] = useState<any>([]);
   const [histroyList, setHistroyList] = useState<any>([]);
+
+  useEffect(() => {
+    let initHisTags = getHistoryTagUtil();
+    console.log('initHisTags', JSON.stringify(initHisTags))
+    if (initHisTags) {
+      setHistroyList(initHisTags);
+    }
+  }, [])
 
   let initCurType = ''
   if (defaultDataIndex && defaultDataIndex !== '' && !defaultOptionItem) {
@@ -150,16 +132,30 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const menuPropsLevel1 = {
     focusable: false,
     header: (
-      <div>
+      <ul className="next-menu-content">
         {
-          histroyList.length > 0 && (<li role="option" title="历史搜索记录" className="next-menu-group-label"><div className="next-menu-item-inner">历史搜索记录</div></li>)  
+          histroyList && histroyList.length > 0 && (<li role="option" title="历史搜索记录" className="next-menu-group-label"><div className="next-menu-item-inner">历史搜索记录{histroyList.length}</div></li>)  
         }
-        <TagGroup>
-          {histroyList.map((tag:any) => {
-            <ClosableTag size="medium">{tag.label}:{tag.values.map((x:any) => x.label).join('/')}</ClosableTag>
-          })}
-        </TagGroup>
-      </div>
+        {
+          histroyList && histroyList.length > 0 && (
+            <TagGroup>
+            {histroyList.map((tag:any) => {
+                return (
+                <ClosableTag
+                  size="small"
+                  key={tag.dataIndex + tag.value}
+                  onClose={() => {onRemoveHisTag(tag); return true;}}
+                  onClick={() => {onSelectHisTag(tag);}}
+                >
+                    {tag.label}:{tag.valueShow}
+                </ClosableTag>
+                )
+            })}
+            </TagGroup>
+          )  
+        }
+        
+      </ul>
     ),
     footer: null,
   };
@@ -174,6 +170,33 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       </div>
     ),
   };
+
+  function onRemoveHisTag (tagItem:any) {
+    const newHisTags = removeHistoryTagItemUtils(tagItem);
+    setHistroyList(newHisTags);
+  }
+
+  function onSelectHisTag (tagItem:any) {
+    let changeFileds = Object.create({});
+    
+    changeFileds[tagItem.dataIndex] = tagItem.value;
+    if (mode === 'single-multi') {
+      onChangeItem(changeFileds, changeFileds);
+    } else if (mode === 'multi-multi') {
+      onChangeItem(changeFileds, {
+        ...allFileds,
+        changeFileds
+      });
+    }
+  }
+
+  function upDateHistory() {
+    // const allFiledsTagList = getTagByFileds(allFileds, options);
+    const allFiledsTagList = [...tagList];
+    let rtHisTags = setHistoryTagUtil(allFiledsTagList)
+    setHistroyList(rtHisTags);
+
+  }
 
   function onChangeItem (changeFileds: any, allFileds:any) {
     if (onChange) {
@@ -202,6 +225,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     setCurType(initCurType)
   }
 
+  // 多选的确定
   function onPrimaryMultiple(dataIndex: string) {
     // multipleValues
     setVisible(false)
@@ -219,10 +243,13 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       
     }
   }
+
+  // 多选的change，仅改变state
   function onMultipleChange(values: any) {
     setMultipleValues(values)
   }
 
+  // 第一级选择某个具体的类别
   function onLevel1Change (value: any, actionType: any) {
     if (actionType === 'itemClick') {
       let curOptItem = options.find((x: any) => x.dataIndex === value);
@@ -233,6 +260,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     }
   }
 
+  /**
+   * 当某一类别是， 输入类型时触发
+   * 接收一个promise
+   */ 
   async function inputChange (value: any, actionType: string, dataIndex: string) {
     if ((actionType === 'itemClick' || actionType === 'enter') && onChangeItem) {
       let changeFileds = Object.create({});
@@ -251,6 +282,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         setInputDataSource([]);
       }
       if (onSuggest) {
+          // todo：try catch， 要补上
           let list = await onSuggest(value, dataIndex);
           console.log('res suggest', list);
           let newDataSource = [
@@ -265,6 +297,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     }
   }
 
+  // 单选或多选的change，
   function selectChange(value: any, dataIndex: string) {
     if (onChangeItem) {
         let changeFileds = Object.create({});
@@ -281,11 +314,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     }
   }
   
-
+  // 提交按钮
   function onCommonSearch () {
     if (onSearch) {
       onSearch(allFileds);
       // todo: 只有搜索了才会被记录到，根据页面的路由为key，history
+      upDateHistory();
     }
   }
 
