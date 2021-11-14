@@ -22,6 +22,10 @@ export interface IRcSearchProps {
    */
   options: any;
   /**
+   * tags 传入的taglist, 用于， 同步
+   */
+  tags: any;
+  /**
    * 默认类别
    * 仅在mode是"single-multi" | "multi-multi"生效
    */
@@ -42,6 +46,11 @@ export interface IRcSearchProps {
    * 模糊搜索的回调函数(仅输入框返回)，用于构建模糊搜索的联想列表
    */
   onSuggest?: (value: string, dataIndex: string) => void;
+  /**
+   * 模糊搜索的回调函数(仅输入框返回)，当没设置defaultDataIndex，且有多个input类别时触发，
+   * 可自定义二级返回List
+   */
+  onSuggestNoDataIndex?: (value: string) => void;
   /**
    * 提供单选和多选, 触发。
    */

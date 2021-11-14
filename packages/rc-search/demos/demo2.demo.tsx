@@ -76,6 +76,7 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
 
   function onTagChangeByTagList (action:string, item: any) {
     if (action === 'remove') {
+      console.log(item)
       let resFindIndex = tagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
       tagList.splice(resFindIndex, 1);
       setTagList(tagList);
@@ -100,6 +101,7 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
         onSuggest={onSuggest}
         onTagChange={onTagChange}
         onSearch={onSearch}
+        tags={tagList}
       />
       <br />
       <SearchTagList tagList={tagList} onChange={onTagChangeByTagList} />

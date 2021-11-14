@@ -15,10 +15,18 @@ const SearchTagList: React.FC<any> = (props) => {
   } = props;
 
   function onRemoveTag (item: any) {
+    let newTagList = [...tagList];
     if (onChange) {
-      onChange('remove', [item])
+      let resFindIndex = newTagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
+      newTagList.splice(resFindIndex, 1);
+      onChange(newTagList);
     }
-    
+  }
+
+  function onRemoveAllTag(){
+    if (onChange) {
+      onChange([])
+    }
   }
 
   return (
@@ -32,8 +40,9 @@ const SearchTagList: React.FC<any> = (props) => {
         )
       })
       }
+      {tagList && tagList.length > 0 && (<a onClick={onRemoveAllTag}>清除筛选条件</a>)}
       </TagGroup>
-
+      
     </WrapDiv>
   )
 }

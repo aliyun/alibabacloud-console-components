@@ -74,23 +74,21 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
     setTagList(newTags);
   }
 
-  function onTagChangeByTagList (action:string, item: any) {
-    if (action === 'remove') {
-      let resFindIndex = tagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
-      tagList.splice(resFindIndex, 1);
-      setTagList(tagList);
-      // todo, 通知search
+  // function onTagChangeByTagList (action:string, item: any) {
+  //   if (action === 'remove') {
+  //     let resFindIndex = tagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
+  //     tagList.splice(resFindIndex, 1);
+  //     setTagList(tagList);
+  //     // todo, 通知search
+  //     console.log('onTagChangeByTagList', tagList)
       
-      
-    }
-  }
+  //   } else if (action === 'removeAll')
+  // }
 
   async function onSearch (allFileds:any) {
     console.log(`onSearch:`, 'allFileds', allFileds)
     alert(`提交搜索： ${JSON.stringify(allFileds)}`)
   }
-
-  
 
 
   return (
@@ -103,9 +101,10 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
         onSuggest={onSuggest}
         onTagChange={onTagChange}
         onSearch={onSearch}
+        tags={tagList}
       />
       <br />
-      <SearchTagList tagList={tagList} onChange={onTagChangeByTagList} />
+      <SearchTagList tagList={tagList} onChange={onTagChange} />
       
     </div>
     

@@ -78,7 +78,9 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     mode,
     options,
     defaultDataIndex,
+    tags,
     onSuggest,
+    onSuggestNoDataIndex,
     onChange,
     onSearch,
     onTagChange
@@ -87,8 +89,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [allFileds, setAllFileds] = useState<any>({});
   const [curOptionItem, setCurOptionItem] = useState<any>({});
   const [defaultOptionItem, setDefaultOptionItem] = useState<any>(null);
+  const [defaultInputValue, setDefaultValue] = useState<any>(null);
+  const [inputValue, setInputValue] = useState<any>(null);
   const [inputDataSource, setInputDataSource] = useState<any>([]);
   const [visible, setVisible] = useState<any>(false);
+  const [defaultVisible, setDefaultVisible] = useState<any>(false);
   const [multipleValues, setMultipleValues] = useState<any>([]);
   const [tagList, setTagList] = useState<any>([]);
   const [histroyList, setHistroyList] = useState<any>([]);
@@ -139,11 +144,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         {
           histroyList && histroyList.length > 0 && (
             <TagGroup>
-            {histroyList.map((tag:any) => {
+            {histroyList.map((tag:any, index: number) => {
                 return (
                 <ClosableTag
                   size="small"
-                  key={tag.dataIndex + tag.value}
+                  key={tag.dataIndex + tag.value + index}
                   onClose={() => {onRemoveHisTag(tag); return true;}}
                   onClick={() => {onSelectHisTag(tag);}}
                 >
@@ -178,16 +183,19 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   function onSelectHisTag (tagItem:any) {
     let changeFileds = Object.create({});
+    let tempAllFileds = Object.create({});
     
     changeFileds[tagItem.dataIndex] = tagItem.value;
     if (mode === 'single-multi') {
-      onChangeItem(changeFileds, changeFileds);
+      tempAllFileds = changeFileds
     } else if (mode === 'multi-multi') {
-      onChangeItem(changeFileds, {
+      tempAllFileds = {
         ...allFileds,
-        changeFileds
-      });
+        ...changeFileds
+      }
+      
     }
+    onChangeItem(changeFileds, tempAllFileds)
   }
 
   function upDateHistory() {
@@ -198,7 +206,25 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   }
 
+  function checkAllFromTags(allFileds: any) {
+    let allFiledsAdapt = {...allFileds};
+    if (tags && Array.isArray(tags) && tags.length >= 0) {
+      allFiledsAdapt = {};
+      tags.forEach((tag: any) => {
+        if (allFileds[tag.dataIndex]) {
+          allFiledsAdapt[tag.dataIndex] = allFileds[tag.dataIndex]
+        }
+      })
+    }
+    return allFiledsAdapt
+  }
+
+  // 某一类别确定时，修改fileds， 和tags
   function onChangeItem (changeFileds: any, allFileds:any) {
+    setDefaultVisible(false)
+    setAllFileds(allFileds);
+
+    // todo
     if (onChange) {
       onChange(changeFileds, allFileds);
     }
@@ -206,7 +232,6 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         let newTags = getTagByFileds(allFileds, options);
         setTagList(newTags);
         onTagChange(newTags)
-        
     }
     // todo : func
     let initCurType = ''
@@ -233,12 +258,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = multipleValues;
       if (mode === 'single-multi') {
+        setAllFileds(changeFileds)
         onChangeItem(changeFileds, changeFileds);
-        setAllFileds(changeFileds);
       } else if (mode === 'multi-multi') {
         allFileds[dataIndex] = multipleValues
+        setAllFileds(allFileds)
         onChangeItem(changeFileds, allFileds);
-        setAllFileds(allFileds);  
       }
       
     }
@@ -251,11 +276,33 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 第一级选择某个具体的类别
   function onLevel1Change (value: any, actionType: any) {
+    //   console.log('level1 , actionType', actionType)
     if (actionType === 'itemClick') {
       let curOptItem = options.find((x: any) => x.dataIndex === value);
       if (curOptItem) {
         setCurOptionItem(curOptItem)
         setCurType('item')
+      }
+    }
+    setDefaultValue(value)
+    
+  }
+
+  function onDeFaultEnter (e: any) {
+    let dataIndex = defaultDataIndex;
+    let value = defaultInputValue;
+    if (curType === 'item' && curOptionItem.template === 'input'){
+      dataIndex = curOptionItem.dataIndex;
+      value = inputValue;
+    }
+    if (e.keyCode === 13) {
+      if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
+        inputChange(value, 'enter', dataIndex);
+        setDefaultVisible(false);
+        setDefaultValue(undefined);
+      } else if (onSuggestNoDataIndex) {
+        onSuggestNoDataIndex(value);
+        setDefaultVisible(false);
       }
     }
   }
@@ -269,18 +316,20 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = value;
       if (mode === 'single-multi') {
+        setAllFileds(changeFileds)
         onChangeItem(changeFileds, changeFileds);
-        setAllFileds(changeFileds);
       } else if (mode === 'multi-multi') {
         allFileds[dataIndex] = value;
+        setAllFileds(allFileds)
         onChangeItem(changeFileds, allFileds);
-        setAllFileds(allFileds);
       }
       setVisible(false);
+      setDefaultVisible(false);
     } else {
       if (value === '') {
         setInputDataSource([]);
       }
+      setInputValue(value)
       if (onSuggest) {
           // todo：try catch， 要补上
           let list = await onSuggest(value, dataIndex);
@@ -293,6 +342,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           ]
           setInputDataSource(newDataSource);
           setVisible(true)
+          setDefaultVisible(true);
       }
     }
   }
@@ -303,12 +353,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         let changeFileds = Object.create({});
         changeFileds[dataIndex] = value;
         if (mode === 'single-multi') {
-          onChangeItem(changeFileds, changeFileds);
           setAllFileds(changeFileds);
+          onChangeItem(changeFileds, changeFileds);
         } else if (mode === 'multi-multi'){
           allFileds[dataIndex] = value;
+          setAllFileds(allFileds)
           onChangeItem(changeFileds, allFileds);
-          setAllFileds(allFileds);
         }
         
     }
@@ -317,7 +367,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   // 提交按钮
   function onCommonSearch () {
     if (onSearch) {
-      onSearch(allFileds);
+      let checkAllFileds = checkAllFromTags(allFileds);
+      // console.log(tags, checkAllFromTags(allFileds))
+      // console.log('all', allFileds);
+      onSearch(checkAllFileds);
       // todo: 只有搜索了才会被记录到，根据页面的路由为key，history
       upDateHistory();
     }
@@ -341,7 +394,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
             )
           }
         </div>
-        <div className={classNames('forms')}>
+        <div className={classNames('forms')} onKeyUp={onDeFaultEnter}>
           {(curType === 'default' || curType === 'nodefault') && defaultOptionItem && 
             (
               <AutoComplete
@@ -352,6 +405,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 menuProps={menuPropsLevel1}
                 dataSource={level1DataSource}
                 onChange={onLevel1Change}
+                visible={defaultVisible}
+                onFocus={() => {setDefaultVisible(true)}}
+                onBlur={() => {setDefaultVisible(false)}}
+                // value={defaultInputValue}
               />
             )
           }
