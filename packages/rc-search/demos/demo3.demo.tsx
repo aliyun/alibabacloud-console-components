@@ -83,6 +83,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <div>
+      <p>有默认分类</p>
       <Search
         mode="multi-multi"
         defaultDataIndex="name"

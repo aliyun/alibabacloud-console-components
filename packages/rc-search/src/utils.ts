@@ -83,9 +83,10 @@ const getTagByFileds = (fileds: any, options: any) => {
   return rtTags;
 }
 
+
 export {
   getHistoryTag,
   setHistoryTag,
   removeHistoryTagItem,
-  getTagByFileds
+  getTagByFileds,
 }

@@ -3,6 +3,7 @@
  *
  * 下面列举的props其实是随便写的，仅仅用来说明breezr-docs的接口提取功能。
  */
+import { promises } from 'dns'
 import { IRcSearchOptionsProps } from './IRcSearchOptions.type'
 import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type'
 export interface IRcSearchProps {
@@ -52,7 +53,7 @@ export interface IRcSearchProps {
    * 模糊搜索的回调函数(仅输入框返回)，当没设置defaultDataIndex，且有多个input类别时触发，
    * 可自定义二级返回List
    */
-  onSuggestNoDataIndex?: (value: string) => void;
+  onSuggestNoDataIndex?: (value: string) => Promise<any>;
   /**
    * 提供单选和多选, 触发。
    */

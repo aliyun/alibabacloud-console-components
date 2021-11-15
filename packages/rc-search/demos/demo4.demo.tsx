@@ -81,21 +81,24 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
     if (!value) {
       return [];
     }
+    
     return [
       {
         label: '实例名称',
+        dataIndex: 'name',
         children: [
-          `${value}-1`,
-          `${value}-2`,
-          `${value}-3`,
+          {label: `${value}-1`, value: `${value}-1`, dataIndex: 'name'},
+          {label: `${value}-2`, value: `${value}-2`, dataIndex: 'name'},
+          {label: `${value}-3`, value: `${value}-3`, dataIndex: 'name'},
         ]
       },
       {
         label: '密钥名称',
+        dataIndex: 'netkey',
         children: [
-          `${value}-key-1`,
-          `${value}-key-2`,
-          `${value}-key-3`,
+          {label: `${value}-1`, value: `${value}-1`, dataIndex: 'name'},
+          {label: `${value}-2`, value: `${value}-2`, dataIndex: 'name'},
+          {label: `${value}-3`, value: `${value}-3`, dataIndex: 'name'},
         ]
       }
     ]
@@ -117,6 +120,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <div>
+      <p>无默认分类</p>
       <Search
         mode="multi-multi"
         options={options}

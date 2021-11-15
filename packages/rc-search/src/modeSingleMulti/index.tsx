@@ -286,17 +286,50 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 第一级选择某个具体的类别
   async function onLevel1Change (value: any, actionType: any, item: any) {
-      console.log('value', value,'level1 , actionType', actionType, 'item:', item)
+    console.log('value', value,'level1 , actionType', actionType, 'item:', item)
+    // console.log('defaultInputValue', defaultInputValue)
     if (actionType === 'itemClick') {
-      let curOptItem = options.find((x: any) => x.dataIndex === value);
-      if (curOptItem) {
-        setCurOptionItem(curOptItem)
-        setCurType('item')
+      // 判断是level选择还是直接输入的suggest
+      if (!defaultInputValue) {
+        // level1 的选择
+        let curOptItem = options.find((x: any) => x.dataIndex === value);
+        if (curOptItem) {
+          setCurOptionItem(curOptItem)
+          setCurType('item')
+        } 
+      } else if (curType === 'default') {
+        // 选了suggest
+        inputChange(value, 'itemClick', defaultDataIndex);
+        setDefaultValue('')
+        setLevel1DataSource(level1DataSourceTemp);
+      } else if (curType === 'nodefault') {
+        if (item && item.dataIndex) {
+          inputChange(value, 'itemClick', item.dataIndex);
+          setDefaultValue('')
+          setLevel1DataSource(level1DataSourceTemp);
+        }
       }
+      
     } else if (actionType === 'change'){
+
       // 直接输入
-      if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
-        let list = await onSuggest(value, defaultDataIndex);
+      
+      if (!value || value === '') {
+        setLevel1DataSource(level1DataSourceTemp);
+      } else {
+        if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
+          await setDefSuggest(value);
+        } else if (onSuggestNoDataIndex) {
+          await setNoDefSuggest(value);
+        }
+      }
+      setDefaultValue(value)
+    }
+  }
+
+  async function setDefSuggest(value: any) {
+    if (onSuggest) {
+      let list = await onSuggest(value, defaultDataIndex);
         let newDataSource = [
           {
             label: defaultOptionItem.label,
@@ -305,18 +338,19 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         ]
         setLevel1DataSource(newDataSource);
         setDefaultVisible(true);
-      } else if (onSuggestNoDataIndex) {
-        let list = await onSuggestNoDataIndex(value);
-        setLevel1DataSource(list);
-        // setVisible(true)
-        setDefaultVisible(true);
-      }
-    }
-    setDefaultValue(value)
-    if (!value || value === '') {
-      setDefaultVisible(false);
     }
   }
+
+  async function setNoDefSuggest(value: any){
+    if (onSuggestNoDataIndex) {
+      let list = await onSuggestNoDataIndex(value)
+      console.log(list)
+      setLevel1DataSource([...list]);
+      setDefaultVisible(true);
+    }
+    
+  }
+
 
   function onDeFaultEnter (e: any) {
     let dataIndex = defaultDataIndex;
@@ -330,11 +364,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         inputChange(value, 'enter', dataIndex);
         setDefaultVisible(false);
         setDefaultValue('');
-      } 
-      // else if (onSuggestNoDataIndex) {
-      //   onSuggestNoDataIndex(value);
-      //   setDefaultVisible(false);
-      // }
+      }
     }
   }
 
@@ -365,7 +395,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       if (onSuggest) {
           // todo：try catch， 要补上
           let list = await onSuggest(value, dataIndex);
-          console.log('res suggest', list);
+          // console.log('res suggest', list);
           let newDataSource = [
             {
               label: curOptionItem.label,
@@ -410,7 +440,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <WrapDiv>
-      {`${defaultVisible}${defaultInputValue}`}
+      {/* {`${defaultVisible}${defaultInputValue}`} */}
       <div className={classNames('left-wrap', 'next-input')}>
         <div className={classNames('condition')}>
         
@@ -442,7 +472,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 visible={defaultVisible}
                 onFocus={() => {setDefaultVisible(true)}}
                 onBlur={() => {setDefaultVisible(false)}}
-                // value={defaultInputValue}
+                value={defaultInputValue}
               />
             )
           }
@@ -459,7 +489,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 visible={defaultVisible}
                 onFocus={() => {setDefaultVisible(true)}}
                 onBlur={() => {setDefaultVisible(false)}}
-                // value={defaultInputValue}
+                value={defaultInputValue}
               />
             )
           }
