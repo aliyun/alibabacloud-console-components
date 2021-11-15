@@ -2,22 +2,23 @@ import React, {useState} from "react";
 import classNames from 'classnames'
 import styled from "styled-components";
 import { Tag } from '@alicloud/console-components'
-import { IRcSearchProps } from "../types/IRcSearchProps.type";
+import { IRcSearchTagListProps } from '../types/IRcSearchTagListProps.type'
+import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
 const WrapDiv = styled.div`
   
 `
 
-const SearchTagList: React.FC<any> = (props) => {
+const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
   const {
     tagList,
     onChange
   } = props;
 
-  function onRemoveTag (item: any) {
+  function onRemoveTag (item: IRcSearchTagItemProps) {
     let newTagList = [...tagList];
     if (onChange) {
-      let resFindIndex = newTagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
+      let resFindIndex = newTagList.findIndex((x:IRcSearchTagItemProps) => x.dataIndex === item.dataIndex)
       newTagList.splice(resFindIndex, 1);
       onChange(newTagList);
     }
@@ -32,7 +33,7 @@ const SearchTagList: React.FC<any> = (props) => {
   return (
     <WrapDiv>
       <TagGroup>
-      {tagList && tagList.length > 0 && tagList.map((tagItem:any) => {
+      {tagList && tagList.length > 0 && tagList.map((tagItem:IRcSearchTagItemProps) => {
         return (
           <ClosableTag key={tagItem.dataIndex + tagItem.value} type="normal" size="medium" onClose={() => {onRemoveTag(tagItem); return true;}}>
             {tagItem.label}:{tagItem.valueShow}

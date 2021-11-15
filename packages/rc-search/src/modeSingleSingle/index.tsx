@@ -64,7 +64,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     optionItem.templateProps = {}
   }
   const [inputDataSource, setInputDataSource] = useState<any>([]);
-  const [visible, setVisible] = useState<any>(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const [allFileds, setAllFileds] = useState<any>({});
 
   async function inputChange (value: any, actionType: string, dataIndex: string) {

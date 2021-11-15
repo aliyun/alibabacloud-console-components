@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import styled from "styled-components";
 import { Button, Icon, Tag, Select } from '@alicloud/console-components'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
+import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
 import {
     getHistoryTag as getHistoryTagUtil,
     setHistoryTag as setHistoryTagUtil,
@@ -89,18 +90,17 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [allFileds, setAllFileds] = useState<any>({});
   const [curOptionItem, setCurOptionItem] = useState<any>({});
   const [defaultOptionItem, setDefaultOptionItem] = useState<any>(null);
-  const [defaultInputValue, setDefaultValue] = useState<any>(null);
-  const [inputValue, setInputValue] = useState<any>(null);
+  const [defaultInputValue, setDefaultValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
   const [inputDataSource, setInputDataSource] = useState<any>([]);
-  const [visible, setVisible] = useState<any>(false);
-  const [defaultVisible, setDefaultVisible] = useState<any>(false);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [defaultVisible, setDefaultVisible] = useState<boolean>(false);
   const [multipleValues, setMultipleValues] = useState<any>([]);
-  const [tagList, setTagList] = useState<any>([]);
-  const [histroyList, setHistroyList] = useState<any>([]);
+  const [tagList, setTagList] = useState<IRcSearchTagItemProps[]>([]);
+  const [histroyList, setHistroyList] = useState<IRcSearchTagItemProps[]>([]);
 
   useEffect(() => {
     let initHisTags = getHistoryTagUtil();
-    console.log('initHisTags', JSON.stringify(initHisTags))
     if (initHisTags) {
       setHistroyList(initHisTags);
     }
@@ -119,10 +119,17 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   } else {
     initCurType = 'nodefault';
   }
-  const [curType, setCurType] = useState<any>(initCurType); // defalut/nodefault/item
+  // if (initCurType === 'nodefault') {
+  //   let defaultItem2 = options.find((x:any) => x.template === 'input')
+  //     if (defaultItem2) {
+  //         console.log(defaultItem2)
+  //         setDefaultOptionItem(defaultItem2);
+  //     }
+  // }
+  const [curType, setCurType] = useState<string>(initCurType); // defalut/nodefault/item
 
 
-  let level1DataSource = [
+  let level1DataSourceTemp = [
     {
      label: '选择筛选条件',
      children: options.map((l1:any) => {
@@ -134,6 +141,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     }
   ]
 
+  const [level1DataSource, setLevel1DataSource] = useState<any>(level1DataSourceTemp);
+
   const menuPropsLevel1 = {
     focusable: false,
     header: (
@@ -144,7 +153,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         {
           histroyList && histroyList.length > 0 && (
             <TagGroup>
-            {histroyList.map((tag:any, index: number) => {
+            {histroyList.map((tag:IRcSearchTagItemProps, index: number) => {
                 return (
                 <ClosableTag
                   size="small"
@@ -176,12 +185,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     ),
   };
 
-  function onRemoveHisTag (tagItem:any) {
+  function onRemoveHisTag (tagItem:IRcSearchTagItemProps) {
     const newHisTags = removeHistoryTagItemUtils(tagItem);
     setHistroyList(newHisTags);
   }
 
-  function onSelectHisTag (tagItem:any) {
+  function onSelectHisTag (tagItem:IRcSearchTagItemProps) {
     let changeFileds = Object.create({});
     let tempAllFileds = Object.create({});
     
@@ -210,7 +219,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     let allFiledsAdapt = {...allFileds};
     if (tags && Array.isArray(tags) && tags.length >= 0) {
       allFiledsAdapt = {};
-      tags.forEach((tag: any) => {
+      tags.forEach((tag: IRcSearchTagItemProps) => {
         if (allFileds[tag.dataIndex]) {
           allFiledsAdapt[tag.dataIndex] = allFileds[tag.dataIndex]
         }
@@ -247,6 +256,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     } else {
         initCurType = 'nodefault';
     }
+    
     setCurType(initCurType)
   }
 
@@ -275,17 +285,37 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   // 第一级选择某个具体的类别
-  function onLevel1Change (value: any, actionType: any) {
-    //   console.log('level1 , actionType', actionType)
+  async function onLevel1Change (value: any, actionType: any, item: any) {
+      console.log('value', value,'level1 , actionType', actionType, 'item:', item)
     if (actionType === 'itemClick') {
       let curOptItem = options.find((x: any) => x.dataIndex === value);
       if (curOptItem) {
         setCurOptionItem(curOptItem)
         setCurType('item')
       }
+    } else if (actionType === 'change'){
+      // 直接输入
+      if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
+        let list = await onSuggest(value, defaultDataIndex);
+        let newDataSource = [
+          {
+            label: defaultOptionItem.label,
+            children: list
+          }
+        ]
+        setLevel1DataSource(newDataSource);
+        setDefaultVisible(true);
+      } else if (onSuggestNoDataIndex) {
+        let list = await onSuggestNoDataIndex(value);
+        setLevel1DataSource(list);
+        // setVisible(true)
+        setDefaultVisible(true);
+      }
     }
     setDefaultValue(value)
-    
+    if (!value || value === '') {
+      setDefaultVisible(false);
+    }
   }
 
   function onDeFaultEnter (e: any) {
@@ -299,11 +329,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
         inputChange(value, 'enter', dataIndex);
         setDefaultVisible(false);
-        setDefaultValue(undefined);
-      } else if (onSuggestNoDataIndex) {
-        onSuggestNoDataIndex(value);
-        setDefaultVisible(false);
-      }
+        setDefaultValue('');
+      } 
+      // else if (onSuggestNoDataIndex) {
+      //   onSuggestNoDataIndex(value);
+      //   setDefaultVisible(false);
+      // }
     }
   }
 
@@ -312,6 +343,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
    * 接收一个promise
    */ 
   async function inputChange (value: any, actionType: string, dataIndex: string) {
+    console.log('actionType', actionType);
     if ((actionType === 'itemClick' || actionType === 'enter') && onChangeItem) {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = value;
@@ -378,8 +410,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <WrapDiv>
+      {`${defaultVisible}${defaultInputValue}`}
       <div className={classNames('left-wrap', 'next-input')}>
         <div className={classNames('condition')}>
+        
           {curType === 'item' && 
             (
               <div className={classNames('condition-item')}>
@@ -395,14 +429,31 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           }
         </div>
         <div className={classNames('forms')} onKeyUp={onDeFaultEnter}>
-          {(curType === 'default' || curType === 'nodefault') && defaultOptionItem && 
+          {curType === 'default' && defaultOptionItem && 
             (
               <AutoComplete
                 className={classNames('main-input')}
                 placeholder={`默认按${defaultOptionItem.label}搜索`}
                 hasClear
                 hasBorder={false}
-                menuProps={menuPropsLevel1}
+                menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
+                dataSource={level1DataSource}
+                onChange={onLevel1Change}
+                visible={defaultVisible}
+                onFocus={() => {setDefaultVisible(true)}}
+                onBlur={() => {setDefaultVisible(false)}}
+                // value={defaultInputValue}
+              />
+            )
+          }
+          {curType === 'nodefault' && 
+            (
+              <AutoComplete
+                className={classNames('main-input')}
+                placeholder={`默认全量搜索`}
+                hasClear
+                hasBorder={false}
+                menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
                 dataSource={level1DataSource}
                 onChange={onLevel1Change}
                 visible={defaultVisible}
@@ -457,6 +508,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           }
         </div>
       </div>
+      
       
       <div className={classNames('right-wrap')}>
         <Button className={classNames('search-btn')} onClick={onCommonSearch}><Icon type="search" /></Button>

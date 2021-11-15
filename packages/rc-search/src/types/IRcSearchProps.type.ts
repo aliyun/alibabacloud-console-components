@@ -3,6 +3,8 @@
  *
  * 下面列举的props其实是随便写的，仅仅用来说明breezr-docs的接口提取功能。
  */
+import { IRcSearchOptionsProps } from './IRcSearchOptions.type'
+import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type'
 export interface IRcSearchProps {
   /**
    * 组件适应的场景:<br />
@@ -20,11 +22,11 @@ export interface IRcSearchProps {
    * 对应不同场景值的类型数组，后面要详细展开列一下
    * @default []
    */
-  options: any;
+  options: IRcSearchOptionsProps[];
   /**
    * tags 传入的taglist, 用于， 同步
    */
-  tags: any;
+  tags: IRcSearchTagItemProps[];
   /**
    * 默认类别
    * 仅在mode是"single-multi" | "multi-multi"生效

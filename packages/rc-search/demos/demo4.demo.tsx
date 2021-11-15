@@ -1,5 +1,5 @@
 /**
- * @title demo3
+ * @title demo4
  * @describe 场景三：multi-multi：多维度多类别单选
  * @canFullScreen
  */
@@ -14,6 +14,15 @@ let options = [
   {
     label: '实例名称',
     dataIndex: 'name',
+    template: 'input',
+    templateProps: {
+      placeholder: '请输入',
+      dataSource: []
+    }
+  },
+  {
+    label: '密钥名称',
+    dataIndex: 'netkey',
     template: 'input',
     templateProps: {
       placeholder: '请输入',
@@ -54,6 +63,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
   const [tagList, setTagList] = useState<any>([]);
 
   async function onSuggest (value: string, dataIndex: string) {
+    console.log()
     if (!value) {
       return [];
     }
@@ -64,6 +74,30 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
       `${value}-3`,
       `${value}-4`,
       `${value}-5`,
+    ]
+  }
+
+  async function onSuggestNoIndex (value: string) {
+    if (!value) {
+      return [];
+    }
+    return [
+      {
+        label: '实例名称',
+        children: [
+          `${value}-1`,
+          `${value}-2`,
+          `${value}-3`,
+        ]
+      },
+      {
+        label: '密钥名称',
+        children: [
+          `${value}-key-1`,
+          `${value}-key-2`,
+          `${value}-key-3`,
+        ]
+      }
     ]
   }
 
@@ -85,10 +119,10 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
     <div>
       <Search
         mode="multi-multi"
-        defaultDataIndex="name"
         options={options}
         onChange={onChange}
         onSuggest={onSuggest}
+        onSuggestNoDataIndex={onSuggestNoIndex}
         onTagChange={onTagChange}
         onSearch={onSearch}
         tags={tagList}
