@@ -152,7 +152,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         }
         {
           histroyList && histroyList.length > 0 && (
-            <TagGroup>
+            <TagGroup style={{paddingLeft: '20px'}}>
             {histroyList.map((tag:IRcSearchTagItemProps, index: number) => {
                 return (
                 <ClosableTag
