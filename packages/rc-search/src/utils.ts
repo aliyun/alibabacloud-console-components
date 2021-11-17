@@ -1,3 +1,4 @@
+import { uniqWith, isEqual } from 'lodash';
 let historyTagKey = `xconsole-rcsearch-historytag-${location.origin}${location.pathname}`;
 
 // 从localStorage中获取tagList
@@ -8,26 +9,23 @@ const getHistoryTag = () => {
   } else {
     return [];
   }
-  
 }
-
-
 
 // 向localStorage中存入tagList
 const setHistoryTag = (newTagList: any) => {
   let tagsHistory = getHistoryTag();
   let newHTags = tagsHistory.concat(newTagList);
-  if (newHTags.length <= 5) {
-    localStorage.setItem(historyTagKey, JSON.stringify(newHTags));
-    return newHTags;
-  } else {
+  if (newHTags.length > 5) {
     newHTags.reverse();
-    // todo ：去重
+    newHTags = uniqWith(newHTags, isEqual);
     newHTags.length = 5;
     newHTags.reverse();
-    localStorage.setItem(historyTagKey, JSON.stringify(newHTags));
-    return newHTags;
+  } else {
+    newHTags = uniqWith(newHTags, isEqual);
   }
+  
+  localStorage.setItem(historyTagKey, JSON.stringify(newHTags));
+  return newHTags;
 }
 
 const removeHistoryTagItem = (tagItem: any) => {
@@ -83,10 +81,24 @@ const getTagByFileds = (fileds: any, options: any) => {
   return rtTags;
 }
 
+const checkNoIndexListFormat = (list: any) => {
+  let isOk = true;
+  list.forEach((groupItem: any) => {
+    if (groupItem && groupItem.children && Array.isArray(groupItem.children) && groupItem.children.length > 0) {
+      groupItem.children.forEach((item: any) => {
+        if (typeof item !== 'object' || !item.dataIndex) {
+          console.error('onSuggestNoDataIndex的返回list应参考实例，每个下拉选择项应有dataIndex字段')
+        }
+      });
+    }
+  });
+}
+
 
 export {
   getHistoryTag,
   setHistoryTag,
   removeHistoryTagItem,
   getTagByFileds,
+  checkNoIndexListFormat,
 }

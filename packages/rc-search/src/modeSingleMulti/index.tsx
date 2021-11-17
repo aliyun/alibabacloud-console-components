@@ -4,11 +4,13 @@ import styled from "styled-components";
 import { Button, Icon, Tag, Select } from '@alicloud/console-components'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
 import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
+import { IRcSearchOptionsProps } from '../types/IRcSearchOptions.type'
 import {
     getHistoryTag as getHistoryTagUtil,
     setHistoryTag as setHistoryTagUtil,
     removeHistoryTagItem as removeHistoryTagItemUtils,
-    getTagByFileds
+    getTagByFileds,
+    checkNoIndexListFormat,
 } from "../utils";
 
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
@@ -89,7 +91,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   const [allFileds, setAllFileds] = useState<any>({});
   const [curOptionItem, setCurOptionItem] = useState<any>({});
-  const [defaultOptionItem, setDefaultOptionItem] = useState<any>(null);
+  const [defaultOptionItem, setDefaultOptionItem] = useState<any>({});
   const [defaultInputValue, setDefaultValue] = useState<string>('');
   const [inputValue, setInputValue] = useState<string>('');
   const [inputDataSource, setInputDataSource] = useState<any>([]);
@@ -344,7 +346,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   async function setNoDefSuggest(value: any){
     if (onSuggestNoDataIndex) {
       let list = await onSuggestNoDataIndex(value)
-      console.log(list)
+      // console.log(list)
+      checkNoIndexListFormat(list);
       setLevel1DataSource([...list]);
       setDefaultVisible(true);
     }

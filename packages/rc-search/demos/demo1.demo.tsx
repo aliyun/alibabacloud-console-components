@@ -39,7 +39,7 @@ let options2 = [
 
 const Demo1: React.FC<IRcSearchProps> = (props) => {
 
-  async function onSuggest1 (value: string, dataIndex: string) {
+  async function onSuggestAsync (value: string, dataIndex: string) {
     if (!value) {
       return [];
     }
@@ -51,6 +51,21 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
       `${value}-4`,
       `${value}-5`,
     ]
+  }
+  function onSuggestPromise (value: string, dataIndex: string) {
+    let rtList = [];
+    if (!value) {
+      rtList = [];
+    }
+    rtList = [
+      // {label: value, value: `${dataIndex}-${value}`}
+      `${value}-1`,
+      `${value}-2`,
+      `${value}-3`,
+      `${value}-4`,
+      `${value}-5`,
+    ]
+    return Promise.resolve(rtList)
   }
 
   async function onChange1 (changedFileds:any, allFileds:any) {
@@ -64,11 +79,20 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <div>
-      搜索类型：<br />
+      搜索类型：(async 调用)<br />
       <Search
         mode="single-single"
         options={options}
-        onSuggest={onSuggest1}
+        onSuggest={onSuggestAsync}
+        onChange={onChange1}
+        onSearch={onSearch} 
+      />
+      <br /><br /><br />
+      搜索类型：（promise调用）<br />
+      <Search
+        mode="single-single"
+        options={options}
+        onSuggest={onSuggestPromise}
         onChange={onChange1}
         onSearch={onSearch} 
       />
