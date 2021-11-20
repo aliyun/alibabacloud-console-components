@@ -67,6 +67,20 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [allFileds, setAllFileds] = useState<any>({});
 
+  const itemRender = (item: any, searchKey:string) => {
+    let label = item.label
+    if (searchKey && searchKey.length) {
+      const key = searchKey.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
+      const reg = new RegExp(`(${key})`, 'ig')
+      label = label.replace(
+        reg,
+        (x: any) => `<span class="next-select-highlight">${x}</span>`
+      )
+    }
+  
+    return <span dangerouslySetInnerHTML={{ __html: label }} />
+  }
+
   async function inputChange (value: any, actionType: string, dataIndex: string) {
     if (actionType === 'itemClick' && onChange) {
       let changeFileds = Object.create({});
@@ -121,6 +135,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
               dataSource={inputDataSource}
               visible={visible}
               onBlur={() => {setVisible(false)}}
+              itemRender={itemRender}
               onChange={(value, actionType) => {inputChange(value, actionType, optionItem.dataIndex)}}
             />
           </div>

@@ -94,7 +94,6 @@ const checkNoIndexListFormat = (list: any) => {
   });
 }
 
-
 export {
   getHistoryTag,
   setHistoryTag,

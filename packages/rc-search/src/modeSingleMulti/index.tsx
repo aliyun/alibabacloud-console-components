@@ -187,6 +187,20 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     ),
   };
 
+  const itemRender = (item: any, searchKey:string) => {
+    let label = item.label
+    if (searchKey && searchKey.length) {
+      const key = searchKey.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
+      const reg = new RegExp(`(${key})`, 'ig')
+      label = label.replace(
+        reg,
+        (x: any) => `<span class="next-select-highlight">${x}</span>`
+      )
+    }
+  
+    return <span dangerouslySetInnerHTML={{ __html: label }} />
+  }
+
   function onRemoveHisTag (tagItem:IRcSearchTagItemProps) {
     const newHisTags = removeHistoryTagItemUtils(tagItem);
     setHistroyList(newHisTags);
@@ -471,6 +485,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 hasBorder={false}
                 menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
                 dataSource={level1DataSource}
+                itemRender={itemRender}
                 onChange={onLevel1Change}
                 visible={defaultVisible}
                 onFocus={() => {setDefaultVisible(true)}}
@@ -483,10 +498,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
             (
               <AutoComplete
                 className={classNames('main-input')}
-                placeholder={`默认全量搜索`}
+                placeholder={`请搜索`}
                 hasClear
                 hasBorder={false}
                 menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
+                itemRender={itemRender}
                 dataSource={level1DataSource}
                 onChange={onLevel1Change}
                 visible={defaultVisible}
@@ -503,6 +519,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 placeholder={curOptionItem.templateProps.placeholder || `默认按${curOptionItem.label}搜索`}
                 hasClear
                 hasBorder={false}
+                itemRender={itemRender}
                 visible={visible}
                 onBlur={() => {setVisible(false)}}
                 dataSource={inputDataSource}
