@@ -1,4 +1,5 @@
 export const baseClassName = 'rc-search'
+export const baseTagListClassName = `${baseClassName}-taglist`
 
 // export const titleClassName = `${baseClassName}-title`
 // export const titleContainerClassName = `${titleClassName}-container`

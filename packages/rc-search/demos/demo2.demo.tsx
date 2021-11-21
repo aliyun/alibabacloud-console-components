@@ -74,15 +74,10 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
     setTagList(newTags);
   }
 
-  function onTagChangeByTagList (action:string, item: any) {
-    if (action === 'remove') {
-      console.log(item)
-      let resFindIndex = tagList.findIndex((x:any) => x.dataIndex === item.dataIndex)
-      tagList.splice(resFindIndex, 1);
-      setTagList(tagList);
-      // todo, 通知search
-      
-    }
+  function onTagChangeByTagList (newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList(newTags);
+  
   }
 
   async function onSearch (allFileds:any) {

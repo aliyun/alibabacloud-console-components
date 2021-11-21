@@ -113,16 +113,16 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           histroyList && histroyList.length > 0 && (
             <TagGroup style={{paddingLeft: '20px'}}>
             {histroyList.map((tag:IRcSearchTagItemProps, index: number) => {
-                return (
-                <ClosableTag
-                  size="small"
-                  key={tag.dataIndex + tag.value + index}
-                  onClose={() => {onRemoveHisTag(tag); return true;}}
-                  onClick={() => {onSelectHisTag(tag);}}
-                >
-                    {tag.label}:{tag.valueShow}
-                </ClosableTag>
-                )
+                return tag ? (
+                  <ClosableTag
+                    size="small"
+                    key={tag.dataIndex + tag.value + index}
+                    onClose={() => {onRemoveHisTag(tag); return true;}}
+                    onClick={() => {onSelectHisTag(tag);}}
+                  >
+                      {tag.label}:{tag.valueShow}
+                  </ClosableTag>
+                ) : ''
             })}
             </TagGroup>
           )  
@@ -358,6 +358,9 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       value = inputValue;
     }
     if (e.keyCode === 13) {
+      if (curOptionItem.template === 'multiple') {
+        return
+      }
       if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
         inputChange(value, 'enter', dataIndex);
         setDefaultVisible(false);
@@ -532,10 +535,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 onBlur={() => {setVisible(false)}}
                 itemRender={itemRenderMulti}
                 popupClassName="xconsole-rcsearch-multi-pop"
-                visible={true || visible}
+                visible={visible}
                 dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {onMultipleChange(value)}}
-                popupStyle={{minWidth: 'auto'}}
+                popupStyle={{minWidth: 'auto', padding: '10px 15px'}}
               />
             )
           }

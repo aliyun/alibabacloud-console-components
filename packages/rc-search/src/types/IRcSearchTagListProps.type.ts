@@ -6,6 +6,14 @@
 import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type'
 export interface IRcSearchTagListProps {
   /**
+   * 类名
+   */
+  className?: string;
+   /**
+    * 样式
+    */
+  style?: any;
+  /**
    * tags 传入的taglist, 用于， 同步
    */
   tagList: IRcSearchTagItemProps[];

@@ -20,6 +20,10 @@ export interface IRcSearchProps {
    */
   className?: string;
   /**
+   * 样式
+   */
+  style?: any;
+  /**
    * 对应不同场景值的类型数组，后面要详细展开列一下
    * @default []
    */
@@ -32,12 +36,12 @@ export interface IRcSearchProps {
    * 默认类别
    * 仅在mode是"single-multi" | "multi-multi"生效
    */
-  defaultDataIndex: string;
+  defaultDataIndex?: string;
   /**
    * 默认placeholder
    * 仅在mode是"single-multi" | "multi-multi"生效, 且， 未配置默认值时生效
    */
-  defaultPlaceHolder: string;
+  defaultPlaceHolder?: string;
   /**
    * 点击搜索按钮， 触发搜索回调。
    */

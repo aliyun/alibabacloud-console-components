@@ -120,7 +120,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <div>
-      <p>无默认分类</p>
+      <p>无默认分类, 默认多类别搜索</p>
       <Search
         mode="multi-multi"
         options={options}

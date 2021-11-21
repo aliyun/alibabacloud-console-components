@@ -6,9 +6,7 @@
 
 import React, {useState} from "react";
 import { Search, IRcSearchProps, SearchTagList } from "@alicloud/console-components-search";
-import { Radio } from '@alicloud/console-components'
-
-const RadioGroup = Radio.Group;
+import { Button, Table } from '@alicloud/console-components'
 // interface IProps {}
 let options = [
   {
@@ -83,20 +81,32 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <div>
-      <p>有默认分类</p>
-      <Search
-        mode="multi-multi"
-        defaultDataIndex="name"
-        options={options}
-        onChange={onChange}
-        onSuggest={onSuggest}
-        onTagChange={onTagChange}
-        onSearch={onSearch}
-        tags={tagList}
-      />
+      <p>有默认分类: 实例名称</p>
+      <div>
+        <Button type="primary" style={{marginRight: '10px'}}>主按钮</Button>
+        <Search
+          mode="multi-multi"
+          defaultDataIndex="name"
+          options={options}
+          onChange={onChange}
+          onSuggest={onSuggest}
+          onTagChange={onTagChange}
+          onSearch={onSearch}
+          tags={tagList}
+          style={{marginRight: '10px', width: '500px'}}
+        />
+        <Button type="normal">普通按钮</Button>
+
+      </div>
+      
       <br />
       <SearchTagList tagList={tagList} onChange={onTagChange} />
-      <br /><br /><br />
+      <br />
+      <Table>
+        <Table.Column title="Key" dataIndex="key" />
+        <Table.Column title="实例ID/名称" dataIndex="id" />
+        <Table.Column title="状态" dataIndex="status" />
+      </Table>
     </div>
     
   )

@@ -88,7 +88,17 @@ const MultiBtnWarp = styled.div`
   }
 `;
 
+const TagListWrap = styled.div`
+  .remove-btn{
+    margin-bottom: 8px;
+    line-height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+`
+
 export {
   SearchWarp,
-  MultiBtnWarp
+  MultiBtnWarp,
+  TagListWrap
 }
