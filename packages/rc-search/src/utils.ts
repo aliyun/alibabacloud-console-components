@@ -94,10 +94,20 @@ const checkNoIndexListFormat = (list: any) => {
   });
 }
 
+const getSelectOptionAdatp = (title: string, list:any) => {
+  return [
+    {
+      label: title || '',
+      children: [...list]
+    }
+  ]
+}
+
 export {
   getHistoryTag,
   setHistoryTag,
   removeHistoryTagItem,
   getTagByFileds,
   checkNoIndexListFormat,
+  getSelectOptionAdatp,
 }

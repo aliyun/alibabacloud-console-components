@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import classNames from 'classnames'
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Button, Icon, Tag, Select } from '@alicloud/console-components'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
 import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
@@ -11,76 +11,25 @@ import {
     removeHistoryTagItem as removeHistoryTagItemUtils,
     getTagByFileds,
     checkNoIndexListFormat,
+    getSelectOptionAdatp
 } from "../utils";
+// import '../index.less'
+
+import {
+  SearchWarp,
+  MultiBtnWarp
+} from "../style";
 
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
 
 const { AutoComplete } = Select
-
-const WrapDiv = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  .left-wrap {
-    flex: 1;
-    border-left: 1px solid rgba(192,198,204,1);
-    display: flex;
-    .condition{
-        height: 26px;
-        display: inline-block;
-        margin-top: 2px;
-    }
-    .condition-item{
-        height: 26px;
-        display: inline-block;
-        line-height: 26px;
-        background: #EFF3F8;
-        border-radius: 2px;
-        background-color: #EFF3F8;
-        padding: 0 8px;
-        margin: 0 2px;
-        font-size: 12px;
-        color: #333;
-        position: relative;
-        
-    }
-    .condition-select{
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .forms{
-      flex: 1;
-    }
-    .main-input{
-      height: auto;
-      border: none;
-      width: 100%;
-      
-      .next-input{
-        height: auto;
-      }
-    }
-  }
-  .right-wrap {
-    width: 32px;
-    height: 32px;
-    .search-btn{
-      width: 32px;
-      height: 32px;
-    }
-  }
-`;
-
 
 const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const {
     mode,
     options,
     defaultDataIndex,
+    defaultPlaceHolder,
     tags,
     onSuggest,
     onSuggestNoDataIndex,
@@ -100,27 +49,35 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [multipleValues, setMultipleValues] = useState<any>([]);
   const [tagList, setTagList] = useState<IRcSearchTagItemProps[]>([]);
   const [histroyList, setHistroyList] = useState<IRcSearchTagItemProps[]>([]);
+  const [curType, setCurType] = useState<string>(''); // defalut/nodefault/item
 
   useEffect(() => {
     let initHisTags = getHistoryTagUtil();
     if (initHisTags) {
       setHistroyList(initHisTags);
     }
+    initCurType()
   }, [])
 
-  let initCurType = ''
-  if (defaultDataIndex && defaultDataIndex !== '' && !defaultOptionItem) {
-    initCurType = 'default';
-    let defaultItem = options.find((x:any) => x.dataIndex === defaultDataIndex)
-    if (defaultItem) {
-        console.log(defaultItem)
-        setDefaultOptionItem(defaultItem);
+  function initCurType () {
+    let initCurType = ''
+    if (defaultDataIndex && defaultDataIndex !== '') {
+      initCurType = 'default';
+      let defaultItem = options.find((x:any) => x.dataIndex === defaultDataIndex)
+      if (defaultItem) {
+          // console.log(defaultItem)
+          setDefaultOptionItem(defaultItem);
+      } else {
+          initCurType = 'nodefault';
+      }
     } else {
-        initCurType = 'nodefault';
+      initCurType = 'nodefault';
     }
-  } else {
-    initCurType = 'nodefault';
+    // console.log('initCurType', initCurType)
+    setCurType(initCurType);
   }
+
+  
   // if (initCurType === 'nodefault') {
   //   let defaultItem2 = options.find((x:any) => x.template === 'input')
   //     if (defaultItem2) {
@@ -128,7 +85,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   //         setDefaultOptionItem(defaultItem2);
   //     }
   // }
-  const [curType, setCurType] = useState<string>(initCurType); // defalut/nodefault/item
+  
 
 
   let level1DataSourceTemp = [
@@ -176,14 +133,15 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     footer: null,
   };
 
+  // 多选
   const menuProps = {
     focusable: false,
     header: null,
     footer: (
-      <div style={{ padding: "0 4px", textAlign: "center", display: "flex", justifyContent: "space-around" }}>
-        <Button size="small" type="primary" onClick={() => {onPrimaryMultiple(curOptionItem.dataIndex)}}>确定</Button>
-        <Button size="small" type="normal" onClick={() => {setMultipleValues([])}}>取消</Button>
-      </div>
+      <MultiBtnWarp>
+        <Button size="small" className={classNames("pri-btn")} disabled={multipleValues.length === 0} type="primary" onClick={() => {onPrimaryMultiple(curOptionItem.dataIndex)}}>确定</Button>
+        <Button size="small" className={classNames("cancel-btn")} type="normal" onClick={() => {setMultipleValues([])}}>取消</Button>
+      </MultiBtnWarp>
     ),
   };
 
@@ -194,11 +152,30 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       const reg = new RegExp(`(${key})`, 'ig')
       label = label.replace(
         reg,
-        (x: any) => `<span class="next-select-highlight">${x}</span>`
+        (x: any) => `<span class="next-select-highlight" style="background-color: #EFF3F8;font-weight: 500;">${x}</span>`
       )
     }
   
     return <span dangerouslySetInnerHTML={{ __html: label }} />
+  }
+
+  const itemRenderMulti = (item: any) => {
+    let isChecked = false;
+    if (multipleValues.find((v: any) => v === item.value)) {
+      isChecked = true
+    }
+    // console.log('item',item, 'isChecked', isChecked)
+    return (
+      <label className={classNames('next-checkbox-wrapper', 'multi-lable', (isChecked ? 'checked' : ''))}>
+        <span className="next-checkbox">
+          <span className="next-checkbox-inner">
+            <i className="next-icon next-icon-select next-xs next-checkbox-select-icon"></i>
+          </span>
+          <input type="checkbox" className="next-checkbox-input" defaultChecked={isChecked} />
+        </span>
+        <span className="next-checkbox-label">{item.label}</span>
+      </label>
+    )
   }
 
   function onRemoveHisTag (tagItem:IRcSearchTagItemProps) {
@@ -297,7 +274,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 多选的change，仅改变state
   function onMultipleChange(values: any) {
-    setMultipleValues(values)
+    if (values) {
+      setMultipleValues(values)
+    } else {
+      setMultipleValues([])
+    }
   }
 
   // 第一级选择某个具体的类别
@@ -447,8 +428,6 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   function onCommonSearch () {
     if (onSearch) {
       let checkAllFileds = checkAllFromTags(allFileds);
-      // console.log(tags, checkAllFromTags(allFileds))
-      // console.log('all', allFileds);
       onSearch(checkAllFileds);
       // todo: 只有搜索了才会被记录到，根据页面的路由为key，history
       upDateHistory();
@@ -456,11 +435,9 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   return (
-    <WrapDiv>
-      {/* {`${defaultVisible}${defaultInputValue}`} */}
+    <SearchWarp>
       <div className={classNames('left-wrap', 'next-input')}>
         <div className={classNames('condition')}>
-        
           {curType === 'item' && 
             (
               <div className={classNames('condition-item')}>
@@ -479,7 +456,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           {curType === 'default' && defaultOptionItem && 
             (
               <AutoComplete
-                className={classNames('main-input')}
+                className={classNames('main-input', 'multi')}
                 placeholder={`默认按${defaultOptionItem.label}搜索`}
                 hasClear
                 hasBorder={false}
@@ -497,8 +474,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           {curType === 'nodefault' && 
             (
               <AutoComplete
-                className={classNames('main-input')}
-                placeholder={`请搜索`}
+                className={classNames('main-input', 'multi')}
+                placeholder={defaultPlaceHolder || `请搜索`}
                 hasClear
                 hasBorder={false}
                 menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
@@ -515,7 +492,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           {curType === 'item' && curOptionItem.template === 'input' && 
             (
               <AutoComplete
-                className={classNames('main-input')}
+                className={classNames('main-input', 'multi')}
                 placeholder={curOptionItem.templateProps.placeholder || `默认按${curOptionItem.label}搜索`}
                 hasClear
                 hasBorder={false}
@@ -530,29 +507,35 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           {curType === 'item' && curOptionItem.template === 'select' && 
             (
               <Select
-                className={classNames('main-input')}
-                placeholder={curOptionItem.templateProps.placeholder || "请选择"}
+                className={classNames('main-input', 'multi')}
+                placeholder={curOptionItem.templateProps.placeholder || `请选择${curOptionItem.label}`}
                 hasClear
                 hasBorder={false}
-                dataSource={curOptionItem.templateProps.dataSource}
+                dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {selectChange(value, curOptionItem.dataIndex)}}
+                popupStyle={{minWidth: 'auto'}}
               />
             )
           }
           {curType === 'item' && curOptionItem.template === 'multiple' && 
             (
               <Select
-                className={classNames('main-input')}
-                placeholder={curOptionItem.templateProps.placeholder || "请选择"}
+                className={classNames('main-input', 'multi')}
+                placeholder={curOptionItem.templateProps.placeholder || `请选择${curOptionItem.label}`}
                 hasClear
                 mode="multiple"
                 hasBorder={false}
+                // autoWidth={true}
                 menuProps={menuProps}
+                value={multipleValues}
                 onFocus={() => {setVisible(true)}}
                 onBlur={() => {setVisible(false)}}
-                visible={visible}
-                dataSource={curOptionItem.templateProps.dataSource}
+                itemRender={itemRenderMulti}
+                popupClassName="xconsole-rcsearch-multi-pop"
+                visible={true || visible}
+                dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {onMultipleChange(value)}}
+                popupStyle={{minWidth: 'auto'}}
               />
             )
           }
@@ -563,7 +546,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       <div className={classNames('right-wrap')}>
         <Button className={classNames('search-btn')} onClick={onCommonSearch}><Icon type="search" /></Button>
       </div>
-    </WrapDiv>
+    </SearchWarp>
   )
 }
 

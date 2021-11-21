@@ -16,7 +16,7 @@ let options = [
     dataIndex: 'name',
     template: 'input',
     templateProps: {
-      placeholder: '请输入',
+      placeholder: '按实例名称搜索',
       dataSource: []
     }
   },
@@ -25,7 +25,7 @@ let options = [
     dataIndex: 'type',
     template: 'select',
     templateProps: {
-      placeholder: '请选择',
+      placeholder: '请选择网络类型',
       dataSource: [
         {label: 'A', value: 'a'},
         {label: 'B', value: 'b'},
@@ -39,7 +39,7 @@ let options = [
     dataIndex: 'pay',
     template: 'multiple',
     templateProps: {
-      placeholder: '请选择',
+      placeholder: '请选择付费类型',
       dataSource: [
         {label: 'A', value: 'a'},
         {label: 'B', value: 'b'},

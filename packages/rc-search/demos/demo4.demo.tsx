@@ -126,6 +126,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
         options={options}
         onChange={onChange}
         onSuggest={onSuggest}
+        defaultPlaceholder="请搜索"
         onSuggestNoDataIndex={onSuggestNoIndex}
         onTagChange={onTagChange}
         onSearch={onSearch}

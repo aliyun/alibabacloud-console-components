@@ -1,56 +1,13 @@
 import React, {useState} from "react";
 import classNames from 'classnames'
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Button, Icon, Input, Select } from '@alicloud/console-components'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
+import { SearchWarp } from "../style";
+
+import { getSelectOptionAdatp } from '../utils'
 
 const { AutoComplete } = Select
-
-const WrapDiv = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  .left-wrap {
-    flex: 1;
-    border-left: 1px solid rgba(192,198,204,1);
-    display: flex;
-    .condition{
-        height: 26px;
-        display: inline-block;
-        margin-top: 2px;
-    }
-    .condition-item{
-        height: 26px;
-        display: inline-block;
-        line-height: 26px;
-        background: #EFF3F8;
-        border-radius: 2px;
-        background-color: #EFF3F8;
-        padding: 0 8px;
-        margin: 0 2px;
-        font-size: 12px;
-        color: #333;
-        
-    }
-    .main-input{
-      height: auto;
-      border: none;
-      flex: 1;
-      .next-input{
-        height: auto;
-      }
-    }
-  }
-  .right-wrap {
-    width: 32px;
-    height: 32px;
-    .search-btn{
-      width: 32px;
-      height: 32px;
-    }
-  }
-`;
-
 
 const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const {
@@ -74,7 +31,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       const reg = new RegExp(`(${key})`, 'ig')
       label = label.replace(
         reg,
-        (x: any) => `<span class="next-select-highlight">${x}</span>`
+        (x: any) => `<span class="next-select-highlight" style="background-color: #EFF3F8;font-weight: 500;">${x}</span>`
       )
     }
   
@@ -123,12 +80,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   return (
-    <WrapDiv>
+    <SearchWarp>
       {optionItem.template === 'input' && 
         (
           <div className={classNames('left-wrap', 'next-input')}>
             <AutoComplete
-              className={classNames('main-input')}
+              className={classNames('main-input', 'single')}
               placeholder={optionItem.templateProps.placeholder || `默认按${optionItem.label}搜索`}
               hasClear
               hasBorder={false}
@@ -147,12 +104,13 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
             <span className={classNames('condition-item')}>{optionItem.label}</span>
           </div>
           <Select
-            className={classNames('main-input')}
-            placeholder={optionItem.templateProps.placeholder || "请选择"}
+            className={classNames('main-input', 'single')}
+            placeholder={optionItem.templateProps.placeholder || `请选择${optionItem.label}`}
             hasClear
             hasBorder={false}
-            dataSource={optionItem.templateProps.dataSource}
+            dataSource={getSelectOptionAdatp(optionItem.label, optionItem.templateProps.dataSource)}
             onChange={(value) => {selectChange(value, optionItem.dataIndex)}}
+            popupStyle={{minWidth: 'auto'}}
           />
         </div>
       }
@@ -160,7 +118,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       <div className={classNames('right-wrap')}>
         <Button className={classNames('search-btn')} onClick={onCommonSearch}><Icon type="search" /></Button>
       </div>
-    </WrapDiv>
+    </SearchWarp>
   )
 }
 
