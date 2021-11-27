@@ -87,7 +87,7 @@ const checkNoIndexListFormat = (list: any) => {
     if (groupItem && groupItem.children && Array.isArray(groupItem.children) && groupItem.children.length > 0) {
       groupItem.children.forEach((item: any) => {
         if (typeof item !== 'object' || !item.dataIndex) {
-          console.error('onSuggestNoDataIndex的返回list应参考实例，每个下拉选择项应有dataIndex字段')
+          console.warn('onSuggestNoDataIndex的返回list应参考实例，每个下拉选择项应有dataIndex字段')
         }
       });
     }

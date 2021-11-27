@@ -1,0 +1,59 @@
+{
+  "name": "@alicloud/console-components-protable",
+  "version": "1.0.21",
+  "description": "React component for Alibaba Cloud.",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "module": "es/index.js",
+  "unpkg": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "wind",
+    "wind-rc-table",
+    "react",
+    "react component"
+  ],
+  "author": {
+    "name": "csr632",
+    "email": "632882184@qq.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "prepare": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
+    "clean": "rm -rf dist lib es cc-dev-out",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "types": "tsc -p src --emitDeclarationOnly",
+    "build": "breezr build --engine webpack",
+    "test": "breezr test:unit",
+    "storybook": "breezr start-storybook",
+    "dev": "breezr start --config config/breezr-docs.config.ts",
+    "doc:build": "rm -rf doc-dist && breezr build --config config/breezr-docs.config.ts",
+    "upload": "breezr upload --config config/breezr-docs.config.ts",
+    "upload:pre": "npm run upload -- --tag=pre"
+  },
+  "peerDependencies": {
+    "@alicloud/console-components": "^1.0.0",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.x",
+    "react": "^16.x",
+    "react-dom": "^16.x"
+  },
+  "dependencies": {
+    "@researchgate/react-intersection-observer": "^0.7.3",
+    "classnames": "^2.2.5",
+    "intersection-observer": "^0.7.0",
+    "react-responsive": "^5.0.0",
+    "recompose": "^0.27.0"
+  },
+  "devDependencies": {
+    "@alicloud/console-components-app-layout": "^1.0.10",
+    "@alicloud/console-components-page": "^1.0.14",
+    "@ali/console-components-search": "0.0.1-beta.2"
+  }
+}

@@ -7,6 +7,8 @@ const SearchWarp = styled.div`
   .left-wrap {
     flex: 1;
     border-left: 1px solid rgba(192,198,204,1);
+    border-bottom: 1px solid rgba(192, 198,204, 1);
+    border-top: 1px solid rgba(192, 198,204, 1);
     display: flex;
     border-right: none;
     .condition{
@@ -39,7 +41,7 @@ const SearchWarp = styled.div`
     .forms{
       flex: 1;
     }
-    .main-input{, 'multi'
+    .main-input{
       height: auto;
       border: none;
       &.single{
@@ -53,13 +55,16 @@ const SearchWarp = styled.div`
         height: auto;
       }
     }
+    .xdemo-input.xdemo-medium{
+      height: auto;
+    }
   }
   .right-wrap {
     width: 32px;
-    height: 32px;
+    /* height: 32px; */
     .search-btn{
       width: 32px;
-      height: 32px;
+      /* height: 32px; */
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
     }

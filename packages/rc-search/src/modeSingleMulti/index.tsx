@@ -2,9 +2,11 @@ import React, {useState, useEffect} from "react";
 import classNames from 'classnames'
 // import styled from "styled-components";
 import { Button, Icon, Tag, Select } from '@alicloud/console-components'
+// import { AutoCompleteProps } from '@alifd/next/lib/select'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
 import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
 import { IRcSearchOptionsProps } from '../types/IRcSearchOptions.type'
+import { MenuProps } from '@alicloud/console-components/types/menu'; 
 import {
     getHistoryTag as getHistoryTagUtil,
     setHistoryTag as setHistoryTagUtil,
@@ -29,7 +31,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     mode,
     options,
     defaultDataIndex,
-    defaultPlaceHolder,
+    defaultPlaceholder,
     tags,
     onSuggest,
     onSuggestNoDataIndex,
@@ -107,10 +109,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     header: (
       <ul className="next-menu-content">
         {
-          histroyList && histroyList.length > 0 && (<li role="option" title="历史搜索记录" className="next-menu-group-label"><div className="next-menu-item-inner">历史搜索记录{histroyList.length}</div></li>)  
+          defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && (<li role="option" title="历史搜索记录" className="next-menu-group-label"><div className="next-menu-item-inner">历史搜索记录{histroyList.length}</div></li>)  
         }
         {
-          histroyList && histroyList.length > 0 && (
+          defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && (
             <TagGroup style={{paddingLeft: '20px'}}>
             {histroyList.map((tag:IRcSearchTagItemProps, index: number) => {
                 return tag ? (
@@ -145,7 +147,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     ),
   };
 
-  const itemRender = (item: any, searchKey:string) => {
+  const itemRender = (item: any, searchKey:any) => {
     let label = item.label
     if (searchKey && searchKey.length) {
       const key = searchKey.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
@@ -294,7 +296,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           setCurOptionItem(curOptItem)
           setCurType('item')
         } 
-      } else if (curType === 'default') {
+      } else if (curType === 'default' && defaultDataIndex && defaultDataIndex !== '') {
         // 选了suggest
         inputChange(value, 'itemClick', defaultDataIndex);
         setDefaultValue('')
@@ -325,7 +327,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function setDefSuggest(value: any) {
-    if (onSuggest) {
+    if (onSuggest && defaultDataIndex && defaultDataIndex !== '') {
       let list = await onSuggest(value, defaultDataIndex);
         let newDataSource = [
           {
@@ -362,7 +364,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         return
       }
       if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
-        inputChange(value, 'enter', dataIndex);
+        inputChange(value, 'enter', defaultDataIndex);
         setDefaultVisible(false);
         setDefaultValue('');
       }
@@ -463,7 +465,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 placeholder={`默认按${defaultOptionItem.label}搜索`}
                 hasClear
                 hasBorder={false}
-                menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
+                // menuProps={menuPropsLevel1}
                 dataSource={level1DataSource}
                 itemRender={itemRender}
                 onChange={onLevel1Change}
@@ -478,10 +480,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
             (
               <AutoComplete
                 className={classNames('main-input', 'multi')}
-                placeholder={defaultPlaceHolder || `请搜索`}
+                placeholder={defaultPlaceholder || `请搜索`}
                 hasClear
                 hasBorder={false}
-                menuProps={defaultInputValue !== '' ? {} : menuPropsLevel1}
+                // menuProps={menuPropsLevel1}
                 itemRender={itemRender}
                 dataSource={level1DataSource}
                 onChange={onLevel1Change}
