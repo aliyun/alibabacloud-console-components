@@ -1,5 +1,5 @@
 {
-  "name": "@ali/console-components-search",
+  "name": "@alicloud/console-components-search",
   "version": "0.0.1-beta.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
