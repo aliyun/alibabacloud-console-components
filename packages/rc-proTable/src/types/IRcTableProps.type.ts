@@ -33,6 +33,15 @@ export interface IRcTableProps {
    */
   selection?: (selection: ISelectionRenderParams) => React.ReactNode
   /**
+   * 分页模式：
+   *  - 前端分页模式：fe：前端自行控制分页， 每次点击分页， 并不会发起请求<br />
+   *  - 服务端分页模式：server：每次点击分页， 从服务端请求获取数据<br />
+   * 
+   * @defaultValue "fe"
+   *
+  */
+  paginationMode?: "fe" | "server" | string;
+  /**
    * 分页，组件内置`Pagination`组件，开发者只需要传入`PaginationProps`即可。<br />
    * 也可以传入自定义Pagination组件来覆盖内置的Pagination。<br />
    * 也可以传入一个函数返回Pagination组件。<br />
@@ -40,6 +49,11 @@ export interface IRcTableProps {
    * @defaultValue null
    */
   pagination?: IPaginationProps
+  /**
+   * 只有一页时是否隐藏分页器
+   * @defaultValue false
+   */
+  hidePaginationOnSinglePage?: boolean
   /**
    * 动作区滚动锁定, 在 rc-table 中最多会有上下两个动作区, 可以指定 `affixActionBar` 的值为 `true` 来同时开启两个动作区的滚动锁定特性, <br />
    * 也可以通过字符串`affixActionBar: ('bottom'|'top')`或者是数组`['bottom', 'top']`声明  指定某一个动作区开启该特性。<br />
