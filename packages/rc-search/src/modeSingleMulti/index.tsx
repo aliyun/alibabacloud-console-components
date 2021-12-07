@@ -48,6 +48,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [inputDataSource, setInputDataSource] = useState<any>([]);
   const [visible, setVisible] = useState<boolean>(false);
   const [defaultVisible, setDefaultVisible] = useState<boolean>(false);
+  const [clearLevel1Show, setClearLevel1Show] = useState<boolean>(false);
   const [multipleValues, setMultipleValues] = useState<any>([]);
   const [tagList, setTagList] = useState<IRcSearchTagItemProps[]>([]);
   const [histroyList, setHistroyList] = useState<IRcSearchTagItemProps[]>([]);
@@ -143,7 +144,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     footer: (
       <MultiBtnWarp>
         <Button size="small" className={classNames("pri-btn")} disabled={multipleValues.length === 0} type="primary" onClick={() => {onPrimaryMultiple(curOptionItem.dataIndex)}}>确定</Button>
-        <Button size="small" className={classNames("cancel-btn")} type="normal" onClick={() => {setMultipleValues([])}}>取消</Button>
+        <Button size="small" className={classNames("cancel-btn")} type="normal" onClick={() => {setMultipleValues([]);setVisible(false);}}>取消</Button>
       </MultiBtnWarp>
     ),
   };
@@ -243,6 +244,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     setVisible(false);
     setInputValue('');
     setFocusClass('');
+    setClearLevel1Show(true);
   }
 
   function clearLevel1 () {
@@ -261,7 +263,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         initCurType = 'nodefault';
     }
     
-    setCurType(initCurType)
+    setCurType(initCurType);
+    setClearLevel1Show(false);
   }
 
   // 多选的确定
@@ -285,6 +288,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 多选的change，仅改变state
   function onMultipleChange(values: any) {
+    // console.log('value', values);
     if (values) {
       setMultipleValues(values)
     } else {
@@ -295,6 +299,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   // 第一级选择某个具体的类别
   async function onLevel1Change (value: any, actionType: any, item: any) {
     console.log('value', value,'level1 , actionType', actionType, 'item:', item)
+    setClearLevel1Show(true);
     // console.log('defaultInputValue', defaultInputValue)
     if (actionType === 'itemClick') {
       // 判断是level选择还是直接输入的suggest---- 选了一个类别
@@ -335,6 +340,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       }
       setDefaultValue(value)
     }
+  }
+
+  function onClearLevel1 () {
+    clearLevel1();
   }
 
   async function setDefSuggest(value: any) {
@@ -402,8 +411,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     } else {
       if (value === '') {
         setInputDataSource([]);
+        setClearLevel1Show(true);
+      } else {
+        setClearLevel1Show(false);
       }
       setInputValue(value)
+      
       if (onSuggest) {
           // todo：try catch， 要补上
           let list = await onSuggest(value, dataIndex);
@@ -528,7 +541,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           {curType === 'item' && curOptionItem.template === 'select' && 
             (
               <Select
-                className={classNames('main-input', 'multi')}
+                className={classNames('main-input', 'select')}
                 placeholder={curOptionItem.templateProps.placeholder || `请选择${curOptionItem.label}`}
                 hasClear
                 hasBorder={false}
@@ -568,6 +581,14 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
               />
             )
           }
+          {clearLevel1Show && 
+            (
+              <div className="clear-level1" onClick={onClearLevel1}>
+                <Icon type="close" size="small" />
+              </div>
+            )
+          }
+          
         </div>
       </div>
       

@@ -47,12 +47,30 @@ const SearchWarp = styled.div`
     }
     .forms{
       flex: 1;
+      position: relative;
+      .clear-level1{
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        height: 28px;
+        width: 28px;
+        background-color: #fff;
+        z-index: 99;
+        color: #333;
+        text-align: center;
+        line-height: 28px;
+        font-size: 12px;
+        cursor: pointer;
+      }
     }
     .main-input{
       height: auto;
       border: none;
       &.single{
         flex: 1;
+      }
+      &.select{
+        width: 100%;
       }
       &.multi{
         width: 100%;
