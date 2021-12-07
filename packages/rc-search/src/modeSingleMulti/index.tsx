@@ -52,6 +52,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [tagList, setTagList] = useState<IRcSearchTagItemProps[]>([]);
   const [histroyList, setHistroyList] = useState<IRcSearchTagItemProps[]>([]);
   const [curType, setCurType] = useState<string>(''); // defalut/nodefault/item
+  const [focusClass, setFocusClass] = useState<string>(''); // focus/''
 
   useEffect(() => {
     let initHisTags = getHistoryTagUtil();
@@ -237,7 +238,15 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         setTagList(newTags);
         onTagChange(newTags)
     }
-    // todo : func
+    
+    // 仅仅清空值， 保留类别
+    setVisible(false);
+    setInputValue('');
+    setFocusClass('');
+  }
+
+  function clearLevel1 () {
+    // 清空类别
     let initCurType = ''
     if (defaultDataIndex && defaultDataIndex !== '' && !defaultOptionItem) {
         initCurType = 'default';
@@ -270,7 +279,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         setAllFileds(allFileds)
         onChangeItem(changeFileds, allFileds);
       }
-      
+      setMultipleValues([]);
     }
   }
 
@@ -288,14 +297,16 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     console.log('value', value,'level1 , actionType', actionType, 'item:', item)
     // console.log('defaultInputValue', defaultInputValue)
     if (actionType === 'itemClick') {
-      // 判断是level选择还是直接输入的suggest
+      // 判断是level选择还是直接输入的suggest---- 选了一个类别
       if (!defaultInputValue) {
         // level1 的选择
         let curOptItem = options.find((x: any) => x.dataIndex === value);
         if (curOptItem) {
           setCurOptionItem(curOptItem)
           setCurType('item')
-        } 
+        }
+        // 当第一次选择了筛选类别后，需自动进入激活状态，无需再次点击；（自动获取焦点）自动弹窗
+        setVisible(true)
       } else if (curType === 'default' && defaultDataIndex && defaultDataIndex !== '') {
         // 选了suggest
         inputChange(value, 'itemClick', defaultDataIndex);
@@ -348,9 +359,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       setLevel1DataSource([...list]);
       setDefaultVisible(true);
     }
-    
   }
-
 
   function onDeFaultEnter (e: any) {
     let dataIndex = defaultDataIndex;
@@ -414,10 +423,14 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 单选或多选的change，
   function selectChange(value: any, dataIndex: string) {
+    // setSingleValues(value);
+    setVisible(false);
+    setFocusClass('');
     if (onChangeItem) {
         let changeFileds = Object.create({});
         changeFileds[dataIndex] = value;
         if (mode === 'single-multi') {
+          // 判断value 是否为undefined
           setAllFileds(changeFileds);
           onChangeItem(changeFileds, changeFileds);
         } else if (mode === 'multi-multi'){
@@ -441,7 +454,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   return (
     <SearchWarp>
-      <div className={classNames('left-wrap', 'next-input')}>
+      <div className={classNames('left-wrap', 'next-input', focusClass)}>
         <div className={classNames('condition')}>
           {curType === 'item' && 
             (
@@ -470,8 +483,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 itemRender={itemRender}
                 onChange={onLevel1Change}
                 visible={defaultVisible}
-                onFocus={() => {setDefaultVisible(true)}}
-                onBlur={() => {setDefaultVisible(false)}}
+                onFocus={() => {setDefaultVisible(true);setFocusClass('focus')}}
+                onBlur={() => {setDefaultVisible(false);setFocusClass('')}}
                 value={defaultInputValue}
               />
             )
@@ -488,8 +501,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 dataSource={level1DataSource}
                 onChange={onLevel1Change}
                 visible={defaultVisible}
-                onFocus={() => {setDefaultVisible(true)}}
-                onBlur={() => {setDefaultVisible(false)}}
+                onFocus={() => {setDefaultVisible(true);setFocusClass('focus')}}
+                onBlur={() => {setDefaultVisible(false);setFocusClass('')}}
                 value={defaultInputValue}
               />
             )
@@ -503,8 +516,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 hasBorder={false}
                 itemRender={itemRender}
                 visible={visible}
-                onBlur={() => {setVisible(false)}}
                 dataSource={inputDataSource}
+                autoFocus
+                value={inputValue}
+                onFocus={() => {setVisible(true);setFocusClass('focus')}}
+                onBlur={() => {setVisible(false);setFocusClass('')}}
                 onChange={(value, actionType) => {inputChange(value, actionType, curOptionItem.dataIndex)}}
               />
             )
@@ -519,6 +535,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {selectChange(value, curOptionItem.dataIndex)}}
                 popupStyle={{minWidth: 'auto'}}
+                autoFocus
+                visible={visible}
+                value={undefined}
+                onClick={() => {setVisible(true);setFocusClass('focus')}}
+                onFocus={() => {setVisible(true);setFocusClass('focus')}}
+                onBlur={() => {setVisible(false);setFocusClass('')}}
               />
             )
           }
@@ -529,12 +551,14 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 placeholder={curOptionItem.templateProps.placeholder || `请选择${curOptionItem.label}`}
                 hasClear
                 mode="multiple"
+                maxTagCount={0}
                 hasBorder={false}
-                // autoWidth={true}
+                autoFocus
                 menuProps={menuProps}
                 value={multipleValues}
-                onFocus={() => {setVisible(true)}}
-                onBlur={() => {setVisible(false)}}
+                onFocus={() => {setVisible(true);setFocusClass('focus')}}
+                onClick={() => {setVisible(true);setFocusClass('focus')}}
+                onBlur={() => {setVisible(false);setFocusClass('')}}
                 itemRender={itemRenderMulti}
                 popupClassName="xconsole-rcsearch-multi-pop"
                 visible={visible}

@@ -11,6 +11,9 @@ const SearchWarp = styled.div`
     border-top: 1px solid rgba(192, 198,204, 1);
     display: flex;
     border-right: none;
+    &.focus{
+      border: 1px solid #0064c8;
+    }
     .condition{
         height: 26px;
         display: inline-block;
@@ -37,6 +40,10 @@ const SearchWarp = styled.div`
       position: absolute;
       top: 0;
       left: 0;
+      min-width: auto;
+      .next-select-inner{
+        min-width: auto;
+      }
     }
     .forms{
       flex: 1;
@@ -49,6 +56,9 @@ const SearchWarp = styled.div`
       }
       &.multi{
         width: 100%;
+        /* .next-select-values .next-tag{
+          display: none;
+        } */
       }
       
       .next-input{

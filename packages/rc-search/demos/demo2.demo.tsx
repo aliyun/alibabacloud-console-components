@@ -99,7 +99,7 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
         tags={tagList}
       />
       <br />
-      <SearchTagList tagList={tagList} onChange={onTagChangeByTagList} />
+      <SearchTagList style={{marginTop: '12px'}} tagList={tagList} onChange={onTagChangeByTagList} />
       
     </div>
     

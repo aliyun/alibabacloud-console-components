@@ -53,7 +53,7 @@ const getTagByFileds = (fileds: any, options: any) => {
   let rtTags = new Array<any>();
   Object.keys(fileds).forEach((key: string) => {
     let resItem = options.find((x:any) => x.dataIndex === key)
-    if (resItem) {
+    if (resItem && fileds[key]) {
       let tagItem = {
         label: resItem.label,
         dataIndex: key,
