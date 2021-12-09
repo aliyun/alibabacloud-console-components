@@ -408,6 +408,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       }
       setVisible(false);
       setDefaultVisible(false);
+      setInputDataSource([]);
     } else {
       if (value === '') {
         setInputDataSource([]);
@@ -417,7 +418,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       }
       setInputValue(value)
       
-      if (onSuggest) {
+      if (value !== '' && onSuggest) {
           // todo：try catch， 要补上
           let list = await onSuggest(value, dataIndex);
           // console.log('res suggest', list);
@@ -472,7 +473,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           {curType === 'item' && 
             (
               <div className={classNames('condition-item')}>
-                {curOptionItem.label}<Icon type="caret-down" size="xxs" />
+                <span className={classNames('condition-item-txt')}>{curOptionItem.label}</span>
+                <Icon type="caret-down" size="xxs" />
                 <Select
                   className={classNames('condition-select')}
                   hasBorder={false}
@@ -528,7 +530,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 hasClear
                 hasBorder={false}
                 itemRender={itemRender}
-                visible={visible}
+                visible={visible && inputDataSource.length > 0}
                 dataSource={inputDataSource}
                 autoFocus
                 value={inputValue}
@@ -574,17 +576,22 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 onBlur={() => {setVisible(false);setFocusClass('')}}
                 itemRender={itemRenderMulti}
                 popupClassName="xconsole-rcsearch-multi-pop"
-                visible={visible}
+                visible={true || visible}
                 dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {onMultipleChange(value)}}
-                popupStyle={{minWidth: 'auto', padding: '10px 15px'}}
+                popupStyle={{minWidth: 'auto', padding: '10px 16px 10px 16px'}}
               />
             )
           }
           {clearLevel1Show && 
             (
               <div className="clear-level1" onClick={onClearLevel1}>
-                <Icon type="close" size="small" />
+                {/* <Icon type="remove" size="xxs" /> */}
+                <span className="next-input-control">
+                  <span className="next-input-hint-wrap">
+                    <i role="button" aria-label="清除" className="next-icon next-icon-delete-filling next-medium next-input-hint next-input-clear-icon"></i>
+                    </span>
+                  </span>
               </div>
             )
           }

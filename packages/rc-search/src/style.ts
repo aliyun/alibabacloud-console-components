@@ -15,23 +15,25 @@ const SearchWarp = styled.div`
       border: 1px solid #0064c8;
     }
     .condition{
-        height: 26px;
-        display: inline-block;
-        margin-top: 2px;
+      height: 26px;
+      display: inline-block;
+      margin-top: 2px;
     }
     .condition-item{
-        height: 26px;
-        display: inline-block;
-        line-height: 26px;
-        background: #EFF3F8;
-        border-radius: 2px;
-        background-color: #EFF3F8;
-        padding: 0 8px;
-        margin: 0 2px;
-        font-size: 12px;
-        color: #333;
-        position: relative;
-        
+      height: 26px;
+      display: inline-block;
+      line-height: 26px;
+      background: #EFF3F8;
+      border-radius: 2px;
+      background-color: #EFF3F8;
+      padding: 0 8px;
+      margin: 0 2px;
+      font-size: 12px;
+      color: #333;
+      position: relative;
+      &-txt{
+        padding-right: 4px;
+      }
     }
     .condition-select{
       width: 100%;
@@ -53,7 +55,7 @@ const SearchWarp = styled.div`
         top: 1px;
         right: 1px;
         height: 28px;
-        width: 28px;
+        width: 30px;
         background-color: #fff;
         z-index: 99;
         color: #333;
@@ -61,11 +63,13 @@ const SearchWarp = styled.div`
         line-height: 28px;
         font-size: 12px;
         cursor: pointer;
+        padding: 6px 0 0 6px;
       }
     }
     .main-input{
       height: auto;
       border: none;
+      box-shadow: none;
       &.single{
         flex: 1;
       }
