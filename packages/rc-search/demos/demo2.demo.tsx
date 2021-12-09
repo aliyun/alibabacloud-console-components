@@ -91,6 +91,8 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
       <Search
         mode="single-multi"
         defaultDataIndex="name"
+        regionId="demo"
+        resourceType="demo"
         options={options}
         onChange={onChange}
         onSuggest={onSuggest}
@@ -99,7 +101,7 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
         tags={tagList}
       />
       <br />
-      <SearchTagList style={{marginTop: '12px'}} tagList={tagList} onChange={onTagChangeByTagList} />
+      <SearchTagList regionId="demo" resourceType="demo" style={{marginTop: '12px'}} tagList={tagList} onChange={onTagChangeByTagList} />
       
     </div>
     

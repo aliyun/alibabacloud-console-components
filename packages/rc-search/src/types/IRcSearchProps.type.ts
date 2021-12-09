@@ -43,6 +43,14 @@ export interface IRcSearchProps {
    */
   defaultPlaceholder?: string;
   /**
+   * regionId
+   */
+  regionId: string;
+  /**
+   * resourceType
+   */
+  resourceType?: string;
+  /**
    * 点击搜索按钮， 触发搜索回调。
    */
   onSearch?: (allFileds: any) => void;

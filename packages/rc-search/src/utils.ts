@@ -1,4 +1,6 @@
 import { uniqWith, isEqual } from 'lodash';
+import createLogger, { LogFn } from '@alicloud/console-logger-sls';
+
 let historyTagKey = `xconsole-rcsearch-historytag-${location.origin}${location.pathname}`;
 
 // 从localStorage中获取tagList
@@ -103,6 +105,32 @@ const getSelectOptionAdatp = (title: string, list:any) => {
   ]
 }
 
+const getEnv = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return 'local';
+  }
+  // @ts-ignore
+  return window?.ALIYUN_CONSOLE_CONFIG?.fEnv || 'prod'
+}
+
+let logger: LogFn | null = null;
+
+const getLogger = () => {
+
+  if (!logger) {
+    logger = createLogger({
+      project: 'stonehenge-console',
+      endpoint: 'cn-hangzhou.log.aliyuncs.com',
+      logstore: `com-usage-origin`
+    });
+  }
+  return logger;
+};
+
+const isValidKey = (key: string | number | symbol , object: object): key is keyof typeof object => {
+  return key in object;
+}
+
 export {
   getHistoryTag,
   setHistoryTag,
@@ -110,4 +138,7 @@ export {
   getTagByFileds,
   checkNoIndexListFormat,
   getSelectOptionAdatp,
+  getEnv,
+  getLogger,
+  isValidKey
 }

@@ -124,6 +124,8 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
       <Search
         mode="multi-multi"
         options={options}
+        regionId="demo"
+        resourceType="demo"
         onChange={onChange}
         onSuggest={onSuggest}
         defaultPlaceholder="请搜索"
@@ -133,7 +135,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
         tags={tagList}
       />
       <br />
-      <SearchTagList style={{marginTop: '12px'}} tagList={tagList} onChange={onTagChange} />
+      <SearchTagList regionId="demo" resourceType="demo" style={{marginTop: '12px'}} tagList={tagList} onChange={onTagChange} />
       <br /><br /><br />
     </div>
     

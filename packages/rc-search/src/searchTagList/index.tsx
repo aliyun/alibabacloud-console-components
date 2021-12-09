@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Tag } from '@alicloud/console-components'
 import { IRcSearchTagListProps } from '../types/IRcSearchTagListProps.type'
 import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
+import LoggerProvider from '../provider/LoggerProvider';
 import { TagListWrap } from '../style'
 import {baseTagListClassName} from '../constants'
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
@@ -34,6 +35,10 @@ const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
 
   return (
     <TagListWrap className={classNames(baseTagListClassName, className)} style={style}>
+      <LoggerProvider
+        regionId={props.regionId}
+        resourceType={props.resourceType || ''}
+        componentName="RcSearch" />
       <TagGroup>
       {tagList && tagList.length > 0 && tagList.map((tagItem:IRcSearchTagItemProps) => {
         return (

@@ -9,14 +9,22 @@ export interface IRcSearchTagListProps {
    * 类名
    */
   className?: string;
-   /**
-    * 样式
-    */
+  /**
+   * 样式
+   */
   style?: any;
   /**
    * tags 传入的taglist, 用于， 同步
    */
   tagList: IRcSearchTagItemProps[];
+  /**
+   * regionId
+   */
+  regionId: string;
+  /**
+   * resourceType
+   */
+  resourceType?: string;
   /**
    * 当删减tag时， 返回新的taglist， 可直接赋值给rc-search组件
    */

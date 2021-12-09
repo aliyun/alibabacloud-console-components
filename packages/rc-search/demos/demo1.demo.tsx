@@ -82,6 +82,8 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
       搜索类型：(async 调用)<br />
       <Search
         mode="single-single"
+        regionId="demo"
+        resourceType="demo"
         options={options}
         onSuggest={onSuggestAsync}
         onChange={onChange1}
@@ -91,6 +93,8 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
       搜索类型：（promise调用）<br />
       <Search
         mode="single-single"
+        regionId="demo"
+        resourceType="demo"
         options={options}
         onSuggest={onSuggestPromise}
         onChange={onChange1}
@@ -100,6 +104,8 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
       单选类型：<br />
       <Search
         mode="single-single"
+        regionId="demo"
+        resourceType="demo"
         options={options2}
         onChange={onChange1}
         onSearch={onSearch}
