@@ -250,7 +250,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   function clearLevel1 () {
     // 清空类别
     let initCurType = ''
-    if (defaultDataIndex && defaultDataIndex !== '' && !defaultOptionItem) {
+    if (defaultDataIndex && defaultDataIndex !== '' && defaultOptionItem) {
         initCurType = 'default';
         let defaultItem = options.find((x:any) => x.dataIndex === defaultDataIndex)
         if (defaultItem) {
