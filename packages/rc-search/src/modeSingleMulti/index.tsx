@@ -19,7 +19,8 @@ import {
 
 import {
   SearchWarp,
-  MultiBtnWarp
+  MultiBtnWarp,
+  MenuContentWrap
 } from "../style";
 
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
@@ -109,12 +110,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const menuPropsLevel1 = {
     focusable: false,
     header: (
-      <ul className="next-menu-content">
+      <MenuContentWrap>
         {
-          defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && (<li role="option" title="历史搜索记录" className="next-menu-group-label"><div className="next-menu-item-inner">历史搜索记录{histroyList.length}</div></li>)  
+          defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && defaultInputValue === '' && (<li role="option" title="历史搜索记录" className="next-menu-group-label"><div className="next-menu-item-inner">历史搜索记录</div></li>)  
         }
         {
-          defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && (
+          defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && defaultInputValue === '' && (
             <TagGroup style={{paddingLeft: '20px'}}>
             {histroyList.map((tag:IRcSearchTagItemProps, index: number) => {
                 return tag ? (
@@ -132,7 +133,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           )  
         }
         
-      </ul>
+      </MenuContentWrap>
     ),
     footer: null,
   };
@@ -144,7 +145,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     footer: (
       <MultiBtnWarp>
         <Button size="small" className={classNames("pri-btn")} disabled={multipleValues.length === 0} type="primary" onClick={() => {onPrimaryMultiple(curOptionItem.dataIndex)}}>确定</Button>
-        <Button size="small" className={classNames("cancel-btn")} type="normal" onClick={() => {setMultipleValues([]);setVisible(false);}}>取消</Button>
+        <Button size="small" className={classNames("cancel-btn")} type="normal" onClick={() => {setVisible(false);setMultipleValues([]);}}>取消</Button>
       </MultiBtnWarp>
     ),
   };
@@ -377,7 +378,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       dataIndex = curOptionItem.dataIndex;
       value = inputValue;
     }
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && value !== '') {
       if (curOptionItem.template === 'multiple') {
         return
       }
@@ -480,6 +481,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                   hasBorder={false}
                   dataSource={level1DataSource}
                   onChange={onLevel1Change}
+                  autoWidth={false}
                 />
               </div>
             )
@@ -493,10 +495,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 placeholder={`默认按${defaultOptionItem.label}搜索`}
                 hasClear
                 hasBorder={false}
-                // menuProps={menuPropsLevel1}
+                menuProps={menuPropsLevel1}
                 dataSource={level1DataSource}
                 itemRender={itemRender}
                 onChange={onLevel1Change}
+                popupStyle={histroyList && histroyList.length > 0 ? {} : {width: 'auto'}}
                 visible={defaultVisible}
                 onFocus={() => {setDefaultVisible(true);setFocusClass('focus')}}
                 onBlur={() => {setDefaultVisible(false);setFocusClass('')}}
@@ -511,7 +514,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 placeholder={defaultPlaceholder || `请搜索`}
                 hasClear
                 hasBorder={false}
-                // menuProps={menuPropsLevel1}
+                menuProps={menuPropsLevel1}
+                popupStyle={histroyList && histroyList.length > 0 ? {} : {width: 'auto'}}
                 itemRender={itemRender}
                 dataSource={level1DataSource}
                 onChange={onLevel1Change}
@@ -576,7 +580,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 onBlur={() => {setVisible(false);setFocusClass('')}}
                 itemRender={itemRenderMulti}
                 popupClassName="xconsole-rcsearch-multi-pop"
-                visible={true || visible}
+                visible={visible}
                 dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {onMultipleChange(value)}}
                 popupStyle={{minWidth: 'auto', padding: '10px 16px 10px 16px'}}

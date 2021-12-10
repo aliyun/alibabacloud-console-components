@@ -9,8 +9,10 @@ const SearchWarp = styled.div`
     border-left: 1px solid rgba(192,198,204,1);
     border-bottom: 1px solid rgba(192, 198,204, 1);
     border-top: 1px solid rgba(192, 198,204, 1);
+    border-right: 1px solid rgba(192, 198,204, 1);
     display: flex;
-    border-right: none;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
     &.focus{
       border: 1px solid #0064c8;
     }
@@ -85,6 +87,7 @@ const SearchWarp = styled.div`
       
       .next-input{
         height: auto;
+        box-shadow: none;
       }
     }
     .xdemo-input.xdemo-medium{
@@ -99,9 +102,31 @@ const SearchWarp = styled.div`
       /* height: 32px; */
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
+      border-left: none;
     }
   }
 `;
+
+const MenuContentWrap = styled.ul`
+  .next-tag-small.next-tag-closable > .next-tag-close-btn {
+    margin-left: 8px;
+    padding-right: 4px;
+    padding-top: 1px;
+  }
+  .next-tag-small.next-tag-closable > .next-tag-body {
+    max-width: calc(100% - 8px - 8px - var(--tag-size-m-padding-lr, 8px));
+  }
+  .next-tag-small.next-tag-closable > .next-tag-close-btn .next-icon:before, .next-tag-small.next-tag-closable > .next-tag-close-btn .next-icon .next-icon-remote{
+    font-size: 13px;
+  }
+  && [class*='-icon-close']:hover::before {
+    color: #181818;
+  }
+  && [class*='-icon-close']::before{
+    color: #808080;
+    content: var(--icon-content-delete-filling);
+  }
+`
 
 
 const MultiBtnWarp = styled.div`
@@ -126,6 +151,23 @@ const MultiBtnWarp = styled.div`
 `;
 
 const TagListWrap = styled.div`
+  .next-tag-medium.next-tag-closable > .next-tag-close-btn {
+    margin-left: 8px;
+    padding-right: 6px;
+  }
+  .next-tag-medium.next-tag-closable > .next-tag-body {
+    max-width: calc(100% - 8px - 8px - var(--tag-size-m-padding-lr, 8px));
+  }
+  .next-tag-medium.next-tag-closable > .next-tag-close-btn .next-icon:before, .next-tag-medium.next-tag-closable > .next-tag-close-btn .next-icon .next-icon-remote{
+    font-size: 16px;
+  }
+  && [class*='-icon-close']:hover::before  {
+    color: #181818;
+  }
+  && [class*='-icon-close']::before{
+    color: #808080;
+    content: var(--icon-content-delete-filling);
+  }
   .remove-btn{
     margin-bottom: 8px;
     line-height: 24px;
@@ -137,5 +179,6 @@ const TagListWrap = styled.div`
 export {
   SearchWarp,
   MultiBtnWarp,
-  TagListWrap
+  TagListWrap,
+  MenuContentWrap
 }
