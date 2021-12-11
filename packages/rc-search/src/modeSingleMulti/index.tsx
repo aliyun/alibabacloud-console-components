@@ -255,7 +255,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         initCurType = 'default';
         let defaultItem = options.find((x:any) => x.dataIndex === defaultDataIndex)
         if (defaultItem) {
-            console.log(defaultItem)
+            // console.log(defaultItem)
             setDefaultOptionItem(defaultItem);
         } else {
             initCurType = 'nodefault';
@@ -299,7 +299,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 第一级选择某个具体的类别
   async function onLevel1Change (value: any, actionType: any, item: any) {
-    console.log('value', value,'level1 , actionType', actionType, 'item:', item)
+    // console.log('value', value,'level1 , actionType', actionType, 'item:', item)
     setClearLevel1Show(true);
     // console.log('defaultInputValue', defaultInputValue)
     if (actionType === 'itemClick') {
@@ -395,7 +395,6 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
    * 接收一个promise
    */ 
   async function inputChange (value: any, actionType: string, dataIndex: string) {
-    console.log('actionType', actionType);
     if ((actionType === 'itemClick' || actionType === 'enter') && onChangeItem) {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = value;
