@@ -36,6 +36,9 @@ const SearchWarp = styled.div`
       &-txt{
         padding-right: 4px;
       }
+      &:hover{
+        background-color: #E0E4E8;
+      }
     }
     .condition-select{
       width: 100%;
