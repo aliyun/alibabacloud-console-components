@@ -5,6 +5,8 @@ import {
 } from '@alicloud/console-components/types/table'
 import { ISelectionRenderParams } from '../selection'
 import { Operation, ISearchProps, IPaginationProps } from '../layout/index'
+import { IRcSearchProps } from "@ali/console-components-search"
+
 
 /**
  * @public
@@ -26,7 +28,7 @@ export interface IRcTableProps {
    * 详见文档 search小节
    * @defaultValue null
    */
-  search?: ISearchProps
+  search?: IRcSearchProps
   /**
    * 批量操作选择器，详见下`selection`小节
    * @defaultValue null

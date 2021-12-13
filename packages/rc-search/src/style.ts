@@ -88,7 +88,7 @@ const SearchWarp = styled.div`
         } */
       }
       
-      .next-input{
+      .next-input, .xdemo-input{
         height: auto;
         box-shadow: none;
       }

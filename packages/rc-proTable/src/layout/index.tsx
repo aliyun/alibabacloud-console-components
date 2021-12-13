@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
 import { withProps } from 'recompose'
@@ -15,6 +15,7 @@ import ActionBar, {
 } from '../action-bar'
 import Context from './FixedBarContext'
 import Search from '../search'
+import SearchTags from '../search/tagList'
 import Selection from '../selection'
 import Pagination from '../pagination'
 import renderComponent from '../renderComponent'
@@ -182,7 +183,26 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     top: ExactTopActionBar = ActionBar,
     bottom: ExactBottomActionBar = ActionBar,
   } = getActionBarComponent(affixActionBar)
+
+  // state
+  const [searchTagList, setSearchTagList] = useState<any>([]);
+
   const extraStyle = getExpandedStyle(fixedBarExpandWidth)
+
+  function onSearchTagChange(newTags: any) {
+    // console.log(`onTagChange:`, newTags);
+    setSearchTagList(newTags);
+    if (search && search.onTagChange) {
+      search.onTagChange(newTags);
+    }
+  }
+
+  function onSearchTagChangeByTagList (newTags: any) {
+    // console.log(`onTagChange:`, newTags);
+    setSearchTagList(newTags);
+  }
+
+  
   return (
     <Context.Provider
       value={{
@@ -208,7 +228,11 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
                     operation,
                   props
                 )}
-              {renderComponent(Search, search, props)}
+              {renderComponent(Search, {
+                ...search,
+                tags: searchTagList,
+                onTagChange: onSearchTagChange
+              }, props)}
             </ActionBar.Left>
             <ActionBar.Right>
               {operation &&
@@ -220,6 +244,14 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
             </ActionBar.Right>
           </ExactTopActionBar>
         )}
+        <div>
+          {
+            searchTagList && searchTagList.length > 0 && 
+            (
+              <SearchTags {...search} style={{marginTop: '12px'}} tagList={searchTagList} onChange={onSearchTagChangeByTagList} />
+            )
+          }
+        </div>
         <div>
           <TableComponent {...restProps} />
         </div>
