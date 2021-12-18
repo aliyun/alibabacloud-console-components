@@ -168,6 +168,8 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     search,
     selection,
     pagination,
+    paginationMode = 'server',
+    hidePaginationOnSinglePage = false,
     affixActionBar,
     fixedBarZIndex,
     fixedClassName,
@@ -178,6 +180,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     TableComponent = Table,
     ...restProps
   } = props
+  console.log('restProps', restProps)
 
   const {
     top: ExactTopActionBar = ActionBar,
@@ -186,9 +189,12 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
 
   // state
   const [searchTagList, setSearchTagList] = useState<any>([]);
+  const [paginationState, setPagination] = useState<PaginationProps>(pagination);
+
 
   const extraStyle = getExpandedStyle(fixedBarExpandWidth)
 
+  // 对search的扩充
   function onSearchTagChange(newTags: any) {
     // console.log(`onTagChange:`, newTags);
     setSearchTagList(newTags);
@@ -202,6 +208,47 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     setSearchTagList(newTags);
   }
 
+  // 对page的扩充, 模式page会被代理
+  function onPaginationChange (current: number, e: {}) {
+    let newPagination = { ...paginationState };
+    newPagination.current = current;
+    setPagination(newPagination);
+    // 同步给外面
+    if (paginationState && paginationState.onChange) {
+      paginationState.onChange(current, e);
+    }
+  }
+
+  function onPaginationSizeChange (pageSize: number) {
+    let newPagination = { ...paginationState };
+    newPagination.pageSize = pageSize;
+    setPagination(newPagination);
+    // 同步给外面
+    if (paginationState && paginationState.onPageSizeChange) {
+      paginationState.onPageSizeChange(pageSize);
+    }
+  }
+
+  // table
+  let dataSource = restProps.dataSource;
+
+  if (paginationMode === 'fe' && paginationState.current && paginationState.pageSize && paginationState.total) {
+    let start = (paginationState.current - 1) * paginationState.pageSize;
+    let end = start + paginationState.pageSize;
+    if (end > paginationState.total) {
+      end = paginationState.total
+    }
+    // console.log(`start: ${start}; end : ${end}`)
+    dataSource = dataSource?.slice(start, end);
+    // console.log(`dataSource: ${JSON.stringify(dataSource)}`);
+  }
+  let showPage = true;
+  if (hidePaginationOnSinglePage 
+    && paginationState.total 
+    && paginationState.pageSize
+    && paginationState.total <= paginationState.pageSize) {
+      showPage = false;
+  }
   
   return (
     <Context.Provider
@@ -253,7 +300,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
           }
         </div>
         <div>
-          <TableComponent {...restProps} />
+          <TableComponent {...restProps} dataSource={dataSource} />
         </div>
         {(selection || pagination) && (
           <ExactBottomActionBar
@@ -265,7 +312,18 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
               {selection && <Selection render={selection} />}
             </ActionBar.Left>
             <ScActionBarRight>
-              {renderComponent(Pagination, pagination, props)}
+              {paginationMode === 'server' && showPage && renderComponent(Pagination, pagination, props)}
+              {/* {paginationMode === 'fe' && renderComponent(Pagination, pagination, props)} */}
+              {
+                paginationMode === 'fe' && showPage &&
+                (
+                  <Pagination
+                    {...paginationState}
+                    onChange={onPaginationChange}
+                    onPageSizeChange={onPaginationSizeChange}
+                  />
+                )
+              }
             </ScActionBarRight>
           </ExactBottomActionBar>
         )}

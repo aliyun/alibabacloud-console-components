@@ -163,6 +163,7 @@ const App: React.FC<{
               total: 40,
               pageSize: 10,
             }}
+            paginationMode="fe"
             selection={({ selectedRowKeys }: { selectedRowKeys: any[] }) => {
               return (
                 <Badge count={selectedRowKeys.length}>
