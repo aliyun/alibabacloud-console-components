@@ -1,5 +1,5 @@
 /**
- * @title demo2
+ * @title 场景二 +  结合SearchTagList使用
  * @describe 场景二：single-multi：单维度多类别单选
  * @canFullScreen
  */
@@ -82,7 +82,7 @@ const Demo2: React.FC<IRcSearchProps> = (props) => {
 
   async function onSearch (allFileds:any) {
     console.log(`onSearch:`, 'allFileds', allFileds)
-    alert(`提交搜索： ${JSON.stringify(allFileds)}`)
+    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
 

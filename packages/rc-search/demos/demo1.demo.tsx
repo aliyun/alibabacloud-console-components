@@ -1,5 +1,5 @@
 /**
- * @title demo1
+ * @title 场景一
  * @describe 场景一：single-single：单维度单类别单选.
  */
 
@@ -74,7 +74,7 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
 
   async function onSearch (allFileds:any) {
     console.log(`onSearch:`, 'allFileds', allFileds)
-    alert(`提交搜索： ${JSON.stringify(allFileds)}`)
+    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
   return (

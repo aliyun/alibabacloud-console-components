@@ -1,46 +1,193 @@
 # @alicloud/console-components-search
 
-这是一个业务组件示例。它使用 [breezr-doc](https://github.com/aliyun/alibabacloud-console-toolkit/tree/preset-demos/docs-sdk/docs-provider) 来开发文档和 demo。
+基础搜索组件： 当前控制台的基础搜索主要针对列表页的搜索场景，此次基础搜索组件主要通过一个简约通用的框架满足控制台针对列表页不同场景下的搜索需求
+按照使用场景分为三种使用场景
+- 场景一：单维度单类别单选 （eg：该功能模块下只支持“实例名称”这唯一类别的搜索）；
+- 场景二：单维度多类别单选（eg：该功能模块下只支持“实例名称”这唯一类别的搜索网络类型包括多个子类别）；
+- 场景三：多维度多类别（eg：该功能模块下支持“网络类型”这一类别和其他同等类别的交集搜索）；
 
-基于此仓库开始组件开发：克隆本仓库，然后搜索代码`@alicloud/console-components-search`，替换成你自己的组件包名。
+### SearchTagList
+场景二、三需结合SearchTagList使用， SearchTagList用与展示Search已选的筛选条件（以tag的形式），分成两个组件可以更灵活的定位SearchTagList的位置（比如表格场景）
 
-业务组件维护工作流中，重要的 npm script：
+## install 
 
-- `npm run dev` 启动本地开发服务器，开发本地的文档和 demo
-- `npm run doc:build` 构建文档和 demo
-- `npm run doc:serve` 将上一步构件好的文档资源，使用本地 http 服务器部署。我们会生成一个【物料预览平台】的链接，让物料预览平台加载您本地部署的文档资源。您还可以将文档资源部署到自己的 cdn，然后将【物料预览平台的链接】中的 servePath 修改为自己的 cdn 地址，得到你自己的文档预览/分享链接
-- `OSS_K=<<OSS账号>> OSS_S=<<OSS密码>> npm run upload:pre` 将构建好的文档和 demo 上传到 OSS（预发），请联系 @萧雨 申请 OSS 账号和密码。资源上传成功以后会返回一个【物料预览平台】的链接，比如 [链接示例](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-fe-test-rc-search-doc&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2Fconsole-fe-test-rc-search-doc%2F-pre%2F&entryKey=README)，你可以将这个链接分享给物料的评阅者，从而评阅者能立刻看到你开发的文档和 demo
-- `OSS_K=<<OSS账号>> OSS_S=<<OSS密码>> npm run upload` 开发完成以后，将构建好的文档和 demo 上传到 OSS（正式）。上传成功以后，你可以在任意站点，通过文档加载器`@alicloud/console-toolkit-docs-consumer`来加载文档和 demo。
-  - OSS 上传只是部署方式**之一**。您可以将构建好的文档资源部署到任意 cdn 或 http 服务器。参考上面对`npm run doc:serve`的说明。
-- `npm run prepublishOnly` 执行完整的【组件构建流程】，包括 babel 转译成 js、生成 ts 声明文件、webpack 构建生成 umd bundle、文档资源构建。
-  - 除了文档构建以外，其他的【组件构建流程】可以替换成你自己喜欢的工具，比如使用 tsc 来编译 Typescript、使用原生 webpack 来打包。
+```bash
+tnpm i @alicloud/xconsole-components-search --save-dev
+```
 
-## 将本地开发的 demo 嵌入到文档
+## Usage
 
-breezr-docs 还是 demo 的开发、构建工具。您可以在文档中嵌入 demo。
+```js
+import { Search, IRcSearchProps } from "@alicloud/console-components-search";
+let options = [
+  {
+    label: '实例名称',
+    dataIndex: 'name',
+    template: 'input',
+    templateProps: {
+      placeholder: '默认按实例名称搜索',
+      dataSource: []
+    }
+  }
+]
 
-您可以在本地开发的时候，复制对应 demo 页面的 url，在 markdown 文档中插入`[$XView](demo url)`，它就会自动被渲染成对应的 demo。
+let options2 = [
+  {
+    label: '网络类型',
+    dataIndex: 'type',
+    template: 'select',
+    templateProps: {
+      placeholder: '请选择网络类型',
+      dataSource: [
+        {label: 'A', value: 'a'},
+        {label: 'B', value: 'b'},
+        {label: 'C', value: 'c'},
+        {label: 'D', value: 'd'},
+      ]
+    }
+  }
+]
+async function onSuggestAsync (value: string, dataIndex: string) {
+  if (!value) {
+    return [];
+  }
+  return [
+    // {label: value, value: `${dataIndex}-${value}`}
+    `${value}-1`,
+    `${value}-2`,
+    `${value}-3`,
+    `${value}-4`,
+    `${value}-5`,
+  ]
+}
+function onSuggestPromise (value: string, dataIndex: string) {
+  let rtList = [];
+  if (!value) {
+    rtList = [];
+  }
+  rtList = [
+    // {label: value, value: `${dataIndex}-${value}`}
+    `${value}-1`,
+    `${value}-2`,
+    `${value}-3`,
+    `${value}-4`,
+    `${value}-5`,
+  ]
+  return Promise.resolve(rtList)
+}
+
+async function onChange1 (changedFileds:any, allFileds:any) {
+  console.log(`changedFileds:`,  changedFileds, 'allFileds', allFileds)
+}
+
+async function onSearch (allFileds:any) {
+  console.log(`onSearch:`, 'allFileds', allFileds)
+  alert(`提交搜索： ${JSON.stringify(allFileds)}`)
+}
+<div>
+  搜索类型：(async 调用)<br />
+  <Search
+    mode="single-single"
+    regionId="demo"
+    resourceType="demo"
+    options={options}
+    onSuggest={onSuggestAsync}
+    onChange={onChange1}
+    onSearch={onSearch} 
+  />
+  <br /><br /><br /> 搜索类型：（promise调用）<br />
+  <Search
+    mode="single-single"
+    regionId="demo"
+    resourceType="demo"
+    options={options}
+    onSuggest={onSuggestPromise}
+    onChange={onChange1}
+    onSearch={onSearch} 
+  />
+  <br /><br /><br /> 单选类型：<br />
+  <Search
+    mode="single-single"
+    regionId="demo"
+    resourceType="demo"
+    options={options2}
+    onChange={onChange1}
+    onSearch={onSearch}
+  />
+  <br /> 单维度单类别,暂不支持多选
+</div>
+
+```
+
+## 使用场景
+
+### 场景一：单维度单类别单选 （eg：该功能模块下只支持“实例名称”这唯一类别的搜索）；
+
+1、用户点击输入框直接输入要搜索的内容；<br>
+2、场景一只提供‘input’类型和‘select’类型；<br>
+3、模糊搜索的回调函数支持async 和 promise 调用；<br>
+
+[$XView](http://localhost:3333/?entryKey=demo1&consoleOSId=console-fe-test-rc-search-doc)
+
+> 场景一的已选值在基础搜索组件上展示， 无需引用“searchTagList”组件
+<br>
+
+### 场景二：单维度多类别单选（eg：该功能模块下只支持“实例名称”这唯一类别的搜索网络类型包括多个子类别）；
+
+1、用户点击输入框激活下拉类别列表<br>
+2、当用户直接输入内容的时候，列表消失<br>
+3、用户点击类别后，在搜索框内生成类别Tag<br>
+4、如果该类别有子类别/推荐项，顺次自动下拉展开<br>
+5、当用户完成该类别搜索后，搜索框默认保留该类别Tag<br>
+6、用户点击类别后，在搜索框内生成类别Tag<br>
+7、如果该类别有子类别/推荐项，顺次自动下拉展开<br>
+8、当用户完成该类别搜索后，搜索框默认保留该类别Tag<br>
 
 [$XView](http://localhost:3333/?entryKey=demo2&consoleOSId=console-fe-test-rc-search-doc)
 
-> **url 的 origin 部分不会影响正确性**。加载 demo 时，只会根据 url query 的`entryKey`和`consoleOSId`来决定 demo 加载的方式。
+> 场景二：单维度单类别单选，同一类别下，用户切换子类别内容筛选条件区域的Tag直接被替换。当内容为空时点击输入框里面的叉， 可清除当前类别，回到初始状态。场景三的已选值在基础搜索组件外展示， 需引用“searchTagList”组件
 
-在以下示例中，demo 链接是从【物料预览平台】拷贝的，这样做的好处是，用户[通过 github/gitlab 查看这个 markdown 文件](http://gitlab.alibaba-inc.com/sirui.csr/breezr-doc-demo)的时候，用户可以点击以下链接，跳转到【物料预览平台】的对应 demo。除了有这个好处以外，这个例子和上一个例子完全等价（因为`entryKey`和`consoleOSId`是相同的）。
+<br>
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-fe-test-rc-search-doc&servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2Fconsole-fe-test-rc-search-doc%2F-pre%2F&entryKey=demo2)
+### 场景三：多维度多类别（eg：该功能模块下支持“网络类型”这一类别和其他同等类别的交集搜索）；
 
-## 从 Typescript 源码提取接口信息并渲染到文档
+1、多维度单类别单选，同一类别下，用户切换子类别内容<br>
+2、筛选条件区域的Tag直接被替换；用户选择不同类别会<br>
+3、生成新的筛选Tag出现在筛选区<br>
 
-breezr-docs 支持从 Typescript 源码中提取接口信息，并输出到文档。
-因此你可以使用 Typescript 接口来定义 Props（或者其他**契约**），从而能便捷地将**契约信息**通过文档透出。
-让源代码和文档共用同一份 Typescript 接口定义，可以保证文档的时效性，降低文档维护成本。
+[$XView](http://localhost:3333/?entryKey=demo3&consoleOSId=console-fe-test-rc-search-doc)
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-fe-test-rc-search-doc&entryKey=types%2FButtonProps)
+> 场景三的已选值在基础搜索组件外展示， 需引用“searchTagList”组件
 
-## 嵌入 markdown 片段
+<br>
 
-[$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-fe-test-rc-search-doc&entryKey=docs%2Ftest)
+### 无默认分类, 默认多类别搜索；
 
-## 更多示例
+1、当开发者没有指定默认类别且用户没有选择类别的时候；<br>
+2、模糊搜索的回调函数将使用onSuggestNoDataIndex，返回<br>
+3、开发者可返回多组类别的模糊搜索结果
+[$XView](http://localhost:3333/?entryKey=demo4&consoleOSId=console-fe-test-rc-search-doc)
 
-更多示例用法可以参考 [我们开发时的用例](https://github.com/aliyun/alibabacloud-console-toolkit/blob/preset-demos/docs-sdk/examples/docs-provider/breezr.config.js)。
+
+## API
+
+## rc-search
+
+基础搜索组件的参数
+[$XView](http://localhost:3333/?entryKey=types%2FIRcSearchProps&consoleOSId=console-fe-test-rc-search-doc)
+
+## options
+
+配置组件类别的options
+[$XView](http://localhost:3333/?entryKey=types%2FIRcSearchOptions&consoleOSId=console-fe-test-rc-search-doc)
+
+## tags
+
+场景二、三， 需要与SearchTagList共同使用时的参数
+[$XView](http://localhost:3333/?entryKey=types%2FIRcSearchTagItemProps&consoleOSId=console-fe-test-rc-search-doc)
+
+## SearchTagList
+
+场景二、三， 需要与Search共同使用时的参数
+[$XView](http://localhost:3333/?entryKey=types%2FIRcSearchTagListProps&consoleOSId=console-fe-test-rc-search-doc)
+

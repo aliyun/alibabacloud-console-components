@@ -1,5 +1,5 @@
 /**
- * @title demo4
+ * @title 场景三 + 无默认类别
  * @describe 场景三：multi-multi：多维度多类别单选
  * @canFullScreen
  */
@@ -115,7 +115,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   async function onSearch (allFileds:any) {
     console.log(`onSearch:`, 'allFileds', allFileds)
-    alert(`提交搜索： ${JSON.stringify(allFileds)}`)
+    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
   return (
