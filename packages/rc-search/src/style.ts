@@ -176,6 +176,7 @@ const TagListWrap = styled.div`
     line-height: 24px;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
   }
 `
 

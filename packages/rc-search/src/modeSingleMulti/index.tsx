@@ -171,7 +171,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     }
     // console.log('item',item, 'isChecked', isChecked)
     return (
-      <label className={classNames('next-checkbox-wrapper', 'multi-lable', (isChecked ? 'checked' : ''))}>
+      <label className={classNames('next-checkbox-wrapper', 'multi-lable', (isChecked ? 'checked' : ''))} style={{paddingLeft: '8px'}}>
         <span className="next-checkbox">
           <span className="next-checkbox-inner">
             <i className="next-icon next-icon-select next-xs next-checkbox-select-icon"></i>
@@ -582,7 +582,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
                 visible={visible}
                 dataSource={getSelectOptionAdatp(curOptionItem.label, curOptionItem.templateProps.dataSource)}
                 onChange={(value) => {onMultipleChange(value)}}
-                popupStyle={{minWidth: 'auto', padding: '10px 16px 10px 16px'}}
+                popupStyle={{minWidth: 'auto', padding: '10px 8px 10px 8px'}}
               />
             )
           }

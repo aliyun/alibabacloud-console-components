@@ -31,6 +31,7 @@ export type TableOperaion =
 
 /**
  * @public
+ * secondary, 准备废弃
  */
 export type Operation =
   | TableOperaion
@@ -38,6 +39,8 @@ export type Operation =
       primary?: TableOperaion
       secondary?: TableOperaion
     }
+
+
 
 /**
  * @public
