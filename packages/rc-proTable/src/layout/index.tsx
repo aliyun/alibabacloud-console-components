@@ -18,6 +18,7 @@ import Search from '../search'
 import SearchTags from '../search/tagList'
 import Selection from '../selection'
 import Pagination from '../pagination'
+import SecondaryItem from '../secondaryItem'
 import renderComponent from '../renderComponent'
 import type { IRcTableProps } from '../types/IRcTableProps.type'
 export type { IRcTableProps }
@@ -39,6 +40,7 @@ export type Operation =
       primary?: TableOperaion
       secondary?: TableOperaion
     }
+
 
 
 
@@ -168,6 +170,7 @@ const getExpandedStyle = (
 const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
   const {
     operation,
+    secondaryList,
     search,
     selection,
     pagination,
@@ -285,12 +288,22 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
               }, props)}
             </ActionBar.Left>
             <ActionBar.Right>
-              {operation &&
+              {operation && !secondaryList && 
                 renderComponent(
                   null,
                   (operation as { secondary: TableOperaion }).secondary,
                   props
                 )}
+              {secondaryList && 
+                <div>
+                  {secondaryList.map(secItemProps => {
+                    return (
+                      <SecondaryItem {...secItemProps} />
+                    )
+                  })}
+                  
+                </div>
+              }
             </ActionBar.Right>
           </ExactTopActionBar>
         )}

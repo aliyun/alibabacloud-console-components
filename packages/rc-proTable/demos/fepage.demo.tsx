@@ -1,5 +1,7 @@
 /**
-* @title basic
+ * @title fepage
+ * @describe 前端控制分页
+ * @canFullScreen
 */
 
 import React  from 'react'

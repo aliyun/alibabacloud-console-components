@@ -1,5 +1,7 @@
 /**
-* @title basic
+ * @title basic
+ * @describe 基础用法
+ * @canFullScreen
 */
 
 import React  from 'react'
@@ -94,6 +96,32 @@ const secondaryOperation = () => () => (
   </>
 )
 
+const secondaryList = [
+  {
+    type: 'refresh',
+    onClick: () => {console.log('刷新')}
+  },
+  {
+    type: 'row',
+    onChange: () => {console.log('row change')}
+  },
+  {
+    type: 'custom',
+    iconType: 'smile',
+    onClick: () => {console.log('custom')}
+  },
+  {
+    type: 'customComponent',
+    component: () => {
+      return (<>
+        <Button>
+          <Icon type="cog" />
+        </Button>
+      </>)
+    }
+  }
+]
+
 const App: React.FC<{
   creatable?: boolean
 }> = (props) => {
@@ -149,6 +177,7 @@ const App: React.FC<{
               primary: primaryOperation(props),
               secondary: secondaryOperation(),
             }}
+            secondaryList={secondaryList}
             search={{
               mode:"single-multi",
               defaultDataIndex:"name",

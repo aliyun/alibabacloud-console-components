@@ -22,6 +22,13 @@ export interface IRcTableProps {
    */
   operation?: Operation
   /**
+   * 位于 Table右上角的操作区，通过 operation 来定义操作区的内容。<br />
+   * `operation`可传入一个对象，secondary配置来定义右上角的内容。<br />
+   * 有预设项<br />
+   * @defaultValue null
+   */
+  secondaryList?: any[]
+  /**
    * 搜索，组件内置`Search`组件，开发者只需要传入`SearchProps`即可。<br />
    * 也可以传入自定义Search组件来覆盖内置的Search。<br />
    * 也可以传入一个函数返回一个Search组件。<br />
