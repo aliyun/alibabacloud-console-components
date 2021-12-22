@@ -45,7 +45,7 @@
     "react-dom": "^16.x"
   },
   "dependencies": {
-    "@ali/console-components-search": "^0.0.2",
+    "@ali/console-components-search": "^0.0.3",
     "@researchgate/react-intersection-observer": "^0.7.3",
     "classnames": "^2.2.5",
     "intersection-observer": "^0.7.0",

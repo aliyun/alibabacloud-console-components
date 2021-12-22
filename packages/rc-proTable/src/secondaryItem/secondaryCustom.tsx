@@ -1,3 +1,6 @@
+/**
+ * 自定义图标的按钮
+*/
 import React from 'react'
 import { Button, Icon } from '@alicloud/console-components'
 

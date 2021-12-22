@@ -1,8 +1,10 @@
 import React from 'react'
-import { Button, Icon } from '@alicloud/console-components'
 import SecondaryCustom from './secondaryCustom'
 import SecondaryRow from './secondaryRow'
 import SecondaryRefresh from './SecondaryRefresh'
+import { Balloon } from '@alicloud/console-components'
+
+const Tooltip = Balloon.Tooltip
 
 const defaultFilterProps = {
   autoWidth: false,
@@ -12,22 +14,44 @@ const defaultFilterProps = {
  * @public
  */
 const SecondaryItem: React.FC<any> = props => {
-  
+  let tooltipText = '';
+  if (props.tooltipTxt) {
+    tooltipText = tooltipText;
+  } else if (props.type === 'row') {
+    tooltipText = '自定义列表项';
+  } else if (props.type === 'refresh') {
+    tooltipText = '刷新';
+  }
+
+  let buttonComponent = () => {
+    return (
+      <span style={props.style}>
+        {props.type === 'row' && (
+          <SecondaryRow {...props} />
+        )}
+        {props.type === 'refresh' && (
+          <SecondaryRefresh {...props} />
+        )}
+        {props.type === 'custom' && (
+          <SecondaryCustom {...props} />
+        )}
+        {props.type === 'customComponent' && (
+          props.component()
+        )}
+        </span>
+    )
+  }
+
   return (
     <>
-      {props.type === 'row' && (
-        <SecondaryRow {...props} />
+      {tooltipText !== '' && (
+        <Tooltip align="t" trigger={buttonComponent()}>
+          {tooltipText}
+        </Tooltip>
       )}
-      {props.type === 'refresh' && (
-        <SecondaryRefresh {...props} />
+      {tooltipText === '' && (
+        buttonComponent()
       )}
-      {props.type === 'custom' && (
-        <SecondaryCustom {...props} />
-      )}
-      {props.type === 'customComponent' && (
-        props.component()
-      )}
-      
     </>
   );
   

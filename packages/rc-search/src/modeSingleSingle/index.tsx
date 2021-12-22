@@ -23,6 +23,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [inputDataSource, setInputDataSource] = useState<any>([]);
   const [visible, setVisible] = useState<boolean>(false);
   const [allFileds, setAllFileds] = useState<any>({});
+  const [inputValue, setInputValue] = useState<string>('');
 
   const itemRender = (item: any, searchKey:string) => {
     let label = item.label
@@ -46,6 +47,14 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       setAllFileds(changeFileds);
       setVisible(false);
     } else {
+      setInputValue(value);
+      let changeFileds = Object.create({});
+      changeFileds[dataIndex] = value;
+      if (onChange) {
+        onChange(changeFileds, changeFileds);
+      }
+      setAllFileds(changeFileds);
+      //
       if (value === '') {
         setInputDataSource([]);
       }
@@ -91,6 +100,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
               hasBorder={false}
               dataSource={inputDataSource}
               visible={visible}
+              value={inputValue}
               onBlur={() => {setVisible(false)}}
               itemRender={itemRender}
               onChange={(value, actionType) => {inputChange(value, actionType, optionItem.dataIndex)}}

@@ -1,3 +1,6 @@
+/**
+ * 预设功能： 自定义列
+*/
 import React from 'react'
 import { Button, Icon } from '@alicloud/console-components'
 

@@ -103,6 +103,9 @@ const secondaryList = [
   },
   {
     type: 'row',
+    style: {
+      marginLeft: '10px'
+    },
     onChange: () => {console.log('row change')}
   },
   {
