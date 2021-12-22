@@ -1,5 +1,7 @@
 import React from 'react'
-import { Button, Icon } from '@alicloud/console-components'
+import { Button, Icon, Balloon } from '@alicloud/console-components'
+
+const Tooltip = Balloon.Tooltip
 
 /**
  * @public
@@ -8,9 +10,13 @@ const SecondaryRefresh: React.FC<any> = props => {
   
   return (
     <>
-      <Button onClick={props.onClick && props.onClick}>
-        <Icon type="refresh" />
-      </Button>
+      <Tooltip align="t" trigger={(
+        <Button onClick={props.onClick && props.onClick}>
+          <Icon type="refresh" />
+        </Button>
+      )}>
+        {props.tooltipTxt ? props.tooltipTxt : '刷新'}
+      </Tooltip>
     </>
   );
   

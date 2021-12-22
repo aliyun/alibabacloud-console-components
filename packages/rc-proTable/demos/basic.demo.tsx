@@ -106,6 +106,7 @@ const secondaryList = [
     style: {
       marginLeft: '10px'
     },
+    columns: columns,
     onChange: () => {console.log('row change')}
   },
   {

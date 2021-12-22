@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { Table } from '@alicloud/console-components'
 import { withProps } from 'recompose'
@@ -185,7 +185,8 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     affixBarOverlayProps,
     TableComponent = Table,
     ...restProps
-  } = props
+  } = props;
+  // console.log('props', props);
   // console.log('restProps', restProps)
 
   const {
@@ -196,6 +197,19 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
   // state
   const [searchTagList, setSearchTagList] = useState<any>([]);
   const [paginationState, setPagination] = useState<PaginationProps>(pagination);
+  const [customRowList, setCustomRowList] = useState<any>([]);
+
+  useEffect(() => {
+    let columns = [];
+    
+    // setCustomRowList
+    // if (secondaryList) {
+      console.log('restProps', restProps);
+      console.log('props', props);
+
+    // }
+  }, [])
+
 
 
   const extraStyle = getExpandedStyle(fixedBarExpandWidth)
@@ -237,6 +251,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
 
   // table
   let dataSource = restProps.dataSource;
+  // delete restProps['children']
 
   if (paginationMode === 'fe' && paginationState.current && paginationState.pageSize && paginationState.total) {
     let start = (paginationState.current - 1) * paginationState.pageSize;
