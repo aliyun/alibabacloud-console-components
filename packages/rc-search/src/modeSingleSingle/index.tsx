@@ -48,12 +48,16 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       setVisible(false);
     } else {
       setInputValue(value);
-      let changeFileds = Object.create({});
-      changeFileds[dataIndex] = value;
-      if (onChange) {
-        onChange(changeFileds, changeFileds);
+      // fuzzyDisable
+      if (!optionItem.templateProps || !optionItem.templateProps.fuzzyDisable) {
+        let changeFileds = Object.create({});
+        changeFileds[dataIndex] = value;
+        if (onChange) {
+          onChange(changeFileds, changeFileds);
+        }
+        setAllFileds(changeFileds);
       }
-      setAllFileds(changeFileds);
+      
       //
       if (value === '') {
         setInputDataSource([]);

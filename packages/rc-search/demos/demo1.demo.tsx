@@ -20,6 +20,19 @@ let options = [
   }
 ]
 
+let noFuzzyoptions = [
+  {
+    label: '实例名称',
+    dataIndex: 'name',
+    template: 'input',
+    templateProps: {
+      placeholder: '默认按实例名称搜索',
+      dataSource: [],
+      fuzzyDisable: true // 不支持模糊搜索 
+    }
+  }
+]
+
 let options2 = [
   {
     label: '网络类型',
@@ -87,7 +100,7 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
         options={options}
         onSuggest={onSuggestAsync}
         onChange={onChange1}
-        onSearch={onSearch} 
+        onSearch={onSearch}
       />
       <br /><br /><br />
       搜索类型：（promise调用）<br />
@@ -96,6 +109,17 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
         regionId="demo"
         resourceType="demo"
         options={options}
+        onSuggest={onSuggestPromise}
+        onChange={onChange1}
+        onSearch={onSearch} 
+      />
+      <br /><br /><br />
+      搜索类型：（不支持模糊搜索 fuzzyDisable: true）<br />
+      <Search
+        mode="single-single"
+        regionId="demo"
+        resourceType="demo"
+        options={noFuzzyoptions}
         onSuggest={onSuggestPromise}
         onChange={onChange1}
         onSearch={onSearch} 

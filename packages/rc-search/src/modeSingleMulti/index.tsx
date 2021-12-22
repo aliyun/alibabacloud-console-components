@@ -383,9 +383,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         return
       }
       if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
-        inputChange(value, 'enter', defaultDataIndex);
-        setDefaultVisible(false);
-        setDefaultValue('');
+        // fuzzyDisable
+        if (!curOptionItem.templateProps || !curOptionItem.templateProps.fuzzyDisable) {
+          inputChange(value, 'enter', defaultDataIndex);
+          setDefaultVisible(false);
+          setDefaultValue('');
+        }
       }
     }
   }
