@@ -65,6 +65,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     initCurType()
   }, [])
 
+  useEffect(() => {
+    console.log('tag');
+  }, [props.tags])
+
   function initCurType () {
     let initCurType = ''
     if (defaultDataIndex && defaultDataIndex !== '') {
@@ -238,7 +242,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
 
   // 某一类别确定时，修改fileds， 和tags
   function onChangeItem (changeFileds: any, allFileds:any) {
-    setDefaultVisible(false)
+    setDefaultVisible(false);
     setAllFileds(allFileds);
 
     // todo
@@ -401,7 +405,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       dataIndex = curOptionItem.dataIndex;
       value = inputValue;
     }
-    console.log('e.keyCode: ',e.keyCode)
+    // console.log('e.keyCode: ',e.keyCode)
     if (e.keyCode === 13 && value !== '') {
       if (curOptionItem.template === 'multiple') {
         return

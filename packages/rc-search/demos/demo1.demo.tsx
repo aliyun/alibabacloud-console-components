@@ -3,8 +3,8 @@
  * @describe 场景一：single-single：单维度单类别单选.
  */
 
-import React from "react";
-import { Search, IRcSearchProps } from "@alicloud/console-components-search";
+import React, {useState} from "react";
+import { Search, IRcSearchProps, SearchTagList } from "@alicloud/console-components-search";
 
 // interface IProps {}
 
@@ -52,6 +52,11 @@ let options2 = [
 
 const Demo1: React.FC<IRcSearchProps> = (props) => {
 
+  const [tagList, setTagList] = useState<any>([]);
+  const [tagList2, setTagList2] = useState<any>([]);
+  const [tagList3, setTagList3] = useState<any>([]);
+  const [tagList4, setTagList4] = useState<any>([]);
+
   async function onSuggestAsync (value: string, dataIndex: string) {
     if (!value) {
       return [];
@@ -90,6 +95,46 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
     console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
+  function onTagChange(newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList(newTags);
+  }
+
+  function onTagChangeByTagList (newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList(newTags);
+  }
+
+  function onTagChange2(newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList2(newTags);
+  }
+
+  function onTagChangeByTagList2 (newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList2(newTags);
+  }
+
+  function onTagChange3(newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList3(newTags);
+  }
+
+  function onTagChangeByTagList3 (newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList3(newTags);
+  }
+
+  function onTagChange4(newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList4(newTags);
+  }
+
+  function onTagChangeByTagList4 (newTags: any) {
+    console.log(`onTagChange:`, newTags);
+    setTagList4(newTags);
+  }
+
   return (
     <div>
       搜索类型：(async 调用)<br />
@@ -101,7 +146,10 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
         onSuggest={onSuggestAsync}
         onChange={onChange1}
         onSearch={onSearch}
+        onTagChange={onTagChange}
+        tags={tagList}
       />
+      <SearchTagList regionId="demo" resourceType="demo" style={{marginTop: '8px'}} tagList={tagList} onChange={onTagChangeByTagList} />
       <br /><br /><br />
       搜索类型：（promise调用）<br />
       <Search
@@ -111,8 +159,11 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
         options={options}
         onSuggest={onSuggestPromise}
         onChange={onChange1}
-        onSearch={onSearch} 
+        onSearch={onSearch}
+        onTagChange={onTagChange2}
+        tags={tagList2}
       />
+      <SearchTagList regionId="demo" resourceType="demo" style={{marginTop: '8px'}} tagList={tagList2} onChange={onTagChangeByTagList2} />
       <br /><br /><br />
       搜索类型：（不支持模糊搜索 fuzzyDisable: true）<br />
       <Search
@@ -122,8 +173,11 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
         options={noFuzzyoptions}
         onSuggest={onSuggestPromise}
         onChange={onChange1}
-        onSearch={onSearch} 
+        onSearch={onSearch}
+        onTagChange={onTagChange3}
+        tags={tagList3}
       />
+      <SearchTagList regionId="demo" resourceType="demo" style={{marginTop: '8px'}} tagList={tagList3} onChange={onTagChangeByTagList3} />
       <br /><br /><br />
       单选类型：<br />
       <Search
@@ -133,7 +187,10 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
         options={options2}
         onChange={onChange1}
         onSearch={onSearch}
+        onTagChange={onTagChange4}
+        tags={tagList4}
       />
+      <SearchTagList regionId="demo" resourceType="demo" style={{marginTop: '8px'}} tagList={tagList4} onChange={onTagChangeByTagList4} />
       <br />
       单维度单类别,暂不支持多选
     </div>

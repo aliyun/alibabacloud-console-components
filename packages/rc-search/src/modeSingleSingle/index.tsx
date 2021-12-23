@@ -1,20 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import classNames from 'classnames'
 // import styled from "styled-components";
 import { Button, Icon, Input, Select } from '@alicloud/console-components'
 import { IRcSearchProps } from "../types/IRcSearchProps.type";
 import { SearchWarp } from "../style";
 
-import { getSelectOptionAdatp } from '../utils'
+import { 
+  getSelectOptionAdatp,
+  getTagByFileds
+} from '../utils'
 
 const { AutoComplete } = Select
 
 const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const {
     options,
+    tags,
     onSuggest,
     onChange,
-    onSearch
+    onSearch,
+    onTagChange
   } = props;
   let optionItem = options[0];
   if (!optionItem.templateProps) {
@@ -24,6 +29,11 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [allFileds, setAllFileds] = useState<any>({});
   const [inputValue, setInputValue] = useState<string>('');
+  const [selectValue, setSelectValue] = useState<string>('');
+
+  useEffect(() => {
+    console.log('tags', tags)
+  }, [props.tags])
 
   const itemRender = (item: any, searchKey:string) => {
     let label = item.label
@@ -39,22 +49,33 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     return <span dangerouslySetInnerHTML={{ __html: label }} />
   }
 
+  function onChangeFn (changeFileds: any, allFileds: any) {
+    if (onChange) {
+      onChange(changeFileds, allFileds);
+    }
+    if (onTagChange) {
+      let newTags = getTagByFileds(allFileds, options);
+      // setTagList(newTags);
+      onTagChange(newTags)
+    }
+  }
+
   async function inputChange (value: any, actionType: string, dataIndex: string) {
-    if (actionType === 'itemClick' && onChange) {
+    if (actionType === 'itemClick' && onChangeFn) {
       let changeFileds = Object.create({});
       changeFileds[dataIndex] = value;
-      onChange(changeFileds, changeFileds);
+      onChangeFn(changeFileds, changeFileds);
       setAllFileds(changeFileds);
       setVisible(false);
-      setInputValue(value);
+      setInputValue('');
     } else {
       setInputValue(value);
       // fuzzyDisable
       if (!optionItem.templateProps || !optionItem.templateProps.fuzzyDisable) {
         let changeFileds = Object.create({});
         changeFileds[dataIndex] = value;
-        if (onChange) {
-          onChange(changeFileds, changeFileds);
+        if (onChangeFn) {
+          onChangeFn(changeFileds, changeFileds);
         }
         setAllFileds(changeFileds);
       }
@@ -82,10 +103,10 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function selectChange (value: any, dataIndex: string) {
-    if (onChange) {
+    if (onChangeFn) {
         let changeFileds = Object.create({});
         changeFileds[dataIndex] = value;
-        onChange(changeFileds, changeFileds);
+        onChangeFn(changeFileds, changeFileds);
         setAllFileds(changeFileds);
     }
   }
@@ -96,11 +117,26 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     }
   }
 
+  function onDeFaultEnter (e: any) {
+    if (e.keyCode === 13 && inputValue !== '' && onChangeFn) {
+      if (!optionItem.templateProps || !optionItem.templateProps.fuzzyDisable) {
+        const dataIndex = optionItem.dataIndex;
+        setVisible(false);
+        let changeFileds = Object.create({});
+        changeFileds[dataIndex] = inputValue;
+        onChangeFn(changeFileds, changeFileds);
+        setAllFileds(changeFileds);
+        setInputValue('');
+      }
+      
+    }
+  }
+
   return (
     <SearchWarp>
       {optionItem.template === 'input' && 
         (
-          <div className={classNames('left-wrap', 'next-input')}>
+          <div className={classNames('left-wrap', 'next-input')} onKeyUp={onDeFaultEnter}>
             <AutoComplete
               className={classNames('main-input', 'single')}
               placeholder={optionItem.templateProps.placeholder || `默认按${optionItem.label}搜索`}
@@ -126,6 +162,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
             placeholder={optionItem.templateProps.placeholder || `请选择${optionItem.label}`}
             hasClear
             hasBorder={false}
+            value={selectValue}
             dataSource={getSelectOptionAdatp(optionItem.label, optionItem.templateProps.dataSource)}
             onChange={(value) => {selectChange(value, optionItem.dataIndex)}}
             popupStyle={{minWidth: 'auto'}}
