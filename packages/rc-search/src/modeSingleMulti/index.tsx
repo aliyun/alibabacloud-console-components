@@ -66,7 +66,14 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log('tag');
+    // 针对tags
+    // console.log('tag', tags);
+    let checkAllFileds = checkAllFromTags(allFileds);
+    // console.log('checkAllFileds', checkAllFileds);
+    setAllFileds(checkAllFileds);
+    if (onChange) {
+      onChange({}, checkAllFileds);
+    }
   }, [props.tags])
 
   function initCurType () {
@@ -501,8 +508,8 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   // 提交按钮
   function onCommonSearch () {
     if (onSearch) {
-      let checkAllFileds = checkAllFromTags(allFileds);
-      onSearch(checkAllFileds);
+      // let checkAllFileds = checkAllFromTags(allFileds);
+      onSearch(allFileds);
       // todo: 只有搜索了才会被记录到，根据页面的路由为key，history
       upDateHistory();
     }

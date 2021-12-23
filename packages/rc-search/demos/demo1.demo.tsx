@@ -87,12 +87,12 @@ const Demo1: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function onChange1 (changedFileds:any, allFileds:any) {
-    console.log(`changedFileds:`,  changedFileds, 'allFileds', allFileds)
+    console.log(`changedFileds:`,  changedFileds, '可用于搜索，allFileds', allFileds)
   }
 
   async function onSearch (allFileds:any) {
     console.log(`onSearch:`, 'allFileds', allFileds)
-    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
+    console.log(`手动点击 ， 提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
   function onTagChange(newTags: any) {

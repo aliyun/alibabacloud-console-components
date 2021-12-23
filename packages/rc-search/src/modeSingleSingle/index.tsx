@@ -32,7 +32,13 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   const [selectValue, setSelectValue] = useState<string>('');
 
   useEffect(() => {
-    console.log('tags', tags)
+    // console.log('tags', tags)
+    if (Array.isArray(tags) && tags.length === 0) {
+      setAllFileds({});
+      if (onChange) {
+        onChange({}, {});
+      }
+    }
   }, [props.tags])
 
   const itemRender = (item: any, searchKey:string) => {
@@ -103,6 +109,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function selectChange (value: any, dataIndex: string) {
+    setSelectValue('')
     if (onChangeFn) {
         let changeFileds = Object.create({});
         changeFileds[dataIndex] = value;
