@@ -46,6 +46,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       onChange(changeFileds, changeFileds);
       setAllFileds(changeFileds);
       setVisible(false);
+      setInputValue(value);
     } else {
       setInputValue(value);
       // fuzzyDisable
@@ -65,14 +66,17 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       if (onSuggest) {
           let list = await onSuggest(value, dataIndex);
           // console.log('res suggest', res);
-          let newDataSource = [
-            {
-              label: optionItem.label,
-              children: list
-            }
-          ]
-          setInputDataSource(newDataSource);
-          setVisible(true)
+          // 当没有联想返回值时， 无需展示下拉
+          if (Array.isArray(list) && list.length !== 0) {
+            let newDataSource = [
+              {
+                label: optionItem.label,
+                children: list
+              }
+            ]
+            setInputDataSource(newDataSource);
+            setVisible(true)
+          }
       }
     }
   }

@@ -106,6 +106,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   async function onChange (changedFileds:any, allFileds:any) {
     console.log(`changedFileds:`,  changedFileds, 'allFileds', allFileds)
+    console.log(`筛选条件变化时 提交搜索:`, allFileds)
   }
 
   function onTagChange(newTags: any) {
@@ -114,13 +115,13 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function onSearch (allFileds:any) {
-    console.log(`onSearch:`, 'allFileds', allFileds)
-    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
+    console.log(`手动点击提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
   return (
     <div>
       <p>无默认分类, 默认多类别搜索</p>
+      <p>由于无默认分类, 所以在没设置类别时不能支持模糊搜索</p>
       <Search
         mode="multi-multi"
         options={options}

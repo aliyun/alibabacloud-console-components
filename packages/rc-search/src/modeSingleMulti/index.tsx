@@ -22,6 +22,7 @@ import {
   MultiBtnWarp,
   MenuContentWrap
 } from "../style";
+import { NONAME } from "dns";
 
 const { Group: TagGroup, Closeable: ClosableTag } = Tag;
 
@@ -116,7 +117,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
         }
         {
           defaultDataIndex && defaultDataIndex !== '' && histroyList && histroyList.length > 0 && defaultInputValue === '' && (
-            <TagGroup style={{paddingLeft: '20px'}}>
+            <TagGroup style={{paddingLeft: '20px', lineHeight: '4px'}}>
             {histroyList.map((tag:IRcSearchTagItemProps, index: number) => {
                 return tag ? (
                   <ClosableTag
@@ -203,6 +204,15 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       
     }
     onChangeItem(changeFileds, tempAllFileds)
+    cleanFocus();
+  }
+
+  function cleanFocus(){
+    // search-btn
+    let dom = document.getElementById('hiddenFocus');
+    if (dom && dom.focus) {
+      dom.focus();
+    }
   }
 
   function upDateHistory() {
@@ -263,9 +273,22 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     } else {
         initCurType = 'nodefault';
     }
-    
+
+    setCurOptionItem({});
     setCurType(initCurType);
     setClearLevel1Show(false);
+    setTimeout(() => {
+      if (document && document.querySelector) {
+        let parent = document.querySelector('.rc-search .left-wrap');
+        if (parent) {
+          let dom = parent.getElementsByTagName('input')[0];
+          if (dom && dom.focus) {
+            dom.focus();
+          }
+        }
+        
+      }
+    }, 300)
   }
 
   // 多选的确定
@@ -378,18 +401,30 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       dataIndex = curOptionItem.dataIndex;
       value = inputValue;
     }
+    console.log('e.keyCode: ',e.keyCode)
     if (e.keyCode === 13 && value !== '') {
       if (curOptionItem.template === 'multiple') {
         return
       }
-      if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
-        // fuzzyDisable
+
+      if (curOptionItem && curOptionItem.dataIndex) {
         if (!curOptionItem.templateProps || !curOptionItem.templateProps.fuzzyDisable) {
+          inputChange(value, 'enter', curOptionItem.dataIndex);
+          setDefaultVisible(false);
+          setDefaultValue('');
+        }
+      } else if (defaultDataIndex && defaultDataIndex !== '' && onSuggest) {
+        // fuzzyDisable
+        if (!defaultOptionItem.templateProps || !defaultOptionItem.templateProps.fuzzyDisable) {
           inputChange(value, 'enter', defaultDataIndex);
           setDefaultVisible(false);
           setDefaultValue('');
         }
       }
+      
+    } else if ((e.keyCode === 8 || e.keyCode === 46) && value === '') {
+      // 清除类别
+      clearLevel1();
     }
   }
 
@@ -608,7 +643,12 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
       
       <div className={classNames('right-wrap')}>
         <Button className={classNames('search-btn')} onClick={onCommonSearch}><Icon type="search" /></Button>
+        <span className={classNames('hiddenFocus-box')}>
+          <input type="checkbox" id="hiddenFocus" />
+        </span>
       </div>
+      
+      
     </SearchWarp>
   )
 }

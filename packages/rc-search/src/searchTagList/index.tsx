@@ -39,10 +39,10 @@ const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
         regionId={props.regionId}
         resourceType={props.resourceType || ''}
         componentName="RcSearch" />
-      <TagGroup>
+      <TagGroup style={{marginBottom: '4px'}}>
       {tagList && tagList.length > 0 && tagList.map((tagItem:IRcSearchTagItemProps) => {
         return (
-          <ClosableTag key={tagItem.dataIndex + tagItem.value} type="normal" size="medium" onClose={() => {onRemoveTag(tagItem); return true;}}>
+          <ClosableTag key={tagItem.dataIndex + tagItem.value} type="normal" size="medium" onClose={() => {onRemoveTag(tagItem); return true;}} style={{margin: '0 4px 4px 0'}}>
             {tagItem.label}:{tagItem.valueShow}
           </ClosableTag>
         )

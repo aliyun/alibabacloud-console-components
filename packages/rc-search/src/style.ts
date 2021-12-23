@@ -99,6 +99,7 @@ const SearchWarp = styled.div`
   }
   .right-wrap {
     width: 32px;
+    position: relative;
     /* height: 32px; */
     .search-btn{
       width: 32px;
@@ -106,6 +107,14 @@ const SearchWarp = styled.div`
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
       border-left: none;
+    }
+    .hiddenFocus-box{
+      display: block;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      position: absolute;
+      opacity: 0;
     }
   }
 `;
@@ -172,7 +181,7 @@ const TagListWrap = styled.div`
     content: var(--icon-content-delete-filling);
   }
   .remove-btn{
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     line-height: 24px;
     display: inline-block;
     vertical-align: middle;

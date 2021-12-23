@@ -52,10 +52,13 @@ export interface IRcSearchProps {
   resourceType?: string;
   /**
    * 点击搜索按钮， 触发搜索回调。
+   * 值 同onChange的allFileds， 但是仅当点击按钮才会触发
    */
   onSearch?: (allFileds: any) => void;
   /**
    * 包括onInput的回车；onSelect； 对Tag的增减。
+   * changeFileds是本次变化的
+   * allFileds是整个表单， 可用这个回调函数的参数： allFileds发起数据请求
    */
   onChange?: (changeFileds: any, allFileds: any) => void;
   /**

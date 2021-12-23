@@ -67,6 +67,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
 
   async function onChange (changedFileds:any, allFileds:any) {
     console.log(`changedFileds:`,  changedFileds, 'allFileds', allFileds)
+    console.log(`筛选条件变化时 提交搜索:`, allFileds)
   }
 
   function onTagChange(newTags: any) {
@@ -75,8 +76,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
   }
 
   async function onSearch (allFileds:any) {
-    console.log(`onSearch:`, 'allFileds', allFileds)
-    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
+    console.log(`手动点击提交搜索： ${JSON.stringify(allFileds)}`)
   }
 
   return (
