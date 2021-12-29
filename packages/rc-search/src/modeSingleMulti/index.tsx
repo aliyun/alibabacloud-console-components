@@ -363,7 +363,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
     } else if (actionType === 'change'){
 
       // 直接输入
-      
+      setDefaultValue(value)
       if (!value || value === '') {
         setLevel1DataSource(level1DataSourceTemp);
       } else {
@@ -373,7 +373,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           await setNoDefSuggest(value);
         }
       }
-      setDefaultValue(value)
+      
     }
   }
 
@@ -384,14 +384,15 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
   async function setDefSuggest(value: any) {
     if (onSuggest && defaultDataIndex && defaultDataIndex !== '') {
       let list = await onSuggest(value, defaultDataIndex);
-        let newDataSource = [
-          {
-            label: defaultOptionItem.label,
-            children: list
-          }
-        ]
-        setLevel1DataSource(newDataSource);
-        setDefaultVisible(true);
+      let newDataSource = [
+        {
+          label: defaultOptionItem.label,
+          children: list
+        }
+      ]
+      // console.log(newDataSource)
+      setDefaultVisible(true);
+      setLevel1DataSource(newDataSource);
     }
   }
 

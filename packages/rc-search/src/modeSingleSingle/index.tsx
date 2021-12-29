@@ -167,7 +167,7 @@ const ModeSingleSingle: React.FC<IRcSearchProps> = (props) => {
           <Select
             className={classNames('main-input', 'single')}
             placeholder={optionItem.templateProps.placeholder || `请选择${optionItem.label}`}
-            hasClear
+            hasClear={false}
             hasBorder={false}
             value={selectValue}
             dataSource={getSelectOptionAdatp(optionItem.label, optionItem.templateProps.dataSource)}

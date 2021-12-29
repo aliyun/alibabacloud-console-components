@@ -77,6 +77,9 @@ const SearchWarp = styled.div`
       box-shadow: none;
       &.single{
         flex: 1;
+        .next-select-arrow, .next-select-clear{
+          display: none;
+        }
       }
       &.select{
         width: 100%;
@@ -120,7 +123,7 @@ const SearchWarp = styled.div`
 `;
 
 const MenuContentWrap = styled.ul`
-  .next-tag-small.next-tag-closable > .next-tag-close-btn {
+  /* .next-tag-small.next-tag-closable > .next-tag-close-btn {
     margin-left: 8px;
     padding-right: 4px;
     padding-top: 1px;
@@ -130,7 +133,7 @@ const MenuContentWrap = styled.ul`
   }
   .next-tag-small.next-tag-closable > .next-tag-close-btn .next-icon:before, .next-tag-small.next-tag-closable > .next-tag-close-btn .next-icon .next-icon-remote{
     font-size: 13px;
-  }
+  } */
   && [class*='-icon-close']:hover::before {
     color: #181818;
   }
@@ -163,7 +166,7 @@ const MultiBtnWarp = styled.div`
 `;
 
 const TagListWrap = styled.div`
-  .next-tag-medium.next-tag-closable > .next-tag-close-btn {
+  /* .next-tag-medium.next-tag-closable > .next-tag-close-btn {
     margin-left: 8px;
     padding-right: 6px;
   }
@@ -172,7 +175,7 @@ const TagListWrap = styled.div`
   }
   .next-tag-medium.next-tag-closable > .next-tag-close-btn .next-icon:before, .next-tag-medium.next-tag-closable > .next-tag-close-btn .next-icon .next-icon-remote{
     font-size: 16px;
-  }
+  } */
   && [class*='-icon-close']:hover::before  {
     color: #181818;
   }

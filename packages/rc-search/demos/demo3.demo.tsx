@@ -7,6 +7,11 @@
 import React, {useState} from "react";
 import { Search, IRcSearchProps, SearchTagList } from "@alicloud/console-components-search";
 import { Button, Table } from '@alicloud/console-components'
+
+
+const sleep = (timeountMS: number) => new Promise((resolve) => {
+  setTimeout(resolve, timeountMS);
+});
 // interface IProps {}
 let options = [
   {
@@ -55,6 +60,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
     if (!value) {
       return [];
     }
+    // await sleep(500);
     return [
       // {label: value, value: `${dataIndex}-${value}`}
       `${value}-1`,
@@ -63,6 +69,7 @@ const Demo3: React.FC<IRcSearchProps> = (props) => {
       `${value}-4`,
       `${value}-5`,
     ]
+    
   }
 
   async function onChange (changedFileds:any, allFileds:any) {
