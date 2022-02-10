@@ -98,7 +98,7 @@ const Example: React.FC<{}> = () => {
           subTitle="March 25, 2019"
           breadcrumb={breadcrumb}
         />
-        <Page.Content menu={<CustomMenu itemCount={menuItemCount} />}>
+        <Page.Content menuMinWidth={120} menu={<CustomMenu itemCount={menuItemCount} />}>
           <div>
             <h6>Menu Item Count: </h6>
             <NumberPicker

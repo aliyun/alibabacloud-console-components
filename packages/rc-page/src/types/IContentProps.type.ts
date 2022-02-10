@@ -26,4 +26,9 @@ export interface IContentProps {
    * 实际展示的内容。
    */
   children?: React.ReactNode;
+
+  /**
+   * 侧栏的最小宽度
+   */
+  menuMinWidth?: number;
 }

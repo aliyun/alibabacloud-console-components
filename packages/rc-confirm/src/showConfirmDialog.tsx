@@ -59,7 +59,7 @@ const show = ({
 
   const confirmDialogProps: IConfirmDialogProps = {
     dialogProps: {
-      closeable: false,
+      closeable: true,
       ...dialogProps,
       visible: true,
       onOk: actualOnConfirm,

@@ -13,7 +13,7 @@ export const theme = CssVarTheme.create({
   '--console-menu-icon-arrow-color': { default: '#a8a8a8' },
   '--console-menu-active-bg': { default: '#eff3f8' },
   '--console-menu-active-text-color': { default: '#0064c8' },
-  '--console-menu-active-bar-display': { default: 'block' },
+  '--console-menu-active-bar-display': { default: 'none' },
   '--console-menu-disabled-text-color': { default: '#c1c1c1' },
   '--console-menu-disabled-bg': { default: '#f5f5f5' },
 })

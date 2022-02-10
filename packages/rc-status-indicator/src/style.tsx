@@ -16,10 +16,8 @@ const StyledWrapper = styled.span`
     }
 
     &-icon {
-      vertical-align: top;
 
       &:before {
-        vertical-align: top;
         width: auto !important;
         font-size: 8px !important;
       }

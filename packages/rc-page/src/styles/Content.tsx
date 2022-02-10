@@ -8,10 +8,14 @@ const Content = styled(Partial)`
   margin-bottom: 0;
 `
 
-export const Side = styled.div`
+export interface ISideProps {
+  minWidth?: number;
+}
+
+export const Side = styled.div<ISideProps>`
   ${flexItem({ flexShrink: 0 })};
   position: relative;
-  min-width: 180px;
+  ${({ minWidth = 180 }) => `min-width: ${minWidth}px;`}
   padding-right: 20px;
 `
 

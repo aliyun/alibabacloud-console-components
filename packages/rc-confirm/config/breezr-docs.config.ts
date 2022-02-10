@@ -17,6 +17,7 @@ module.exports = {
             usePathInDev: path.resolve(__dirname, './configedComponents.tsx'),
           },
           'styled-components',
+          '@alicloud/console-components/dist/xconsole.css'
         ],
         demoWrapperPath: path.resolve(__dirname, 'demoWrapper.tsx'),
       } as IParams,

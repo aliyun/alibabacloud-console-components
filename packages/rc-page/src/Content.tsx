@@ -15,10 +15,11 @@ const Content: React.FC<IContentProps> = ({
   adjustHeight = 'consoleBaseTopbarRoot',
   menu,
   children,
+  menuMinWidth
 }) => (
   <S.Content className={className} style={style}>
     {menu && (
-      <S.ContentSide>
+      <S.ContentSide minWidth={menuMinWidth}>
         <MenuContainer adjustHeight={adjustHeight}>{menu}</MenuContainer>
       </S.ContentSide>
     )}
