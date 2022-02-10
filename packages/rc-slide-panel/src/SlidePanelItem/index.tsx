@@ -4,7 +4,7 @@ import SlidePanelItemBase from './SlidePanelItemBase'
 import { SBodyWrapper, SPlaceHolder, SSlidePanelContentWrapper } from './style'
 import { useSlidePanelContext, ActiveIdForAll } from '../context'
 import renderHeader from './renderHeader'
-import renderFooter from './renderFooter'
+import Footer from './renderFooter'
 import type { ISlidePanelItemProps } from '../types/ISlidePanelItemProps.type'
 
 /**
@@ -95,18 +95,22 @@ const SlidePanelItem: React.FC<ISlidePanelItemProps> = ({
         >
           {children}
         </SBodyWrapper>
-        {renderFooter({
-          isActive,
-          customFooter,
-          onOk,
-          okText,
-          isProcessing,
-          processingText,
-          onCancel,
-          cancelText,
-          okProps,
-          cancelProps,
-        })}
+        <Footer
+          {
+            ...{
+              isActive,
+              customFooter,
+              onOk,
+              okText,
+              isProcessing,
+              processingText,
+              onCancel,
+              cancelText,
+              okProps,
+              cancelProps,
+            }
+          }
+        />
       </SSlidePanelContentWrapper>
     </SlidePanelItemBase>
   )

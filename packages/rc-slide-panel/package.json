@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-slide-panel",
-  "version": "2.2.11",
+  "version": "2.2.12",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "es/index.d.ts",
@@ -45,10 +45,10 @@
     "styled-components": "^4.2.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "@alicloud/console-components-intl-core": "^1.0.23"
   },
   "devDependencies": {
-    "@alicloud/console-components-page": "^1.0.14",
     "@alicloud/console-components-app-layout": "1.0.10",
     "@alicloud/console-components-console-menu": "1.0.9"
   }
