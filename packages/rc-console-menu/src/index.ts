@@ -33,10 +33,10 @@ export { ConsoleMenu }
 export * from './ItemDescriptor'
 export { Item, SubMenu, Divider, StyledComponents }
 
-export { IConsoleMenuProps } from './types/IConsoleMenuProps.type'
-export { IItemDescriptor } from './types/IItemDescriptor.type'
-export { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
-export { IRoutableMenuProps } from './types/IRoutableMenuProps.type'
+export type { IConsoleMenuProps } from './types/IConsoleMenuProps.type'
+export type { IItemDescriptor } from './types/IItemDescriptor.type'
+export type { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
+export type { IRoutableMenuProps } from './types/IRoutableMenuProps.type'
 
 export { HybridCloudLightTheme } from './theme/hybridcloud-light'
 export { HybridCloudDarkTheme } from './theme/hybridcloud-dark'

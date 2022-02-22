@@ -3,8 +3,8 @@ import * as S from './styles'
 import { IItemDescriptor } from './types/IItemDescriptor.type'
 
 // 兼容旧版export结构
-export { IItemDescriptor }
-export { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
+export type { IItemDescriptor }
+export type { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
 
 /**
  * @internal
