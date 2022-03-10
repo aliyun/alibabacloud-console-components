@@ -17,14 +17,14 @@ interface IUnsubscribeDialogProps extends DialogProps {
   dialogProps?: DialogProps;
 }
 
-// @ts-ignore
-const UnsubscribeDialog =  Dialog.withContext(({contextDialog, ...props}:IUnsubscribeDialogProps) => {
+const UnsubscribeDialog = ({...props}:IUnsubscribeDialogProps) => {
   const [ visible, setVisible ] = React.useState(!localStorage.getItem(LOCAL_STORAGE_ITEM));
   console.log(visible)
   const [ noPrompt, setNoPrompt ] = React.useState(false);
   // @ts-ignore
   return (
     <>
+      <style>{`.console-components-unsubscriber { --step-circle-item-title-size: 12px; }`}</style>
       <Dialog
         {...props}
         visible={visible}
@@ -58,24 +58,29 @@ const UnsubscribeDialog =  Dialog.withContext(({contextDialog, ...props}:IUnsubs
       </Dialog>
     </>
   )
-})
+}
+
+// @ts-ignore
+const UnsubscribeDialogWithContext = Dialog.withContext(UnsubscribeDialog) as typeof UnsubscribeDialog;
 
 const openWithDialog = () => {
   return new window.Promise<void>((resolve, reject) => {
     const div = document.createElement('div');
     document.body.appendChild(div);
+    const close = () => {
+      try {
+        setTimeout(() => {
+          resolve()
+          ReactDOM.unmountComponentAtNode(div);
+        }, 2000)
+      } catch (e) {
+        reject(e);
+      }
+    }
     ReactDOM.render(
       <UnsubscribeDialog
-        onCancel={async () => {
-          try {
-            setTimeout(async() => {
-              resolve()
-              ReactDOM.unmountComponentAtNode(div);
-            }, 2000)
-          } catch (e) {
-            reject(e);
-          }
-        }}
+        onClose={close}
+        onCancel={close}
       />, div);
   })
 }

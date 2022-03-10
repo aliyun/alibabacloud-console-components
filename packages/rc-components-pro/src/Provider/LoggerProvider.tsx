@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { getEnv, getLogger, isValidKey } from '../utils';
+import { getEnv } from '../utils/getEnv';
+import { getLogger } from '../utils/logger';
 
 export interface LoggerProviderProps {
-  regionId?: string;
-  resourceType: string;
+  regionId: string;
   componentName: string;
 };
 
@@ -14,20 +14,14 @@ const SAMPLING = getEnv() === 'local' ? 1 : 0.5;
 const LOGGER_RECORD: Record<string, boolean> = {}
 
 const LoggerProvider: React.FC<LoggerProviderProps> = (props) => {
-  const { regionId, resourceType, componentName } = props;
+  const { regionId, componentName } = props;
 
   useEffect(() => {
-    const recordKey = `${componentName}-${resourceType}`;
-    let propsArr = new Array<string>();
-    [`regionId`, `resourceType`].forEach((t:string) => {
-      if (t && isValidKey(t, props)) {
-        propsArr.push(`${t}=${props[t]}`)
-      }
-    })
-
+    const recordKey = `${componentName}`;
     const info = {
       env: getEnv(),
-      properties: propsArr.join('&'),
+      // @ts-ignore
+      properties: [`regionId`, `resourceType`].map(t => `${t}=${props[t]}`).join('&'),
       component: componentName
     };
 
@@ -36,7 +30,7 @@ const LoggerProvider: React.FC<LoggerProviderProps> = (props) => {
       LOGGER_RECORD[recordKey] = true;
     }
   
-  }, [regionId, resourceType, componentName]);
+  }, [regionId, componentName]);
 
   return null;
 }

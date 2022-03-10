@@ -1,14 +1,13 @@
 import React from "react";
-import { IRcSearchProps } from "./types/IRcSearchProps.type";
-import ModeSingleSingle from "./modeSingleSingle";
-import ModeSingleMulti from "./modeSingleMulti";
 import classNames from 'classnames'
 import styled from "styled-components";
 import {baseClassName} from './constants'
+import ComplexSearch from "./ComplexSearch/index";
 import LoggerProvider from './provider/LoggerProvider';
+import { IRcSearchProps } from "./types/IRcSearchProps.type";
 
 import './index.less';
-
+import { useWindTheme } from "./useCssVar";
 
 const SearchWrap = styled.div`
   height: 32px;
@@ -18,17 +17,16 @@ const SearchWrap = styled.div`
 `;
 
 export const Search: React.FC<IRcSearchProps> = (props) => {
-  const { className, mode, style } = props
+  const { className, simple = false, style } = props
+  const windThemeClass = useWindTheme();
   return (
     <React.Fragment>
       <LoggerProvider
         regionId={props.regionId}
         resourceType={props.resourceType || ''}
         componentName="RcSearch" />
-      <SearchWrap className={classNames(baseClassName, className)} style={style}>
-        {mode === 'single-single' && <ModeSingleSingle {...props} />}
-        {mode === 'single-multi' &&  <ModeSingleMulti {...props} />}
-        {mode === 'multi-multi' && <ModeSingleMulti {...props} />}
+      <SearchWrap className={classNames(baseClassName, className, windThemeClass)} style={style}>
+        <ComplexSearch {...props} />
       </SearchWrap>
     </React.Fragment>
   );

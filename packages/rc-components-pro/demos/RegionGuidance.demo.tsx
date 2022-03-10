@@ -69,6 +69,39 @@ window.ALIYUN_CONSOLE_CONFIG = {
         >
           <Table.Column title="实例ID"></Table.Column>
         </Table>
+
+        <div style={{margin: "20px 0px"}}/>
+
+        <RegionGuidance
+          currentRegion="cn-hangzhou"
+          type="message"
+          regionList={[{id: 'cn-shanghai', count: 29}, {id: 'cn-beijing', count: 20}]}
+        />
+
+        <div style={{margin: "20px 0px"}}/>
+
+        <RegionGuidance
+          currentRegion="cn-hangzhou"
+          type="message"
+          // regionList={[
+          //   {id: 'cn-shanghai', count: 29},
+          //   {id: 'cn-shanghai1', count: 29},
+          //   {id: 'cn-shanghai2', count: 29},
+          //   {id: 'cn-shanghai3', count: 29},
+          //   {id: 'cn-shanghai4', count: 29},
+          //   {id: 'cn-shanghai5', count: 29},
+          //   {id: 'cn-shanghai6', count: 29},
+          //   {id: 'cn-shanghai7', count: 29},
+          //   {id: 'cn-shanghai8', count: 29},
+          //   {id: 'cn-shanghai9', count: 29},
+          //   {id: 'cn-shanghai10', count: 29},
+          //   {id: 'cn-shanghai11', count: 29},
+          //   {id: 'cn-shanghai12', count: 29},
+          //   {id: 'cn-shanghai13', count: 29},
+          //   {id: 'cn-shanghai14', count: 29},
+
+          //   {id: 'cn-beijing', count: 20}, {id: 'cn-beijing', count: 20}]}
+        />
      </>
    )
  };

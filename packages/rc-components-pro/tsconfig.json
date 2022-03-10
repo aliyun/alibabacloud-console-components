@@ -10,7 +10,7 @@
     "baseUrl": ".",
     "declaration": true,
     "paths": {
-      "@alicloud/console-components-pro": ["./src"]
+      "@alicloud/console-components-pro": ["./src"],
     }
   }
 }

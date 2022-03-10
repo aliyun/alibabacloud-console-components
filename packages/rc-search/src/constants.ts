@@ -7,3 +7,7 @@ export const baseTagListClassName = `${baseClassName}-taglist`
 // export const titleChildrenClassName = `${titleClassName}-children`
 
 // export const contentClassName = `${baseClassName}-content`
+
+
+export const SEARCH_FILTER_FIELD = 'filterInputValue'
+export const SEARCH_FILTER_VALUE_FIELD = 'searchValue'

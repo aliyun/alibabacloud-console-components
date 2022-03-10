@@ -14,19 +14,24 @@ export interface IRcSearchTagListProps {
    */
   style?: any;
   /**
-   * tags 传入的taglist, 用于， 同步
+   * 筛选项
    */
-  tagList: IRcSearchTagItemProps[];
+   dataSource: IRcSearchTagItemProps[];
   /**
    * regionId
    */
-  regionId: string;
+  regionId?: string;
   /**
    * resourceType
    */
   resourceType?: string;
   /**
-   * 当删减tag时， 返回新的taglist， 可直接赋值给rc-search组件
+   * 当删减 tag 时， 返回新的筛选项
    */
-  onChange?: (newTags: any) => void;
+  onChange?: (deletedFilter: IRcSearchTagItemProps, remainFilters: IRcSearchTagItemProps[]) => void;
+
+  /**
+   * 清除山选项
+   */
+  onClear?: () => void
 }

@@ -1,39 +1,23 @@
 /**
- * @title 场景一
- * @describe 场景一：single-single：单维度单类别单选.
+ * @title 场景1
  */
 
 import React from "react";
-import { Search, IRcSearchProps } from "@alicloud/console-components-search";
-
-// interface IProps {}
-
-let options = [
+import { Search, SearchFilter } from "@alicloud/console-components-search";
+import { ConfigProvider } from "@alicloud/console-components";
+import { useState } from "react";
+ 
+ let options = [
   {
     label: '实例名称',
     dataIndex: 'name',
     template: 'input',
     templateProps: {
-      placeholder: '默认按实例名称搜索',
+      placeholder: '按实例名称搜索',
       dataSource: []
-    }
-  }
-]
-
-let noFuzzyoptions = [
-  {
-    label: '实例名称',
-    dataIndex: 'name',
-    template: 'input',
-    templateProps: {
-      placeholder: '默认按实例名称搜索',
-      dataSource: [],
-      fuzzyDisable: true // 不支持模糊搜索 
-    }
-  }
-]
-
-let options2 = [
+    },
+    groupName:"test"
+  },
   {
     label: '网络类型',
     dataIndex: 'type',
@@ -46,98 +30,118 @@ let options2 = [
         {label: 'C', value: 'c'},
         {label: 'D', value: 'd'},
       ]
-    }
+    },
+    groupName:"test"
+  },
+  {
+    label: '付费类型',
+    dataIndex: 'pay',
+    template: 'multiple',
+    templateProps: {
+      placeholder: '请选择付费类型',
+      dataSource: [
+        {label: 'A', value: 'a'},
+        {label: 'B', value: 'b'},
+        {label: 'C', value: 'c'},
+        {label: 'D', value: 'd'},
+      ]
+    },
+    groupName:"test2"
   }
 ]
 
-const Demo1: React.FC<IRcSearchProps> = (props) => {
-
-  async function onSuggestAsync (value: string, dataIndex: string) {
-    if (!value) {
-      return [];
-    }
-    return [
-      // {label: value, value: `${dataIndex}-${value}`}
-      `${value}-1`,
-      `${value}-2`,
-      `${value}-3`,
-      `${value}-4`,
-      `${value}-5`,
-    ]
+let options2 = [
+  {
+    label: '实例名称',
+    dataIndex: 'name',
+    template: 'input',
+    templateProps: {
+      placeholder: '按实例名称搜索',
+      dataSource: []
+    },
+  },
+  {
+    label: '网络类型',
+    dataIndex: 'type',
+    template: 'select',
+    templateProps: {
+      placeholder: '请选择网络类型',
+      dataSource: [
+        {label: 'A', value: 'a'},
+        {label: 'B', value: 'b'},
+        {label: 'C', value: 'c'},
+        {label: 'D', value: 'd'},
+      ]
+    },
+  },
+  {
+    label: '付费类型',
+    dataIndex: 'pay',
+    template: 'multiple',
+    templateProps: {
+      placeholder: '请选择付费类型',
+      dataSource: [
+        {label: 'A', value: 'a'},
+        {label: 'B', value: 'b'},
+        {label: 'C', value: 'c'},
+        {label: 'D', value: 'd'},
+      ]
+    },
   }
-  function onSuggestPromise (value: string, dataIndex: string) {
-    let rtList = [];
-    if (!value) {
-      rtList = [];
-    }
-    rtList = [
-      // {label: value, value: `${dataIndex}-${value}`}
-      `${value}-1`,
-      `${value}-2`,
-      `${value}-3`,
-      `${value}-4`,
-      `${value}-5`,
-    ]
-    return Promise.resolve(rtList)
-  }
+]
 
-  async function onChange1 (changedFileds:any, allFileds:any) {
-    console.log(`changedFileds:`,  changedFileds, 'allFileds', allFileds)
-  }
 
-  async function onSearch (allFileds:any) {
-    console.log(`onSearch:`, 'allFileds', allFileds)
-    console.log(`提交搜索： ${JSON.stringify(allFileds)}`)
-  }
-
-  return (
+ const Demo1: React.FC<{}> = (props) => {
+   const [filters, setFilters] = useState<any>([]);
+   console.log(filters)
+   return (
+    <ConfigProvider>
     <div>
-      搜索类型：(async 调用)<br />
       <Search
-        mode="single-single"
-        regionId="demo"
-        resourceType="demo"
-        options={options}
-        onSuggest={onSuggestAsync}
-        onChange={onChange1}
-        onSearch={onSearch}
-      />
-      <br /><br /><br />
-      搜索类型：（promise调用）<br />
-      <Search
-        mode="single-single"
-        regionId="demo"
-        resourceType="demo"
-        options={options}
-        onSuggest={onSuggestPromise}
-        onChange={onChange1}
-        onSearch={onSearch} 
-      />
-      <br /><br /><br />
-      搜索类型：（不支持模糊搜索 fuzzyDisable: true）<br />
-      <Search
-        mode="single-single"
-        regionId="demo"
-        resourceType="demo"
-        options={noFuzzyoptions}
-        onSuggest={onSuggestPromise}
-        onChange={onChange1}
-        onSearch={onSearch} 
-      />
-      <br /><br /><br />
-      单选类型：<br />
-      <Search
-        mode="single-single"
-        regionId="demo"
-        resourceType="demo"
+        defaultDataIndex="name"
         options={options2}
-        onChange={onChange1}
-        onSearch={onSearch}
+        onSearch={(value, dataIndex) => {
+          console.log(value, dataIndex)
+        }}
+        suggestions={[{label: '实例名称', children: ['222222']}, '33333333']}
       />
-      <br />
-      单维度单类别,暂不支持多选
-    </div>
-  );
-};
+      <br/><br/>
 
-export default Demo1;
+      <div>搜索条件成组</div>
+      <Search
+        defaultDataIndex="name"
+        options={options}
+        onSearch={(value, dataIndex, extra) => {
+          //@ts-ignore
+          setFilters([...filters, extra])
+        }}
+        suggestions={[{label: '实例名称', children: ['222222']}, '33333333']}
+      />
+
+      <div style={{marginTop: 8}}>
+        <SearchFilter
+          dataSource={filters}
+          onChange={(deletedFilter, remainFilters)=> {
+            setFilters(remainFilters)
+          }}
+        />
+      </div>
+
+      <div style={{marginTop: 8}}>
+        <SearchFilter
+          dataSource={[
+            {label: '实例名称', value: 'xxxxxx', dataIndex: 'name'},
+            {value: [{tagKey: 'test', tagValue: ''}], dataIndex: 'tag'}
+          ]}
+          onChange={(deletedFilter, remainFilters)=> {
+            console.log(deletedFilter, remainFilters);
+          }}
+        />
+      </div>
+    </div>
+    </ConfigProvider>
+   );
+ };
+ 
+ export default Demo1;
+ 

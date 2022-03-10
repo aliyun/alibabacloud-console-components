@@ -1,4 +1,4 @@
-import * as Cookie from 'js-cookie';
+import Cookie from 'js-cookie';
 
 const isSSR = typeof document === 'undefined';
 

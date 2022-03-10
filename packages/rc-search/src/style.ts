@@ -1,20 +1,27 @@
 import styled from "styled-components";
 
-const SearchWarp = styled.div`
+const prefix = (props: {prefix: string}) =>
+  props.prefix ? `.${props.prefix}` : '.next-'
+
+const SearchWarp = styled.div<{prefix: string}>`
   height: 100%;
   width: 100%;
   display: flex;
+  --input-clear-icon-transform: 1;
+  --input-hint-icon-color: #808080;
+  ${prefix}input-control ${prefix}input-clear-icon::before {
+    content: var(--icon-content-close, "\ea22") !important;
+  }
   .left-wrap {
     flex: 1;
-    border-left: 1px solid rgba(192,198,204,1);
-    border-bottom: 1px solid rgba(192, 198,204, 1);
-    border-top: 1px solid rgba(192, 198,204, 1);
-    border-right: 1px solid rgba(192, 198,204, 1);
+    border: 1px solid var(--btn-pure-normal-border-color, #d1d5d9);
     display: flex;
-    border-bottom-left-radius: 2px;
-    border-top-left-radius: 2px;
-    &.focus{
+    border-bottom-left-radius: var(--corner-1, 2px);
+    border-top-left-radius: var(--corner-1, 2px);
+    &.focus {
       border: 1px solid #0064c8;
+      border: 1px solid var(--input-focus-border-color,#0064c8);;
+      border-right: 1px solid rgba(192, 198,204, 1);
     }
     .condition{
       height: 26px;
@@ -25,9 +32,11 @@ const SearchWarp = styled.div`
       height: 26px;
       display: inline-block;
       line-height: 26px;
-      background: #EFF3F8;
-      border-radius: 2px;
-      background-color: #EFF3F8;
+      background-color: var(--console-rc-search-label-color, #F7F9FA);
+      :hover {
+        background-color: var(--console-rc-search-label-hover-color, #EFF3F8);
+      }
+      border-radius: var(--corner-1, 2px);
       padding: 0 8px;
       margin: 0 2px;
       font-size: 12px;
@@ -45,10 +54,10 @@ const SearchWarp = styled.div`
       height: 100%;
       opacity: 0;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: var(--console-rc-search-close-btn-top, 0);
+      left: var(--console-rc-search-close-btn-left, 0);
       min-width: auto;
-      .next-select-inner{
+      ${prefix}select-inner{
         min-width: auto;
       }
     }
@@ -88,38 +97,41 @@ const SearchWarp = styled.div`
         } */
       }
       
-      .next-input, .xdemo-input{
+      ${prefix}input, ${prefix}input{
         height: auto;
         box-shadow: none;
       }
     }
-    .xdemo-input.xdemo-medium{
+    ${prefix}input${prefix}medium{
       height: auto;
     }
   }
   .right-wrap {
     width: 32px;
-    /* height: 32px; */
-    .search-btn{
+    .search-btn {
       width: 32px;
-      /* height: 32px; */
+      padding: 0 !important;
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
+      &.focus {
+        border-color: #0064c8;
+        border-color: var(--input-focus-border-color,#0064c8);
+      }
       border-left: none;
     }
   }
 `;
 
-const MenuContentWrap = styled.ul`
-  .next-tag-small.next-tag-closable > .next-tag-close-btn {
+const MenuContentWrap = styled.ul<{prefix: string}>`
+    ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn {
     margin-left: 8px;
     padding-right: 4px;
     padding-top: 1px;
   }
-  .next-tag-small.next-tag-closable > .next-tag-body {
+  ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-body {
     max-width: calc(100% - 8px - 8px - var(--tag-size-m-padding-lr, 8px));
   }
-  .next-tag-small.next-tag-closable > .next-tag-close-btn .next-icon:before, .next-tag-small.next-tag-closable > .next-tag-close-btn .next-icon .next-icon-remote{
+  ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon:before, ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon ${prefix}icon-remote {
     font-size: 13px;
   }
   && [class*='-icon-close']:hover::before {
@@ -132,7 +144,7 @@ const MenuContentWrap = styled.ul`
 `
 
 
-const MultiBtnWarp = styled.div`
+const MultiBtnWarp = styled.div<{prefix: string}>`
   padding: "0 4px";
   text-align: "center";
   /* display: "flex"; */
@@ -148,20 +160,20 @@ const MultiBtnWarp = styled.div`
     width: auto;
     min-width: auto;
   }
-  .next-btn.next-small:not(.isOnlyIcon):not(.next-btn-text) {
+  ${prefix}btn${prefix}small:not(.isOnlyIcon):not(${prefix}btn-text) {
       min-width: auto;
   }
 `;
 
-const TagListWrap = styled.div`
-  .next-tag-medium.next-tag-closable > .next-tag-close-btn {
+const TagListWrap = styled.div<{prefix: string}>`
+  ${prefix}tag-medium${prefix}tag-closable > ${prefix}tag-close-btn {
     margin-left: 8px;
     padding-right: 6px;
   }
-  .next-tag-medium.next-tag-closable > .next-tag-body {
+  ${prefix}tag-medium${prefix}tag-closable > ${prefix}tag-body {
     max-width: calc(100% - 8px - 8px - var(--tag-size-m-padding-lr, 8px));
   }
-  .next-tag-medium.next-tag-closable > .next-tag-close-btn .next-icon:before, .next-tag-medium.next-tag-closable > .next-tag-close-btn .next-icon .next-icon-remote{
+  ${prefix}tag-medium${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon:before, ${prefix}tag-medium${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon ${prefix}icon-remote{
     font-size: 16px;
   }
   && [class*='-icon-close']:hover::before  {
@@ -169,7 +181,7 @@ const TagListWrap = styled.div`
   }
   && [class*='-icon-close']::before{
     color: #808080;
-    content: var(--icon-content-delete-filling);
+    font-size: 12px !important;
   }
   .remove-btn{
     margin-bottom: 8px;

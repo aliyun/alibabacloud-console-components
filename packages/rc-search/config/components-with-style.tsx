@@ -1,2 +1,2 @@
 export * from '@alicloud/console-components'
-import '@alicloud/console-components/dist/xconsole.css'
+import '@alicloud/console-components/dist/wind.css'

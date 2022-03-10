@@ -64,6 +64,7 @@ const show = ({
       visible: true,
       onOk: actualOnConfirm,
       onCancel: actualOnCancel,
+      onClose: actualOnCancel,
       afterClose: unmount,
     },
     messageProps: {

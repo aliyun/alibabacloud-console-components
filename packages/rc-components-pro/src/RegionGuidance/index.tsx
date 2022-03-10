@@ -1,5 +1,9 @@
 import React from 'react';
-import { Menu, Icon, Dropdown } from '@alicloud/console-components';
+import { Menu, Icon, Dropdown, Message } from '@alicloud/console-components';
+import { withRcIntl } from '@alicloud/console-components-intl-core'
+import './index.less';
+import defaultMessages from './message';
+import LoggerProvider from '../Provider/LoggerProvider';
 
 type RegionList = {
   id: string;
@@ -7,13 +11,15 @@ type RegionList = {
   count?: number;
 }[];
 
-export interface IEmptyProps {
+export interface IRegionGuidanceProps {
   currentRegion: string;
   currentRegionName?: string;
   regionList?: RegionList;
   onRegionClick?: (regionId: string) =>void
   globalSearchAction?: boolean;
   children?: React.ReactChild | React.ReactChildren;
+  type?: 'message' | 'default';
+  intl?: any;
 }
 
 const getRegionName = (regionId: string) => {
@@ -26,49 +32,37 @@ const getRegionName = (regionId: string) => {
   return region?.name || regionId;
 }
 
-const S_Anchor = {color: 'var(--color-link-1, #0064C8)', cursor: 'pointer'};
-
-const FlattenRegionList = ({regionList = [], onRegionClick}: IEmptyProps) => {
+const FlattenRegionList = ({regionList = [], onRegionClick}: IRegionGuidanceProps) => {
   const list = regionList.map((region, index) => (
     <span key={region.id}>
-      <a style={S_Anchor} onClick={(value) => {onRegionClick && onRegionClick(region.id)}}> {region.name || getRegionName(region.id)}</a>
-      <span
-        style={{
-          borderRadius: 2,
-          backgroundColor: '#EFEFEF',
-          padding: "2px 4px"
-      }}>
+      <a
+        className="xconsole-rc-region-anchor"
+        onClick={(value) => {onRegionClick && onRegionClick(region.id)}}
+      >
+          {region.name || getRegionName(region.id)}
+      </a>
+      <span className="xconsole-rc-region-count">
         {region.count || 0}
       </span>{ index !== regionList.length - 1 ? '、' : ''}
     </span>));
   return <>{list}</>
 }
 
-const DropDownRegionList = ({regionList = [], onRegionClick}: IEmptyProps) => {
-  const [iconType, setIconType] = React.useState('button_down');
+const DropDownRegionList = ({regionList = [], onRegionClick, intl}: IRegionGuidanceProps) => {
+  const [iconType, setIconType] = React.useState('caret-down');
   return (
     <Dropdown
-      trigger={<a style={S_Anchor}> 3 个<Icon type='button_down'/></a>}
+      trigger={<a className="xconsole-rc-region-anchor"> {regionList.length} {intl('unit')} <Icon type={iconType} size="xs"/></a>}
       triggerType={['click', 'hover']}
-      afterOpen={() => setIconType('button_up')}
-      afterClose={() => setIconType('button_down')}
+      beforeOpen={() => setIconType('caret-up')}
+      beforeClose={() => setIconType('caret-down')}
     >
-      <Menu onItemClick={(value) => {onRegionClick && onRegionClick(value)}}>
+      <Menu style={{maxHeight: 320, overflowY: 'scroll'}} onItemClick={(value) => {onRegionClick && onRegionClick(value)}}>
         { regionList.map(region => (
             <Menu.Item key={region.id}>
-              <span style={{width: ""}}>
+              <span>
                 {region.name || getRegionName(region.id)}
-                <span
-                  style={{
-                    marginLeft: 12,
-                    borderRadius: 2,
-                    backgroundColor: '#EFEFEF',
-                    padding: "0px 4px",
-                    float: "right",
-                    lineHeight: '18px',
-                    height: 18,
-                    marginTop: 8
-                }}>
+                <span className="xconsole-rc-region-item-count">
                   {region.count || 0}
                 </span>
               </span>
@@ -80,7 +74,7 @@ const DropDownRegionList = ({regionList = [], onRegionClick}: IEmptyProps) => {
   )
 }
 
-const RegionList = (props: IEmptyProps) => {
+const RegionList = (props: IRegionGuidanceProps) => {
   const { regionList = []} = props;
   if (regionList.length < 3) {
     return <FlattenRegionList {...props}/>;
@@ -88,22 +82,58 @@ const RegionList = (props: IEmptyProps) => {
   return <DropDownRegionList {...props}/>;
 }
 
-const EmptyContent = (props: IEmptyProps) => {
-  const { currentRegion, currentRegionName, children, regionList, globalSearchAction } = props;
-  return (<div style={{color: '#333', lineHeight: '20px'}}>
-    { children ? children : <div>当前地域 {currentRegionName || getRegionName(currentRegion)}暂时无数据</div>}
-    
-    { regionList?.length ? <div>您可以切换至以下有资源的地域<RegionList {...props}/> </div> : null}
+const RegionGuidance = (props: IRegionGuidanceProps) => {
+  const {
+    currentRegion,
+    currentRegionName,
+    children,
+    regionList,
+    globalSearchAction,
+    type,
+    intl
+  } = props;
 
-    { globalSearchAction
-      ? (<div>
-        <a type="primary" href="#">
-          <Icon type="help" style={{ verticalAlign: 'bottom' }} size={"xs"}/> 没有找到想要的实例？
-        </a>
-      </div>)
-      : null
-    }
-  </div>);
+  if (type === 'message') {
+    return (
+      <Message
+        type='notice'
+        size="medium"
+        title={(
+          <div className="xconsole-rc-region-message-content">
+            <span>{intl('nodata', {value: currentRegionName || getRegionName(currentRegion)})}{regionList?.length? intl('comma'): intl('period')}</span>
+            {regionList?.length ? <span>{intl('switch')} <RegionList {...props}/> </span> : null}
+          </div>
+        )}
+      />
+    )
+  }
+
+  return (
+    <div className="xconsole-rc-region-guidance">
+      <LoggerProvider regionId={currentRegion} componentName="RegionGuidance" />
+      { children ? children : <div>{intl('nodata', {value: currentRegionName || getRegionName(currentRegion)})}</div>}
+      
+      { regionList?.length ? <div>{intl('switch')} <RegionList {...props}/> </div> : null}
+
+      { globalSearchAction
+        ? (<div>
+          <a className="xconsole-rc-region-anchor">
+            <Icon type="help" style={{ verticalAlign: 'bottom' }} size={"xs"}/> {intl('global_search_help')}
+          </a>
+        </div>)
+        : null
+      }
+    </div>
+  );
 }
 
-export default EmptyContent;
+export const RegionGuidanceWithIntl = withRcIntl({
+  componentName: 'RegionGuidance',
+  defaultMessages,
+  warningIfNoMessageFromCtx: false,
+})(RegionGuidance);
+
+export default React.forwardRef<{}, Partial<IRegionGuidanceProps>>((props, ref) => (
+  // @ts-ignore
+  <RegionGuidanceWithIntl {...props} ref={ref} />
+));

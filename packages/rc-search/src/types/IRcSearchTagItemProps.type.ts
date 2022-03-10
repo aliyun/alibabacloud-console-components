@@ -7,11 +7,11 @@ export interface IRcSearchTagItemProps {
   /**
    * tag的类别展示名称
    */
-  label: string;
+  label?: string;
   /**
    * tag的类别的key
    */
-  dataIndex: string;
+  dataIndex?: string;
   /**
    * tag的类别的值
    */
@@ -19,5 +19,5 @@ export interface IRcSearchTagItemProps {
   /**
    * tag的类别的展示值
    */
-  valueShow: string;
+  valueLabel?: string;
 }

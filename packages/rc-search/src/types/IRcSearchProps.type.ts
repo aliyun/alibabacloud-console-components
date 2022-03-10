@@ -3,18 +3,15 @@
  *
  * 下面列举的props其实是随便写的，仅仅用来说明breezr-docs的接口提取功能。
  */
-import { promises } from 'dns'
 import { IRcSearchOptionsProps } from './IRcSearchOptions.type'
 import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type'
+
 export interface IRcSearchProps {
   /**
-   * 组件适应的场景:<br />
-   *  - 场景一：single-single：单维度单类别单选<br />
-   *  - 场景二：single-multi：单维度多类别单选<br />
-   *  - 场景三：multi-multi：多维度多类别单选<br />
-   * @default "single-single"
+   * 是否是简单搜索， 不支持多 filter, 但是支持模糊
+   * @default false
    */
-  mode?: "single-single" | "single-multi" | "multi-multi" | string;
+  simple?: boolean;
   /**
    * 类名
    */
@@ -29,54 +26,43 @@ export interface IRcSearchProps {
    */
   options: IRcSearchOptionsProps[];
   /**
-   * tags 传入的taglist, 用于， 同步
+   * 默认placeholder
    */
-  tags?: IRcSearchTagItemProps[];
+  placeholder?: string;
   /**
    * 默认类别
-   * 仅在mode是"single-multi" | "multi-multi"生效
    */
-  defaultDataIndex?: string;
+   defaultDataIndex?: string;
   /**
-   * 默认placeholder
-   * 仅在mode是"single-multi" | "multi-multi"生效, 且， 未配置默认值时生效
+   * 搜索触发
    */
-  defaultPlaceholder?: string;
-  /**
-   * regionId
-   */
-  regionId: string;
-  /**
-   * resourceType
-   */
-  resourceType?: string;
-  /**
-   * 点击搜索按钮， 触发搜索回调。
-   */
-  onSearch?: (allFileds: any) => void;
-  /**
-   * 包括onInput的回车；onSelect； 对Tag的增减。
-   */
-  onChange?: (changeFileds: any, allFileds: any) => void;
-  /**
-   * input的input
-   */
-  onInput?: () => void;
+  onSearch?: (value: string, dataIndex: string, extra?: any) => void;
   /**
    * 模糊搜索的回调函数(仅输入框返回)，用于构建模糊搜索的联想列表
    */
   onSuggest?: (value: string, dataIndex: string) => void;
   /**
-   * 模糊搜索的回调函数(仅输入框返回)，当没设置defaultDataIndex，且有多个input类别时触发，
-   * 可自定义二级返回List
+   * 模糊搜索的 suggestions
    */
-  onSuggestNoDataIndex?: (value: string) => Promise<any>;
+  suggestions?: any[];
+
   /**
-   * 提供单选和多选, 触发。
+   * 是否是模糊搜索
    */
-  onSelect?: () => void;
+  fuzzy?: boolean;
+
   /**
-   * tag有增减时。
+   * regionId, 数据上报用
    */
-  onTagChange?: (newTags: any) => void;
+  regionId?: string;
+
+  /**
+  * resourceType， 数据上报用, 格式 ACS::ECS::INSTANCE
+  */
+  resourceType?: string;
+
+  /**
+   * 样式 class 前缀
+   */
+   prefix?: string;
 }

@@ -16,12 +16,14 @@ export interface IRcSearchOptionsProps {
      *  - select：单选<br />
      *  - multiple：多选<br />
      */
-    template: string;
+    template?: string;
     /**
      * 定义传给表单项的属性
      * templateProps.placeholder
      * templateProps.dataSource
      */
-    templateProps: any;
+    templateProps?: any;
+
+    groupName?: string;
 }
   
