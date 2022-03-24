@@ -83,13 +83,13 @@ export const SGlobalStyle = createGlobalStyle<{
         }
     }  
   }
-	.wind-slide-panel-wrapper {
-		&&& {
-			> *:not(.placeBottom) {
-				${({ top }) => (top === undefined ? '' : `top: ${ensureUnit(top)} !important;`)}
+  .wind-slide-panel-wrapper {
+    &&& {
+      > *:not(.placeBottom) {
+        ${({ top }) => (top === undefined ? '' : `top: ${ensureUnit(top)} !important;`)}
         z-index: 101;
-			}
-		}
+      }
+    }
   }
 `
 
