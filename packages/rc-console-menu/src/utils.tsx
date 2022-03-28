@@ -20,7 +20,7 @@ export function GetFusionConfig<PropType extends { fusionConfig: any }>(
   Wrapped: React.ComponentType<PropType>
 ) {
   const ConfifgConsumer: any = (ConfigProvider as any).Consumer
-  const HOC: React.FC<Omit<PropType, 'fusionConfig'>> = props => (
+  const HOC: React.FC<Omit<PropType, 'fusionConfig'>> = (props) => (
     <ConfifgConsumer>
       {(context: any) => (
         <Wrapped {...(props as PropType)} fusionConfig={context} />
@@ -28,4 +28,14 @@ export function GetFusionConfig<PropType extends { fusionConfig: any }>(
     </ConfifgConsumer>
   )
   return HOC
+}
+
+export function dedup<T>(arr: T[]) {
+  return Array.from(new Set(arr))
+}
+
+export function ensureArray(value: any) {
+  if (Array.isArray(value)) return value
+  if (value === undefined) return []
+  return [value]
 }

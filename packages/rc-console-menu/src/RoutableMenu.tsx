@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Location } from 'history'
 import { withRouter, Link, matchPath } from 'react-router-dom'
 import ConsoleMenu from './ConsoleMenu'
-import { isNil } from './utils'
+import { dedup, ensureArray, isNil } from './utils'
 import { IItemDescriptor } from './types/IItemDescriptor.type'
 import { IRoutableMenuProps } from './types/IRoutableMenuProps.type'
 import { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
@@ -288,7 +288,7 @@ function findParents(
 ): IItemDescriptor[] | null {
   for (const item of items) {
     if (item.key === activeKey) {
-      return [...currentParents, item]
+      return currentParents
     }
     if (Array.isArray(item.items)) {
       const found = findParents(activeKey, item.items, [
@@ -327,42 +327,28 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
     mapLocationToActiveKey,
   })
 
-  // 目的：计算出actualActiveKey以后，需要激活对应节点，同时要把其所有父节点展开
-  const [statefulOpenKeys, setOpenKeys] = useState<string[] | undefined>([])
   // 当用户传入activeKey时，为受控模式，不使用自己计算的derivedActiveKey
   const actualActiveKey = activeKey || derivedActiveKey
-  const actualOpenKeys = (() => {
-    if (defaultOpenKeys || openKeys) return openKeys
-    // 仅当用户没有传入defaultOpenKeys、openKeys时，使用智能计算出的statefulOpenKeys
-    return statefulOpenKeys
-  })()
 
-  useLayoutEffect(() => {
-    const newOpenKeys = (() => {
+  // defaultOpenKeys除了要包含用户传入的defaultOpenKeys以外
+  // 还要把actualActiveKey的所有父节点默认展开
+  const actualDefaultOpenKeys = useMemo(() => {
+    const extraOpenKeys = (() => {
       if (actualActiveKey) {
         // 找出激活节点的所有父节点
         const parentItems = findParents(actualActiveKey, normalizedItems, [])
-        if (Array.isArray(parentItems)) {
+        if (Array.isArray(parentItems) && parentItems.length > 0) {
           return parentItems.map((i) => i.key)
         }
       }
       return undefined
     })()
-    setOpenKeys(newOpenKeys)
-  }, [actualActiveKey, normalizedItems])
+    if (!extraOpenKeys) return defaultOpenKeys
+    return dedup([...ensureArray(defaultOpenKeys), ...extraOpenKeys])
+  }, [defaultOpenKeys, actualActiveKey, normalizedItems])
 
-  const actualOnOpen = useCallback(
-    (key: string[], extra: any) => {
-      if (typeof onOpen === 'function') {
-        onOpen(key, extra)
-      }
-      setOpenKeys(key)
-    },
-    [onOpen]
-  )
-
-  // openKeys传入undefined也会被认为是受控模式，因此如果想非受控，不能传入这个prop
-  const openKeysProp = actualOpenKeys ? { openKeys: actualOpenKeys } : undefined
+  // openKeys传入undefined，fusion也会认为是受控模式，因此如果想非受控，不能传入这个prop
+  const openKeysProp = openKeys ? { openKeys } : undefined
 
   return (
     <Context.Provider value={providerValue}>
@@ -371,8 +357,8 @@ const RoutableMenu: React.FC<IRoutableMenuProps> = ({
         items={normalizedItems}
         activeKey={actualActiveKey}
         {...openKeysProp}
-        defaultOpenKeys={defaultOpenKeys}
-        onOpen={actualOnOpen}
+        defaultOpenKeys={actualDefaultOpenKeys}
+        onOpen={onOpen}
         onItemClick={(key, item, event) => {
           if (event.type === 'keydown' && event.target) {
             // 通过键盘点击菜单时，需要点击内部的链接，完成路由跳转

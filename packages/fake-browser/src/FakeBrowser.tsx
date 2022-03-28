@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const LIGHT_GRAY = 'hsl(0, 0%, 32%)'
 const GRAY = 'hsl(0, 0%, 78%)'
 
-const LeftArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => (
+const LeftArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
     fill="currentColor"
@@ -17,7 +17,7 @@ const LeftArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => (
   </svg>
 )
 
-const RightArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = props => (
+const RightArrowIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
     fill="currentColor"
@@ -64,11 +64,18 @@ const getUserConfirmation = (
 
 const createPath = (location: Location) => location.pathname + location.search
 
-const FakeBrowser: React.FC<{}> = ({ children, ...props }) => {
+const FakeBrowser: React.FC<{ memoryRouterProps?: any }> = ({
+  children,
+  memoryRouterProps,
+  ...props
+}) => {
   const [url, setUrl] = useState<null | string>(null)
 
   return (
-    <MemoryRouter getUserConfirmation={getUserConfirmation}>
+    <MemoryRouter
+      getUserConfirmation={getUserConfirmation}
+      {...memoryRouterProps}
+    >
       <Route
         render={({ history, location }) => (
           <div
@@ -147,10 +154,10 @@ const FakeBrowser: React.FC<{}> = ({ children, ...props }) => {
                   }}
                   type="text"
                   value={url || createPath(location)}
-                  onChange={e => {
+                  onChange={(e) => {
                     setUrl(e.target.value)
                   }}
-                  onKeyDown={e => {
+                  onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       setUrl(null)
                       history.push((e.target as HTMLInputElement).value)
