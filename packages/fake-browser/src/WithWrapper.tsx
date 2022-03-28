@@ -4,7 +4,8 @@ import FakeBrowser from './FakeBrowser'
 
 const FakeBrowserWithWrapper: React.FC<{
   rndProps?: RndProps
-}> = ({ children, rndProps }) => (
+  memoryRouterProps?: any
+}> = ({ children, rndProps, memoryRouterProps }) => (
   <Rnd
     disableDragging
     {...rndProps}
@@ -35,7 +36,7 @@ const FakeBrowserWithWrapper: React.FC<{
       ...(rndProps && rndProps.style),
     }}
   >
-    <FakeBrowser>{children}</FakeBrowser>
+    <FakeBrowser memoryRouterProps={memoryRouterProps}>{children}</FakeBrowser>
   </Rnd>
 )
 
