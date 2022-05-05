@@ -9,19 +9,17 @@ const SearchWarp = styled.div<{prefix: string}>`
   display: flex;
   --input-clear-icon-transform: 1;
   --input-hint-icon-color: #808080;
-  ${prefix}input-control ${prefix}input-clear-icon::before {
-    content: var(--icon-content-close, "\ea22") !important;
-  }
   .left-wrap {
     flex: 1;
     border: 1px solid var(--btn-pure-normal-border-color, #d1d5d9);
     display: flex;
     border-bottom-left-radius: var(--corner-1, 2px);
     border-top-left-radius: var(--corner-1, 2px);
+    border-right: none;
     &.focus {
       border: 1px solid #0064c8;
       border: 1px solid var(--input-focus-border-color,#0064c8);;
-      border-right: 1px solid rgba(192, 198,204, 1);
+      border-right: none;
     }
     .condition{
       height: 26px;
@@ -54,9 +52,14 @@ const SearchWarp = styled.div<{prefix: string}>`
       height: 100%;
       opacity: 0;
       position: absolute;
-      top: var(--console-rc-search-close-btn-top, 0);
-      left: var(--console-rc-search-close-btn-left, 0);
+      top: 0;
+      left: 0;
       min-width: auto;
+      &.rc-search-prefix-no-select {
+        ${prefix}input${prefix}disabled {
+          cursor: auto;
+        }
+      }
       ${prefix}select-inner{
         min-width: auto;
       }
@@ -66,11 +69,11 @@ const SearchWarp = styled.div<{prefix: string}>`
       position: relative;
       .clear-level1{
         position: absolute;
-        top: 1px;
-        right: 1px;
+        top: var(--console-rc-search-close-btn-top, 1px);
+        right: var(--console-rc-search-close-btn-left, 1px);
         height: 28px;
         width: 30px;
-        background-color: #fff;
+        background-color: transparent;
         z-index: 99;
         color: #333;
         text-align: center;
@@ -81,6 +84,9 @@ const SearchWarp = styled.div<{prefix: string}>`
       }
     }
     .main-input{
+      ${prefix}select-arrow {
+        display: none !important;
+      }
       height: auto;
       border: none;
       box-shadow: none;
@@ -106,6 +112,7 @@ const SearchWarp = styled.div<{prefix: string}>`
       height: auto;
     }
   }
+
   .right-wrap {
     width: 32px;
     .search-btn {
@@ -117,8 +124,25 @@ const SearchWarp = styled.div<{prefix: string}>`
         border-color: #0064c8;
         border-color: var(--input-focus-border-color,#0064c8);
       }
-      border-left: none;
     }
+  }
+
+  .isWidget & .right-wrap,
+  .isWind & .right-wrap {
+    .search-btn {
+      &:hover {
+        border-color: #0064c8;
+        border-color: var(--input-focus-border-color,#0064c8);
+      }
+    }
+  }
+
+  & ${prefix}input-control ${prefix}input-clear-icon::before {
+    content: var(--icon-content-close, "\ea22") !important;
+  }
+
+  .isWidget & ${prefix}input-control ${prefix}input-clear-icon::before {
+    content: "\\E697" !important;
   }
 `;
 
@@ -133,13 +157,6 @@ const MenuContentWrap = styled.ul<{prefix: string}>`
   }
   ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon:before, ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon ${prefix}icon-remote {
     font-size: 13px;
-  }
-  && [class*='-icon-close']:hover::before {
-    color: #181818;
-  }
-  && [class*='-icon-close']::before{
-    color: #808080;
-    content: var(--icon-content-delete-filling);
   }
 `
 
@@ -176,16 +193,13 @@ const TagListWrap = styled.div<{prefix: string}>`
   ${prefix}tag-medium${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon:before, ${prefix}tag-medium${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon ${prefix}icon-remote{
     font-size: 16px;
   }
-  && [class*='-icon-close']:hover::before  {
-    color: #181818;
-  }
   && [class*='-icon-close']::before{
     color: #808080;
     font-size: 12px !important;
   }
   .remove-btn{
-    margin-bottom: 8px;
     line-height: 24px;
+    margin-top: 4px;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;

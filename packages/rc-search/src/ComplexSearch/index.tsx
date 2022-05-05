@@ -11,7 +11,7 @@ import { IRcSearchProps } from "../types/IRcSearchProps.type";
 import { IRcSearchOptionsProps } from '../types/IRcSearchOptions.type';
 import { SEARCH_FILTER_FIELD, SEARCH_FILTER_VALUE_FIELD } from "../constants";
 import message from "../message";
-import { template } from 'lodash';
+import { isPlainObject, template } from 'lodash';
 
 const { AutoComplete } = Select
 /**
@@ -35,6 +35,20 @@ const normalizeOptions = (options: IRcSearchOptionsProps[]) => {
         })
       }
     })
+}
+
+const normalizeSuggestion = (suggestion: any[]) => {
+  const suggestionCopy = cloneDeep(suggestion);
+  suggestionCopy.forEach((s) => {
+    if (s.children) {
+      s.children.forEach((child: any) => {
+        if (isPlainObject(child)) {
+          child.dataIndex = s.value;
+        }
+      })
+    }
+  })
+  return suggestionCopy;
 }
 
 const normalizeSelectDataSource = (title: string, list:any) => {
@@ -74,9 +88,10 @@ const highlightKeyword = (value: string, keywords: string) => {
 
 const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
   const {
-    options,
+    options = [],
     fuzzy,
     defaultDataIndex,
+    defaultSelectedDataIndex,
     placeholder,
     onSearch,
     onSuggest,
@@ -84,9 +99,10 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
     prefix = 'next-'
   } = props;
 
-  const [selectedFilterType, setSelectedFilterType] = useState<any>(null);
+  const [selectedFilterType, setSelectedFilterType] = useState<any>(options.find(o => o.dataIndex === defaultSelectedDataIndex));
   const [focused, setFocused] = useState<any>(false);
   const autoRef = useRef<any>(null);
+  const fuzzyAutoRef = useRef<any>(null);
   const field = Field.useField();
   const { init, getValue, reset } = field;
 
@@ -105,7 +121,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
       label = highlightKeyword(item.label, searchKey)
     }
   
-    return <span data-value={label}>{label}</span>
+    return <span data-value={item?.value}>{label}</span>
   }
 
   /**
@@ -119,13 +135,13 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
   /**
    * 处理当筛选类型没选中，用户输入筛选类型，或者是做默认搜索的情况
    */
-  const handlerFilterTypeInput = (value: string, actionType: string, isFuzzy?: boolean) => {
+  const handlerFilterTypeInput = (value: string, actionType: string, isFuzzy: boolean, option: any) => {
     const isFuzzySearch = isFuzzy && getValue(SEARCH_FILTER_FIELD);
 
     // 如果是模糊搜索，则直接处理
     if (isFuzzySearch) {
       if (actionType !== 'change') {
-        handleSearch();
+        handleSearch(option.dataIndex);
       } else {
         onSuggest && onSuggest(value, defaultDataIndex || '');
       }
@@ -141,14 +157,23 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
     reset();
   }
 
-  const handleSearch = () => {
+  const handleSearch = (dataIndex?: string) => {
     if (onSearch) {
       const value = getValue<any>(SEARCH_FILTER_VALUE_FIELD);
+      // 如果是没有选择下拉
       if (defaultDataIndex && !selectedFilterType) {
         onSearch(
           getValue<any>(SEARCH_FILTER_FIELD),
           defaultDataIndex,
           normalizeSearchOptions(defaultDataIndex, getValue<any>(SEARCH_FILTER_FIELD), options)
+        );
+      }
+      // 如果是用户没有指定 defaultDataIndex 但是设置了 fuzzy
+      if (fuzzy && !selectedFilterType) {
+        onSearch(
+          getValue<any>(SEARCH_FILTER_FIELD),
+          dataIndex || '',
+          normalizeSearchOptions(dataIndex || '', getValue<any>(SEARCH_FILTER_FIELD), options)
         );
       }
       if (selectedFilterType) {
@@ -169,6 +194,10 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
       handleSearch();
       document.body.click();
     }
+
+    if (e.keyCode === 8 && !e.currentTarget.value) {
+     handlerFilterClear();
+    }
   }
 
   const renderMultipleSelectorItem = (item: any) => {
@@ -185,7 +214,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
       autoFocus: true,
       hasClear: true,
       key: type,
-      placeholder: selectedFilterType?.templateProps?.placeholder || `默认按${selectedFilterType?.label}搜索`,
+      placeholder: selectedFilterType?.templateProps?.placeholder || template(message.defaultPlaceHolder)({ value: selectedFilterType?.label }),
       ...focusProps,
     }
 
@@ -201,8 +230,11 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
           <AutoComplete
             {...init<string>(SEARCH_FILTER_VALUE_FIELD, {})}
             className={classNames('main-input', 'multi')}
+            autoHighlightFirstItem={false}
             {...props}
+            autoWidth
             onKeyUp={handleKeyUp}
+            dataSource={selectedFilterType?.templateProps?.dataSource}
           />
         );
       case 'select':
@@ -214,6 +246,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
                 onChange: handleSearch
               }
             })}
+            autoHighlightFirstItem={false}
             {...props}
             {...selectProps}
           />
@@ -228,6 +261,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
             itemRender={renderMultipleSelectorItem}
             popupClassName="xconsole-rcsearch-multi-pop"
             mode="multiple"
+            autoHighlightFirstItem={false}
             maxTagCount={0}
             menuProps={{
               footer: (
@@ -303,11 +337,12 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
                   {...init(SEARCH_FILTER_FIELD, {
                     props:{
                       // @ts-ignore
-                      onChange: (value, actionType) => {
-                        handlerFilterTypeInput(value, actionType, isFuzzy)
+                      onChange: (value, actionType, option) => {
+                        handlerFilterTypeInput(value, actionType, !!isFuzzy, option)
                       }
                     }
                   })}
+                  autoHighlightFirstItem={false}
                   // @ts-ignore
                   itemRender={highlightItem}
                   placeholder={
@@ -320,10 +355,11 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
                     // 如果是指定了默认的筛选类型或者是直接指定模糊搜索模式 ，并且用户在这个输入框里面已经输入了值
                     // 则表示需要模糊搜索，调用 handleSuggest
                     isFuzzy ? 
-                      suggestions :
+                    normalizeSuggestion(suggestions) :
                       normalizeOptions(options)
                   }
                   popupStyle={{width: 'auto'}}
+                  popupClassName={'rc-search-auto-complete'}
                   {...focusProps}
                 />
               : null
@@ -334,7 +370,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
       </div>
       
       <div className={classNames('right-wrap')} ref={autoRef}>
-        <Button className={classNames('search-btn', {'focus': focused })} onClick={handleSearch} >
+        <Button className={classNames('search-btn', {'focus': focused })} onClick={() => handleSearch()} >
             <Icon type="search" />
         </Button>
       </div>

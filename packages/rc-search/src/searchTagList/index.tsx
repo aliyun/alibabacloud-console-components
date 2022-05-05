@@ -98,7 +98,6 @@ const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
   const isWindClass = useWindTheme();
   return (
     <TagListWrap prefix={prefix} className={classNames(baseTagListClassName, className, isWindClass)} style={style}>
-      <TagGroup>
       {
         processDataSource.map((tagItem:IRcSearchTagItemProps) => {
           if (isTagLikeDataStructure(tagItem.value)) {
@@ -106,19 +105,18 @@ const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
           }
           return (
             <ClosableTag
-              className="console-tags-tag"
+              className="search-tags-tag"
               key={tagItem.dataIndex + tagItem.value}
               type="normal"
               size="medium" 
               onClose={() => {onRemoveFilter(tagItem); return true;}}
             >
-              <><label className="console-tags-tag-label">{tagItem.label}</label>{tagItem.valueLabel || tagItem.value}</>
+              <><label className="search-tags-tag-label">{tagItem.label}</label>{tagItem.valueLabel || tagItem.value}</>
             </ClosableTag>
           )
         })
       }
       {processDataSource.length > 0 && (<a className="remove-btn" onClick={onRemoveAllFilter}>{message.clearFilter}</a>)}
-      </TagGroup>
       
     </TagListWrap>
   )

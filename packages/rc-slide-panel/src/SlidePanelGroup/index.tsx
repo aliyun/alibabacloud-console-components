@@ -83,7 +83,6 @@ const SlidePanelGroup: React.FC<ISlidePanelGroupProps> = ({
     if (isShowing) {
       // 保存之前的focus元素
       const preFocusEl = document.activeElement
-      console.log('preFocusEl', preFocusEl)
       return () => {
         if (preFocusEl && document.contains(preFocusEl)) {
           // 恢复到之前的focus

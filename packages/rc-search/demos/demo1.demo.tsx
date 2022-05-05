@@ -13,7 +13,7 @@ import { useState } from "react";
     dataIndex: 'name',
     template: 'input',
     templateProps: {
-      placeholder: '按实例名称搜索',
+      // placeholder: '按实例名称搜索',
       dataSource: []
     },
     groupName:"test"
@@ -59,44 +59,35 @@ let options2 = [
       placeholder: '按实例名称搜索',
       dataSource: []
     },
-  },
-  {
-    label: '网络类型',
-    dataIndex: 'type',
-    template: 'select',
-    templateProps: {
-      placeholder: '请选择网络类型',
-      dataSource: [
-        {label: 'A', value: 'a'},
-        {label: 'B', value: 'b'},
-        {label: 'C', value: 'c'},
-        {label: 'D', value: 'd'},
-      ]
-    },
-  },
-  {
-    label: '付费类型',
-    dataIndex: 'pay',
-    template: 'multiple',
-    templateProps: {
-      placeholder: '请选择付费类型',
-      dataSource: [
-        {label: 'A', value: 'a'},
-        {label: 'B', value: 'b'},
-        {label: 'C', value: 'c'},
-        {label: 'D', value: 'd'},
-      ]
-    },
   }
 ]
 
 
  const Demo1: React.FC<{}> = (props) => {
-   const [filters, setFilters] = useState<any>([]);
-   console.log(filters)
+   const [filters, setFilters] = useState<any>([
+    {label: '实例名称', value: 'xxxxxx', dataIndex: 'name'},
+    {value: [{tagKey: 'test', tagValue: ''}], dataIndex: 'tag'}
+  ]);
    return (
     <ConfigProvider>
     <div>
+      <div>默认固定搜索条件</div>
+      <Search
+        defaultDataIndex="name"
+        defaultSelectedDataIndex="name"
+        options={[{
+          label: '实例名称',
+          dataIndex: 'name',
+          template: 'input',
+          templateProps: {
+            placeholder: '按实例名称搜索',
+          },
+        }]}
+        onSearch={(value, dataIndex) => {
+          console.log(value, dataIndex)
+        }}
+      />
+      <br/><br/>
       <Search
         defaultDataIndex="name"
         options={options2}
@@ -110,6 +101,7 @@ let options2 = [
       <div>搜索条件成组</div>
       <Search
         defaultDataIndex="name"
+        defaultSelectedDataIndex="name"
         options={options}
         onSearch={(value, dataIndex, extra) => {
           //@ts-ignore
@@ -123,18 +115,6 @@ let options2 = [
           dataSource={filters}
           onChange={(deletedFilter, remainFilters)=> {
             setFilters(remainFilters)
-          }}
-        />
-      </div>
-
-      <div style={{marginTop: 8}}>
-        <SearchFilter
-          dataSource={[
-            {label: '实例名称', value: 'xxxxxx', dataIndex: 'name'},
-            {value: [{tagKey: 'test', tagValue: ''}], dataIndex: 'tag'}
-          ]}
-          onChange={(deletedFilter, remainFilters)=> {
-            console.log(deletedFilter, remainFilters);
           }}
         />
       </div>

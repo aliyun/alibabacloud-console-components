@@ -1,26 +1,11 @@
 import React from 'react';
 import { Menu, Icon, Dropdown, Message } from '@alicloud/console-components';
 import { withRcIntl } from '@alicloud/console-components-intl-core'
+import { IRegionGuidanceProps } from '../types/IRegionGuidanceProps.type'
 import './index.less';
 import defaultMessages from './message';
 import LoggerProvider from '../Provider/LoggerProvider';
 
-type RegionList = {
-  id: string;
-  name?: string;
-  count?: number;
-}[];
-
-export interface IRegionGuidanceProps {
-  currentRegion: string;
-  currentRegionName?: string;
-  regionList?: RegionList;
-  onRegionClick?: (regionId: string) =>void
-  globalSearchAction?: boolean;
-  children?: React.ReactChild | React.ReactChildren;
-  type?: 'message' | 'default';
-  intl?: any;
-}
 
 const getRegionName = (regionId: string) => {
   // @ts-ignore

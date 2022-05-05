@@ -10,7 +10,7 @@ const Demo1: React.FC<{}> = (props) => {
   const [visible, setVisible] = React.useState(false)
   return (
     <>
-      <Button onClick={() => UnsubscribeDialog.open()}>xxxx</Button>
+      <Button onClick={() => UnsubscribeDialog.open()}>退款</Button>
     </>
   )
 };

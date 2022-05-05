@@ -1,17 +1,10 @@
 import React from 'react';
 import { Message, Checkbox, Icon, Dialog } from '@alicloud/console-components';
-import { DialogProps } from '@alifd/next/types/dialog';
 import { useState } from 'react';
+import { IChargeMessageProps } from '../types/IChargeMessageProps.type';
+import { IChargeDialogProps } from '../types/IChangeDialogProps.type';
 
-export interface IChangeMessageProps {
-  title?: string;
-  link?: string;
-  description?: string;
-  children?: React.ReactChild | React.ReactChildren;
-  onCheck?: (value: boolean, e: any) => void
-}
-
-const FeeHint = (props: IChangeMessageProps) => {
+const FeeHint = (props: IChargeMessageProps) => {
   const { title, link, children, description } = props;
   return (<div style={{color: '#333', lineHeight: '20px'}}>
     <Message type='warning' title={title}>
@@ -28,10 +21,6 @@ const FeeHint = (props: IChangeMessageProps) => {
       </div>
     </Message>
   </div>);
-}
-
-export interface IChargeDialogProps extends DialogProps {
-  messageProps?: IChangeMessageProps;
 }
 
 export const ChargeConfirmDialog = (props: IChargeDialogProps) => {

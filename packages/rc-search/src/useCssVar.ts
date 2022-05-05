@@ -35,6 +35,6 @@ export function useCssVar(cssVarName: string) {
 }
 
 export function useWindTheme() {
-  const themeVar = useCssVar('--alicloudfe-components-theme');
-  return themeVar && themeVar.indexOf('xconsole') === -1 ? (themeVar.indexOf('wind') === -1 ? 'isWind isWidget' : 'isWind') : '';
+  const themeVar = useCssVar('--alicloudfe-components-theme') || '';
+  return themeVar.indexOf('xconsole') === -1 ? (themeVar.indexOf('wind') === -1 ? 'isWind isWidget' : 'isWind') : '';
 }

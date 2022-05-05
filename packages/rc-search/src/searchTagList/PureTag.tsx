@@ -40,12 +40,12 @@ const PureTag: React.FC<PureTagProps> = (props: PureTagProps) => {
 
   return (
     //@ts-ignore
-    <DotWrapper className="console-tags-tag-dot" dot><TagWrapper
+    <DotWrapper className="search-tags-tag-dot" dot><TagWrapper
       title={`${tagKey}:${tagValue}`}
-      className="console-tags-tag"
+      className="search-tags-tag"
       {...resetProps}
     >
-        { showLabel && <label className="console-tags-tag-label">{message.tag}</label> }
+        { showLabel && <label className="search-tags-tag-label">{message.tag}</label> }
         <TruncateWrapper {...defaultTruncateProps}>{tagKey}</TruncateWrapper>:{tagValue? <TruncateWrapper {...defaultTruncateProps}>{tagValue}</TruncateWrapper> : <span className="console-tags-tag_empty">{transformedTagValue}</span>}
       </TagWrapper>
     </DotWrapper>

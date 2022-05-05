@@ -20,6 +20,10 @@ body{
     margin-top: 4px;
   }
 
+  .rc-search-prefix {
+    --menu-padding-horizontal: 24px;
+  }
+
   .rc-search.isWind {
     --console-rc-search-label-color: #f7f7f7;
     --console-rc-search-label-hover-color: #ebebeb;
@@ -27,8 +31,14 @@ body{
 
   .rc-search.isWidget {
     --console-rc-search-close-btn-top: 2px;
-    --console-rc-search-close-btn-left: -2px;
-    --icon-content-delete-filling: "\E6A2";
+    --console-rc-search-close-btn-left: -3px;
+    --icon-content-delete-filling: "\\E6A2";
+  }
+
+  .rc-search-auto-complete {
+    [class*='select-menu-empty'] {
+      display: none;
+    }
   }
 }
 

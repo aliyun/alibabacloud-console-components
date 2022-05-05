@@ -141,15 +141,16 @@ let options2 = [
 
 ## API
 
-### rc-search
+### Search
 
 基础搜索组件的参数
 [$XView](https://xconsole.aliyun-inc.com/demo-playground?servePath=https%3A%2F%2Fopensource-microapp.oss-cn-hangzhou.aliyuncs.com%2Fapp%2Fbreezr-docs%2Fconsole-fe-test-rc-search-doc%2F-latest%2F&consoleOSId=console-fe-test-rc-search-doc&entryKey=types%2FIRcSearchProps)
 
-### options
+### IRcSearchOptionsProps
 
 配置组件类别的options
 [$XView](http://localhost:3333/?entryKey=types%2FIRcSearchOptions&consoleOSId=console-fe-test-rc-search-doc)
+
 ### SearchFilter
 
 [$XView](http://localhost:3333/?entryKey=types%2FIRcSearchTagListProps&consoleOSId=console-fe-test-rc-search-doc)

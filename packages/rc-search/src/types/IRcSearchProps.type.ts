@@ -30,9 +30,14 @@ export interface IRcSearchProps {
    */
   placeholder?: string;
   /**
-   * 默认类别
+   * 默认搜索类别
    */
    defaultDataIndex?: string;
+
+   /**
+   * 默认选中的类别
+   */
+   defaultSelectedDataIndex?: string;
   /**
    * 搜索触发
    */

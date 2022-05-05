@@ -14,12 +14,10 @@ const steps = [message.step1, message.step2, message.step3, message.step4].map((
 interface IUnsubscribeDialogProps extends DialogProps {
   visible?: boolean;
   children?: React.ReactChild;
-  dialogProps?: DialogProps;
 }
 
-const UnsubscribeDialog = ({...props}:IUnsubscribeDialogProps) => {
+const UnsubscribeDialog = ({ ...props}:IUnsubscribeDialogProps) => {
   const [ visible, setVisible ] = React.useState(!localStorage.getItem(LOCAL_STORAGE_ITEM));
-  console.log(visible)
   const [ noPrompt, setNoPrompt ] = React.useState(false);
   // @ts-ignore
   return (
@@ -78,7 +76,7 @@ const openWithDialog = () => {
       }
     }
     ReactDOM.render(
-      <UnsubscribeDialog
+      <UnsubscribeDialogWithContext
         onClose={close}
         onCancel={close}
       />, div);
@@ -93,5 +91,6 @@ export const open = async () => {
 
 
 UnsubscribeDialog.open = open;
+UnsubscribeDialogWithContext.open = open;
 
-export default UnsubscribeDialog;
+export default UnsubscribeDialogWithContext;

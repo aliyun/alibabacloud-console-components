@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-search",
-  "version": "0.2.12",
+  "version": "0.2.29",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -38,6 +38,6 @@
   "dependencies": {
     "@alicloud/console-components-truncate": "^1.0.16",
     "@alicloud/console-logger-sls": "^1.2.31",
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^2.0.0"
   }
 }
