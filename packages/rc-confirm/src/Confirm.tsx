@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useCallback } from 'react'
 import show from './showConfirmDialog'
 import type { IConfirmProps } from './types/IConfirmProps.type'
