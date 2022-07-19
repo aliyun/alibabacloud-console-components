@@ -15,10 +15,11 @@
   "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
   "devDependencies": {
     "@alicloud/console-components": "^1.4.0",
+    "@alicloud/console-components-fake-browser": "workspace:*",
     "@alicloud/console-toolkit-cli": "^1.2.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.8",
     "@alicloud/console-toolkit-preset-docs": "^1.0.36",
-    "@alicloud/console-components-fake-browser": "workspace:*",
+    "@alicloud/eslint-config-console-components": "workspace:^1.0.5",
     "@pnpm/link-bins": "^5.3.24",
     "@types/classnames": "^2.2.9",
     "@types/fs-extra": "^8.0.1",

@@ -6,7 +6,7 @@ import isPlainObject from 'lodash/isPlainObject'
 
 import escapeValues from './utils/escapeValues'
 import { IFormatMessageOptions, IFormatMessageContext } from './types'
-import IntlBase from './IntlBase'
+import IntlBase, { ErrorCode } from './IntlBase'
 
 /* eslint-disable no-dupe-class-members */
 /** @public */
@@ -26,119 +26,97 @@ class VanillaIntl extends IntlBase {
     } = getExactOptionsForFormat(key, values)
 
     const messages = this.getMessages()
-    const message = get(messages, exactKey, exactDefaultMessage)
 
-    if (isNil(message)) {
-      let result: string = exactKey
+    let message = get(messages, exactKey, exactDefaultMessage)
+    let result: string = exactKey
+
+    if (isNil(message) || typeof message !== 'string') {
+      let code: ErrorCode = 'formatMessage.notFound'
+      let msg: string =
+        `[intl-core] Cannot read ${exactKey} from messages, ` +
+        `will resolve this message with: ${result}`
+
       if (!messages) {
-        try {
-          const fallback = this._onError?.({
-            code: 'formatMessage.messagesNotSetYet',
-            key: exactKey,
-            ctx: { defaultMessage: exactDefaultMessage, values: exactValues },
-          })
-          if (fallback) result = fallback
-        } catch (error) {}
-        warning(
-          false,
-          `[@ali/wind-intl] Cannot format "${exactKey}" before messages is set.` +
-            `will resolve this message with: ${result}`
-        )
-      } else {
-        try {
-          const fallback = this._onError?.({
-            code: 'formatMessage.notFound',
-            key: exactKey,
-            ctx: { defaultMessage: exactDefaultMessage, values: exactValues },
-          })
-          if (fallback) result = fallback
-        } catch (error) {}
-        warning(
-          false,
-          `[@ali/wind-intl] Cannot read ${exactKey} from messages, ` +
-            `will resolve this message with: ${result}`
-        )
+        code = 'formatMessage.messagesNotSetYet'
+        msg =
+          `[intl-core] Cannot format "${exactKey}" before messages is set.` +
+          `will resolve this message with: ${result}`
       }
-      return result
-    }
-    if (typeof message !== 'string') {
-      let result = exactKey
-      try {
-        const fallback = this._onError?.({
-          code: 'formatMessage.invalidMessage',
-          key: exactKey,
-          ctx: {
-            defaultMessage: exactDefaultMessage,
-            values: exactValues,
-            message,
-          },
-        })
-        if (fallback) result = fallback
-      } catch (error) {}
-      warning(
-        false,
-        `[@ali/wind-intl] Expect message to be a string, but get ${Object.prototype.toString.call(
+
+      if (typeof message !== 'string') {
+        code = 'formatMessage.invalidMessage'
+        msg = `[intl-core] Expect message to be a string, but get ${Object.prototype.toString.call(
           message
         )}. will resolve this message with: ${result}`
-      )
-      return result
+      }
+
+      if (this._onError) {
+        try {
+          const fallback = this._onError({
+            code,
+            key: exactKey,
+            ctx: {
+              defaultMessage: exactDefaultMessage,
+              values: exactValues,
+              message,
+            },
+          })
+          if (fallback) message = fallback
+        } catch (error) {}
+      } else {
+        warning(false, msg)
+      }
     }
 
     const locale = this.getLocale()
+
     if (!locale) {
       warning(
         false,
-        `[@ali/wind-intl] Locale is not set. You should set locale using \`intl.setLocale\` or \`intl.set\`.
+        `[intl-core] Locale is not set. You should set locale using \`intl.setLocale\` or \`intl.set\`.
         Falling back to default locale from browser.`
       )
-      try {
-        this._onError?.({
-          code: 'formatMessage.localeNotSet',
-          key: exactKey,
-          ctx: {
-            defaultMessage: exactDefaultMessage,
-            values: exactValues,
-            message,
-          },
-        })
-      } catch (error) {}
     }
-    let result = exactKey
+
     try {
-      result = new IntlMessageFormat(message, locale).format(exactValues)
+      result = new IntlMessageFormat(message as string, locale).format(
+        exactValues
+      )
     } catch (err: any) {
-      try {
-        const fallback = this._onError?.({
-          code: 'formatMessage.formatError',
-          key: exactKey,
-          ctx: {
-            defaultMessage: exactDefaultMessage,
-            values: exactValues,
-            message,
-          },
-          error: err,
-        })
-        if (fallback) result = fallback
-      } catch (error) {}
-      if (
+      if (this._onError) {
+        try {
+          const fallback = this._onError({
+            code: 'formatMessage.formatError',
+            key: exactKey,
+            ctx: {
+              defaultMessage: exactDefaultMessage,
+              values: exactValues,
+              message,
+            },
+            error: err,
+          })
+          if (fallback)
+            result = new IntlMessageFormat(fallback, locale).format(exactValues)
+        } catch (error) {}
+      } else if (
         err?.message === `Expected "{" but "-" found.` ||
         err?.found === '-'
       ) {
         warning(
           false,
           `文案格式不正确。文案key："${exactKey}"。
-使用select语法的时候， select case不能包含连字符“-”。比如：
-This is {region, select,
-  cn-huabei {华北}
-  cn-qingdao {青岛}
-}.
-是错误的文案，不符合最新的ICU语法规范： https://formatjs.io/docs/react-intl/upgrade-guide-3x#placeholder-argument-syntax-change
-应该改成以下形式：
-This is {region, select,
-  cnHuabei {华北}
-  cnQingdao {青岛}
-}.
-`
+  使用select语法的时候， select case不能包含连字符“-”。比如：
+  This is {region, select,
+    cn-huabei {华北}
+    cn-qingdao {青岛}
+  }.
+  是错误的文案，不符合最新的ICU语法规范： https://formatjs.io/docs/react-intl/upgrade-guide-3x#placeholder-argument-syntax-change
+  应该改成以下形式：
+  This is {region, select,
+    cnHuabei {华北}
+    cnQingdao {青岛}
+  }.
+  `
         )
       } else {
         const msg = err?.message || 'Uncaught error'
@@ -194,7 +172,7 @@ export function getExactOptionsForFormat(
     const { id, defaultMessage, values: vals } = key
     if (typeof id !== 'string') {
       throw new ReferenceError(
-        `[@ali/wind-intl] Expect id to be a string but get a ${Object.prototype.toString.call(
+        `[intl-core] Expect id to be a string but get a ${Object.prototype.toString.call(
           id
         )}.`
       )

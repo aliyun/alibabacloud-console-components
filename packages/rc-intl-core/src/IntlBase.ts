@@ -168,14 +168,14 @@ class IntlBase {
 
 export default IntlBase
 
-type OnError = (errorInfo: {
+export type OnError = (errorInfo: {
   code: ErrorCode
   key?: string
   ctx?: unknown
   error?: any
 }) => string | void
 
-type ErrorCode =
+export type ErrorCode =
   | 'formatDate'
   | 'formatNumber'
   | 'formatMessage.messagesNotSetYet'
