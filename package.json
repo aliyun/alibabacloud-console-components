@@ -14,7 +14,7 @@
   },
   "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
   "devDependencies": {
-    "@alicloud/console-components": "^1.4.0",
+    "@alicloud/console-components": "^1.5.7",
     "@alicloud/console-components-fake-browser": "workspace:*",
     "@alicloud/console-toolkit-cli": "^1.2.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.8",
