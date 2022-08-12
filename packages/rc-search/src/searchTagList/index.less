@@ -1,8 +1,21 @@
 
 .rc-search-taglist:not(.isWind)  {
   margin-top: -4px;
-  && [class*='-icon-close']::before{
-    content: var(--icon-content-close) !important;
+
+  .search-tags-tag.search-tags-tag {
+    font-weight: 600;
+  
+    & [class*='-icon-close']::before{
+      content: var(--icon-content-delete-filling) !important;
+    }
+
+    [class*='icon-close']:hover {
+      color: #181818 !important;
+    }
+
+    &:hover [class*='-icon-close']::before {
+      color: #181818 !important;
+    }  
   }
 }
 
