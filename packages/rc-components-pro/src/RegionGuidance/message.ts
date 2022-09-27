@@ -4,7 +4,7 @@ const isSSR = typeof document === 'undefined'
 
 const messages = {
   zh: {
-    nodata: '当前地域 {value} 暂无资源',
+    nodata: '您在当前地域 {value} 暂无资源',
     comma: '，',
     period: '',
     switch: '您可以切换至以下有资源的地域',
@@ -13,7 +13,7 @@ const messages = {
     global_search_help: '没有找到想要的实例？',
   },
   en: {
-    nodata: 'No resources are available in the selected region {value}',
+    nodata: 'You have no resources available in the selected region {value}',
     comma: ', ',
     period: '',
     switch: 'You can switch to the following regions: ',
@@ -29,7 +29,7 @@ const messages = {
     global_search_help: 'インスタンスが見つからない場合',
   },
   'zh-TW': {
-    nodata: '當前地區 {value} 暫時無數據',
+    nodata: '您在當前地區 {value} 暫時無數據',
     comma: ', ',
     period: '',
     switch: '您可以切換至以下有資源的地區：',
