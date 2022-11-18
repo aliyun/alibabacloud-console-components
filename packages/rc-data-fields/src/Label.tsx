@@ -1,32 +1,23 @@
 import React from 'react'
-import * as PropTypes from 'prop-types'
+
 import classNames from 'classnames'
-import { labelClassName } from './constants'
+
+import { LABEL_CLASS_NAME } from './consts'
+import { ILabelProps } from './types'
 import { SFieldLabel } from './styles'
-import { ICol } from './typeUtils'
 
-/**
- * @public
- */
-export interface ILabelProps extends React.ComponentProps<ICol> {
-  className?: string
-}
-
-/**
- * @public
- */
-const Label: React.FC<ILabelProps> & {
+function Label(props: ILabelProps& {
   isNextCol: true
-} = ({ className, ...restProps }) => (
-  <SFieldLabel
-    fixedSpan={8}
-    className={classNames(labelClassName, className)}
-    {...restProps}
-  />
-)
+}) {
+  const { className, ...restProps } = props
 
-Label.propTypes = {
-  className: PropTypes.string,
+  return (
+    <SFieldLabel
+      fixedSpan={8}
+      className={classNames(LABEL_CLASS_NAME, className)}
+      {...restProps}
+    />
+  )
 }
 
 Label.isNextCol = true as const

@@ -1,11 +1,13 @@
 /**
-* @title basic
-*/
+ * @title basic
+ */
 
 import React, { Fragment } from 'react'
 import '@alicloud/console-components/dist/wind.css'
 import { Icon } from '@alicloud/console-components'
-import DataFields, { IDataFieldsProps } from '@alicloud/console-components-data-fields'
+import DataFields, {
+  IDataFieldsProps,
+} from '@alicloud/console-components-data-fields'
 
 const dataSource: IDataFieldsProps['dataSource'] = {
   name: 'React',
@@ -21,7 +23,7 @@ const dataSource: IDataFieldsProps['dataSource'] = {
 const items: IDataFieldsProps['items'] = [
   {
     dataIndex: 'name',
-    render: val => <h1>{val}</h1>,
+    render: (val) => <h1>{val}</h1>,
     span: 24,
   },
   {
@@ -31,7 +33,7 @@ const items: IDataFieldsProps['items'] = [
   {
     dataIndex: 'license',
     label: '协议类型',
-    render: val => (
+    render: (val) => (
       <Fragment>
         <span style={{ fontStyle: 'italic', fontWeight: 600 }}>{val}</span>
         <Icon type="help" size="xs" style={{ marginLeft: '16px' }} />
@@ -62,7 +64,7 @@ const items: IDataFieldsProps['items'] = [
   {
     dataIndex: 'installation',
     label: '安装',
-    render: val => <code style={{ fontSize: 16 }}>{val}</code>,
+    render: (val) => <code style={{ fontSize: 16 }}>{val}</code>,
     span: 24,
     style: {
       lineHeight: '24px',

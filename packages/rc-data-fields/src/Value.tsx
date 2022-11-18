@@ -1,31 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import classNames from 'classnames'
-import { valueClassName } from './constants'
+
+import { VALUE_CLASS_NAME } from './consts'
+import { IValueProps } from './types'
 import { SFieldValue } from './styles'
-import { ICol } from './typeUtils'
 
-/**
- * @public
- */
-export interface IValueProps extends React.ComponentProps<ICol> {
-  className?: string
-}
-
-/**
- * @public
- */
-const Value: React.FC<IValueProps> & {
-  isNextCol: true
-} = ({ className, ...restProps }) => (
-  <SFieldValue
-    className={classNames(valueClassName, className)}
-    {...restProps}
-  />
-)
-
-Value.propTypes = {
-  className: PropTypes.string,
+function Value(
+  props: IValueProps & {
+    isNextCol: true
+  }
+) {
+  const { className, ...restProps } = props
+  return (
+    <SFieldValue
+      className={classNames(VALUE_CLASS_NAME, className)}
+      {...restProps}
+    />
+  )
 }
 
 Value.isNextCol = true as const

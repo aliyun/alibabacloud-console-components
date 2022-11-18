@@ -1,19 +1,19 @@
-import { IItemProps } from "./IItemProps.type";
+import ILabelProps from './ILabelProps'
+import IItemProps from './IItemProps.type'
 
-/**
- * @public
- */
- export interface IDataFieldsProps {
+export default interface IDataFields {
   /**
    * 字段列表数据
    */
-  dataSource: {
-    [key: string]: any
-  }
+  dataSource: Record<string, any>
   /**
    * 定义要展示哪些字段，以及如何展示。数组项的数据结构见`IItemProps`的API
    */
   items: IItemProps[]
+  /**
+   * 自定义标签样式(`item` 未设置`labelLayout`时生效)
+   */
+  labelLayout?: ILabelProps
   /**
    * 自定义wrapper div的类名
    */

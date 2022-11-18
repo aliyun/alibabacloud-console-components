@@ -2,7 +2,6 @@ import DataFields from './DataFields'
 import Item from './Item'
 import Label from './Label'
 import Value from './Value'
-import './index.less'
 
 /**
  * @public
@@ -24,9 +23,10 @@ const ExportedDataFields: IDataFields = Object.assign(DataFields, {
 
 export default ExportedDataFields
 export { DataFields, Item, Label, Value }
-export { ICol } from './typeUtils'
 
 export * from './DataFields'
 export * from './Item'
 export * from './Label'
 export * from './Value'
+
+export * from './types'

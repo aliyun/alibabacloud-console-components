@@ -6,6 +6,7 @@ export default ({ children }: any) => {
 
   // 如果有ConfigWrapper，说明是configComponents提供的修改前缀工具
   if ((c as any).ConfigWrapper) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     content = <c.ConfigWrapper>{content}</c.ConfigWrapper>
   }

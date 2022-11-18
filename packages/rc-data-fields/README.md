@@ -8,11 +8,34 @@
 
 ## APIs
 
-DataFields 组件接受的 Props：
+### RcDataFields
 [$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-data-fields-docs&entryKey=types/IDataFieldsProps)
 
-每个字段（[数组项](#IDataFieldsProps.items)）的定义格式如下：
+### RcDataFields.Item
 
 [$XView](https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-components-data-fields-docs&entryKey=types/IItemProps)
 
-其他字段会被传入包裹【这个字段】的`Grid.Col`组件，比如传入 span={12}来让该字段占据一半宽度。
+---
+**注：**
+`ILabelProps`、`IValueProps`和`IItemProps` API 均继承自 [Fusion 中 Grid.Col API](https://fusion.design/pc/component/grid?themeid=2#Grid%20Col)
+
+```TypeScript
+import React from 'react'
+
+import { Grid } from '@alicloud/console-components'
+
+export default interface ILabelProps
+  extends React.ComponentProps<typeof Grid.Col> {
+  className?: string
+}
+
+export default interface IValueProps
+  extends React.ComponentProps<typeof Grid.Col> {
+  className?: string
+}
+
+export default interface IDataFieldsItem
+  extends React.ComponentProps<typeof Grid.Col> {
+    // ...
+}
+```
