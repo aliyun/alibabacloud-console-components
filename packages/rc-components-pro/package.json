@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "breezr start --config config/breezr.docs.config.ts",
     "doc:build": "rm -rf doc-dist && breezr build --config config/breezr.docs.config.ts",
-    "doc:serve": "echo \"访问 https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-fe-test-rc-components-pro`&servePath=http://localhost:5556/doc-dist/ ，预览本地打包好的文档资源！\n\n您还可以将文档资源部署到自己的cdn，然后将上述url中的servePath修改为自己的cdn地址，得到你自己的文档预览链接。\" && serve -l 5556 --cors",
+    "doc:serve": "echo \"访问 https://xconsole.aliyun-inc.com/demo-playground?consoleOSId=console-fe-test-rc-components-pro&servePath=http://localhost:5556/doc-dist/ ，预览本地打包好的文档资源！\n\n您还可以将文档资源部署到自己的cdn，然后将上述url中的servePath修改为自己的cdn地址，得到你自己的文档预览链接。\" && serve -l 5556 --cors",
     "upload": "breezr upload --config config/breezr.docs.config.ts",
     "upload:pre": "npm run upload -- --tag=pre",
     "babel": "breezr build --engine babel",
