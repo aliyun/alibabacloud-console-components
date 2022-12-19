@@ -1,0 +1,117 @@
+$modal-prefix: '.' + $css-prefix + 'modal';
+$modal-header-height: 60px;
+
+body#{$modal-prefix}-open {
+  overflow: hidden;
+}
+
+#{$modal-prefix} {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1001;
+  background: var(--color-fill1-2);
+  &-header {
+    position: relative;
+    background: var(--color-fill1-1);
+    z-index: 1;
+    // 添加这两句是提高层级，否则阴影被覆盖
+    height: $modal-header-height;
+    box-shadow: var(--shadow-1);
+    display: flex;
+    box-sizing: border-box;
+    padding: var(--s-2) var(--s-4);
+    align-items: center;
+    justify-content: space-between;
+    .left-part {
+      #{$modal-prefix}-title {
+        font-size: var(--font-size-body-2);
+        line-height: var(--font-lineheight-1);
+        color: var(--color-text1-3);
+        #{$modal-prefix}-edit-icon {
+          margin-left: var(--s-1);
+          vertical-align: middle;
+        }
+        .edit-title {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      #{$modal-prefix}-description {
+        font-size: var(--font-size-body-1);
+        line-height: var(--font-lineheight-1);
+        color:var(--color-text1-1);
+      }
+    }
+    .right-part {
+      display: flex;
+      justify-content: flex-end;
+      #{$modal-prefix}-operations {
+        line-height: var(--s-9);
+      }
+      #{$modal-prefix}-side-drawer-switch {
+        box-sizing: border-box;
+        height: var(--s-8);
+        margin: 2px var(--s-3);
+        border-radius: var(--corner-1);
+        border: 1px solid var(--color-line1-3);
+        padding: 5px var(--s-3);
+        font-size: var(--font-size-body-1);
+        line-height: var(--font-lineheight-1);
+        color: var(--color-text1-3);
+        &-label {
+          vertical-align: middle;
+          display: inline-block;
+        }
+        .#{$css-prefix}switch {
+          margin: 2px 0 2px var(--s-2);
+          vertical-align: middle;
+        }
+      }
+      #{$modal-prefix}-close {
+        height: var(--s-6);
+        margin: 6px 0;
+      }
+    }
+  }
+  &-body {
+    height: calc(100% - #{$modal-header-height});
+    overflow: hidden;
+    display: flex;
+    #{$modal-prefix}-children, #{$modal-prefix}-side-drawer {
+      height: 100%;
+      overflow: auto;
+    }
+    #{$modal-prefix}-children {
+      flex: 1;
+      background: var(--color-fill1-2);
+    }
+    #{$modal-prefix}-side-drawer {
+      background: var(--color-fill1-1);
+      overflow: hidden;
+      transition: width 0.3s ease-out;
+      &#{$modal-prefix}-side-drawer-visible {
+        box-shadow: -1px 0 0 0 var(--color-fill1-3);
+        overflow: auto;
+      }
+    }
+  }
+}
+
+.next-modal-header {
+  .next-modal-title-box {
+    display: flex;
+    align-items: center;
+
+    .next-modal-title-icon {
+      color: var(--color-fill1-6, #8b8b8b);
+      font-size: var(--font-size-body-2, 12px);
+      margin-right: var(--modal-title-icon-margin-right, 12px);
+      cursor: pointer;
+      transform: translateY(var(--modal-title-icon-transform-top, 2px));
+    }
+  }
+}

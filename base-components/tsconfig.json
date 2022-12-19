@@ -1,0 +1,7 @@
+{
+  "exclude": ["**/demo/**/*"],
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  }
+}

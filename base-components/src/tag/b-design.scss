@@ -1,0 +1,12 @@
+.next-tag:not([disabled])[class*='next-tag-level-'].next-tag.next-tag:not(.next-tag-closable):focus{
+  background-color: #D1DDFF;
+  color: #0F62FE;
+}
+.next-tag:not([disabled])[class*='next-tag-level-'].next-tag.next-tag:hover{
+  background-color: #f3f3f3;
+  color: #595959;
+}
+.next-tag:not([disabled]) .next-tag-body {
+  cursor: var(--tag-cursor, default);
+}
+// 可选中标签

@@ -1,0 +1,4 @@
+// 云组件库的自定义var要比fusionVar权重高
+$css-var-scope: '.theme-xconsole-dark-dynamic.theme-xconsole-dark-dynamic';
+@import '../../src/theme/xconsole-dark/css-var-custom.scss';
+@import '../../src/theme/xconsole/index-no-var.scss';

@@ -1,0 +1,60 @@
+$card-prefix: '.' + $css-prefix + 'card';
+$icon-prefix: '.' + $css-prefix + 'icon';
+$ellipsis-icon: '.' + $css-prefix + 'icon-ellipsis-vertical';
+
+#{$card-prefix} {
+  transition: box-shadow var(--active-transition);
+  &:hover {
+    box-shadow: var(
+      --card-hover-shadow,
+      1px 1px 4px 0px rgba(0, 0, 0, 0.13)
+    );
+    background-color: var(
+      --card-hover-background,
+      var(--card-background)
+    );
+    border-color: var(
+      --card-hover-border-color,
+      var(--card-border-color)
+    );
+  }
+  & &-header-extra {
+    #{$ellipsis-icon} {
+      &::before {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+  & &-collapsable-tail {
+    &:hover {
+      color: var(--color-brand1-6, #0064c8);
+      cursor: pointer;
+    }
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    padding: 0 var(--card-padding-lr, 16px)
+      var(--card-body-padding-bottom, 16px);
+    margin-bottom: var(--card-body-padding-bottom, 16px);
+    #{$icon-prefix} {
+      margin-left: 4px;
+      &::before {
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  & &-collapsable-head {
+    &:hover {
+      color: var(--color-brand1-6, #0064c8);
+      cursor: pointer;
+    }
+    padding: 0 var(--card-padding-lr, 16px);
+    margin: var(--card-body-padding-bottom, 16px) 0;
+    // height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,7 @@
+.next-table.with-row-select {
+  tr td:nth-child(2), tr th:nth-child(2) {
+    .next-table-cell-wrapper {
+      padding-left: 0;
+    }
+  }
+}

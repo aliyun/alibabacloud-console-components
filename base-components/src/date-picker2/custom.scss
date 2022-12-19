@@ -1,0 +1,38 @@
+// 混合云云效样式覆盖
+.#{$css-prefix}date-picker2 {
+  & &-input-range {
+    .#{$css-prefix}input {
+      box-shadow: none;
+    }
+  }
+}
+
+.next-calendar2-header {
+  @media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+    .next-icon.next-xxs {
+      transform: scale(1.0);
+    }
+  }
+}
+
+.next-date-picker2-input.next-date-picker2-input-focus {
+  box-shadow: var(--active-shadow);
+}
+
+.next-date-picker2:not(disabled):hover, .next-date-picker2:not(disabled).active {
+  .next-date-picker2-input-range {
+    box-shadow: var(--active-shadow);
+  }
+}
+
+.next-date-picker2-input-separator {
+  color: var(--color-input-separator, var(--color-fill1-5));
+}
+
+.next-date-picker2-input input {
+  font-feature-settings: initial;
+}
+
+.next-date-picker2-input .next-input input {
+  width: auto;
+}

@@ -1,0 +1,8 @@
+$nav-prefix: '.' + $css-prefix + 'nav';
+$menu-prefix: '.' + $css-prefix + 'menu';
+#{$nav-prefix} {
+  &#{&}#{&}#{&}#{$menu-prefix} {
+    // 去掉menu中的padding
+    padding: 0;
+  }
+}

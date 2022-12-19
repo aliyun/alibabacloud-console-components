@@ -1,0 +1,19 @@
+// 无标题。只有一行content修正位置
+.next-message-content {
+  margin-top: 0.5px;
+}
+// 有标题。取消content位置的修正
+.next-title-content {
+  .next-message-content {
+    margin-top: 0;
+  }
+}
+// 修正标题
+// .next-message-title {
+//   margin-top: -0.5px;
+// }
+
+// message content 局中
+.next-message.next-medium .next-message-symbol {
+  font-size: 0;
+}

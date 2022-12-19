@@ -1,0 +1,46 @@
+$radio-cls-name: '#{$css-prefix}radio';
+$radio-group-cls-name: '#{$radio-cls-name}-group';
+$radio-box-size: var(--radio-box-size, 14px);
+
+@mixin square-box($size) {
+  width: $size !important;
+  height: $size !important;
+}
+
+.#{$radio-cls-name} {
+  $size-base: var(--size-base, 4px);
+
+  &-label {
+    margin-left: calc(#{$size-base} * 2);
+  }
+
+  &-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0.5;
+
+    .#{$radio-cls-name}-inner {
+      @include square-box($radio-box-size);
+
+      > .next-icon {
+        display: inline-block;
+        line-height: $radio-box-size;
+        position: static;
+        margin: 0;
+        vertical-align: top;
+      }
+    }
+
+    input[type='radio'] {
+      @include square-box($radio-box-size);
+    }
+  }
+}
+
+.#{$radio-group-cls-name} {
+  &.#{$radio-cls-name}-button {
+    .#{$radio-cls-name}-wrapper {
+      text-align: center;
+    }
+  }
+}

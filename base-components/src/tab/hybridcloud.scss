@@ -1,0 +1,26 @@
+.is-hybridcloud.next-tabs-capsule > .next-tabs-bar .next-tabs-tab, .theme-hybridcloud .next-tabs-capsule > .next-tabs-bar .next-tabs-tab {
+  transition: color 100ms, background-color 100ms, border-color 100ms;
+  &.active {
+    z-index: 3;
+    &:hover {
+      color: var(--tab-capsule-text-color-selected, #0064C8);
+      background-color: var(--tab-capsule-bg-color-selected, #FFFFFF);
+      border-color: var(--tab-capsule-tab-border-line-color-active, #0064C8);
+    }
+  }
+}
+
+.is-hybridcloud.next-tabs-pure > .next-tabs-bar, .theme-hybridcloud .next-tabs-pure > .next-tabs-bar {
+  .next-tabs-nav-container .next-tabs-tab:before {
+    border-radius: 1px;
+  }
+}
+.next-tabs {
+  .next-tabs-content.next-tabs-content {
+    padding-left: 0;
+  }
+}
+
+.next-tabs.next-medium .next-tabs-tab-inner {
+  line-height: 22px;
+}

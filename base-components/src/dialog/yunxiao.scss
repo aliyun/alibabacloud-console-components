@@ -1,0 +1,56 @@
+$dialog-prefix: '.' + $css-prefix + 'dialog';
+
+// #{$dialog-prefix} {
+//   min-width: 440px;
+//   &:not(#{$dialog-prefix}-quick) {
+//     #{$dialog-prefix}-header {
+//       --dialog-title-padding-bottom: 12px;
+//       --dialog-title-padding-top: 12px;
+//       --dialog-title-border-color: var(--color-line1-1);
+//     }
+//     #{$dialog-prefix}-body {
+//       --dialog-content-padding-top: 16px;
+//     }
+//     #{$dialog-prefix}-footer {
+//       --dialog-footer-border-color: var(--color-line1-1);
+//       --dialog-footer-padding-top: 12px;
+//       --dialog-footer-padding-bottom: 12px;
+//     }
+//   }
+// }
+
+.theme-yunxiao,
+.theme-yunxiao-dark,
+:not(.theme-hybridcloud),
+:not(.theme-hybridcloud-dark){
+  #{$dialog-prefix} {
+    min-width: 440px;
+    &:not(#{$dialog-prefix}-quick:not(.quick-show)) {
+      #{$dialog-prefix}-header {
+        --dialog-title-padding-bottom: 12px;
+        --dialog-title-padding-top: 12px;
+        --dialog-title-border-color: var(--color-line1-1);
+      }
+      #{$dialog-prefix}-body {
+        --dialog-content-padding-top: 16px;
+      }
+      #{$dialog-prefix}-footer {
+        --dialog-footer-border-color: var(--color-line1-1);
+        --dialog-footer-padding-top: 12px;
+        --dialog-footer-padding-bottom: 12px;
+      }
+    }
+  }
+}
+
+.theme-yunxiao,
+.theme-yunxiao-dark,
+:not(.theme-hybridcloud),
+:not(.theme-hybridcloud-dark) {
+  .next-dialog-message.next-message.next-addon .next-message-content {
+    line-height: 1.5;
+  }
+  .next-dialog-header {
+    font-weight: var(--font-weight-medium, 500);
+  }
+}

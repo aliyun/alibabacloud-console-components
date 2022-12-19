@@ -1,0 +1,7 @@
+$badge-prefix: '.' + $css-prefix + 'badge';
+
+#{$badge-prefix} {
+  & &-count, & &-dot {
+    box-shadow: 0 0 0 2px var(--badge-border-color, #fff);
+  }
+}

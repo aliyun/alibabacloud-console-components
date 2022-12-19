@@ -1,0 +1,15 @@
+$dialog-prefix: '.' + $css-prefix + 'dialog';
+
+$dialog-prefix: '.' + $css-prefix + 'dialog';
+
+#{$dialog-prefix} {
+  &-header {
+    padding-right: calc(var(--dialog-title-padding-left-right) + var(--dialog-close-right));
+  }
+}
+
+.next-dialog.next-closeable:not(.next-dialog-quick) {
+  .next-dialog-close {
+    top: var(--dialog-close-top-normal, var(--dialog-close-top, 24px));
+  }
+}

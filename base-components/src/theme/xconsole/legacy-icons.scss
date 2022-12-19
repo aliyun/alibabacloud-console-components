@@ -1,0 +1,258 @@
+// 为了支持在icon字体库中已经改名、删掉的icon
+// 我们在这里将旧icon的content映射到字体库中存在的icon字符
+
+.#{$css-prefix}icon-more::before {
+  content: var(--icon-content-ellipsis-vertical);
+}
+
+.#{$css-prefix}icon-cart::before {
+  content: var(--icon-content-shopping-cart);
+}
+
+.#{$css-prefix}icon-account-circle::before {
+  content: var(--icon-content-user-circle);
+}
+
+.#{$css-prefix}icon-points::before {
+  content: var(--icon-content-star-circle1);
+}
+
+.#{$css-prefix}icon-star-circle::before {
+  content: var(--icon-content-star-circle1);
+}
+
+.#{$css-prefix}icon-rights::before {
+  content: var(--icon-content-gem);
+}
+
+.#{$css-prefix}icon-alert::before {
+  content: var(--icon-content-wind-warning);
+}
+
+.#{$css-prefix}icon-caret-up::before {
+  content: var(--icon-content-sort-up);
+}
+
+.#{$css-prefix}icon-caret-down::before {
+  content: var(--icon-content-sort-down);
+}
+
+.#{$css-prefix}icon-arrow-alt-left::before {
+  content: var(--icon-content-wind-arrow-left);
+}
+
+.#{$css-prefix}icon-arrow-alt-right::before {
+  content: var(--icon-content-wind-arrow-right);
+}
+
+.#{$css-prefix}icon-export::before {
+  content: var(--icon-content-wind-upload);
+}
+
+.#{$css-prefix}icon-import::before {
+  content: var(--icon-content-wind-download);
+}
+
+.#{$css-prefix}icon-list-collapsed::before {
+  content: var(--icon-content-outdent);
+}
+
+.#{$css-prefix}icon-list-expansion::before {
+  content: var(--icon-content-indent);
+}
+
+.#{$css-prefix}icon-remove::before {
+  content: var(--icon-content-times);
+}
+
+.#{$css-prefix}icon-expand-arrows-alt::before {
+  content: var(--icon-content-expand-alt);
+}
+
+.#{$css-prefix}icon-heart-regular::before {
+  content: var(--icon-content-like);
+}
+
+.#{$css-prefix}icon-play::before {
+  content: var(--icon-content-playcircle);
+}
+
+.#{$css-prefix}icon-stop::before {
+  content: var(--icon-content-stopcircle);
+}
+
+.#{$css-prefix}icon-pause::before {
+  content: var(--icon-content-pausecircle);
+}
+
+.#{$css-prefix}icon-folder-add::before {
+  content: var(--icon-content-folder-plus);
+}
+
+.#{$css-prefix}icon-installation-package::before {
+  content: var(--icon-content-inbox-in);
+}
+
+.#{$css-prefix}icon-light::before {
+  content: var(--icon-content-lightbulb);
+}
+
+.#{$css-prefix}icon-fliter-list::before {
+  content: var(--icon-content-wind-filter);
+}
+
+.#{$css-prefix}icon-collapse-card1::before {
+  content: var(--icon-content-expandalt-fill);
+}
+
+.#{$css-prefix}icon-collapse-card::before {
+  content: var(--icon-content-compressalt-fill);
+}
+
+.#{$css-prefix}icon-cloud-upload::before {
+  content: var(--icon-content-cloudupload-fill);
+}
+
+.#{$css-prefix}icon-cloud-download::before {
+  content: var(--icon-content-clouddownload-fill);
+}
+
+.#{$css-prefix}icon-heart-soild::before {
+  content: var(--icon-content-heart-fill);
+}
+
+.#{$css-prefix}icon-service::before {
+  content: var(--icon-content-headset-fill);
+}
+
+.#{$css-prefix}icon-file-add::before {
+  content: var(--icon-content-fileplus-fill);
+}
+
+.#{$css-prefix}icon-file-sql::before {
+  content: var(--icon-content-file-SQL);
+}
+
+.#{$css-prefix}icon-lock-open::before {
+  content: var(--icon-content-unlock-fill);
+}
+
+.#{$css-prefix}icon-layers::before {
+  content: var(--icon-content-layergroup-fill);
+}
+
+.#{$css-prefix}icon-data-set::before {
+  content: var(--icon-content-databaseset-fill);
+}
+
+.#{$css-prefix}icon-label::before {
+  content: var(--icon-content-tag-fill);
+}
+
+.#{$css-prefix}icon-invisible::before {
+  content: var(--icon-content-eyeslash-fill);
+}
+
+.#{$css-prefix}icon-multiple-tips::before {
+  content: var(--icon-content-commentdots-fill);
+}
+
+.#{$css-prefix}icon-comment::before {
+  content: var(--icon-content-commentlines-fill);
+}
+
+.#{$css-prefix}icon-data::before {
+  content: var(--icon-content-database-fill);
+}
+
+.#{$css-prefix}icon-renewals::before {
+  content: var(--icon-content-transanction);
+}
+
+.#{$css-prefix}icon-cell-phone::before {
+  content: var(--icon-content-mobile-alt);
+}
+
+.#{$css-prefix}icon-phone-bingding::before {
+  content: var(--icon-content-mobile-check);
+}
+
+.#{$css-prefix}icon-phone-untie::before {
+  content: var(--icon-content-mobile-error);
+}
+
+.#{$css-prefix}icon-online::before {
+  content: var(--icon-content-laptop-check);
+}
+
+.#{$css-prefix}icon-Keys::before {
+  content: var(--icon-content-key);
+}
+
+.#{$css-prefix}icon-mains::before {
+  content: var(--icon-content-poweroff);
+}
+
+.#{$css-prefix}icon-scanning::before {
+  content: var(--icon-content-scan);
+}
+
+.#{$css-prefix}icon-more::before {
+  content: var(--icon-content-ellipsis-vertical);
+}
+
+.#{$css-prefix}icon-shoppingcart::before {
+  content: var(--icon-content-shopping-cart);
+}
+
+.#{$css-prefix}icon-annex::before {
+  content: var(--icon-content-paperclip);
+}
+
+.#{$css-prefix}icon-external-link-alt::before {
+  content: var(--icon-content-external-link);
+}
+
+.#{$css-prefix}icon-subtract::before {
+  content: var(--icon-content-wind-minus);
+}
+
+.#{$css-prefix}icon-filter-list::before {
+  content: var(--icon-content-wind-filter);
+}
+
+.#{$css-prefix}icon-account-add-solid::before {
+  content: var(--icon-content-userplus-fill);
+}
+
+.#{$css-prefix}icon-supervisor-account::before {
+  content: var(--icon-content-user-group-fill);
+}
+
+.#{$css-prefix}icon-star-solid::before {
+  content: var(--icon-content-collection-fill);
+}
+
+.#{$css-prefix}icon-heart-solid::before {
+  content: var(--icon-content-heart-fill);
+}
+
+.#{$css-prefix}icon-phone-binding::before {
+  content: var(--icon-content-mobile-check);
+}
+
+.#{$css-prefix}icon-scatter-plot::before {
+  content: var(--icon-content-chart-scatter-plot);
+}
+
+.#{$css-prefix}icon-chart-pie::before {
+  content: var(--icon-content-chart-pie-alt);
+}
+
+.#{$css-prefix}icon-long-arrow-left::before {
+  content: var(--icon-content-wind-arrow-left);
+}
+
+.#{$css-prefix}icon-long-arrow-right::before {
+  content: var(--icon-content-wind-arrow-right);
+}

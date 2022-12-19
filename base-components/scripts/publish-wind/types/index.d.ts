@@ -1,0 +1,1 @@
+export * from "@alicloud/console-components/types";

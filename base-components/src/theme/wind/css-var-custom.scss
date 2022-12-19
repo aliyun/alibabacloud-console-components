@@ -1,0 +1,42 @@
+#{$css-var-scope} {
+  --alicloudfe-components-theme: wind;
+  --xconsole-icon-font-family: WindIcon;
+
+  --body-bg: #ffffff;
+
+  --select-menu-select-icon-ml: -14px;
+  --menu-icon-selected-size: 12px;
+  --checkbox-icon-scale: 0.8;
+  --checkbox-icon-size: 12px;
+  --input-clear-icon-transform: none;
+  --overlay-offset: 0;
+  --card-border-color: transparent;
+  --btn-large-min-width: 10px;
+
+  --switch-disabled-on-bg-color: var(--color-success-2);
+
+  /* number-picker */
+  --number-picker-handler-btn-border: 1px solid #dedede;
+  --number-picker-handler-btn-border-hover: 1px solid #737373;
+  --number-picker-final-height-small: 28px;
+  --number-picker-final-height-medium: 32px;
+  --number-picker-final-height-large: 36px;
+  --number-picker-inline-group-border: none;
+  --number-picker-inline-group-padding: 0px;
+  --number-picker-inline-group-btn-border: 1px solid #dedede;
+  --number-picker-inline-group-btn-border-hover: 1px solid #737373;
+  --number-picker-border-radius: 0px;
+  --pagination-item-disabled-bg: #fafafa;
+  --message-close-icon-size: 12px;
+  --message-size-m-close-top: 13px;
+  --message-size-m-close-right: 14px;
+  --message-size-l-close-top: 13px;
+  --message-size-l-close-right: 14px;
+  --message-size-m-title-content-padding-left: 4px;
+  --message-border-width: 0px;
+  // 对于可选择的menu，增加padding以便容纳勾选图标
+  --menu-padding-horizontal-selectable: 24px;
+  --table-expand-icon-size: 12px;
+  --menu-padding: 8px 0;
+  --dialog-message-padding: 24px;
+}

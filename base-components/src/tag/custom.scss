@@ -1,0 +1,62 @@
+// 混合云&云效公共覆盖样式
+.next-tag-blue-inverse {
+  background-color: var(--color-notice-1);
+  border: var(--colortag-border-width, 0px) solid var(--color-notice-2);
+  color: var(--color-notice-5);
+}
+
+.next-tag-blue {
+  background-color: var(--color-notice-5);
+  border-color: var(--color-notice-5);
+}
+
+.next-tag-green-inverse {
+  background-color: var(--color-success-1);
+  border: var(--colortag-border-width, 0px) solid var(--color-success-2);
+  color: var(--color-success-5);
+}
+
+.next-tag-green {
+  background-color: var(--color-success-5);
+  border-color: var(--color-success-5);
+}
+
+.next-tag-red-inverse {
+  background-color: var(--color-error-1);
+  border: var(--colortag-border-width, 0px) solid var(--color-error-2);
+  color: var(--color-error-5);
+}
+
+.next-tag-red {
+  background-color: var(--color-error-5);
+  border-color: var(--color-error-5);
+}
+
+.next-tag-orange-inverse {
+  background-color: var(--color-warning-1);
+  border: var(--colortag-border-width, 0px) solid var(--color-warning-2);
+  color: var(--color-warning-5);
+}
+
+.next-tag-orange {
+  background-color: var(--color-warning-5);
+  border-color: var(--color-warning-5);
+}
+
+.next-tag-yellow-inverse {
+  background-color: var(--color-help-1);
+  border: var(--colortag-border-width, 0px) solid var(--color-help-2);
+  color: var(--color-help-5);
+}
+
+.next-tag-yellow {
+  background-color: var(--color-help-5);
+  border-color: var(--color-help-5);
+}
+
+.next-tag.next-tag-checkable:not([disabled]) {
+  cursor: pointer;
+  &> .next-tag-body {
+    cursor: pointer;
+  }
+}

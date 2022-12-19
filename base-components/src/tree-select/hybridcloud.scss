@@ -1,0 +1,4 @@
+// 混合云主题滚动条覆盖
+.next-virtual-tree-container.next-virtual-tree-container {
+  @include hybridcloud-scrollbar;
+}

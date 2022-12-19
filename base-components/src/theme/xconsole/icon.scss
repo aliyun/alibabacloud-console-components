@@ -1,0 +1,10 @@
+@import './wind-icon.scss';
+
+// xconsole支持通过切换cssVar来切换icon字体
+
+$icon-prefix: '.' + $css-prefix + 'icon';
+
+#{$icon-prefix} {
+  font-family: NextIcon;
+  font-family: var(--xconsole-icon-font-family, NextIcon);
+}

@@ -1,0 +1,13 @@
+// menu-button相关
+.next-menu-btn.next-btn-text.next-btn-normal .next-menu-btn-arrow{
+  color: var(--btn-text-normal-color, #1B58F4)
+}
+.next-menu-btn.next-btn-text.next-btn-primary .next-menu-btn-arrow{
+  color: var(--btn-text-primary-color, #1B58F4);
+}
+.next-menu-btn.next-btn-text.next-btn-secondary .next-menu-btn-arrow{
+  color: var(--btn-text-secondary-color, #595959);
+}
+.next-menu-btn.next-btn-text.next-btn-secondary:hover .next-menu-btn-arrow{
+  color: var(--btn-text-secondary-color-hover, #1B58F4);
+}

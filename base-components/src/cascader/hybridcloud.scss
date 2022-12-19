@@ -1,0 +1,8 @@
+// 混合云主题滚动条样式覆盖
+$cascader-prefix: '.' + $css-prefix + 'cascader';
+
+#{$cascader-prefix} {
+  #{$cascader-prefix}-menu-wrapper {
+    @include hybridcloud-scrollbar;
+  }
+}

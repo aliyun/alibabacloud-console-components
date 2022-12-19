@@ -1,0 +1,56 @@
+// 混合云Tree样式覆盖
+.next-tree-node-label-wrapper.next-tree-node-label-wrapper.next-tree-node-label-wrapper {
+  border: 0;
+}
+
+.next-tree-node-inner.next-drag-over-gap-top {
+  .next-tree-node-label {
+    position: relative;
+    &::after {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--color-brand1-6, #0064C8);
+      content: "";
+    }
+  }
+}
+.next-tree-node-inner.next-drag-over-gap-bottom {
+  .next-tree-node-label {
+    position: relative;
+    &::after {
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--color-brand1-6, #0064C8);
+      content: "";
+    }
+  }
+}
+
+.next-tree-node-label {
+  height: 24px;
+  line-height: 24px;
+
+  .next-icon {
+    color: var(--color-fill1-6, #848484);
+  }
+}
+
+.next-selected {
+  .next-tree-node-label-selectable {
+    .next-icon {
+      color: var(--tree-node-selected-color, #0064C8);
+    }
+  }
+}
+.next-tree-right-angle {
+  height: calc(20px + var(--tree-node-padding, 4px) - var(--tree-line-width, 1px)*2 - 0.5px);
+}
+.next-tree-switcher.next-line {
+  margin-right: calc(var(--tree-switch-margint-right,4px) / 2);
+}

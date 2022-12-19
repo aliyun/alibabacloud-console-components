@@ -1,0 +1,9 @@
+//混合云、云效主题样式覆盖
+.next-drawer-header {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.next-drawer-close .next-drawer-close-icon.next-icon {
+  margin-left: var(--drawer-close-icon-ml, -16px);
+  margin-top: var(--drawer-close-icon-mt, -6px);
+}

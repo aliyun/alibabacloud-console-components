@@ -1,0 +1,21 @@
+// 混合云&云效主题样式覆盖
+$message-prefix: '.' + $css-prefix + 'message';
+$toast-prefix: '.' + $css-prefix + 'toast';
+
+.next-notification {
+  &#{$message-prefix}-success#{$toast-prefix} {
+    border-left: 4px solid var(--message-success-border-color, #00a700);
+  }
+  &#{$message-prefix}-warning#{$toast-prefix} {
+    border-left: 4px solid var(--message-warning-border-color, #fac800);
+  }
+  &#{$message-prefix}-error#{$toast-prefix} {
+    border-left: 4px solid var(--message-error-border-color, #c80000);
+  }
+  &#{$message-prefix}-notice#{$toast-prefix} {
+    border-left: 4px solid var(--message-notice-border-color, #0064c8);
+  }
+  &#{$message-prefix}-help#{$toast-prefix} {
+    border-left: 4px solid var(--message-help-border-color, #888888);
+  }
+}

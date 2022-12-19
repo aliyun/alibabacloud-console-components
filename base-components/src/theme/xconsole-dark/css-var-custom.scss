@@ -1,0 +1,85 @@
+#{$css-var-scope} {
+  --alicloudfe-components-theme: xconsole-dark;
+
+  --body-bg: var(--color-fill1-1);
+
+  // common
+  --active-transition: 0.3s;
+  --active-shadow: 0 4px 8px 0 rgba(0,0,0,0.84), 0 2px 4px 0 rgba(0,0,0,0.92);
+
+  --menu-padding: 4px;
+  // 对于可选择的menu，增加padding以便容纳勾选图标
+  --menu-padding-horizontal-selectable: 24px;
+
+  --range-scale-item-position-top: 8px;
+  --range-size-m-scale-height: 4px;
+  --range-size-m-scale-item-border-width: 0px;
+
+  --timeline-item-done-background: none;
+  --timeline-item-done-border: 1px solid #c0c6cc;
+
+  --switch-size-s-width: 44px;
+
+  --pagination-item-hover-bg: var(--color-fill1-2);
+
+  --btn-font-weight: 400;
+  --btn-pure-primary-bg-disabled: #d1d5d9;
+  --btn-pure-primary-color-disabled: #ffffff;
+  --btn-pure-primary-border-style: none;
+  --btn-normal-hover-shadow: 0 4px 8px 0 rgba(0,0,0,0.84), 0 2px 4px 0 rgba(0,0,0,0.92);
+  --btn-primary-hover-shadow: 0 4px 8px 0 rgba(0,0,0,0.84), 0 2px 4px 0 rgba(0,0,0,0.92);
+  --btn-normal-hover-shadow: 0 4px 8px 0 rgba(0,0,0,0.84), 0 2px 4px 0 rgba(0,0,0,0.92);
+  --btn-primary-active-shadow: 0px 1px 2px 0px rgba(0,0,0,0.92);
+  --btn-normal-active-shadow: 0px 1px 2px 0px rgba(0,0,0,0.92);
+  --btn-text-secondary-bg-hover: #F7F9FA;
+  --btn-text-secondary-bg-active: #EFF3F8;
+  --btn-small-min-width: 68px;
+  --btn-small-cn-width: 72px;
+  --btn-medium-min-width: 76px;
+  --btn-medium-cn-width: 80px;
+  --btn-large-min-width: 84px;
+  --btn-large-cn-width: 88px;
+
+  --checkbox-checked-border-color: var(--color-fill1-5,#0064c8);
+
+  --select-menu-select-icon-ml: -20px;
+  --select-selected-font-weight: 600;
+  --select-hint-color: #666666;
+
+  --tag-hover-bg: rgba(255, 255, 255, 0.16);
+  --tag-hover-color: #e6e6e6;
+
+  --number-picker-height-small: 28px;
+  --number-picker-height-medium: 32px;
+  --number-picker-height-large: 36px;
+
+  --cascader-menu-width: 175px;
+
+  --dialog-footer-align-default: left;
+
+  --message-close-icon-size: 16px;
+  
+  --balloon-size-arrow-expose: -5px;
+  --balloon-arrow-border-radius: 0px;
+  --balloon-hover-bg: rgba(255,255,255,0.16);
+
+  --card-hover-shadow: 0 2px 4px 0 rgba(0,0,0,0.24);
+  --card-background: rgba(255,255,255, 0.04);
+  --card-hover-background: rgba(255,255,255, 0.08);
+  --card-header-background: transparent;
+  --card-border-color: rgba(255,255,255,0.08);
+  --card-hover-border-color: rgba(255,255,255,0.16);
+  --card-corner: 4px;
+
+  --input-hint-color: #cccccc;
+  --input-hint-icon-color: #999999;
+  --input-hint-icon-hover-color: #cccccc;
+  --input-bg-color: var(--color-brand1-1, rgba(255, 255, 255, 0.08));
+
+  --dropdown-bg-color: var(--menu-background);
+
+  --tree-select-background: rgba(31,31,31);
+  --tree-node-normal-background: transparent;
+
+  --dialog-close-top-normal: 28px;
+}

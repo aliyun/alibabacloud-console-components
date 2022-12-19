@@ -1,0 +1,14 @@
+.next-date-picker2-wrapper {
+  background: var(--date-picker-panel-background);
+  .next-range-picker2-arrow {
+    background: var(--date-picker-panel-background);
+  }
+}
+.next-time-picker2-menu {
+  ul li {
+    background: var(--date-picker-panel-background);
+  }
+  ul li.next-selected {
+    background: var(--date-picker2-time-bg, var(--color-brand1-1, #001A33));
+  }
+}

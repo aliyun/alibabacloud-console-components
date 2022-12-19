@@ -1,0 +1,26 @@
+.#{$css-prefix}range {
+  &-scale-item {
+    &#{&}#{&}#{&} {
+      top: var(--range-scale-item-position-top, 0px);
+      width: var(--range-scale-item-width, 1px);
+    }
+  }
+  // &-track {
+  //   &#{&} {
+  //     width: calc(100% + 12px);
+  //     left: -6px;
+  //   }
+  // }
+}
+.next-range {
+  .next-range-slider-inner {
+    &:hover {
+      transform: scale(1.38);
+    }
+  }
+  .next-range-slider-moving {
+    .next-range-slider-inner.next-range-slider-inner.next-range-slider-inner {
+      transform: scale(1.38);
+    } 
+  }
+}

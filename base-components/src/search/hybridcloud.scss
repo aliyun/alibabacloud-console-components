@@ -1,0 +1,77 @@
+.next-search.next-search.next-search.next-search {
+  box-shadow: none;
+  border-color: var(--input-focus-border-color, #ababab);
+  .next-input-inner {
+    margin: var(--search-before-title-icon-margin, 0 8px 0 0);
+    i.next-icon.next-icon {
+      padding: var(--search-before-title-icon-padding, 0 0 0 8px);
+      width: var(--search-before-title-icon-font-size, 20px);
+      height: var(--search-before-title-icon-font-size, 20px);
+      color: var(--color-line1-5);
+
+      &::before {
+        font-size: var(--search-before-title-icon-font-size, 20px);
+      }
+    }
+  }
+  i.next-icon.next-icon {
+    color: var(--color-line1-5);
+    width: var(--search-before-title-icon-font-size, 20px);
+    height: var(--search-before-title-icon-font-size, 20px);
+    &::before {
+      font-size: var(--search-before-title-icon-font-size, 20px);
+    }
+  }
+}
+
+.next-search.focusing.next-search.focusing {
+  .next-input-group.next-input-group.next-input-group {
+    border-color: var(--input-focus-border-color, #ababab);
+    box-shadow: var(--active-shadow);
+    background-color: var(--input-focus-bg-color, transparent);
+  }
+  .next-input-group-addon.next-input-group-addon.next-input-group-addon button {
+    border-color: var(--input-focus-border-color, #ababab);
+    box-shadow: var(--active-shadow);
+    background-color: var(--input-focus-bg-color, transparent);
+  }
+}
+.next-search {
+  &:hover {
+    .next-input-group.next-input-group.next-input-group {
+      box-shadow: var(--active-shadow);
+      border-color: var(--input-hover-border-color, #cccccc);
+      background-color: var(--input-hover-bg-color, #ffffff);
+    }
+    .next-input-group-addon.next-input-group-addon.next-input-group-addon
+      button {
+      box-shadow: var(--active-shadow);
+      border-color: var(--input-hover-border-color, #cccccc);
+      background-color: var(--input-hover-bg-color, #ffffff);
+    }
+  }
+}
+
+.next-search-no-custom-search-text.next-large {
+  .next-input-group-addon {
+    .next-search-btn.next-search-btn {
+      min-width: calc(var(--search-normal-normal-l-height, 36px));
+      padding: 0 6px;
+    }
+
+  }
+}
+.next-search-no-custom-search-text.next-medium {
+  .next-input-group-addon {
+    .next-search-btn.next-search-btn {
+      min-width: calc(var(--search-normal-normal-m-height, 32px));
+      padding: 0 6px;
+      .next-icon {
+        margin-left: -4px;
+      }
+    }
+
+  }
+}
+
+// isOnlyIcon

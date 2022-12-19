@@ -1,0 +1,39 @@
+.next-table-row {
+  .next-table-cell.next-table-selection {
+    position: relative;
+    .next-checkbox-wrapper.checked {
+      &::before {
+        content: '';
+        position: absolute;
+        height: calc(100% + 1px);
+        top: 0;
+        left: 0px;
+        border-left: 2px solid var(--color-table-selected-border);
+      }
+    }
+  }
+}
+
+.next-table-lock-right.shadow {
+  box-shadow: var(--table-lock-right-shadow);
+}
+
+.next-table-lock-left.shadow {
+  box-shadow: var(--table-lock-left-shadow);
+}
+
+.next-table-ping-right
+  .next-table-expanded-area
+  .next-table-ping-right
+  .next-table-fix-right-first:after,
+.next-table-ping-right .next-table-fix-right-first:after {
+  box-shadow: var(--table-ping-right-shadow);
+}
+
+.next-table-ping-left
+  .next-table-expanded-area
+  .next-table-ping-left
+  .next-table-fix-left-last::after,
+.next-table-ping-left .next-table-fix-left-last::after {
+  box-shadow: var(--table-ping-left-shadow);
+}

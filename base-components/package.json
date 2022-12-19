@@ -1,0 +1,134 @@
+{
+  "name": "@alicloudfe/components",
+  "version": "1.2.14",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "types"
+  ],
+  "sideEffects": [
+    "dist/*",
+    "**/*.scss"
+  ],
+  "description": "A react component library for aliyun",
+  "keywords": [
+    "aliyun",
+    "cloud design",
+    "component",
+    "ui",
+    "ui library",
+    "react",
+    "components",
+    "design",
+    "frontend"
+  ],
+  "author": {
+    "name": "zuoqi",
+    "email": "1398772969@qq.com",
+    "url": "https://github.com/zuoqi705"
+  },
+  "maintainers": [
+    {
+      "name": "zuoqi",
+      "email": "1398772969@qq.com"
+    },
+    {
+      "name": "csr632",
+      "url": "https://github.com/csr632"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "zuoqi",
+      "email": "1398772969@qq.com",
+      "url": "https://github.com/zuoqi705"
+    },
+    {
+      "name": "csr632",
+      "url": "https://github.com/csr632"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliyun/cloud-design"
+  },
+  "scripts": {
+    "clean": "rm -rf dist lib es types",
+    "dev": "vite serve -c ./vite.config.ts",
+    "debug": "npx --node-options=--inspect-brk vite serve -c ./vite.config.ts --force",
+    "debug-build": "npx --node-options=--inspect vite build -c ./vite.config.ts",
+    "demos-build": "rm -rf docs-dist && vite build -c ./vite.config.ts && serve -s docs-dist",
+    "demos-deploy": "rm -rf docs-dist && vite build -c ./vite.config.ts --base \"/cloud-design\" && touch ./docs-dist/.nojekyll && gh-pages -d docs-dist -t",
+    "babel": "tsc -p src --outDir ./lib --module commonjs",
+    "babel:esm": "tsc -p src --outDir ./es --module es2015",
+    "build": "breezr build --engine webpack",
+    "build-xconsole": "breezr build --engine webpack --config ./xconsole.breezr.config.js",
+    "types": "tsc -p src --emitDeclarationOnly && node ./scripts/add-fusion-type-export",
+    "cpy-comp": "node ./scripts/copy-comp.js",
+    "cpy-scss": "cpy \"**/*.scss\" \"../lib\" --cwd=src --parents",
+    "build-css": "node ./scripts/build-css.js",
+    "prepare": "npm run clean && concurrently --kill-others-on-fail --success all \"npm:babel\" \"npm:cpy-scss\" \"npm:build-css\" \"npm:babel:esm\" \"npm:build\" \"npm:build-xconsole\" \"npm:types\" && echo \"Prepare package successfully!\"",
+    "sync-demo": "node ./scripts/sync-demo.js",
+    "gene-def": "node ./scripts/gene-css-def.js",
+    "update-theme": "node ./scripts/update-theme.js && npm run gene-def",
+    "//注释": "发布前请确认是否需要升级主题: npm run update-theme",
+    "publish-xconsole": "npm run prepare && cd ./scripts/publish-xconsole && npm run pub && tnpm sync && cd ../publish-wind && npm run pub",
+    "publish-xconsole:alpha": "npm run prepare && cd ./scripts/publish-xconsole && npm run publish:alpha && tnpm sync && cd ../publish-wind && npm run publish:alpha"
+  },
+  "dependencies": {
+    "@alifd/next": "~1.25.51",
+    "classnames": "^2.2.6",
+    "hoist-non-react-statics": "^3.3.2",
+    "react-loading-skeleton": "^2.1.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@alicloud/console-components-app-layout": "^1.1.1",
+    "@alicloud/console-components-console-menu": "^1.2.5",
+    "@alicloud/console-toolkit-cli": "^1.2.0",
+    "@alicloud/console-toolkit-preset-component": "^1.2.0",
+    "@alicloud/console-toolkit-preset-official": "^1.2.19",
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "chalk": "^4.1.0",
+    "concurrently": "^5.3.0",
+    "cpy-cli": "^3.1.1",
+    "cssnano": "^4.1.10",
+    "download": "^8.0.0",
+    "fs-extra": "^9.0.1",
+    "gh-pages": "^3.1.0",
+    "glob": "^7.1.6",
+    "jsonp": "^0.2.1",
+    "lodash": "^4.17.11",
+    "ncp": "^2.0.0",
+    "postcss-cli": "^7.1.1",
+    "prettier": "^2.0.5",
+    "react-copy-to-clipboard": "^5.0.2",
+    "react-cropper": "^1.3.0",
+    "react-dnd": "^7.0.0",
+    "react-dnd-html5-backend": "^7.0.0",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "rimraf": "^3.0.2",
+    "sass": "^1.26.10",
+    "sass-extract": "^2.1.0",
+    "serve": "^11.3.2",
+    "solarlunar": "^2.0.7",
+    "typescript": "^3.9.7",
+    "vite": "^2.3.8",
+    "vite-pages-theme-basic": "^3.0.0",
+    "vite-plugin-mdx": "^3.3.1",
+    "vite-plugin-react-pages": "^3.0.0",
+    "whatwg-fetch": "^3.3.1"
+  },
+  "peerDependencies": {
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

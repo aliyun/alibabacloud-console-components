@@ -1,0 +1,11 @@
+.#{$css-prefix}timeline {
+  &-item {
+    &#{&}-done {
+      .#{$css-prefix}timeline-item-dot {
+        border-radius: 50%;
+        background: var(--timeline-item-done-background, #C0C6CC);
+        border: var(--timeline-item-done-border);
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.#{$css-prefix}breadcrumb-icon-sep {
+  &::before {
+    // 修复wind主题下的图标渲染问题
+    // fusion会将这个icon的content写死为配置平台的配置结果
+    // 这个content是NextIcon的字体码，而不是WindIcon的字体码
+    font-family: NextIcon;
+  }
+}

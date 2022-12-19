@@ -1,0 +1,45 @@
+// 确认、取消按钮 默认样式
+.next-drawer-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: var(--drawer-footer-padding-top, 10px) var(--drawer-footer-padding-right, 16px) var(--drawer-footer-padding-bottom, 10px) var(--drawer-footer-padding-left, 16px);
+  left: 0;
+  background: var(--drawer-title-bg-color, var(--drawer-bg));
+  border-radius: 0 0 4px 4px;
+  z-index: 3;
+
+  &-line {
+    border-top: var(--drawer-footer-border-width, 1px) var(--line-solid, solid) var(--drawer-footer-border-color, var(--color-line1-1));
+  }
+
+  &-has-shadow {
+    box-shadow: var(--shadow-1-up);
+    border-top: var(--drawer-footer-border-width, 1px) var(--line-solid, solid) var(--drawer-footer-border-color, var(--color-line1-1));
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-left {
+    text-align: right;
+  }
+
+  &-center {
+    text-align: center;
+  }
+}
+.next-drawer {
+  overflow: hidden;
+  .next-drawer-body {
+    height: calc(100% - var(--drawer-has-footer-margin-bottom, 40px));
+  }
+}
+
+.next-drawer-has-footer {
+  .next-drawer-body {
+    margin-bottom: var(--drawer-has-footer-margin-bottom, 40px);
+    padding-bottom: calc(var(--drawer-content-padding-bottom, 20px) + var(--drawer-has-footer-margin-bottom, 40px) +  var(--drawer-footer-padding-bottom, 10px));
+  }
+}

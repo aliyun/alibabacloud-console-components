@@ -1,0 +1,13 @@
+.#{$css-prefix}balloon {
+  &-close {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    &:hover {
+      background-color: var(--balloon-hover-bg, #f7f9fa);
+    }
+  }
+}

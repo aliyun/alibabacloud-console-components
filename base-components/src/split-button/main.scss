@@ -1,0 +1,5 @@
+.#{$css-prefix}split-btn {
+  &#{&} > .#{$css-prefix}btn {
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,13 @@
+// 去掉选中日期动画，修复文字抖动的问题
+
+.next-calendar-card .next-calendar-cell.next-selected .next-calendar-date,
+.next-calendar-card .next-calendar-cell.next-selected .next-calendar-month,
+.next-calendar-card .next-calendar-cell.next-selected .next-calendar-year,
+.next-calendar-panel .next-calendar-cell.next-selected .next-calendar-date,
+.next-calendar-panel .next-calendar-cell.next-selected .next-calendar-month,
+.next-calendar-panel .next-calendar-cell.next-selected .next-calendar-year,
+.next-calendar-range .next-calendar-cell.next-selected .next-calendar-date,
+.next-calendar-range .next-calendar-cell.next-selected .next-calendar-month,
+.next-calendar-range .next-calendar-cell.next-selected .next-calendar-year {
+  animation: none;
+}

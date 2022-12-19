@@ -1,0 +1,134 @@
+$input-prefix: '.' + $css-prefix + 'input';
+$input-group: '.' + $css-prefix + 'input-group';
+$number-picker: '.' + $css-prefix + 'number-picker';
+
+#{$number-picker} {
+  // type=normal
+  > #{$input-prefix} {
+    #{$number-picker}-handler {
+      &:focus-within {
+        opacity: 1;
+      }
+      .#{$css-prefix}btn.#{$css-prefix}btn.#{$css-prefix}btn.#{$css-prefix}btn {
+        min-width: unset;
+        border: var(--number-picker-handler-btn-border, none);
+        &:not(.disabled):hover {
+          border: var(--number-picker-handler-btn-border-hover, none);
+        }
+        &.#{$css-prefix}btn:first-child {
+          border-right: none;
+          border-top: none;
+        }
+        &.#{$css-prefix}btn:last-child {
+          border-right: none;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // type=inline
+  &-inline {
+    #{$input-group} {
+      border: var(--number-picker-inline-group-border, 1px solid #c0c6cc);
+      border-radius: var(--number-picker-border-radius, 2px);
+      padding: var(--number-picker-inline-group-padding, 4px);
+      #{$input-group}-addon {
+        .#{$css-prefix}btn {
+          border: var(--number-picker-inline-group-btn-border, none);
+          &:not(.disabled):hover {
+            border: var(--number-picker-inline-group-btn-border-hover, none);
+          }
+          border-radius: var(--number-picker-border-radius, 2px) !important;
+          min-width: unset;
+        }
+      }
+      #{$input-prefix} {
+        border: var(--number-picker-inline-group-btn-border, none);
+        &:hover {
+          border: var(--number-picker-inline-group-btn-border-hover, none);
+        }
+      }
+    }
+  }
+}
+
+#{$number-picker}.#{$css-prefix}disabled {
+  background-color: var(--input-disabled-bg-color, #f7f9fa);
+  > #{$input-prefix} {
+    border: var(--number-picker-normal-border, 1px solid #dedede);
+  }
+  #{$input-group} {
+    &:hover {
+      // hover的时候border不变化
+      border: var(--number-picker-inline-group-border, 1px solid #c0c6cc);
+    }
+    box-shadow: none;
+    #{$input-group}-addon {
+      .#{$css-prefix}btn {
+        background-color: var(--input-disabled-bg-color, #f7f9fa);
+        &:hover {
+          // hover的时候border不变化
+          border: var(--number-picker-inline-group-btn-border, none);
+        }
+      }
+    }
+    #{$input-prefix} {
+      &:hover {
+        // hover的时候border不变化
+        border: var(--number-picker-inline-group-btn-border, none);
+      }
+    }
+  }
+}
+
+@mixin number-picker-inline-size($size) {
+  #{$number-picker}-inline.#{$css-prefix}#{$size} {
+    #{$input-group} {
+      #{$input-group}-addon {
+        .#{$css-prefix}btn {
+          // 让整体高度等于 --number-picker-height-#{$size}
+          height: var(
+            --number-picker-final-height-#{$size},
+            calc(var(--number-picker-height-#{$size}) - 10px)
+          );
+          width: var(
+            --number-picker-final-height-#{$size},
+            calc(var(--number-picker-height-#{$size}) - 10px)
+          );
+          min-width: unset;
+        }
+      }
+      #{$input-prefix} {
+        display: inline-block;
+        height: var(
+          --number-picker-final-height-#{$size},
+          calc(var(--number-picker-height-#{$size}) - 10px)
+        );
+        line-height: var(
+          --number-picker-final-height-#{$size},
+          calc(var(--number-picker-height-#{$size}) - 10px)
+        );
+        input {
+          display: inline-block;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+@include number-picker-inline-size(medium);
+@include number-picker-inline-size(small);
+@include number-picker-inline-size(large);
+
+.next-number-picker-normal.next-small.next-small.next-small .next-icon:before,
+.next-number-picker-normal.next-small.next-small.next-small
+  .next-icon
+  .next-icon-remote {
+  line-height: inherit;
+}
+
+.next-number-picker.next-medium > .next-input .next-number-picker-handler .next-btn.next-btn.next-btn.next-btn {
+  height: calc((var(--form-element-medium-height, 32px) - var(--input-border-width, 1px)*2) / 2);
+}

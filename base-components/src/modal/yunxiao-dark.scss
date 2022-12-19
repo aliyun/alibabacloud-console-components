@@ -1,0 +1,9 @@
+.next-modal-header {
+  .next-modal-title-box {
+    .next-modal-title-icon {
+      &::before {
+        font-size: var(--modal-title-icon-font-size, 20px);
+      }
+    }
+  }
+}

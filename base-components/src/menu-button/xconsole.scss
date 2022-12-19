@@ -1,0 +1,33 @@
+$menu-button-cls-name: '#{$css-prefix}menu-btn';
+
+.#{$menu-button-cls-name} {
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-normal:hover {
+    .#{$css-prefix}menu-btn-arrow {
+      color: var(--btn-text-normal-color-hover, #555555);
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-primary {
+    .#{$css-prefix}menu-btn-arrow {
+      color: var(--btn-text-primary-color, #555555);
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-primary:hover {
+    .#{$css-prefix}menu-btn-arrow {
+      color: var(--btn-text-primary-color-hover, #555555);
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-secondary {
+    .#{$css-prefix}menu-btn-arrow {
+      color: var(--btn-text-secondary-color, #555555);
+    }
+  }
+
+  &.#{$css-prefix}btn-text.#{$css-prefix}btn-secondary:hover {
+    .#{$css-prefix}menu-btn-arrow {
+      color: var(--btn-text-secondary-color-hover, #555555);
+    }
+  }
+}

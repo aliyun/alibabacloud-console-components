@@ -1,0 +1,74 @@
+#{$css-var-scope} {
+  --alicloudfe-components-theme: xconsole;
+  --xconsole-icon-font-family: NextIcon;
+
+  --body-bg: #ffffff;
+
+  --range-scale-item-position-top: 8px;
+  --range-size-m-scale-height: 4px;
+  --range-size-m-scale-item-border-width: 0px;
+  --timeline-item-done-background: none;
+  --timeline-item-done-border: 1px solid #c0c6cc;
+  --switch-size-s-width: 44px;
+  --balloon-size-arrow-expose: -5px;
+  --pagination-item-hover-bg: var(--color-fill1-2);
+  --active-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08),
+    0 2px 4px 0 rgba(0, 0, 0, 0.16);
+  --active-transition: 0.3s;
+
+  --btn-font-weight: 400;
+  --btn-pure-primary-bg-disabled: #d1d5d9;
+  --btn-pure-primary-color-disabled: #ffffff;
+  --btn-pure-primary-border-style: none;
+  --btn-primary-hover-shadow: 0 4px 8px 0 rgba(0,0,0,0.08), 0 2px 4px 0 rgba(0,0,0,0.16);
+  --btn-primary-active-shadow: 0 1px 2px 0 rgba(0,0,0,0.16);
+  --btn-normal-hover-shadow: 0 4px 8px 0 rgba(0,0,0,0.08), 0 2px 4px 0 rgba(0,0,0,0.16);
+  --btn-normal-active-shadow: 0 1px 2px 0 rgba(0,0,0,0.16);
+
+  --btn-text-secondary-bg-hover: #F7F9FA;
+  --btn-text-secondary-bg-active: #EFF3F8;
+  
+  --btn-small-min-width: 68px;
+  --btn-small-cn-width: 72px;
+  --btn-medium-min-width: 76px;
+  --btn-medium-cn-width: 80px;
+  --btn-large-min-width: 84px;
+  --btn-large-cn-width: 88px;
+
+  --tab-pure-text-color-hover: #303030;
+  --tab-pure-text-color-normal: #303030;
+  --tab-pure-hover-bg: #f7f9fa;
+
+  --search-normal-normal-btn-bg-color: #fff;
+  --search-btn-hover-bg: #fff;
+
+  --menu-icon-selected-color: #333333;
+  --select-menu-select-icon-ml: -20px;
+  --select-selected-font-weight: 600;
+  --menu-padding: 4px;
+  // 对于可选择的menu，增加padding以便容纳勾选图标
+  --menu-padding-horizontal-selectable: 24px;
+
+  --tag-hover-color: #333333;
+  --tag-focus-color: #333333;
+  --tag-focus-bg: #ffffff;
+  --tag-hover-bg: #f7f9fa;
+
+  --number-picker-height-small: 28px;
+  --number-picker-height-medium: 32px;
+  --number-picker-height-large: 36px;
+
+  --cascader-menu-width: 175px;
+
+  --dialog-title-padding-bottom: 24px;
+  --dialog-footer-align-default: left;
+  --message-line-height: 16px;
+  --message-close-icon-size: 16px;
+  --message-size-m-close-top: 14px;
+  --message-size-m-close-right: 14px;
+  --message-size-m-title-content-padding-left: 8px;
+  --balloon-arrow-border-radius: 0px;
+
+  --dialog-close-top-normal: 28px;
+  --table-expand-icon-size: 16px;
+}

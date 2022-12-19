@@ -1,0 +1,65 @@
+$form-cls-name: '#{$css-prefix}form';
+
+.#{$form-cls-name} {
+  $size-base: var(--size-base, 4px);
+
+  $form-item-label-cls-name: '#{$form-cls-name}-item-label';
+  $left-cls-name: '#{$css-prefix}left';
+  $top-cls-name: '#{$css-prefix}top';
+  $select-cls-name: '#{$css-prefix}select';
+  $checkbox-cls-name: '#{$css-prefix}checkbox';
+  $radio-cls-name: '#{$css-prefix}radio';
+
+  .#{$form-cls-name}-item {
+    // 调整水平布局的 label 基础样式
+    &.#{$left-cls-name} {
+      .#{$form-item-label-cls-name} {
+        padding-right: calc(#{$size-base} * 4);
+      }
+    }
+
+    // 调整垂直布局的 label 基础样式
+    &.#{$top-cls-name} {
+      .#{$form-item-label-cls-name} {
+        line-height: calc(#{$size-base} * 5);
+        margin-bottom: $size-base;
+      }
+    }
+
+    // 表示必填的*总是放在左边
+    .#{$form-item-label-cls-name} {
+      color: #555555;
+      label[required]::before {
+        display: inline;
+      }
+      label[required]::after {
+        display: none;
+      }
+    }
+
+    &-control {
+      color: #333333;
+      .#{$select-cls-name} {
+        // 修复表单中的下拉选择框的外边距问题, 该问题会将表单项撑高, 破坏整体视觉的连贯性
+        margin: 0;
+      }
+
+      .#{$checkbox-cls-name}-group.#{$checkbox-cls-name}-group-ver,
+      .#{$radio-cls-name}-group.#{$radio-cls-name}-group-ver {
+        .#{$checkbox-cls-name}-wrapper,
+        .#{$radio-cls-name}-wrapper {
+          // 修复表单项中的垂直排列的 Checkbox.Group.Item/Radio.Group.Item 间距
+          // 由于行高相较通用表单项的 28px 减少了 8px
+          // 导致表单项中如果第一个表单元素是垂直排列的 Checkbox.Group 或 Radio.Group 时
+          // 整体的视觉表现会出现向上偏移的情况, 修正 margin-top 为 1/2 个被减少的单位来
+          // 避免该情况的出现
+          //
+          // (fixed: #17511562)[https://aone.alibaba-inc.com/issue/17511562]
+          // (fixed: #46698)[http://gitlab.alibaba-inc.com/wind/wind/issues/46698]
+          margin-top: $size-base;
+          line-height: calc(#{$size-base} * 5);
+        }
+      }
+    }
+  }
+}

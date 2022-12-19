@@ -1,0 +1,8 @@
+.#{$css-prefix}time-picker2,
+.#{$css-prefix}time-picker2-panel {
+  --color-brand1-1: #0064c8;
+
+  .#{$css-prefix}time-picker2-menu-item.#{$css-prefix}selected {
+    color: #fff;
+  }
+}

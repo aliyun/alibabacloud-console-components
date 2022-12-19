@@ -1,0 +1,24 @@
+// fusion的bug，暂时手动覆盖
+
+.next-menu-item.next-selected .next-menu-icon-selected {
+  color: var(--color-brand1-6);
+}
+
+.next-menu-item:not(.next-disabled):hover .next-menu-icon-selected,
+.next-menu-item:not(.next-disabled).next-selected:hover
+  .next-menu-icon-selected,
+.next-menu-item:not(.next-disabled).next-selected.next-focused:hover
+  .next-menu-icon-selected,
+.next-menu-item:not(.next-disabled).next-selected:focus:hover
+  .next-menu-icon-selected,
+.next-menu-item:not(.next-disabled).next-focused .next-menu-icon-selected,
+.next-menu-item:not(.next-disabled).next-selected.next-focused
+  .next-menu-icon-selected,
+.next-menu-item:not(.next-disabled).next-selected:focus
+  .next-menu-icon-selected {
+  color: var(--color-brand1-6);
+}
+
+.next-menu-item.next-selected.next-selected.next-selected {
+  background-color: var(--menu-background-selected);
+}

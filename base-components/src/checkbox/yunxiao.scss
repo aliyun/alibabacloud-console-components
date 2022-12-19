@@ -1,0 +1,45 @@
+// 云效图标局中
+.next-checkbox-wrapper.checked
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon:before,
+.next-checkbox-wrapper.checked
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon
+  .next-icon-remote,
+.next-checkbox-wrapper.checked.focused
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon:before,
+.next-checkbox-wrapper.checked.focused
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon
+  .next-icon-remote {
+  line-height: inherit;
+}
+
+.next-checkbox-wrapper.indeterminate
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon:before,
+.next-checkbox-wrapper.indeterminate
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon
+  .next-icon-remote,
+.next-checkbox-wrapper.indeterminate.focused
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon:before,
+.next-checkbox-wrapper.indeterminate.focused
+  > .next-checkbox
+  > .next-checkbox-inner
+  > .next-icon
+  .next-icon-remote {
+  line-height: inherit;
+}
+.next-checkbox-wrapper .next-checkbox-inner {
+  border-radius: 2px;
+}

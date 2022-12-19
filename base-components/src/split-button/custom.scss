@@ -1,0 +1,13 @@
+// 混合云云效主题覆盖
+.next-btn-group .next-btn.next-btn-primary:not([disabled]) {
+  border-color: var(--color-brand1-6);
+  &:hover {
+    border-color: var(--color-brand1-5);
+  }
+  &:active {
+    border-color: var(--color-brand1-8);
+  }
+  &.next-split-btn-trigger {
+    border-left-color: rgba(255, 255, 255, 0.2);
+  }
+}

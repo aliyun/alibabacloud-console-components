@@ -1,0 +1,43 @@
+$pagination-prefix: '.' + $css-prefix + 'pagination';
+$pagination-select-popup-prefix: '.' + $css-prefix +
+  'pagination-size-selector-popup';
+
+$pagination-item: $pagination-prefix + '-item';
+
+#{$pagination-prefix} {
+  // 每页显示局中
+  font-size: inherit;
+  #{$pagination-item} {
+    &.#{$css-prefix}current.#{$css-prefix}current.#{$css-prefix}current {
+      // 避免border被其他盖住
+      z-index: 2;
+    }
+    &:not(.#{$css-prefix}current) {
+      &:hover,
+      &:focus-visible {
+        background-color: var(--pagination-item-hover-bg, #fff);
+      }
+    }
+    &#{$pagination-item}#{$pagination-item}.#{$css-prefix}btn {
+      min-width: 32px;
+      &.#{$css-prefix}small {
+        min-width: 24px;
+      }
+      &.#{$css-prefix}prev,
+      &.#{$css-prefix}next {
+        &[disabled]:hover {
+          background-color: var(--pagination-item-disabled-bg, #fff);
+        }
+        border-color: var(--pagination-item-border-color, transparent);
+      }
+    }
+  }
+}
+
+#{$pagination-select-popup-prefix} {
+  $menu-item-prefix: '.' + $css-prefix + 'select-menu-item';
+  #{$menu-item-prefix}#{$menu-item-prefix}#{$menu-item-prefix}#{$menu-item-prefix}#{$menu-item-prefix} {
+    // 过去padding太多，没有宽度留给实际内容，减少一些padding
+    padding-right: 0;
+  }
+}

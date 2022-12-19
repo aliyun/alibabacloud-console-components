@@ -1,0 +1,11 @@
+// 混合云&云效input覆盖样式
+.next-input {
+  span.next-input-inner.next-before {
+    color: var(--color-line1-5);
+    padding-left: 8px;
+  }
+  span.next-input-inner.next-after {
+    color: var(--color-line1-5);
+    padding-right: 8px;
+  }
+}

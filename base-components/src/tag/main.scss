@@ -1,0 +1,12 @@
+$tag-prefix: '.' + $css-prefix + 'tag';
+$icon-prefix: '.' + $css-prefix + 'icon';
+
+// #{$tag-prefix} {
+//   &:not([disabled]) {
+//     &#{$tag-prefix}#{$tag-prefix} {
+//       #{$icon-prefix}-close::before {
+//         content: var(--icon-content-delete-filling);
+//       }
+//     }
+//   }
+// }

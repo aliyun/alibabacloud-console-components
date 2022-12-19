@@ -1,0 +1,6 @@
+// 混合云主题滚动条覆盖
+.#{$css-prefix}transfer {
+  &#{&} &-panel-list {
+    @include hybridcloud-scrollbar;
+  }
+}

@@ -1,0 +1,11 @@
+.hybridcloud-card-dropdown-actions-icon.hybridcloud-card-dropdown-actions-icon,
+.theme-hybridcloud .hybridcloud-card-dropdown-actions-icon,
+.theme-hybridcloud-dark .hybridcloud-card-dropdown-actions-icon {
+  color: var(--color-fill1-6, #848484);
+  cursor: pointer;
+  margin-top: -1px;
+  &::before {
+    font-size: 24px;
+    width: 24px;
+  }
+}

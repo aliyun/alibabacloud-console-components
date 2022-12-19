@@ -1,0 +1,25 @@
+$dialog-prefix: '.' + $css-prefix + 'dialog';
+
+#{$dialog-prefix} {
+  &-footer {
+    .#{$css-prefix}btn {
+      // 调整 footer 中的行动按钮间距
+      margin-left: var(--s-2, 8px);
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  // Dialog.show的body是不包含Message组件的，所以padding应该按照正常的来，
+  // 而不应该像Dialog.confirm一样
+  // 这里覆盖掉fusion的这一行错误样式：https://github.com/alibaba-fusion/next/blob/c6139f50b50036872ce8ecc487cc80429abd93e6/src/dialog/main.scss#L124
+  &#{$dialog-prefix}-quick.quick-show {
+    #{$dialog-prefix}-body {
+      padding: var(--dialog-content-padding-top, 0px)
+        var(--dialog-content-padding-left-right, 24px)
+        var(--dialog-content-padding-bottom, 16px)
+        var(--dialog-content-padding-left-right, 24px);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.react-loading-skeleton.react-loading-skeleton  {
+  background-color: var(--color-skeleton-bg-normal);
+  background-image: linear-gradient(90deg, var(--color-skeleton-bg-normal), var(--color-skeleton-bg-light), var(--color-skeleton-bg-normal));
+}
+
+.theme-hybridcloud-dark {
+  .next-loading .next-loading-component {
+    opacity: unset;
+    filter: blur(2px);
+    .next-loading-masker {
+      background: #000;
+      opacity: 0.5;
+    }
+  }
+}

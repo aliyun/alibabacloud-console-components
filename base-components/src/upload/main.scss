@@ -1,0 +1,24 @@
+$upload-prefix: '.' + $css-prefix + 'upload';
+
+#{$upload-prefix} {
+  &-dragable {
+    #{$upload-prefix}-drag {
+      transition: all 100ms linear;
+    }
+    #{$upload-prefix}-drag-over {
+      background: var(--color-brand1-1);
+    }
+  }
+  &-card {
+    border-radius: var(--corner-1);
+  }
+  &-list-card {
+    #{$upload-prefix}-list-item-wrapper {
+      border-style: dashed;
+      border-radius: var(--corner-1);
+    }
+    #{$upload-prefix}-list-item-progress .#{$css-prefix}progress-line-overlay {
+      border-radius: 0px var(--corner-1) var(--corner-1) var(--corner-1);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.next-loading .next-loading-component {
+  opacity: unset;
+  filter: blur(2px);
+  .next-loading-masker {
+    background: #000;
+    opacity: 0.5;
+  }
+}

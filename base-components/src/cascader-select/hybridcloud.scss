@@ -1,0 +1,10 @@
+$cascader-select-prefix: '.' + $css-prefix + 'cascader-select';
+$menu-prefix: '.' + $css-prefix + 'menu';
+
+#{$cascader-select-prefix} {
+  &-dropdown {
+    .#{$css-prefix}cascader-menu-wrapper {
+      @include hybridcloud-scrollbar;
+    }
+  }
+}

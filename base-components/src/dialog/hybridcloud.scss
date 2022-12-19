@@ -1,0 +1,115 @@
+$dialog-prefix: '.' + $css-prefix + 'dialog';
+.theme-hybridcloud.theme-hybridcloud,
+.theme-hybridcloud-dark.theme-hybridcloud-dark {
+  .next-dialog-message.next-message.next-addon .next-message-content {
+    color: var(--color-dialog-content);
+    line-height: 1.5;
+    margin-top: 16px;
+  }
+
+  .next-dialog-header {
+    font-weight: var(--font-weight-medium, 500);
+  }
+}
+
+.next-dialog-message.next-message.next-addon .next-message-content {
+  color: var(--color-dialog-content);
+  line-height: 1.5;
+  margin-top: 16px;
+}
+
+.next-dialog-header {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+// for teamix
+.theme-hybridcloud,
+.theme-hybridcloud-dark,
+:not(.theme-yunxiao),
+:not(.theme-yunxiao-dark){
+  #{$dialog-prefix} {
+    min-width: 400px;
+    &:not(#{$dialog-prefix}-quick:not(.quick-show)) {
+      --dialog-close-top: 14px;
+      #{$dialog-prefix}-header {
+        --dialog-title-padding-bottom: 12px;
+        --dialog-title-padding-top: 12px;
+        --dialog-title-border-color: var(--color-line1-1);
+      }
+      #{$dialog-prefix}-body {
+        --dialog-content-padding-top: 16px;
+      }
+      #{$dialog-prefix}-footer {
+        --dialog-footer-border-color: transparent;
+        --dialog-footer-padding-top: 16px;
+        --dialog-footer-padding-bottom: 16px;
+      }
+    }
+  }
+}
+
+// for teamix
+.theme-hybridcloud,
+.theme-hybridcloud-dark,
+:not(.theme-yunxiao),
+:not(.theme-yunxiao-dark) {
+  .next-dialog-message.next-message.next-addon .next-message-content {
+    line-height: 1.5;
+  }
+  .next-dialog-header {
+    font-weight: var(--font-weight-medium, 500);
+  }
+}
+
+.next-message-content.next-message-content.next-message-content {
+  padding-right: 20px;
+}
+.next-message-title.next-message-title.next-message-title {
+  padding-right: 20px;
+}
+
+.next-dialog-close {
+  width: var(--dialog-header-close-bg-width, 20px);
+  height: var(--dialog-header-close-bg-height, 20px);
+  border-radius: var(--drawer-header-close-border-radius, 2px);
+
+  &:hover {
+    background-color: var(--color-fill1-2, #f7f7f7);
+    .next-dialog-close-icon {
+      color: var(--color-text1-2, #5a5a5a);
+    }
+  }
+
+  &:active {
+    background-color: var(--color-fill1-3, #eaeaea);
+    .next-dialog-close-icon {
+      color: var(--color-text1-5, #292929);
+    }
+  }
+
+  .next-dialog-close-icon {
+    color: var(--color-fill1-6, #848484);
+  }
+}
+
+.next-dialog.next-closeable:not(.next-dialog-quick) {
+  .next-dialog-close {
+    --dialog-close-top: 13px;
+  }
+}
+
+.next-dialog.next-closeable.next-dialog-quick:not(.quick-show) {
+  .next-dialog-close {
+    --dialog-close-top: 21px;
+  }
+}
+
+.next-dialog.next-closeable.next-dialog-quick.quick-show {
+  .next-dialog-close {
+    --dialog-close-top: 13px;
+  }
+}
+
+.next-dialog-body {
+  @include hybridcloud-scrollbar
+}

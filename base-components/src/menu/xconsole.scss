@@ -1,0 +1,14 @@
+$menu-prefix: '.' + $css-prefix + 'menu';
+
+#{$menu-prefix} {
+  padding: var(--menu-padding);
+  &#{&}#{&}#{&}#{&} #{&}-symbol-icon-selected {
+    color: var(--menu-icon-selected-color);
+  }
+  &-item:focus-visible {
+    background-color: var(--menu-background-hover, #f7f9fa);
+  }
+  #{$menu-prefix}-group-label {
+    color: var(--menu-group-label-color, #888888);
+  }
+}

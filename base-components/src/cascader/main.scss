@@ -1,0 +1,16 @@
+$cascader-prefix: '.' + $css-prefix + 'cascader';
+
+#{$cascader-prefix} {
+  &:not(.multiple) #{$cascader-prefix}-menu {
+    // 可选择的menu，增加padding以便容纳勾选图标
+    // 多选menu不需要额外的padding来容纳图标
+    #{$menu-prefix}-item {
+      --menu-padding-horizontal: var(--menu-padding-horizontal-selectable);
+      padding: 0 var(--menu-padding-horizontal) 0 var(--menu-padding-horizontal);
+    }
+  }
+
+  #{$cascader-prefix}-menu-wrapper {
+    @include alicloud-scrollbar;
+  }
+}

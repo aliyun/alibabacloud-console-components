@@ -1,0 +1,37 @@
+body {
+  color: var(--color-text1-9);
+  background: #ffffff;
+  background: var(--body-bg, var(--color-fill1-1));
+}
+
+body.lang-ja {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica",Arial,sans-serif;
+}
+
+// xconsole 独有的样式覆盖
+@import '../../checkbox/xconsole.scss';
+@import '../../input/xconsole.scss';
+@import '../../balloon/xconsole.scss';
+@import '../../breadcrumb/xconsole.scss';
+@import '../../dialog/xconsole.scss';
+@import '../../tag/xconsole.scss';
+@import '../../message/xconsole.scss';
+@import '../../menu-button/xconsole.scss';
+@import '../../number-picker/xconsole.scss';
+@import '../../pagination/xconsole.scss';
+@import '../../step/xconsole.scss';
+@import '../../tab/xconsole.scss';
+@import '../../table/xconsole.scss';
+@import '../../select/xconsole.scss';
+@import '../../menu/xconsole.scss';
+@import '../../search/xconsole.scss';
+@import '../../form/xconsole.scss';
+@import '../../radio/xconsole.scss';
+@import '../../button/xconsole.scss';
+@import '../../collapse/xconsole.scss';
+@import '../../date-picker/xconsole.scss';
+@import '../../date-picker2/xconsole.scss';
+@import '../../time-picker2/xconsole.scss';
+@import '../../calendar2/xconsole.scss';
+
+@import '../wind/overwrite.scss';

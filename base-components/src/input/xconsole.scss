@@ -1,0 +1,35 @@
+$input-prefix: '.' + $css-prefix + 'input';
+
+#{$input-prefix} {
+  $clear: #{$input-prefix}-clear-icon;
+  $hint: #{$input-prefix}-hint;
+
+  #{$clear}#{$clear}#{$clear},
+  #{$hint}#{$hint}#{$hint} {
+    color: var(--input-hint-icon-color, #333333);
+    border-radius: 50%;
+    width: var(--input-hint-icon-outer-size, 16px);
+    height: var(--input-hint-icon-outer-size, 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #{$clear}#{$clear}#{$clear} {
+    &:hover {
+      background-color: var(--input-hint-icon-hover-color, #f7f9fa);
+    }
+    &::before {
+      width: var(--input-hint-icon-inner-size, 12px);
+      font-size: var(--input-hint-icon-inner-size, 12px);
+      line-height: var(--input-hint-icon-inner-size, 12px);
+      transform: var(--input-clear-icon-transform, scale(0.59));
+    }
+  }
+  #{$hint}#{$hint}#{$hint} {
+    &::before {
+      width: var(--input-hint-icon-inner-size, 12px);
+      font-size: var(--input-hint-icon-inner-size, 12px);
+      line-height: var(--input-hint-icon-inner-size, 12px);
+    }
+  }
+}

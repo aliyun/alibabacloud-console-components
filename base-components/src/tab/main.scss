@@ -1,0 +1,9 @@
+$tab-prefix: '.' + $css-prefix + 'tabs';
+
+#{$tab-prefix} {
+  &-tab {
+    #{$tab-prefix}-pure &#{&}#{&}#{&}:hover {
+      background-color: var(--tab-pure-hover-bg);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// 混合云form样式覆盖
+.next-form.next-medium .next-switch {
+  margin-top: 5px;
+}
+
+.next-form-item .next-form-item-label > label {
+  display: inline-block;
+  line-height: 1.5;
+  line-height: var(--font-lineheight-2, 1.5);
+}
+
+// form间距
+.next-form-item.next-top {
+  margin-bottom: var(--s-5, 20px);
+  .next-form-item-label {
+    line-height: 1.5;
+    margin-bottom: var(--s-1, 4px);
+  }
+}
+
+// form label字重
+.next-form-item .next-form-item-label {
+  font-weight: var(--font-weight-medium, 500);
+}

@@ -1,0 +1,28 @@
+.next-checkbox-wrapper.disabled:not(.checked):not(.indeterminate) .next-checkbox-inner {
+  background: var(--color-fill1-2);
+  border: 1px solid var(--color-line1-1);
+}
+$checkbox-prefix: '.' + $css-prefix + 'checkbox';
+$icon-prefix: '.' + $css-prefix + 'icon';
+
+#{$checkbox-prefix} {
+  &-inner {
+    position: relative;
+    &#{&}#{&}#{&}#{&}#{&}#{&} > #{$icon-prefix} {
+      // icon垂直据中
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(var(--checkbox-icon-scale, 0.8));
+      margin: 0;
+      animation: none;
+      &::before {
+        display: inline-block;
+        width: var(--checkbox-icon-size, 16px);
+        height: var(--checkbox-icon-size, 16px);
+        font-size: var(--checkbox-icon-size, 16px);
+        line-height: inherit;
+      }
+    }
+  }
+}

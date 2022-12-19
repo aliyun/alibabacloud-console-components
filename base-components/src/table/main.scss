@@ -1,0 +1,9 @@
+$table-prefix: '.' + $css-prefix + 'table';
+
+#{$table-prefix} {
+  &-fix-left,
+  &-fix-right {
+    // 修复在旧内核的Edge下，锁列边框消失的问题
+    background-clip: padding-box;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "exclude": ["**/demo/**/*"],
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES5",
+    "rootDir": ".",
+    "outDir": "../types"
+  }
+}

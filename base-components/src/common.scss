@@ -1,0 +1,51 @@
+// 云组件公共样式覆盖
+@import './range/main.scss';
+@import './timeline/main.scss';
+@import './balloon/main.scss';
+@import './button/main.scss';
+@import './pagination/main.scss';
+@import './transfer/main.scss';
+@import './tab/main.scss';
+@import './date-picker/main.scss';
+@import './search/main.scss';
+@import './input/main.scss';
+@import './select/main.scss';
+@import './menu/main.scss';
+@import './tag/main.scss';
+@import './split-button/main.scss';
+@import './number-picker/main.scss';
+@import './card/main.scss';
+@import './cascader/main.scss';
+@import './cascader-select/main.scss';
+@import './table/main.scss';
+@import './message/main.scss';
+@import './dialog/main.scss';
+@import './checkbox/main.scss';
+@import './nav/main.scss';
+@import './modal/main.scss';
+@import './badge/main.scss';
+@import './upload/main.scss';
+@import './calendar/main.scss';
+@import './drawer/main.scss';
+
+$overlay-prefix: '.' + $css-prefix + 'overlay';
+#{$overlay-prefix}-wrapper #{$overlay-prefix}-inner {
+  @include alicloud-scrollbar;
+}
+
+//reset 样式
+body {
+  line-height: 1.66667;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+}
+
+code, kbd, pre, samp {
+  font-family: Consolas,Menlo,Courier,monospace;
+}
+
+a {
+  &:link, &:visited, &:hover, &:active {
+    text-decoration: none;
+  }
+}

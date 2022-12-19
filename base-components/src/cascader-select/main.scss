@@ -1,0 +1,18 @@
+$cascader-select-prefix: '.' + $css-prefix + 'cascader-select';
+$menu-prefix: '.' + $css-prefix + 'menu';
+
+#{$cascader-select-prefix} {
+  &-dropdown {
+    background-color: var(--dropdown-bg-color, #fff);
+
+    .#{$css-prefix}cascader-menu-wrapper {
+      border-left: none;
+      overflow-y: scroll;
+      @include alicloud-scrollbar;
+    }
+
+    #{$menu-prefix} {
+      border: none;
+    }
+  }
+}

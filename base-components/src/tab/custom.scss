@@ -1,0 +1,50 @@
+// 下划线与文字等宽
+// 横向
+.next-tabs-pure.next-tabs.next-medium > .next-tabs-bar .next-tabs-nav-container .next-tabs-tab {
+  margin: 0 var(--tab-item-margin-lr-size-m);
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  .next-tabs-tab-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.next-tabs-pure.next-tabs.next-small > .next-tabs-bar .next-tabs-nav-container .next-tabs-tab {
+  margin: 0 var(--tab-item-margin-lr-size-s);
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  .next-tabs-tab-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// 纵向
+.next-tabs.next-tabs-vertical.next-tabs-left.next-medium > .next-tabs-bar .next-tabs-nav-container .next-tabs-tab {
+  margin: 20px 0;
+  &:first-child {
+    margin-top: 0;
+  }
+  .next-tabs-tab-inner {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.next-tabs.next-tabs-vertical.next-tabs-left.next-small > .next-tabs-bar .next-tabs-nav-container .next-tabs-tab {
+  margin: 20px 0;
+  &:first-child {
+    margin-top: 0;
+  }
+  .next-tabs-tab-inner {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,56 @@
+$menu-prefix: '.' + $css-prefix + 'menu';
+$nav-item-cls: '.' + $css-prefix + 'nav-item';
+
+#{$menu-prefix} {
+  &#{&} {
+    padding: var(--menu-padding);
+  }
+  &#{&}#{&}#{&}#{&} #{&}-symbol-icon-selected {
+    // color: var(--menu-icon-selected-color);
+    width: var(--menu-icon-selected-size, 16px);
+    font-size: var(--menu-icon-selected-size, 16px);
+    height: 100%;
+    overflow: hidden;
+    &::before {
+      width: var(--menu-icon-selected-size, 16px);
+      font-size: var(--menu-icon-selected-size, 16px);
+    }
+  }
+  &-item {
+    border-radius: var(--corner-1);
+  }
+  &-selectable-multiple,
+  &-selectable-single {
+    // 可选择的menu，增加padding以便容纳勾选图标
+    #{$menu-prefix}-item {
+      // 对于checkbox 和 radio 选择模式的menu，不需要增加padding容纳勾选图标
+      &:not([role='menuitemcheckbox']):not([role='menuitemradio']):not(#{$nav-item-cls}) {
+        // 左边使用稍大一些的变量 --menu-padding-horizontal-selectable
+        padding: 0 var(--menu-padding-horizontal) 0
+          var(
+            --menu-padding-horizontal-selectable,
+            var(--menu-padding-horizontal)
+          );
+      }
+    }
+  }
+  &-item-inner {
+    .#{$css-prefix}checkbox,
+    .#{$css-prefix}radio {
+      margin-right: var(--menu-checkbox-mr, 8px);
+    }
+  }
+}
+
+// 避免这段样式影响nav
+// .#{$css-prefix}selected:not(#{$nav-item-cls}) {
+//   &#{&}#{&}#{&}#{&}#{$menu-prefix}-item:not(:hover) {
+//     // 对于被选中的项，固定它的背景，避免被focus状态的样式影响
+//     background-color: var(--menu-background-selected);
+//     color: var(--menu-color-selected);
+//   }
+// }
+
+.next-menu .next-menu-icon-selected.next-icon {
+  margin-left: var(--select-menu-select-icon-ml, -20px);
+}

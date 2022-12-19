@@ -1,0 +1,54 @@
+$input-prefix: '.' + $css-prefix + 'input';
+
+#{$input-prefix} {
+  $disabled: '.' + $css-prefix + 'disabled';
+
+  &#{$disabled} {
+    cursor: not-allowed;
+    > input, > textarea {
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover,
+  &.#{$css-prefix}focus {
+    box-shadow: var(--active-shadow);
+  }
+  &.#{$css-prefix}disabled {
+    box-shadow: none;
+  }
+
+  &-group {
+    transition: box-shadow var(--active-transition);
+    &:hover {
+      box-shadow: var(--active-shadow);
+    }
+    &#{$disabled} {
+      box-shadow: none;
+    }
+    #{$input-prefix} {
+      box-shadow: none;
+    }
+    &>.next-number-picker:first-child  .next-input {
+      &.next-focus {
+        position: relative;
+        z-index: 1;
+      }
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    &>.next-number-picker:last-child  .next-input {
+      &.next-focus {
+        position: relative;
+        z-index: 1;
+      }
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+}
+
+
+.next-input.next-noborder:hover, .next-input.next-noborder.next-focus {
+  box-shadow: none;
+}

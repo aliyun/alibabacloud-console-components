@@ -1,0 +1,24 @@
+.next-modal-close.next-modal-close.next-modal-close.next-modal-close.next-modal-close {
+  width: var(--modal-header-close-bg-width, 20px);
+  height: var(--modal-header-close-bg-height, 20px);
+  border-radius: var(--modal-header-close-border-radius, 2px);
+
+  &:hover {
+    background-color: var(--color-fill1-2, #f7f7f7);
+    color: var(--color-text1-2, #5a5a5a);
+  }
+
+  &:active {
+    background-color: var(--color-fill1-3, #eaeaea);
+    color: var(--color-text1-5, #292929);
+  }
+
+  .next-dialog-close-icon {
+    color: var(--color-fill1-6, #848484);
+  }
+}
+.next-modal {
+  .right-part {
+    margin-right: var(--modal-header-close-margin-right, 18px);
+  }
+}

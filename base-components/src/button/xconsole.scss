@@ -1,0 +1,51 @@
+$btn-prefix: '.' + $css-prefix + 'btn';
+$text-btn: $btn-prefix + '-text';
+
+#{$btn-prefix} {
+  // secondary与normal样式改为一致，过去的secondary button没有border，可访问性差
+  &-secondary {
+    &:hover,
+    &:focus-visible {
+      box-shadow: var(--btn-normal-hover-shadow);
+    }
+    &:active {
+      box-shadow: var(--btn-normal-active-shadow);
+    }
+  }
+  &-secondary#{$text-btn} {
+    &:hover,
+    &:focus-visible {
+      background-color: var(--btn-text-secondary-bg-hover);
+    }
+    &:active {
+      background-color: var(--btn-text-secondary-bg-active);
+    }
+    &[disabled] {
+      background-color: initial;
+    }
+
+    &.#{$css-prefix}small {
+      border-radius: var(--btn-size-s-corner, 2px);
+      padding: 0 var(--btn-size-s-padding, 8px);
+      height: var(--btn-size-s-height, 24px);
+      font-size: var(--btn-size-s-font, 12px);
+      border-width: var(--btn-size-s-border-width, 1px);
+    }
+
+    &.#{$css-prefix}medium {
+      border-radius: var(--btn-size-m-corner, 2px);
+      padding: 0 var(--btn-size-m-padding, 16px);
+      height: var(--btn-size-m-height, 32px);
+      font-size: var(--btn-size-m-font, 12px);
+      border-width: var(--btn-size-m-border-width, 1px);
+    }
+
+    &.#{$css-prefix}large {
+      border-radius: var(--btn-size-l-corner, 2px);
+      padding: 0 var(--btn-size-l-padding, 16px);
+      height: var(--btn-size-l-height, 36px);
+      font-size: var(--btn-size-l-font, 14px);
+      border-width: var(--btn-size-l-border-width, 1px);
+    }
+  }
+}

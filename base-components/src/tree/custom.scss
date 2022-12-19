@@ -1,0 +1,38 @@
+// 混合云、云效tree样式覆盖
+.next-tree.next-node-block .next-tree-node-inner.next-selected:not(.next-disabled) {
+  font-weight: var(--tree-selected-font-weight, 500);
+  .next-tree-switcher.next-noline .next-tree-switcher-icon {
+    color: var(--tree-switcher-icon-selected-color, var(--color-brand1-6));
+  }
+}
+
+.next-tree-node-label .next-icon::before {
+  font-size: calc(var(--font-size-body-1) + 2px);
+}
+
+.next-tree.next-node-block .next-tree-node-inner {
+	border-radius: var(--corner-1);
+}
+
+.next-tree-switcher.next-tree-switcher.next-tree-switcher.next-noline .next-tree-fold-icon::before {
+  line-height: inherit;
+}
+
+.next-tree-switcher.next-tree-switcher.next-tree-switcher.next-loading .next-tree-switcher-icon::before {
+  // width: 20px;
+  // height: 20px;
+  line-height: inherit;
+}
+
+.next-tree-switcher.next-line {
+  flex-shrink: 0;
+}
+
+@media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .next-tree-switcher.next-loading .next-tree-switcher-icon {
+    transform: scale(0.7);
+  }
+  .next-tree-switcher.next-line.next-tree-switcher.next-line .next-tree-switcher-icon::before {
+    line-height: inherit;
+  }
+}

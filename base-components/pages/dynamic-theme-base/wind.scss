@@ -1,0 +1,4 @@
+// 云组件库的自定义var要比fusionVar权重高
+$css-var-scope: '.theme-wind-dynamic.theme-wind-dynamic';
+@import '../../src/theme/wind/css-var-custom.scss';
+@import '../../src/theme/xconsole/index-no-var.scss';

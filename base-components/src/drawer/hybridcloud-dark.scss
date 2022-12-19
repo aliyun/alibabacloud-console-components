@@ -1,0 +1,21 @@
+.next-drawer-header {
+  .next-drawer-close {
+    &:hover {
+      background-color: var(--color-fill1-2, #383838);
+      .next-drawer-close-icon {
+        color: var(--color-fill1-8, #8a8a8a);
+      }
+    }
+
+    &:active {
+      background-color: var(--color-fill1-5, #4d4d4d);
+      .next-drawer-close-icon {
+        color: var(--color-text1-3, #ccc);
+      }
+    }
+
+    .next-drawer-close-icon {
+      color: var(--color-fill1-6, #6b6b6b);
+    }
+  }
+}

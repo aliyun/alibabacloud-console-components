@@ -1,0 +1,29 @@
+// 混合云&云效样式覆盖
+.next-message.next-toast.next-medium {
+  .next-message-title {
+    --message-size-m-title-content-padding-right: 6px;
+  }
+}
+
+.next-message.next-large .next-message-content,
+.next-message.next-medium .next-message-content {
+  line-height: 1.5;
+}
+
+
+// loading 图标局中
+.next-message.next-message-loading {
+  .next-message-symbol::before {
+    font-size: 18px;
+    width: 18px;
+  }
+}
+
+// 调整关闭图标位置
+.next-message.next-message .next-message-close {
+  top: 11px;
+}
+.next-message.next-large .next-message-close {
+  top: 14px;
+}
+

@@ -1,0 +1,190 @@
+$tag-prefix: '.' + $css-prefix + 'tag';
+$icon-prefix: '.' + $css-prefix + 'icon';
+$size-base: var(--size-base);
+$color-text1-2: var(--color-text1-2);
+
+#{$tag-prefix} {
+  &-large {
+    border-radius: var(--tag-large-corner-radius, 14px);
+  }
+  &:not([disabled]) {
+    #{$tag-prefix}-body {
+      cursor: var(--tag-cursor, pointer);
+    }
+    &#{$tag-prefix}#{$tag-prefix}:focus {
+      color: var(--tag-focus-color);
+      background-color: var(--tag-focus-bg);
+    }
+    &#{$tag-prefix}#{$tag-prefix}:hover {
+      color: var(--tag-hover-color);
+      background-color: var(--tag-hover-bg);
+      // #{$icon-prefix}-close::before {
+      //   content: var(--icon-content-delete-filling);
+      // }
+    }
+  }
+}
+
+
+// 旧版wind样式，colored-tag
+.#{$css-prefix}tag {
+  $tag-body-cls-name: '#{$css-prefix}tag-body';
+  // color definitions:
+  $light-steel-blue: 'light-steel-blue';
+  $light-steel-blue-bg: #edf3f7;
+  $light-steel-blue-text: #628099;
+
+  $plum: 'plum';
+  $plum-bg: #f0edf7;
+  $plum-text: #746299;
+
+  $misty-rose: 'misty-rose';
+  $misty-rose-bg: #f7eded;
+  $misty-rose-text: #996262;
+
+  $light-goldenrod-yellow: 'light-goldenrod-yellow';
+  $light-goldenrod-yellow-bg: #f7f6ed;
+  $light-goldenrod-yellow-text: #999062;
+
+  $pale-green: 'pale-green';
+  $pale-green-bg: #edf7ed;
+  $pale-green-text: #629962;
+
+  $gray: 'gray';
+  $gray-bg: #e5e5e5;
+  $gray-text: #595959;
+
+  $silver: 'silver';
+  $silver-bg: #fafafa;
+  $silver-text: #595959;
+  $silver-border: #bfbfbf;
+
+  @mixin mixin-tag($backgroundColor, $textColor) {
+    background: $backgroundColor !important;
+    color: $textColor !important;
+    &:hover {
+      background: $backgroundColor !important;
+      color: $textColor !important;
+    }
+  }
+
+  &.wind-tag-colored {
+    border: 0;
+    cursor: default;
+
+    .#{$tag-body-cls-name} {
+      top: 0;
+    }
+  }
+
+  // for each color:
+  &.wind-tag-colored-#{$light-steel-blue} {
+    @include mixin-tag(
+      $backgroundColor: $light-steel-blue-bg,
+      $textColor: $light-steel-blue-text
+    );
+  }
+  &.wind-tag-colored-#{$plum} {
+    @include mixin-tag($backgroundColor: $plum-bg, $textColor: $plum-text);
+  }
+  &.wind-tag-colored-#{$misty-rose} {
+    @include mixin-tag(
+      $backgroundColor: $misty-rose-bg,
+      $textColor: $misty-rose-text
+    );
+  }
+  &.wind-tag-colored-#{$light-goldenrod-yellow} {
+    @include mixin-tag(
+      $backgroundColor: $light-goldenrod-yellow-bg,
+      $textColor: $light-goldenrod-yellow-text
+    );
+  }
+  &.wind-tag-colored-#{$pale-green} {
+    @include mixin-tag(
+      $backgroundColor: $pale-green-bg,
+      $textColor: $pale-green-text
+    );
+  }
+  &.wind-tag-colored-#{$gray} {
+    @include mixin-tag($backgroundColor: $gray-bg, $textColor: $gray-text);
+  }
+
+  &.wind-tag-colored-#{$silver} {
+    @include mixin-tag($backgroundColor: $silver-bg, $textColor: $silver-text);
+    box-sizing: border-box;
+    border: 1px solid $silver-border;
+
+    .#{$tag-body-cls-name} {
+      top: -1px;
+    }
+
+    &:hover {
+      border-color: $silver-border !important;
+    }
+  }
+}
+
+$tag-cls-name: '#{$css-prefix}tag';
+$close-icon-name: '#{$css-prefix}icon';
+
+@mixin tag-box($height) {
+  height: $height;
+  line-height: $height;
+  vertical-align: middle;
+}
+
+@mixin tag-entity($height, $fontSize, $adjustTop) {
+  @include tag-box($height);
+  border-radius: calc(#{$height} / 2);
+  cursor: pointer;
+
+  .#{$tag-cls-name}-body {
+    @include tag-box($height);
+    font-size: $fontSize;
+    top: $adjustTop;
+  }
+}
+
+.#{$tag-cls-name}#{$wind-cls} {
+  // background-color: red !important;
+  &.#{$tag-cls-name}-small {
+    @include tag-entity(
+      $height: calc(#{$size-base} * 5),
+      $fontSize: calc(#{$size-base} * 3),
+      $adjustTop: -1px
+    );
+  }
+
+  &.#{$tag-cls-name}-medium {
+    @include tag-entity(
+      $height: calc(#{$size-base} * 6),
+      $fontSize: calc(#{$size-base} * 3),
+      $adjustTop: -1px
+    );
+  }
+
+  &.#{$tag-cls-name}-large {
+    @include tag-entity(
+      $height: calc(#{$size-base} * 7),
+      $fontSize: calc(#{$size-base} * 3 + 2px),
+      $adjustTop: -1px
+    );
+  }
+
+  &.#{$tag-cls-name}-closable > .#{$tag-cls-name}-close-btn {
+    color: $color-text1-2;
+    height: auto;
+    position: relative;
+    top: -1px;
+
+    .#{$close-icon-name} {
+      &:before {
+        transform: scale(0.84);
+      }
+    }
+  }
+
+  .#{$tag-cls-name}-body .#{$css-prefix}icon {
+    vertical-align: baseline;
+  }
+}

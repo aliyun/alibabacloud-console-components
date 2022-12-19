@@ -1,0 +1,81 @@
+$message-prefix: '.' + $css-prefix + 'message';
+$toast-prefix: '.' + $css-prefix + 'toast';
+
+#{$message-prefix} {
+  &#{$message-prefix}-success#{$toast-prefix} {
+    border-left: var(--message-border-width, 4px) solid
+      var(--message-success-border-color, #00a700);
+  }
+  &#{$message-prefix}-warning#{$toast-prefix} {
+    border-left: var(--message-border-width, 4px) solid
+      var(--message-warning-border-color, #fac800);
+  }
+  &#{$message-prefix}-error#{$toast-prefix} {
+    border-left: var(--message-border-width, 4px) solid
+      var(--message-error-border-color, #c80000);
+  }
+  &#{$message-prefix}-notice#{$toast-prefix} {
+    border-left: var(--message-border-width, 4px) solid
+      var(--message-notice-border-color, #0064c8);
+  }
+  &#{$message-prefix}-help#{$toast-prefix} {
+    border-left: var(--message-border-width, 4px) solid
+      var(--message-help-border-color, #888888);
+  }
+}
+
+$message-cls-name: '#{$css-prefix}message';
+
+.#{$message-cls-name} {
+  &.#{$css-prefix}medium {
+    padding: 8px 16px;
+
+    &.#{$css-prefix}inline:not(.#{$message-cls-name}-loading) {
+      border: 0;
+    }
+
+    .#{$message-cls-name}-symbol {
+      line-height: var(--message-line-height, 21px);
+      &:before {
+        font-size: 14px;
+        width: 14px;
+        line-height: inherit;
+      }
+    }
+
+    &.#{$css-prefix}title-content {
+      .#{$message-cls-name}-title {
+        font-weight: 600;
+        line-height: var(--message-line-height, 22px);
+      }
+    }
+
+    .#{$message-cls-name}-content {
+      line-height: var(--message-line-height, 20px);
+      margin-top: 0;
+    }
+
+    &.#{$css-prefix}only-content {
+      .#{$message-cls-name}-symbol {
+        line-height: var(--message-line-height, 19px);
+
+        &:before {
+          font-size: 14px;
+          width: 14px;
+          line-height: inherit;
+        }
+      }
+
+      .#{$message-cls-name}-content {
+        line-height: var(--message-line-height, 20px);
+      }
+    }
+  }
+}
+
+.#{$message-cls-name}.#{$css-prefix}toast.#{$css-prefix}overlay-inner.#{$message-cls-name}-wrapper {
+  // always overlapped on topbar
+  // http://gitlab.alibaba-inc.com/wind/wind/issues/55974
+  z-index: 1031;
+  padding: 12px 16px;
+}

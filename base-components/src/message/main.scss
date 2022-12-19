@@ -1,0 +1,18 @@
+$message-prefix: '.' + $css-prefix + 'message';
+
+#{$message-prefix} {
+  &-title {
+    font-weight: var(--message-title-weight, 500);
+  }
+  #{$message-prefix}-close .#{$css-prefix}icon-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:before {
+      width: var(--message-close-icon-size, 12px);
+      height: var(--message-close-icon-size, 12px);
+      font-size: var(--message-close-icon-size, 12px);
+      line-height: var(--message-close-icon-size, 12px);
+    }
+  }
+}

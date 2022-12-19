@@ -1,0 +1,27 @@
+.next-btn.next-btn-normal.isOnlyIcon {
+  &:not(.next-btn-text) {
+    i {
+      color: var(--color-text1-2, #5a5a5a);
+    }
+  }
+  &.next-btn-text {
+    i {
+      color: var(--color-fill1-6, #848484);
+    }
+  }
+  &:hover {
+    &.next-btn-text {
+      i {
+        color: var(--color-brand1-5);
+      }
+    }
+  }
+  &:focus {
+    &.next-btn-text {
+      i {
+        color: var(--color-brand1-7);
+      }
+    }
+  }
+}
+

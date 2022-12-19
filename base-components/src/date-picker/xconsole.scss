@@ -1,0 +1,10 @@
+.#{$css-prefix}range-picker {
+  // https://github.com/alibaba-fusion/next/issues/2770
+  width: auto;
+
+  &-trigger-input {
+    &.#{$css-prefix}input {
+      min-width: 200px;
+    }
+  }
+}

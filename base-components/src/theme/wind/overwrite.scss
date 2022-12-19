@@ -1,0 +1,58 @@
+
+// 从console-components仓库收集的所有旧版主题的css覆盖
+// 大部分已经移动到xconsole样式中
+
+.next-dialog-message.next-message {
+  margin-top: var(--dialog-message-padding, 0);
+}
+// .#{$css-prefix}search {
+//   .#{$css-prefix}input.#{$css-prefix}medium {
+//     height: 30px;
+//   }
+
+//   .#{$css-prefix}input-group-addon.#{$css-prefix}after {
+//     .#{$css-prefix}btn {
+//       .#{$css-prefix}btn-icon.#{$css-prefix}icon-first {
+//         margin-right: 0;
+//       }
+//     }
+//   }
+
+//   .#{$css-prefix}search-left-addon {
+//     .#{$css-prefix}select-values {
+//       line-height: 20px;
+//     }
+//   }
+// }
+
+// .next-step-circle.next-step-horizontal.next-step-label-horizontal.next-enhanced-step-size-small>.next-step-item .next-step-item-body .next-step-item-title {
+// 	margin-top: 3px;
+// }
+
+// .#{$css-prefix}switch-small {
+//   width: 28px;
+//   height: 16px;
+
+//   &:after {
+//     width: 14px;
+//     height: 14px;
+//   }
+
+//   // switch内部的内容
+//   & > .#{$css-prefix}switch-children {
+//     height: 16px;
+//     line-height: 16px;
+//   }
+// }
+
+
+
+// .#{$css-prefix}tree-switcher {
+//   &.#{$css-prefix}line {
+//     &.#{$css-prefix}disabled {
+//       background-color: #f5f5f5;
+//       border-color: #dedede;
+//       color: #c1c1c1;
+//     }
+//   }
+// }

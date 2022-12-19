@@ -1,0 +1,133 @@
+// 自定义样式
+// 云组件公共变量
+$btn-prefix: '.' + $css-prefix + 'btn';
+$text-btn: $btn-prefix + '-text';
+
+#{$btn-prefix} {
+  font-weight: var(--btn-font-weight, 400);
+  transition: all 0.1s;
+  &[disabled]:hover {
+    box-shadow: none;
+  }
+  &-primary {
+    &:hover,
+    &:focus-visible {
+      box-shadow: var(--btn-primary-hover-shadow);
+    }
+    &:active {
+      box-shadow: var(--btn-primary-active-shadow);
+    }
+  }
+  &#{$btn-prefix}-text {
+    &:hover,
+    &:focus-visible,
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  &-normal {
+    &:hover,
+    &:focus-visible {
+      box-shadow: var(--btn-normal-hover-shadow);
+    }
+    &:active {
+      box-shadow: var(--btn-normal-active-shadow);
+    }
+  }
+
+  &.#{$css-prefix}small {
+    // &:not(.isOnlyIcon):not(#{$text-btn}) {
+    //   min-width: var(--btn-small-min-width, 62px);
+    // }
+
+    &.isTwoToThreeCNCharBtn:not(#{$btn-prefix}-loading):not(#{$text-btn}) {
+      width: var(--btn-small-cn2-3-width, 62px);
+      padding: 0;
+    }
+    &.isFourCNCharBtn:not(#{$btn-prefix}-loading):not(#{$text-btn}) {
+      width: var(--btn-small-cn4-width, 72px);
+      padding: 0;
+    }
+    &:not(#{$wind-cls}).isOnlyIcon {
+      width: 24px;
+      padding: 0;
+    }
+  }
+
+  &.#{$css-prefix}medium {
+    // &:not(.isOnlyIcon):not(#{$text-btn}) {
+    //   min-width: var(--btn-medium-min-width, 62px);
+    // }
+    &.isTwoToThreeCNCharBtn:not(#{$btn-prefix}-loading):not(#{$text-btn}) {
+      width: var(--btn-medium-cn2-3-width, 62px);
+      padding: 0;
+    }
+    &.isFourCNCharBtn:not(#{$btn-prefix}-loading):not(#{$text-btn}) {
+      width: var(--btn-medium-cn4-width, 80px);
+      padding: 0;
+    }
+    &:not(#{$wind-cls}).isOnlyIcon {
+      width: 32px;
+      padding: 0;
+    }
+  }
+
+  &.#{$css-prefix}large {
+    // &:not(.isOnlyIcon):not(#{$text-btn}) {
+    //   min-width: var(--btn-large-min-width, 64px);
+    // }
+    &.isTwoToThreeCNCharBtn:not(#{$btn-prefix}-loading):not(#{$text-btn}) {
+      width: var(--btn-large-cn2-3-width, 64px);
+      padding: 0;
+    }
+    &.isFourCNCharBtn:not(#{$btn-prefix}-loading):not(#{$text-btn}) {
+      width: var(--btn-large-cn4-width, 88px);
+      padding: 0;
+    }
+    &:not(#{$wind-cls}).isOnlyIcon {
+      width: 36px;
+      padding: 0;
+    }
+  }
+
+  &-group {
+    #{$btn-prefix} {
+      &#{$btn-prefix}#{$btn-prefix}#{$btn-prefix} {
+        min-width: unset;
+      }
+      &#{$btn-prefix}-primary {
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+  & .teamix-icon {
+    vertical-align: middle;
+  }
+  & .teamix-icon-first {
+    margin-left: 0;
+    margin-right: 4px;
+  }
+  & .teamix-icon-last {
+    margin-left: 4px;
+    margin-right: 0;
+  }
+  &.next-btn-normal.next-btn-text.next-btn-warning {
+    &:hover {
+      color: var(--color-error-5);
+    }
+    &:active {
+      color: var(--color-error-6);
+    }
+  }
+  &.next-btn-primary.next-btn-text.next-btn-warning {
+    color: var(--color-error-5);
+    &:hover {
+      color: var(--color-error-4);
+    }
+    &:active {
+      color: var(--color-error-6);
+    }
+  }
+}

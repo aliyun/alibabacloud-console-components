@@ -1,0 +1,12 @@
+.#{$css-prefix}date-picker2,
+.#{$css-prefix}range-picker2-panel {
+  --color-brand1-9: #0064c8;
+}
+
+.#{$css-prefix}date-picker2 {
+  & &-input-range {
+    .#{$css-prefix}input {
+      box-shadow: none;
+    }
+  }
+}

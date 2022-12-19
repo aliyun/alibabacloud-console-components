@@ -1,0 +1,12 @@
+$card-prefix: '.' + $css-prefix + 'card';
+
+#{$card-prefix} {
+  & &-collapsable-head {
+    &:hover {
+      color: var(--color-text1-9, #333333);
+    }
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+}

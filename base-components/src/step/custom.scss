@@ -1,0 +1,83 @@
+// 混合云&云效样式覆盖
+.next-step-circle > .next-step-item-finish .next-step-item-node-placeholder,
+.next-step-circle > .next-step-item-wait .next-step-item-node-placeholder {
+  width: 24px;
+  height: 24px;
+}
+
+.next-step-circle > .next-step-item-finish .next-step-item-node-circle,
+.next-step-circle > .next-step-item-wait .next-step-item-node-circle {
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+}
+
+.next-step-circle > .next-step-item-finish .next-step-item-content,
+.next-step-circle > .next-step-item-process .next-step-item-content,
+.next-step-circle > .next-step-item-wait .next-step-item-content {
+  color: var(--color-text1-7, #8c8c8c);
+}
+.next-step-item-node.clicked {
+  transform: none;
+}
+
+.next-step-circle
+  > .next-step-item-finish
+  .next-step-item-node-circle
+  .next-icon {
+  animation: none;
+  &::before {
+    font-weight: bold;
+  }
+}
+
+.next-step-circle.next-step-horizontal.next-step-label-horizontal
+  > .next-step-item-finish
+  .next-step-item-body
+  .next-step-item-title,
+.next-step-circle.next-step-horizontal.next-step-label-horizontal
+  > .next-step-item-process
+  .next-step-item-body
+  .next-step-item-title,
+.next-step-circle.next-step-horizontal.next-step-label-horizontal
+  > .next-step-item-wait
+  .next-step-item-body
+  .next-step-item-title {
+  margin-top: 2px;
+}
+
+.next-step-circle.next-step-vertical
+  > .next-step-item-finish
+  > .next-step-item-body
+  > .next-step-item-title {
+  margin-top: 2px;
+}
+
+.next-step-circle.next-step-vertical
+  > .next-step-item-process
+  > .next-step-item-body
+  > .next-step-item-title,
+.next-step-circle.next-step-vertical
+  > .next-step-item-wait
+  > .next-step-item-body
+  > .next-step-item-title {
+  margin-top: 2px;
+}
+
+.next-step-circle.next-step-horizontal
+  > .next-step-item-finish
+  .next-step-item-tail,
+.next-step-circle.next-step-horizontal
+  > .next-step-item-wait
+  .next-step-item-tail {
+  width: calc(100% - 40px);
+}
+
+.next-step-circle.next-step-horizontal
+  > .next-step-item-wait
+  > .next-step-item-body,
+.next-step-circle.next-step-horizontal
+  > .next-step-item-finish
+  > .next-step-item-body {
+  left: -28px;
+}

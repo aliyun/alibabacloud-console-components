@@ -1,0 +1,11 @@
+$checkbox-prefix: '.' + $css-prefix + 'checkbox';
+$icon-prefix: '.' + $css-prefix + 'icon';
+
+#{$checkbox-prefix} {
+  &-inner {
+    &#{&}#{&}#{&}#{&} > #{$icon-prefix} {
+      transform: scale(var(--checkbox-icon-scale, 0.8));
+      margin-top: 0;
+    }
+  }
+}

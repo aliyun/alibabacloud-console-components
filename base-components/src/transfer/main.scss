@@ -1,0 +1,36 @@
+.#{$css-prefix}transfer {
+  $tmp: &;
+  &#{&} &-panel-list {
+    padding: var(--transfer-panel-padding-mb, 0) var(--transfer-panel-padding-lr, 8px);
+    margin: var(--transfer-panel-margin-mb, 8px) 0;
+    @include alicloud-scrollbar;
+  }
+  &-operations {
+    #{$tmp}-operation#{$tmp}-operation#{$tmp}-operation {
+      padding: 0;
+      width: var(--transfer-operation-width, 24px);
+      height: var(--transfer-operation-height, 24px);
+      &.#{$css-prefix}btn {
+        min-width: unset;
+      }
+      &[disabled],
+      &[disabled]:hover {
+        // 禁用态的样式应该是primary button的样式
+        // 而fusion禁用button用的是normal
+        color: var(--btn-pure-primary-color-disabled, #ffffff);
+        background-color: var(--btn-pure-primary-bg-disabled, #d1d5d9);
+        border-color: var(
+          --btn-pure-primary-border-color-disabled,
+          transparent
+        );
+      }
+    }
+    #{$tmp}-move {
+      &::before {
+        width: var(--transfer-operation-simple-move-size, 16px);
+        height: var(--transfer-operation-simple-move-size, 16px);
+        font-size: var(--transfer-operation-simple-move-size, 16px);
+      }
+    }
+  }
+}

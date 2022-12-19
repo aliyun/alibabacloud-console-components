@@ -1,0 +1,27 @@
+// 混合云暗色numberpicker样式覆盖
+.next-number-picker.next-number-picker-inline:not(.next-disabled) {
+  .next-input-group {
+    border: var(--input-border-width, 1px) solid var(--input-border-color, #383838);
+    &:hover {
+      border-color: var(--input-hover-border-color, #4D4D4D);
+    }
+    // &:active {
+    //   border-color: var(--input-focus-border-color, #6B6B6B);
+    // }
+    .next-btn.next-medium > .next-btn-icon.next-icon-alone:before, .next-btn.next-medium > .next-btn-icon.next-icon-alone .next-icon-remote {
+      line-height: 1em;
+    }
+  }
+}
+
+.next-number-picker.next-number-picker-inline.next-disabled {
+  .next-input-group {
+    border: var(--input-border-width, 1px) solid var(--input-disabled-border-color, #4D4D4D);
+  }
+}
+
+.next-number-picker.next-number-picker-normal.next-disabled {
+  .next-input {
+    border: var(--input-border-width, 1px) solid var(--input-disabled-border-color, #4D4D4D);
+  }
+}

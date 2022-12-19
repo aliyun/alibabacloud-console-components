@@ -1,0 +1,11 @@
+.yunxiao-card-dropdown-actions-icon.yunxiao-card-dropdown-actions-icon,
+.theme-yunxiao .yunxiao-card-dropdown-actions-icon,
+.theme-yunxiao-dark .yunxiao-card-dropdown-actions-icon {
+  color: var(--color-fill1-6, #8B8B8B);
+  cursor: pointer;
+  margin-top: 2px;
+  &::before {
+    font-size: 16px;
+    width: 16px;
+  }
+}
