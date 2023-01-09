@@ -90,17 +90,35 @@ const FixedBottomActionBar = withProps<
 // init ExpandedWidth
 const defaultExpandedWidth = 0
 
+type getActionBarComponentResult = {
+  top?: React.ComponentType<IActionBarProps & IFixedAlign>
+  topProps?: IActionBarProps & IFixedAlign
+  bottom?: React.ComponentType<IActionBarProps & IFixedAlign>
+  bottomProps?: IActionBarProps & IFixedAlign
+}
 const getActionBarComponent = (
   status: ITableProps['affixActionBar']
-): {
-  top?: React.ComponentType<IActionBarProps & IFixedAlign>
-  bottom?: React.ComponentType<IActionBarProps & IFixedAlign>
-} => {
+): getActionBarComponentResult => {
   if (status === true) {
     return {
       top: FixedTopActionBar,
       bottom: FixedBottomActionBar,
     }
+  }
+
+  if (status && typeof status === 'object' && !Array.isArray(status)) {
+    const result: getActionBarComponentResult = {}
+    if (status.top) {
+      result.top = FixedTopActionBar
+      result.topProps = { affixMode: status.top.affixMode }
+    }
+    if (status.bottom) {
+      result.bottom = FixedBottomActionBar
+      result.bottomProps = {
+        affixMode: status.bottom.affixMode,
+      }
+    }
+    return result
   }
 
   let arrStatus = status
@@ -180,7 +198,9 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
 
   const {
     top: ExactTopActionBar = ActionBar,
+    topProps,
     bottom: ExactBottomActionBar = ActionBar,
+    bottomProps,
   } = getActionBarComponent(affixActionBar)
   const extraStyle = getExpandedStyle(fixedBarExpandWidth)
   return (
@@ -197,6 +217,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
       <STableWrapper className="wind-rc-table">
         {(operation || search) && (
           <ExactTopActionBar
+            {...topProps}
             afterIntersectChanged={afterFixedBarIntersectChanged}
             affixBarOverlayProps={affixBarOverlayProps}
           >
@@ -225,6 +246,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
         </div>
         {(selection || pagination) && (
           <ExactBottomActionBar
+            {...bottomProps}
             align="bottom"
             afterIntersectChanged={afterFixedBarIntersectChanged}
             affixBarOverlayProps={affixBarOverlayProps}

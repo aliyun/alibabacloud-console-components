@@ -14,6 +14,7 @@ export interface IActionBarProps {
     prevIntersecting: boolean
   ) => void
   affixBarOverlayProps?: OverlayProps
+  affixMode?: 'intersection-observer' | 'sticky'
   className?: string
 }
 

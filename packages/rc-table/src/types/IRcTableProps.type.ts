@@ -43,11 +43,21 @@ export interface IRcTableProps {
   /**
    * 动作区滚动锁定, 在 rc-table 中最多会有上下两个动作区, 可以指定 `affixActionBar` 的值为 `true` 来同时开启两个动作区的滚动锁定特性, <br />
    * 也可以通过字符串`affixActionBar: ('bottom'|'top')`或者是数组`['bottom', 'top']`声明  指定某一个动作区开启该特性。<br />
-   * 顶部和底部的操作栏affix的状态的时候，使用`position: sticky`来实现。需满足祖先元素的`overflow`不能为: `auto | hidden | overlay | scroll`，详情见 {@link https://developer.mozilla.org/zh-CN/docs/Web/CSS/position | sticky定位 }<br />
-   * 或者使用`fixedHeader`结合`maxBodyHeight`让body区域滚动实现操作栏固定，详见Demo
+   * 通过对象的方式可以分别指定上下操作栏的属性。
+   * affixMode: 'intersection-observer'表示使用intersection-observer来监听操作栏是否滚动出视口，如果是，则会额外渲染一个固定在顶部或底部的弹层。<br />
+   * affixMode: 'sticky'表示纯sticky模式，直接使用css的sticky来实现吸顶或吸底，不通过“监听操作栏是否滚动出视口”来动态插入额外弹层。<br />
+   * “固定在顶部或底部的弹层”使用`position: sticky`来实现，详情见 {@link https://developer.mozilla.org/zh-CN/docs/Web/CSS/position | sticky定位 }<br />
+   * 固定操作栏的另一中实现方式是使用`fixedHeader`结合`maxBodyHeight`让body区域滚动实现操作栏固定，这种方式不需要使用`affixActionBar`，详见Demo
    * @defaultValue false
    */
-  affixActionBar?: boolean | string | string[]
+  affixActionBar?:
+    | boolean
+    | string
+    | string[]
+    | {
+        top: { affixMode?: 'intersection-observer' | 'sticky' }
+        bottom: { affixMode?: 'intersection-observer' | 'sticky' }
+      }
   /**
    * 设置上下操作栏 affix 时候的层级
    * @defaultValue 99

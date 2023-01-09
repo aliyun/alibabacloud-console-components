@@ -19,6 +19,7 @@ interface IWithIntersectionFixedProps {
     prevIntersecting: boolean
   ) => void
   affixBarOverlayProps?: OverlayProps
+  affixMode?: 'intersection-observer' | 'sticky'
 }
 
 const WithFixed = (threshold: number) => (
@@ -31,6 +32,7 @@ const WithFixed = (threshold: number) => (
     fixedAlign = 'top',
     afterIntersectChanged,
     affixBarOverlayProps,
+    affixMode,
     ...restProps
   }) => {
     const [isIntersecting, setIsIntersecting] = useState(true)
@@ -54,6 +56,29 @@ const WithFixed = (threshold: number) => (
       }
     }
 
+    if (affixMode === 'sticky')
+      return (
+        <Context.Consumer>
+          {({
+            // zindex应该低于console-base的左上角抽屉栏
+            fixedBarZIndex = 99,
+            fixedClassName = '',
+            fixedStyle = {},
+          }) => {
+            return (
+              <FixedBarWrapper
+                className={classNames(fixedClassName)}
+                fixedAlign={fixedAlign}
+                zIndex={fixedBarZIndex}
+                style={fixedStyle}
+              >
+                <BaseComponent {...restProps} />
+              </FixedBarWrapper>
+            )
+          }}
+        </Context.Consumer>
+      )
+
     return (
       <>
         <IntersectionObserver onChange={handleChange} threshold={threshold}>
@@ -68,20 +93,14 @@ const WithFixed = (threshold: number) => (
               fixedStyle = {},
             }) => {
               const children = (className?: string) => (
-                <SFixedBarWrapper
-                  className={classNames(
-                    fixedClassName,
-                    className,
-                    'fixed-bar',
-                    `fixed-to-${fixedAlign}`
-                  )}
-                  style={{
-                    zIndex: fixedBarZIndex,
-                    ...fixedStyle,
-                  }}
+                <FixedBarWrapper
+                  className={classNames(fixedClassName, className)}
+                  fixedAlign={fixedAlign}
+                  zIndex={fixedBarZIndex}
+                  style={fixedStyle}
                 >
                   <BaseComponent {...restProps} />
-                </SFixedBarWrapper>
+                </FixedBarWrapper>
               )
 
               const normalChildren = children()
@@ -122,6 +141,32 @@ const WithFixed = (threshold: number) => (
   }
 
   return WithIntersectionFixed
+}
+
+function FixedBarWrapper({
+  className,
+  fixedAlign,
+  zIndex,
+  style,
+  children,
+}: {
+  className?: string
+  fixedAlign: 'top' | 'bottom'
+  zIndex?: number
+  style?: React.CSSProperties
+  children?: React.ReactNode
+}) {
+  return (
+    <SFixedBarWrapper
+      className={classNames(className, 'fixed-bar', `fixed-to-${fixedAlign}`)}
+      style={{
+        zIndex,
+        ...style,
+      }}
+    >
+      {children}
+    </SFixedBarWrapper>
+  )
 }
 
 export default WithFixed
