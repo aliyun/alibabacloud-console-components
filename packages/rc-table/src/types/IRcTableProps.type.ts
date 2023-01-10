@@ -55,8 +55,8 @@ export interface IRcTableProps {
     | string
     | string[]
     | {
-        top: { affixMode?: 'intersection-observer' | 'sticky' }
-        bottom: { affixMode?: 'intersection-observer' | 'sticky' }
+        top?: { affixMode?: 'intersection-observer' | 'sticky' }
+        bottom?: { affixMode?: 'intersection-observer' | 'sticky' }
       }
   /**
    * 设置上下操作栏 affix 时候的层级
