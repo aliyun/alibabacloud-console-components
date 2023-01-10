@@ -56,7 +56,11 @@ const WithFixed = (threshold: number) => (
       }
     }
 
-    if (affixMode === 'sticky')
+    if (affixMode === 'sticky') {
+      // 纯sticky模式下，通过IntersectionObserver来监听sticky元素是否处于吸附状态
+      // https://stackoverflow.com/a/57991537
+      // threshold必须为1
+      threshold = 1
       return (
         <Context.Consumer>
           {({
@@ -66,18 +70,32 @@ const WithFixed = (threshold: number) => (
             fixedStyle = {},
           }) => {
             return (
-              <FixedBarWrapper
-                className={classNames(fixedClassName)}
-                fixedAlign={fixedAlign}
-                zIndex={fixedBarZIndex}
-                style={fixedStyle}
+              <IntersectionObserver
+                onChange={handleChange}
+                threshold={threshold}
+                rootMargin={
+                  fixedAlign === 'bottom'
+                    ? '0px 0px 0px -1px'
+                    : '-1px 0px 0px 0px'
+                }
               >
-                <BaseComponent {...restProps} />
-              </FixedBarWrapper>
+                <FixedBarWrapper
+                  className={classNames(
+                    fixedClassName,
+                    !isIntersecting && 'action-bar-sticking'
+                  )}
+                  fixedAlign={fixedAlign}
+                  zIndex={fixedBarZIndex}
+                  style={fixedStyle}
+                >
+                  <BaseComponent {...restProps} />
+                </FixedBarWrapper>
+              </IntersectionObserver>
             )
           }}
         </Context.Consumer>
       )
+    }
 
     return (
       <>
@@ -143,30 +161,37 @@ const WithFixed = (threshold: number) => (
   return WithIntersectionFixed
 }
 
-function FixedBarWrapper({
-  className,
-  fixedAlign,
-  zIndex,
-  style,
-  children,
-}: {
-  className?: string
-  fixedAlign: 'top' | 'bottom'
-  zIndex?: number
-  style?: React.CSSProperties
-  children?: React.ReactNode
-}) {
-  return (
-    <SFixedBarWrapper
-      className={classNames(className, 'fixed-bar', `fixed-to-${fixedAlign}`)}
-      style={{
-        zIndex,
-        ...style,
-      }}
-    >
-      {children}
-    </SFixedBarWrapper>
-  )
-}
+// IntersectionObserver的子节点必须forwardRef
+const FixedBarWrapper = React.forwardRef(
+  (
+    {
+      className,
+      fixedAlign,
+      zIndex,
+      style,
+      children,
+    }: {
+      className?: string
+      fixedAlign: 'top' | 'bottom'
+      zIndex?: number
+      style?: React.CSSProperties
+      children?: React.ReactNode
+    },
+    ref: any
+  ) => {
+    return (
+      <SFixedBarWrapper
+        className={classNames(className, 'fixed-bar', `fixed-to-${fixedAlign}`)}
+        style={{
+          zIndex,
+          ...style,
+        }}
+        ref={ref}
+      >
+        {children}
+      </SFixedBarWrapper>
+    )
+  }
+)
 
 export default WithFixed
