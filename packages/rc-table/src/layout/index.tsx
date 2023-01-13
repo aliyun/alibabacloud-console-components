@@ -285,6 +285,7 @@ Layout.propTypes = {
     PropTypes.string,
     PropTypes.bool,
     PropTypes.array,
+    PropTypes.object,
   ]),
   fixedBarZIndex: PropTypes.number,
   fixedClassName: PropTypes.string,
