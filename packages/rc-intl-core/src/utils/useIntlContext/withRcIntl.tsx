@@ -15,10 +15,13 @@ export const getPrefixedMessages = (
 ) => {
   const flattenedMessages: Record<string, string> = {}
   if (flatMode === true) {
+    // 确保prefix以.结尾，比如给@wind_v2.rc.Risk末尾加一个“.”
+    // 以便后面slice的时候能够拿到正确的key
+    const actualPrefix = prefix.endsWith('.') ? prefix : prefix + '.'
     Object.keys(messages)
-      .filter((key) => key.startsWith(prefix))
+      .filter((key) => key.startsWith(actualPrefix))
       .forEach((key) => {
-        const truncated = key.slice(prefix.length)
+        const truncated = key.slice(actualPrefix.length)
         flattenedMessages[truncated] = messages[key]
       })
     return flattenedMessages
