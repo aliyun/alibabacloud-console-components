@@ -18,7 +18,8 @@ export const getPrefixedMessages = (
     Object.keys(messages)
       .filter((key) => key.startsWith(prefix))
       .forEach((key) => {
-        flattenedMessages[key] = messages[key]
+        const truncated = key.slice(prefix.length)
+        flattenedMessages[truncated] = messages[key]
       })
     return flattenedMessages
   }
