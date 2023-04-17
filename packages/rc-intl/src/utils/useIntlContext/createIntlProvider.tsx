@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import set from 'lodash/set'
 import { ConfigProvider } from '@alicloud/console-components'
 import { Provider } from '@alicloud/console-components-intl-context'
-import extractWindComponentMessages from '../extractWindComponentMessages'
 import {
   IWindIntlPublic,
   IIntlProviderProps,
   IMessages,
 } from '@alicloud/console-components-intl-core'
+import extractWindComponentMessages from '../extractWindComponentMessages'
 
 /**
  * Compatible `locale` to moment's locale format
@@ -34,7 +34,9 @@ const createIntlProvider = (intl: IWindIntlPublic) => {
   /**
    * provide value to the intl-context.
    */
-  const IntlProvider: React.FC<IIntlProviderProps> = (props) => {
+  const IntlProvider: React.FC<IIntlProviderProps & { children?: any }> = (
+    props
+  ) => {
     const {
       messages = intl.getMessages() || {},
       locale = intl.getLocale(),

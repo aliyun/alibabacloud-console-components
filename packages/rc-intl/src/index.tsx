@@ -1,18 +1,21 @@
-import { createReactIntlFromCfg } from './factory'
-import {
+import type {
   IWindIntlPublic,
   IWindIntlExtended,
 } from '@alicloud/console-components-intl-core'
+import { createReactIntlFromCfg } from './factory'
 
-export { ExtendIntl } from '@alicloud/console-components-intl-core'
+export type {
+  ExtendIntl,
+  IWindIntlPublic,
+} from '@alicloud/console-components-intl-core'
 
 const __intl = createReactIntlFromCfg()
 /** @public */
-const IntlProvider: IWindIntlExtended['IntlProvider'] = __intl.IntlProvider
+const { IntlProvider } = __intl
 /** @public */
-const withProvider: IWindIntlExtended['withProvider'] = __intl.withProvider
+const { withProvider } = __intl
 /** @public */
-const Consumer: IWindIntlExtended['Consumer'] = __intl.Consumer
+const { Consumer } = __intl
 
 /**
  * @public
@@ -36,5 +39,4 @@ export {
   VanillaIntl,
   presets,
   withRcIntl,
-  IWindIntlPublic,
 } from '@alicloud/console-components-intl-core'

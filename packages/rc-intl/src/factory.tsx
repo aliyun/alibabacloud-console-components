@@ -5,8 +5,8 @@ import {
   IDetermineLocale,
   IWindIntlExtended,
 } from '@alicloud/console-components-intl-core'
-import createIntlProvider from './utils/useIntlContext/createIntlProvider'
 import { Consumer } from '@alicloud/console-components-intl-context'
+import createIntlProvider from './utils/useIntlContext/createIntlProvider'
 
 /**
  * @public
