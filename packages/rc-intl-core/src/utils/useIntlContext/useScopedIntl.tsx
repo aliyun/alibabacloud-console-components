@@ -49,7 +49,9 @@ function useScopedIntl(
     )
   }
   const componentMessages = {
-    ...(defaultLocaleMessages[locale] || {}),
+    ...(defaultLocaleMessages[locale] ||
+      defaultLocaleMessages[locale?.toLowerCase()] ||
+      {}),
     ...defaultMessages,
     ...(pickMessageSuccess ? (pickedMessages as IMessages) : {}),
   }
