@@ -17,7 +17,7 @@ export const getPrefixedMessages = (
   if (flatMode === true) {
     // 确保prefix以.结尾，比如给@wind_v2.rc.Risk末尾加一个“.”
     // 以便后面slice的时候能够拿到正确的key
-    const actualPrefix = prefix.endsWith('.') ? prefix : prefix + '.'
+    const actualPrefix = prefix.endsWith('.') ? prefix : `${prefix}.`
     Object.keys(messages)
       .filter((key) => key.startsWith(actualPrefix))
       .forEach((key) => {
@@ -77,7 +77,9 @@ const withRcIntl = ({
     }
     const componentMessages = {
       ...defaultMessages,
-      ...(defaultLocaleMessages[locale] || {}),
+      ...(defaultLocaleMessages[locale] ||
+        defaultLocaleMessages[locale?.toLowerCase()] ||
+        {}),
       ...(pickMessageSuccess ? (pickedMessages as IMessages) : {}),
       ...propsMessages,
     }
