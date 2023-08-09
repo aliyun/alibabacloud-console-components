@@ -8,7 +8,7 @@
   "unpkg": "dist/wind.js",
   "scripts": {
     "clean": "rm -rf dist esm lib types",
-    "prepare": "npm run clean && node ./scripts/prepare.js",
+    "prepublishOnly": "npm run clean && node ./scripts/prepare.js",
     "pub": "npm version patch && npm publish",
     "publish:alpha": "npm version prerelease --preid=alpha && npm publish --tag alpha"
   },

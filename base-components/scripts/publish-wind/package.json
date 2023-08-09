@@ -7,7 +7,7 @@
   "types": "types/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist esm lib types",
-    "prepare": "npm run clean && node ./scripts/prepare.js",
+    "prepublishOnly": "npm run clean && node ./scripts/prepare.js",
     "pub": "tnpm publish --tag latest",
     "publish:alpha": "tnpm publish --tag alpha"
   },

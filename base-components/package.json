@@ -71,7 +71,7 @@
     "cpy-comp": "node ./scripts/copy-comp.js",
     "cpy-scss": "cpy \"**/*.scss\" \"../lib\" --cwd=src --parents",
     "build-css": "node ./scripts/build-css.js",
-    "prepare": "npm run clean && concurrently --kill-others-on-fail --success all \"npm:babel\" \"npm:cpy-scss\" \"npm:build-css\" \"npm:babel:esm\" \"npm:build\" \"npm:build-xconsole\" \"npm:types\" && echo \"Prepare package successfully!\"",
+    "prepublishOnly": "npm run clean && concurrently --kill-others-on-fail --success all \"npm:babel\" \"npm:cpy-scss\" \"npm:build-css\" \"npm:babel:esm\" \"npm:build\" \"npm:build-xconsole\" \"npm:types\" && echo \"Prepare package successfully!\"",
     "sync-demo": "node ./scripts/sync-demo.js",
     "gene-def": "node ./scripts/gene-css-def.js",
     "update-theme": "node ./scripts/update-theme.js && npm run gene-def",

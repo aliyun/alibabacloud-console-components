@@ -2,8 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "pnpm i --ignore-scripts && npm run link-bin && pnpm i",
-    "install": "pnpm i --ignore-scripts && npm run link-bin",
+    "bootstrap": "pnpm i --ignore-scripts && pnpm i",
+    "install": "pnpm i --ignore-scripts",
     "clean": "lerna clean --yes && rm -rf node_modules",
     "link-bin": "node ./link.js",
     "lint": "eslint ./packages",
@@ -15,11 +15,9 @@
   "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
   "devDependencies": {
     "@alicloud/console-components": "^1.5.7",
-    "@alicloud/console-components-fake-browser": "workspace:*",
     "@alicloud/console-toolkit-cli": "^1.2.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.8",
     "@alicloud/console-toolkit-preset-docs": "^1.0.36",
-    "@alicloud/eslint-config-console-components": "workspace:^1.0.5",
     "@pnpm/link-bins": "^5.3.24",
     "@types/classnames": "^2.2.9",
     "@types/fs-extra": "^8.0.1",
@@ -73,5 +71,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "pnpm": "^8.6.12"
   }
 }

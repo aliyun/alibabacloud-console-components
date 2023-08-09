@@ -44,7 +44,7 @@
     "debug": "npm run clean && npx --node-arg=--inspect-brk gatsby develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "prepare": "npm run compile-build-tools"
+    "prepublishOnly": "npm run compile-build-tools"
   },
   "repository": {
     "type": "git",
