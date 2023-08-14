@@ -5,6 +5,7 @@ import { headerHeight } from './Header'
 export const BackArrowIcon = styled(Icon)`
   &&& {
     display: inline-block;
+    color: var(--console-page-back, #333);
 
     &:before {
       width: 24px;

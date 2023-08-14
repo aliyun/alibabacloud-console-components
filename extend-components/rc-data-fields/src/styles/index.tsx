@@ -17,12 +17,12 @@ export const SFieldLabel = styled(Col).withConfig({
   componentId: `${componentId}2`,
 } as any)`
   color: #555;
-  color: var(--color-text1-3, #555);
+  color: var(--console-field-label, #555);
 `
 
 export const SFieldValue = styled(Col).withConfig({
   componentId: `${componentId}3`,
 } as any)`
   color: #333;
-  color: var(--color-text1-9, #333);
+  color: var(--console-field-value, #333);
 `
