@@ -74,7 +74,7 @@ const SearchWarp = styled.div<{prefix: string}>`
         height: 28px;
         width: 30px;
         background-color: transparent;
-        z-index: 99;
+        z-index: 1;
         color: #333;
         text-align: center;
         line-height: 28px;
