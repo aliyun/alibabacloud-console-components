@@ -8,9 +8,13 @@ const titleStyles = css`
   display: inline-block;
   height: ${headerHeight}px;
   line-height: ${headerHeight}px;
+  height: var(--console-page-title-line-height, 40px);
+  line-height: var(--console-page-title-line-height, 40px);
   box-sizing: border-box;
   vertical-align: middle;
   margin: 0;
+  color: #333;
+  color: var(--console-page-title-color, #333);
 `
 
 export const Title = styled.h3`
@@ -18,7 +22,8 @@ export const Title = styled.h3`
   && {
     ${titleStyles};
     font-size: 28px;
-    font-weight: 500;
+    font-size: var(--console-page-title-font-size, 28px);
+    font-weight: 600;
     ${flexItem()};
     /* 设置overflow: hidden对于flex宽度的计算很重要，尤其是在title很长的情况下。
     它让此容器在计算flex宽度的时候不考虑其子节点，仅仅考虑剩余宽度。 */
@@ -67,6 +72,10 @@ const Header = styled(Partial)<{ alignLeft: boolean }>`
     })}
   height: ${headerHeight}px;
   line-height: ${headerHeight}px;
+
+  height: var(--console-page-header-line-height, 40px);
+  line-height: var(--console-page-header-line-height, 40px);
+  margin-bottom: var(--console-page-header-margin-bottom, 16px);
 `
 
 export default Header
@@ -77,6 +86,11 @@ export const Topbar = styled(Partial)<{ alignLeft: boolean }>`
       justifyContent: alignLeft ? 'flex-start' : 'space-between',
       alignItems: 'center',
     })}
+
+  margin-top: var(--console-page-breadcrumbs-margin-top, 16px);
+  margin-bottom: var(--console-page-breadcrumbs-margin-bottom, 16px);
+  height: var(--console-page-breadcrumbs-line-height, 18px);
+  line-height: var(--console-page-breadcrumbs-line-height, 18px);
 `
 export const TopbarMain = styled.div`
   ${flexItem()};
