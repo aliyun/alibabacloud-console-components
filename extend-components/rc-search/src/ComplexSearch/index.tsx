@@ -72,19 +72,19 @@ const normalizeSelectDataSource = (title: string, list: any) => {
 
 const normalizeSearchOptions = (
   dataIndex: string,
-  value: string,
-  options: IRcSearchOptionsProps[]
+  value?: string,
+  options?: IRcSearchOptionsProps[]
 ) => {
-  const opt = options.find((o) => o.dataIndex === dataIndex)
+  const opt = options?.find((o) => o.dataIndex === dataIndex)
   let valueLabel = value
   if (opt?.template === 'select') {
     valueLabel = opt.templateProps?.dataSource.find(
       (d: any) => d.value === value
-    ).label
+    )?.label
   }
   if (opt?.template === 'multiple') {
     valueLabel = opt.templateProps?.dataSource
-      .filter((d: any) => value.includes(d.value))
+      .filter((d: any) => value?.includes(d.value))
       .map((d: any) => d.label)
       .join('/')
   }
