@@ -6,6 +6,7 @@ import { IRcSearchTagItemProps } from '../types/IRcSearchTagItemProps.type'
 import { TagListWrap } from '../style'
 import { baseTagListClassName } from '../constants'
 import isArray from 'lodash/isArray'
+import isObject from 'lodash/isObject'
 import PureTag from "./PureTag";
 import { useWindTheme } from "../useCssVar";
 import message from "../message";
@@ -16,9 +17,11 @@ const { Group: TagGroup, Closeable: ClosableTag } = Tag;
  */
 const isTagLikeDataStructure = (value: any) => {
   let isTag = !!value?.tagKey;
+
   if (isArray(value)) {
-    return value[0] && !!value[0].tagKey
+    return value[0] && !!value[0].tagKey;
   }
+
   return isTag;
 }
 
@@ -32,7 +35,6 @@ const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
     // @ts-ignore
     prefix="next-"
   } = props;
-
 
   const onRemoveFilter = (item: IRcSearchTagItemProps) => {
     let newTagList = [...dataSource];
@@ -94,7 +96,22 @@ const SearchTagList: React.FC<IRcSearchTagListProps> = (props) => {
       />
     )
   }
-  const processDataSource = dataSource && dataSource.filter(t => !isArray(t?.value) || t?.value?.length) || [];
+  const processDataSource = dataSource?.filter(
+    t => {
+      if (isArray(t?.value)) {
+        // 过滤掉非法的 Tag 节点
+        const validValue = t.value.filter(isTagLikeDataStructure);
+
+        if (!validValue.length) return false;
+      }
+
+      if (isObject(t?.value) as unknown as { tagKey?: string }) {
+        return isTagLikeDataStructure(t.value)
+      }
+
+      return true;
+    }
+  ) || [];
   const isWindClass = useWindTheme();
   return (
     <TagListWrap prefix={prefix} className={classNames(baseTagListClassName, className, isWindClass)} style={style}>

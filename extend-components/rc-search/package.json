@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-search",
-  "version": "0.2.32",
+  "version": "0.2.34",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
