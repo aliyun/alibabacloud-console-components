@@ -19,7 +19,7 @@ const StyledWrapper = styled.span`
 
       &:before {
         width: auto !important;
-        font-size: 8px !important;
+        font-size: 12px !important;
       }
 
       &-success {
