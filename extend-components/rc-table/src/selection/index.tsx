@@ -33,6 +33,7 @@ export interface ISelectionProps {
   render?: (selection: ISelectionRenderParams) => React.ReactNode
   isSelectedAll?: boolean
   isIndeterminate?: boolean
+  isDisabled?: boolean
   rowSelection?: ITableProps['rowSelection']
   primaryKey?: ITableProps['primaryKey']
   dataSource?: ITableProps['dataSource']
@@ -128,10 +129,16 @@ const mapStateToProps = (
     isIndeterminate = false
   }
 
+  const titleProps = get(rawRowSelection || {}, 'titleProps')
+  const isDisabled = isFunction(titleProps)
+    ? Boolean(get(titleProps(), 'disabled'))
+    : false
+
   return {
     ...state,
     isSelectedAll,
     isIndeterminate,
+    isDisabled
   }
 }
 
@@ -188,7 +195,14 @@ const mapUpdateToProps = (
 const Selection: React.FC<ISelectionProps & ITableProps['rowSelection']> = (
   props
 ) => {
-  const { mode = 'multiple', isIndeterminate, isSelectedAll, selectAll } = props
+  const {
+    mode = 'multiple',
+    isIndeterminate,
+    isSelectedAll,
+    selectAll,
+    isDisabled,
+  } = props
+
   return (
     <SSelectionWrapper className="selection">
       {isMultiMode(mode) && (
@@ -197,6 +211,7 @@ const Selection: React.FC<ISelectionProps & ITableProps['rowSelection']> = (
             isIndeterminate={isIndeterminate}
             isSelectedAll={isSelectedAll}
             selectAll={selectAll}
+            isDisabled={isDisabled}
           />
         </SSelectAllContainer>
       )}

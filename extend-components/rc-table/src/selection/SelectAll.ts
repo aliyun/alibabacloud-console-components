@@ -12,10 +12,12 @@ const SelectAll = mapProps(
     checked?: CheckboxProps['checked']
     indeterminate?: CheckboxProps['indeterminate']
     onChange?: CheckboxProps['onChange']
+    disabled?: CheckboxProps['disabled']
   } => ({
     checked: ownerProps.isSelectedAll,
     indeterminate: ownerProps.isIndeterminate,
     onChange: ownerProps.selectAll,
+    disabled: ownerProps.isDisabled,
   })
 )(Checkbox)
 
