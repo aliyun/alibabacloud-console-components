@@ -84,6 +84,11 @@ const mapStateToProps = (
     rawRowSelection,
   } = state
 
+  const titleProps = get(rawRowSelection || {}, 'titleProps')
+  const isDisabled = isFunction(titleProps)
+    ? Boolean(get(titleProps(), 'disabled'))
+    : false
+
   if (
     !primaryKey ||
     !isMultiMode(mode) ||
@@ -92,7 +97,10 @@ const mapStateToProps = (
     !dataSource ||
     !dataSource.length
   ) {
-    return state
+    return {
+      ...state,
+      isDisabled,
+    }
   }
 
   const getProps = get(rawRowSelection || {}, 'getProps')
@@ -128,11 +136,6 @@ const mapStateToProps = (
   if (isSelectedAll) {
     isIndeterminate = false
   }
-
-  const titleProps = get(rawRowSelection || {}, 'titleProps')
-  const isDisabled = isFunction(titleProps)
-    ? Boolean(get(titleProps(), 'disabled'))
-    : false
 
   return {
     ...state,
