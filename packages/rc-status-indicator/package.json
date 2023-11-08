@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-status-indicator",
-  "version": "1.0.9",
+  "version": "1.2.0",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -15,10 +15,6 @@
     "react",
     "react component"
   ],
-  "author": {
-    "name": "csr632",
-    "email": "632882184@qq.com"
-  },
   "license": "MIT",
   "engines": {
     "node": ">=7.6.0"
