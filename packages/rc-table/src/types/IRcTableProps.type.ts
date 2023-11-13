@@ -1,10 +1,8 @@
+import { TableProps } from '@alicloud/console-components/types/table'
 import React from 'react'
-import {
-  TableProps,
-  ColumnProps,
-} from '@alicloud/console-components/types/table'
+import { IPaginationProps, ISearchProps, Operation } from '../layout/index'
 import { ISelectionRenderParams } from '../selection'
-import { Operation, ISearchProps, IPaginationProps } from '../layout/index'
+import { IRcTableColumnProps } from './IRcTableColumnProps.type'
 
 /**
  * @public
@@ -91,7 +89,7 @@ export interface IRcTableProps {
   /**
    * 列描述数据对象，是 columns 中的一项，继承`Table.Column`的 API
    */
-  columns?: ColumnProps[]
+  columns?: IRcTableColumnProps[]
   /**
    * 是否启用选择模式，继承基础组件`Table`的rowSelection 的API。可通过传入UNSTABLE_defaultSelectedRowKeys 指定默认的selectedRowKeys
    */
