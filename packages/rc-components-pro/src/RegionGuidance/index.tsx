@@ -85,7 +85,7 @@ const RegionGuidance = (props: IRegionGuidanceProps) => {
         size="medium"
         title={(
           <div className="xconsole-rc-region-message-content">
-            <span>{intl('nodata', {value: currentRegionName || getRegionName(currentRegion)})}{regionList?.length? intl('comma'): intl('period')}</span>
+            { children ? children : <span>{intl('nodata', {value: currentRegionName || getRegionName(currentRegion)})}{regionList?.length? intl('comma'): intl('period')}</span> }
             {regionList?.length ? <span>{intl('switch')} <RegionList {...props}/> </span> : null}
           </div>
         )}
@@ -116,6 +116,7 @@ export const RegionGuidanceWithIntl = withRcIntl({
   componentName: 'RegionGuidance',
   defaultMessages,
   warningIfNoMessageFromCtx: false,
+  // @ts-ignore
 })(RegionGuidance);
 
 export default React.forwardRef<{}, Partial<IRegionGuidanceProps>>((props, ref) => (

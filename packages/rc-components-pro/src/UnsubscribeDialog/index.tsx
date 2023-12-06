@@ -76,6 +76,7 @@ const openWithDialog = () => {
       }
     }
     ReactDOM.render(
+      // @ts-ignore
       <UnsubscribeDialogWithContext
         onClose={close}
         onCancel={close}
