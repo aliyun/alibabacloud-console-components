@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from 'react'
 import { DropdownProps } from '@alicloud/console-components/types/dropdown'
 import { MenuProps } from '@alicloud/console-components/types/menu'
 
@@ -6,7 +6,11 @@ import { MenuProps } from '@alicloud/console-components/types/menu'
  * Actions 的props类型。
  * @public
  */
- export interface IActionsProps {
+export interface IActionsProps {
+  /**
+   * Actions 的 children
+   */
+  children?: ReactNode
   /**
    * 设置wrapper div的className
    */
