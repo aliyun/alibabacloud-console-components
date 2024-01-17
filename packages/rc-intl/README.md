@@ -34,9 +34,9 @@ intl.set({ messages })
 
 ```tsx
 import { render } from 'react-dom'
-import intl from '@alicloud/console-components-intl'
+import { withProvider } from '@alicloud/console-components-intl'
 
-const App = intl.withProvider()(OriginApp)
+const App = withProvider()(OriginApp)
 render(<App />, document.getElementById('app'))
 ```
 
