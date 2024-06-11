@@ -11,7 +11,8 @@ const messages = {
     step3: 'Generate Unsubscribe Ticket',
     step4: 'Complete Unsubscribe',
     action: 'Submit an unsubscribe ticket',
-    noHint: 'Don\'t prompt next time'
+    noHint: 'Don\'t prompt next time',
+    cancel: 'Cancel',
   },
   'zh': {
     title: '申请退订',
@@ -21,7 +22,8 @@ const messages = {
     step3: '生成退订订单',
     step4: '完成退订',
     action: '提交退订工单',
-    noHint: '下次不再提示'
+    noHint: '下次不再提示',
+    cancel: '取消',
   }
 }
 

@@ -39,7 +39,10 @@ const UnsubscribeDialog = ({ ...props}:IUnsubscribeDialogProps) => {
           props.onCancel && props.onCancel(e);
         }}
         okProps={{
-          children: message.action
+          children: message.action,
+        }}
+        cancelProps={{
+          children: message.cancel,
         }}
       >
         <p className='console-components-unsubscriber-hint'>
