@@ -15,7 +15,7 @@
     "types": "tsc -p src --emitDeclarationOnly",
     "build": "breezr build --engine webpack",
     "clean": "rm -rf dist lib es doc-dist",
-    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build && npm run doc:build"
+    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.2.0",
