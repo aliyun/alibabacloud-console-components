@@ -126,7 +126,7 @@ class IntlBase {
     } catch (err) {
       try {
         // ensure no error is thrown
-        warning(false, err.message || 'Uncaught error')
+        warning(false, (err as unknown as Error).message || 'Uncaught error')
         const fallback = this._onError?.({
           code: 'formatDate',
           error: err,
@@ -152,7 +152,7 @@ class IntlBase {
     } catch (err) {
       try {
         // ensure no error is thrown
-        warning(false, err.message || 'Uncaught error')
+        warning(false, (err as unknown as Error).message || 'Uncaught error')
         const fallback = this._onError?.({
           code: 'formatNumber',
           error: err,
