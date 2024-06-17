@@ -25,8 +25,8 @@
     "@types/fs-extra": "^8.0.1",
     "@types/lodash": "^4.14.139",
     "@types/node": "^12.12.3",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
+    "@types/react": "^16.0.0",
+    "@types/react-dom": "^16.0.0",
     "@types/react-responsive": "^8.0.2",
     "@types/recompose": "^0.30.7",
     "@types/styled-components": "5.1.0",
@@ -63,7 +63,6 @@
     "typescript": "^4.1.2"
   },
   "resolutions": {
-    "@types/styled-components": "5.1.0",
     "@microsoft/api-extractor": "~7.7.0",
     "gatsby": "~2.19.45",
     "gatsby-cli": "~2.10.11",
