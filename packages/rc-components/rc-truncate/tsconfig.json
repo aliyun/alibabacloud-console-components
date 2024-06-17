@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@alicloud/console-components-truncate": ["./src"],
+      "@alicloud/console-components-truncate/*": ["./src/*"]
+    }
+  }
+}

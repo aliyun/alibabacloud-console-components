@@ -1,0 +1,8 @@
+.*
+!.*ignore
+!.*rc
+*.log*
+
+node_modules/
+lib/
+dist/
