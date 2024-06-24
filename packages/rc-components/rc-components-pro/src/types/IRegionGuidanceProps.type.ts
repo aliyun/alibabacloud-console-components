@@ -16,9 +16,13 @@ export interface IRegionGuidanceProps {
    */
   currentRegionName?: string;
   /**
-   * 提示用户那些地域有资源的列表
+   * 提示用户哪些地域有资源，用于地域选择器
    */
   regionList?: IRegionItem[];
+  /**
+   * 地域选择器提示文案
+   */
+  regionListLabel?: string;
   /**
    * 地域下拉的时候，点击事件
    */
@@ -29,7 +33,7 @@ export interface IRegionGuidanceProps {
    */
   globalSearchAction?: boolean;
   /**
-   * children
+   * 自定义内容
    */
   children?: React.ReactChild | React.ReactChildren;
   /**

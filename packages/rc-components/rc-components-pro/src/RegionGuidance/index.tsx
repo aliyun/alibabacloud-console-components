@@ -73,6 +73,7 @@ const RegionGuidance = (props: IRegionGuidanceProps) => {
     currentRegionName,
     children,
     regionList,
+    regionListLabel,
     globalSearchAction,
     type,
     intl
@@ -86,7 +87,7 @@ const RegionGuidance = (props: IRegionGuidanceProps) => {
         title={(
           <div className="xconsole-rc-region-message-content">
             { children ? children : <span>{intl('nodata', {value: currentRegionName || getRegionName(currentRegion)})}{regionList?.length? intl('comma'): intl('period')}</span> }
-            {regionList?.length ? <span>{intl('switch')} <RegionList {...props}/> </span> : null}
+            {regionList?.length ? <span>{regionListLabel || intl('switch')} <RegionList {...props}/> </span> : null}
           </div>
         )}
       />
