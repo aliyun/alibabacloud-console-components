@@ -36,7 +36,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@alicloud/console-components-intl-core": "^1.0.23",
+    "@alicloud/console-components-intl-core": "^1.0.0",
     "@alicloud/console-logger-sls": "^1.2.31",
     "js-cookie": "^3.0.1"
   }

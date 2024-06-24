@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Icon, Dropdown, Message } from '@alicloud/console-components';
-import { withRcIntl } from '@alicloud/console-components-intl-core'
-import { IRegionGuidanceProps } from '../types/IRegionGuidanceProps.type'
+import { withRcIntl } from '@alicloud/console-components-intl-core';
+import { IRegionGuidanceProps } from '../types/IRegionGuidanceProps.type';
 import './index.less';
 import defaultMessages from './message';
 import LoggerProvider from '../Provider/LoggerProvider';
