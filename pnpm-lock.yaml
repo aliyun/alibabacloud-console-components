@@ -155,6 +155,9 @@ importers:
       typescript:
         specifier: ^4.1.2
         version: 4.9.5
+      yaml:
+        specifier: ^2.4.5
+        version: 2.4.5
 
   packages/misc/css-var-utils:
     devDependencies:
@@ -252,7 +255,7 @@ importers:
   packages/misc/intl:
     dependencies:
       '@alicloud/console-components':
-        specifier: ^1.0.0
+        specifier: '>=1.0.0'
         version: 1.6.2(@alifd/meet-react@2.9.6)(moment@2.29.4)(prop-types@15.8.1)(react-dom@17.0.1)(react@17.0.1)
       '@alicloud/console-components-intl-context':
         specifier: ^1.0.9
@@ -291,7 +294,7 @@ importers:
         specifier: '>=16.8.0'
         version: 17.0.1(react@17.0.1)
       styled-components:
-        specifier: ^4.2.0
+        specifier: '>=4.2.0'
         version: 4.4.1(@babel/core@7.23.2)(react-dom@17.0.1)(react@17.0.1)
       warning:
         specifier: ^4.0.3
@@ -493,7 +496,7 @@ importers:
   packages/rc-components/rc-components-pro:
     dependencies:
       '@alicloud/console-components-intl-core':
-        specifier: ^1.0.23
+        specifier: workspace:^1.0.0
         version: link:../../misc/intl-core
       '@alicloud/console-logger-sls':
         specifier: ^1.2.31
@@ -2909,7 +2912,7 @@ packages:
       '@alicloud/console-toolkit-plugin-unit-jest': 1.2.54(@babel/core@7.23.2)(react-dom@16.3.0)(react@16.3.0)(typescript@4.9.5)
       '@alicloud/console-toolkit-plugin-updator': 1.2.55(@babel/core@7.23.2)
       '@alicloud/console-toolkit-plugin-webpack': 1.2.30(@babel/core@7.23.2)
-      '@alicloud/console-toolkit-shared-utils': 1.0.16(@babel/core@7.23.2)
+      '@alicloud/console-toolkit-shared-utils': 1.2.30(@babel/core@7.23.2)
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/react'
@@ -9084,7 +9087,7 @@ packages:
       strip-ansi: 5.2.0
       sudo-prompt: 9.2.1
       wcwidth: 1.0.1
-      yaml: 2.3.4
+      yaml: 2.4.5
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -11642,7 +11645,7 @@ packages:
   /@storybook/ui@5.3.21(@types/react@17.0.2):
     resolution: {integrity: sha512-OUf8JYY9LN+XfzLSZE6KtboITGDL6C8Z0W9QOXM5LJwFLv4PkANK/f9qsB5vVHFm7vhoO96butFzs6SjTKhxkw==}
     dependencies:
-      '@emotion/core': 10.3.1(react@16.14.0)
+      '@emotion/core': 10.3.1(react@17.0.1)
       '@storybook/addons': 5.3.21(react-dom@16.14.0)(regenerator-runtime@0.13.11)
       '@storybook/api': 5.3.21(react-dom@16.14.0)(regenerator-runtime@0.13.11)
       '@storybook/channels': 5.3.21
@@ -33338,9 +33341,10 @@ packages:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
 
-  /yaml@2.3.4:
-    resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
+  /yaml@2.4.5:
+    resolution: {integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==}
     engines: {node: '>= 14'}
+    hasBin: true
     dev: true
 
   /yargs-parser@11.1.1:
