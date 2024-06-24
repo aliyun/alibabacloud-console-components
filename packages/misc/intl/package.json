@@ -9,20 +9,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "wind",
-    "wind-rc-intl",
-    "react",
-    "react component"
-  ],
   "author": {
-    "name": "csr632",
-    "email": "632882184@qq.com"
+    "name": "fringey",
+    "email": "465964690@qq.com"
   },
   "license": "MIT",
-  "engines": {
-    "node": ">=7.6.0"
-  },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build",
     "clean": "rm -rf dist lib es cc-dev-out",
@@ -37,11 +28,11 @@
     "upload:pre": "npm run upload -- --tag=pre"
   },
   "peerDependencies": {
-    "@alicloud/console-components": "^1.0.0",
+    "@alicloud/console-components": ">=1.0.0",
     "prop-types": "^15.7.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "styled-components": "^4.2.0"
+    "styled-components": ">=4.2.0"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.2.30",
