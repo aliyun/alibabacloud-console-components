@@ -132,8 +132,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       lodash:
-        specifier: ^4.17.11
-        version: 4.17.15
+        specifier: ^4.17.21
+        version: 4.17.21
       moment:
         specifier: ^2.24.0
         version: 2.24.0
@@ -282,7 +282,7 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       lodash:
-        specifier: ^4.17.15
+        specifier: ^4.17.21
         version: 4.17.21
       prop-types:
         specifier: ^15.7.0
@@ -370,7 +370,7 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       lodash:
-        specifier: ^4.17.15
+        specifier: ^4.17.21
         version: 4.17.21
       prop-types:
         specifier: ^15.7.0
@@ -496,7 +496,7 @@ importers:
   packages/rc-components/rc-components-pro:
     dependencies:
       '@alicloud/console-components-intl-core':
-        specifier: workspace:^1.0.0
+        specifier: ^1.0.0
         version: link:../../misc/intl-core
       '@alicloud/console-logger-sls':
         specifier: ^1.2.31
@@ -879,7 +879,7 @@ importers:
         specifier: ^2.2.5
         version: 2.3.2
       lodash:
-        specifier: ^4.17.15
+        specifier: ^4.17.21
         version: 4.17.21
       prop-types:
         specifier: ^15.x
@@ -33066,7 +33066,7 @@ packages:
   /wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
     dev: true
 
   /widest-line@2.0.1:
