@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Nav } from '@alicloud/console-components'
-import * as S from './styles'
-import { mapItemToJSX } from './ItemDescriptor'
-import Header from './Header'
-import { GetFusionConfig } from './utils'
-import { IConsoleMenuProps } from './types/IConsoleMenuProps.type'
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import * as S from './styles';
+import { mapItemToJSX } from './ItemDescriptor';
+import Header from './Header';
+import { GetFusionConfig } from './utils';
+import { IConsoleMenuProps } from './types/IConsoleMenuProps.type';
 
 const PrimaryMenu: React.FC<{
   fusionPrefix: string
@@ -24,8 +24,8 @@ const PrimaryMenu: React.FC<{
       popupAlign="follow"
       hasArrow
     />
-  )
-}
+  );
+};
 
 const SecondaryMenu: React.FC<{
   fusionPrefix: string
@@ -39,19 +39,19 @@ const SecondaryMenu: React.FC<{
     triggerType="click"
     inlineIndent={8}
   />
-)
+);
 
 export interface IOnSelect {
   (value: string): void
 }
 
 const ConsoleMenu: React.FC<
-  IConsoleMenuProps & {
-    /**
+IConsoleMenuProps & {
+  /**
      * 来自ConfigProvider
      */
-    fusionConfig: any
-  }
+  fusionConfig: any
+}
 > = ({
   type = 'primary',
   header,
@@ -64,8 +64,8 @@ const ConsoleMenu: React.FC<
   fusionConfig = {},
   ...restProps
 }) => {
-  const ExactMenuComponent = type === 'secondary' ? SecondaryMenu : PrimaryMenu
-  const { prefix: fusionPrefix = 'next-' } = fusionConfig
+  const ExactMenuComponent = type === 'secondary' ? SecondaryMenu : PrimaryMenu;
+  const { prefix: fusionPrefix = 'next-' } = fusionConfig;
   return (
     <ExactMenuComponent
       // 透传给Nav
@@ -87,8 +87,8 @@ const ConsoleMenu: React.FC<
       {Array.isArray(items) && items.map(mapItemToJSX)}
       {children}
     </ExactMenuComponent>
-  )
-}
+  );
+};
 
 const itemBasicShape = {
   key: PropTypes.string,
@@ -96,7 +96,7 @@ const itemBasicShape = {
   render: PropTypes.func,
   visible: PropTypes.bool,
   disabled: PropTypes.bool,
-}
+};
 
 ConsoleMenu.propTypes = {
   type: PropTypes.oneOf(['primary', 'secondary']),
@@ -105,7 +105,7 @@ ConsoleMenu.propTypes = {
     PropTypes.shape({
       ...itemBasicShape,
       items: PropTypes.arrayOf(PropTypes.shape(itemBasicShape)),
-    })
+    }),
   ) as any,
   activeKey: PropTypes.string,
   defaultActiveKey: PropTypes.string,
@@ -115,6 +115,6 @@ ConsoleMenu.propTypes = {
   ]),
   defaultOpenAll: PropTypes.bool,
   children: PropTypes.node,
-}
+};
 
-export default GetFusionConfig(ConsoleMenu) as React.FC<IConsoleMenuProps>
+export default GetFusionConfig(ConsoleMenu) as React.FC<IConsoleMenuProps>;

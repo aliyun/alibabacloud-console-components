@@ -1,10 +1,10 @@
-import React from 'react'
-import * as S from './styles'
-import { IItemDescriptor } from './types/IItemDescriptor.type'
+import React from 'react';
+import * as S from './styles';
+import { IItemDescriptor } from './types/IItemDescriptor.type';
 
 // 兼容旧版export结构
-export type { IItemDescriptor }
-export type { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type'
+export type { IItemDescriptor };
+export type { IRoutableItemDescriptor } from './types/IRoutableItemDescriptor.type';
 
 /**
  * @internal
@@ -19,27 +19,27 @@ export function mapItemToJSX(item: IItemDescriptor): React.ReactNode {
     items: subItems,
     navProps,
     type,
-  } = item
+  } = item;
   if (visible) {
     if (subItems) {
       return (
         <S.SubMenu key={key} label={label} {...navProps}>
           {subItems.map(mapItemToJSX)}
         </S.SubMenu>
-      )
+      );
     }
 
     if (type === 'divider') {
-      return <S.Divider key={key} />
+      return <S.Divider key={key} />;
     }
 
     return (
       <S.Item key={key} disabled={disabled} {...navProps}>
         {render ? render(item) : label}
       </S.Item>
-    )
+    );
   }
-  return null
+  return null;
 }
 
 /**

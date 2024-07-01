@@ -20,6 +20,8 @@
  * `import ConsoleMenu from '@alicloud/console-components-console-menu'`，不用安装dva。
  */
 
-import RoutableMenu from './es/RoutableMenu'
+import RoutableMenu from './es/RoutableMenu';
 
-export default RoutableMenu
+export default RoutableMenu;
+
+export * from './es/RoutableMenu';

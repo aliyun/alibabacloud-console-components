@@ -2,7 +2,7 @@ export default class SimpleEventEmitter<L extends ((...args: any) => void)> {
   events: Record<string, L[]>;
 
   constructor() {
-    this.events = {}
+    this.events = {};
   }
 
   on(event: string, listener: L) {
