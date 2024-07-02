@@ -2,9 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "pnpm i --ignore-scripts && npm run link-bin && pnpm i",
-    "install": "pnpm i --ignore-scripts && npm run link-bin",
-    "clean": "lerna clean --yes && rm -rf node_modules",
+    "bootstrap": "rm -rf node_modules && pnpm -r exec rm -rf node_modules && pnpm i --registry=http://registry.npmmirror.com",
+    "clean": "rm -rf node_modules && ",
     "link-bin": "node ./link.js",
     "lint": "eslint ./packages",
     "release": "lerna publish --conventional-commits",
