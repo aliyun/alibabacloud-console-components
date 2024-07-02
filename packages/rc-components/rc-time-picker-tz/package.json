@@ -1,0 +1,36 @@
+{
+  "name": "@alicloud/console-components-time-picker-tz",
+  "version": "0.1.0-alpha.1",
+  "description": "React component for Alibaba Cloud.",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "module": "es/index.js",
+  "unpkg": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run compile",
+    "compile": "xpkg build",
+    "clean": "rm -rf esm lib",
+    "start": "xpkg start"
+  },
+  "peerDependencies": {
+    "@alicloud/console-components": ">=1.0.0",
+    "react": ">=16.14.0",
+    "react-dom": ">=16.14.0"
+  },
+  "devDependencies": {
+    "@alicloud/console-components": "^2.0.0",
+    "@alicloud/xpkg": "^0.1.10"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.45"
+  }
+}
