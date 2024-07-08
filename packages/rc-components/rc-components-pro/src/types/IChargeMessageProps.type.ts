@@ -11,7 +11,7 @@ export interface IChargeMessageProps {
    * 描述
    */
   description?: string;
-   /**
+  /**
    * 用户点击同意 checkout box 的回调
    */
   onCheck?: (value: boolean, e: any) => void

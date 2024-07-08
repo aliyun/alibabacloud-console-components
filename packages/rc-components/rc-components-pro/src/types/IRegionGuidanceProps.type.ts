@@ -1,4 +1,4 @@
-import { IRegionItem } from './IRegionItem.type'
+import { IRegionItem } from './IRegionItem.type';
 
 export interface IRegionGuidanceProps {
   /**

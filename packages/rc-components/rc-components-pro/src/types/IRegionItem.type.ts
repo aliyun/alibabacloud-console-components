@@ -12,4 +12,4 @@ export interface IRegionItem {
    * 地域资源数
    */
   count?: number;
-};
+}

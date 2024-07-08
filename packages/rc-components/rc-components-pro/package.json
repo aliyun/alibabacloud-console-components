@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-pro",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "types": "tsc -p src --emitDeclarationOnly",
     "build": "breezr build --engine webpack",
     "clean": "rm -rf dist lib es doc-dist",
-    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types"
+    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run build && npm run types"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.2.0",

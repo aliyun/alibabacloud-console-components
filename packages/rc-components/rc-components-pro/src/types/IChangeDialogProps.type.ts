@@ -1,5 +1,6 @@
-import { IChargeMessageProps } from "./IChargeMessageProps.type";
-import { DialogProps } from '@alifd/next/types/dialog';
+import type { DialogProps } from '@alicloud/console-components/types/dialog';
+
+import type { IChargeMessageProps } from './IChargeMessageProps.type';
 
 export interface IChargeDialogProps extends DialogProps {
   /**

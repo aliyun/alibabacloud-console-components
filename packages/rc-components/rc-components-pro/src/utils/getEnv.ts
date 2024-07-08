@@ -3,5 +3,5 @@ export const getEnv = () => {
     return 'local';
   }
   // @ts-ignore
-  return window?.ALIYUN_CONSOLE_CONFIG?.fEnv || 'prod'
-}
+  return window?.ALIYUN_CONSOLE_CONFIG?.fEnv || 'prod';
+};
