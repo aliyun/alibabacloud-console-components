@@ -1,0 +1,25 @@
+# @alicloud/console-components-badge
+
+带有箭头的徽标组件
+
+## 基本用法
+
+你应该使用`Badge`直接包裹文本，像下面这样。否则可能会影响到气泡徽章的定位。
+
+```jsx
+<Badge position="right" content="HOT">
+	最热活动
+</Badge>
+```
+
+[MDXInstruction:importDemo:Basic](./stories/basic)
+
+## 在AppLayout中使用
+
+组件内置文本`Truncate`组件。通过设置`useTruncate`和`truncateProps`来设置文字截断
+
+[MDXInstruction:importDemo:WithAppLayout](./stories/with-applayout)
+
+## APIs
+
+[MDXInstruction:renderInterface:IBadgeProps](./api-json/api.json)
