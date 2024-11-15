@@ -21,7 +21,7 @@ const renderComponent = (
         `Default component is expected to be a class or function as React component but received a ${DefaultComponent}.`
       )
     }
-    return isValidComponent ? <DefaultComponent {...props} /> : null
+    return isValidComponent ? <DefaultComponent {...(props as Record<string, any>)} /> : null
   }
 
   if (isFunction(props)) {

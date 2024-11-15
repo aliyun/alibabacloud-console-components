@@ -12,8 +12,10 @@ const ActionBarPropsFilter: React.FC<IActionBarProps> = ({
 }
 
 export const SActionBarWrapper = styled(ActionBarPropsFilter)`
-  min-height: 40px;
+  padding-top: 8px;
+  min-height: 32px;
   justify-content: space-between;
+  align-items: center;
 `
 
 export const SActionBarLeft = styled(Grid.Col)`
