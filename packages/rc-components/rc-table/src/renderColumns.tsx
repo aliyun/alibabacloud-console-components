@@ -4,8 +4,8 @@ import { wrapDisplayName } from 'recompose'
 import {
   TableProps,
   ColumnProps,
-} from '@alicloud/console-components/types/table'
-import { Table } from '@alicloud/console-components'
+} from '@alifd/next/types/table'
+import { Table } from '@alifd/next'
 import { ITableProps } from './layout'
 
 const getColumnKeyByIndex = (index: number): string =>

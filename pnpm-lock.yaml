@@ -866,6 +866,9 @@ importers:
       '@alicloud/console-components-page':
         specifier: ^1.0.14
         version: 1.1.2(@alicloud/console-components@1.6.2(@alifd/meet-react@2.9.9(rax@1.2.3)(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(moment@2.30.1)(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(styled-components@5.3.11(@babel/core@7.24.7)(react-dom@17.0.2(react@17.0.2))(react-is@18.3.1)(react@17.0.2))
+      '@alifd/next':
+        specifier: ^1.27.29
+        version: 1.27.29(@alifd/meet-react@2.9.9(rax@1.2.3)(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(moment@2.30.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@types/prop-types':
         specifier: ^15.7.13
         version: 15.7.13
@@ -1299,6 +1302,9 @@ packages:
   '@alifd/field@1.7.0':
     resolution: {integrity: sha512-rXqtuJudWaSl+1EOjUqr1OHUh8PWnzvyMmm6sKev9uTbctrt+pHEkRh3fbXebJhtEXgZbqhh/UM2afqy1nIIeA==}
 
+  '@alifd/field@2.0.3':
+    resolution: {integrity: sha512-Bq7lPT6lyjO+2A/9iZLt09Ix6IJruqmd/KYiJW1fbPecIokLQ0cgwCoU4fTxGBS2trR9n/o3kIhWt731PDERdg==}
+
   '@alifd/meet-react-component-one@1.3.2':
     resolution: {integrity: sha512-KxcBKh0q4hOubOL83jflfttPz5ikjL9HW1C5HDBhBHOGR1z9/vyi0feUL7XUrXvKcCcILq8DRXy1qTiJsP0MZw==}
     peerDependencies:
@@ -1327,11 +1333,22 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
+  '@alifd/next@1.27.29':
+    resolution: {integrity: sha512-GGXjeVMZMUQZdHPJZvhEBXSrVCC6xBrZQkrKZXhx7VqX7coX85lP7ihFKGdFhwqOFWh5MKXSJ2Q48vvTDJ5YGQ==}
+    peerDependencies:
+      '@alifd/meet-react': ^2.0.0
+      moment: ^2.22.1
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+
   '@alifd/overlay@0.3.5':
     resolution: {integrity: sha512-kFud++NuXDoEE1iCvjqoomtuq+m5SDDO37WS85mKR1007qOf7XwhVgrwgxZ9yFfxGHVnHg863nIdDvQk+9/Jiw==}
 
   '@alifd/validate@1.2.3':
     resolution: {integrity: sha512-ggSBfpl3H8M2OEM95zC9NQc4cBvne/Eq4mTHZHWtqYI/6Vnz0k1fGx3hnYsdGu3c3hF4l6sUDPulactM6lSXtA==}
+
+  '@alifd/validate@2.0.3':
+    resolution: {integrity: sha512-xwA5XvpKhHIrYqpZ4gldppQ/bIIqqik1TMhtjLidi+LeIdRlxRc1NVC3FW9iF/6nPfiK3PhNpTYOjavQT0nKPQ==}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -16950,6 +16967,11 @@ snapshots:
       '@alifd/validate': 1.2.3
       prop-types: 15.8.1
 
+  '@alifd/field@2.0.3':
+    dependencies:
+      '@alifd/validate': 2.0.3
+      tslib: 2.6.3
+
   '@alifd/meet-react-component-one@1.3.2(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@gcanvas/core': 1.0.0
@@ -17173,11 +17195,38 @@ snapshots:
       resize-observer-polyfill: 1.5.1
       shallow-element-equals: 1.0.1
 
+  '@alifd/next@1.27.29(@alifd/meet-react@2.9.9(rax@1.2.3)(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(moment@2.30.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)':
+    dependencies:
+      '@alifd/field': 2.0.3
+      '@alifd/meet-react': 2.9.9(rax@1.2.3)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@alifd/overlay': 0.3.5
+      '@alifd/validate': 2.0.3
+      '@types/react-transition-group': 4.4.10
+      babel-runtime: 6.26.0
+      big.js: 6.2.1
+      classnames: 2.5.1
+      dayjs: 1.11.11
+      hoist-non-react-statics: 3.3.2
+      lodash.clonedeep: 4.5.0
+      moment: 2.30.1
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-lifecycles-compat: 3.0.4
+      react-transition-group: 2.9.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      resize-observer-polyfill: 1.5.1
+      shallow-element-equals: 1.0.1
+      tslib: 2.6.3
+
   '@alifd/overlay@0.3.5':
     dependencies:
       resize-observer-polyfill: 1.5.1
 
   '@alifd/validate@1.2.3': {}
+
+  '@alifd/validate@2.0.3':
+    dependencies:
+      tslib: 2.6.3
 
   '@alloc/quick-lru@5.2.0': {}
 

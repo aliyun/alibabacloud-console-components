@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-table",
-  "version": "1.0.28-alpha.0",
+  "version": "1.0.28-alpha.1",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -38,11 +38,11 @@
     "upload:pre": "npm run upload -- --tag=pre"
   },
   "peerDependencies": {
-    "@alicloud/console-components": "^1.0.0",
+    "@alicloud/console-components": ">=1.0.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.x",
-    "react": "^16.x",
-    "react-dom": "^16.x"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "dependencies": {
     "@researchgate/react-intersection-observer": "^0.7.3",
@@ -55,6 +55,7 @@
     "@alicloud/console-components": "^1.0.0",
     "@alicloud/console-components-app-layout": "^1.0.10",
     "@alicloud/console-components-page": "^1.0.14",
+    "@alifd/next": "^1.27.29",
     "@types/prop-types": "^15.7.13",
     "prop-types": "^15.6.1"
   }

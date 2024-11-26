@@ -1,4 +1,4 @@
-import { TableProps } from '@alicloud/console-components/types/table'
+import { TableProps } from '@alifd/next/types/table'
 import React from 'react'
 import { IPaginationProps, ISearchProps, Operation } from '../layout/index'
 import { ISelectionRenderParams } from '../selection'

@@ -1,4 +1,6 @@
 import { compose } from 'recompose'
+import { Table } from '@alifd/next'
+
 import Pagination from './pagination'
 import Search from './search'
 import Selection from './selection'
@@ -6,7 +8,6 @@ import withSelectionProvider from './selection/withProvider'
 import renderColumns from './renderColumns'
 import withDefaultProps from './withDefaultProps'
 import Layout, { ITableProps, StickyLockLayout } from './layout'
-import { Table } from '@alicloud/console-components'
 
 import './index.css'
 

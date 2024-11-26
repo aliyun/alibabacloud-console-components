@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from '@alicloud/console-components'
+import { Table } from '@alifd/next'
 import { withProps } from 'recompose'
 import styled from 'styled-components'
 import isArray from 'lodash/isArray'
 import { PaginationProps } from '@alicloud/console-components/types/pagination'
-import { TableProps } from '@alicloud/console-components/types/table'
+import { TableProps } from '@alifd/next/types/table'
 import { SearchProps } from '@alicloud/console-components/types/search'
 import { OverlayProps } from '@alicloud/console-components/types/overlay'
 
@@ -195,6 +195,8 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     TableComponent = Table,
     ...restProps
   } = props
+
+  console.log(restProps);
 
   const {
     top: ExactTopActionBar = ActionBar,
