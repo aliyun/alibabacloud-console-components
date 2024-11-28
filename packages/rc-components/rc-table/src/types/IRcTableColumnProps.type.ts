@@ -7,7 +7,7 @@ export interface IRcTableColumnProps
    * 表头显示的内容
    * value, rowIndex, record, context四个属性只可读不可被更改
    */
-  title: ColumnProps['title'] | (() => ReactNode)
+  title?: ColumnProps['title'] | (() => ReactNode)
   /**
    * 行渲染的逻辑
    * value, rowIndex, record, context四个属性只可读不可被更改
