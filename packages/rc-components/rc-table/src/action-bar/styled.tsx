@@ -13,6 +13,7 @@ const ActionBarPropsFilter: React.FC<IActionBarProps> = ({
 
 export const SActionBarWrapper = styled(ActionBarPropsFilter)`
   padding-top: 8px;
+  padding-bottom: 8px;
   min-height: 32px;
   justify-content: space-between;
   align-items: center;
