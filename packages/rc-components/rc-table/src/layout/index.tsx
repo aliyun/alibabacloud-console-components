@@ -196,8 +196,6 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     ...restProps
   } = props
 
-  console.log(restProps);
-
   const {
     top: ExactTopActionBar = ActionBar,
     topProps,
