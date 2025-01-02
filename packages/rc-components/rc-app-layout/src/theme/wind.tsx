@@ -1,5 +1,5 @@
-import { withStyledTheme } from '@alicloud/css-var-utils'
-import { theme as sourceTheme } from './xconsole'
+import { withStyledTheme } from '@alicloud/css-var-utils';
+import { theme as sourceTheme } from './xconsole';
 
 export const theme = sourceTheme.overwrite({
   '--console-layout-nav-trigger-width': '0px',
@@ -17,6 +17,6 @@ export const theme = sourceTheme.overwrite({
   '--console-layout-nav-shadow': 'none',
   '--console-layout-nav-bg': '#f5f5f5',
   '--console-layout-nav-border': 'none',
-})
+});
 
-export const WindTheme = withStyledTheme(theme, (props) => props.children)
+export const WindTheme = withStyledTheme(theme, (props) => props.children);

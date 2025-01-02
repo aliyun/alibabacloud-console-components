@@ -1,7 +1,7 @@
 /**
  * @public
  */
- export interface IAppLayoutProps {
+export interface IAppLayoutProps {
   /**
    * 定义左侧导航栏
    */

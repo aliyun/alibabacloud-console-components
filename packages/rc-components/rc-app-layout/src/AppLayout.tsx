@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
-import Nav from './Nav'
-import * as S from './styles'
-import { IAppLayoutProps } from './types/IAppLayoutProps.type'
-export type { IAppLayoutProps }
+import React from 'react';
+import classNames from 'classnames';
+import Nav from './Nav';
+import * as S from './styles';
+import { IAppLayoutProps } from './types/IAppLayoutProps.type';
+
+export type { IAppLayoutProps };
 
 /**
  * @public
@@ -25,7 +26,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
       className={classNames(
         'wind-rc-app-layout',
         'windcc-app-layout',
-        className
+        className,
       )}
       style={style}
     >
@@ -41,7 +42,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({
       )}
       <S.Content className="windcc-app-layout__content">{children}</S.Content>
     </S.AppLayout>
-  )
-}
+  );
+};
 
-export default AppLayout
+export default AppLayout;

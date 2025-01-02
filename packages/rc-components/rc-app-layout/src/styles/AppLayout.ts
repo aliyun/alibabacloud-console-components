@@ -1,41 +1,41 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const calcHeight = (adjustHeight: string | number | (() => number)) => {
-  let offset
+  let offset;
   switch (typeof adjustHeight) {
     case 'string': {
       if (typeof window === 'undefined' || typeof document === 'undefined') {
         // this is executed in SSR
         // document is not defined
-        break
+        break;
       }
       const elem =
         document.getElementById(adjustHeight) ||
-        document.querySelector(adjustHeight)
+        document.querySelector(adjustHeight);
 
       if (elem && elem.offsetHeight) {
-        offset = elem.offsetHeight
+        offset = elem.offsetHeight;
       }
 
-      break
+      break;
     }
     case 'number': {
-      offset = adjustHeight
-      break
+      offset = adjustHeight;
+      break;
     }
     case 'function': {
-      offset = adjustHeight()
-      break
+      offset = adjustHeight();
+      break;
     }
     default: {
-      break
+      break;
     }
   }
 
   return Number.isFinite(offset as number)
     ? `calc(100vh - ${offset}px)`
-    : '100vh'
-}
+    : '100vh';
+};
 
 const AppLayout = styled.div<{
   adjustHeight: string | number | (() => number)
@@ -48,6 +48,6 @@ const AppLayout = styled.div<{
   align-content: flex-start;
   -webkit-font-smoothing: antialiased;
   height: ${({ adjustHeight }) => calcHeight(adjustHeight)};
-`
+`;
 
-export default AppLayout
+export default AppLayout;

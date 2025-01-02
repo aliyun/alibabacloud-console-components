@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useCallback } from 'react'
-import NavCollapseTrigger from './NavCollapseTrigger'
-import * as S from './styles'
-import { IAppLayoutProps } from '.'
+import React, { useState, useCallback } from 'react';
+import NavCollapseTrigger from './NavCollapseTrigger';
+import * as S from './styles';
+import { IAppLayoutProps } from '.';
 
 const useCollapse = ({
   defaultCollapsed,
@@ -12,23 +12,23 @@ const useCollapse = ({
   onCollapseTriggerClick: INavProps['onCollapseTriggerClick']
   defaultCollapsed: NonNullable<INavProps['defaultCollapsed']>
 }) => {
-  const isControlled = typeof collapsed === 'boolean'
-  const [collapsedState, setCollapsedState] = useState(defaultCollapsed)
+  const isControlled = typeof collapsed === 'boolean';
+  const [collapsedState, setCollapsedState] = useState(defaultCollapsed);
   // 是否是受控组件？
-  const actualCollapsed = isControlled ? (collapsed as boolean) : collapsedState
+  const actualCollapsed = isControlled ? (collapsed as boolean) : collapsedState;
 
   // 装饰onCollapseTriggerClick，在受控模式下要设置当前collapsedState
   const actualOnCollapseTriggerClick = useCallback(
     (e: React.MouseEvent) => {
-      onCollapseTriggerClick && onCollapseTriggerClick(actualCollapsed, e)
+      onCollapseTriggerClick && onCollapseTriggerClick(actualCollapsed, e);
       if (!isControlled) {
-        setCollapsedState(!actualCollapsed)
+        setCollapsedState(!actualCollapsed);
       }
     },
-    [actualCollapsed, isControlled, onCollapseTriggerClick]
-  )
-  return [actualCollapsed, actualOnCollapseTriggerClick] as const
-}
+    [actualCollapsed, isControlled, onCollapseTriggerClick],
+  );
+  return [actualCollapsed, actualOnCollapseTriggerClick] as const;
+};
 
 interface INavProps {
   collapsible?: boolean
@@ -49,7 +49,7 @@ const Nav: React.FC<INavProps> = ({
     collapsed,
     defaultCollapsed,
     onCollapseTriggerClick,
-  })
+  });
 
   return (
     <S.NavWrapper collapsed={derivedCollapsed}>
@@ -63,7 +63,7 @@ const Nav: React.FC<INavProps> = ({
         />
       )}
     </S.NavWrapper>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

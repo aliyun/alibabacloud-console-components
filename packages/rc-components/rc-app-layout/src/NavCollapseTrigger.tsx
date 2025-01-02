@@ -1,5 +1,5 @@
-import React from 'react'
-import * as S from './styles'
+import React from 'react';
+import * as S from './styles';
 
 export interface INavCollapseTrigger {
   collapsed: boolean
@@ -17,10 +17,10 @@ const NavCollapseTrigger: React.FC<INavCollapseTrigger> = ({
         className="nav-collapse-trigger"
         onClick={onClick}
       >
-        <S.NavCollapseTriggerIcon type="arrow-left" size="xs" />
+        <S.NavCollapseTriggerIcon type="arrow-left" size="small" />
       </S.NavCollapseTrigger>
     </S.NavCollapseTriggerWrapper>
   </S.NavCollapseTriggerLocator>
-)
+);
 
-export default NavCollapseTrigger
+export default NavCollapseTrigger;

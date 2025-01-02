@@ -1,4 +1,4 @@
-import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils'
+import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils';
 
 export const theme = CssVarTheme.create({
   '--console-layout-nav-width': { default: '208px' },
@@ -20,6 +20,6 @@ export const theme = CssVarTheme.create({
   '--console-layout-nav-shadow': { default: '2px 0 4px 0 rgba(0, 0, 0, 0.16)' },
   '--console-layout-nav-bg': { default: 'rgba(255,255,255,0.04)' },
   '--console-layout-nav-border': { default: 'none' },
-})
+});
 
-export const XConsoleDarkTheme = withStyledTheme(theme, (props) => props.children)
+export const XConsoleDarkTheme = withStyledTheme(theme, (props) => props.children);

@@ -1,20 +1,17 @@
-import React from 'react'
-import { Icon } from '@alicloud/console-components'
-import styled from 'styled-components'
-import { vars } from '../theme'
+import React from 'react';
+import { Icon } from '@alicloud/console-components';
+import styled from 'styled-components';
+import { vars } from '../theme';
 
-const navWidth = vars['--console-layout-nav-width'].consumeStyled
+const navWidth = vars['--console-layout-nav-width'].consumeStyled;
 const navCollapsedWidth =
-  vars['--console-layout-nav-width-collapsed'].consumeStyled
+  vars['--console-layout-nav-width-collapsed'].consumeStyled;
 
-const calcWidth = (props: INavProps) =>
-  props.collapsed ? navCollapsedWidth : navWidth
-const calcLeft = (props: INavProps) =>
-  props.collapsed ? `calc(${navCollapsedWidth(props)} - ${navWidth(props)})` : 0
-const getRotate = (props: INavCollapseTriggerProps) =>
-  props.collapsed ? 180 : 0
+const calcWidth = (props: INavProps) => (props.collapsed ? navCollapsedWidth : navWidth);
+const calcLeft = (props: INavProps) => (props.collapsed ? `calc(${navCollapsedWidth(props)} - ${navWidth(props)})` : 0);
+const getRotate = (props: INavCollapseTriggerProps) => (props.collapsed ? 180 : 0);
 
-const tiggerOpcity = (props: INavProps) => (props.collapsed ? 1 : 0)
+// const tiggerOpcity = (props: INavProps) => (props.collapsed ? 1 : 0);
 
 interface INavProps {
   collapsed: boolean
@@ -26,7 +23,7 @@ interface INavCollapseTriggerProps {
 export const NavChildenWrapper = styled.div`
   width: ${navWidth};
   min-width: ${navWidth};
-`
+`;
 
 const Nav = styled.div<INavProps>`
   position: relative;
@@ -38,11 +35,11 @@ const Nav = styled.div<INavProps>`
   border-right: ${vars['--console-layout-nav-border'].consumeStyled};
   left: ${calcLeft};
   transition: left 0.3s ease-in-out;
-`
+`;
 
-export default Nav
+export default Nav;
 
-export const NavCollapseTriggerIcon = styled(Icon)``
+export const NavCollapseTriggerIcon = styled(Icon)``;
 
 export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   /* 位置大小 */
@@ -57,7 +54,7 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   border: ${vars['--console-layout-nav-trigger-border'].consumeStyled};
   border-left: ${vars['--console-layout-nav-trigger-border-l'].consumeStyled};
   cursor: pointer;
-  color: #bfbfbf;
+  color: #808080;
   background-color: ${vars['--console-layout-nav-trigger-bg'].consumeStyled};
   border-radius: 0 2px 2px 0;
   box-shadow: ${vars['--console-layout-nav-trigger-shadow'].consumeStyled};
@@ -68,6 +65,10 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   justify-content: center;
   align-items: center;
 
+  &:hover {
+    box-shadow: ${vars['--console-layout-nav-trigger-shadow'].consumeStyled};
+  }
+
   ${NavCollapseTriggerIcon} {
     position: relative;
     left: ${vars['--console-layout-nav-trigger-icon-left'].consumeStyled};
@@ -77,7 +78,7 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
     transform: rotate(${getRotate}deg);
     transition: transform 0.5s ease-in-out, left 0.1s ease-in-out;
   }
-`
+`;
 /** Trigger最外层，帮助定位到menu右边 */
 export const NavCollapseTriggerLocator = styled.div`
   // 防止trigger被内容区域的东西挡住
@@ -88,7 +89,7 @@ export const NavCollapseTriggerLocator = styled.div`
   bottom: 0px;
   width: 0px;
   height: 100%;
-`
+`;
 
 /** Trigger次外层，确定点击区域 */
 export const NavCollapseTriggerWrapper = styled.div`
@@ -103,14 +104,14 @@ export const NavCollapseTriggerWrapper = styled.div`
   &:hover {
     ${NavCollapseTrigger} {
       border-left: ${vars['--console-layout-nav-trigger-border-l-hover']
-        .consumeStyled};
+    .consumeStyled};
       ${NavCollapseTriggerIcon} {
         color: ${vars['--console-layout-nav-trigger-icon-color-hover']
-          .consumeStyled};
+    .consumeStyled};
       }
     }
   }
-`
+`;
 
 export const NavWrapper = styled.div`
   z-index: 1;
@@ -123,4 +124,4 @@ export const NavWrapper = styled.div`
   &:hover {
     box-shadow: ${vars['--console-layout-nav-shadow'].consumeStyled};
   }
-`
+`;

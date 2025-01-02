@@ -1,5 +1,5 @@
-import { withStyledTheme } from '@alicloud/css-var-utils'
-import { theme as sourceTheme } from './xconsole'
+import { withStyledTheme } from '@alicloud/css-var-utils';
+import { theme as sourceTheme } from './xconsole';
 
 export const theme = sourceTheme.overwrite({
   '--console-layout-nav-shadow': 'none',
@@ -9,9 +9,9 @@ export const theme = sourceTheme.overwrite({
   '--console-layout-nav-trigger-shadow': 'none',
   '--console-layout-nav-trigger-icon-color': '#fff',
   '--console-layout-nav-bg': '#f7f7f7',
-})
+});
 
 export const HybridCloudLightTheme = withStyledTheme(
   theme,
-  (props) => props.children
-)
+  (props) => props.children,
+);
