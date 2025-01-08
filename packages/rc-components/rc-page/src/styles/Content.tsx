@@ -1,12 +1,12 @@
-import styled from 'styled-components'
-import Partial from './Partial'
-import { flexContainer, flexItem } from './utils'
+import styled from 'styled-components';
+import Partial from './Partial';
+import { flexContainer, flexItem } from './utils';
 
-const Content = styled(Partial)`
+const Content = styled(Partial as any)`
   ${flexContainer()};
   flex-grow: 1;
   margin-bottom: 0;
-`
+`;
 
 export interface ISideProps {
   minWidth?: number;
@@ -17,7 +17,7 @@ export const Side = styled.div<ISideProps>`
   position: relative;
   ${({ minWidth = 180 }) => `min-width: ${minWidth}px;`}
   padding-right: 20px;
-`
+`;
 
 export const Main = styled.div`
   ${flexItem({ flexGrow: 1 })};
@@ -28,6 +28,6 @@ export const Main = styled.div`
   min-width: 0;
   /* 允许一些box-shadow溢出 */
   overflow: visible;
-`
+`;
 
-export default Content
+export default Content;

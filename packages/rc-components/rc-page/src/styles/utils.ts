@@ -1,7 +1,7 @@
-import { css, CSSObject, FlattenSimpleInterpolation } from 'styled-components'
+import { css, CSSObject, FlattenSimpleInterpolation } from 'styled-components';
 
 export const flexContainer = (
-  props: CSSObject = {}
+  props: CSSObject = {},
 ): FlattenSimpleInterpolation => {
   return css({
     display: 'flex',
@@ -11,8 +11,8 @@ export const flexContainer = (
     alignItems: 'stretch',
     alignContent: 'stretch',
     ...props,
-  })
-}
+  });
+};
 
 export const flexItem = (props: CSSObject = {}): FlattenSimpleInterpolation => {
   return css({
@@ -22,8 +22,7 @@ export const flexItem = (props: CSSObject = {}): FlattenSimpleInterpolation => {
     flexBasis: 'auto',
     alignSelf: 'auto',
     ...props,
-  })
-}
+  });
+};
 
-export const lineHeight = (fontSize: number): number =>
-  fontSize * 2 - fontSize / 2
+export const lineHeight = (fontSize: number): number => fontSize * 2 - fontSize / 2;

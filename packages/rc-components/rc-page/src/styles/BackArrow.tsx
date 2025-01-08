@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { Icon } from '@alicloud/console-components'
-import { headerHeight } from './Header'
+import styled from 'styled-components';
+import { Icon } from '@alicloud/console-components';
+import { headerHeight } from './Header';
 
 export const BackArrowIcon = styled(Icon)`
   &&& {
@@ -9,16 +9,16 @@ export const BackArrowIcon = styled(Icon)`
     &:before {
       width: 24px;
       font-size: 24px;
-      vertical-align: top;
+      vertical-align: middle;
     }
   }
-`
+`;
 
 const BackArrow = styled.span`
   display: inline-block;
   height: ${headerHeight}px;
   line-height: ${headerHeight}px;
-  margin-right: 16px;
+  margin-right: 8px;
   cursor: pointer;
 
   a {
@@ -30,6 +30,6 @@ const BackArrow = styled.span`
       text-decoration: none;
     }
   }
-`
+`;
 
-export default BackArrow
+export default BackArrow;

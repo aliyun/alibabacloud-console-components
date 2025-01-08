@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components'
-import Partial from './Partial'
-import { flexContainer, flexItem } from './utils'
+import styled, { css } from 'styled-components';
+import Partial, { PartialProps } from './Partial';
+import { flexContainer, flexItem } from './utils';
 
-export const headerHeight = 40
+export const headerHeight = 36;
 
 const titleStyles = css`
   display: inline-block;
@@ -11,20 +11,20 @@ const titleStyles = css`
   box-sizing: border-box;
   vertical-align: middle;
   margin: 0;
-`
+`;
 
 export const Title = styled.h3`
   /* widget-normalize use class selector to reset css */
   && {
     ${titleStyles};
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     ${flexItem()};
     /* 设置overflow: hidden对于flex宽度的计算很重要，尤其是在title很长的情况下。
     它让此容器在计算flex宽度的时候不考虑其子节点，仅仅考虑剩余宽度。 */
     overflow-x: hidden;
   }
-`
+`;
 
 export const SubTitle = styled.h4`
   /* widget-normalize use class selector to reset css */
@@ -36,7 +36,7 @@ export const SubTitle = styled.h4`
     padding: 0 16px;
     ${flexItem({ flexShrink: 0 })};
   }
-`
+`;
 
 /**
  * 仅当Title被截断时，我们允许Main和Title区域grow。
@@ -54,30 +54,29 @@ export const Main = styled.div<{ shouldGrow: boolean }>`
   ${Title} {
     flex-grow: ${({ shouldGrow }) => (shouldGrow ? 1 : 0)};
   }
-`
+`;
 
 export const Extra = styled.div`
   ${flexItem({ flexShrink: 0 })};
-`
+`;
 
-const Header = styled(Partial)<{ alignLeft: boolean }>`
-  ${({ alignLeft }) =>
-    flexContainer({
-      justifyContent: alignLeft ? 'flex-start' : 'space-between',
-    })}
+const Header = styled(Partial as any)<PartialProps & { alignLeft: boolean }>`
+  ${({ alignLeft }) => flexContainer({
+    justifyContent: alignLeft ? 'flex-start' : 'space-between',
+  })}
   height: ${headerHeight}px;
   line-height: ${headerHeight}px;
-`
+`;
 
-export default Header
+export default Header;
 
-export const Topbar = styled(Partial)<{ alignLeft: boolean }>`
-  ${({ alignLeft }) =>
-    flexContainer({
-      justifyContent: alignLeft ? 'flex-start' : 'space-between',
-      alignItems: 'center',
-    })}
-`
+export const Topbar = styled(Partial as any)<PartialProps & { alignLeft: boolean }>`
+  ${({ alignLeft }) => flexContainer({
+    justifyContent: alignLeft ? 'flex-start' : 'space-between',
+    alignItems: 'center',
+  })}
+`;
+
 export const TopbarMain = styled.div`
   ${flexItem()};
   /* widget-normalize use class selector to reset css */
@@ -87,7 +86,7 @@ export const TopbarMain = styled.div`
       color: var(--breadcrumb-text-color,#666);
     }
   }
-`
+`;
 export const TopbarExtra = styled.div`
   ${flexItem()};
-`
+`;

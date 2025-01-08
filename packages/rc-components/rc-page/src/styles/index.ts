@@ -1,10 +1,10 @@
-export { default as Page } from './Page'
-export { default as Partial } from './Partial'
+export { default as Page } from './Page';
+export { default as Partial } from './Partial';
 export {
   default as Content,
   Side as ContentSide,
   Main as ContentMain,
-} from './Content'
+} from './Content';
 
 export {
   default as Header,
@@ -15,7 +15,7 @@ export {
   Topbar as HeaderTopbar,
   TopbarMain as HeaderTopbarMain,
   TopbarExtra as HeaderTopbarExtra,
-} from './Header'
+} from './Header';
 
 export {
   default as Menu,
@@ -25,4 +25,4 @@ export {
   SubMenu,
   IntersectionGuard as MenuIntersectionGuard,
   IntersectionContainer as MenuIntersectionContainer,
-} from './Menu'
+} from './Menu';
