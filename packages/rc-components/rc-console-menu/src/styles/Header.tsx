@@ -1,5 +1,6 @@
-import styled from 'styled-components'
-import { vars } from '../theme'
+import styled from 'styled-components';
+
+import { vars } from '../theme';
 
 /**
  * @public
@@ -12,7 +13,7 @@ const Header = styled.h2`
     font-weight: 600;
     color: ${vars['--console-menu-header-color'].consumeStyled};
     margin: 0;
-    line-height: 18px;
+    line-height: 22px;
     display: flex;
     justify-content: space-between;
     .header-select {
@@ -42,5 +43,5 @@ const Header = styled.h2`
       min-width: 100%;
     }
   }
-`
-export default Header
+`;
+export default Header;

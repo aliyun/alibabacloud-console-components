@@ -1,4 +1,4 @@
-import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils'
+import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils';
 
 export const theme = CssVarTheme.create({
   '--console-menu-divider-margin': { default: '15px' },
@@ -16,6 +16,6 @@ export const theme = CssVarTheme.create({
   '--console-menu-active-bar-display': { default: 'none' },
   '--console-menu-disabled-text-color': { default: '#c1c1c1' },
   '--console-menu-disabled-bg': { default: '#f5f5f5' },
-})
+});
 
-export const XConsoleTheme = withStyledTheme(theme, (props) => props.children)
+export const XConsoleTheme = withStyledTheme(theme, (props) => props.children);

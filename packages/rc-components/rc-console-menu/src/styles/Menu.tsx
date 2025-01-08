@@ -1,10 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Nav } from '@alicloud/console-components'
-import Item from './Item'
-import SubMenu from './SubMenu'
-import { getPriority } from '../utils'
-import { vars } from '../theme'
+import React from 'react';
+import styled from 'styled-components';
+import { Nav } from '@alicloud/console-components';
+import Item from './Item';
+import SubMenu from './SubMenu';
+import { getPriority } from '../utils';
+import { vars } from '../theme';
 
 /**
  * @public
@@ -103,8 +103,8 @@ const PrimaryMenu = styled(NavFilterProps)<{
       }
     }
   }
-`
-export default PrimaryMenu
+`;
+export default PrimaryMenu;
 
 /**
  * @public
@@ -158,12 +158,12 @@ export const SecondaryMenu = styled(NavFilterProps)<{ fusionPrefix: string }>`
       }
     }
   }
-`
+`;
 
 function getPrefix({ fusionPrefix }: { fusionPrefix: string }) {
-  return fusionPrefix
+  return fusionPrefix;
 }
 
 function NavFilterProps({ fusionPrefix, theme, ...props }: any) {
-  return <Nav {...props} />
+  return <Nav {...props} />;
 }

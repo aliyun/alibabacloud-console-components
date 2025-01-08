@@ -1,5 +1,5 @@
-import { theme } from './wind'
+import { theme } from './wind';
 
-export const vars = theme.vars
+export const { vars } = theme;
 
-export { theme }
+export { theme };

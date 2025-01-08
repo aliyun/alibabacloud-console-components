@@ -1,5 +1,6 @@
-import { withStyledTheme } from '@alicloud/css-var-utils'
-import { theme as sourceTheme } from './xconsole'
+import { withStyledTheme } from '@alicloud/css-var-utils';
+
+import { theme as sourceTheme } from './xconsole';
 
 export const theme = sourceTheme.overwrite({
   '--console-menu-padding': '16px',
@@ -11,6 +12,6 @@ export const theme = sourceTheme.overwrite({
   '--console-menu-active-bar-display': 'none',
   '--console-menu-icon-arrow-color': '#666666',
   '--console-menu-header-padding': '18px 16px',
-})
+});
 
-export const WindTheme = withStyledTheme(theme, (props) => props.children)
+export const WindTheme = withStyledTheme(theme, (props) => props.children);

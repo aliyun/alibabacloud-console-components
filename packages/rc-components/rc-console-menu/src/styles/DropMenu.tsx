@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Menu } from '@alicloud/console-components'
+import React from 'react';
+import styled from 'styled-components';
+import { Menu } from '@alicloud/console-components';
 
 const SMenu = styled(MenuFilterProps)`
   &&& {
@@ -17,14 +17,14 @@ const SMenu = styled(MenuFilterProps)`
       }
     }
   }
-`
+`;
 
 function MenuFilterProps({ fusionPrefix, selectedKeys, ...props }: any) {
-  return <Menu {...props} selectedKeys={selectedKeys} />
+  return <Menu {...props} selectedKeys={selectedKeys} />;
 }
 
 function getPrefix({ fusionPrefix }: { fusionPrefix: string }) {
-  return fusionPrefix
+  return fusionPrefix;
 }
 
-export default SMenu
+export default SMenu;
