@@ -116,4 +116,13 @@ module.exports = [
       table: true,
     },
   },
+  {
+    name: 'rc-badge',
+    zhName: '气泡徽标',
+    category: 'biz-components',
+    prodPkgName: '@alicloud/console-components-badge',
+    tags: {
+      badge: true,
+    },
+  },
 ]
