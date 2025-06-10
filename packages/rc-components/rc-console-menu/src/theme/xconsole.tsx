@@ -1,7 +1,7 @@
 import { CssVarTheme, withStyledTheme } from '@alicloud/css-var-utils';
 
 export const theme = CssVarTheme.create({
-  '--console-menu-divider-margin': { default: '15px' },
+  '--console-menu-divider-margin': { default: '8px' },
   '--console-menu-divider-border': { default: '1px solid #e3e4e6' },
   '--console-menu-header-color': { default: '#333333' },
   '--console-menu-bg': { default: '#fff' },
