@@ -57,7 +57,6 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
   color: #808080;
   background-color: ${vars['--console-layout-nav-trigger-bg'].consumeStyled};
   border-radius: 0 2px 2px 0;
-  box-shadow: ${vars['--console-layout-nav-trigger-shadow'].consumeStyled};
   transition: border 0.1s ease;
 
   /* 让内部图标垂直居中 */
@@ -67,6 +66,7 @@ export const NavCollapseTrigger = styled.span<INavCollapseTriggerProps>`
 
   &:hover {
     box-shadow: ${vars['--console-layout-nav-trigger-shadow'].consumeStyled};
+    background-color: ${vars['--console-layout-nav-trigger-bg-hover'].consumeStyled};
   }
 
   ${NavCollapseTriggerIcon} {
