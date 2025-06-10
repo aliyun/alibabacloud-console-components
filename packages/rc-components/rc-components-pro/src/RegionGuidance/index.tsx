@@ -4,8 +4,6 @@ import { withRcIntl } from '@alicloud/console-components-intl-core';
 import { IRegionGuidanceProps } from '../types/IRegionGuidanceProps.type';
 import './index.less';
 import defaultMessages from './message';
-import LoggerProvider from '../Provider/LoggerProvider';
-
 
 const getRegionName = (regionId: string) => {
   // @ts-ignore
@@ -22,7 +20,7 @@ const FlattenRegionList = ({ regionList = [], onRegionClick }: IRegionGuidancePr
     <span key={region.id}>
       <a
         className="xconsole-rc-region-anchor"
-        onClick={(value) => { onRegionClick && onRegionClick(region.id); }}
+        onClick={() => { onRegionClick && onRegionClick(region.id); }}
       >
         {region.name || getRegionName(region.id)}
       </a>
@@ -96,7 +94,6 @@ const RegionGuidance = (props: IRegionGuidanceProps) => {
 
   return (
     <div className="xconsole-rc-region-guidance">
-      <LoggerProvider regionId={currentRegion} componentName="RegionGuidance" />
       { children || <div>{intl('nodata', { value: currentRegionName || getRegionName(currentRegion) })}</div>}
 
       { regionList?.length ? <div>{regionListLabel || intl('switch')} <RegionList {...props} /> </div> : null}

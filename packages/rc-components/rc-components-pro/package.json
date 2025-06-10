@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-pro",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "@alicloud/console-toolkit-cli": "^1.2.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.8",
     "@alicloud/console-toolkit-preset-docs": "^1.0.34",
+    "@types/classnames": "^2.3.4",
     "@types/js-cookie": "^3.0.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -38,6 +39,7 @@
   "dependencies": {
     "@alicloud/console-components-intl-core": "^1.0.0",
     "@alicloud/console-logger-sls": "^1.2.31",
+    "classnames": "^2.5.1",
     "js-cookie": "^3.0.1"
   }
 }
