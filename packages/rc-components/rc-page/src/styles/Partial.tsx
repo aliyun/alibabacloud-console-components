@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { flexItem, lineHeight } from './utils';
 
-const margin = 8;
 const fontSize = 12;
 const padding = 24;
 
@@ -13,7 +12,7 @@ const Partial = styled.div<PartialProps>`
   width: 100%;
   font-size: ${fontSize}px;
   line-height: ${lineHeight(fontSize)}px;
-  margin-bottom: ${margin}px;
+  margin-bottom: 16px;
   padding: 0 ${padding}px;
 
   &:first-child {

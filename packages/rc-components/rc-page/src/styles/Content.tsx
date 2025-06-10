@@ -16,7 +16,7 @@ export const Side = styled.div<ISideProps>`
   ${flexItem({ flexShrink: 0 })};
   position: relative;
   ${({ minWidth = 180 }) => `min-width: ${minWidth}px;`}
-  padding-right: 20px;
+  padding-right: 24px;
 `;
 
 export const Main = styled.div`
