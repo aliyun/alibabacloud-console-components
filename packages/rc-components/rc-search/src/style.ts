@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const prefix = (props: {prefix: string}) =>
-  props.prefix ? `.${props.prefix}` : '.next-'
+const prefix = (props: {prefix: string}) => (props.prefix ? `.${props.prefix}` : '.next-');
 
 const SearchWarp = styled.div<{prefix: string}>`
   height: 100%;
@@ -74,7 +73,7 @@ const SearchWarp = styled.div<{prefix: string}>`
         height: 28px;
         width: 30px;
         background-color: transparent;
-        z-index: 99;
+        z-index: 1;
         color: #333;
         text-align: center;
         line-height: 28px;
@@ -158,7 +157,7 @@ const MenuContentWrap = styled.ul<{prefix: string}>`
   ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon:before, ${prefix}tag-small${prefix}tag-closable > ${prefix}tag-close-btn ${prefix}icon ${prefix}icon-remote {
     font-size: 13px;
   }
-`
+`;
 
 
 const MultiBtnWarp = styled.div<{prefix: string}>`
@@ -204,11 +203,11 @@ const TagListWrap = styled.div<{prefix: string}>`
     vertical-align: middle;
     cursor: pointer;
   }
-`
+`;
 
 export {
   SearchWarp,
   MultiBtnWarp,
   TagListWrap,
-  MenuContentWrap
-}
+  MenuContentWrap,
+};

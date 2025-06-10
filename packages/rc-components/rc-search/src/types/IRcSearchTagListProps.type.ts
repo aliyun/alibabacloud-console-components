@@ -3,7 +3,8 @@
  *
  * 下面列举的props其实是随便写的，仅仅用来说明breezr-docs的接口提取功能。
  */
-import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type'
+import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type';
+
 export interface IRcSearchTagListProps {
   /**
    * 类名
@@ -16,7 +17,7 @@ export interface IRcSearchTagListProps {
   /**
    * 筛选项
    */
-   dataSource: IRcSearchTagItemProps[];
+  dataSource: IRcSearchTagItemProps[];
   /**
    * regionId
    */

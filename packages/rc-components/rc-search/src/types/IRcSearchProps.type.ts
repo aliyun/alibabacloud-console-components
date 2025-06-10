@@ -3,8 +3,7 @@
  *
  * 下面列举的props其实是随便写的，仅仅用来说明breezr-docs的接口提取功能。
  */
-import { IRcSearchOptionsProps } from './IRcSearchOptions.type'
-import { IRcSearchTagItemProps } from './IRcSearchTagItemProps.type'
+import { IRcSearchOptionsProps } from './IRcSearchOptions.type';
 
 export interface IRcSearchProps {
   /**
@@ -32,12 +31,12 @@ export interface IRcSearchProps {
   /**
    * 默认搜索类别
    */
-   defaultDataIndex?: string;
+  defaultDataIndex?: string;
 
-   /**
+  /**
    * 默认选中的类别
    */
-   defaultSelectedDataIndex?: string;
+  defaultSelectedDataIndex?: string;
   /**
    * 搜索触发
    */
@@ -69,5 +68,5 @@ export interface IRcSearchProps {
   /**
    * 样式 class 前缀
    */
-   prefix?: string;
+  prefix?: string;
 }
