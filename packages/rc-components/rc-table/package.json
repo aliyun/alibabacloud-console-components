@@ -1,28 +1,19 @@
 {
   "name": "@alicloud/console-components-table",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "React component for Alibaba Cloud.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "module": "es/index.js",
   "unpkg": "dist/index.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "keywords": [
     "wind",
     "wind-rc-table",
     "react",
     "react component"
   ],
-  "author": {
-    "name": "csr632",
-    "email": "632882184@qq.com"
-  },
+  "author": {},
   "license": "MIT",
-  "engines": {
-    "node": ">=7.6.0"
-  },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types",
     "clean": "rm -rf dist lib es cc-dev-out",
@@ -54,9 +45,15 @@
   "devDependencies": {
     "@alicloud/console-components": "^1.0.0",
     "@alicloud/console-components-app-layout": "^1.0.10",
+    "@alicloud/console-components-console-menu": "^1.3.0",
     "@alicloud/console-components-page": "^1.0.14",
     "@alifd/next": "^1.27.29",
+    "@storybook/react": "^9.0.14",
     "@types/prop-types": "^15.7.13",
     "prop-types": "^15.6.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
