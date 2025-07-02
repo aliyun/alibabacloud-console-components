@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-components-search",
-  "version": "0.2.35",
+  "version": "0.2.36",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "types": "tsc -p src --emitDeclarationOnly",
     "build": "breezr build --engine webpack",
     "clean": "rm -rf dist lib es doc-dist",
-    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types"
+    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm && npm run types && npm run build"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.2.0",
@@ -41,6 +41,7 @@
   "dependencies": {
     "@alicloud/console-components-truncate": "^1.0.16",
     "@alicloud/console-logger-sls": "^1.2.31",
+    "@babel/runtime": "^7.27.6",
     "classnames": "^2.5.1",
     "js-cookie": "^2.0.0"
   }
