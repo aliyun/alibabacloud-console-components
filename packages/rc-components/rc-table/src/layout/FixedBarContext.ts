@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext } from 'react';
 
 export default createContext<{
   fixedClassName?: string
@@ -9,4 +9,4 @@ export default createContext<{
   fixedBarZIndex: 99,
   fixedClassName: '',
   fixedStyle: {},
-})
+});

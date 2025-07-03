@@ -2,16 +2,15 @@
 * @title withSelection
 */
 
-import React, { useState } from 'react'
-import { Grid, Button, Badge } from '@alicloud/console-components'
-import Table from '@alicloud/console-components-table'
+import React, { useState } from 'react';
+import { Grid, Button, Badge } from '@alicloud/console-components';
+import Table from '@alicloud/console-components-table';
 
-const dataSource = (() =>
-  new Array(10).fill(null).map((item, i) => ({
-    id: i + 1,
-    name: `Wind Table Item - ${i}`,
-    repo: `https://www.aliyun.com/repo?id=${i}`,
-  })))()
+const dataSource = (() => new Array(10).fill(null).map((item, i) => ({
+  id: i + 1,
+  name: `Wind Table Item - ${i}`,
+  repo: `https://www.aliyun.com/repo?id=${i}`,
+})))();
 
 const columns = [
   {
@@ -23,11 +22,11 @@ const columns = [
     dataIndex: 'repo',
     title: 'Repository',
   },
-]
+];
 
 const App: React.FC<{}> = () => {
-  const [selectedeRowKeys, setSelectedRowKeys] = useState<any[]>([])
-  console.log('selectedeRowKeys:', selectedeRowKeys)
+  const [selectedeRowKeys, setSelectedRowKeys] = useState<any[]>([]);
+  console.log('selectedeRowKeys:', selectedeRowKeys);
   return (
     <Grid.Row>
       <Grid.Col span="24">
@@ -38,21 +37,21 @@ const App: React.FC<{}> = () => {
             fixedBarExpandWidth={[24, 24]}
             afterFixedBarIntersectChanged={(
               alignType: 'top' | 'bottom',
-              isIntersecting: boolean
+              isIntersecting: boolean,
             ) => {
               console.log(
                 'alignType:',
                 alignType,
                 'isIntersecting:',
-                isIntersecting
-              )
+                isIntersecting,
+              );
             }}
             dataSource={dataSource}
             columns={columns}
             rowSelection={{
               onChange: (rowKeys) => {
                 // 可以这样把Table内的选择状态同步给父组件
-                setSelectedRowKeys(rowKeys)
+                setSelectedRowKeys(rowKeys);
               },
             }}
             primaryKey="id"
@@ -72,7 +71,7 @@ const App: React.FC<{}> = () => {
             }}
             selection={(selectionParams: any) => {
               // selection 可以传入render function
-              const { selectedRowKeys } = selectionParams
+              const { selectedRowKeys } = selectionParams;
               return (
                 <>
                   <Badge count={selectedRowKeys.length}>
@@ -81,13 +80,13 @@ const App: React.FC<{}> = () => {
                     </Button>
                   </Badge>
                 </>
-              )
+              );
             }}
           />
         </div>
       </Grid.Col>
     </Grid.Row>
-  )
-}
+  );
+};
 
-export default App
+export default App;

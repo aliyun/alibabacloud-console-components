@@ -1,5 +1,5 @@
-import { ColumnProps } from '@alicloud/console-components/types/table'
-import { ReactNode } from 'react'
+import { ColumnProps } from '@alicloud/console-components/types/table';
+import { ReactNode } from 'react';
 
 export interface IRcTableColumnProps
   extends Omit<ColumnProps, 'title' | 'cell'> {
@@ -14,6 +14,6 @@ export interface IRcTableColumnProps
    * Function(value, index, record) => Element
    */
   cell?:
-    | ColumnProps['cell']
-    | ((value: any, index: number, record: any) => ReactNode)
+  | ColumnProps['cell']
+  | ((value: any, index: number, record: any) => ReactNode)
 }

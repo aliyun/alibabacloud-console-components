@@ -1,20 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import isFunction from 'lodash/isFunction'
-import get from 'lodash/get'
-import uniq from 'lodash/uniq'
-import xor from 'lodash/xor'
-import { CheckboxProps } from '@alicloud/console-components/types/checkbox'
-import renderProps from '../renderProps'
-import connect from './connect'
-import SelectAll from './SelectAll'
-import { ITableProps } from '../layout'
-import { SSelectionWrapper, SSelectAllContainer } from './styled'
+import React from 'react';
+import PropTypes from 'prop-types';
+import isFunction from 'lodash/isFunction';
+import get from 'lodash/get';
+import uniq from 'lodash/uniq';
+import xor from 'lodash/xor';
+import { CheckboxProps } from '@alicloud/console-components/types/checkbox';
+import renderProps from '../renderProps';
+import connect from './connect';
+import SelectAll from './SelectAll';
+import { ITableProps } from '../layout';
+import { SSelectionWrapper, SSelectAllContainer } from './styled';
 
 /**
  * @public
  */
-export type Mode = 'single' | 'multiple'
+export type Mode = 'single' | 'multiple';
 
 /**
  * selection params
@@ -64,17 +64,16 @@ export interface IUpdaterFunc {
   ): any[]
 }
 
-const isMultiMode = (mode: Mode): boolean => mode === 'multiple'
+const isMultiMode = (mode: Mode): boolean => mode === 'multiple';
 
 const isSelectable = (
   item: any,
   index: number,
-  getProps?: (record: {}, index: number) => void
-): boolean =>
-  isFunction(getProps) ? !get(getProps(item, index), 'disabled') : true
+  getProps?: (record: {}, index: number) => void,
+): boolean => (isFunction(getProps) ? !get(getProps(item, index), 'disabled') : true);
 
 const mapStateToProps = (
-  state: IMapStateToPropsFuncParams
+  state: IMapStateToPropsFuncParams,
 ): ISelectionProps & ITableProps['rowSelection'] => {
   const {
     selectedRowKeys,
@@ -82,12 +81,12 @@ const mapStateToProps = (
     primaryKey,
     mode = 'multiple',
     rawRowSelection,
-  } = state
+  } = state;
 
-  const titleProps = get(rawRowSelection || {}, 'titleProps')
+  const titleProps = get(rawRowSelection || {}, 'titleProps');
   const isDisabled = isFunction(titleProps)
     ? Boolean(get(titleProps(), 'disabled'))
-    : false
+    : false;
 
   if (
     !primaryKey ||
@@ -100,27 +99,27 @@ const mapStateToProps = (
     return {
       ...state,
       isDisabled,
-    }
+    };
   }
 
-  const getProps = get(rawRowSelection || {}, 'getProps')
-  const initialIsSelectedAll = true
-  const initialIsIndeterminate = false
-  let isSelectedAll = initialIsSelectedAll
-  let isIndeterminate = initialIsIndeterminate
+  const getProps = get(rawRowSelection || {}, 'getProps');
+  const initialIsSelectedAll = true;
+  const initialIsIndeterminate = false;
+  let isSelectedAll = initialIsSelectedAll;
+  let isIndeterminate = initialIsIndeterminate;
 
   // Use legacy `for...` loop that can be to break
   // eslint-disable-next-line
   for (let i = 0, len = dataSource.length; i < len; i++) {
-    const item = dataSource[i]
-    const key = item[primaryKey]
-    const isItemSelectable = isSelectable(item, i, getProps)
+    const item = dataSource[i];
+    const key = item[primaryKey];
+    const isItemSelectable = isSelectable(item, i, getProps);
 
     if (key && isItemSelectable) {
       if (selectedRowKeys.indexOf(key) < 0) {
-        isSelectedAll = false
+        isSelectedAll = false;
       } else {
-        isIndeterminate = true
+        isIndeterminate = true;
       }
     }
 
@@ -129,12 +128,12 @@ const mapStateToProps = (
       isSelectedAll !== initialIsSelectedAll &&
       isIndeterminate !== initialIsIndeterminate
     ) {
-      break
+      break;
     }
   }
 
   if (isSelectedAll) {
-    isIndeterminate = false
+    isIndeterminate = false;
   }
 
   return {
@@ -142,25 +141,25 @@ const mapStateToProps = (
     isSelectedAll,
     isIndeterminate,
     isDisabled,
-  }
-}
+  };
+};
 
 const getPrimaryKeys = (
   dataSource: any[],
   primaryKey: string,
-  getProps?: (record: {}, index: number) => void
-): any[] =>
-  (isFunction(getProps)
-    ? dataSource.filter((item, i) => isSelectable(item, i, getProps))
-    : dataSource
-  ).map((item) => item[primaryKey])
+  getProps?: (record: {}, index: number) => void,
+): any[] => (isFunction(getProps)
+  ? dataSource.filter((item, i) => isSelectable(item, i, getProps))
+  : dataSource
+).map((item) => item[primaryKey]);
 
 const mapUpdateToProps = (
-  update: (updater: IUpdaterFunc) => void
+  update: (updater: IUpdaterFunc) => void,
 ): {
-  update: (updater: IUpdaterFunc) => void
-  selectAll: (checked: boolean) => void
-} => ({
+    update: (updater: IUpdaterFunc) => void
+    selectAll: (checked: boolean
+    ) => void
+  } => ({
   update,
   selectAll(checked) {
     if (checked) {
@@ -168,35 +167,35 @@ const mapUpdateToProps = (
         const primaryKeys = getPrimaryKeys(
           dataSource as any[],
           primaryKey as string,
-          rowSelection.getProps
-        )
-        return uniq([...selectedRowKeys, ...primaryKeys])
-      })
+          rowSelection.getProps,
+        );
+        return uniq([...selectedRowKeys, ...primaryKeys]);
+      });
     } else {
       update(
         (
           selectedRowKeys: any[],
           dataSource: ITableProps['dataSource'],
           primaryKey: ITableProps['primaryKey'],
-          rowSelection: ITableProps['rowSelection'] = {}
+          rowSelection: ITableProps['rowSelection'] = {},
         ) => {
           const primaryKeys = getPrimaryKeys(
             dataSource as any[],
             primaryKey as string,
-            rowSelection.getProps
-          )
-          return xor(selectedRowKeys, primaryKeys)
-        }
-      )
+            rowSelection.getProps,
+          );
+          return xor(selectedRowKeys, primaryKeys);
+        },
+      );
     }
   },
-})
+});
 
 /**
  * @public
  */
 const Selection: React.FC<ISelectionProps & ITableProps['rowSelection']> = (
-  props
+  props,
 ) => {
   const {
     mode = 'multiple',
@@ -204,7 +203,7 @@ const Selection: React.FC<ISelectionProps & ITableProps['rowSelection']> = (
     isSelectedAll,
     selectAll,
     isDisabled,
-  } = props
+  } = props;
   return (
     <SSelectionWrapper className="selection">
       {isMultiMode(mode) && (
@@ -219,11 +218,11 @@ const Selection: React.FC<ISelectionProps & ITableProps['rowSelection']> = (
       )}
       {renderProps(props, props)}
     </SSelectionWrapper>
-  )
-}
+  );
+};
 
 Selection.propTypes = {
   mode: PropTypes.oneOf(['single', 'multiple']),
-}
+};
 
-export default connect(mapStateToProps, mapUpdateToProps)(Selection)
+export default connect(mapStateToProps, mapUpdateToProps)(Selection);

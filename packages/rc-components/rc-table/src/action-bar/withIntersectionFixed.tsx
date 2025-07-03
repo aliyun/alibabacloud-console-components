@@ -1,14 +1,14 @@
-import 'intersection-observer'
-import React, { useState } from 'react'
-import classNames from 'classnames'
-import IntersectionObserver from '@researchgate/react-intersection-observer'
-import isEmpty from 'lodash/isEmpty'
-import PropTypes from 'prop-types'
-import { OverlayProps } from '@alicloud/console-components/types/overlay'
-import AffixBar from './affix-bar'
-import Context from '../layout/FixedBarContext'
-import { IActionBarProps } from './index'
-import { SFixedBarWrapper } from './styled'
+import 'intersection-observer';
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import IntersectionObserver from '@researchgate/react-intersection-observer';
+import isEmpty from 'lodash/isEmpty';
+import PropTypes from 'prop-types';
+import { OverlayProps } from '@alicloud/console-components/types/overlay';
+import AffixBar from './affix-bar';
+import Context from '../layout/FixedBarContext';
+import { IActionBarProps } from './index';
+import { SFixedBarWrapper } from './styled';
 
 interface IWithIntersectionFixedProps {
   fixedAlign?: 'top' | 'bottom'
@@ -23,10 +23,10 @@ interface IWithIntersectionFixedProps {
 }
 
 const WithFixed = (threshold: number) => (
-  BaseComponent: React.ComponentType<IActionBarProps>
+  BaseComponent: React.ComponentType<IActionBarProps>,
 ) => {
   const displayName =
-    BaseComponent.displayName || BaseComponent.name || 'Component'
+    BaseComponent.displayName || BaseComponent.name || 'Component';
 
   const WithIntersectionFixed: React.FC<IWithIntersectionFixedProps> = ({
     fixedAlign = 'top',
@@ -35,7 +35,7 @@ const WithFixed = (threshold: number) => (
     affixMode,
     ...restProps
   }) => {
-    const [isIntersecting, setIsIntersecting] = useState(true)
+    const [isIntersecting, setIsIntersecting] = useState(true);
 
     const handleChange = ({
       isIntersecting: nextIsIntersecting,
@@ -45,22 +45,22 @@ const WithFixed = (threshold: number) => (
       intersectionRatio: number
     }): void => {
       const nextIntersecting =
-        nextIsIntersecting && intersectionRatio >= threshold
-      const prevIntersecting = isIntersecting
+        nextIsIntersecting && intersectionRatio >= threshold;
+      const prevIntersecting = isIntersecting;
 
       if (nextIntersecting !== prevIntersecting) {
-        setIsIntersecting(nextIntersecting)
+        setIsIntersecting(nextIntersecting);
         if (typeof afterIntersectChanged === 'function') {
-          afterIntersectChanged(fixedAlign, nextIntersecting, prevIntersecting)
+          afterIntersectChanged(fixedAlign, nextIntersecting, prevIntersecting);
         }
       }
-    }
+    };
 
     if (affixMode === 'sticky') {
       // 纯sticky模式下，通过IntersectionObserver来监听sticky元素是否处于吸附状态
       // https://stackoverflow.com/a/57991537
       // threshold必须为1
-      threshold = 1
+      threshold = 1;
       return (
         <Context.Consumer>
           {({
@@ -82,7 +82,7 @@ const WithFixed = (threshold: number) => (
                 <FixedBarWrapper
                   className={classNames(
                     fixedClassName,
-                    !isIntersecting && 'action-bar-sticking'
+                    !isIntersecting && 'action-bar-sticking',
                   )}
                   fixedAlign={fixedAlign}
                   zIndex={fixedBarZIndex}
@@ -91,10 +91,10 @@ const WithFixed = (threshold: number) => (
                   <BaseComponent {...restProps} />
                 </FixedBarWrapper>
               </IntersectionObserver>
-            )
+            );
           }}
         </Context.Consumer>
-      )
+      );
     }
 
     return (
@@ -119,12 +119,12 @@ const WithFixed = (threshold: number) => (
                 >
                   <BaseComponent {...restProps} />
                 </FixedBarWrapper>
-              )
+              );
 
-              const normalChildren = children()
+              const normalChildren = children();
               const overlayChildren = children(
-                `overlay-fixed overlay-fixed-to-${fixedAlign}`
-              )
+                `overlay-fixed overlay-fixed-to-${fixedAlign}`,
+              );
 
               // 当指定了affixBarOverlayProps时，会将action-bar渲染到一个Overlay中。
               // 这是为了可以自定义渲染的容器。
@@ -142,24 +142,24 @@ const WithFixed = (threshold: number) => (
                   normalChildren={normalChildren}
                   overlayChildren={overlayChildren}
                 />
-              )
+              );
             }}
           </Context.Consumer>
         )}
       </>
-    )
-  }
-  WithIntersectionFixed.displayName = `withIntersectionObserver(${displayName})`
+    );
+  };
+  WithIntersectionFixed.displayName = `withIntersectionObserver(${displayName})`;
   WithIntersectionFixed.defaultProps = {
     fixedAlign: 'top',
-  }
+  };
   WithIntersectionFixed.propTypes = {
     fixedAlign: PropTypes.oneOf(['top', 'bottom']),
     afterIntersectChanged: PropTypes.func,
-  }
+  };
 
-  return WithIntersectionFixed
-}
+  return WithIntersectionFixed;
+};
 
 // IntersectionObserver的子节点必须forwardRef
 const FixedBarWrapper = React.forwardRef(
@@ -177,7 +177,7 @@ const FixedBarWrapper = React.forwardRef(
       style?: React.CSSProperties
       children?: React.ReactNode
     },
-    ref: any
+    ref: any,
   ) => {
     return (
       <SFixedBarWrapper
@@ -190,8 +190,8 @@ const FixedBarWrapper = React.forwardRef(
       >
         {children}
       </SFixedBarWrapper>
-    )
-  }
-)
+    );
+  },
+);
 
-export default WithFixed
+export default WithFixed;

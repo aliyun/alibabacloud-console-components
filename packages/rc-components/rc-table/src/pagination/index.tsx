@@ -1,24 +1,24 @@
-import React, { useState, useRef, useLayoutEffect } from 'react'
-import { Pagination } from '@alicloud/console-components'
-import { PaginationProps } from '@alicloud/console-components/types/pagination'
-import MediaQuery from 'react-responsive'
+import React, { useState, useRef, useLayoutEffect } from 'react';
+import { Pagination } from '@alicloud/console-components';
+import { PaginationProps } from '@alicloud/console-components/types/pagination';
+import MediaQuery from 'react-responsive';
 
-const defaultPageSizeList = [10, 20, 50]
+const defaultPageSizeList = [10, 20, 50];
 
 /**
  * @public
  */
 const TablePagination: React.FC<PaginationProps> = props => {
-  const [pageSizeHasChanged, setPageSizeHasChanged] = useState(false)
-  const prevPageSize = useRef<number>()
+  const [pageSizeHasChanged, setPageSizeHasChanged] = useState(false);
+  const prevPageSize = useRef<number>();
 
-  const { pageSize } = props
+  const { pageSize } = props;
   useLayoutEffect(() => {
     if (prevPageSize.current && prevPageSize.current !== pageSize) {
-      setPageSizeHasChanged(true)
+      setPageSizeHasChanged(true);
     }
-    prevPageSize.current = pageSize
-  }, [pageSize])
+    prevPageSize.current = pageSize;
+  }, [pageSize]);
 
   return (
     <MediaQuery minDeviceWidth={320}>
@@ -63,14 +63,13 @@ const TablePagination: React.FC<PaginationProps> = props => {
           hideOnlyOnePage={!pageSizeHasChanged}
           {...props}
           onPageSizeChange={newPageSize => {
-            setPageSizeHasChanged(true)
-            if (typeof props.onPageSizeChange === 'function')
-              props.onPageSizeChange(newPageSize)
+            setPageSizeHasChanged(true);
+            if (typeof props.onPageSizeChange === 'function') props.onPageSizeChange(newPageSize);
           }}
         />
       </MediaQuery>
     </MediaQuery>
-  )
-}
+  );
+};
 
-export default TablePagination
+export default TablePagination;

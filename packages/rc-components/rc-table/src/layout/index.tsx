@@ -1,32 +1,33 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Table } from '@alifd/next'
-import { withProps } from 'recompose'
-import styled from 'styled-components'
-import isArray from 'lodash/isArray'
-import { PaginationProps } from '@alicloud/console-components/types/pagination'
-import { TableProps } from '@alifd/next/types/table'
-import { SearchProps } from '@alicloud/console-components/types/search'
-import { OverlayProps } from '@alicloud/console-components/types/overlay'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Table } from '@alifd/next';
+import { withProps } from 'recompose';
+import styled from 'styled-components';
+import isArray from 'lodash/isArray';
+import { PaginationProps } from '@alicloud/console-components/types/pagination';
+import { TableProps } from '@alifd/next/types/table';
+import { SearchProps } from '@alicloud/console-components/types/search';
+import { OverlayProps } from '@alicloud/console-components/types/overlay';
 
 import ActionBar, {
   IntersectionFixedActionBar,
   IActionBarProps,
-} from '../action-bar'
-import Context from './FixedBarContext'
-import Search from '../search'
-import Selection from '../selection'
-import Pagination from '../pagination'
-import renderComponent from '../renderComponent'
-import type { IRcTableProps } from '../types/IRcTableProps.type'
-export type { IRcTableProps }
+} from '../action-bar';
+import Context from './FixedBarContext';
+import Search from '../search';
+import Selection from '../selection';
+import Pagination from '../pagination';
+import renderComponent from '../renderComponent';
+import type { IRcTableProps } from '../types/IRcTableProps.type';
+
+export type { IRcTableProps };
 
 /**
  * @public
  */
 export type TableOperaion =
   | ((tableProps: ITableProps) => React.ReactNode)
-  | React.ReactNode
+  | React.ReactNode;
 
 /**
  * @public
@@ -34,19 +35,19 @@ export type TableOperaion =
 export type Operation =
   | TableOperaion
   | {
-      primary?: TableOperaion
-      secondary?: TableOperaion
-    }
+    primary?: TableOperaion
+    secondary?: TableOperaion
+  };
 
 /**
  * @public
  */
-export type IPaginationProps = TableOperaion | PaginationProps
+export type IPaginationProps = TableOperaion | PaginationProps;
 
 /**
  * @public
  */
-export type ISearchProps = TableOperaion | SearchProps
+export type ISearchProps = TableOperaion | SearchProps;
 
 interface IRcTablePropsInternal {
   /**
@@ -64,67 +65,67 @@ interface IRcTablePropsInternal {
 /**
  * @public
  */
-export type ITableProps = TableProps & IRcTableProps & IRcTablePropsInternal
+export type ITableProps = TableProps & IRcTableProps & IRcTablePropsInternal;
 
 interface IFixedAlign {
   fixedAlign?: 'top' | 'bottom'
 }
 
 const getFixedAlign = (
-  align: 'top' | 'bottom'
+  align: 'top' | 'bottom',
 ): {
   fixedAlign: 'top' | 'bottom'
 } => ({
   fixedAlign: align,
-})
+});
 
 const FixedTopActionBar = withProps<IFixedAlign, IActionBarProps & IFixedAlign>(
-  getFixedAlign('top')
-)(IntersectionFixedActionBar)
+  getFixedAlign('top'),
+)(IntersectionFixedActionBar);
 
 const FixedBottomActionBar = withProps<
-  IFixedAlign,
-  IActionBarProps & IFixedAlign
->(getFixedAlign('bottom'))(IntersectionFixedActionBar)
+IFixedAlign,
+IActionBarProps & IFixedAlign
+>(getFixedAlign('bottom'))(IntersectionFixedActionBar);
 
 // init ExpandedWidth
-const defaultExpandedWidth = 0
+const defaultExpandedWidth = 0;
 
 type getActionBarComponentResult = {
   top?: React.ComponentType<IActionBarProps & IFixedAlign>
   topProps?: IActionBarProps & IFixedAlign
   bottom?: React.ComponentType<IActionBarProps & IFixedAlign>
   bottomProps?: IActionBarProps & IFixedAlign
-}
+};
 const getActionBarComponent = (
-  status: ITableProps['affixActionBar']
+  status: ITableProps['affixActionBar'],
 ): getActionBarComponentResult => {
   if (status === true) {
     return {
       top: FixedTopActionBar,
       bottom: FixedBottomActionBar,
-    }
+    };
   }
 
   if (status && typeof status === 'object' && !Array.isArray(status)) {
-    const result: getActionBarComponentResult = {}
+    const result: getActionBarComponentResult = {};
     if (status.top) {
-      result.top = FixedTopActionBar
-      result.topProps = { affixMode: status.top.affixMode }
+      result.top = FixedTopActionBar;
+      result.topProps = { affixMode: status.top.affixMode };
     }
     if (status.bottom) {
-      result.bottom = FixedBottomActionBar
+      result.bottom = FixedBottomActionBar;
       result.bottomProps = {
         affixMode: status.bottom.affixMode,
-      }
+      };
     }
-    return result
+    return result;
   }
 
-  let arrStatus = status
+  let arrStatus = status;
 
   if (typeof status === 'string') {
-    arrStatus = status.replace(/\s/g, '').split(',')
+    arrStatus = status.replace(/\s/g, '').split(',');
   }
 
   if (Array.isArray(arrStatus)) {
@@ -134,50 +135,50 @@ const getActionBarComponent = (
           return {
             ...result,
             top: FixedTopActionBar,
-          }
+          };
         }
         case 'bottom': {
           return {
             ...result,
             bottom: FixedBottomActionBar,
-          }
+          };
         }
         default: {
-          return result
+          return result;
         }
       }
-    }, {})
+    }, {});
   }
 
-  return {}
-}
+  return {};
+};
 
 // eslint-disable-next-line import/no-named-as-default-member
 const ScActionBarRight = styled(ActionBar.Right)`
   flex: 0 0 auto;
-`
+`;
 const getExpandedStyle = (
-  fixedBarExpandWidth: number[]
+  fixedBarExpandWidth: number[],
 ): React.CSSProperties => {
-  let actualExpandedWidth = []
+  let actualExpandedWidth = [];
   if (isArray(fixedBarExpandWidth)) {
     if (fixedBarExpandWidth.length === 0) {
-      actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth]
+      actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth];
     } else if (fixedBarExpandWidth.length === 1) {
-      actualExpandedWidth = [fixedBarExpandWidth[0], fixedBarExpandWidth[0]]
+      actualExpandedWidth = [fixedBarExpandWidth[0], fixedBarExpandWidth[0]];
     } else {
-      actualExpandedWidth = [fixedBarExpandWidth[0], fixedBarExpandWidth[1]]
+      actualExpandedWidth = [fixedBarExpandWidth[0], fixedBarExpandWidth[1]];
     }
   } else {
-    actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth]
+    actualExpandedWidth = [defaultExpandedWidth, defaultExpandedWidth];
   }
   return {
     paddingLeft: actualExpandedWidth[0],
     paddingRight: actualExpandedWidth[1],
     marginLeft: -actualExpandedWidth[0],
     width: `calc(100% + ${actualExpandedWidth[0] + actualExpandedWidth[1]}px)`,
-  }
-}
+  };
+};
 
 const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
   const {
@@ -194,15 +195,15 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
     affixBarOverlayProps,
     TableComponent = Table,
     ...restProps
-  } = props
+  } = props;
 
   const {
     top: ExactTopActionBar = ActionBar,
     topProps,
     bottom: ExactBottomActionBar = ActionBar,
     bottomProps,
-  } = getActionBarComponent(affixActionBar)
-  const extraStyle = getExpandedStyle(fixedBarExpandWidth)
+  } = getActionBarComponent(affixActionBar);
+  const extraStyle = getExpandedStyle(fixedBarExpandWidth);
   return (
     <Context.Provider
       value={{
@@ -227,7 +228,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
                   null,
                   (operation as { primary: TableOperaion }).primary ||
                     operation,
-                  props
+                  props,
                 )}
               {renderComponent(Search, search, props)}
             </ActionBar.Left>
@@ -236,7 +237,7 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
                 renderComponent(
                   null,
                   (operation as { secondary: TableOperaion }).secondary,
-                  props
+                  props,
                 )}
             </ActionBar.Right>
           </ExactTopActionBar>
@@ -261,8 +262,8 @@ const Layout: React.FC<Omit<ITableProps, 'columns' | 'exact'>> = (props) => {
         )}
       </STableWrapper>
     </Context.Provider>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   operation: PropTypes.oneOfType([
@@ -292,9 +293,9 @@ Layout.propTypes = {
   fixedStyle: PropTypes.objectOf(PropTypes.any),
   afterFixedBarIntersectChanged: PropTypes.func,
   fixedBarExpandWidth: PropTypes.arrayOf(PropTypes.any),
-}
+};
 
-export default Layout
+export default Layout;
 
 const STableWrapper = styled.div`
   .next-table-header {
@@ -303,8 +304,8 @@ const STableWrapper = styled.div`
       padding-bottom: 10px;
     }
   }
-`
+`;
 
 export const StickyLockLayout: React.FC<ITableProps> = (props) => {
-  return <Layout TableComponent={Table.StickyLock} {...props} />
-}
+  return <Layout TableComponent={Table.StickyLock} {...props} />;
+};

@@ -1,10 +1,10 @@
-import React from 'react'
-import { Search } from '@alicloud/console-components'
-import { SearchProps } from '@alicloud/console-components/types/search'
+import React from 'react';
+import { Search } from '@alicloud/console-components';
+import { SearchProps } from '@alicloud/console-components/types/search';
 
 const defaultFilterProps = {
   autoWidth: false,
-}
+};
 
 /**
  * @public
@@ -18,6 +18,6 @@ const TableSearch: React.FC<SearchProps> = props => (
     filterProps={defaultFilterProps}
     {...props}
   />
-)
+);
 
-export default TableSearch
+export default TableSearch;

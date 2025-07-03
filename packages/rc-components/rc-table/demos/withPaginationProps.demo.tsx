@@ -2,16 +2,15 @@
 * @title withPaginationProps
 */
 
-import React, { useCallback, useState } from 'react'
-import { Grid, Button, Badge } from '@alicloud/console-components'
-import Table from '@alicloud/console-components-table'
+import React, { useCallback, useState } from 'react';
+import { Grid, Button, Badge } from '@alicloud/console-components';
+import Table from '@alicloud/console-components-table';
 
-const dataSource = (() =>
-  new Array(20).fill(null).map((item, i) => ({
-    id: i + 1,
-    name: `Wind Table Item - ${i}`,
-    repo: `https://www.aliyun.com/repo?id=${i}`,
-  })))()
+const dataSource = (() => new Array(20).fill(null).map((item, i) => ({
+  id: i + 1,
+  name: `Wind Table Item - ${i}`,
+  repo: `https://www.aliyun.com/repo?id=${i}`,
+})))();
 
 const columns = [
   {
@@ -23,36 +22,36 @@ const columns = [
     dataIndex: 'repo',
     title: 'Repository',
   },
-]
+];
 
 const initPagination = {
   current: 1,
   pageSize: 10,
   total: 100,
-}
+};
 
 const App: React.FC<{}> = () => {
-  const [pagination, setPagination] = useState(initPagination)
+  const [pagination, setPagination] = useState(initPagination);
 
   const handlePageSizeChange = useCallback(
     (pageSize) => {
       setPagination({
         ...pagination,
         pageSize,
-      })
+      });
     },
-    [pagination]
-  )
+    [pagination],
+  );
 
   const handleChange = useCallback(
     (current) => {
       setPagination({
         ...pagination,
         current,
-      })
+      });
     },
-    [pagination]
-  )
+    [pagination],
+  );
 
   return (
     <Grid.Row>
@@ -64,14 +63,14 @@ const App: React.FC<{}> = () => {
             fixedBarExpandWidth={[24, 24]}
             afterFixedBarIntersectChanged={(
               alignType: 'top' | 'bottom',
-              isIntersecting: boolean
+              isIntersecting: boolean,
             ) => {
               console.log(
                 'alignType:',
                 alignType,
                 'isIntersecting:',
-                isIntersecting
-              )
+                isIntersecting,
+              );
             }}
             dataSource={dataSource}
             columns={columns}
@@ -103,13 +102,13 @@ const App: React.FC<{}> = () => {
                     </Button>
                   </Badge>
                 </>
-              )
+              );
             }}
           />
         </div>
       </Grid.Col>
     </Grid.Row>
-  )
-}
+  );
+};
 
-export default App
+export default App;

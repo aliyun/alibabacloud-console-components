@@ -1,8 +1,8 @@
-import React, { isValidElement } from 'react'
-import isPlainObject from 'lodash/isPlainObject'
-import isFunction from 'lodash/isFunction'
-import { TableOperaion, ITableProps } from './layout'
-import { isComponent } from './utils'
+import React, { isValidElement } from 'react';
+import isPlainObject from 'lodash/isPlainObject';
+import isFunction from 'lodash/isFunction';
+import { TableOperaion, ITableProps } from './layout';
+import { isComponent } from './utils';
 
 const renderComponent = (
   DefaultComponent: any,
@@ -10,25 +10,25 @@ const renderComponent = (
   ...args: ITableProps[]
 ): React.ReactNode | null => {
   if (isValidElement(props)) {
-    return props
+    return props;
   }
 
   if (isPlainObject(props)) {
-    const isValidComponent = isComponent(DefaultComponent)
+    const isValidComponent = isComponent(DefaultComponent);
     if (!isValidComponent) {
       // TODO only warning on dev
       console.warn(
-        `Default component is expected to be a class or function as React component but received a ${DefaultComponent}.`
-      )
+        `Default component is expected to be a class or function as React component but received a ${DefaultComponent}.`,
+      );
     }
-    return isValidComponent ? <DefaultComponent {...(props as Record<string, any>)} /> : null
+    return isValidComponent ? <DefaultComponent {...(props as Record<string, any>)} /> : null;
   }
 
   if (isFunction(props)) {
-    return props(args[0])
+    return props(args[0]);
   }
 
-  return null
-}
+  return null;
+};
 
-export default renderComponent
+export default renderComponent;

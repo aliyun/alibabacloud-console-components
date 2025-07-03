@@ -2,21 +2,20 @@
 * @title withAppLayout
 */
 
-import React from 'react'
-import { HashRouter } from 'dva/router'
-import { Button, Badge } from '@alicloud/console-components'
-import ConsoleMenu from '@alicloud/console-components-console-menu'
-import Page from '@alicloud/console-components-page'
-import Table from '@alicloud/console-components-table'
-import type { TableProps } from '@alicloud/console-components/types/table'
-import AppLayout from '@alicloud/console-components-app-layout'
+import React from 'react';
+import { HashRouter } from 'dva/router';
+import { Button, Badge } from '@alicloud/console-components';
+import ConsoleMenu from '@alicloud/console-components-console-menu';
+import Page from '@alicloud/console-components-page';
+import Table from '@alicloud/console-components-table';
+import type { TableProps } from '@alicloud/console-components/types/table';
+import AppLayout from '@alicloud/console-components-app-layout';
 
-const dataSource = (() =>
-  new Array(100).fill(true).map((item, i) => ({
-    id: i + 1,
-    name: `Wind-table-item-${i}`,
-    repo: 'https://wind.alibaba-inc.com/',
-  })))()
+const dataSource = (() => new Array(100).fill(true).map((item, i) => ({
+  id: i + 1,
+  name: `Wind-table-item-${i}`,
+  repo: 'https://wind.alibaba-inc.com/',
+})))();
 
 const columns = [
   {
@@ -27,7 +26,7 @@ const columns = [
     dataIndex: 'repo',
     title: 'Repository',
   },
-]
+];
 
 const rowSelection: TableProps['rowSelection'] & {
   UNSTABLE_defaultSelectedRowKeys?: any[]
@@ -35,7 +34,7 @@ const rowSelection: TableProps['rowSelection'] & {
   getProps: (item: any, i: number) => ({ disabled: i % 2 === 0 }),
   UNSTABLE_defaultSelectedRowKeys: [1, 2],
   mode: 'multiple',
-}
+};
 
 const items = [
   {
@@ -66,8 +65,8 @@ const items = [
     label: 'Routes',
     key: '/routes',
   },
-]
-const Nav = () => <ConsoleMenu header="Aliyun Console" items={items} />
+];
+const Nav = () => <ConsoleMenu header="Aliyun Console" items={items} />;
 
 const Operation = () => (
   <>
@@ -76,7 +75,7 @@ const Operation = () => (
     </Button>
     <Button>Refresh</Button>
   </>
-)
+);
 
 const Basic: React.FC<{}> = () => {
   return (
@@ -121,7 +120,7 @@ const Basic: React.FC<{}> = () => {
         </Page>
       </AppLayout>
     </HashRouter>
-  )
-}
+  );
+};
 
-export default Basic
+export default Basic;
