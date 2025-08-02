@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "deprecated": "This package has been archived and is no longer maintained. 此包已归档，不再维护。",
   "scripts": {
     "bootstrap": "rm -rf node_modules && pnpm -r exec rm -rf node_modules && pnpm i --registry=http://registry.npmmirror.com",
     "clean": "rm -rf node_modules && ",
