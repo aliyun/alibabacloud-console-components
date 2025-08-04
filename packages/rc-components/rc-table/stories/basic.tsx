@@ -1,14 +1,13 @@
-import React from 'react'
-import { Grid, Button, Badge, Icon } from '@alicloud/console-components'
-import { TableProps } from '@alicloud/console-components/types/table'
-import Table, { ITableProps } from '@alicloud/console-components-table'
+import React from 'react';
+import { Grid, Button, Badge, Icon } from '@alicloud/console-components';
+import { TableProps } from '@alicloud/console-components/types/table';
+import Table from '@alicloud/console-components-table';
 
-const dataSource = (() =>
-  new Array(30).fill(null).map((item, i) => ({
-    id: i + 1,
-    name: `Wind Table Item - ${i}`,
-    repo: `https://www.aliyun.com/repo?id=${i}`,
-  })))()
+const dataSource = (() => new Array(30).fill(null).map((item, i) => ({
+  id: i + 1,
+  name: `Wind Table Item - ${i}`,
+  repo: `https://www.aliyun.com/repo?id=${i}`,
+})))();
 
 const columns = [
   {
@@ -20,18 +19,19 @@ const columns = [
     dataIndex: 'repo',
     title: 'Repository',
   },
-]
+];
 
 const rowSelection: TableProps['rowSelection'] & {
   UNSTABLE_defaultSelectedRowKeys?: any[]
 } = {
-  getProps: (item: any, i: number) => ({ disabled: i % 2 === 0 }),
+  // getProps: (item: any, i: number) => ({ disabled: i % 2 === 0 }),
+  onSelectAll: (selected, records) => {
+    console.log('onSelectAll', selected, records);
+  },
   UNSTABLE_defaultSelectedRowKeys: [1, 2],
-}
+};
 
-const primaryOperation = (ownerProps: { creatable?: boolean }) => (
-  tableProps: ITableProps
-) => {
+const primaryOperation = (ownerProps: { creatable?: boolean }) => () => {
   return (
     <>
       <Button type="primary" disabled={!ownerProps.creatable}>
@@ -39,8 +39,8 @@ const primaryOperation = (ownerProps: { creatable?: boolean }) => (
       </Button>
       <Button>Refresh</Button>
     </>
-  )
-}
+  );
+};
 
 const secondaryOperation = () => () => (
   <>
@@ -48,7 +48,7 @@ const secondaryOperation = () => () => (
       <Icon type="cog" />
     </Button>
   </>
-)
+);
 
 const App: React.FC<{
   creatable?: boolean
@@ -64,21 +64,21 @@ const App: React.FC<{
             fixedBarExpandWidth={[24, 24]}
             afterFixedBarIntersectChanged={(
               alignType: 'top' | 'bottom',
-              isIntersecting: boolean
+              isIntersecting: boolean,
             ) => {
               console.log(
                 'alignType:',
                 alignType,
                 'isIntersecting:',
-                isIntersecting
-              )
+                isIntersecting,
+              );
             }}
             dataSource={dataSource}
             columns={columns}
             rowSelection={rowSelection}
             primaryKey="id"
             operation={{
-              primary: primaryOperation(props),
+              primary: primaryOperation({ creatable: props.creatable }),
               secondary: secondaryOperation(),
             }}
             search={{
@@ -94,20 +94,20 @@ const App: React.FC<{
               total: 40,
               pageSize: 10,
             }}
-            selection={({ selectedRowKeys }: { selectedRowKeys: any[] }) => {
+            selection={({ selectedRowKeys }) => {
               return (
                 <Badge count={selectedRowKeys.length}>
                   <Button disabled={selectedRowKeys.length === 0}>
                     Delete
                   </Button>
                 </Badge>
-              )
+              );
             }}
           />
         </div>
       </Grid.Col>
     </Grid.Row>
-  )
-}
+  );
+};
 
-export default App
+export default App;

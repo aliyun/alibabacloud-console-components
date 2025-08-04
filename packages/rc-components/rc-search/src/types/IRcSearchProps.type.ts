@@ -69,4 +69,16 @@ export interface IRcSearchProps {
    * 样式 class 前缀
    */
   prefix?: string;
+
+  /**
+   * 前缀选择器类型
+   */
+  prefixSelectMode?: 'select' | 'cascader';
+
+  /**
+   * 前缀选择器 item 渲染
+   * @param item
+   * @returns
+   */
+  prefixSelectItemRender?: (item: any) => React.ReactNode;
 }

@@ -1,8 +1,8 @@
-import { TableProps } from '@alifd/next/types/table'
-import React from 'react'
-import { IPaginationProps, ISearchProps, Operation } from '../layout/index'
-import { ISelectionRenderParams } from '../selection'
-import { IRcTableColumnProps } from './IRcTableColumnProps.type'
+import { TableProps } from '@alifd/next/types/table';
+import React from 'react';
+import { IPaginationProps, ISearchProps, Operation } from '../layout/index';
+import { ISelectionRenderParams } from '../selection';
+import { IRcTableColumnProps } from './IRcTableColumnProps.type';
 
 /**
  * @public
@@ -49,13 +49,13 @@ export interface IRcTableProps {
    * @defaultValue false
    */
   affixActionBar?:
-    | boolean
-    | string
-    | string[]
-    | {
-        top?: { affixMode?: 'intersection-observer' | 'sticky' }
-        bottom?: { affixMode?: 'intersection-observer' | 'sticky' }
-      }
+  | boolean
+  | string
+  | string[]
+  | {
+    top?: { affixMode?: 'intersection-observer' | 'sticky' }
+    bottom?: { affixMode?: 'intersection-observer' | 'sticky' }
+  }
   /**
    * 设置上下操作栏 affix 时候的层级
    * @defaultValue 99

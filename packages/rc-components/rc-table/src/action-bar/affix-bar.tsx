@@ -1,7 +1,7 @@
-import React from 'react'
-import classnames from 'classnames'
-import { OverlayProps } from '@alicloud/console-components/types/overlay'
-import { Overlay } from '@alicloud/console-components'
+import React from 'react';
+import classnames from 'classnames';
+import { OverlayProps } from '@alicloud/console-components/types/overlay';
+import { Overlay } from '@alicloud/console-components';
 
 interface IOverlayBarProps {
   showOverlay?: boolean
@@ -30,7 +30,7 @@ const AffixBar: React.FC<IOverlayBarProps> = ({
         <>{normalChildren}</>
       )}
     </>
-  )
-}
+  );
+};
 
-export default AffixBar
+export default AffixBar;

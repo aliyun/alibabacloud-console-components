@@ -1,21 +1,21 @@
-import { isValidElement } from 'react'
-import isFunction from 'lodash/isFunction'
+import { isValidElement } from 'react';
+import isFunction from 'lodash/isFunction';
 
 const renderProps = (ownerProps: any, ...args: any[]): React.ReactNode => {
-  const { children, render } = ownerProps
+  const { children, render } = ownerProps;
   if (isValidElement(children)) {
-    return children
+    return children;
   }
 
   if (isFunction(children)) {
-    return children(...args)
+    return children(...args);
   }
 
   if (isFunction(render)) {
-    return render(...args)
+    return render(...args);
   }
 
-  return null
-}
+  return null;
+};
 
-export default renderProps
+export default renderProps;
