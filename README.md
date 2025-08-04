@@ -1,3 +1,12 @@
+# ⚠️ ARCHIVED / 已归档
+
+> **Warning**: This repository has been archived and is no longer actively maintained.  
+> **警告**：此仓库已归档，不再积极维护。
+
+[![Archived](https://img.shields.io/badge/Status-Archived-red.svg)](https://github.com/aliyun/alibabacloud-console-components)
+
+---
+
 # @alicloud/console-components
 
 `console-components` 是针对**阿里云控制台场景**的 React 组件库，基于[Alibaba Fusion](https://github.com/alibaba-fusion/next)组件库实现。该项目的代号为**Wind**。
