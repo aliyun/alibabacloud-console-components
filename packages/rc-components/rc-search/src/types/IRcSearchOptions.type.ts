@@ -6,6 +6,8 @@ export interface IRcSearchOptionsProps {
      * 字段展示名称
      */
   label: string;
+  value?: any;
+  disabled?: boolean;
   /**
      * 字段表单key
      */

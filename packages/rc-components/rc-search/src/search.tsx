@@ -16,7 +16,7 @@ const SearchWrap = styled.div`
 `;
 
 export const Search: React.FC<IRcSearchProps> = (props) => {
-  const { className, simple = false, style } = props;
+  const { className, style } = props;
   const windThemeClass = useWindTheme();
   return (
     <React.Fragment>

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
 import groupBy from 'lodash/groupBy';
 import isArray from 'lodash/isArray';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, Children } from 'react';
 import {
   Button,
   Icon,
@@ -10,6 +10,7 @@ import {
   ConfigProvider,
   Field,
   Checkbox,
+  CascaderSelect,
 } from '@alicloud/console-components';
 
 import { isPlainObject, template } from 'lodash';
@@ -21,12 +22,38 @@ import { SEARCH_FILTER_FIELD, SEARCH_FILTER_VALUE_FIELD } from '../constants';
 import message from '../message';
 
 const { AutoComplete } = Select;
+
+function formatOptionsChildren(children: any[]): any[] | undefined {
+  if (!children) return undefined;
+
+  return children.map((o) => {
+    return {
+      label: o.label,
+      value: o.dataIndex || o.value || o.label,
+      disabled: o.disabled,
+      children: formatOptionsChildren(o.children),
+    };
+  });
+}
+
 /**
  *
  * @param IRcSearchOptionsProps options
  * @returns
  */
-const normalizeOptions = (options: IRcSearchOptionsProps[]) => {
+const normalizeOptions = (options: IRcSearchOptionsProps[], prefixSelectMode: 'select' | 'cascader') => {
+  if (prefixSelectMode === 'cascader') {
+    return options.map((o) => {
+      return {
+        label: o.label,
+        value: o.dataIndex || o.value || o.label,
+        disabled: o.disabled,
+        // @ts-ignore
+        children: formatOptionsChildren(o.children),
+      };
+    });
+  }
+
   const optionsCopy = cloneDeep(options);
   optionsCopy.forEach(
     (o) => { !o.groupName && (o.groupName = message.defaultFilterGroupName); },
@@ -39,7 +66,8 @@ const normalizeOptions = (options: IRcSearchOptionsProps[]) => {
         children: children.map((l: any) => {
           return {
             label: l.label,
-            value: l.dataIndex,
+            value: l.dataIndex || l.value,
+            disabled: l.disabled,
           };
         }),
       };
@@ -70,12 +98,26 @@ const normalizeSelectDataSource = (title: string, list: any) => {
   ];
 };
 
+const flatOption = (opts: any[] = []) => {
+  const flattened: any[] = [];
+
+  opts.forEach((item: any) => {
+    if (item.children) {
+      flattened.push(...flatOption(item.children));
+    } else {
+      flattened.push(item);
+    }
+  });
+
+  return flattened;
+};
+
 const normalizeSearchOptions = (
   dataIndex: string,
   value?: string,
   options?: IRcSearchOptionsProps[],
 ) => {
-  const opt = options?.find((o) => o.dataIndex === dataIndex);
+  const opt = flatOption(options)?.find((o) => getDataIndex(o) === dataIndex);
   let valueLabel = value;
   if (opt?.template === 'select') {
     valueLabel = opt.templateProps?.dataSource.find(
@@ -111,6 +153,10 @@ const highlightKeyword = (value: string, keywords: string) => {
   );
 };
 
+const getDataIndex = (option?: any) => {
+  return option?.dataIndex || option?.value;
+};
+
 const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
   const {
     options = [],
@@ -122,10 +168,12 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
     onSuggest,
     suggestions = [],
     prefix = 'next-',
+    prefixSelectMode = 'select',
+    prefixSelectItemRender,
   } = props;
 
   const [selectedFilterType, setSelectedFilterType] = useState<any>(
-    options.find((o) => o.dataIndex === defaultSelectedDataIndex),
+    options.find((o) => getDataIndex(o) === defaultSelectedDataIndex),
   );
   const [focused, setFocused] = useState<any>(false);
   const autoRef = useRef<any>(null);
@@ -144,7 +192,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
   // 计算视图，根据内部状态和输入的 props 决定一些值
   const isFuzzy =
     (!!defaultDataIndex || fuzzy) && !!getValue(SEARCH_FILTER_FIELD);
-  const defaultFilter = options.find((t) => t.dataIndex === defaultDataIndex);
+  const defaultFilter = options.find((t) => getDataIndex(t) === defaultDataIndex);
 
   const highlightItem = (item: any, searchKey: any) => {
     let { label } = item;
@@ -159,7 +207,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
    * 处理筛选类型选中的情况
    */
   const handlerFilterTypeChange = (type: string, resetValue = true) => {
-    setSelectedFilterType(options.find((o) => o.dataIndex === type));
+    setSelectedFilterType(flatOption(options).find((o) => getDataIndex(o) === type));
     resetValue && reset();
   };
 
@@ -169,15 +217,15 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
   const handlerFilterTypeInput = (
     value: string,
     actionType: string,
-    isFuzzy: boolean,
+    _isFuzzy: boolean,
     option: any,
   ) => {
-    const isFuzzySearch = isFuzzy && getValue(SEARCH_FILTER_FIELD);
+    const isFuzzySearch = _isFuzzy && getValue(SEARCH_FILTER_FIELD);
 
     // 如果是模糊搜索，则直接处理
     if (isFuzzySearch) {
       if (actionType !== 'change') {
-        handleSearch(option.dataIndex);
+        handleSearch(getDataIndex(option));
       } else {
         onSuggest && onSuggest(value, defaultDataIndex || '');
       }
@@ -223,8 +271,8 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
       if (selectedFilterType) {
         onSearch(
           value,
-          selectedFilterType.dataIndex,
-          normalizeSearchOptions(selectedFilterType.dataIndex, value, options),
+          getDataIndex(selectedFilterType),
+          normalizeSearchOptions(getDataIndex(selectedFilterType), value, options),
         );
       }
     }
@@ -388,17 +436,38 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
         <div className={classNames('condition')}>
           {selectedFilterType ? (
             <SearchConditionSelectPrefix
-              dataSource={normalizeOptions(options)}
+              type={prefixSelectMode}
+              dataSource={normalizeOptions(options, prefixSelectMode)}
               label={selectedFilterType?.label}
-              defaultValue={selectedFilterType?.dataIndex}
+              defaultValue={getDataIndex(selectedFilterType)}
               onChange={(value: string) => {
                 handlerFilterTypeChange(value);
               }}
+              itemRender={prefixSelectItemRender}
             />
           ) : null}
         </div>
         <div className={classNames('forms')}>
-          {!selectedFilterType ? (
+          {
+            !selectedFilterType && prefixSelectMode === 'cascader' ? <CascaderSelect
+              className={classNames('main-input', 'multi')}
+              hasBorder={false}
+              dataSource={normalizeOptions(options, prefixSelectMode)}
+              placeholder={
+                placeholder ||
+                (defaultFilter?.label
+                  ? template(message.defaultPlaceHolder)({
+                    value: defaultFilter?.label,
+                  })
+                  : '')
+              }
+              onChange={(value: any) => {
+                handlerFilterTypeChange(value);
+              }}
+              itemRender={prefixSelectItemRender}
+            /> : null
+          }
+          {!selectedFilterType && prefixSelectMode === 'select' ? (
             <AutoComplete
               {...init(SEARCH_FILTER_FIELD, {
                 props: {
@@ -410,7 +479,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
               })}
               autoHighlightFirstItem={false}
               // @ts-ignore
-              itemRender={highlightItem}
+              itemRender={prefixSelectItemRender || highlightItem}
               placeholder={
                 placeholder ||
                 (defaultFilter?.label
@@ -427,7 +496,7 @@ const ComplexSearch: React.FC<IRcSearchProps> = (props) => {
                 // 则表示需要模糊搜索，调用 handleSuggest
                 isFuzzy
                   ? normalizeSuggestion(suggestions)
-                  : normalizeOptions(options)
+                  : normalizeOptions(options, prefixSelectMode)
               }
               popupStyle={{ width: 'auto' }}
               popupClassName="rc-search-auto-complete"
