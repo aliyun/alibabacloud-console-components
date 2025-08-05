@@ -9,7 +9,11 @@
     "release": "lerna publish --conventional-commits",
     "release:next": "lerna publish --npm-tag=next",
     "release:nightly": "lerna publish --npm-tag=nightly",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "changeset": "changeset",
+    "bump-version:alpha": "(changeset pre exit ; changeset pre enter alpha) && changeset add && changeset version",
+    "bump-version:beta": "(changeset pre exit ; changeset pre enter beta) && changeset add && changeset version",
+    "bump-version": "changeset pre exit ; changeset add && changeset version"
   },
   "//": "After this is fixed: https://github.com/storybookjs/storybook/issues/7855 , we can remove @types/webpack-env",
   "devDependencies": {
@@ -60,13 +64,15 @@
     "react-dom": "^16.3.0",
     "styled-components": "^4.3.2",
     "typescript": "^4.1.2",
-    "yaml": "^2.4.5"
+    "yaml": "^2.4.5",
+    "@changesets/cli": "^2.29.5"
   },
   "resolutions": {
     "@microsoft/api-extractor": "~7.7.0",
     "gatsby": "~2.19.45",
     "gatsby-cli": "~2.10.11",
-    "postcss-calc": "^7.0.4"
+    "postcss-calc": "^7.0.4",
+    "@changesets/cli": "^2.29.5"
   },
   "config": {
     "commitizen": {

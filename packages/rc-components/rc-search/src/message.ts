@@ -45,7 +45,7 @@ const messages = {
   },
 };
 
-let lang = isSSR ? 'zh' : (Cookie.get('aliyun_lang') || 'zh');
+let lang = isSSR ? 'zh' : (Cookie.get('aliyun_lang') || Cookie.get('aspara_lang') || 'zh');
 
 if (!Object.keys(messages).includes(lang)) {
   lang = 'zh';
