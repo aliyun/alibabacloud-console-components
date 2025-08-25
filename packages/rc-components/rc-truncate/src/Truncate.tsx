@@ -1,5 +1,4 @@
-import React from 'react'
-import { SizeMe } from 'react-sizeme'
+import React, { useRef, useEffect, useState, useCallback } from 'react'
 import classnames from 'classnames'
 import TruncateByLength from './TruncateByLength'
 import TruncateByWidth from './TruncateByWidth'
@@ -8,9 +7,50 @@ import { SWrapper } from './styles'
 import type { ITruncateProps } from './types/ITruncateProps.type'
 export type { ITruncateProps }
 
-// 一般来说，都可以通过react-sizeme的refreshMode:"debounce"来提高首屏渲染性能，
-// 避免react-sizeme对DOM的度量阻塞渲染。
-// 保险起见，我们通过一个配置来开启这个行为，不要影响已有用户
+// 自定义 Hook 使用 ResizeObserver 监听元素尺寸变化
+const useResizeObserver = (debounce = false) => {
+  const [size, setSize] = useState({ width: 0, height: 0 })
+  const ref = useRef<HTMLDivElement>(null)
+  const timeoutRef = useRef<NodeJS.Timeout>()
+
+  const updateSize = useCallback((width: number, height: number) => {
+    if (debounce) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      timeoutRef.current = setTimeout(() => {
+        setSize({ width, height })
+      }, 16) // 约一帧的时间
+    } else {
+      setSize({ width, height })
+    }
+  }, [debounce])
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect
+        updateSize(width, height)
+      }
+    })
+
+    resizeObserver.observe(element)
+
+    return () => {
+      resizeObserver.disconnect()
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [updateSize])
+
+  return { ref, size }
+}
+
+// 检查是否启用防抖模式
 const debouncedMesure = (() => {
   if (
     typeof window !== undefined &&
@@ -43,6 +83,8 @@ const Truncate: React.FC<ITruncateProps> = ({
   popupClassName,
   patchPopupProps,
 }) => {
+  const { ref: sizeRef, size } = useResizeObserver(debouncedMesure)
+
   const actuallShowTooltip = (() => {
     // 旧版组件支持tooltip prop，且'enable'表示true
     if (showTooltip !== undefined) return showTooltip
@@ -51,6 +93,7 @@ const Truncate: React.FC<ITruncateProps> = ({
     }
     return true
   })()
+  
   const actualThreshold: number | string = (() => {
     if (threshold !== undefined) {
       return threshold
@@ -100,42 +143,35 @@ const Truncate: React.FC<ITruncateProps> = ({
       </Wrapper>
     )
   }
+  
   // 其余情况 type 视为 'width'
   if (actualThreshold === 'auto') {
-    return (
-      <SizeMe
-        noPlaceholder
-        refreshMode={debouncedMesure ? 'debounce' : undefined}
-      >
-        {({ size }) => {
-          // 获得可用宽度（即Wrapper的宽度）
-          let actualActualThreshold: number
-          // 设置一个超大的Threshold，使得react-sizeme能拿到完整内容的宽度
-          if (!size.width) actualActualThreshold = 5000
-          else actualActualThreshold = size.width
+    // 获得可用宽度（即Wrapper的宽度）
+    let actualActualThreshold: number
+    // 设置一个超大的Threshold，使得能拿到完整内容的宽度
+    if (!size.width) actualActualThreshold = 5000
+    else actualActualThreshold = size.width
 
-          return (
-            <Wrapper className={className} style={style}>
-              <TruncateByWidth
-                threshold={actualActualThreshold}
-                omission={omission}
-                showTooltip={actuallShowTooltip}
-                align={align}
-                tooltipMaxWidth={tooltipMaxWidth}
-                updaterRef={updaterRef}
-                isOverflowChange={isOverflowChange}
-                popupStyle={popupStyle}
-                popupClassName={popupClassName}
-                patchPopupProps={patchPopupProps}
-              >
-                {children}
-              </TruncateByWidth>
-            </Wrapper>
-          )
-        }}
-      </SizeMe>
+    return (
+      <Wrapper className={className} style={style} ref={sizeRef}>
+        <TruncateByWidth
+          threshold={actualActualThreshold}
+          omission={omission}
+          showTooltip={actuallShowTooltip}
+          align={align}
+          tooltipMaxWidth={tooltipMaxWidth}
+          updaterRef={updaterRef}
+          isOverflowChange={isOverflowChange}
+          popupStyle={popupStyle}
+          popupClassName={popupClassName}
+          patchPopupProps={patchPopupProps}
+        >
+          {children}
+        </TruncateByWidth>
+      </Wrapper>
     )
   }
+  
   return (
     <Wrapper className={className} style={style}>
       <TruncateByWidth
@@ -158,13 +194,21 @@ const Truncate: React.FC<ITruncateProps> = ({
 
 export default Truncate
 
-const Wrapper: React.FC<{
-  className?: string
-  style?: React.CSSProperties
-}> = ({ className, children, style }) => {
+const Wrapper = React.forwardRef<
+  HTMLDivElement,
+  {
+    className?: string
+    style?: React.CSSProperties
+    children: React.ReactNode
+  }
+>(({ className, children, style }, ref) => {
   return (
-    <SWrapper className={classnames(wrapperClassName, className)} style={style}>
+    <SWrapper 
+      ref={ref}
+      className={classnames(wrapperClassName, className)} 
+      style={style}
+    >
       {children}
     </SWrapper>
   )
-}
+})
